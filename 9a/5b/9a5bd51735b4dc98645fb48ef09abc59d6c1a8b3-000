@@ -1,0 +1,352 @@
+[
+ {
+  "from": "03_work/church_crop_1.jpg",
+  "to": "03_work/crops/church_crop_1.jpg",
+  "sha256": "267f5e0b254b6c5f0008ccfa01a185a8c327f03a50a32309940fe022fc7d52eb"
+ },
+ {
+  "from": "03_work/church_crop_10.jpg",
+  "to": "03_work/crops/church_crop_10.jpg",
+  "sha256": "086801c85d788fa4963e7330d00ecdfec38f923400c9c249afd63c004ddfcee3"
+ },
+ {
+  "from": "03_work/church_crop_11.jpg",
+  "to": "03_work/crops/church_crop_11.jpg",
+  "sha256": "f8b5d580024fefcaefc44a9bdfdd85512e9e93fced88663c60262e6acb65a861"
+ },
+ {
+  "from": "03_work/church_crop_12.jpg",
+  "to": "03_work/crops/church_crop_12.jpg",
+  "sha256": "08509a6f3fffa6bbe3d34a916c5f5da06aa8c8ed56b03a8a8063908f4863f7c1"
+ },
+ {
+  "from": "03_work/church_crop_2.jpg",
+  "to": "03_work/crops/church_crop_2.jpg",
+  "sha256": "4637d68d16d3271309047a7f1a7a3e578e7ef7df599130facd5b822c433b79b9"
+ },
+ {
+  "from": "03_work/church_crop_3.jpg",
+  "to": "03_work/crops/church_crop_3.jpg",
+  "sha256": "54762bae6bc8aac565161a37be7bbf4b12739b031225315850d72c2bbaa41166"
+ },
+ {
+  "from": "03_work/church_crop_4.jpg",
+  "to": "03_work/crops/church_crop_4.jpg",
+  "sha256": "a75dc883f62c6c9fb217997c43e9cd93d2e6f2a2aff082bcd5f57dd42d3e9883"
+ },
+ {
+  "from": "03_work/church_crop_5.jpg",
+  "to": "03_work/crops/church_crop_5.jpg",
+  "sha256": "47b38103b7b2bb0413aee3284bc264da7d3e23d531904a32448f37853ef9eb41"
+ },
+ {
+  "from": "03_work/church_crop_6.jpg",
+  "to": "03_work/crops/church_crop_6.jpg",
+  "sha256": "b36e66a2de917ed427e75e5fe4a833b8e58ac3abce72d54d25a2bf89acc085ad"
+ },
+ {
+  "from": "03_work/church_crop_7.jpg",
+  "to": "03_work/crops/church_crop_7.jpg",
+  "sha256": "f3b164e2ad21d7cc534caabd13be590af95bbc42a95722c301afd64adf9de140"
+ },
+ {
+  "from": "03_work/church_crop_8.jpg",
+  "to": "03_work/crops/church_crop_8.jpg",
+  "sha256": "ec3440f72481a5bf46289adcd89b4b0a4ca49aae77bf9cd49818778bbca6306a"
+ },
+ {
+  "from": "03_work/church_crop_9.jpg",
+  "to": "03_work/crops/church_crop_9.jpg",
+  "sha256": "0cf0f6da7cbf332a8ff31f58621e7afa94c98f68672d31f0c11aa439f076748f"
+ },
+ {
+  "from": "03_work/tight_crop_1.jpg",
+  "to": "03_work/crops/tight_crop_1.jpg",
+  "sha256": "cb75586f9117deab3a83a4292637f85f4a303d359e55a328041d82d910df770c"
+ },
+ {
+  "from": "03_work/tight_crop_10.jpg",
+  "to": "03_work/crops/tight_crop_10.jpg",
+  "sha256": "63b25eeb5bf6d1b8029d8fc6645e16dcd6130e8101c656b4db705367d23252f2"
+ },
+ {
+  "from": "03_work/tight_crop_11.jpg",
+  "to": "03_work/crops/tight_crop_11.jpg",
+  "sha256": "526870a8b5d68c675fda03d12ac15d0bfa05cd3afcde5dce0c9b8369f79ccf1c"
+ },
+ {
+  "from": "03_work/tight_crop_12.jpg",
+  "to": "03_work/crops/tight_crop_12.jpg",
+  "sha256": "b3ce8429a8d02d32a77b6ef7b4290063b6859982ccd5f865fd9d5ca495db86af"
+ },
+ {
+  "from": "03_work/tight_crop_2.jpg",
+  "to": "03_work/crops/tight_crop_2.jpg",
+  "sha256": "42519adee5c643e2ddfd851e356ad300e944e0da98f6a4c6d39a9be6852016f3"
+ },
+ {
+  "from": "03_work/tight_crop_3.jpg",
+  "to": "03_work/crops/tight_crop_3.jpg",
+  "sha256": "675c47a19272ba92246ad4dd11b1625605503adf676013853218737f7356a6f6"
+ },
+ {
+  "from": "03_work/tight_crop_4.jpg",
+  "to": "03_work/crops/tight_crop_4.jpg",
+  "sha256": "ac4444715097d9c40a12f0cd15ba4484c615c0a3dd5e91b8d5bfd6841dd5d96b"
+ },
+ {
+  "from": "03_work/tight_crop_5.jpg",
+  "to": "03_work/crops/tight_crop_5.jpg",
+  "sha256": "9d25c73a2a6f51e426a2108435688838fd341cfc6a69a51ebf3c38ee60371faf"
+ },
+ {
+  "from": "03_work/tight_crop_6.jpg",
+  "to": "03_work/crops/tight_crop_6.jpg",
+  "sha256": "db91ae452f7552243d7225e25441ded9799744a19b371195daba25a97b17a400"
+ },
+ {
+  "from": "03_work/tight_crop_7.jpg",
+  "to": "03_work/crops/tight_crop_7.jpg",
+  "sha256": "4db2d6abfdae3f53ea490ac4c8007155f3df16bfa856bfe8934bdbe65bc52daf"
+ },
+ {
+  "from": "03_work/tight_crop_8.jpg",
+  "to": "03_work/crops/tight_crop_8.jpg",
+  "sha256": "3c8887e55fd13da97482616bc806d76bc78a63a7cc4490da9fb0ee39bc063549"
+ },
+ {
+  "from": "03_work/tight_crop_9.jpg",
+  "to": "03_work/crops/tight_crop_9.jpg",
+  "sha256": "1d2cf45513aee55e2764b94ceacdf0316a50107c18e573f9181394539d9a89f9"
+ },
+ {
+  "from": "03_work/contact_sheet_details.jpg",
+  "to": "03_work/contact_sheets/contact_sheet_details.jpg",
+  "sha256": "d07d2e2f12be5dc97004cd76926d48eba7150cada3ce84bef58bb9f7d71f129a"
+ },
+ {
+  "from": "03_work/contact_sheet_params_val.jpg",
+  "to": "03_work/contact_sheets/contact_sheet_params_val.jpg",
+  "sha256": "00398bc01356f71a306a9ef53c55a68c39fca31f8d3e0307817b54a916fa6b04"
+ },
+ {
+  "from": "03_work/contact_sheet_tight_crops.jpg",
+  "to": "03_work/contact_sheets/contact_sheet_tight_crops.jpg",
+  "sha256": "1509569aba9f70e68635f065a253ab18f2091b9cbbed049aaea391dc2f90c24d"
+ },
+ {
+  "from": "03_work/contact_sheet_turquoise_test.jpg",
+  "to": "03_work/contact_sheets/contact_sheet_turquoise_test.jpg",
+  "sha256": "b6ffcd5f3244bb733b4858658650c7cdc4906cdd9fbea29fac0ca2509bc54216"
+ },
+ {
+  "from": "03_work/contact_sheet_unreal.jpg",
+  "to": "03_work/contact_sheets/contact_sheet_unreal.jpg",
+  "sha256": "27b3f2f28920ef766b67922e6e9fb3c11feb87acb46bfc6b11df9721105c8637"
+ },
+ {
+  "from": "03_work/details_panel_1.jpg",
+  "to": "03_work/panels/details_panel_1.jpg",
+  "sha256": "81483257a89cbfd097f49529408e77cc9c9857c93e774c5e4aac6d277133223c"
+ },
+ {
+  "from": "03_work/details_panel_10.jpg",
+  "to": "03_work/panels/details_panel_10.jpg",
+  "sha256": "f9b700931f3ec1cd8dae330b23985ac2350b2ac3aae92fdf7293e597b2d5f50c"
+ },
+ {
+  "from": "03_work/details_panel_11.jpg",
+  "to": "03_work/panels/details_panel_11.jpg",
+  "sha256": "87a2d39b931519ff8aac802a6c1268e480cdde8d304e99244681a0d4cf8360d2"
+ },
+ {
+  "from": "03_work/details_panel_12.jpg",
+  "to": "03_work/panels/details_panel_12.jpg",
+  "sha256": "a58135e6858a1c48433a722cb54f53f26c4005f412b0974a583adeb42c2c0d40"
+ },
+ {
+  "from": "03_work/details_panel_2.jpg",
+  "to": "03_work/panels/details_panel_2.jpg",
+  "sha256": "7e3c788c2849ffefeb73c7e4e79a9b677959588406ded79ade804d680429af1e"
+ },
+ {
+  "from": "03_work/details_panel_3.jpg",
+  "to": "03_work/panels/details_panel_3.jpg",
+  "sha256": "5b168d336bd3181efac519c123dedeb518384ddce3e3df60617fe6b04a8448cf"
+ },
+ {
+  "from": "03_work/details_panel_4.jpg",
+  "to": "03_work/panels/details_panel_4.jpg",
+  "sha256": "42dc7af1c094903b6e5b7f42021a91e83c33ae340f06bd6df15167976b1ffd53"
+ },
+ {
+  "from": "03_work/details_panel_5.jpg",
+  "to": "03_work/panels/details_panel_5.jpg",
+  "sha256": "0d8a35decef02abf77441f199a6002edf80e2a5ffe09ef09e4145ea1e2823a00"
+ },
+ {
+  "from": "03_work/details_panel_6.jpg",
+  "to": "03_work/panels/details_panel_6.jpg",
+  "sha256": "034028e10bcd4df67b0897cbb5536386704c0bf3256b6caa2d744df6ea747c49"
+ },
+ {
+  "from": "03_work/details_panel_7.jpg",
+  "to": "03_work/panels/details_panel_7.jpg",
+  "sha256": "5dbe4c7ed70e68cc231783918716db98b3041d2543d97502d68e01c05dd625d1"
+ },
+ {
+  "from": "03_work/details_panel_8.jpg",
+  "to": "03_work/panels/details_panel_8.jpg",
+  "sha256": "8de112f3897df4c7fcab9fa5bae42880ef56dc9a5de96ebb432f99632b57a092"
+ },
+ {
+  "from": "03_work/details_panel_9.jpg",
+  "to": "03_work/panels/details_panel_9.jpg",
+  "sha256": "8b92382cab3d6e6aea4522ee134558cd41e3c772ebc4e68aa7699fb6e520072a"
+ },
+ {
+  "from": "03_work/params_val_1.png",
+  "to": "03_work/panels/params_val_1.png",
+  "sha256": "8874d5547aa97310f1596b32d7b0b9f30054819dae5c412b91dd01a689b52344"
+ },
+ {
+  "from": "03_work/params_val_10.png",
+  "to": "03_work/panels/params_val_10.png",
+  "sha256": "a1996785b72e37366d0aa2fb7261cadcd4beb182ff14d679aa36521772460d8b"
+ },
+ {
+  "from": "03_work/params_val_11.png",
+  "to": "03_work/panels/params_val_11.png",
+  "sha256": "cef380e1299e8d10f8f12d76e64f949f488a6035f1986b08bf65c0c35c722239"
+ },
+ {
+  "from": "03_work/params_val_12.png",
+  "to": "03_work/panels/params_val_12.png",
+  "sha256": "3e2e68b9d09ed8ba4636b57c2fa0fbe1b66c49dda530f4795b185fbef6550884"
+ },
+ {
+  "from": "03_work/params_val_2.png",
+  "to": "03_work/panels/params_val_2.png",
+  "sha256": "391787064e30eb7f02ae4dc5e9edff444bfbe0cd87cf7391ff2e03f7c384e036"
+ },
+ {
+  "from": "03_work/params_val_3.png",
+  "to": "03_work/panels/params_val_3.png",
+  "sha256": "754170673491fa9f98a153569e609c7dffd5ca8ba8fa47114ba19fae8390a19a"
+ },
+ {
+  "from": "03_work/params_val_4.png",
+  "to": "03_work/panels/params_val_4.png",
+  "sha256": "7d1aef0736689593f498a3884246ca937a46b3eef9cedbd1ae51d0f4185dbff2"
+ },
+ {
+  "from": "03_work/params_val_5.png",
+  "to": "03_work/panels/params_val_5.png",
+  "sha256": "07e3f930992a153f5a2ef1c930bb79896923c740f1b79689bd75eb531b35e978"
+ },
+ {
+  "from": "03_work/params_val_6.png",
+  "to": "03_work/panels/params_val_6.png",
+  "sha256": "928cfa640a0934b38653474c2c05117827ee6593ba937db6bbcfb888bc4c5efd"
+ },
+ {
+  "from": "03_work/params_val_7.png",
+  "to": "03_work/panels/params_val_7.png",
+  "sha256": "c5ac7777e6c2e269f4f570776b19007f41c58cf20d2b2cc924c22468a7dca93c"
+ },
+ {
+  "from": "03_work/params_val_8.png",
+  "to": "03_work/panels/params_val_8.png",
+  "sha256": "f01cbd1d720d775297a75388a56bef86628b41ea68833b9a4a973d629291bae7"
+ },
+ {
+  "from": "03_work/params_val_9.png",
+  "to": "03_work/panels/params_val_9.png",
+  "sha256": "15ded59da00dbc2ca7e674bd6120a27ca0a653d182752b73722b6aab40e1c916"
+ },
+ {
+  "from": "03_work/test_optionA.jpg",
+  "to": "03_work/tests/test_optionA.jpg",
+  "sha256": "0de4eabd0c338bb6189bf7cae02fa3879ad9371640cf39bbc9052523299d4407"
+ },
+ {
+  "from": "03_work/test_optionB.jpg",
+  "to": "03_work/tests/test_optionB.jpg",
+  "sha256": "4456cacdc75044dd66947e9b0688491e167f83b8857d0f11a9e9b41120ef6e65"
+ },
+ {
+  "from": "03_work/sample_small.png",
+  "to": "03_work/tests/sample_small.png",
+  "sha256": "fa5b6aaddc7e04dd5332ef9c5610101ece25830d4f85bf24206a5eb9855607e9"
+ },
+ {
+  "from": "02_sources/test_box_header_im1.jpg",
+  "to": "02_sources/tests/test_box_header_im1.jpg",
+  "sha256": "e3f4b688e16c9564841f7616bff354135f4789d70c1a3653cfa2520cd2e06f05"
+ },
+ {
+  "from": "02_sources/test_box_header_im2.jpg",
+  "to": "02_sources/tests/test_box_header_im2.jpg",
+  "sha256": "cd0eea64f139eb0adf8a2fe657d22e682ebe84fc679a1af1938779df937d5d65"
+ },
+ {
+  "from": "02_sources/test_box_header_im3.jpg",
+  "to": "02_sources/tests/test_box_header_im3.jpg",
+  "sha256": "310cb253ebe4786d01cb190355100bb81f5cff01c6b1fba4341659cb90726c11"
+ },
+ {
+  "from": "02_sources/test_box_header_im8.jpg",
+  "to": "02_sources/tests/test_box_header_im8.jpg",
+  "sha256": "e743f1b7d5561c3a9b17840726c50fe76cf4b7efb631817afbd7ebe58fa18852"
+ },
+ {
+  "from": "02_sources/test_box_im3.jpg",
+  "to": "02_sources/tests/test_box_im3.jpg",
+  "sha256": "58d9118ceb94c392add53a3340cedc88ab563c68e6b0cc82bfb7a1f6dcc5f7ef"
+ },
+ {
+  "from": "02_sources/test_box_im8.jpg",
+  "to": "02_sources/tests/test_box_im8.jpg",
+  "sha256": "0ee5bb984ab2e1e927dd6f56d12602c857900e956c30d940c8a7dbe771642d33"
+ },
+ {
+  "from": "02_sources/test_box_v2_im3.jpg",
+  "to": "02_sources/tests/test_box_v2_im3.jpg",
+  "sha256": "f1f3721cd51164c45b04c3f2a1afdd93c4cbee5bea00327189c389d2f85290b4"
+ },
+ {
+  "from": "02_sources/test_box_v2_im8.jpg",
+  "to": "02_sources/tests/test_box_v2_im8.jpg",
+  "sha256": "f520d8062651d8b337085054af785e43c20ca8bcf9c54061d469b3ff7dec42ad"
+ },
+ {
+  "from": "02_sources/test_im1_crop.jpg",
+  "to": "02_sources/tests/test_im1_crop.jpg",
+  "sha256": "13203e2a336e6c7e37596cd8f6977342b7601e6eecaad7995a98be6f82794db7"
+ },
+ {
+  "from": "02_sources/test_im2_crop.jpg",
+  "to": "02_sources/tests/test_im2_crop.jpg",
+  "sha256": "aa8f165cd782edc25b5a0c1425315d408afece573e9a97e8582a6cbc29e77668"
+ },
+ {
+  "from": "02_sources/test_im3_crop.jpg",
+  "to": "02_sources/tests/test_im3_crop.jpg",
+  "sha256": "3444ec12d34a031526849920b9252859a9cb4ebde8a0d1fc76baf13706ceb6d5"
+ },
+ {
+  "from": "02_sources/test_im8_crop.jpg",
+  "to": "02_sources/tests/test_im8_crop.jpg",
+  "sha256": "eaace9dc7077a67bb7e13be286cbad80d15914c06d2faebdb189630ab7d3b895"
+ },
+ {
+  "from": "02_sources/test_im8_crop_extended.jpg",
+  "to": "02_sources/tests/test_im8_crop_extended.jpg",
+  "sha256": "e99f3215b3a91eec52263991969ef1c10d73c7476be777d87ca7402fe5f40c83"
+ },
+ {
+  "from": "02_sources/details_all_12.jpg",
+  "to": "02_sources/tests/details_all_12.jpg",
+  "sha256": "630b79e3aa1988e7c1191bc033699fd83df102ba0aac45d836e0a76fb421c631"
+ }
+]
