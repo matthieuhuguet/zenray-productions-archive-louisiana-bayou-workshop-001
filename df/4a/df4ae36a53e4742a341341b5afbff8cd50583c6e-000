@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leçon texels</title>
+<meta name="description" content="Leçon pas à pas : compter les tuiles d'un toit, les placer en rangées et colonnes collées, et calculer la trim sheet.">
+<style>
+/* 9 October 2026 : leçon HTML, fonts embarquées (InterVariable, AnthropicSerif, AnthropicMono), tokens en :root, thème clair et sombre. */
+@font-face{font-family:'InterVariable';src:url('fonts/InterVariable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'AnthropicSerif';src:url('fonts/AnthropicSerif-Romans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'AnthropicSerif';src:url('fonts/AnthropicSerif-Italics.woff2') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'AnthropicMono';src:url('fonts/AnthropicMono.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{
+  --zr-police-sans:'InterVariable','Hiragino Sans W4','Hiragino Sans',sans-serif;
+  --zr-police-serif:'AnthropicSerif','Hiragino Mincho ProN W3',serif;
+  --zr-police-mono:'AnthropicMono',ui-monospace,monospace;
+  --zr-poids-sans:400;--zr-poids-serif:350;--zr-poids-nombres:400;
+  --bg:#faf9f6;--bg2:#f1efe9;--card:#ffffff;--ink:#1d1c1a;--ink2:#5b5953;--line:#dcd8cf;
+  --acc:#cc7c5e;--acc2:#e9c4b4;--ok:#5f7f66;--warn:#a8742f;
+  --t1:#d97e63;--t2:#e9a35c;--t3:#c8b25a;--t4:#7fb08a;--t5:#6fa3bd;--t6:#8a86c7;--t7:#b57fb6;
+  --measure:46rem;--wide:70rem;--gap:1.4rem;--r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171614;--bg2:#1f1d1b;--card:#242220;--ink:#efece6;--ink2:#aaa69d;--line:#3a3733;--acc:#d98d70;--acc2:#5b3d31;--ok:#8fb598;--warn:#d4a35e;}}
+:root[data-theme="dark"]{--bg:#171614;--bg2:#1f1d1b;--card:#242220;--ink:#efece6;--ink2:#aaa69d;--line:#3a3733;--acc:#d98d70;--acc2:#5b3d31;--ok:#8fb598;--warn:#d4a35e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--zr-police-serif);font-weight:var(--zr-poids-serif);font-size:1.16rem;line-height:1.7}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 16px}
+.wide{max-width:var(--wide);margin:2rem auto;padding:0 16px}
+h1,h2,h3{font-family:var(--zr-police-serif);font-weight:350;line-height:1.2;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);margin:3.4rem 0 .6rem}
+h3{font-size:1.35rem;margin:2rem 0 .4rem}
+p{margin:.9rem 0}
+b,strong{font-weight:500}
+.num,.n{font-weight:var(--zr-poids-nombres)}
+code,.mono{font-family:var(--zr-police-mono);font-size:.88em;background:var(--bg2);padding:.1em .35em;border-radius:6px}
+.ui{font-family:var(--zr-police-sans);font-weight:var(--zr-poids-sans)}
+header.hero{padding:4rem 0 2rem;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:1rem}
+.lead{font-size:1.35rem;color:var(--ink2);margin-top:1.2rem}
+nav.toc{font-family:var(--zr-police-sans);font-size:.92rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin:1.8rem 0}
+nav.toc ol{margin:.4rem 0 0;padding-left:1.2rem;columns:2;column-gap:2rem}
+nav.toc a{color:var(--ink);text-decoration:none}nav.toc a:hover{color:var(--acc)}
+.step{display:inline-flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--zr-police-sans);font-size:.95rem;margin-right:.6rem;vertical-align:.1em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.3rem;margin:1.4rem 0}
+.callout{border-left:4px solid var(--acc);background:var(--bg2);padding:.9rem 1.2rem;border-radius:0 var(--r) var(--r) 0;margin:1.4rem 0}
+.callout.warn{border-color:var(--warn)}
+.callout .t{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:.2rem}
+.callout.warn .t{color:var(--warn)}
+figure{margin:1.8rem 0}
+figure svg{overflow:hidden}
+figure img,figure svg{width:100%;height:auto;display:block;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+figcaption{font-family:var(--zr-police-sans);font-size:.88rem;color:var(--ink2);margin-top:.5rem;line-height:1.5}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+@media(max-width:760px){.pair{grid-template-columns:1fr}nav.toc ol{columns:1}}
+table{display:block;overflow-x:auto;max-width:100%;border-collapse:collapse;font-family:var(--zr-police-sans);font-size:.95rem;margin:1.2rem 0}
+th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--ink2);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+td.n,td .n{font-family:var(--zr-police-serif);font-weight:var(--zr-poids-nombres);font-size:1.05rem}
+.formula{font-family:var(--zr-police-mono);font-size:.95rem;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1.1rem;overflow-x:auto;white-space:pre;margin:1.1rem 0;line-height:1.6}
+.demo{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin:1.6rem 0}
+.demo .ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--zr-police-sans);font-size:.92rem;margin-bottom:.8rem}
+.demo label{display:flex;flex-direction:column;gap:.15rem;min-width:9rem}
+.demo label b{font-weight:400;color:var(--ink2);font-size:.8rem}
+.demo output{font-family:var(--zr-police-serif);font-size:1.15rem}
+.demo canvas{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;background:var(--bg2)}
+button,.btn{font-family:var(--zr-police-sans);font-weight:400;font-size:.9rem;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;cursor:pointer}
+button:hover{border-color:var(--acc)}button[aria-pressed="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+input[type=range]{accent-color:var(--acc);width:100%}
+.stats{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;font-family:var(--zr-police-sans);font-size:.9rem;color:var(--ink2);margin-top:.7rem}
+.stats b{font-family:var(--zr-police-serif);font-weight:var(--zr-poids-nombres);color:var(--ink);font-size:1.15rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.7rem 1.1rem;margin:.8rem 0}
+summary{cursor:pointer;font-family:var(--zr-police-sans);font-size:.98rem}
+dl{margin:1rem 0}dt{font-weight:500;margin-top:.9rem}dd{margin:.1rem 0 0;color:var(--ink2)}
+footer{overflow-wrap:anywhere;border-top:1px solid var(--line);margin:4rem 0 3rem;padding-top:1.4rem;color:var(--ink2);font-family:var(--zr-police-sans);font-size:.88rem}
+.svgtext{font-family:var(--zr-police-sans);font-size:13px;fill:var(--ink)}
+.svgtext2{font-family:var(--zr-police-sans);font-size:12px;fill:var(--ink2)}
+.svgnum{font-family:var(--zr-police-serif);font-size:15px;fill:var(--ink);font-weight:400}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="kicker">Leçon complémentaire · Louisiana Bayou · 9 October 2026</div>
+  <h1>La densité de texels : combien de pixels pour une tuile, et pour tout le toit</h1>
+  <p class="lead">Trois idées, trois paragraphes, et un calcul que tu peux refaire dans ta tête. On suit ton toit actuel : 2 449 tuiles, une église de 6,56 m de large et une porte à 2 m.</p>
+  <p><a class="ui" href="index.html" style="color:var(--acc)">← Retour à la grande leçon sur le toit</a></p>
+</div></header>
+<main><div class="wrap">
+
+<div class="callout"><div class="t">Une correction d'abord</div>
+24 emplacements × 4 retournements = <b>96</b> aspects, pas 196. Et depuis le changement d'échelle de l'église, on a même <b>36 emplacements × 4 = 144</b> aspects (tu verras pourquoi plus bas).</div>
+
+<!-- ============ 1 ============ -->
+<h2><span class="step">1</span>La densité de texels, c'est un zoom, choisi une seule fois</h2>
+<p>Imagine que tu imprimes une photo de bois et que tu la colles sur un mur. Si tu l'imprimes <b>grande</b>, on voit chaque fibre, mais il faut beaucoup de pixels. Si tu l'imprimes <b>petite</b>, le bois paraît flou de près. La « densité de texels » est exactement le réglage de ce zoom : <b>combien de pixels de la texture on utilise pour peindre un mètre de bois réel</b>. Tu l'as choisi : 1 pixel par millimètre, soit <b>1 000 pixels pour 1 mètre</b>, arrondi à <b>1 024</b> parce que l'ordinateur aime les puissances de 2 (1 024 = 2 × 512). Ce zoom est <b>le même partout</b> sur la maison : c'est ce qui fait qu'une planche de mur et une tuile ont la même netteté. Sans trim sheet, chaque tuile recopie simplement le même matériau à ce zoom, donc toutes se ressemblent et le motif se répète. Avec la trim sheet, on met 36 tuiles <i>différentes</i> côte à côte sur une feuille, au <b>même zoom</b>, et chaque tuile 3D pioche l'une d'elles.</p>
+<figure>
+<svg viewBox="0 0 760 210" role="img" aria-label="Un mètre de bois égale 1024 pixels">
+  <rect width="760" height="210" fill="var(--card)"/>
+  <rect x="40" y="40" width="680" height="46" fill="var(--t3)" opacity=".75" stroke="var(--ink)" stroke-width="2"/>
+  <text class="svgtext" x="50" y="68" style="fill:#fff">1 mètre de bois réel</text>
+  <g stroke="var(--ink)" stroke-width="2"><path d="M40 100 V116 M720 100 V116"/><path d="M40 108 H720"/></g>
+  <text class="svgnum" x="40" y="140">= 1 024 pixels de la texture (1 px par millimètre)</text>
+  <text class="svgtext2" x="40" y="168">0,5 m de bois = 512 px · 0,25 m = 256 px · 2 m = 2 048 px (une feuille entière)</text>
+  <text class="svgtext2" x="40" y="190">La règle : pixels = mètres × 1 024. Rien d'autre.</text>
+</svg>
+<figcaption>La densité relie le monde réel (en mètres) à l'image (en pixels). C'est une multiplication, un seul nombre.</figcaption>
+</figure>
+
+<!-- ============ 2 ============ -->
+<h2><span class="step">2</span>Comment on trouve la taille d'une tuile en pixels</h2>
+<p>On ne « décide » pas qu'une tuile fait tant de pixels : on <b>mesure la tuile dans le monde réel, en mètres, puis on multiplie par 1 024</b>. Les tuiles de ton toit font entre 0,20 et 0,32 m de large, et la hauteur qui compte est le pas de rangée (0,2552 m) plus un peu de marge de sécurité (6,5 cm) pour les tuiles légèrement penchées, soit 0,32 m. Donc <b>le plus large emplacement</b> fait 0,32 × 1 024 = <b>328 px</b> de large et 0,3202 × 1 024 = <b>328 px</b> de haut. Tu avais en tête 420 × 380 : le 420 venait de l'ANCIENNE tuile de 0,41 m de large (0,41 × 1 024 = 420), celle de la première leçon. Depuis, on a fixé les largeurs à 0,2 à 0,32 m, donc l'emplacement a changé. Et le fait d'avoir changé le nombre de rangées, de colonnes et la taille de l'église <b>ne change pas la taille d'une tuile</b> : une tuile reste du bois de 0,26 m de large environ, peu importe la taille du toit. Ce qui change, c'est <b>combien</b> de tuiles il faut.</p>
+<table>
+  <tr><th>Quoi</th><th>Calcul</th><th>Résultat</th></tr>
+  <tr><td>Largeur de l'emplacement</td><td class="n">0,32 m × 1 024</td><td class="n">328 px</td></tr>
+  <tr><td>Hauteur de l'emplacement</td><td class="n">(0,2552 + 0,065) m × 1 024</td><td class="n">328 px</td></tr>
+  <tr><td>Marge entre emplacements</td><td class="n">pour que les couleurs ne débordent pas</td><td class="n">8 px</td></tr>
+  <tr><td>Emplacements en largeur sur 2 048 px</td><td class="n">(2 048 − 8) ÷ (328 + 8)</td><td class="n">6</td></tr>
+  <tr><td>Emplacements en hauteur sur 2 048 px</td><td class="n">(2 048 − 8) ÷ (328 + 8)</td><td class="n">6</td></tr>
+  <tr><td>Emplacements sur la feuille</td><td class="n">6 × 6</td><td class="n">36</td></tr>
+  <tr><td>Aspects avec 4 retournements</td><td class="n">36 × 4</td><td class="n">144</td></tr>
+</table>
+
+<!-- ============ 3 ============ -->
+<h2><span class="step">3</span>Couvrir tout le toit : on compte des surfaces, jamais des volumes</h2>
+<p>Pour poser le calcul toi-même, on part de la <b>surface</b> du toit, en mètres carrés : une texture est plate, donc l'épaisseur du bois n'entre jamais dans le calcul, pas de mètres cubes. Le grand toit fait 2 pans de 13,51 m sur 5,36 m, soit <b>144,8 m²</b>, et le porche 2 pans de 2,35 m sur 1,49 m, soit <b>7,0 m²</b> : <b>152 m²</b> en tout. Chaque tuile cache une partie d'elle-même, donc on compte sa surface <b>visible</b> : 0,26 m × 0,2552 m = 0,066 m² pour l'église. Tuiles = surface ÷ surface visible d'une tuile : <b>2 200 tuiles</b> pour l'église, <b>249</b> pour le porche, <b>2 449</b> au total (c'est le nombre que Houdini compte). Maintenant les deux questions séparées : (1) <i>Combien de pixels pour peindre tout ça en peinture unique ?</i> 152 m² × 1 024 × 1 024 = 159 millions de pixels = <b>38 feuilles de 2 048²</b>, donc impossible. (2) <i>Avec la trim sheet ?</i> <b>Une seule feuille</b>, quelle que soit la taille du toit, parce qu'elle ne contient que 36 emplacements. Le toit peut doubler de taille, la feuille ne grossit pas : seul le nombre de fois où on répète chaque aspect augmente. Ce « diviser par 96 » que tu imaginais est donc : <b>tuiles ÷ aspects = répétitions par aspect</b>, ici 2 449 ÷ 144 = <b>17 fois chacun</b>. Que ce soit invisible dépend de ce que l'œil voit d'un coup (environ 30 tuiles) : il suffit qu'aucun aspect ne se retrouve deux fois dans cette fenêtre, avec un tirage en « sac mélangé ». 144 aspects pour 30 tuiles visibles, c'est largement bon.</p>
+
+<h3>Le calcul dans ta tête, en 5 lignes</h3>
+<div class="formula">1. pixels d'une tuile  = mètres × 1 024          (0,32 m  →  328 px)
+2. tuiles du toit      = surface ÷ surface visible (152 m² ÷ 0,066 m²  →  2 300 à 2 450)
+3. emplacements        = ((2 048 − 8) ÷ (largeur + 8)) × ((2 048 − 8) ÷ (hauteur + 8))   (6 × 6 = 36)
+4. aspects             = emplacements × 4                               (144)
+5. répétitions         = tuiles ÷ aspects                               (2 449 ÷ 144 = 17)</div>
+
+<div class="demo" id="calc">
+  <div class="ctl ui">
+    <button type="button" id="pc" aria-pressed="true">Église</button>
+    <button type="button" id="pp" aria-pressed="false">Porche</button>
+    <label><b>Largeur max d'une tuile (m)</b><input type="number" id="w" step="0.01" value="0.32"></label>
+    <label><b>Pas de rangée (m)</b><input type="number" id="h" step="0.001" value="0.2552"></label>
+    <label><b>Densité (pixels par mètre)</b><input type="number" id="d" step="64" value="1024"></label>
+    <label><b>Surface du toit (m²)</b><input type="number" id="a" step="1" value="144.8"></label>
+    <label><b>Feuille (px)</b><input type="number" id="s" step="512" value="2048"></label>
+  </div>
+  <div class="stats ui" id="o"></div>
+  <p class="svgtext2" style="margin:.6rem 0 0">Change un nombre : tout se recalcule. Marge de sécurité en hauteur : 6,5 cm. Marge entre emplacements : 8 px. Pour le porche, la largeur max est 0,18 m.</p>
+</div>
+
+<div class="callout"><div class="t">Ce qu'il faut retenir</div>
+Le zoom (1 024 px par mètre) se choisit <b>une fois</b>. La taille d'une tuile en pixels vient de <b>sa taille réelle</b>, jamais de la taille du toit. La taille du toit décide seulement <b>combien</b> de tuiles on pose, donc combien de fois chaque aspect se répète. La feuille, elle, reste de la même taille.</div>
+
+</div></main>
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i)},fmt=function(x,d){return (Math.round(x*Math.pow(10,d))/Math.pow(10,d)).toString().replace('.',',')};
+ function go(){
+  var w=+$('w').value,h=+$('h').value,d=+$('d').value,a=+$('a').value,s=+$('s').value,m=8;
+  var pw=Math.round(w*d),ph=Math.round((h+0.065)*d),cols=Math.floor((s-m)/(pw+m)),rows=Math.floor((s-m)/(ph+m)),slots=cols*rows,looks=slots*4;
+  var vis=(w*0.81)*h,tiles=Math.round(a/vis),reps=tiles/Math.max(looks,1),uniq=a*d*d/(s*s);
+  $('o').innerHTML=[['Emplacement',pw+' × '+ph+' px'],['Emplacements par feuille',slots+' ('+cols+' × '+rows+')'],['Aspects (× 4)',looks],['Tuiles (estimation)',tiles],['Répétitions par aspect',fmt(reps,0)],['Feuilles en peinture unique',fmt(uniq,1)],['Feuilles avec trim sheet',1]].map(function(p){return '<span>'+p[0]+' : <b>'+p[1]+'</b></span>'}).join('');
+ }
+ ['w','h','d','a','s'].forEach(function(i){$(i).oninput=go});
+ function set(v){$('w').value=v.w;$('h').value=v.h;$('a').value=v.a;go()}
+ $('pc').onclick=function(){$('pc').setAttribute('aria-pressed',true);$('pp').setAttribute('aria-pressed',false);set({w:0.32,h:0.2552,a:144.8})};
+ $('pp').onclick=function(){$('pp').setAttribute('aria-pressed',true);$('pc').setAttribute('aria-pressed',false);set({w:0.18,h:0.213,a:7.0})};
+ go();
+})();
+</script>
+</body></html>

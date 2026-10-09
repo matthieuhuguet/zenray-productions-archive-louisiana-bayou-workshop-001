@@ -92,6 +92,7 @@ footer{overflow-wrap:anywhere;border-top:1px solid var(--line);margin:4rem 0 3re
 <main>
 <div class="wrap">
 
+<p class="callout" style="margin-top:1.4rem"><b>Leçon complémentaire :</b> <a href="texel-density.html" style="color:var(--acc)">la densité de texels, pour de vrai (3 paragraphes + un calcul à refaire dans la tête)</a></p>
 <nav class="toc" aria-label="Plan de la leçon">
   <b>Plan de la leçon</b>
   <ol>
