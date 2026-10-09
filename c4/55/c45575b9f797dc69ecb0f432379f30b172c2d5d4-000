@@ -1,0 +1,13 @@
+{
+  "indexedAt": "9 October 2026",
+  "rule": "Every texture produced by an image generator is provisional and is shown in RED in Houdini (node colour 0.9, 0.15, 0.15) until it is replaced by a height and 5 maps built in Copernicus or Substance Designer.",
+  "files": [
+    {"file": "BayouRoofTrimSheet36_BaseColor_ChatGPT_9October2026.png", "kind": "base color", "origin": "ChatGPT image generation", "sheet": "6 x 6 = 36 shingle slots, 1254 x 1254 px", "originalPath": "/Users/zenray/Downloads/basecolor-chatgpt.png", "status": "provisional, ChatGPT image gen"},
+    {"file": "BayouRoofTrimSheet36_Height_ChatGPT_9October2026.png", "kind": "height", "origin": "ChatGPT image generation", "sheet": "6 x 6 = 36 shingle slots, 1254 x 1254 px", "originalPath": "/Users/zenray/Downloads/tuiles carré.png", "status": "provisional, ChatGPT image gen"}
+  ],
+  "derived": [
+    {"file": "BayouRoofTrimSheet36_Normal_FromHeight_9October2026.png", "from": "Height ChatGPT", "script": "Scripts/HeightToNormalRoughness.py", "status": "provisional"},
+    {"file": "BayouRoofTrimSheet36_Roughness_FromHeight_9October2026.png", "from": "Height ChatGPT", "script": "Scripts/HeightToNormalRoughness.py", "status": "provisional"},
+    {"file": "BayouRoofTrimSheet36_Slots_9October2026.json", "from": "Height ChatGPT", "script": "Scripts/MeasureTrimSheet36.py", "note": "36 inscribed rectangles (u0,u1,v0,v1), v from the bottom"}
+  ]
+}
