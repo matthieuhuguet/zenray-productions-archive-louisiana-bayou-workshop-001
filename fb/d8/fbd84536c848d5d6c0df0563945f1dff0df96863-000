@@ -1,0 +1,145 @@
+# 9 October 2026, 11:00 CEST: Map observed image seams to editable row/column Color IDs; counts are image estimates.
+import argparse
+import colorsys
+import csv
+import hashlib
+import json
+from pathlib import Path
+import numpy as np
+from PIL import Image, ImageDraw
+
+
+def homography(source, target):
+    matrix, values = [], []
+    for (x, y), (u, v) in zip(source, target):
+        matrix.extend([[x, y, 1, 0, 0, 0, -u*x, -u*y], [0, 0, 0, x, y, 1, -v*x, -v*y]])
+        values.extend([u, v])
+    return np.r_[np.linalg.solve(matrix, values), 1].reshape(3, 3)
+
+
+def transform_points(matrix, points):
+    coordinates = np.asarray(points, dtype=float)
+    x, y = coordinates[:, 0], coordinates[:, 1]
+    mapped = np.column_stack([matrix[i, 0]*x + matrix[i, 1]*y + matrix[i, 2] for i in range(3)])
+    assert np.isfinite(mapped).all() and np.all(np.abs(mapped[:, 2]) > 1e-8)
+    return mapped[:, :2] / mapped[:, 2:]
+
+
+def smooth(values, width):
+    width = int(width) | 1
+    return np.convolve(np.pad(values, width//2, mode='edge'), np.ones(width)/width, mode='valid')
+
+
+def trace_rows(gray, plane, detection):
+    height, width = gray.shape
+    columns = np.arange(width)
+    paths = [np.zeros(width)]
+    for seed in plane['row_seeds']:
+        expected = seed + plane['row_slope'] * (columns - plane['seed_x'])
+        found = []
+        for x, center in enumerate(expected):
+            center = float(np.clip(center, 1, height-2))
+            low = max(1, int(center-detection['row_radius']))
+            high = min(height, int(center+detection['row_radius'])+1)
+            sample = gray[low:high, max(0,x-4):min(width,x+5)].mean(axis=1)
+            penalty = np.abs(np.arange(low,high)-center) * 0.1
+            found.append(low + int(np.argmin(sample + penalty)))
+        path = smooth(np.array(found,float), detection['row_smoothing'])
+        paths.append(path)
+    paths.append(np.full(width,height-1))
+    paths=np.array(paths)
+    assert np.all(np.diff(paths,axis=0)>=0), 'Row paths cross; correct the editable row seeds.'
+    return paths
+
+
+def find_seams(gray, top, bottom, detection):
+    height, width = gray.shape
+    x = np.arange(width)
+    samples=[]
+    for fraction in np.linspace(0.2,0.72,9):
+        y=np.clip(np.round(top+(bottom-top)*fraction).astype(int),0,height-1)
+        samples.append(gray[y,x])
+    signal=np.median(samples,axis=0)
+    darkness=smooth(signal,detection['seam_background'])-smooth(signal,detection['seam_smoothing'])
+    candidates=[i for i in range(8,width-8) if darkness[i]>detection['min_seam_strength'] and darkness[i]>=max(darkness[i-3:i+4])]
+    chosen=[]
+    for x in sorted(candidates,key=lambda i:-darkness[i]):
+        if all(abs(x-other)>=detection['min_seam_distance'] for other in chosen): chosen.append(x)
+    return sorted(chosen),darkness
+
+
+def color_for(tile_id,row,column,plane_index,palette):
+    hue=(tile_id*palette['hue_step'] + plane_index*0.11)%1
+    saturation=palette['saturation'][(row+column)%2]
+    value=palette['value'][row%2]
+    return tuple(round(c*255) for c in colorsys.hsv_to_rgb(hue,saturation,value))
+
+
+def build(config,root):
+    source=root/config['input']; original=Image.open(source).convert('RGB'); width,height=original.size
+    ids=np.zeros((height,width),np.uint16); palette={}; records=[]; diagnostics=[]; used_colors={(0,0,0),(128,128,128)}
+    rect_width,rect_height=config['rectified_size']; square=[[0,0],[rect_width-1,0],[rect_width-1,rect_height-1],[0,rect_height-1]]
+    next_id=1
+    for plane_index,plane in enumerate(config['planes']):
+        forward=homography(square,plane['quad']); inverse=np.linalg.inv(forward); inverse/=inverse[2,2]
+        rect=original.transform((rect_width,rect_height),Image.Transform.PERSPECTIVE,forward.flatten()[:8],Image.Resampling.BICUBIC)
+        detection = dict(config['detection'], **plane.get('detection', {}))
+        gray=np.array(rect.convert('L'),float);paths=trace_rows(gray,plane,detection)
+        mask=Image.new('L',original.size);ImageDraw.Draw(mask).polygon([tuple(v) for v in plane['mask']],fill=255)
+        ys,xs=np.nonzero(np.array(mask)); xy=transform_points(inverse,np.c_[xs,ys]); rx=np.clip(np.round(xy[:,0]).astype(int),0,rect_width-1);ry=xy[:,1]
+        rect_ids=np.zeros((rect_height,rect_width),np.uint16); plane_records=[]
+        for row,(top,bottom) in enumerate(zip(paths[:-1],paths[1:]),1):
+            seams,strength=find_seams(gray,top,bottom,detection);edges=[0,*seams,rect_width]
+            for column,(left,right) in enumerate(zip(edges[:-1],edges[1:]),1):
+                x=np.arange(left,right); polygon=np.r_[np.c_[x,top[x]],np.c_[x[::-1],bottom[x[::-1]]]]
+                region=Image.new('L',(rect_width,rect_height));ImageDraw.Draw(region).polygon([tuple(v) for v in polygon],fill=1)
+                rect_ids[np.array(region,dtype=bool)]=next_id
+                candidate=color_for(next_id,row,column,plane_index,config['palette'])
+                while candidate in used_colors:
+                    packed=(candidate[0]<<16)+(candidate[1]<<8)+candidate[2]+1
+                    candidate=((packed>>16)&255,(packed>>8)&255,packed&255)
+                used_colors.add(candidate);palette[next_id]=candidate
+                plane_records.append({'id':next_id,'plane':plane['name'],'row':row,'column':column,'rgb':palette[next_id], 'rectified_bounds':[left,right], 'boundary_status':'image-derived_estimate'})
+                next_id+=1
+        sample=rect_ids[np.clip(np.round(ry).astype(int),0,rect_height-1),rx];ids[ys,xs]=sample
+        for record in plane_records:
+            count=int(np.count_nonzero(sample==record['id']))
+            if count>=config['detection']['minimum_region_pixels']:
+                record['source_pixels']=count;records.append(record)
+            else: ids[ids==record['id']]=65535
+        diagnostic=np.array(rect)
+        for path in paths[1:-1]:diagnostic[np.clip(np.round(path).astype(int),0,rect_height-1),np.arange(rect_width)]=[255,40,40]
+        diagnostics.append(Image.fromarray(diagnostic))
+    unknown=Image.new('L',original.size)
+    for polygon in config['uncertain_masks']: ImageDraw.Draw(unknown).polygon([tuple(v) for v in polygon],fill=1)
+    ids[(np.array(unknown)>0)&(ids==0)]=65535
+    composite=np.array(original).copy();composite[ids==65535]=[128,128,128]
+    color=np.zeros_like(composite)
+    for record in records:
+        selection=ids==record['id'];composite[selection]=record['rgb'];color[selection]=record['rgb']
+    color[ids==65535]=128
+    native=Image.fromarray(composite);size=config['output_size']; scale=size/max(width,height); scaled_size=(round(width*scale),round(height*scale)); offset=((size-scaled_size[0])//2,(size-scaled_size[1])//2)
+    output=Image.new('RGB',(size,size));output.paste(native.resize(scaled_size,Image.Resampling.NEAREST),offset)
+    id_output=Image.new('I;16',(size,size));id_output.paste(Image.fromarray(ids).resize(scaled_size,Image.Resampling.NEAREST),offset)
+    color_output=Image.new('RGB',(size,size));color_output.paste(Image.fromarray(color).resize(scaled_size,Image.Resampling.NEAREST),offset)
+    directory=root/config['output_dir'];support=root/config['support_dir'];support.mkdir(parents=True,exist_ok=True);stem=config['stem'];date=config['date'].replace(' ','')
+    native.save(support/f'{stem}_ColorIndex_Native_{date}.png');output.save(directory/f'{stem}_ColorIndex_4K_{date}.png');id_output.save(support/f'{stem}_TileIDs_16bit_{date}.png');color_output.save(support/f'{stem}_ColorIDs_4K_{date}.png')
+    atlas=Image.new('RGB',(rect_width,rect_height*len(diagnostics)))
+    for i,diagnostic in enumerate(diagnostics):atlas.paste(diagnostic,(0,i*rect_height))
+    atlas.save(support/f'{stem}_SeamDetectionProof_{date}.png')
+    counts={plane['name']: {'rows':len(plane['row_seeds'])+1,'mapped_visible_regions':sum(r['plane']==plane['name'] for r in records),'columns_per_row':{str(row):sum(r['plane']==plane['name'] and r['row']==row for r in records) for row in range(1,len(plane['row_seeds'])+2)}} for plane in config['planes']}
+    report={'date':config['date'],'method':'Rectified roof planes, dark image seam detection and editable row seeds. No generated image.','count_status':'Estimated segmentation of visible image only. Not a verified physical shingle count.','source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'source_size':original.size,'output_size':output.size,'unknown_id':65535,'background_id':0,'regions':records,'planes':counts,'mapped_regions':len(records),'unknown_pixels':int(np.count_nonzero(ids==65535)),'outside_roof_pixels_unchanged':bool(np.array_equal(composite[ids==0],np.array(original)[ids==0])),'output_transform':{'scale':scale,'offset':offset},'config':config}
+    assert len({tuple(r['rgb']) for r in records})==len(records), 'Duplicate colors'
+    assert report['outside_roof_pixels_unchanged']
+    assert set(np.unique(ids))=={0,65535,*[r['id'] for r in records]}
+    assert Image.open(directory/f'{stem}_ColorIndex_4K_{date}.png').size==(size,size)
+    (support/f'{stem}_ColorIndex_Data_{date}.json').write_text(json.dumps(report,indent=2)+'\n')
+    with (support/f'{stem}_TileIndex_{date}.csv').open('w', newline='') as stream:
+        writer=csv.writer(stream);writer.writerow(['id','plane','row','column','red','green','blue','source_pixels','count_status'])
+        for record in records:writer.writerow([record['id'],record['plane'],record['row'],record['column'],*record['rgb'],record['source_pixels'],record['boundary_status']])
+    print(json.dumps({k:report[k] for k in ['mapped_regions','planes','outside_roof_pixels_unchanged','unknown_pixels']},indent=2))
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('config',type=Path);args=parser.parse_args()
+    config=json.loads(args.config.read_text());build(config,args.config.resolve().parent.parent)

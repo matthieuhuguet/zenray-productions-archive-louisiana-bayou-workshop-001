@@ -1,0 +1,276 @@
+{
+  "date": "9 October 2026",
+  "input": "03_work/uv/ChurchRoof_Reference_9October2026.png",
+  "output_dir": "03_work/uv",
+  "stem": "ChurchRoof",
+  "output_size": 4096,
+  "rectified_size": [
+    1200,
+    650
+  ],
+  "palette": {
+    "hue_step": 0.61803398875,
+    "saturation": [
+      0.6,
+      0.9
+    ],
+    "value": [
+      0.8,
+      1.0
+    ]
+  },
+  "detection": {
+    "row_radius": 20,
+    "row_smoothing": 21,
+    "seam_smoothing": 5,
+    "seam_background": 31,
+    "min_seam_distance": 25,
+    "min_seam_strength": 6,
+    "minimum_region_pixels": 5
+  },
+  "planes": [
+    {
+      "name": "Main",
+      "quad": [
+        [
+          191,
+          349
+        ],
+        [
+          629,
+          252
+        ],
+        [
+          455,
+          468
+        ],
+        [
+          36,
+          521
+        ]
+      ],
+      "mask": [
+        [
+          192,
+          350
+        ],
+        [
+          497,
+          278
+        ],
+        [
+          499,
+          313
+        ],
+        [
+          550,
+          301
+        ],
+        [
+          580,
+          274
+        ],
+        [
+          627,
+          254
+        ],
+        [
+          454,
+          468
+        ],
+        [
+          37,
+          520
+        ]
+      ],
+      "row_seeds": [
+        9,
+        53,
+        100,
+        150,
+        195,
+        246,
+        296,
+        346,
+        400,
+        450,
+        500,
+        550,
+        602
+      ],
+      "row_slope": -0.04,
+      "seed_x": 450,
+      "detection": {
+        "min_seam_strength": 3.5,
+        "min_seam_distance": 24
+      }
+    },
+    {
+      "name": "Porch",
+      "quad": [
+        [
+          607,
+          427
+        ],
+        [
+          728,
+          399
+        ],
+        [
+          638,
+          506
+        ],
+        [
+          521,
+          524
+        ]
+      ],
+      "mask": [
+        [
+          608,
+          427
+        ],
+        [
+          727,
+          401
+        ],
+        [
+          637,
+          506
+        ],
+        [
+          523,
+          522
+        ]
+      ],
+      "row_seeds": [
+        29,
+        121,
+        214,
+        309,
+        413,
+        516,
+        620
+      ],
+      "row_slope": 0.12,
+      "seed_x": 500,
+      "detection": {
+        "seam_background": 151,
+        "min_seam_distance": 70,
+        "seam_smoothing": 11,
+        "min_seam_strength": 4
+      }
+    },
+    {
+      "name": "Bell",
+      "quad": [
+        [
+          530,
+          114
+        ],
+        [
+          590,
+          95
+        ],
+        [
+          546,
+          158
+        ],
+        [
+          489,
+          175
+        ]
+      ],
+      "mask": [
+        [
+          531,
+          115
+        ],
+        [
+          588,
+          97
+        ],
+        [
+          545,
+          157
+        ],
+        [
+          491,
+          173
+        ]
+      ],
+      "row_seeds": [
+        71,
+        196,
+        325,
+        464,
+        599
+      ],
+      "row_slope": -0.03,
+      "seed_x": 500,
+      "detection": {
+        "seam_background": 191,
+        "min_seam_distance": 110,
+        "seam_smoothing": 15,
+        "min_seam_strength": 3
+      }
+    }
+  ],
+  "uncertain_masks": [
+    [
+      [
+        594,
+        100
+      ],
+      [
+        601,
+        107
+      ],
+      [
+        644,
+        171
+      ],
+      [
+        639,
+        173
+      ]
+    ],
+    [
+      [
+        636,
+        263
+      ],
+      [
+        644,
+        272
+      ],
+      [
+        715,
+        402
+      ],
+      [
+        708,
+        400
+      ]
+    ],
+    [
+      [
+        735,
+        409
+      ],
+      [
+        742,
+        417
+      ],
+      [
+        803,
+        501
+      ],
+      [
+        797,
+        504
+      ]
+    ]
+  ],
+  "support_dir": "03_work/uv/RoofColorIndex_9October2026"
+}

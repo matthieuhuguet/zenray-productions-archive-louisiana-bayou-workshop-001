@@ -1,0 +1,19 @@
+{
+  "date": "9 October 2026",
+  "mapped_regions": 544,
+  "main_rows": 14,
+  "porch_rows": 8,
+  "bell_rows": 6,
+  "adjacent_pairs_checked": 1439,
+  "minimum_adjacent_rgb_distance": 51.28352561983234,
+  "unique_colors": 544,
+  "color_to_id_pixel_check": true,
+  "outside_roof_pixels_unchanged": true,
+  "original_source_sha256": "ae572ab1d2f1bd31fb34745571451f0d8a61cdaeb77f0cbd967b305c2f2cdbaa",
+  "resolution": [
+    4096,
+    4096
+  ],
+  "id_mode": "I;16",
+  "count_status": "Visible region estimate, physical tile count not verified."
+}

@@ -1,0 +1,9600 @@
+{
+  "date": "9 October 2026",
+  "method": "Rectified roof planes, dark image seam detection and editable row seeds. No generated image.",
+  "count_status": "Estimated segmentation of visible image only. Not a verified physical shingle count.",
+  "source_sha256": "ae572ab1d2f1bd31fb34745571451f0d8a61cdaeb77f0cbd967b305c2f2cdbaa",
+  "source_size": [
+    880,
+    878
+  ],
+  "output_size": [
+    4096,
+    4096
+  ],
+  "unknown_id": 65535,
+  "background_id": 0,
+  "regions": [
+    {
+      "id": 1,
+      "plane": "Main",
+      "row": 1,
+      "column": 1,
+      "rgb": [
+        102,
+        147,
+        255
+      ],
+      "rectified_bounds": [
+        0,
+        71
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 132
+    },
+    {
+      "id": 2,
+      "plane": "Main",
+      "row": 1,
+      "column": 2,
+      "rgb": [
+        159,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        71,
+        98
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 64
+    },
+    {
+      "id": 3,
+      "plane": "Main",
+      "row": 1,
+      "column": 3,
+      "rgb": [
+        255,
+        102,
+        236
+      ],
+      "rectified_bounds": [
+        98,
+        124
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 57
+    },
+    {
+      "id": 4,
+      "plane": "Main",
+      "row": 1,
+      "column": 4,
+      "rgb": [
+        25,
+        255,
+        217
+      ],
+      "rectified_bounds": [
+        124,
+        148
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 54
+    },
+    {
+      "id": 5,
+      "plane": "Main",
+      "row": 1,
+      "column": 5,
+      "rgb": [
+        255,
+        185,
+        102
+      ],
+      "rectified_bounds": [
+        148,
+        182
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 76
+    },
+    {
+      "id": 6,
+      "plane": "Main",
+      "row": 1,
+      "column": 6,
+      "rgb": [
+        83,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        182,
+        213
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 67
+    },
+    {
+      "id": 7,
+      "plane": "Main",
+      "row": 1,
+      "column": 7,
+      "rgb": [
+        109,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        213,
+        255
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 89
+    },
+    {
+      "id": 8,
+      "plane": "Main",
+      "row": 1,
+      "column": 8,
+      "rgb": [
+        255,
+        25,
+        102
+      ],
+      "rectified_bounds": [
+        255,
+        289
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 69
+    },
+    {
+      "id": 9,
+      "plane": "Main",
+      "row": 1,
+      "column": 9,
+      "rgb": [
+        102,
+        198,
+        255
+      ],
+      "rectified_bounds": [
+        289,
+        373
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 157
+    },
+    {
+      "id": 10,
+      "plane": "Main",
+      "row": 1,
+      "column": 10,
+      "rgb": [
+        236,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        373,
+        460
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 140
+    },
+    {
+      "id": 11,
+      "plane": "Main",
+      "row": 1,
+      "column": 11,
+      "rgb": [
+        223,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        460,
+        489
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 45
+    },
+    {
+      "id": 12,
+      "plane": "Main",
+      "row": 1,
+      "column": 12,
+      "rgb": [
+        25,
+        255,
+        140
+      ],
+      "rectified_bounds": [
+        489,
+        546
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 81
+    },
+    {
+      "id": 13,
+      "plane": "Main",
+      "row": 1,
+      "column": 13,
+      "rgb": [
+        255,
+        134,
+        102
+      ],
+      "rectified_bounds": [
+        546,
+        576
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 37
+    },
+    {
+      "id": 14,
+      "plane": "Main",
+      "row": 1,
+      "column": 14,
+      "rgb": [
+        25,
+        45,
+        255
+      ],
+      "rectified_bounds": [
+        576,
+        607
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 32
+    },
+    {
+      "id": 15,
+      "plane": "Main",
+      "row": 1,
+      "column": 15,
+      "rgb": [
+        160,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        607,
+        638
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 32
+    },
+    {
+      "id": 16,
+      "plane": "Main",
+      "row": 1,
+      "column": 16,
+      "rgb": [
+        255,
+        25,
+        179
+      ],
+      "rectified_bounds": [
+        638,
+        663
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 23
+    },
+    {
+      "id": 17,
+      "plane": "Main",
+      "row": 1,
+      "column": 17,
+      "rgb": [
+        102,
+        249,
+        255
+      ],
+      "rectified_bounds": [
+        663,
+        706
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 36
+    },
+    {
+      "id": 20,
+      "plane": "Main",
+      "row": 1,
+      "column": 20,
+      "rgb": [
+        25,
+        255,
+        63
+      ],
+      "rectified_bounds": [
+        809,
+        843
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 35
+    },
+    {
+      "id": 21,
+      "plane": "Main",
+      "row": 1,
+      "column": 21,
+      "rgb": [
+        255,
+        102,
+        122
+      ],
+      "rectified_bounds": [
+        843,
+        884
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 50
+    },
+    {
+      "id": 22,
+      "plane": "Main",
+      "row": 1,
+      "column": 22,
+      "rgb": [
+        25,
+        122,
+        255
+      ],
+      "rectified_bounds": [
+        884,
+        921
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 27
+    },
+    {
+      "id": 28,
+      "plane": "Main",
+      "row": 1,
+      "column": 28,
+      "rgb": [
+        65,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        1143,
+        1188
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 10
+    },
+    {
+      "id": 29,
+      "plane": "Main",
+      "row": 1,
+      "column": 29,
+      "rgb": [
+        255,
+        102,
+        173
+      ],
+      "rectified_bounds": [
+        1188,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 15
+    },
+    {
+      "id": 30,
+      "plane": "Main",
+      "row": 2,
+      "column": 1,
+      "rgb": [
+        20,
+        159,
+        204
+      ],
+      "rectified_bounds": [
+        0,
+        21
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 32
+    },
+    {
+      "id": 31,
+      "plane": "Main",
+      "row": 2,
+      "column": 2,
+      "rgb": [
+        204,
+        198,
+        82
+      ],
+      "rectified_bounds": [
+        21,
+        74
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 100
+    },
+    {
+      "id": 32,
+      "plane": "Main",
+      "row": 2,
+      "column": 3,
+      "rgb": [
+        142,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        74,
+        111
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 68
+    },
+    {
+      "id": 33,
+      "plane": "Main",
+      "row": 2,
+      "column": 4,
+      "rgb": [
+        82,
+        204,
+        127
+      ],
+      "rectified_bounds": [
+        111,
+        157
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 107
+    },
+    {
+      "id": 34,
+      "plane": "Main",
+      "row": 2,
+      "column": 5,
+      "rgb": [
+        204,
+        35,
+        20
+      ],
+      "rectified_bounds": [
+        157,
+        192
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 86
+    },
+    {
+      "id": 35,
+      "plane": "Main",
+      "row": 2,
+      "column": 6,
+      "rgb": [
+        82,
+        108,
+        204
+      ],
+      "rectified_bounds": [
+        192,
+        266
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 185
+    },
+    {
+      "id": 36,
+      "plane": "Main",
+      "row": 2,
+      "column": 7,
+      "rgb": [
+        113,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        266,
+        318
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 150
+    },
+    {
+      "id": 37,
+      "plane": "Main",
+      "row": 2,
+      "column": 8,
+      "rgb": [
+        204,
+        82,
+        179
+      ],
+      "rectified_bounds": [
+        318,
+        357
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 118
+    },
+    {
+      "id": 38,
+      "plane": "Main",
+      "row": 2,
+      "column": 9,
+      "rgb": [
+        20,
+        204,
+        188
+      ],
+      "rectified_bounds": [
+        357,
+        403
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 156
+    },
+    {
+      "id": 39,
+      "plane": "Main",
+      "row": 2,
+      "column": 10,
+      "rgb": [
+        204,
+        157,
+        82
+      ],
+      "rectified_bounds": [
+        403,
+        434
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 111
+    },
+    {
+      "id": 40,
+      "plane": "Main",
+      "row": 2,
+      "column": 11,
+      "rgb": [
+        81,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        434,
+        460
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 90
+    },
+    {
+      "id": 41,
+      "plane": "Main",
+      "row": 2,
+      "column": 12,
+      "rgb": [
+        82,
+        204,
+        86
+      ],
+      "rectified_bounds": [
+        460,
+        506
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 161
+    },
+    {
+      "id": 42,
+      "plane": "Main",
+      "row": 2,
+      "column": 13,
+      "rgb": [
+        204,
+        20,
+        67
+      ],
+      "rectified_bounds": [
+        506,
+        531
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 90
+    },
+    {
+      "id": 43,
+      "plane": "Main",
+      "row": 2,
+      "column": 14,
+      "rgb": [
+        82,
+        149,
+        204
+      ],
+      "rectified_bounds": [
+        531,
+        563
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 123
+    },
+    {
+      "id": 44,
+      "plane": "Main",
+      "row": 2,
+      "column": 15,
+      "rgb": [
+        174,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        563,
+        621
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 222
+    },
+    {
+      "id": 45,
+      "plane": "Main",
+      "row": 2,
+      "column": 16,
+      "rgb": [
+        188,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        621,
+        677
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 219
+    },
+    {
+      "id": 46,
+      "plane": "Main",
+      "row": 2,
+      "column": 17,
+      "rgb": [
+        20,
+        204,
+        126
+      ],
+      "rectified_bounds": [
+        677,
+        733
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 254
+    },
+    {
+      "id": 47,
+      "plane": "Main",
+      "row": 2,
+      "column": 18,
+      "rgb": [
+        204,
+        117,
+        82
+      ],
+      "rectified_bounds": [
+        733,
+        773
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 193
+    },
+    {
+      "id": 48,
+      "plane": "Main",
+      "row": 2,
+      "column": 19,
+      "rgb": [
+        20,
+        22,
+        204
+      ],
+      "rectified_bounds": [
+        773,
+        830
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 255
+    },
+    {
+      "id": 49,
+      "plane": "Main",
+      "row": 2,
+      "column": 20,
+      "rgb": [
+        118,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        830,
+        883
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 176
+    },
+    {
+      "id": 50,
+      "plane": "Main",
+      "row": 2,
+      "column": 21,
+      "rgb": [
+        204,
+        20,
+        129
+      ],
+      "rectified_bounds": [
+        883,
+        909
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 56
+    },
+    {
+      "id": 51,
+      "plane": "Main",
+      "row": 2,
+      "column": 22,
+      "rgb": [
+        82,
+        190,
+        204
+      ],
+      "rectified_bounds": [
+        909,
+        968
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 15
+    },
+    {
+      "id": 57,
+      "plane": "Main",
+      "row": 3,
+      "column": 1,
+      "rgb": [
+        199,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        0,
+        14
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 10
+    },
+    {
+      "id": 58,
+      "plane": "Main",
+      "row": 3,
+      "column": 2,
+      "rgb": [
+        255,
+        25,
+        238
+      ],
+      "rectified_bounds": [
+        14,
+        65
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 145
+    },
+    {
+      "id": 59,
+      "plane": "Main",
+      "row": 3,
+      "column": 3,
+      "rgb": [
+        102,
+        255,
+        222
+      ],
+      "rectified_bounds": [
+        65,
+        127
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 213
+    },
+    {
+      "id": 60,
+      "plane": "Main",
+      "row": 3,
+      "column": 4,
+      "rgb": [
+        255,
+        138,
+        25
+      ],
+      "rectified_bounds": [
+        127,
+        151
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 75
+    },
+    {
+      "id": 61,
+      "plane": "Main",
+      "row": 3,
+      "column": 5,
+      "rgb": [
+        133,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        151,
+        179
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 100
+    },
+    {
+      "id": 62,
+      "plane": "Main",
+      "row": 3,
+      "column": 6,
+      "rgb": [
+        46,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        179,
+        306
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 399
+    },
+    {
+      "id": 63,
+      "plane": "Main",
+      "row": 3,
+      "column": 7,
+      "rgb": [
+        255,
+        102,
+        161
+      ],
+      "rectified_bounds": [
+        306,
+        345
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 143
+    },
+    {
+      "id": 64,
+      "plane": "Main",
+      "row": 3,
+      "column": 8,
+      "rgb": [
+        25,
+        180,
+        255
+      ],
+      "rectified_bounds": [
+        345,
+        372
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 89
+    },
+    {
+      "id": 65,
+      "plane": "Main",
+      "row": 3,
+      "column": 9,
+      "rgb": [
+        250,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        372,
+        430
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 188
+    },
+    {
+      "id": 66,
+      "plane": "Main",
+      "row": 3,
+      "column": 10,
+      "rgb": [
+        196,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        430,
+        455
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 84
+    },
+    {
+      "id": 67,
+      "plane": "Main",
+      "row": 3,
+      "column": 11,
+      "rgb": [
+        102,
+        255,
+        171
+      ],
+      "rectified_bounds": [
+        455,
+        487
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 108
+    },
+    {
+      "id": 68,
+      "plane": "Main",
+      "row": 3,
+      "column": 12,
+      "rgb": [
+        255,
+        62,
+        25
+      ],
+      "rectified_bounds": [
+        487,
+        511
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 87
+    },
+    {
+      "id": 69,
+      "plane": "Main",
+      "row": 3,
+      "column": 13,
+      "rgb": [
+        102,
+        122,
+        255
+      ],
+      "rectified_bounds": [
+        511,
+        561
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 176
+    },
+    {
+      "id": 70,
+      "plane": "Main",
+      "row": 3,
+      "column": 14,
+      "rgb": [
+        123,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        561,
+        596
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 129
+    },
+    {
+      "id": 71,
+      "plane": "Main",
+      "row": 3,
+      "column": 15,
+      "rgb": [
+        255,
+        102,
+        212
+      ],
+      "rectified_bounds": [
+        596,
+        623
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 104
+    },
+    {
+      "id": 72,
+      "plane": "Main",
+      "row": 3,
+      "column": 16,
+      "rgb": [
+        25,
+        255,
+        253
+      ],
+      "rectified_bounds": [
+        623,
+        649
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 104
+    },
+    {
+      "id": 73,
+      "plane": "Main",
+      "row": 3,
+      "column": 17,
+      "rgb": [
+        255,
+        209,
+        102
+      ],
+      "rectified_bounds": [
+        649,
+        674
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 99
+    },
+    {
+      "id": 74,
+      "plane": "Main",
+      "row": 3,
+      "column": 18,
+      "rgb": [
+        119,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        674,
+        729
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 220
+    },
+    {
+      "id": 75,
+      "plane": "Main",
+      "row": 3,
+      "column": 19,
+      "rgb": [
+        102,
+        255,
+        120
+      ],
+      "rectified_bounds": [
+        729,
+        761
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 136
+    },
+    {
+      "id": 76,
+      "plane": "Main",
+      "row": 3,
+      "column": 20,
+      "rgb": [
+        255,
+        25,
+        66
+      ],
+      "rectified_bounds": [
+        761,
+        787
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 111
+    },
+    {
+      "id": 77,
+      "plane": "Main",
+      "row": 3,
+      "column": 21,
+      "rgb": [
+        102,
+        174,
+        255
+      ],
+      "rectified_bounds": [
+        787,
+        828
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 185
+    },
+    {
+      "id": 78,
+      "plane": "Main",
+      "row": 3,
+      "column": 22,
+      "rgb": [
+        200,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        828,
+        878
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 232
+    },
+    {
+      "id": 79,
+      "plane": "Main",
+      "row": 3,
+      "column": 23,
+      "rgb": [
+        247,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        878,
+        930
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 228
+    },
+    {
+      "id": 80,
+      "plane": "Main",
+      "row": 3,
+      "column": 24,
+      "rgb": [
+        25,
+        255,
+        176
+      ],
+      "rectified_bounds": [
+        930,
+        1062
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 36
+    },
+    {
+      "id": 82,
+      "plane": "Main",
+      "row": 3,
+      "column": 26,
+      "rgb": [
+        42,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        1093,
+        1122
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 37
+    },
+    {
+      "id": 83,
+      "plane": "Main",
+      "row": 3,
+      "column": 27,
+      "rgb": [
+        136,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        1122,
+        1167
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 210
+    },
+    {
+      "id": 84,
+      "plane": "Main",
+      "row": 3,
+      "column": 28,
+      "rgb": [
+        255,
+        25,
+        143
+      ],
+      "rectified_bounds": [
+        1167,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 184
+    },
+    {
+      "id": 85,
+      "plane": "Main",
+      "row": 4,
+      "column": 1,
+      "rgb": [
+        20,
+        168,
+        204
+      ],
+      "rectified_bounds": [
+        0,
+        57
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 205
+    },
+    {
+      "id": 86,
+      "plane": "Main",
+      "row": 4,
+      "column": 2,
+      "rgb": [
+        204,
+        192,
+        82
+      ],
+      "rectified_bounds": [
+        57,
+        112
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 151
+    },
+    {
+      "id": 87,
+      "plane": "Main",
+      "row": 4,
+      "column": 3,
+      "rgb": [
+        133,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        112,
+        143
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 87
+    },
+    {
+      "id": 88,
+      "plane": "Main",
+      "row": 4,
+      "column": 4,
+      "rgb": [
+        82,
+        204,
+        121
+      ],
+      "rectified_bounds": [
+        143,
+        184
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 119
+    },
+    {
+      "id": 89,
+      "plane": "Main",
+      "row": 4,
+      "column": 5,
+      "rgb": [
+        204,
+        26,
+        20
+      ],
+      "rectified_bounds": [
+        184,
+        248
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 197
+    },
+    {
+      "id": 90,
+      "plane": "Main",
+      "row": 4,
+      "column": 6,
+      "rgb": [
+        82,
+        114,
+        204
+      ],
+      "rectified_bounds": [
+        248,
+        291
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 138
+    },
+    {
+      "id": 91,
+      "plane": "Main",
+      "row": 4,
+      "column": 7,
+      "rgb": [
+        122,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        291,
+        320
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 93
+    },
+    {
+      "id": 92,
+      "plane": "Main",
+      "row": 4,
+      "column": 8,
+      "rgb": [
+        204,
+        82,
+        185
+      ],
+      "rectified_bounds": [
+        320,
+        368
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 158
+    },
+    {
+      "id": 93,
+      "plane": "Main",
+      "row": 4,
+      "column": 9,
+      "rgb": [
+        20,
+        204,
+        179
+      ],
+      "rectified_bounds": [
+        368,
+        396
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 95
+    },
+    {
+      "id": 94,
+      "plane": "Main",
+      "row": 4,
+      "column": 10,
+      "rgb": [
+        204,
+        152,
+        82
+      ],
+      "rectified_bounds": [
+        396,
+        426
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 100
+    },
+    {
+      "id": 95,
+      "plane": "Main",
+      "row": 4,
+      "column": 11,
+      "rgb": [
+        72,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        426,
+        465
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 138
+    },
+    {
+      "id": 96,
+      "plane": "Main",
+      "row": 4,
+      "column": 12,
+      "rgb": [
+        83,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        465,
+        521
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 205
+    },
+    {
+      "id": 97,
+      "plane": "Main",
+      "row": 4,
+      "column": 13,
+      "rgb": [
+        204,
+        20,
+        76
+      ],
+      "rectified_bounds": [
+        521,
+        564
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 163
+    },
+    {
+      "id": 98,
+      "plane": "Main",
+      "row": 4,
+      "column": 14,
+      "rgb": [
+        82,
+        155,
+        204
+      ],
+      "rectified_bounds": [
+        564,
+        601
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 143
+    },
+    {
+      "id": 99,
+      "plane": "Main",
+      "row": 4,
+      "column": 15,
+      "rgb": [
+        183,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        601,
+        662
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 234
+    },
+    {
+      "id": 100,
+      "plane": "Main",
+      "row": 4,
+      "column": 16,
+      "rgb": [
+        182,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        662,
+        740
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 322
+    },
+    {
+      "id": 101,
+      "plane": "Main",
+      "row": 4,
+      "column": 17,
+      "rgb": [
+        20,
+        204,
+        117
+      ],
+      "rectified_bounds": [
+        740,
+        795
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 238
+    },
+    {
+      "id": 102,
+      "plane": "Main",
+      "row": 4,
+      "column": 18,
+      "rgb": [
+        204,
+        111,
+        82
+      ],
+      "rectified_bounds": [
+        795,
+        832
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 164
+    },
+    {
+      "id": 103,
+      "plane": "Main",
+      "row": 4,
+      "column": 19,
+      "rgb": [
+        20,
+        30,
+        204
+      ],
+      "rectified_bounds": [
+        832,
+        882
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 233
+    },
+    {
+      "id": 104,
+      "plane": "Main",
+      "row": 4,
+      "column": 20,
+      "rgb": [
+        124,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        882,
+        911
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 146
+    },
+    {
+      "id": 105,
+      "plane": "Main",
+      "row": 4,
+      "column": 21,
+      "rgb": [
+        204,
+        20,
+        138
+      ],
+      "rectified_bounds": [
+        911,
+        958
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 212
+    },
+    {
+      "id": 106,
+      "plane": "Main",
+      "row": 4,
+      "column": 22,
+      "rgb": [
+        82,
+        195,
+        204
+      ],
+      "rectified_bounds": [
+        958,
+        990
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 62
+    },
+    {
+      "id": 107,
+      "plane": "Main",
+      "row": 4,
+      "column": 23,
+      "rgb": [
+        204,
+        163,
+        20
+      ],
+      "rectified_bounds": [
+        990,
+        1021
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 62
+    },
+    {
+      "id": 108,
+      "plane": "Main",
+      "row": 4,
+      "column": 24,
+      "rgb": [
+        141,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        1021,
+        1061
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 83
+    },
+    {
+      "id": 109,
+      "plane": "Main",
+      "row": 4,
+      "column": 25,
+      "rgb": [
+        20,
+        204,
+        56
+      ],
+      "rectified_bounds": [
+        1061,
+        1120
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 218
+    },
+    {
+      "id": 110,
+      "plane": "Main",
+      "row": 4,
+      "column": 26,
+      "rgb": [
+        204,
+        82,
+        94
+      ],
+      "rectified_bounds": [
+        1120,
+        1154
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 185
+    },
+    {
+      "id": 111,
+      "plane": "Main",
+      "row": 4,
+      "column": 27,
+      "rgb": [
+        20,
+        92,
+        204
+      ],
+      "rectified_bounds": [
+        1154,
+        1189
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 196
+    },
+    {
+      "id": 112,
+      "plane": "Main",
+      "row": 4,
+      "column": 28,
+      "rgb": [
+        165,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        1189,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 63
+    },
+    {
+      "id": 113,
+      "plane": "Main",
+      "row": 5,
+      "column": 1,
+      "rgb": [
+        255,
+        102,
+        251
+      ],
+      "rectified_bounds": [
+        0,
+        24
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 36
+    },
+    {
+      "id": 114,
+      "plane": "Main",
+      "row": 5,
+      "column": 2,
+      "rgb": [
+        25,
+        255,
+        194
+      ],
+      "rectified_bounds": [
+        24,
+        48
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 31
+    },
+    {
+      "id": 115,
+      "plane": "Main",
+      "row": 5,
+      "column": 3,
+      "rgb": [
+        255,
+        170,
+        102
+      ],
+      "rectified_bounds": [
+        48,
+        92
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 118
+    },
+    {
+      "id": 116,
+      "plane": "Main",
+      "row": 5,
+      "column": 4,
+      "rgb": [
+        60,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        92,
+        122
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 89
+    },
+    {
+      "id": 117,
+      "plane": "Main",
+      "row": 5,
+      "column": 5,
+      "rgb": [
+        123,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        122,
+        149
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 85
+    },
+    {
+      "id": 118,
+      "plane": "Main",
+      "row": 5,
+      "column": 6,
+      "rgb": [
+        255,
+        25,
+        125
+      ],
+      "rectified_bounds": [
+        149,
+        178
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 89
+    },
+    {
+      "id": 119,
+      "plane": "Main",
+      "row": 5,
+      "column": 7,
+      "rgb": [
+        102,
+        213,
+        255
+      ],
+      "rectified_bounds": [
+        178,
+        230
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 168
+    },
+    {
+      "id": 120,
+      "plane": "Main",
+      "row": 5,
+      "column": 8,
+      "rgb": [
+        255,
+        251,
+        25
+      ],
+      "rectified_bounds": [
+        230,
+        269
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 136
+    },
+    {
+      "id": 121,
+      "plane": "Main",
+      "row": 5,
+      "column": 9,
+      "rgb": [
+        208,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        269,
+        310
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 135
+    },
+    {
+      "id": 122,
+      "plane": "Main",
+      "row": 5,
+      "column": 10,
+      "rgb": [
+        25,
+        255,
+        118
+      ],
+      "rectified_bounds": [
+        310,
+        366
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 193
+    },
+    {
+      "id": 123,
+      "plane": "Main",
+      "row": 5,
+      "column": 11,
+      "rgb": [
+        255,
+        119,
+        102
+      ],
+      "rectified_bounds": [
+        366,
+        394
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 96
+    },
+    {
+      "id": 124,
+      "plane": "Main",
+      "row": 5,
+      "column": 12,
+      "rgb": [
+        25,
+        67,
+        255
+      ],
+      "rectified_bounds": [
+        394,
+        437
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 155
+    },
+    {
+      "id": 125,
+      "plane": "Main",
+      "row": 5,
+      "column": 13,
+      "rgb": [
+        175,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        437,
+        482
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 169
+    },
+    {
+      "id": 126,
+      "plane": "Main",
+      "row": 5,
+      "column": 14,
+      "rgb": [
+        255,
+        25,
+        201
+      ],
+      "rectified_bounds": [
+        482,
+        509
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 99
+    },
+    {
+      "id": 127,
+      "plane": "Main",
+      "row": 5,
+      "column": 15,
+      "rgb": [
+        102,
+        255,
+        246
+      ],
+      "rectified_bounds": [
+        509,
+        533
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 91
+    },
+    {
+      "id": 128,
+      "plane": "Main",
+      "row": 5,
+      "column": 16,
+      "rgb": [
+        255,
+        175,
+        25
+      ],
+      "rectified_bounds": [
+        533,
+        567
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 133
+    },
+    {
+      "id": 129,
+      "plane": "Main",
+      "row": 5,
+      "column": 17,
+      "rgb": [
+        157,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        567,
+        605
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 153
+    },
+    {
+      "id": 130,
+      "plane": "Main",
+      "row": 5,
+      "column": 18,
+      "rgb": [
+        25,
+        255,
+        41
+      ],
+      "rectified_bounds": [
+        605,
+        634
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 128
+    },
+    {
+      "id": 131,
+      "plane": "Main",
+      "row": 5,
+      "column": 19,
+      "rgb": [
+        255,
+        102,
+        136
+      ],
+      "rectified_bounds": [
+        634,
+        674
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 179
+    },
+    {
+      "id": 132,
+      "plane": "Main",
+      "row": 5,
+      "column": 20,
+      "rgb": [
+        25,
+        144,
+        255
+      ],
+      "rectified_bounds": [
+        674,
+        743
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 313
+    },
+    {
+      "id": 133,
+      "plane": "Main",
+      "row": 5,
+      "column": 21,
+      "rgb": [
+        226,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        743,
+        767
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 109
+    },
+    {
+      "id": 134,
+      "plane": "Main",
+      "row": 5,
+      "column": 22,
+      "rgb": [
+        232,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        767,
+        827
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 284
+    },
+    {
+      "id": 135,
+      "plane": "Main",
+      "row": 5,
+      "column": 23,
+      "rgb": [
+        102,
+        255,
+        195
+      ],
+      "rectified_bounds": [
+        827,
+        882
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 283
+    },
+    {
+      "id": 136,
+      "plane": "Main",
+      "row": 5,
+      "column": 24,
+      "rgb": [
+        255,
+        98,
+        25
+      ],
+      "rectified_bounds": [
+        882,
+        909
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 134
+    },
+    {
+      "id": 137,
+      "plane": "Main",
+      "row": 5,
+      "column": 25,
+      "rgb": [
+        106,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        909,
+        939
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 165
+    },
+    {
+      "id": 138,
+      "plane": "Main",
+      "row": 5,
+      "column": 26,
+      "rgb": [
+        87,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        939,
+        983
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 224
+    },
+    {
+      "id": 139,
+      "plane": "Main",
+      "row": 5,
+      "column": 27,
+      "rgb": [
+        255,
+        102,
+        188
+      ],
+      "rectified_bounds": [
+        983,
+        1047
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 197
+    },
+    {
+      "id": 140,
+      "plane": "Main",
+      "row": 5,
+      "column": 28,
+      "rgb": [
+        25,
+        221,
+        255
+      ],
+      "rectified_bounds": [
+        1047,
+        1074
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 91
+    },
+    {
+      "id": 141,
+      "plane": "Main",
+      "row": 5,
+      "column": 29,
+      "rgb": [
+        255,
+        233,
+        102
+      ],
+      "rectified_bounds": [
+        1074,
+        1105
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 98
+    },
+    {
+      "id": 142,
+      "plane": "Main",
+      "row": 5,
+      "column": 30,
+      "rgb": [
+        155,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        1105,
+        1158
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 288
+    },
+    {
+      "id": 143,
+      "plane": "Main",
+      "row": 5,
+      "column": 31,
+      "rgb": [
+        102,
+        255,
+        144
+      ],
+      "rectified_bounds": [
+        1158,
+        1188
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 176
+    },
+    {
+      "id": 144,
+      "plane": "Main",
+      "row": 5,
+      "column": 32,
+      "rgb": [
+        255,
+        25,
+        30
+      ],
+      "rectified_bounds": [
+        1188,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 70
+    },
+    {
+      "id": 145,
+      "plane": "Main",
+      "row": 6,
+      "column": 1,
+      "rgb": [
+        20,
+        77,
+        204
+      ],
+      "rectified_bounds": [
+        0,
+        17
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 59
+    },
+    {
+      "id": 146,
+      "plane": "Main",
+      "row": 6,
+      "column": 2,
+      "rgb": [
+        155,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        17,
+        55
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 138
+    },
+    {
+      "id": 147,
+      "plane": "Main",
+      "row": 6,
+      "column": 3,
+      "rgb": [
+        204,
+        20,
+        185
+      ],
+      "rectified_bounds": [
+        55,
+        124
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 215
+    },
+    {
+      "id": 148,
+      "plane": "Main",
+      "row": 6,
+      "column": 4,
+      "rgb": [
+        82,
+        204,
+        181
+      ],
+      "rectified_bounds": [
+        124,
+        170
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 139
+    },
+    {
+      "id": 149,
+      "plane": "Main",
+      "row": 6,
+      "column": 5,
+      "rgb": [
+        204,
+        116,
+        20
+      ],
+      "rectified_bounds": [
+        170,
+        194
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 79
+    },
+    {
+      "id": 150,
+      "plane": "Main",
+      "row": 6,
+      "column": 6,
+      "rgb": [
+        110,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        194,
+        228
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 108
+    },
+    {
+      "id": 151,
+      "plane": "Main",
+      "row": 6,
+      "column": 7,
+      "rgb": [
+        32,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        228,
+        265
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 123
+    },
+    {
+      "id": 152,
+      "plane": "Main",
+      "row": 6,
+      "column": 8,
+      "rgb": [
+        204,
+        82,
+        125
+      ],
+      "rectified_bounds": [
+        265,
+        294
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 108
+    },
+    {
+      "id": 153,
+      "plane": "Main",
+      "row": 6,
+      "column": 9,
+      "rgb": [
+        20,
+        139,
+        204
+      ],
+      "rectified_bounds": [
+        294,
+        325
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 113
+    },
+    {
+      "id": 154,
+      "plane": "Main",
+      "row": 6,
+      "column": 10,
+      "rgb": [
+        196,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        325,
+        359
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 123
+    },
+    {
+      "id": 155,
+      "plane": "Main",
+      "row": 6,
+      "column": 11,
+      "rgb": [
+        162,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        359,
+        403
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 177
+    },
+    {
+      "id": 156,
+      "plane": "Main",
+      "row": 6,
+      "column": 12,
+      "rgb": [
+        82,
+        204,
+        140
+      ],
+      "rectified_bounds": [
+        403,
+        443
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 156
+    },
+    {
+      "id": 157,
+      "plane": "Main",
+      "row": 6,
+      "column": 13,
+      "rgb": [
+        204,
+        55,
+        20
+      ],
+      "rectified_bounds": [
+        443,
+        470
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 104
+    },
+    {
+      "id": 158,
+      "plane": "Main",
+      "row": 6,
+      "column": 14,
+      "rgb": [
+        82,
+        94,
+        204
+      ],
+      "rectified_bounds": [
+        470,
+        499
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 120
+    },
+    {
+      "id": 159,
+      "plane": "Main",
+      "row": 6,
+      "column": 15,
+      "rgb": [
+        93,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        499,
+        526
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 114
+    },
+    {
+      "id": 160,
+      "plane": "Main",
+      "row": 6,
+      "column": 16,
+      "rgb": [
+        204,
+        82,
+        166
+      ],
+      "rectified_bounds": [
+        526,
+        570
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 184
+    },
+    {
+      "id": 161,
+      "plane": "Main",
+      "row": 6,
+      "column": 17,
+      "rgb": [
+        20,
+        200,
+        204
+      ],
+      "rectified_bounds": [
+        570,
+        605
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 153
+    },
+    {
+      "id": 162,
+      "plane": "Main",
+      "row": 6,
+      "column": 18,
+      "rgb": [
+        204,
+        171,
+        82
+      ],
+      "rectified_bounds": [
+        605,
+        629
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 102
+    },
+    {
+      "id": 163,
+      "plane": "Main",
+      "row": 6,
+      "column": 19,
+      "rgb": [
+        101,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        629,
+        659
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 132
+    },
+    {
+      "id": 164,
+      "plane": "Main",
+      "row": 6,
+      "column": 20,
+      "rgb": [
+        82,
+        204,
+        99
+      ],
+      "rectified_bounds": [
+        659,
+        690
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 144
+    },
+    {
+      "id": 165,
+      "plane": "Main",
+      "row": 6,
+      "column": 21,
+      "rgb": [
+        204,
+        20,
+        47
+      ],
+      "rectified_bounds": [
+        690,
+        718
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 132
+    },
+    {
+      "id": 166,
+      "plane": "Main",
+      "row": 6,
+      "column": 22,
+      "rgb": [
+        82,
+        135,
+        204
+      ],
+      "rectified_bounds": [
+        718,
+        800
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 385
+    },
+    {
+      "id": 167,
+      "plane": "Main",
+      "row": 6,
+      "column": 23,
+      "rgb": [
+        154,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        800,
+        834
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 163
+    },
+    {
+      "id": 168,
+      "plane": "Main",
+      "row": 6,
+      "column": 24,
+      "rgb": [
+        201,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        834,
+        878
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 217
+    },
+    {
+      "id": 169,
+      "plane": "Main",
+      "row": 6,
+      "column": 25,
+      "rgb": [
+        20,
+        204,
+        146
+      ],
+      "rectified_bounds": [
+        878,
+        911
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 168
+    },
+    {
+      "id": 170,
+      "plane": "Main",
+      "row": 6,
+      "column": 26,
+      "rgb": [
+        204,
+        130,
+        82
+      ],
+      "rectified_bounds": [
+        911,
+        954
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 220
+    },
+    {
+      "id": 171,
+      "plane": "Main",
+      "row": 6,
+      "column": 27,
+      "rgb": [
+        39,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        954,
+        978
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 130
+    },
+    {
+      "id": 172,
+      "plane": "Main",
+      "row": 6,
+      "column": 28,
+      "rgb": [
+        105,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        978,
+        1019
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 216
+    },
+    {
+      "id": 173,
+      "plane": "Main",
+      "row": 6,
+      "column": 29,
+      "rgb": [
+        204,
+        20,
+        109
+      ],
+      "rectified_bounds": [
+        1019,
+        1048
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 158
+    },
+    {
+      "id": 174,
+      "plane": "Main",
+      "row": 6,
+      "column": 30,
+      "rgb": [
+        82,
+        176,
+        204
+      ],
+      "rectified_bounds": [
+        1048,
+        1094
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 251
+    },
+    {
+      "id": 175,
+      "plane": "Main",
+      "row": 6,
+      "column": 31,
+      "rgb": [
+        204,
+        192,
+        20
+      ],
+      "rectified_bounds": [
+        1094,
+        1148
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 308
+    },
+    {
+      "id": 176,
+      "plane": "Main",
+      "row": 6,
+      "column": 32,
+      "rgb": [
+        160,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        1148,
+        1187
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 234
+    },
+    {
+      "id": 177,
+      "plane": "Main",
+      "row": 6,
+      "column": 33,
+      "rgb": [
+        20,
+        204,
+        85
+      ],
+      "rectified_bounds": [
+        1187,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 78
+    },
+    {
+      "id": 178,
+      "plane": "Main",
+      "row": 7,
+      "column": 1,
+      "rgb": [
+        255,
+        111,
+        102
+      ],
+      "rectified_bounds": [
+        0,
+        15
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 9
+    },
+    {
+      "id": 179,
+      "plane": "Main",
+      "row": 7,
+      "column": 2,
+      "rgb": [
+        25,
+        79,
+        255
+      ],
+      "rectified_bounds": [
+        15,
+        42
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 61
+    },
+    {
+      "id": 180,
+      "plane": "Main",
+      "row": 7,
+      "column": 3,
+      "rgb": [
+        182,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        42,
+        69
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 78
+    },
+    {
+      "id": 181,
+      "plane": "Main",
+      "row": 7,
+      "column": 4,
+      "rgb": [
+        255,
+        25,
+        213
+      ],
+      "rectified_bounds": [
+        69,
+        102
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 100
+    },
+    {
+      "id": 182,
+      "plane": "Main",
+      "row": 7,
+      "column": 5,
+      "rgb": [
+        102,
+        255,
+        239
+      ],
+      "rectified_bounds": [
+        102,
+        135
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 96
+    },
+    {
+      "id": 183,
+      "plane": "Main",
+      "row": 7,
+      "column": 6,
+      "rgb": [
+        255,
+        164,
+        25
+      ],
+      "rectified_bounds": [
+        135,
+        162
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 85
+    },
+    {
+      "id": 184,
+      "plane": "Main",
+      "row": 7,
+      "column": 7,
+      "rgb": [
+        149,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        162,
+        189
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 90
+    },
+    {
+      "id": 185,
+      "plane": "Main",
+      "row": 7,
+      "column": 8,
+      "rgb": [
+        25,
+        255,
+        30
+      ],
+      "rectified_bounds": [
+        189,
+        224
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 118
+    },
+    {
+      "id": 186,
+      "plane": "Main",
+      "row": 7,
+      "column": 9,
+      "rgb": [
+        255,
+        102,
+        144
+      ],
+      "rectified_bounds": [
+        224,
+        266
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 137
+    },
+    {
+      "id": 187,
+      "plane": "Main",
+      "row": 7,
+      "column": 10,
+      "rgb": [
+        25,
+        155,
+        255
+      ],
+      "rectified_bounds": [
+        266,
+        295
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 98
+    },
+    {
+      "id": 188,
+      "plane": "Main",
+      "row": 7,
+      "column": 11,
+      "rgb": [
+        233,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        295,
+        330
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 120
+    },
+    {
+      "id": 189,
+      "plane": "Main",
+      "row": 7,
+      "column": 12,
+      "rgb": [
+        221,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        330,
+        361
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 114
+    },
+    {
+      "id": 190,
+      "plane": "Main",
+      "row": 7,
+      "column": 13,
+      "rgb": [
+        102,
+        255,
+        187
+      ],
+      "rectified_bounds": [
+        361,
+        390
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 100
+    },
+    {
+      "id": 191,
+      "plane": "Main",
+      "row": 7,
+      "column": 14,
+      "rgb": [
+        255,
+        87,
+        25
+      ],
+      "rectified_bounds": [
+        390,
+        445
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 201
+    },
+    {
+      "id": 192,
+      "plane": "Main",
+      "row": 7,
+      "column": 15,
+      "rgb": [
+        102,
+        106,
+        255
+      ],
+      "rectified_bounds": [
+        445,
+        488
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 163
+    },
+    {
+      "id": 193,
+      "plane": "Main",
+      "row": 7,
+      "column": 16,
+      "rgb": [
+        98,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        488,
+        513
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 94
+    },
+    {
+      "id": 194,
+      "plane": "Main",
+      "row": 7,
+      "column": 17,
+      "rgb": [
+        255,
+        102,
+        195
+      ],
+      "rectified_bounds": [
+        513,
+        565
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 211
+    },
+    {
+      "id": 195,
+      "plane": "Main",
+      "row": 7,
+      "column": 18,
+      "rgb": [
+        25,
+        232,
+        255
+      ],
+      "rectified_bounds": [
+        565,
+        606
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 172
+    },
+    {
+      "id": 196,
+      "plane": "Main",
+      "row": 7,
+      "column": 19,
+      "rgb": [
+        255,
+        226,
+        102
+      ],
+      "rectified_bounds": [
+        606,
+        656
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 218
+    },
+    {
+      "id": 197,
+      "plane": "Main",
+      "row": 7,
+      "column": 20,
+      "rgb": [
+        144,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        656,
+        687
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 138
+    },
+    {
+      "id": 198,
+      "plane": "Main",
+      "row": 7,
+      "column": 21,
+      "rgb": [
+        102,
+        255,
+        136
+      ],
+      "rectified_bounds": [
+        687,
+        712
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 110
+    },
+    {
+      "id": 199,
+      "plane": "Main",
+      "row": 7,
+      "column": 22,
+      "rgb": [
+        255,
+        25,
+        41
+      ],
+      "rectified_bounds": [
+        712,
+        746
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 159
+    },
+    {
+      "id": 200,
+      "plane": "Main",
+      "row": 7,
+      "column": 23,
+      "rgb": [
+        102,
+        157,
+        255
+      ],
+      "rectified_bounds": [
+        746,
+        828
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 393
+    },
+    {
+      "id": 201,
+      "plane": "Main",
+      "row": 7,
+      "column": 24,
+      "rgb": [
+        175,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        828,
+        857
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 143
+    },
+    {
+      "id": 202,
+      "plane": "Main",
+      "row": 7,
+      "column": 25,
+      "rgb": [
+        255,
+        102,
+        246
+      ],
+      "rectified_bounds": [
+        857,
+        893
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 187
+    },
+    {
+      "id": 203,
+      "plane": "Main",
+      "row": 7,
+      "column": 26,
+      "rgb": [
+        25,
+        255,
+        201
+      ],
+      "rectified_bounds": [
+        893,
+        949
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 301
+    },
+    {
+      "id": 204,
+      "plane": "Main",
+      "row": 7,
+      "column": 27,
+      "rgb": [
+        255,
+        174,
+        102
+      ],
+      "rectified_bounds": [
+        949,
+        990
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 214
+    },
+    {
+      "id": 205,
+      "plane": "Main",
+      "row": 7,
+      "column": 28,
+      "rgb": [
+        67,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        990,
+        1029
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 221
+    },
+    {
+      "id": 206,
+      "plane": "Main",
+      "row": 7,
+      "column": 29,
+      "rgb": [
+        119,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        1029,
+        1057
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 156
+    },
+    {
+      "id": 207,
+      "plane": "Main",
+      "row": 7,
+      "column": 30,
+      "rgb": [
+        255,
+        25,
+        118
+      ],
+      "rectified_bounds": [
+        1057,
+        1091
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 184
+    },
+    {
+      "id": 208,
+      "plane": "Main",
+      "row": 7,
+      "column": 31,
+      "rgb": [
+        102,
+        208,
+        255
+      ],
+      "rectified_bounds": [
+        1091,
+        1136
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 243
+    },
+    {
+      "id": 209,
+      "plane": "Main",
+      "row": 7,
+      "column": 32,
+      "rgb": [
+        252,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        1136,
+        1189
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 269
+    },
+    {
+      "id": 210,
+      "plane": "Main",
+      "row": 7,
+      "column": 33,
+      "rgb": [
+        213,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        1189,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 46
+    },
+    {
+      "id": 211,
+      "plane": "Main",
+      "row": 8,
+      "column": 1,
+      "rgb": [
+        20,
+        204,
+        100
+      ],
+      "rectified_bounds": [
+        0,
+        37
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 162
+    },
+    {
+      "id": 212,
+      "plane": "Main",
+      "row": 8,
+      "column": 2,
+      "rgb": [
+        204,
+        99,
+        82
+      ],
+      "rectified_bounds": [
+        37,
+        107
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 231
+    },
+    {
+      "id": 213,
+      "plane": "Main",
+      "row": 8,
+      "column": 3,
+      "rgb": [
+        20,
+        48,
+        204
+      ],
+      "rectified_bounds": [
+        107,
+        134
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 92
+    },
+    {
+      "id": 214,
+      "plane": "Main",
+      "row": 8,
+      "column": 4,
+      "rgb": [
+        136,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        134,
+        158
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 81
+    },
+    {
+      "id": 215,
+      "plane": "Main",
+      "row": 8,
+      "column": 5,
+      "rgb": [
+        204,
+        20,
+        156
+      ],
+      "rectified_bounds": [
+        158,
+        198
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 127
+    },
+    {
+      "id": 216,
+      "plane": "Main",
+      "row": 8,
+      "column": 6,
+      "rgb": [
+        82,
+        204,
+        201
+      ],
+      "rectified_bounds": [
+        198,
+        228
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 102
+    },
+    {
+      "id": 217,
+      "plane": "Main",
+      "row": 8,
+      "column": 7,
+      "rgb": [
+        204,
+        145,
+        20
+      ],
+      "rectified_bounds": [
+        228,
+        256
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 99
+    },
+    {
+      "id": 218,
+      "plane": "Main",
+      "row": 8,
+      "column": 8,
+      "rgb": [
+        129,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        256,
+        299
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 151
+    },
+    {
+      "id": 219,
+      "plane": "Main",
+      "row": 8,
+      "column": 9,
+      "rgb": [
+        20,
+        204,
+        38
+      ],
+      "rectified_bounds": [
+        299,
+        362
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 235
+    },
+    {
+      "id": 220,
+      "plane": "Main",
+      "row": 8,
+      "column": 10,
+      "rgb": [
+        204,
+        82,
+        105
+      ],
+      "rectified_bounds": [
+        362,
+        410
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 188
+    },
+    {
+      "id": 221,
+      "plane": "Main",
+      "row": 8,
+      "column": 11,
+      "rgb": [
+        20,
+        110,
+        204
+      ],
+      "rectified_bounds": [
+        410,
+        448
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 147
+    },
+    {
+      "id": 222,
+      "plane": "Main",
+      "row": 8,
+      "column": 12,
+      "rgb": [
+        177,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        448,
+        477
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 113
+    },
+    {
+      "id": 223,
+      "plane": "Main",
+      "row": 8,
+      "column": 13,
+      "rgb": [
+        191,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        477,
+        537
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 253
+    },
+    {
+      "id": 224,
+      "plane": "Main",
+      "row": 8,
+      "column": 14,
+      "rgb": [
+        82,
+        204,
+        160
+      ],
+      "rectified_bounds": [
+        537,
+        572
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 151
+    },
+    {
+      "id": 225,
+      "plane": "Main",
+      "row": 8,
+      "column": 15,
+      "rgb": [
+        204,
+        84,
+        20
+      ],
+      "rectified_bounds": [
+        572,
+        597
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 107
+    },
+    {
+      "id": 226,
+      "plane": "Main",
+      "row": 8,
+      "column": 16,
+      "rgb": [
+        88,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        597,
+        635
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 164
+    },
+    {
+      "id": 227,
+      "plane": "Main",
+      "row": 8,
+      "column": 17,
+      "rgb": [
+        64,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        635,
+        672
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 157
+    },
+    {
+      "id": 228,
+      "plane": "Main",
+      "row": 8,
+      "column": 18,
+      "rgb": [
+        204,
+        82,
+        146
+      ],
+      "rectified_bounds": [
+        672,
+        701
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 135
+    },
+    {
+      "id": 229,
+      "plane": "Main",
+      "row": 8,
+      "column": 19,
+      "rgb": [
+        20,
+        171,
+        204
+      ],
+      "rectified_bounds": [
+        701,
+        725
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 113
+    },
+    {
+      "id": 230,
+      "plane": "Main",
+      "row": 8,
+      "column": 20,
+      "rgb": [
+        204,
+        190,
+        82
+      ],
+      "rectified_bounds": [
+        725,
+        805
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 397
+    },
+    {
+      "id": 231,
+      "plane": "Main",
+      "row": 8,
+      "column": 21,
+      "rgb": [
+        130,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        805,
+        878
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 370
+    },
+    {
+      "id": 232,
+      "plane": "Main",
+      "row": 8,
+      "column": 22,
+      "rgb": [
+        82,
+        204,
+        119
+      ],
+      "rectified_bounds": [
+        878,
+        917
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 203
+    },
+    {
+      "id": 233,
+      "plane": "Main",
+      "row": 8,
+      "column": 23,
+      "rgb": [
+        204,
+        23,
+        20
+      ],
+      "rectified_bounds": [
+        917,
+        954
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 201
+    },
+    {
+      "id": 234,
+      "plane": "Main",
+      "row": 8,
+      "column": 24,
+      "rgb": [
+        82,
+        116,
+        204
+      ],
+      "rectified_bounds": [
+        954,
+        999
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 259
+    },
+    {
+      "id": 235,
+      "plane": "Main",
+      "row": 8,
+      "column": 25,
+      "rgb": [
+        125,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        999,
+        1058
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 348
+    },
+    {
+      "id": 236,
+      "plane": "Main",
+      "row": 8,
+      "column": 26,
+      "rgb": [
+        204,
+        82,
+        187
+      ],
+      "rectified_bounds": [
+        1058,
+        1098
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 257
+    },
+    {
+      "id": 237,
+      "plane": "Main",
+      "row": 8,
+      "column": 27,
+      "rgb": [
+        20,
+        204,
+        175
+      ],
+      "rectified_bounds": [
+        1098,
+        1129
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 202
+    },
+    {
+      "id": 238,
+      "plane": "Main",
+      "row": 8,
+      "column": 28,
+      "rgb": [
+        204,
+        149,
+        82
+      ],
+      "rectified_bounds": [
+        1129,
+        1161
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 201
+    },
+    {
+      "id": 239,
+      "plane": "Main",
+      "row": 8,
+      "column": 29,
+      "rgb": [
+        68,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        1161,
+        1187
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 162
+    },
+    {
+      "id": 240,
+      "plane": "Main",
+      "row": 8,
+      "column": 30,
+      "rgb": [
+        85,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        1187,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 98
+    },
+    {
+      "id": 241,
+      "plane": "Main",
+      "row": 9,
+      "column": 1,
+      "rgb": [
+        255,
+        102,
+        151
+      ],
+      "rectified_bounds": [
+        0,
+        8
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 9
+    },
+    {
+      "id": 242,
+      "plane": "Main",
+      "row": 9,
+      "column": 2,
+      "rgb": [
+        25,
+        167,
+        255
+      ],
+      "rectified_bounds": [
+        8,
+        36
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 68
+    },
+    {
+      "id": 243,
+      "plane": "Main",
+      "row": 9,
+      "column": 3,
+      "rgb": [
+        241,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        36,
+        92
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 190
+    },
+    {
+      "id": 244,
+      "plane": "Main",
+      "row": 9,
+      "column": 4,
+      "rgb": [
+        210,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        92,
+        118
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 92
+    },
+    {
+      "id": 245,
+      "plane": "Main",
+      "row": 9,
+      "column": 5,
+      "rgb": [
+        102,
+        255,
+        180
+      ],
+      "rectified_bounds": [
+        118,
+        155
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 125
+    },
+    {
+      "id": 246,
+      "plane": "Main",
+      "row": 9,
+      "column": 6,
+      "rgb": [
+        255,
+        76,
+        25
+      ],
+      "rectified_bounds": [
+        155,
+        207
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 178
+    },
+    {
+      "id": 247,
+      "plane": "Main",
+      "row": 9,
+      "column": 7,
+      "rgb": [
+        102,
+        113,
+        255
+      ],
+      "rectified_bounds": [
+        207,
+        232
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 86
+    },
+    {
+      "id": 248,
+      "plane": "Main",
+      "row": 9,
+      "column": 8,
+      "rgb": [
+        109,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        232,
+        269
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 129
+    },
+    {
+      "id": 249,
+      "plane": "Main",
+      "row": 9,
+      "column": 9,
+      "rgb": [
+        255,
+        102,
+        203
+      ],
+      "rectified_bounds": [
+        269,
+        295
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 93
+    },
+    {
+      "id": 250,
+      "plane": "Main",
+      "row": 9,
+      "column": 10,
+      "rgb": [
+        25,
+        243,
+        255
+      ],
+      "rectified_bounds": [
+        295,
+        319
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 87
+    },
+    {
+      "id": 251,
+      "plane": "Main",
+      "row": 9,
+      "column": 11,
+      "rgb": [
+        255,
+        218,
+        102
+      ],
+      "rectified_bounds": [
+        319,
+        346
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 100
+    },
+    {
+      "id": 252,
+      "plane": "Main",
+      "row": 9,
+      "column": 12,
+      "rgb": [
+        133,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        346,
+        381
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 130
+    },
+    {
+      "id": 253,
+      "plane": "Main",
+      "row": 9,
+      "column": 13,
+      "rgb": [
+        102,
+        255,
+        129
+      ],
+      "rectified_bounds": [
+        381,
+        426
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 181
+    },
+    {
+      "id": 254,
+      "plane": "Main",
+      "row": 9,
+      "column": 14,
+      "rgb": [
+        255,
+        25,
+        52
+      ],
+      "rectified_bounds": [
+        426,
+        464
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 159
+    },
+    {
+      "id": 255,
+      "plane": "Main",
+      "row": 9,
+      "column": 15,
+      "rgb": [
+        102,
+        164,
+        255
+      ],
+      "rectified_bounds": [
+        464,
+        499
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 151
+    },
+    {
+      "id": 256,
+      "plane": "Main",
+      "row": 9,
+      "column": 16,
+      "rgb": [
+        186,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        499,
+        525
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 110
+    },
+    {
+      "id": 257,
+      "plane": "Main",
+      "row": 9,
+      "column": 17,
+      "rgb": [
+        255,
+        102,
+        254
+      ],
+      "rectified_bounds": [
+        525,
+        562
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 160
+    },
+    {
+      "id": 258,
+      "plane": "Main",
+      "row": 9,
+      "column": 18,
+      "rgb": [
+        25,
+        255,
+        190
+      ],
+      "rectified_bounds": [
+        562,
+        630
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 307
+    },
+    {
+      "id": 259,
+      "plane": "Main",
+      "row": 9,
+      "column": 19,
+      "rgb": [
+        255,
+        167,
+        102
+      ],
+      "rectified_bounds": [
+        630,
+        682
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 251
+    },
+    {
+      "id": 260,
+      "plane": "Main",
+      "row": 9,
+      "column": 20,
+      "rgb": [
+        56,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        682,
+        725
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 204
+    },
+    {
+      "id": 261,
+      "plane": "Main",
+      "row": 9,
+      "column": 21,
+      "rgb": [
+        126,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        725,
+        759
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 176
+    },
+    {
+      "id": 262,
+      "plane": "Main",
+      "row": 9,
+      "column": 22,
+      "rgb": [
+        255,
+        25,
+        129
+      ],
+      "rectified_bounds": [
+        759,
+        799
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 210
+    },
+    {
+      "id": 263,
+      "plane": "Main",
+      "row": 9,
+      "column": 23,
+      "rgb": [
+        102,
+        216,
+        255
+      ],
+      "rectified_bounds": [
+        799,
+        850
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 272
+    },
+    {
+      "id": 264,
+      "plane": "Main",
+      "row": 9,
+      "column": 24,
+      "rgb": [
+        255,
+        247,
+        25
+      ],
+      "rectified_bounds": [
+        850,
+        878
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 160
+    },
+    {
+      "id": 265,
+      "plane": "Main",
+      "row": 9,
+      "column": 25,
+      "rgb": [
+        205,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        878,
+        907
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 161
+    },
+    {
+      "id": 266,
+      "plane": "Main",
+      "row": 9,
+      "column": 26,
+      "rgb": [
+        25,
+        255,
+        113
+      ],
+      "rectified_bounds": [
+        907,
+        934
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 152
+    },
+    {
+      "id": 267,
+      "plane": "Main",
+      "row": 9,
+      "column": 27,
+      "rgb": [
+        255,
+        116,
+        102
+      ],
+      "rectified_bounds": [
+        934,
+        972
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 217
+    },
+    {
+      "id": 268,
+      "plane": "Main",
+      "row": 9,
+      "column": 28,
+      "rgb": [
+        25,
+        72,
+        255
+      ],
+      "rectified_bounds": [
+        972,
+        1036
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 393
+    },
+    {
+      "id": 269,
+      "plane": "Main",
+      "row": 9,
+      "column": 29,
+      "rgb": [
+        177,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        1036,
+        1065
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 193
+    },
+    {
+      "id": 270,
+      "plane": "Main",
+      "row": 9,
+      "column": 30,
+      "rgb": [
+        255,
+        25,
+        206
+      ],
+      "rectified_bounds": [
+        1065,
+        1092
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 179
+    },
+    {
+      "id": 271,
+      "plane": "Main",
+      "row": 9,
+      "column": 31,
+      "rgb": [
+        102,
+        255,
+        243
+      ],
+      "rectified_bounds": [
+        1092,
+        1121
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 198
+    },
+    {
+      "id": 272,
+      "plane": "Main",
+      "row": 9,
+      "column": 32,
+      "rgb": [
+        255,
+        170,
+        25
+      ],
+      "rectified_bounds": [
+        1121,
+        1145
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 180
+    },
+    {
+      "id": 273,
+      "plane": "Main",
+      "row": 9,
+      "column": 33,
+      "rgb": [
+        154,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        1145,
+        1183
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 315
+    },
+    {
+      "id": 274,
+      "plane": "Main",
+      "row": 9,
+      "column": 34,
+      "rgb": [
+        25,
+        255,
+        36
+      ],
+      "rectified_bounds": [
+        1183,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 131
+    },
+    {
+      "id": 275,
+      "plane": "Main",
+      "row": 10,
+      "column": 1,
+      "rgb": [
+        204,
+        20,
+        65
+      ],
+      "rectified_bounds": [
+        0,
+        19
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 64
+    },
+    {
+      "id": 276,
+      "plane": "Main",
+      "row": 10,
+      "column": 2,
+      "rgb": [
+        82,
+        147,
+        204
+      ],
+      "rectified_bounds": [
+        19,
+        45
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 77
+    },
+    {
+      "id": 277,
+      "plane": "Main",
+      "row": 10,
+      "column": 3,
+      "rgb": [
+        172,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        45,
+        88
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 135
+    },
+    {
+      "id": 278,
+      "plane": "Main",
+      "row": 10,
+      "column": 4,
+      "rgb": [
+        189,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        88,
+        141
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 169
+    },
+    {
+      "id": 279,
+      "plane": "Main",
+      "row": 10,
+      "column": 5,
+      "rgb": [
+        20,
+        204,
+        129
+      ],
+      "rectified_bounds": [
+        141,
+        168
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 94
+    },
+    {
+      "id": 280,
+      "plane": "Main",
+      "row": 10,
+      "column": 6,
+      "rgb": [
+        204,
+        118,
+        82
+      ],
+      "rectified_bounds": [
+        168,
+        199
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 111
+    },
+    {
+      "id": 281,
+      "plane": "Main",
+      "row": 10,
+      "column": 7,
+      "rgb": [
+        21,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        199,
+        251
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 191
+    },
+    {
+      "id": 282,
+      "plane": "Main",
+      "row": 10,
+      "column": 8,
+      "rgb": [
+        117,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        251,
+        291
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 151
+    },
+    {
+      "id": 283,
+      "plane": "Main",
+      "row": 10,
+      "column": 9,
+      "rgb": [
+        204,
+        20,
+        127
+      ],
+      "rectified_bounds": [
+        291,
+        329
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 149
+    },
+    {
+      "id": 284,
+      "plane": "Main",
+      "row": 10,
+      "column": 10,
+      "rgb": [
+        82,
+        188,
+        204
+      ],
+      "rectified_bounds": [
+        329,
+        375
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 181
+    },
+    {
+      "id": 285,
+      "plane": "Main",
+      "row": 10,
+      "column": 11,
+      "rgb": [
+        204,
+        174,
+        20
+      ],
+      "rectified_bounds": [
+        375,
+        412
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 152
+    },
+    {
+      "id": 286,
+      "plane": "Main",
+      "row": 10,
+      "column": 12,
+      "rgb": [
+        148,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        412,
+        445
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 133
+    },
+    {
+      "id": 287,
+      "plane": "Main",
+      "row": 10,
+      "column": 13,
+      "rgb": [
+        20,
+        204,
+        67
+      ],
+      "rectified_bounds": [
+        445,
+        488
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 177
+    },
+    {
+      "id": 288,
+      "plane": "Main",
+      "row": 10,
+      "column": 14,
+      "rgb": [
+        204,
+        82,
+        86
+      ],
+      "rectified_bounds": [
+        488,
+        514
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 113
+    },
+    {
+      "id": 289,
+      "plane": "Main",
+      "row": 10,
+      "column": 15,
+      "rgb": [
+        20,
+        81,
+        204
+      ],
+      "rectified_bounds": [
+        514,
+        574
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 283
+    },
+    {
+      "id": 290,
+      "plane": "Main",
+      "row": 10,
+      "column": 16,
+      "rgb": [
+        158,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        574,
+        610
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 179
+    },
+    {
+      "id": 291,
+      "plane": "Main",
+      "row": 10,
+      "column": 17,
+      "rgb": [
+        204,
+        20,
+        188
+      ],
+      "rectified_bounds": [
+        610,
+        636
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 130
+    },
+    {
+      "id": 292,
+      "plane": "Main",
+      "row": 10,
+      "column": 18,
+      "rgb": [
+        82,
+        204,
+        179
+      ],
+      "rectified_bounds": [
+        636,
+        696
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 303
+    },
+    {
+      "id": 293,
+      "plane": "Main",
+      "row": 10,
+      "column": 19,
+      "rgb": [
+        204,
+        113,
+        20
+      ],
+      "rectified_bounds": [
+        696,
+        734
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 201
+    },
+    {
+      "id": 294,
+      "plane": "Main",
+      "row": 10,
+      "column": 20,
+      "rgb": [
+        108,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        734,
+        759
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 123
+    },
+    {
+      "id": 295,
+      "plane": "Main",
+      "row": 10,
+      "column": 21,
+      "rgb": [
+        35,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        759,
+        806
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 251
+    },
+    {
+      "id": 296,
+      "plane": "Main",
+      "row": 10,
+      "column": 22,
+      "rgb": [
+        204,
+        82,
+        127
+      ],
+      "rectified_bounds": [
+        806,
+        855
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 277
+    },
+    {
+      "id": 297,
+      "plane": "Main",
+      "row": 10,
+      "column": 23,
+      "rgb": [
+        20,
+        142,
+        204
+      ],
+      "rectified_bounds": [
+        855,
+        886
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 178
+    },
+    {
+      "id": 298,
+      "plane": "Main",
+      "row": 10,
+      "column": 24,
+      "rgb": [
+        199,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        886,
+        916
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 178
+    },
+    {
+      "id": 299,
+      "plane": "Main",
+      "row": 10,
+      "column": 25,
+      "rgb": [
+        159,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        916,
+        949
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 199
+    },
+    {
+      "id": 300,
+      "plane": "Main",
+      "row": 10,
+      "column": 26,
+      "rgb": [
+        82,
+        204,
+        138
+      ],
+      "rectified_bounds": [
+        949,
+        991
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 259
+    },
+    {
+      "id": 301,
+      "plane": "Main",
+      "row": 10,
+      "column": 27,
+      "rgb": [
+        204,
+        51,
+        20
+      ],
+      "rectified_bounds": [
+        991,
+        1036
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 279
+    },
+    {
+      "id": 302,
+      "plane": "Main",
+      "row": 10,
+      "column": 28,
+      "rgb": [
+        82,
+        97,
+        204
+      ],
+      "rectified_bounds": [
+        1036,
+        1062
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 167
+    },
+    {
+      "id": 303,
+      "plane": "Main",
+      "row": 10,
+      "column": 29,
+      "rgb": [
+        96,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        1062,
+        1089
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 181
+    },
+    {
+      "id": 304,
+      "plane": "Main",
+      "row": 10,
+      "column": 30,
+      "rgb": [
+        204,
+        82,
+        168
+      ],
+      "rectified_bounds": [
+        1089,
+        1117
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 203
+    },
+    {
+      "id": 305,
+      "plane": "Main",
+      "row": 10,
+      "column": 31,
+      "rgb": [
+        20,
+        204,
+        204
+      ],
+      "rectified_bounds": [
+        1117,
+        1153
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 277
+    },
+    {
+      "id": 306,
+      "plane": "Main",
+      "row": 10,
+      "column": 32,
+      "rgb": [
+        204,
+        169,
+        82
+      ],
+      "rectified_bounds": [
+        1153,
+        1184
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 244
+    },
+    {
+      "id": 307,
+      "plane": "Main",
+      "row": 10,
+      "column": 33,
+      "rgb": [
+        97,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        1184,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 95
+    },
+    {
+      "id": 308,
+      "plane": "Main",
+      "row": 11,
+      "column": 1,
+      "rgb": [
+        102,
+        255,
+        121
+      ],
+      "rectified_bounds": [
+        0,
+        22
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 60
+    },
+    {
+      "id": 309,
+      "plane": "Main",
+      "row": 11,
+      "column": 2,
+      "rgb": [
+        255,
+        25,
+        63
+      ],
+      "rectified_bounds": [
+        22,
+        66
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 148
+    },
+    {
+      "id": 310,
+      "plane": "Main",
+      "row": 11,
+      "column": 3,
+      "rgb": [
+        102,
+        172,
+        255
+      ],
+      "rectified_bounds": [
+        66,
+        101
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 115
+    },
+    {
+      "id": 311,
+      "plane": "Main",
+      "row": 11,
+      "column": 4,
+      "rgb": [
+        197,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        101,
+        140
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 131
+    },
+    {
+      "id": 312,
+      "plane": "Main",
+      "row": 11,
+      "column": 5,
+      "rgb": [
+        249,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        140,
+        193
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 180
+    },
+    {
+      "id": 313,
+      "plane": "Main",
+      "row": 11,
+      "column": 6,
+      "rgb": [
+        25,
+        255,
+        179
+      ],
+      "rectified_bounds": [
+        193,
+        232
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 140
+    },
+    {
+      "id": 314,
+      "plane": "Main",
+      "row": 11,
+      "column": 7,
+      "rgb": [
+        255,
+        160,
+        102
+      ],
+      "rectified_bounds": [
+        232,
+        269
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 132
+    },
+    {
+      "id": 315,
+      "plane": "Main",
+      "row": 11,
+      "column": 8,
+      "rgb": [
+        45,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        269,
+        314
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 171
+    },
+    {
+      "id": 316,
+      "plane": "Main",
+      "row": 11,
+      "column": 9,
+      "rgb": [
+        134,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        314,
+        339
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 93
+    },
+    {
+      "id": 317,
+      "plane": "Main",
+      "row": 11,
+      "column": 10,
+      "rgb": [
+        255,
+        25,
+        140
+      ],
+      "rectified_bounds": [
+        339,
+        382
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 167
+    },
+    {
+      "id": 318,
+      "plane": "Main",
+      "row": 11,
+      "column": 11,
+      "rgb": [
+        102,
+        223,
+        255
+      ],
+      "rectified_bounds": [
+        382,
+        416
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 133
+    },
+    {
+      "id": 319,
+      "plane": "Main",
+      "row": 11,
+      "column": 12,
+      "rgb": [
+        255,
+        236,
+        25
+      ],
+      "rectified_bounds": [
+        416,
+        464
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 199
+    },
+    {
+      "id": 320,
+      "plane": "Main",
+      "row": 11,
+      "column": 13,
+      "rgb": [
+        198,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        464,
+        498
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 148
+    },
+    {
+      "id": 321,
+      "plane": "Main",
+      "row": 11,
+      "column": 14,
+      "rgb": [
+        25,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        498,
+        528
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 129
+    },
+    {
+      "id": 322,
+      "plane": "Main",
+      "row": 11,
+      "column": 15,
+      "rgb": [
+        255,
+        108,
+        102
+      ],
+      "rectified_bounds": [
+        528,
+        573
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 198
+    },
+    {
+      "id": 323,
+      "plane": "Main",
+      "row": 11,
+      "column": 16,
+      "rgb": [
+        25,
+        83,
+        255
+      ],
+      "rectified_bounds": [
+        573,
+        604
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 135
+    },
+    {
+      "id": 324,
+      "plane": "Main",
+      "row": 11,
+      "column": 17,
+      "rgb": [
+        185,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        604,
+        643
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 182
+    },
+    {
+      "id": 325,
+      "plane": "Main",
+      "row": 11,
+      "column": 18,
+      "rgb": [
+        255,
+        25,
+        217
+      ],
+      "rectified_bounds": [
+        643,
+        679
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 173
+    },
+    {
+      "id": 326,
+      "plane": "Main",
+      "row": 11,
+      "column": 19,
+      "rgb": [
+        102,
+        255,
+        236
+      ],
+      "rectified_bounds": [
+        679,
+        704
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 123
+    },
+    {
+      "id": 327,
+      "plane": "Main",
+      "row": 11,
+      "column": 20,
+      "rgb": [
+        255,
+        159,
+        25
+      ],
+      "rectified_bounds": [
+        704,
+        748
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 226
+    },
+    {
+      "id": 328,
+      "plane": "Main",
+      "row": 11,
+      "column": 21,
+      "rgb": [
+        147,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        748,
+        775
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 142
+    },
+    {
+      "id": 329,
+      "plane": "Main",
+      "row": 11,
+      "column": 22,
+      "rgb": [
+        26,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        775,
+        808
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 174
+    },
+    {
+      "id": 330,
+      "plane": "Main",
+      "row": 11,
+      "column": 23,
+      "rgb": [
+        255,
+        102,
+        147
+      ],
+      "rectified_bounds": [
+        808,
+        848
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 219
+    },
+    {
+      "id": 331,
+      "plane": "Main",
+      "row": 11,
+      "column": 24,
+      "rgb": [
+        25,
+        160,
+        255
+      ],
+      "rectified_bounds": [
+        848,
+        878
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 167
+    },
+    {
+      "id": 332,
+      "plane": "Main",
+      "row": 11,
+      "column": 25,
+      "rgb": [
+        236,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        878,
+        908
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 175
+    },
+    {
+      "id": 333,
+      "plane": "Main",
+      "row": 11,
+      "column": 26,
+      "rgb": [
+        216,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        908,
+        936
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 169
+    },
+    {
+      "id": 334,
+      "plane": "Main",
+      "row": 11,
+      "column": 27,
+      "rgb": [
+        102,
+        255,
+        185
+      ],
+      "rectified_bounds": [
+        936,
+        993
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 344
+    },
+    {
+      "id": 335,
+      "plane": "Main",
+      "row": 11,
+      "column": 28,
+      "rgb": [
+        255,
+        82,
+        25
+      ],
+      "rectified_bounds": [
+        993,
+        1044
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 332
+    },
+    {
+      "id": 336,
+      "plane": "Main",
+      "row": 11,
+      "column": 29,
+      "rgb": [
+        102,
+        109,
+        255
+      ],
+      "rectified_bounds": [
+        1044,
+        1090
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 301
+    },
+    {
+      "id": 337,
+      "plane": "Main",
+      "row": 11,
+      "column": 30,
+      "rgb": [
+        102,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        1090,
+        1141
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 343
+    },
+    {
+      "id": 338,
+      "plane": "Main",
+      "row": 11,
+      "column": 31,
+      "rgb": [
+        255,
+        102,
+        198
+      ],
+      "rectified_bounds": [
+        1141,
+        1187
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 329
+    },
+    {
+      "id": 339,
+      "plane": "Main",
+      "row": 11,
+      "column": 32,
+      "rgb": [
+        25,
+        236,
+        255
+      ],
+      "rectified_bounds": [
+        1187,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 109
+    },
+    {
+      "id": 340,
+      "plane": "Main",
+      "row": 12,
+      "column": 1,
+      "rgb": [
+        204,
+        165,
+        20
+      ],
+      "rectified_bounds": [
+        0,
+        17
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 52
+    },
+    {
+      "id": 341,
+      "plane": "Main",
+      "row": 12,
+      "column": 2,
+      "rgb": [
+        142,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        17,
+        74
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 191
+    },
+    {
+      "id": 342,
+      "plane": "Main",
+      "row": 12,
+      "column": 3,
+      "rgb": [
+        20,
+        204,
+        58
+      ],
+      "rectified_bounds": [
+        74,
+        105
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 108
+    },
+    {
+      "id": 343,
+      "plane": "Main",
+      "row": 12,
+      "column": 4,
+      "rgb": [
+        204,
+        82,
+        92
+      ],
+      "rectified_bounds": [
+        105,
+        154
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 168
+    },
+    {
+      "id": 344,
+      "plane": "Main",
+      "row": 12,
+      "column": 5,
+      "rgb": [
+        20,
+        90,
+        204
+      ],
+      "rectified_bounds": [
+        154,
+        182
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 99
+    },
+    {
+      "id": 345,
+      "plane": "Main",
+      "row": 12,
+      "column": 6,
+      "rgb": [
+        164,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        182,
+        219
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 128
+    },
+    {
+      "id": 346,
+      "plane": "Main",
+      "row": 12,
+      "column": 7,
+      "rgb": [
+        204,
+        20,
+        197
+      ],
+      "rectified_bounds": [
+        219,
+        249
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 113
+    },
+    {
+      "id": 347,
+      "plane": "Main",
+      "row": 12,
+      "column": 8,
+      "rgb": [
+        82,
+        204,
+        173
+      ],
+      "rectified_bounds": [
+        249,
+        278
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 104
+    },
+    {
+      "id": 348,
+      "plane": "Main",
+      "row": 12,
+      "column": 9,
+      "rgb": [
+        204,
+        104,
+        20
+      ],
+      "rectified_bounds": [
+        278,
+        337
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 223
+    },
+    {
+      "id": 349,
+      "plane": "Main",
+      "row": 12,
+      "column": 10,
+      "rgb": [
+        102,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        337,
+        388
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 200
+    },
+    {
+      "id": 350,
+      "plane": "Main",
+      "row": 12,
+      "column": 11,
+      "rgb": [
+        44,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        388,
+        422
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 148
+    },
+    {
+      "id": 351,
+      "plane": "Main",
+      "row": 12,
+      "column": 12,
+      "rgb": [
+        204,
+        82,
+        133
+      ],
+      "rectified_bounds": [
+        422,
+        447
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 110
+    },
+    {
+      "id": 352,
+      "plane": "Main",
+      "row": 12,
+      "column": 13,
+      "rgb": [
+        20,
+        151,
+        204
+      ],
+      "rectified_bounds": [
+        447,
+        482
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 156
+    },
+    {
+      "id": 353,
+      "plane": "Main",
+      "row": 12,
+      "column": 14,
+      "rgb": [
+        204,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        482,
+        522
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 177
+    },
+    {
+      "id": 354,
+      "plane": "Main",
+      "row": 12,
+      "column": 15,
+      "rgb": [
+        150,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        522,
+        549
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 126
+    },
+    {
+      "id": 355,
+      "plane": "Main",
+      "row": 12,
+      "column": 16,
+      "rgb": [
+        82,
+        204,
+        132
+      ],
+      "rectified_bounds": [
+        549,
+        574
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 110
+    },
+    {
+      "id": 356,
+      "plane": "Main",
+      "row": 12,
+      "column": 17,
+      "rgb": [
+        204,
+        43,
+        20
+      ],
+      "rectified_bounds": [
+        574,
+        602
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 130
+    },
+    {
+      "id": 357,
+      "plane": "Main",
+      "row": 12,
+      "column": 18,
+      "rgb": [
+        82,
+        103,
+        204
+      ],
+      "rectified_bounds": [
+        602,
+        634
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 148
+    },
+    {
+      "id": 358,
+      "plane": "Main",
+      "row": 12,
+      "column": 19,
+      "rgb": [
+        105,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        634,
+        659
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 120
+    },
+    {
+      "id": 359,
+      "plane": "Main",
+      "row": 12,
+      "column": 20,
+      "rgb": [
+        204,
+        82,
+        174
+      ],
+      "rectified_bounds": [
+        659,
+        714
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 273
+    },
+    {
+      "id": 360,
+      "plane": "Main",
+      "row": 12,
+      "column": 21,
+      "rgb": [
+        20,
+        204,
+        195
+      ],
+      "rectified_bounds": [
+        714,
+        750
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 190
+    },
+    {
+      "id": 361,
+      "plane": "Main",
+      "row": 12,
+      "column": 22,
+      "rgb": [
+        204,
+        163,
+        82
+      ],
+      "rectified_bounds": [
+        750,
+        776
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 144
+    },
+    {
+      "id": 362,
+      "plane": "Main",
+      "row": 12,
+      "column": 23,
+      "rgb": [
+        88,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        776,
+        806
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 169
+    },
+    {
+      "id": 363,
+      "plane": "Main",
+      "row": 12,
+      "column": 24,
+      "rgb": [
+        82,
+        204,
+        91
+      ],
+      "rectified_bounds": [
+        806,
+        842
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 202
+    },
+    {
+      "id": 364,
+      "plane": "Main",
+      "row": 12,
+      "column": 25,
+      "rgb": [
+        204,
+        20,
+        60
+      ],
+      "rectified_bounds": [
+        842,
+        882
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 233
+    },
+    {
+      "id": 365,
+      "plane": "Main",
+      "row": 12,
+      "column": 26,
+      "rgb": [
+        82,
+        143,
+        204
+      ],
+      "rectified_bounds": [
+        882,
+        932
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 298
+    },
+    {
+      "id": 366,
+      "plane": "Main",
+      "row": 12,
+      "column": 27,
+      "rgb": [
+        167,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        932,
+        958
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 160
+    },
+    {
+      "id": 367,
+      "plane": "Main",
+      "row": 12,
+      "column": 28,
+      "rgb": [
+        193,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        958,
+        1005
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 297
+    },
+    {
+      "id": 368,
+      "plane": "Main",
+      "row": 12,
+      "column": 29,
+      "rgb": [
+        20,
+        204,
+        134
+      ],
+      "rectified_bounds": [
+        1005,
+        1039
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 222
+    },
+    {
+      "id": 369,
+      "plane": "Main",
+      "row": 12,
+      "column": 30,
+      "rgb": [
+        204,
+        122,
+        82
+      ],
+      "rectified_bounds": [
+        1039,
+        1064
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 167
+    },
+    {
+      "id": 370,
+      "plane": "Main",
+      "row": 12,
+      "column": 31,
+      "rgb": [
+        27,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        1064,
+        1103
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 270
+    },
+    {
+      "id": 371,
+      "plane": "Main",
+      "row": 12,
+      "column": 32,
+      "rgb": [
+        113,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        1103,
+        1129
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 192
+    },
+    {
+      "id": 372,
+      "plane": "Main",
+      "row": 12,
+      "column": 33,
+      "rgb": [
+        204,
+        20,
+        121
+      ],
+      "rectified_bounds": [
+        1129,
+        1183
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 391
+    },
+    {
+      "id": 373,
+      "plane": "Main",
+      "row": 12,
+      "column": 34,
+      "rgb": [
+        82,
+        184,
+        204
+      ],
+      "rectified_bounds": [
+        1183,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 108
+    },
+    {
+      "id": 374,
+      "plane": "Main",
+      "row": 13,
+      "column": 1,
+      "rgb": [
+        255,
+        235,
+        102
+      ],
+      "rectified_bounds": [
+        0,
+        12
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 41
+    },
+    {
+      "id": 375,
+      "plane": "Main",
+      "row": 13,
+      "column": 2,
+      "rgb": [
+        158,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        12,
+        60
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 154
+    },
+    {
+      "id": 376,
+      "plane": "Main",
+      "row": 13,
+      "column": 3,
+      "rgb": [
+        102,
+        255,
+        146
+      ],
+      "rectified_bounds": [
+        60,
+        91
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 114
+    },
+    {
+      "id": 377,
+      "plane": "Main",
+      "row": 13,
+      "column": 4,
+      "rgb": [
+        255,
+        25,
+        27
+      ],
+      "rectified_bounds": [
+        91,
+        123
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 114
+    },
+    {
+      "id": 378,
+      "plane": "Main",
+      "row": 13,
+      "column": 5,
+      "rgb": [
+        102,
+        148,
+        255
+      ],
+      "rectified_bounds": [
+        123,
+        148
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 91
+    },
+    {
+      "id": 379,
+      "plane": "Main",
+      "row": 13,
+      "column": 6,
+      "rgb": [
+        161,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        148,
+        194
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 169
+    },
+    {
+      "id": 380,
+      "plane": "Main",
+      "row": 13,
+      "column": 7,
+      "rgb": [
+        255,
+        102,
+        237
+      ],
+      "rectified_bounds": [
+        194,
+        239
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 174
+    },
+    {
+      "id": 381,
+      "plane": "Main",
+      "row": 13,
+      "column": 8,
+      "rgb": [
+        25,
+        255,
+        215
+      ],
+      "rectified_bounds": [
+        239,
+        263
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 92
+    },
+    {
+      "id": 382,
+      "plane": "Main",
+      "row": 13,
+      "column": 9,
+      "rgb": [
+        255,
+        184,
+        102
+      ],
+      "rectified_bounds": [
+        263,
+        306
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 175
+    },
+    {
+      "id": 383,
+      "plane": "Main",
+      "row": 13,
+      "column": 10,
+      "rgb": [
+        81,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        306,
+        354
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 196
+    },
+    {
+      "id": 384,
+      "plane": "Main",
+      "row": 13,
+      "column": 11,
+      "rgb": [
+        110,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        354,
+        395
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 172
+    },
+    {
+      "id": 385,
+      "plane": "Main",
+      "row": 13,
+      "column": 12,
+      "rgb": [
+        255,
+        25,
+        104
+      ],
+      "rectified_bounds": [
+        395,
+        431
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 150
+    },
+    {
+      "id": 386,
+      "plane": "Main",
+      "row": 13,
+      "column": 13,
+      "rgb": [
+        102,
+        199,
+        255
+      ],
+      "rectified_bounds": [
+        431,
+        487
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 240
+    },
+    {
+      "id": 387,
+      "plane": "Main",
+      "row": 13,
+      "column": 14,
+      "rgb": [
+        238,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        487,
+        512
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 114
+    },
+    {
+      "id": 388,
+      "plane": "Main",
+      "row": 13,
+      "column": 15,
+      "rgb": [
+        222,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        512,
+        537
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 113
+    },
+    {
+      "id": 389,
+      "plane": "Main",
+      "row": 13,
+      "column": 16,
+      "rgb": [
+        25,
+        255,
+        138
+      ],
+      "rectified_bounds": [
+        537,
+        569
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 150
+    },
+    {
+      "id": 390,
+      "plane": "Main",
+      "row": 13,
+      "column": 17,
+      "rgb": [
+        255,
+        133,
+        102
+      ],
+      "rectified_bounds": [
+        569,
+        598
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 137
+    },
+    {
+      "id": 391,
+      "plane": "Main",
+      "row": 13,
+      "column": 18,
+      "rgb": [
+        25,
+        47,
+        255
+      ],
+      "rectified_bounds": [
+        598,
+        623
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 123
+    },
+    {
+      "id": 392,
+      "plane": "Main",
+      "row": 13,
+      "column": 19,
+      "rgb": [
+        161,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        623,
+        649
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 133
+    },
+    {
+      "id": 393,
+      "plane": "Main",
+      "row": 13,
+      "column": 20,
+      "rgb": [
+        255,
+        25,
+        181
+      ],
+      "rectified_bounds": [
+        649,
+        692
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 222
+    },
+    {
+      "id": 394,
+      "plane": "Main",
+      "row": 13,
+      "column": 21,
+      "rgb": [
+        102,
+        250,
+        255
+      ],
+      "rectified_bounds": [
+        692,
+        734
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 219
+    },
+    {
+      "id": 395,
+      "plane": "Main",
+      "row": 13,
+      "column": 22,
+      "rgb": [
+        255,
+        195,
+        25
+      ],
+      "rectified_bounds": [
+        734,
+        762
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 154
+    },
+    {
+      "id": 396,
+      "plane": "Main",
+      "row": 13,
+      "column": 23,
+      "rgb": [
+        171,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        762,
+        793
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 168
+    },
+    {
+      "id": 397,
+      "plane": "Main",
+      "row": 13,
+      "column": 24,
+      "rgb": [
+        25,
+        255,
+        62
+      ],
+      "rectified_bounds": [
+        793,
+        824
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 171
+    },
+    {
+      "id": 398,
+      "plane": "Main",
+      "row": 13,
+      "column": 25,
+      "rgb": [
+        255,
+        102,
+        123
+      ],
+      "rectified_bounds": [
+        824,
+        859
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 206
+    },
+    {
+      "id": 399,
+      "plane": "Main",
+      "row": 13,
+      "column": 26,
+      "rgb": [
+        25,
+        123,
+        255
+      ],
+      "rectified_bounds": [
+        859,
+        886
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 164
+    },
+    {
+      "id": 400,
+      "plane": "Main",
+      "row": 13,
+      "column": 27,
+      "rgb": [
+        212,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        886,
+        915
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 182
+    },
+    {
+      "id": 401,
+      "plane": "Main",
+      "row": 13,
+      "column": 28,
+      "rgb": [
+        253,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        915,
+        953
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 239
+    },
+    {
+      "id": 402,
+      "plane": "Main",
+      "row": 13,
+      "column": 29,
+      "rgb": [
+        102,
+        255,
+        209
+      ],
+      "rectified_bounds": [
+        953,
+        999
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 305
+    },
+    {
+      "id": 403,
+      "plane": "Main",
+      "row": 13,
+      "column": 30,
+      "rgb": [
+        255,
+        119,
+        25
+      ],
+      "rectified_bounds": [
+        999,
+        1039
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 266
+    },
+    {
+      "id": 404,
+      "plane": "Main",
+      "row": 13,
+      "column": 31,
+      "rgb": [
+        120,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        1039,
+        1078
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 275
+    },
+    {
+      "id": 405,
+      "plane": "Main",
+      "row": 13,
+      "column": 32,
+      "rgb": [
+        66,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        1078,
+        1104
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 181
+    },
+    {
+      "id": 406,
+      "plane": "Main",
+      "row": 13,
+      "column": 33,
+      "rgb": [
+        255,
+        102,
+        174
+      ],
+      "rectified_bounds": [
+        1104,
+        1135
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 221
+    },
+    {
+      "id": 407,
+      "plane": "Main",
+      "row": 13,
+      "column": 34,
+      "rgb": [
+        25,
+        200,
+        255
+      ],
+      "rectified_bounds": [
+        1135,
+        1159
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 177
+    },
+    {
+      "id": 408,
+      "plane": "Main",
+      "row": 13,
+      "column": 35,
+      "rgb": [
+        255,
+        247,
+        102
+      ],
+      "rectified_bounds": [
+        1159,
+        1185
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 193
+    },
+    {
+      "id": 409,
+      "plane": "Main",
+      "row": 13,
+      "column": 36,
+      "rgb": [
+        176,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        1185,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 99
+    },
+    {
+      "id": 410,
+      "plane": "Main",
+      "row": 14,
+      "column": 1,
+      "rgb": [
+        20,
+        204,
+        87
+      ],
+      "rectified_bounds": [
+        0,
+        28
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 78
+    },
+    {
+      "id": 411,
+      "plane": "Main",
+      "row": 14,
+      "column": 2,
+      "rgb": [
+        204,
+        90,
+        82
+      ],
+      "rectified_bounds": [
+        28,
+        98
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 179
+    },
+    {
+      "id": 412,
+      "plane": "Main",
+      "row": 14,
+      "column": 3,
+      "rgb": [
+        20,
+        61,
+        204
+      ],
+      "rectified_bounds": [
+        98,
+        142
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 122
+    },
+    {
+      "id": 413,
+      "plane": "Main",
+      "row": 14,
+      "column": 4,
+      "rgb": [
+        144,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        142,
+        176
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 97
+    },
+    {
+      "id": 414,
+      "plane": "Main",
+      "row": 14,
+      "column": 5,
+      "rgb": [
+        204,
+        20,
+        168
+      ],
+      "rectified_bounds": [
+        176,
+        255
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 237
+    },
+    {
+      "id": 415,
+      "plane": "Main",
+      "row": 14,
+      "column": 6,
+      "rgb": [
+        82,
+        204,
+        192
+      ],
+      "rectified_bounds": [
+        255,
+        290
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 109
+    },
+    {
+      "id": 416,
+      "plane": "Main",
+      "row": 14,
+      "column": 7,
+      "rgb": [
+        204,
+        133,
+        20
+      ],
+      "rectified_bounds": [
+        290,
+        336
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 153
+    },
+    {
+      "id": 417,
+      "plane": "Main",
+      "row": 14,
+      "column": 8,
+      "rgb": [
+        121,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        336,
+        362
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 93
+    },
+    {
+      "id": 418,
+      "plane": "Main",
+      "row": 14,
+      "column": 9,
+      "rgb": [
+        20,
+        204,
+        26
+      ],
+      "rectified_bounds": [
+        362,
+        388
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 93
+    },
+    {
+      "id": 419,
+      "plane": "Main",
+      "row": 14,
+      "column": 10,
+      "rgb": [
+        204,
+        82,
+        114
+      ],
+      "rectified_bounds": [
+        388,
+        441
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 197
+    },
+    {
+      "id": 420,
+      "plane": "Main",
+      "row": 14,
+      "column": 11,
+      "rgb": [
+        20,
+        122,
+        204
+      ],
+      "rectified_bounds": [
+        441,
+        466
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 98
+    },
+    {
+      "id": 421,
+      "plane": "Main",
+      "row": 14,
+      "column": 12,
+      "rgb": [
+        185,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        466,
+        493
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 108
+    },
+    {
+      "id": 422,
+      "plane": "Main",
+      "row": 14,
+      "column": 13,
+      "rgb": [
+        179,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        493,
+        520
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 109
+    },
+    {
+      "id": 423,
+      "plane": "Main",
+      "row": 14,
+      "column": 14,
+      "rgb": [
+        82,
+        204,
+        151
+      ],
+      "rectified_bounds": [
+        520,
+        566
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 198
+    },
+    {
+      "id": 424,
+      "plane": "Main",
+      "row": 14,
+      "column": 15,
+      "rgb": [
+        204,
+        72,
+        20
+      ],
+      "rectified_bounds": [
+        566,
+        597
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 140
+    },
+    {
+      "id": 425,
+      "plane": "Main",
+      "row": 14,
+      "column": 16,
+      "rgb": [
+        82,
+        83,
+        204
+      ],
+      "rectified_bounds": [
+        597,
+        649
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 243
+    },
+    {
+      "id": 426,
+      "plane": "Main",
+      "row": 14,
+      "column": 17,
+      "rgb": [
+        76,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        649,
+        684
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 170
+    },
+    {
+      "id": 427,
+      "plane": "Main",
+      "row": 14,
+      "column": 18,
+      "rgb": [
+        204,
+        82,
+        155
+      ],
+      "rectified_bounds": [
+        684,
+        714
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 152
+    },
+    {
+      "id": 428,
+      "plane": "Main",
+      "row": 14,
+      "column": 19,
+      "rgb": [
+        20,
+        184,
+        204
+      ],
+      "rectified_bounds": [
+        714,
+        762
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 251
+    },
+    {
+      "id": 429,
+      "plane": "Main",
+      "row": 14,
+      "column": 20,
+      "rgb": [
+        204,
+        182,
+        82
+      ],
+      "rectified_bounds": [
+        762,
+        803
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 222
+    },
+    {
+      "id": 430,
+      "plane": "Main",
+      "row": 14,
+      "column": 21,
+      "rgb": [
+        117,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        803,
+        830
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 156
+    },
+    {
+      "id": 431,
+      "plane": "Main",
+      "row": 14,
+      "column": 22,
+      "rgb": [
+        82,
+        204,
+        110
+      ],
+      "rectified_bounds": [
+        830,
+        873
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 248
+    },
+    {
+      "id": 432,
+      "plane": "Main",
+      "row": 14,
+      "column": 23,
+      "rgb": [
+        204,
+        20,
+        31
+      ],
+      "rectified_bounds": [
+        873,
+        897
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 140
+    },
+    {
+      "id": 433,
+      "plane": "Main",
+      "row": 14,
+      "column": 24,
+      "rgb": [
+        82,
+        124,
+        204
+      ],
+      "rectified_bounds": [
+        897,
+        946
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 311
+    },
+    {
+      "id": 434,
+      "plane": "Main",
+      "row": 14,
+      "column": 25,
+      "rgb": [
+        138,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        946,
+        970
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 156
+    },
+    {
+      "id": 435,
+      "plane": "Main",
+      "row": 14,
+      "column": 26,
+      "rgb": [
+        204,
+        82,
+        196
+      ],
+      "rectified_bounds": [
+        970,
+        1012
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 287
+    },
+    {
+      "id": 436,
+      "plane": "Main",
+      "row": 14,
+      "column": 27,
+      "rgb": [
+        20,
+        204,
+        163
+      ],
+      "rectified_bounds": [
+        1012,
+        1063
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 364
+    },
+    {
+      "id": 437,
+      "plane": "Main",
+      "row": 14,
+      "column": 28,
+      "rgb": [
+        204,
+        141,
+        82
+      ],
+      "rectified_bounds": [
+        1063,
+        1106
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 323
+    },
+    {
+      "id": 438,
+      "plane": "Main",
+      "row": 14,
+      "column": 29,
+      "rgb": [
+        56,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        1106,
+        1144
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 295
+    },
+    {
+      "id": 439,
+      "plane": "Main",
+      "row": 14,
+      "column": 30,
+      "rgb": [
+        94,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        1144,
+        1181
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 299
+    },
+    {
+      "id": 440,
+      "plane": "Main",
+      "row": 14,
+      "column": 31,
+      "rgb": [
+        204,
+        20,
+        92
+      ],
+      "rectified_bounds": [
+        1181,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 144
+    },
+    {
+      "id": 443,
+      "plane": "Porch",
+      "row": 1,
+      "column": 3,
+      "rgb": [
+        255,
+        102,
+        196
+      ],
+      "rectified_bounds": [
+        203,
+        370
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 12
+    },
+    {
+      "id": 444,
+      "plane": "Porch",
+      "row": 1,
+      "column": 4,
+      "rgb": [
+        25,
+        231,
+        255
+      ],
+      "rectified_bounds": [
+        370,
+        479
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 16
+    },
+    {
+      "id": 445,
+      "plane": "Porch",
+      "row": 1,
+      "column": 5,
+      "rgb": [
+        255,
+        226,
+        103
+      ],
+      "rectified_bounds": [
+        479,
+        660
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 40
+    },
+    {
+      "id": 446,
+      "plane": "Porch",
+      "row": 1,
+      "column": 6,
+      "rgb": [
+        145,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        660,
+        757
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 31
+    },
+    {
+      "id": 447,
+      "plane": "Porch",
+      "row": 1,
+      "column": 7,
+      "rgb": [
+        102,
+        255,
+        137
+      ],
+      "rectified_bounds": [
+        757,
+        924
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 87
+    },
+    {
+      "id": 448,
+      "plane": "Porch",
+      "row": 1,
+      "column": 8,
+      "rgb": [
+        255,
+        25,
+        40
+      ],
+      "rectified_bounds": [
+        924,
+        1071
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 109
+    },
+    {
+      "id": 449,
+      "plane": "Porch",
+      "row": 1,
+      "column": 9,
+      "rgb": [
+        102,
+        158,
+        0
+      ],
+      "rectified_bounds": [
+        1071,
+        1181
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 137
+    },
+    {
+      "id": 450,
+      "plane": "Porch",
+      "row": 1,
+      "column": 10,
+      "rgb": [
+        174,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        1181,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 40
+    },
+    {
+      "id": 451,
+      "plane": "Porch",
+      "row": 2,
+      "column": 1,
+      "rgb": [
+        204,
+        20,
+        193
+      ],
+      "rectified_bounds": [
+        0,
+        130
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 115
+    },
+    {
+      "id": 452,
+      "plane": "Porch",
+      "row": 2,
+      "column": 2,
+      "rgb": [
+        82,
+        204,
+        176
+      ],
+      "rectified_bounds": [
+        130,
+        305
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 183
+    },
+    {
+      "id": 453,
+      "plane": "Porch",
+      "row": 2,
+      "column": 3,
+      "rgb": [
+        204,
+        108,
+        20
+      ],
+      "rectified_bounds": [
+        305,
+        431
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 140
+    },
+    {
+      "id": 454,
+      "plane": "Porch",
+      "row": 2,
+      "column": 4,
+      "rgb": [
+        104,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        431,
+        615
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 213
+    },
+    {
+      "id": 455,
+      "plane": "Porch",
+      "row": 2,
+      "column": 5,
+      "rgb": [
+        40,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        615,
+        744
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 147
+    },
+    {
+      "id": 456,
+      "plane": "Porch",
+      "row": 2,
+      "column": 6,
+      "rgb": [
+        204,
+        82,
+        130
+      ],
+      "rectified_bounds": [
+        744,
+        953
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 252
+    },
+    {
+      "id": 457,
+      "plane": "Porch",
+      "row": 2,
+      "column": 7,
+      "rgb": [
+        20,
+        147,
+        204
+      ],
+      "rectified_bounds": [
+        953,
+        1039
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 116
+    },
+    {
+      "id": 458,
+      "plane": "Porch",
+      "row": 2,
+      "column": 8,
+      "rgb": [
+        202,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        1039,
+        1142
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 138
+    },
+    {
+      "id": 459,
+      "plane": "Porch",
+      "row": 2,
+      "column": 9,
+      "rgb": [
+        154,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        1142,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 69
+    },
+    {
+      "id": 460,
+      "plane": "Porch",
+      "row": 3,
+      "column": 1,
+      "rgb": [
+        102,
+        255,
+        168
+      ],
+      "rectified_bounds": [
+        0,
+        20
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 11
+    },
+    {
+      "id": 461,
+      "plane": "Porch",
+      "row": 3,
+      "column": 2,
+      "rgb": [
+        255,
+        58,
+        25
+      ],
+      "rectified_bounds": [
+        20,
+        107
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 79
+    },
+    {
+      "id": 462,
+      "plane": "Porch",
+      "row": 3,
+      "column": 3,
+      "rgb": [
+        102,
+        125,
+        255
+      ],
+      "rectified_bounds": [
+        107,
+        286
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 189
+    },
+    {
+      "id": 463,
+      "plane": "Porch",
+      "row": 3,
+      "column": 4,
+      "rgb": [
+        127,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        286,
+        441
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 178
+    },
+    {
+      "id": 464,
+      "plane": "Porch",
+      "row": 3,
+      "column": 5,
+      "rgb": [
+        255,
+        102,
+        214
+      ],
+      "rectified_bounds": [
+        441,
+        598
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 181
+    },
+    {
+      "id": 465,
+      "plane": "Porch",
+      "row": 3,
+      "column": 6,
+      "rgb": [
+        25,
+        255,
+        249
+      ],
+      "rectified_bounds": [
+        598,
+        732
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 162
+    },
+    {
+      "id": 466,
+      "plane": "Porch",
+      "row": 3,
+      "column": 7,
+      "rgb": [
+        255,
+        207,
+        102
+      ],
+      "rectified_bounds": [
+        732,
+        847
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 143
+    },
+    {
+      "id": 467,
+      "plane": "Porch",
+      "row": 3,
+      "column": 8,
+      "rgb": [
+        115,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        847,
+        986
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 174
+    },
+    {
+      "id": 468,
+      "plane": "Porch",
+      "row": 3,
+      "column": 9,
+      "rgb": [
+        102,
+        255,
+        117
+      ],
+      "rectified_bounds": [
+        986,
+        1062
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 87
+    },
+    {
+      "id": 469,
+      "plane": "Porch",
+      "row": 3,
+      "column": 10,
+      "rgb": [
+        255,
+        25,
+        70
+      ],
+      "rectified_bounds": [
+        1062,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 201
+    },
+    {
+      "id": 470,
+      "plane": "Porch",
+      "row": 4,
+      "column": 1,
+      "rgb": [
+        20,
+        109,
+        204
+      ],
+      "rectified_bounds": [
+        0,
+        14
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 9
+    },
+    {
+      "id": 471,
+      "plane": "Porch",
+      "row": 4,
+      "column": 2,
+      "rgb": [
+        177,
+        204,
+        83
+      ],
+      "rectified_bounds": [
+        14,
+        86
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 65
+    },
+    {
+      "id": 472,
+      "plane": "Porch",
+      "row": 4,
+      "column": 3,
+      "rgb": [
+        192,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        86,
+        256
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 148
+    },
+    {
+      "id": 473,
+      "plane": "Porch",
+      "row": 4,
+      "column": 4,
+      "rgb": [
+        82,
+        204,
+        161
+      ],
+      "rectified_bounds": [
+        256,
+        386
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 139
+    },
+    {
+      "id": 474,
+      "plane": "Porch",
+      "row": 4,
+      "column": 5,
+      "rgb": [
+        204,
+        84,
+        21
+      ],
+      "rectified_bounds": [
+        386,
+        485
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 119
+    },
+    {
+      "id": 475,
+      "plane": "Porch",
+      "row": 4,
+      "column": 6,
+      "rgb": [
+        89,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        485,
+        567
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 100
+    },
+    {
+      "id": 476,
+      "plane": "Porch",
+      "row": 4,
+      "column": 7,
+      "rgb": [
+        64,
+        204,
+        21
+      ],
+      "rectified_bounds": [
+        567,
+        771
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 260
+    },
+    {
+      "id": 477,
+      "plane": "Porch",
+      "row": 4,
+      "column": 8,
+      "rgb": [
+        204,
+        82,
+        147
+      ],
+      "rectified_bounds": [
+        771,
+        879
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 137
+    },
+    {
+      "id": 478,
+      "plane": "Porch",
+      "row": 4,
+      "column": 9,
+      "rgb": [
+        20,
+        171,
+        205
+      ],
+      "rectified_bounds": [
+        879,
+        1028
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 211
+    },
+    {
+      "id": 479,
+      "plane": "Porch",
+      "row": 4,
+      "column": 10,
+      "rgb": [
+        204,
+        190,
+        83
+      ],
+      "rectified_bounds": [
+        1028,
+        1115
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 125
+    },
+    {
+      "id": 480,
+      "plane": "Porch",
+      "row": 4,
+      "column": 11,
+      "rgb": [
+        130,
+        20,
+        205
+      ],
+      "rectified_bounds": [
+        1115,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 124
+    },
+    {
+      "id": 481,
+      "plane": "Porch",
+      "row": 5,
+      "column": 1,
+      "rgb": [
+        102,
+        255,
+        149
+      ],
+      "rectified_bounds": [
+        0,
+        25
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 25
+    },
+    {
+      "id": 482,
+      "plane": "Porch",
+      "row": 5,
+      "column": 2,
+      "rgb": [
+        255,
+        29,
+        25
+      ],
+      "rectified_bounds": [
+        25,
+        104
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 92
+    },
+    {
+      "id": 483,
+      "plane": "Porch",
+      "row": 5,
+      "column": 3,
+      "rgb": [
+        102,
+        144,
+        255
+      ],
+      "rectified_bounds": [
+        104,
+        268
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 223
+    },
+    {
+      "id": 484,
+      "plane": "Porch",
+      "row": 5,
+      "column": 4,
+      "rgb": [
+        156,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        268,
+        363
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 122
+    },
+    {
+      "id": 485,
+      "plane": "Porch",
+      "row": 5,
+      "column": 5,
+      "rgb": [
+        255,
+        102,
+        234
+      ],
+      "rectified_bounds": [
+        363,
+        530
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 225
+    },
+    {
+      "id": 486,
+      "plane": "Porch",
+      "row": 5,
+      "column": 6,
+      "rgb": [
+        25,
+        255,
+        220
+      ],
+      "rectified_bounds": [
+        530,
+        661
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 176
+    },
+    {
+      "id": 487,
+      "plane": "Porch",
+      "row": 5,
+      "column": 7,
+      "rgb": [
+        255,
+        187,
+        102
+      ],
+      "rectified_bounds": [
+        661,
+        769
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 155
+    },
+    {
+      "id": 488,
+      "plane": "Porch",
+      "row": 5,
+      "column": 8,
+      "rgb": [
+        86,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        769,
+        882
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 168
+    },
+    {
+      "id": 489,
+      "plane": "Porch",
+      "row": 5,
+      "column": 9,
+      "rgb": [
+        106,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        882,
+        965
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 123
+    },
+    {
+      "id": 490,
+      "plane": "Porch",
+      "row": 5,
+      "column": 10,
+      "rgb": [
+        255,
+        25,
+        99
+      ],
+      "rectified_bounds": [
+        965,
+        1079
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 179
+    },
+    {
+      "id": 491,
+      "plane": "Porch",
+      "row": 5,
+      "column": 11,
+      "rgb": [
+        102,
+        196,
+        255
+      ],
+      "rectified_bounds": [
+        1079,
+        1183
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 157
+    },
+    {
+      "id": 492,
+      "plane": "Porch",
+      "row": 5,
+      "column": 12,
+      "rgb": [
+        233,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        1183,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 29
+    },
+    {
+      "id": 493,
+      "plane": "Porch",
+      "row": 6,
+      "column": 1,
+      "rgb": [
+        168,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        0,
+        58
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 56
+    },
+    {
+      "id": 494,
+      "plane": "Porch",
+      "row": 6,
+      "column": 2,
+      "rgb": [
+        82,
+        204,
+        144
+      ],
+      "rectified_bounds": [
+        58,
+        245
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 226
+    },
+    {
+      "id": 495,
+      "plane": "Porch",
+      "row": 6,
+      "column": 3,
+      "rgb": [
+        204,
+        61,
+        20
+      ],
+      "rectified_bounds": [
+        245,
+        372
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 160
+    },
+    {
+      "id": 496,
+      "plane": "Porch",
+      "row": 6,
+      "column": 4,
+      "rgb": [
+        82,
+        90,
+        204
+      ],
+      "rectified_bounds": [
+        372,
+        442
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 89
+    },
+    {
+      "id": 497,
+      "plane": "Porch",
+      "row": 6,
+      "column": 5,
+      "rgb": [
+        87,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        442,
+        579
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 183
+    },
+    {
+      "id": 498,
+      "plane": "Porch",
+      "row": 6,
+      "column": 6,
+      "rgb": [
+        204,
+        82,
+        162
+      ],
+      "rectified_bounds": [
+        579,
+        712
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 187
+    },
+    {
+      "id": 499,
+      "plane": "Porch",
+      "row": 6,
+      "column": 7,
+      "rgb": [
+        20,
+        194,
+        204
+      ],
+      "rectified_bounds": [
+        712,
+        861
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 214
+    },
+    {
+      "id": 500,
+      "plane": "Porch",
+      "row": 6,
+      "column": 8,
+      "rgb": [
+        204,
+        175,
+        82
+      ],
+      "rectified_bounds": [
+        861,
+        1003
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 215
+    },
+    {
+      "id": 501,
+      "plane": "Porch",
+      "row": 6,
+      "column": 9,
+      "rgb": [
+        107,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        1003,
+        1073
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 99
+    },
+    {
+      "id": 502,
+      "plane": "Porch",
+      "row": 6,
+      "column": 10,
+      "rgb": [
+        82,
+        204,
+        103
+      ],
+      "rectified_bounds": [
+        1073,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 217
+    },
+    {
+      "id": 503,
+      "plane": "Porch",
+      "row": 7,
+      "column": 1,
+      "rgb": [
+        255,
+        102,
+        119
+      ],
+      "rectified_bounds": [
+        0,
+        101
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 147
+    },
+    {
+      "id": 504,
+      "plane": "Porch",
+      "row": 7,
+      "column": 2,
+      "rgb": [
+        25,
+        118,
+        255
+      ],
+      "rectified_bounds": [
+        101,
+        187
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 106
+    },
+    {
+      "id": 505,
+      "plane": "Porch",
+      "row": 7,
+      "column": 3,
+      "rgb": [
+        209,
+        255,
+        102
+      ],
+      "rectified_bounds": [
+        187,
+        338
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 200
+    },
+    {
+      "id": 506,
+      "plane": "Porch",
+      "row": 7,
+      "column": 4,
+      "rgb": [
+        255,
+        25,
+        252
+      ],
+      "rectified_bounds": [
+        338,
+        520
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 244
+    },
+    {
+      "id": 507,
+      "plane": "Porch",
+      "row": 7,
+      "column": 5,
+      "rgb": [
+        102,
+        255,
+        212
+      ],
+      "rectified_bounds": [
+        520,
+        624
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 147
+    },
+    {
+      "id": 508,
+      "plane": "Porch",
+      "row": 7,
+      "column": 6,
+      "rgb": [
+        255,
+        124,
+        25
+      ],
+      "rectified_bounds": [
+        624,
+        782
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 231
+    },
+    {
+      "id": 509,
+      "plane": "Porch",
+      "row": 7,
+      "column": 7,
+      "rgb": [
+        123,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        782,
+        932
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 211
+    },
+    {
+      "id": 510,
+      "plane": "Porch",
+      "row": 7,
+      "column": 8,
+      "rgb": [
+        61,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        932,
+        1051
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 155
+    },
+    {
+      "id": 511,
+      "plane": "Porch",
+      "row": 7,
+      "column": 9,
+      "rgb": [
+        255,
+        102,
+        171
+      ],
+      "rectified_bounds": [
+        1051,
+        1142
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 107
+    },
+    {
+      "id": 512,
+      "plane": "Porch",
+      "row": 7,
+      "column": 10,
+      "rgb": [
+        25,
+        195,
+        255
+      ],
+      "rectified_bounds": [
+        1142,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 48
+    },
+    {
+      "id": 513,
+      "plane": "Porch",
+      "row": 8,
+      "column": 1,
+      "rgb": [
+        204,
+        198,
+        20
+      ],
+      "rectified_bounds": [
+        0,
+        41
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 34
+    },
+    {
+      "id": 514,
+      "plane": "Porch",
+      "row": 8,
+      "column": 2,
+      "rgb": [
+        164,
+        82,
+        204
+      ],
+      "rectified_bounds": [
+        41,
+        126
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 68
+    },
+    {
+      "id": 515,
+      "plane": "Porch",
+      "row": 8,
+      "column": 3,
+      "rgb": [
+        20,
+        204,
+        91
+      ],
+      "rectified_bounds": [
+        126,
+        351
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 92
+    },
+    {
+      "id": 516,
+      "plane": "Porch",
+      "row": 8,
+      "column": 4,
+      "rgb": [
+        204,
+        93,
+        82
+      ],
+      "rectified_bounds": [
+        351,
+        472
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 34
+    },
+    {
+      "id": 517,
+      "plane": "Porch",
+      "row": 8,
+      "column": 5,
+      "rgb": [
+        20,
+        57,
+        204
+      ],
+      "rectified_bounds": [
+        472,
+        649
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 42
+    },
+    {
+      "id": 518,
+      "plane": "Porch",
+      "row": 8,
+      "column": 6,
+      "rgb": [
+        142,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        649,
+        767
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 21
+    },
+    {
+      "id": 519,
+      "plane": "Porch",
+      "row": 8,
+      "column": 7,
+      "rgb": [
+        204,
+        20,
+        164
+      ],
+      "rectified_bounds": [
+        767,
+        856
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 10
+    },
+    {
+      "id": 520,
+      "plane": "Porch",
+      "row": 8,
+      "column": 8,
+      "rgb": [
+        82,
+        204,
+        195
+      ],
+      "rectified_bounds": [
+        856,
+        998
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 19
+    },
+    {
+      "id": 521,
+      "plane": "Porch",
+      "row": 8,
+      "column": 9,
+      "rgb": [
+        204,
+        137,
+        20
+      ],
+      "rectified_bounds": [
+        998,
+        1113
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 6
+    },
+    {
+      "id": 523,
+      "plane": "Bell",
+      "row": 1,
+      "column": 1,
+      "rgb": [
+        102,
+        255,
+        211
+      ],
+      "rectified_bounds": [
+        0,
+        113
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 16
+    },
+    {
+      "id": 524,
+      "plane": "Bell",
+      "row": 1,
+      "column": 2,
+      "rgb": [
+        255,
+        122,
+        25
+      ],
+      "rectified_bounds": [
+        113,
+        230
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 30
+    },
+    {
+      "id": 525,
+      "plane": "Bell",
+      "row": 1,
+      "column": 3,
+      "rgb": [
+        121,
+        103,
+        0
+      ],
+      "rectified_bounds": [
+        230,
+        367
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 35
+    },
+    {
+      "id": 526,
+      "plane": "Bell",
+      "row": 1,
+      "column": 4,
+      "rgb": [
+        63,
+        255,
+        25
+      ],
+      "rectified_bounds": [
+        367,
+        562
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 46
+    },
+    {
+      "id": 527,
+      "plane": "Bell",
+      "row": 1,
+      "column": 5,
+      "rgb": [
+        255,
+        102,
+        172
+      ],
+      "rectified_bounds": [
+        562,
+        731
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 34
+    },
+    {
+      "id": 528,
+      "plane": "Bell",
+      "row": 1,
+      "column": 6,
+      "rgb": [
+        25,
+        197,
+        255
+      ],
+      "rectified_bounds": [
+        731,
+        890
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 29
+    },
+    {
+      "id": 529,
+      "plane": "Bell",
+      "row": 1,
+      "column": 7,
+      "rgb": [
+        255,
+        249,
+        102
+      ],
+      "rectified_bounds": [
+        890,
+        1088
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 29
+    },
+    {
+      "id": 530,
+      "plane": "Bell",
+      "row": 1,
+      "column": 8,
+      "rgb": [
+        179,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        1088,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 13
+    },
+    {
+      "id": 531,
+      "plane": "Bell",
+      "row": 2,
+      "column": 1,
+      "rgb": [
+        20,
+        204,
+        89
+      ],
+      "rectified_bounds": [
+        0,
+        106
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 39
+    },
+    {
+      "id": 532,
+      "plane": "Bell",
+      "row": 2,
+      "column": 2,
+      "rgb": [
+        204,
+        92,
+        82
+      ],
+      "rectified_bounds": [
+        106,
+        435
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 153
+    },
+    {
+      "id": 533,
+      "plane": "Bell",
+      "row": 2,
+      "column": 3,
+      "rgb": [
+        20,
+        58,
+        204
+      ],
+      "rectified_bounds": [
+        435,
+        686
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 111
+    },
+    {
+      "id": 534,
+      "plane": "Bell",
+      "row": 2,
+      "column": 4,
+      "rgb": [
+        143,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        686,
+        879
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 89
+    },
+    {
+      "id": 535,
+      "plane": "Bell",
+      "row": 2,
+      "column": 5,
+      "rgb": [
+        204,
+        20,
+        166
+      ],
+      "rectified_bounds": [
+        879,
+        1124
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 114
+    },
+    {
+      "id": 536,
+      "plane": "Bell",
+      "row": 2,
+      "column": 6,
+      "rgb": [
+        82,
+        204,
+        194
+      ],
+      "rectified_bounds": [
+        1124,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 31
+    },
+    {
+      "id": 537,
+      "plane": "Bell",
+      "row": 3,
+      "column": 1,
+      "rgb": [
+        255,
+        198,
+        102
+      ],
+      "rectified_bounds": [
+        0,
+        53
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 17
+    },
+    {
+      "id": 538,
+      "plane": "Bell",
+      "row": 3,
+      "column": 2,
+      "rgb": [
+        102,
+        25,
+        255
+      ],
+      "rectified_bounds": [
+        53,
+        660
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 288
+    },
+    {
+      "id": 539,
+      "plane": "Bell",
+      "row": 3,
+      "column": 3,
+      "rgb": [
+        102,
+        255,
+        108
+      ],
+      "rectified_bounds": [
+        660,
+        890
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 107
+    },
+    {
+      "id": 540,
+      "plane": "Bell",
+      "row": 3,
+      "column": 4,
+      "rgb": [
+        255,
+        25,
+        83
+      ],
+      "rectified_bounds": [
+        890,
+        1117
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 114
+    },
+    {
+      "id": 541,
+      "plane": "Bell",
+      "row": 3,
+      "column": 5,
+      "rgb": [
+        102,
+        185,
+        255
+      ],
+      "rectified_bounds": [
+        1117,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 39
+    },
+    {
+      "id": 542,
+      "plane": "Bell",
+      "row": 4,
+      "column": 1,
+      "rgb": [
+        173,
+        204,
+        20
+      ],
+      "rectified_bounds": [
+        0,
+        116
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 50
+    },
+    {
+      "id": 543,
+      "plane": "Bell",
+      "row": 4,
+      "column": 2,
+      "rgb": [
+        189,
+        82,
+        205
+      ],
+      "rectified_bounds": [
+        116,
+        302
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 92
+    },
+    {
+      "id": 544,
+      "plane": "Bell",
+      "row": 4,
+      "column": 3,
+      "rgb": [
+        20,
+        204,
+        127
+      ],
+      "rectified_bounds": [
+        302,
+        436
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 69
+    },
+    {
+      "id": 545,
+      "plane": "Bell",
+      "row": 4,
+      "column": 4,
+      "rgb": [
+        204,
+        117,
+        83
+      ],
+      "rectified_bounds": [
+        436,
+        624
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 93
+    },
+    {
+      "id": 546,
+      "plane": "Bell",
+      "row": 4,
+      "column": 5,
+      "rgb": [
+        20,
+        21,
+        204
+      ],
+      "rectified_bounds": [
+        624,
+        861
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 117
+    },
+    {
+      "id": 547,
+      "plane": "Bell",
+      "row": 4,
+      "column": 6,
+      "rgb": [
+        117,
+        204,
+        83
+      ],
+      "rectified_bounds": [
+        861,
+        1143
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 141
+    },
+    {
+      "id": 548,
+      "plane": "Bell",
+      "row": 4,
+      "column": 7,
+      "rgb": [
+        204,
+        20,
+        128
+      ],
+      "rectified_bounds": [
+        1143,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 17
+    },
+    {
+      "id": 549,
+      "plane": "Bell",
+      "row": 5,
+      "column": 1,
+      "rgb": [
+        102,
+        236,
+        255
+      ],
+      "rectified_bounds": [
+        0,
+        167
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 76
+    },
+    {
+      "id": 550,
+      "plane": "Bell",
+      "row": 5,
+      "column": 2,
+      "rgb": [
+        255,
+        216,
+        25
+      ],
+      "rectified_bounds": [
+        167,
+        433
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 133
+    },
+    {
+      "id": 551,
+      "plane": "Bell",
+      "row": 5,
+      "column": 3,
+      "rgb": [
+        185,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        433,
+        628
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 100
+    },
+    {
+      "id": 552,
+      "plane": "Bell",
+      "row": 5,
+      "column": 4,
+      "rgb": [
+        25,
+        255,
+        83
+      ],
+      "rectified_bounds": [
+        628,
+        1007
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 198
+    },
+    {
+      "id": 553,
+      "plane": "Bell",
+      "row": 5,
+      "column": 5,
+      "rgb": [
+        255,
+        102,
+        109
+      ],
+      "rectified_bounds": [
+        1007,
+        1140
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 69
+    },
+    {
+      "id": 554,
+      "plane": "Bell",
+      "row": 5,
+      "column": 6,
+      "rgb": [
+        25,
+        102,
+        255
+      ],
+      "rectified_bounds": [
+        1140,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 20
+    },
+    {
+      "id": 556,
+      "plane": "Bell",
+      "row": 6,
+      "column": 2,
+      "rgb": [
+        204,
+        82,
+        194
+      ],
+      "rectified_bounds": [
+        140,
+        365
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 12
+    },
+    {
+      "id": 557,
+      "plane": "Bell",
+      "row": 6,
+      "column": 3,
+      "rgb": [
+        20,
+        204,
+        165
+      ],
+      "rectified_bounds": [
+        365,
+        488
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 10
+    },
+    {
+      "id": 558,
+      "plane": "Bell",
+      "row": 6,
+      "column": 4,
+      "rgb": [
+        204,
+        143,
+        82
+      ],
+      "rectified_bounds": [
+        488,
+        634
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 16
+    },
+    {
+      "id": 559,
+      "plane": "Bell",
+      "row": 6,
+      "column": 5,
+      "rgb": [
+        58,
+        20,
+        204
+      ],
+      "rectified_bounds": [
+        634,
+        892
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 40
+    },
+    {
+      "id": 560,
+      "plane": "Bell",
+      "row": 6,
+      "column": 6,
+      "rgb": [
+        92,
+        204,
+        82
+      ],
+      "rectified_bounds": [
+        892,
+        1081
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 35
+    },
+    {
+      "id": 561,
+      "plane": "Bell",
+      "row": 6,
+      "column": 7,
+      "rgb": [
+        204,
+        20,
+        90
+      ],
+      "rectified_bounds": [
+        1081,
+        1200
+      ],
+      "boundary_status": "image-derived_estimate",
+      "source_pixels": 18
+    }
+  ],
+  "planes": {
+    "Main": {
+      "rows": 14,
+      "mapped_visible_regions": 427,
+      "columns_per_row": {
+        "1": 22,
+        "2": 22,
+        "3": 27,
+        "4": 28,
+        "5": 32,
+        "6": 33,
+        "7": 33,
+        "8": 30,
+        "9": 34,
+        "10": 33,
+        "11": 32,
+        "12": 34,
+        "13": 36,
+        "14": 31
+      }
+    },
+    "Porch": {
+      "rows": 8,
+      "mapped_visible_regions": 79,
+      "columns_per_row": {
+        "1": 8,
+        "2": 9,
+        "3": 10,
+        "4": 11,
+        "5": 12,
+        "6": 10,
+        "7": 10,
+        "8": 9
+      }
+    },
+    "Bell": {
+      "rows": 6,
+      "mapped_visible_regions": 38,
+      "columns_per_row": {
+        "1": 8,
+        "2": 6,
+        "3": 5,
+        "4": 7,
+        "5": 6,
+        "6": 6
+      }
+    }
+  },
+  "mapped_regions": 544,
+  "unknown_pixels": 1653,
+  "outside_roof_pixels_unchanged": true,
+  "output_transform": {
+    "scale": 4.654545454545454,
+    "offset": [
+      0,
+      4
+    ]
+  },
+  "config": {
+    "date": "9 October 2026",
+    "input": "03_work/uv/ChurchRoof_Reference_9October2026.png",
+    "output_dir": "03_work/uv",
+    "stem": "ChurchRoof",
+    "output_size": 4096,
+    "rectified_size": [
+      1200,
+      650
+    ],
+    "palette": {
+      "hue_step": 0.61803398875,
+      "saturation": [
+        0.6,
+        0.9
+      ],
+      "value": [
+        0.8,
+        1.0
+      ]
+    },
+    "detection": {
+      "row_radius": 20,
+      "row_smoothing": 21,
+      "seam_smoothing": 5,
+      "seam_background": 31,
+      "min_seam_distance": 25,
+      "min_seam_strength": 6,
+      "minimum_region_pixels": 5
+    },
+    "planes": [
+      {
+        "name": "Main",
+        "quad": [
+          [
+            191,
+            349
+          ],
+          [
+            629,
+            252
+          ],
+          [
+            455,
+            468
+          ],
+          [
+            36,
+            521
+          ]
+        ],
+        "mask": [
+          [
+            192,
+            350
+          ],
+          [
+            497,
+            278
+          ],
+          [
+            499,
+            313
+          ],
+          [
+            550,
+            301
+          ],
+          [
+            580,
+            274
+          ],
+          [
+            627,
+            254
+          ],
+          [
+            454,
+            468
+          ],
+          [
+            37,
+            520
+          ]
+        ],
+        "row_seeds": [
+          9,
+          53,
+          100,
+          150,
+          195,
+          246,
+          296,
+          346,
+          400,
+          450,
+          500,
+          550,
+          602
+        ],
+        "row_slope": -0.04,
+        "seed_x": 450,
+        "detection": {
+          "min_seam_strength": 3.5,
+          "min_seam_distance": 24
+        }
+      },
+      {
+        "name": "Porch",
+        "quad": [
+          [
+            607,
+            427
+          ],
+          [
+            728,
+            399
+          ],
+          [
+            638,
+            506
+          ],
+          [
+            521,
+            524
+          ]
+        ],
+        "mask": [
+          [
+            608,
+            427
+          ],
+          [
+            727,
+            401
+          ],
+          [
+            637,
+            506
+          ],
+          [
+            523,
+            522
+          ]
+        ],
+        "row_seeds": [
+          29,
+          121,
+          214,
+          309,
+          413,
+          516,
+          620
+        ],
+        "row_slope": 0.12,
+        "seed_x": 500,
+        "detection": {
+          "seam_background": 151,
+          "min_seam_distance": 70,
+          "seam_smoothing": 11,
+          "min_seam_strength": 4
+        }
+      },
+      {
+        "name": "Bell",
+        "quad": [
+          [
+            530,
+            114
+          ],
+          [
+            590,
+            95
+          ],
+          [
+            546,
+            158
+          ],
+          [
+            489,
+            175
+          ]
+        ],
+        "mask": [
+          [
+            531,
+            115
+          ],
+          [
+            588,
+            97
+          ],
+          [
+            545,
+            157
+          ],
+          [
+            491,
+            173
+          ]
+        ],
+        "row_seeds": [
+          71,
+          196,
+          325,
+          464,
+          599
+        ],
+        "row_slope": -0.03,
+        "seed_x": 500,
+        "detection": {
+          "seam_background": 191,
+          "min_seam_distance": 110,
+          "seam_smoothing": 15,
+          "min_seam_strength": 3
+        }
+      }
+    ],
+    "uncertain_masks": [
+      [
+        [
+          594,
+          100
+        ],
+        [
+          601,
+          107
+        ],
+        [
+          644,
+          171
+        ],
+        [
+          639,
+          173
+        ]
+      ],
+      [
+        [
+          636,
+          263
+        ],
+        [
+          644,
+          272
+        ],
+        [
+          715,
+          402
+        ],
+        [
+          708,
+          400
+        ]
+      ],
+      [
+        [
+          735,
+          409
+        ],
+        [
+          742,
+          417
+        ],
+        [
+          803,
+          501
+        ],
+        [
+          797,
+          504
+        ]
+      ]
+    ],
+    "support_dir": "03_work/uv/RoofColorIndex_9October2026"
+  }
+}

@@ -1,0 +1,10 @@
+# Roof Color Index (9 October 2026)
+
+- 9 October 2026: The UV folder contains ChurchRoof_Reference_9October2026.png (unchanged source bytes) and ChurchRoof_ColorIndex_4K_9October2026.png (colored reference).
+- 9 October 2026: ColorIDs_4K stores flat RGB identifiers on black; TileIDs_16bit stores integer identifiers without interpolation. ID 0 is background and ID 65535 is uncertain.
+- 9 October 2026: TileIndex.csv and ColorIndex_Data.json relate each region to its roof plane, row, column, RGB color and original pixel area.
+- 9 October 2026: 544 visible regions are estimates from image seam detection with manually selected roof outlines and row guides. They do not establish an exact physical shingle count or any hidden geometry.
+- 9 October 2026: 14 main-roof rows, 8 porch rows and 6 bell-tower rows are the editable image interpretation. Column counts vary by row; occluded regions are not counted.
+- 9 October 2026: The source has 880 x 878 pixels. The 4096 x 4096 output uses nearest-neighbor scaling and centered padding to preserve Color IDs and proportions; it adds no source detail.
+- 9 October 2026: Reproduce with python3 Scripts/BuildRoofColorIndex.py Scripts/RoofColorIndexParams_9October2026.json from the active workshop.
+- 9 October 2026: Verification_9October2026.json records 544 unique colors, 1439 adjacent region pairs and unchanged pixels outside the roof mask. Inspection PNGs retain the seam-detection evidence.
