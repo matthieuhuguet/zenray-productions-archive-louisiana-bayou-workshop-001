@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leçon du toit</title>
+<meta name="description" content="Leçon pas à pas : compter les tuiles d'un toit, les placer en rangées et colonnes collées, et calculer la trim sheet.">
+<style>
+/* 9 October 2026 : leçon HTML, fonts embarquées (InterVariable, AnthropicSerif, AnthropicMono), tokens en :root, thème clair et sombre. */
+@font-face{font-family:'InterVariable';src:url('fonts/InterVariable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'AnthropicSerif';src:url('fonts/AnthropicSerif-Romans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'AnthropicSerif';src:url('fonts/AnthropicSerif-Italics.woff2') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'AnthropicMono';src:url('fonts/AnthropicMono.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{
+  --zr-police-sans:'InterVariable','Hiragino Sans W4','Hiragino Sans',sans-serif;
+  --zr-police-serif:'AnthropicSerif','Hiragino Mincho ProN W3',serif;
+  --zr-police-mono:'AnthropicMono',ui-monospace,monospace;
+  --zr-poids-sans:400;--zr-poids-serif:350;--zr-poids-nombres:400;
+  --bg:#faf9f6;--bg2:#f1efe9;--card:#ffffff;--ink:#1d1c1a;--ink2:#5b5953;--line:#dcd8cf;
+  --acc:#cc7c5e;--acc2:#e9c4b4;--ok:#5f7f66;--warn:#a8742f;
+  --t1:#d97e63;--t2:#e9a35c;--t3:#c8b25a;--t4:#7fb08a;--t5:#6fa3bd;--t6:#8a86c7;--t7:#b57fb6;
+  --measure:46rem;--wide:70rem;--gap:1.4rem;--r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171614;--bg2:#1f1d1b;--card:#242220;--ink:#efece6;--ink2:#aaa69d;--line:#3a3733;--acc:#d98d70;--acc2:#5b3d31;--ok:#8fb598;--warn:#d4a35e;}}
+:root[data-theme="dark"]{--bg:#171614;--bg2:#1f1d1b;--card:#242220;--ink:#efece6;--ink2:#aaa69d;--line:#3a3733;--acc:#d98d70;--acc2:#5b3d31;--ok:#8fb598;--warn:#d4a35e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--zr-police-serif);font-weight:var(--zr-poids-serif);font-size:1.16rem;line-height:1.7}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 16px}
+.wide{max-width:var(--wide);margin:2rem auto;padding:0 16px}
+h1,h2,h3{font-family:var(--zr-police-serif);font-weight:350;line-height:1.2;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);margin:3.4rem 0 .6rem}
+h3{font-size:1.35rem;margin:2rem 0 .4rem}
+p{margin:.9rem 0}
+b,strong{font-weight:500}
+.num,.n{font-weight:var(--zr-poids-nombres)}
+code,.mono{font-family:var(--zr-police-mono);font-size:.88em;background:var(--bg2);padding:.1em .35em;border-radius:6px}
+.ui{font-family:var(--zr-police-sans);font-weight:var(--zr-poids-sans)}
+header.hero{padding:4rem 0 2rem;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:1rem}
+.lead{font-size:1.35rem;color:var(--ink2);margin-top:1.2rem}
+nav.toc{font-family:var(--zr-police-sans);font-size:.92rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin:1.8rem 0}
+nav.toc ol{margin:.4rem 0 0;padding-left:1.2rem;columns:2;column-gap:2rem}
+nav.toc a{color:var(--ink);text-decoration:none}nav.toc a:hover{color:var(--acc)}
+.step{display:inline-flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--zr-police-sans);font-size:.95rem;margin-right:.6rem;vertical-align:.1em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.3rem;margin:1.4rem 0}
+.callout{border-left:4px solid var(--acc);background:var(--bg2);padding:.9rem 1.2rem;border-radius:0 var(--r) var(--r) 0;margin:1.4rem 0}
+.callout.warn{border-color:var(--warn)}
+.callout .t{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:.2rem}
+.callout.warn .t{color:var(--warn)}
+figure{margin:1.8rem 0}
+figure svg{overflow:hidden}
+figure img,figure svg{width:100%;height:auto;display:block;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+figcaption{font-family:var(--zr-police-sans);font-size:.88rem;color:var(--ink2);margin-top:.5rem;line-height:1.5}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+@media(max-width:760px){.pair{grid-template-columns:1fr}nav.toc ol{columns:1}}
+table{display:block;overflow-x:auto;max-width:100%;border-collapse:collapse;font-family:var(--zr-police-sans);font-size:.95rem;margin:1.2rem 0}
+th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--ink2);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+td.n,td .n{font-family:var(--zr-police-serif);font-weight:var(--zr-poids-nombres);font-size:1.05rem}
+.formula{font-family:var(--zr-police-mono);font-size:.95rem;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1.1rem;overflow-x:auto;white-space:pre;margin:1.1rem 0;line-height:1.6}
+.demo{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin:1.6rem 0}
+.demo .ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--zr-police-sans);font-size:.92rem;margin-bottom:.8rem}
+.demo label{display:flex;flex-direction:column;gap:.15rem;min-width:9rem}
+.demo label b{font-weight:400;color:var(--ink2);font-size:.8rem}
+.demo output{font-family:var(--zr-police-serif);font-size:1.15rem}
+.demo canvas{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;background:var(--bg2)}
+button,.btn{font-family:var(--zr-police-sans);font-weight:400;font-size:.9rem;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;cursor:pointer}
+button:hover{border-color:var(--acc)}button[aria-pressed="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+input[type=range]{accent-color:var(--acc);width:100%}
+.stats{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;font-family:var(--zr-police-sans);font-size:.9rem;color:var(--ink2);margin-top:.7rem}
+.stats b{font-family:var(--zr-police-serif);font-weight:var(--zr-poids-nombres);color:var(--ink);font-size:1.15rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.7rem 1.1rem;margin:.8rem 0}
+summary{cursor:pointer;font-family:var(--zr-police-sans);font-size:.98rem}
+dl{margin:1rem 0}dt{font-weight:500;margin-top:.9rem}dd{margin:.1rem 0 0;color:var(--ink2)}
+footer{overflow-wrap:anywhere;border-top:1px solid var(--line);margin:4rem 0 3rem;padding-top:1.4rem;color:var(--ink2);font-family:var(--zr-police-sans);font-size:.88rem}
+.svgtext{font-family:var(--zr-police-sans);font-size:13px;fill:var(--ink)}
+.svgtext2{font-family:var(--zr-police-sans);font-size:12px;fill:var(--ink2)}
+.svgnum{font-family:var(--zr-police-serif);font-size:15px;fill:var(--ink);font-weight:400}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">Leçon spécialisée · Louisiana Bayou · 9 October 2026</div>
+  <h1>Comment on couvre un toit de 636 tuiles, sans trou, avec le hasard qu'il faut</h1>
+  <p class="lead">Tout ce qu'on a fait sur le toit de l'église et du porche, expliqué pas à pas, comme si tu avais douze ans : compter les tuiles sur une image, les ranger en rangées et en colonnes, les coller bord à bord, puis calculer la planche de texture (la « trim sheet ») qui sert à toutes les peindre.</p>
+</div></header>
+
+<main>
+<div class="wrap">
+
+<nav class="toc" aria-label="Plan de la leçon">
+  <b>Plan de la leçon</b>
+  <ol>
+    <li><a href="#vocab">Le vocabulaire d'un toit</a></li>
+    <li><a href="#recouvrement">Pourquoi une tuile est plus longue que ce qu'on voit</a></li>
+    <li><a href="#compter">Compter les tuiles sur l'image de couleurs</a></li>
+    <li><a href="#curseurs">Traduire le comptage en curseurs Houdini</a></li>
+    <li><a href="#trous">Les trous, puis les tuiles collées</a></li>
+    <li><a href="#total">Combien de tuiles en tout</a></li>
+    <li><a href="#pixels">Les pixels : combien par millimètre</a></li>
+    <li><a href="#trim">La trim sheet : une planche pour toutes les tuiles</a></li>
+    <li><a href="#variation">Cacher la répétition</a></li>
+    <li><a href="#uv">Les UV : l'adresse de chaque tuile</a></li>
+    <li><a href="#reste">Ce qui reste à faire, et les pièges</a></li>
+    <li><a href="#quiz">Le quiz</a></li>
+    <li><a href="#glossaire">Le glossaire</a></li>
+  </ol>
+</nav>
+
+<h2 id="mission">La mission en une phrase</h2>
+<p>On veut que le toit de ta petite église en 3D ressemble à celui de l'image de référence : <b>le bon nombre de tuiles</b>, posées <b>en rangées</b>, <b>collées les unes aux autres</b>, avec un petit <b>hasard</b> pour que ça ne fasse pas un damier trop propre. Et on veut le faire avec <b>des curseurs</b>, pour pouvoir ajouter des rangées ou des colonnes en tournant un bouton, sans tout refaire.</p>
+<p>Cette leçon suit exactement ce chemin : on compte, on règle, on colle, on calcule la texture.</p>
+
+<!-- ============ 1 ============ -->
+<h2 id="vocab"><span class="step">1</span>Le vocabulaire d'un toit</h2>
+<p>Imagine que tu colles des post-it sur un mur. Chaque post-it est une <b>tuile</b>. Une ligne horizontale de post-it, c'est une <b>rangée</b>. Une pile verticale, c'est une <b>colonne</b>. Sur un vrai toit, les tuiles ne sont pas alignées en colonnes parfaites : d'une rangée à l'autre, elles sont décalées, un peu comme les briques d'un mur, pour que l'eau ne passe jamais entre deux tuiles de même place.</p>
+
+<figure>
+<svg viewBox="0 0 760 370" role="img" aria-label="Schéma d'un pan de toit avec rangées, colonnes, tuile et joint">
+  <rect x="0" y="0" width="760" height="370" fill="var(--card)"/>
+  <!-- tuiles rangée par rangée, bas = égout -->
+  <g stroke="var(--bg)" stroke-width="2">
+    <g id="r1">
+      <rect x="60" y="230" width="90" height="46" fill="var(--t1)"/><rect x="150" y="230" width="98" height="46" fill="var(--t2)"/><rect x="248" y="230" width="84" height="46" fill="var(--t3)"/><rect x="332" y="230" width="100" height="46" fill="var(--t4)"/><rect x="432" y="230" width="88" height="46" fill="var(--t5)"/><rect x="520" y="230" width="96" height="46" fill="var(--t6)"/><rect x="616" y="230" width="80" height="46" fill="var(--t7)"/></g>
+    <g>
+      <rect x="60" y="184" width="40" height="46" fill="var(--t5)"/><rect x="100" y="184" width="94" height="46" fill="var(--t7)"/><rect x="194" y="184" width="86" height="46" fill="var(--t1)"/><rect x="280" y="184" width="100" height="46" fill="var(--t3)"/><rect x="380" y="184" width="84" height="46" fill="var(--t6)"/><rect x="464" y="184" width="98" height="46" fill="var(--t2)"/><rect x="562" y="184" width="134" height="46" fill="var(--t4)"/></g>
+    <g>
+      <rect x="60" y="138" width="78" height="46" fill="var(--t4)"/><rect x="138" y="138" width="92" height="46" fill="var(--t6)"/><rect x="230" y="138" width="100" height="46" fill="var(--t2)"/><rect x="330" y="138" width="86" height="46" fill="var(--t7)"/><rect x="416" y="138" width="94" height="46" fill="var(--t1)"/><rect x="510" y="138" width="90" height="46" fill="var(--t5)"/><rect x="600" y="138" width="96" height="46" fill="var(--t3)"/></g>
+    <g>
+      <rect x="60" y="92" width="58" height="46" fill="var(--t2)"/><rect x="118" y="92" width="96" height="46" fill="var(--t5)"/><rect x="214" y="92" width="84" height="46" fill="var(--t4)"/><rect x="298" y="92" width="100" height="46" fill="var(--t1)"/><rect x="398" y="92" width="92" height="46" fill="var(--t7)"/><rect x="490" y="92" width="88" height="46" fill="var(--t3)"/><rect x="578" y="92" width="118" height="46" fill="var(--t6)"/></g>
+  </g>
+  <text class="svgtext" x="60" y="298">égout (le bas du toit)</text>
+  <text class="svgtext" x="60" y="76">faîtage (le sommet du toit)</text>
+  <g stroke="var(--ink)" stroke-width="1.5" fill="none"><path d="M60 312 H696"/><path d="M60 306 V318 M696 306 V318"/></g>
+  <text class="svgtext" x="300" y="332">une RANGÉE, de gauche à droite</text>
+  <g stroke="var(--ink)" stroke-width="1.5" fill="none"><path d="M716 92 V276"/><path d="M710 92 H722 M710 276 H722"/></g>
+  <text class="svgtext" x="740" y="184" text-anchor="middle" transform="rotate(90 740 184)">4 RANGÉES ici</text>
+  <path d="M240 98 L240 276" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 4" fill="none"/>
+  <text class="svgtext" x="240" y="88" text-anchor="middle">une COLONNE</text>
+  <circle cx="382" cy="161" r="22" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+  <text class="svgtext" x="60" y="356">Le cercle entoure une TUILE. Le trait fin entre deux tuiles voisines est le JOINT.</text>
+</svg>
+<figcaption>Un pan de toit, vu de face. Les couleurs ne servent qu'à bien voir les tuiles. Regarde que les traits verticaux entre les tuiles (les joints) ne tombent pas au même endroit d'une rangée à l'autre : c'est le « décalage ».</figcaption>
+</figure>
+
+<table>
+  <tr><th>Mot</th><th>Ce que c'est</th><th>Dans notre toit</th></tr>
+  <tr><td><b>Tuile</b></td><td>Une petite planche de bois</td><td>environ 0,41 m de large</td></tr>
+  <tr><td><b>Rangée</b></td><td>Une ligne de tuiles, de gauche à droite</td><td>13 sur l'église, 7 sur le porche</td></tr>
+  <tr><td><b>Colonne</b></td><td>Combien de tuiles tiennent dans la largeur</td><td>20 sur l'église, 6 sur le porche</td></tr>
+  <tr><td><b>Égout</b></td><td>Le bord bas du toit, là où l'eau tombe</td><td>on commence à poser par là</td></tr>
+  <tr><td><b>Faîtage</b></td><td>La ligne la plus haute du toit</td><td>là où les deux pans se rejoignent</td></tr>
+  <tr><td><b>Joint</b></td><td>Le petit espace entre deux tuiles</td><td>3 mm</td></tr>
+</table>
+
+<!-- ============ 2 ============ -->
+<h2 id="recouvrement"><span class="step">2</span>Pourquoi une tuile est plus longue que ce qu'on voit</h2>
+<p>Quand tu regardes le toit, tu ne vois pas chaque tuile en entier. La rangée du dessus <b>recouvre le haut</b> de la rangée du dessous. C'est le même principe que les écailles d'un poisson ou les ardoises : l'eau coule vers le bas et passe toujours par-dessus la tuile suivante, jamais en dessous.</p>
+<figure>
+<svg viewBox="0 0 760 400" role="img" aria-label="Vue de profil de trois rangées de tuiles qui se recouvrent">
+  <rect width="760" height="400" fill="var(--card)"/>
+  <g transform="translate(70,300) rotate(-14)">
+    <rect x="0" y="0" width="560" height="10" fill="var(--ink2)" opacity=".5"/>
+    <rect x="0" y="-12" width="220" height="12" fill="var(--t1)" stroke="var(--bg)" stroke-width="2"/>
+    <rect x="150" y="-24" width="220" height="12" fill="var(--t4)" stroke="var(--bg)" stroke-width="2"/>
+    <rect x="300" y="-36" width="220" height="12" fill="var(--t6)" stroke="var(--bg)" stroke-width="2"/>
+  </g>
+  <text class="svgtext" x="70" y="350">le bois du toit (le « deck »), en gris</text>
+  <text class="svgtext2" x="70" y="372">les trois tuiles de couleurs viennent de trois rangées : chacune dépasse sous la suivante</text>
+  <g font-family="var(--zr-police-serif)" font-size="17" fill="var(--ink)">
+    <text x="70" y="40">pas de rangée = 3,27 m ÷ 13 = 0,2515 m (la partie visible)</text>
+    <text x="70" y="68">recouvrement = 0,095 m (la partie cachée)</text>
+    <text x="70" y="96">longueur de la tuile = 0,2515 + 0,095 = 0,3465 m</text>
+  </g>
+</svg>
+<figcaption>Vue de profil. Les trois tuiles de couleurs sont des tuiles de trois rangées différentes : chacune dépasse sous la suivante.</figcaption>
+</figure>
+<div class="callout"><div class="t">À retenir</div>
+Il y a donc <b>deux longueurs</b> : la longueur <i>visible</i> (0,2515 m, le « pas » de rangée) et la longueur <i>réelle</i> de la planche (0,3465 m). Pour la texture, c'est la longueur réelle qui compte, puisque la planche existe en entier même si on n'en voit qu'une partie.</div>
+
+<!-- ============ 3 ============ -->
+<h2 id="compter"><span class="step">3</span>Compter les tuiles sur l'image de couleurs</h2>
+<p>Tu as fait générer une image de la petite église où <b>chaque tuile a sa propre couleur</b>. C'est malin : pour un ordinateur, une couleur différente veut dire « une tuile différente ». Compter 600 tuiles à la main, c'est long et on se trompe. Un petit programme (un « script ») le fait sans erreur. Voici ce qu'il fait, étape par étape.</p>
+
+<figure>
+<img src="img/ref-index-colors.webp" alt="Image de référence : église avec un toit en tuiles de couleurs différentes" loading="lazy">
+<figcaption>L'image de départ. Le clocher en haut ne compte pas : tu m'as dit de l'ignorer.</figcaption>
+</figure>
+
+<h3>3.1 Choisir la zone à compter</h3>
+<p>Je dessine un quadrilatère (une forme à 4 coins) autour de chaque pan de toit visible, le grand pan de l'église et le pan du porche. Tout ce qui est en dehors, le ciel, les arbres, les murs, est ignoré. Sinon le script compterait les feuilles des arbres.</p>
+
+<h3>3.2 Trouver les tuiles : les couleurs qui changent d'un coup</h3>
+<p>Dans une tuile, la couleur est la même partout. Entre deux tuiles, elle <b>saute</b>. Le script cherche ces sauts, il les appelle des « frontières ». Il efface les pixels sur les frontières, et il ne reste que des îlots de couleur : chaque îlot est une tuile.</p>
+<figure>
+<img src="img/ref-index-segmented.webp" alt="Même image, avec un point noir posé au centre de chaque tuile détectée" loading="lazy">
+<figcaption>Chaque point noir est le centre d'une tuile que le script a trouvée : <b>250</b> sur le grand pan, <b>42</b> sur le porche. Quelques tuiles voisines de même couleur ont pu fusionner ou échapper au comptage : c'est pourquoi je dis « environ 20 par rangée » et pas « exactement ».</figcaption>
+</figure>
+
+<h3>3.3 Le centre de chaque tuile</h3>
+<p>Pour chaque îlot, on calcule son <b>centre</b> (le point d'équilibre, comme le milieu d'une règle). On garde seulement ces points, avec la surface de chaque îlot. À partir de là, on n'a plus besoin de l'image : on a une liste de 250 points.</p>
+
+<h3>3.4 Redresser la photo (le « truc de la perspective »)</h3>
+<p>Voici le piège. Sur l'image, le toit est <b>penché</b> et vu de loin : les tuiles du bas paraissent plus grandes que celles du haut, et les rangées ne sont pas horizontales. Si on compte les rangées telles quelles, on se trompe. Il faut d'abord <b>remettre le toit à plat</b>, comme si on le regardait de face, en carton posé sur la table.</p>
+<figure>
+<svg viewBox="0 0 760 250" role="img" aria-label="Un trapèze devient un rectangle">
+  <rect width="760" height="250" fill="var(--card)"/>
+  <polygon points="40,200 300,175 380,60 130,95" fill="var(--acc2)" stroke="var(--acc)" stroke-width="2"/>
+  <g stroke="var(--acc)" stroke-width="1.2" opacity=".8"><line x1="62" y1="180" x2="322" y2="152"/><line x1="86" y1="158" x2="341" y2="128"/><line x1="108" y1="136" x2="361" y2="104"/><line x1="130" y1="114" x2="372" y2="82"/></g>
+  <text class="svgtext" x="50" y="228">Sur l'image : un trapèze penché, rangées en pente</text>
+  <path d="M410 130 H470" stroke="var(--ink)" stroke-width="2" fill="none"/><path d="M462 122 L474 130 L462 138" stroke="var(--ink)" stroke-width="2" fill="none"/>
+  <text class="svgtext2" x="404" y="112">on redresse</text>
+  <rect x="500" y="60" width="220" height="140" fill="var(--acc2)" stroke="var(--acc)" stroke-width="2"/>
+  <g stroke="var(--acc)" stroke-width="1.2" opacity=".8"><line x1="500" y1="95" x2="720" y2="95"/><line x1="500" y1="130" x2="720" y2="130"/><line x1="500" y1="165" x2="720" y2="165"/></g>
+  <text class="svgtext" x="500" y="228">Après : un rectangle, rangées horizontales</text>
+  <text class="svgtext2" x="508" y="80">8,24 m de long</text><text class="svgtext2" x="508" y="190">3,27 m de haut</text>
+</svg>
+<figcaption>Le redressement s'appelle une « homographie ». Les 4 coins du trapèze (à gauche) sont envoyés sur les 4 coins d'un rectangle de taille réelle (à droite) : 8,24 m sur 3,27 m pour le grand pan, ce qui sont les vraies mesures de notre toit.</figcaption>
+</figure>
+<p>Mais où sont exactement les 4 coins sur l'image ? Je les avais estimés à l'œil, et un coin décalé de quelques pixels rend les rangées floues. Alors j'ai laissé l'ordinateur <b>chercher tout seul</b> les meilleurs coins, par essais au hasard : le meilleur jeu de coins est celui où les centres de tuiles se rangent le plus <b>nettement</b> en lignes. C'est un peu comme tourner la molette d'une radio jusqu'à ce que le son soit le plus clair.</p>
+
+<h3>3.5 Trouver les rangées</h3>
+<p>Après redressement, chaque centre de tuile a une hauteur « v » en mètres, depuis l'égout. On compte combien de tuiles tombent à chaque hauteur, comme un histogramme : des pics apparaissent, un pic par rangée.</p>
+<figure>
+<svg viewBox="0 0 760 240" role="img" aria-label="Histogramme avec 13 pics régulièrement espacés">
+  <rect width="760" height="240" fill="var(--card)"/>
+  <g id="hist"></g>
+  <line x1="40" y1="200" x2="730" y2="200" stroke="var(--ink)" stroke-width="1.5"/>
+  <text class="svgtext2" x="40" y="222">égout (v = 0 m)</text><text class="svgtext2" x="620" y="222">faîtage (v = 3,27 m)</text>
+  <text class="svgtext" x="46" y="26">Combien de tuiles à chaque hauteur : 13 pics</text>
+</svg>
+<figcaption>Les 13 pics se trouvent à 0,13 m, 0,38 m, 0,62 m… 3,18 m : un écart presque parfait de <b>0,256 m</b> d'un pic au suivant. Un écart régulier est le signe qu'on a bien trouvé les rangées.</figcaption>
+</figure>
+<script>
+/* histogramme : 13 pics aux hauteurs mesurées */
+(function(){var v=[0.13,0.38,0.62,0.86,1.11,1.36,1.62,1.87,2.13,2.39,2.65,2.92,3.18],h=[20,19,17,19,17,22,20,18,21,22,18,18,19],g=document.getElementById('hist'),s='';
+for(var i=0;i<v.length;i++){var x=40+v[i]/3.27*690,bh=h[i]*6.2;s+='<rect x="'+(x-11)+'" y="'+(200-bh)+'" width="22" height="'+bh+'" fill="var(--acc)" opacity=".85"/><text class="svgtext2" x="'+x+'" y="'+(194-bh)+'" text-anchor="middle">'+h[i]+'</text>';}
+g.innerHTML=s;})();
+</script>
+
+<h3>3.6 Le résultat du comptage</h3>
+<table>
+  <tr><th>Pan</th><th>Rangées</th><th>Tuiles par rangée</th><th>Pas d'une rangée</th><th>Largeur d'une tuile</th></tr>
+  <tr><td><b>Église</b></td><td class="n">13</td><td class="n">19 à 20 (environ 21 avec celles qu'on a manquées)</td><td class="n">0,256 m</td><td class="n">environ 0,41 m</td></tr>
+  <tr><td><b>Porche</b></td><td class="n">7</td><td class="n">5, 6 ou 7 (42 à 44 en tout)</td><td class="n">environ 0,23 m (mesuré sur l'image)</td><td class="n">environ 0,23 m</td></tr>
+</table>
+<figure class="pair" style="display:grid">
+<div><img src="img/ref-roof-zoom.webp" alt="Zoom sur les rangées du grand pan" loading="lazy"><figcaption>Zoom sur le grand pan : les rangées montent vers le faîtage.</figcaption></div>
+<div><img src="img/ref-porch-zoom.webp" alt="Zoom sur le pan du porche, sept rangées" loading="lazy"><figcaption>Le porche : j'ai compté ses 7 rangées à l'œil sur ce zoom pour vérifier le script.</figcaption></div>
+</figure>
+<p><b>Et le hasard ?</b> Sur l'image, les tuiles d'une rangée n'ont pas toutes la même largeur (l'écart typique est d'environ 15 %), et le début de chaque rangée tombe n'importe où : ce n'est pas un décalage régulier d'une demi-tuile une rangée sur deux. C'est exactement ce qu'on veut reproduire.</p>
+
+<!-- ============ 4 ============ -->
+<h2 id="curseurs"><span class="step">4</span>Traduire le comptage en curseurs Houdini</h2>
+<p>Houdini est le logiciel 3D où le toit est fabriqué. Dans le toit de l'église, deux nombres décident de tout : <code>shingle_rows</code> (le nombre de rangées) et <code>shingle_cols</code> (le nombre de colonnes). Voici comment Houdini s'en sert.</p>
+<div class="formula">longueur de la pente  = 3,269 m        (calculée depuis la largeur, la hauteur du faîtage et le débord)
+pas d'une rangée      = longueur de la pente ÷ rangées
+                      = 3,269 ÷ 13  = 0,2515 m
+
+longueur du toit      = 7,6 m + 2 × 0,32 m (débord) = 8,24 m
+largeur d'une colonne = longueur du toit ÷ colonnes
+                      = 8,24 ÷ 20  = 0,412 m</div>
+<p>Donc <b>plus tu mets de rangées</b>, plus chaque rangée est <b>basse</b> (les tuiles sont plus petites en hauteur). <b>Plus tu mets de colonnes</b>, plus chaque tuile est <b>étroite</b>. Le toit garde toujours la même taille : c'est le découpage qui change. C'est ça, être « procédural » : tu changes un nombre, et toute la géométrie se refabrique toute seule.</p>
+
+<div class="callout"><div class="t">Les 4 curseurs que tu as maintenant</div>
+Sur le nœud <code>/obj/Church</code>, dossier « Roof » : <b>église</b> <code>roof_shingle_rows</code> (13) et <code>roof_shingle_cols</code> (20) ; <b>porche</b> <code>porch_roof_rows</code> (7) et <code>porch_roof_cols</code> (6). Je les ai testés : passer l'église de 13 à 16 rangées fait monter ses faces de 3 240 à 3 984, et passer le porche de 7 à 10 rangées de 1 514 à 1 760.</div>
+
+<div class="demo" id="demo1">
+  <div class="ctl ui">
+    <button type="button" data-preset="church" aria-pressed="true">Église 13 × 20</button>
+    <button type="button" data-preset="porch" aria-pressed="false">Porche 7 × 6</button>
+    <label><b>Rangées</b><input type="range" id="d1rows" min="2" max="30" value="13"><output id="d1rowsO">13</output></label>
+    <label><b>Colonnes</b><input type="range" id="d1cols" min="2" max="40" value="20"><output id="d1colsO">20</output></label>
+    <button type="button" id="d1seed">Un autre hasard</button>
+  </div>
+  <canvas id="c1" width="1200" height="480" role="img" aria-label="Simulation d'un pan de toit avec rangées et colonnes réglables"></canvas>
+  <div class="stats ui"><span>Tuiles sur ce pan : <b id="d1n">0</b></span><span>Pas d'une rangée : <b id="d1step">0</b> m</span><span>Largeur d'une colonne : <b id="d1cw">0</b> m</span><span>Pour les 2 pans : <b id="d1n2">0</b></span></div>
+  <p class="svgtext2" style="margin:.6rem 0 0">Ce dessin refait, en petit, la même règle que Houdini (tuiles collées avec largeurs et départs aléatoires). Les nombres du bas se mettent à jour quand tu bouges un curseur.</p>
+</div>
+
+<!-- ============ 5 ============ -->
+<h2 id="trous"><span class="step">5</span>Les trous, puis les tuiles collées</h2>
+<p>Voilà le problème que tu as vu dans ta capture : <b>des espaces vides</b> entre certaines tuiles, des petites fentes blanches par où on voit le ciel (en fait le bois du dessous). Regarde-les dans cette image de Houdini, ce sont les petits traits blancs au milieu du toit.</p>
+<figure>
+<img src="img/houdini-roof-gaps-user.webp" alt="Toit de l'église dans Houdini avec de petites fentes claires entre certaines tuiles" loading="lazy">
+<figcaption>Avant : petites fentes claires entre des tuiles (ta capture du 9 October 2026).</figcaption>
+</figure>
+<h3>5.1 D'où venaient les trous</h3>
+<p>Dans la première version, je faisais deux choses <b>séparément</b> :</p>
+<ol>
+  <li>je posais le <b>centre</b> de chaque tuile sur une grille régulière, puis je le décalais un peu au hasard ;</li>
+  <li>je donnais à chaque tuile une <b>largeur</b> aléatoire, elle aussi.</li>
+</ol>
+<p>Le problème est mathématique : deux voisines ont chacune un centre qui bouge et une largeur qui change, <b>sans se parler</b>. Parfois, la voisine de gauche finit avant que la voisine de droite ne commence. Entre les deux : un trou. Chaque tuile ne sait pas où sont ses voisines.</p>
+
+<h3>5.2 La solution : un curseur qui avance (« cursor »)</h3>
+<p>La règle est simple, c'est celle d'un maçon qui pose des briques en partant d'un bout :</p>
+<ol>
+  <li>On choisit où commence la rangée : un point <b>au hasard</b>, un peu avant le bord gauche du toit.</li>
+  <li>On tire une largeur au hasard pour la première tuile (de 0,86 à 1,14 fois la largeur normale).</li>
+  <li>On la pose <b>à partir du curseur</b>, puis on <b>avance le curseur</b> du bout de cette tuile.</li>
+  <li>La tuile suivante commence donc <b>exactement là où la précédente finit</b>. On recommence jusqu'à dépasser le bord droit du toit.</li>
+  <li>On retire 3 mm à chaque tuile pour faire un petit joint, et c'est fini.</li>
+</ol>
+<figure>
+<svg viewBox="0 0 760 260" role="img" aria-label="Pose de tuiles avec un curseur qui avance">
+  <rect width="760" height="260" fill="var(--card)"/>
+  <text class="svgtext" x="30" y="30">Étape 1 : le départ est au hasard, avant le bord du toit</text>
+  <line x1="150" y1="45" x2="150" y2="105" stroke="var(--ink2)" stroke-dasharray="4 4"/><text class="svgtext2" x="154" y="58">bord gauche du toit</text>
+  <rect x="78" y="70" width="60" height="30" fill="var(--t1)" opacity=".35" stroke="var(--ink2)" stroke-dasharray="3 3"/>
+  <text class="svgtext2" x="80" y="118">le curseur (départ) est ici, hors du toit</text>
+  <text class="svgtext" x="30" y="150">Étape 2 : chaque tuile commence où la précédente finit</text>
+  <g stroke="var(--bg)" stroke-width="2">
+    <rect x="78" y="165" width="82" height="34" fill="var(--t1)"/><rect x="160" y="165" width="104" height="34" fill="var(--t3)"/><rect x="264" y="165" width="88" height="34" fill="var(--t5)"/><rect x="352" y="165" width="110" height="34" fill="var(--t7)"/><rect x="462" y="165" width="90" height="34" fill="var(--t2)"/><rect x="552" y="165" width="100" height="34" fill="var(--t4)"/></g>
+  <g stroke="var(--ink)" fill="none" stroke-width="1.5"><path d="M160 212 V224 M264 212 V224 M352 212 V224 M462 212 V224 M552 212 V224"/></g>
+  <text class="svgtext2" x="80" y="238">largeurs différentes (0,35 m, 0,45 m, 0,38 m…), mais jamais de vide entre elles</text>
+  <path d="M652 165 L652 199" stroke="var(--ink)" stroke-width="3"/><text class="svgtext2" x="660" y="186">curseur</text>
+</svg>
+<figcaption>Le curseur avance au fur et à mesure : il n'y a plus aucun espace entre deux tuiles, et pourtant les largeurs et les départs restent aléatoires.</figcaption>
+</figure>
+<div class="callout"><div class="t">L'idée à retenir</div>
+Quand des choses doivent se toucher, on ne les place pas chacune <i>par rapport à une grille</i>, on les place <i>l'une après l'autre</i>, chacune à partir de la précédente. Le hasard reste (dans la largeur de chaque tuile et dans le départ), mais le contact est garanti.</div>
+
+<div class="demo" id="demo2">
+  <div class="ctl ui">
+    <button type="button" id="d2old" aria-pressed="false">Ancienne méthode (avec trous)</button>
+    <button type="button" id="d2new" aria-pressed="true">Nouvelle méthode (collées)</button>
+    <button type="button" id="d2seed">Un autre hasard</button>
+  </div>
+  <canvas id="c2" width="1200" height="380" role="img" aria-label="Comparaison des deux méthodes de placement"></canvas>
+  <div class="stats ui"><span>Trous visibles : <b id="d2gaps">0</b></span><span>Rangées : <b>13</b></span><span>Colonnes de base : <b>20</b></span></div>
+  <p class="svgtext2" style="margin:.6rem 0 0">Les trous apparaissent en rouge. Clique sur « Ancienne méthode » : tu vois des fentes. Clique sur « Nouvelle méthode » : plus aucune.</p>
+</div>
+
+<figure>
+<img src="img/houdini-roof-glued.webp" alt="Toit de l'église dans Houdini, tuiles collées sans fentes" loading="lazy">
+<figcaption>Après : le toit est couvert de façon continue, rangée après rangée (capture Cycles du 9 October 2026). Je n'ai pas encore zoomé de près sur les joints, ni vérifié le porche de près.</figcaption>
+</figure>
+<p>Pour le <b>porche</b>, la règle est un peu plus simple : toutes les tuiles ont la largeur d'une colonne moins 3 mm (avant, il y avait 6 % de vide), et chaque rangée commence à un décalage aléatoire. Le résultat est collé aussi.</p>
+
+<!-- ============ 6 ============ -->
+<h2 id="total"><span class="step">6</span>Combien de tuiles en tout</h2>
+<p>Houdini connaît chaque tuile comme une « pièce » avec un numéro. Je les ai comptées par ce numéro dans la géométrie du toit de l'église et dans celle du porche.</p>
+<table>
+  <tr><th>Toit</th><th>Pièces (tuiles)</th><th>Par pan</th><th>Détail</th></tr>
+  <tr><td><b>Église</b></td><td class="n">540</td><td class="n">270</td><td>13 rangées × environ 20,8 tuiles</td></tr>
+  <tr><td><b>Porche</b></td><td class="n">96</td><td class="n">48</td><td>7 rangées × environ 6,9 tuiles</td></tr>
+  <tr><td><b>Total</b></td><td class="n"><b>636</b></td><td></td><td>540 + 96</td></tr>
+</table>
+<p>Pourquoi 270 par pan et pas 250 comme sur l'image ? Parce que le script a compté <b>250 tuiles détectées</b> sur l'image, mais il en rate certaines (celles de même couleur que leur voisine). Avec 8 % de tuiles manquées, 250 devient environ 270. Les deux nombres racontent donc la même chose.</p>
+<div class="callout warn"><div class="t">Un point à surveiller</div>
+La pente du porche est courte (0,91 m environ) : 7 rangées donnent un pas d'environ 0,13 m, donc des tuiles de porche <b>plus basses</b> que celles de l'église (0,25 m). C'est la conséquence du nombre de rangées compté sur l'image. Si le porche te paraît trop « fin », tu règles <code>porch_roof_rows</code>.</div>
+
+<!-- ============ 7 ============ -->
+<h2 id="pixels"><span class="step">7</span>Les pixels : combien par millimètre</h2>
+<h3>7.1 Qu'est-ce qu'un pixel ?</h3>
+<p>Une image numérique est une grille de petits carrés de couleur : les pixels. Plus il y a de carrés sur une même surface, plus l'image est précise. Pour une texture collée sur un objet 3D, la question est : <b>combien de pixels pour chaque mètre de bois ?</b> On l'appelle la « densité de texels » (un texel est un pixel d'une texture).</p>
+<h3>7.2 Le choix : 1 pixel par millimètre</h3>
+<p>1 pixel par millimètre veut dire 1 000 pixels pour 1 mètre. Pour que les calculs tombent juste avec les tailles que les ordinateurs aiment (des puissances de 2), on arrondit à <b>1 024 pixels par mètre</b>. Une feuille de <b>2 048 pixels</b> de côté représente donc <b>2 mètres</b> de bois réel. Gros détail pour un toit qu'on regarde de loin, c'est confortable pour un gros plan.</p>
+<div class="formula">tuile entière     : 0,41 m × 0,3465 m  →  420 px × 355 px
+partie visible    : 0,41 m × 0,2515 m  →  420 px × 258 px
+emplacement feuille: 420 px × 330 px   (visible 258 + 72 px de sécurité)
+
+aire d'une tuile entière = 0,135 m²      (mesuré sur la géométrie)
+en pixels  = 0,135 × 1 024 × 1 024 = 141 558 px
+feuille 2048² = 2 048 × 2 048 = 4 194 304 px
+part d'une tuile entière = 141 558 ÷ 4 194 304 = 3,4 %
+part d'un emplacement    = 420 × 330 ÷ 4 194 304 = 3,3 %</div>
+<p class="svgtext2">Note : la surface mesurée (0,135 m²) est un peu plus petite que 0,41 × 0,3465 = 0,142 m², parce que les tuiles n'ont en moyenne que 96 % de la largeur d'une colonne. C'est la valeur de 0,135 m² qui sert au calcul du nombre de feuilles.</p>
+
+<!-- ============ 8 ============ -->
+<h2 id="trim"><span class="step">8</span>La trim sheet : une planche pour toutes les tuiles</h2>
+<h3>8.1 L'idée</h3>
+<p>Une « trim sheet » est <b>une seule grande image de texture</b> sur laquelle on a dessiné <b>quelques tuiles différentes</b>. Chaque tuile 3D du toit va chercher sa peinture à un endroit de cette image. Comme on réutilise la même feuille pour 636 tuiles, on dessine la texture une seule fois, et la carte graphique n'a qu'une image à charger.</p>
+<h3>8.2 Pourquoi on ne peut pas faire autrement</h3>
+<p>Imagine qu'on donne à chaque tuile <b>sa propre peinture unique</b>. On aurait besoin de 636 × 141 558 pixels, soit environ <b>90 millions de pixels</b>. Une feuille de 2 048² contient 4,19 millions de pixels : il faudrait <b>21,5 feuilles</b>. Impossible à manipuler. Et même si on ne peignait que ce qui se voit (environ 58 m² de toit, soit 61 millions de pixels), il faudrait encore <b>14,5 feuilles</b>.</p>
+<figure>
+<svg viewBox="0 0 760 210" role="img" aria-label="Comparaison 21,5 feuilles contre 1 feuille">
+  <rect width="760" height="210" fill="var(--card)"/>
+  <text class="svgtext" x="30" y="28">Sans trim sheet : 21,5 feuilles de 2048²</text>
+  <g id="sheets"></g>
+  <text class="svgtext" x="30" y="132">Avec une trim sheet : 1 feuille</text>
+  <rect x="30" y="144" width="38" height="38" rx="3" fill="var(--acc)"/>
+  <text class="svgtext2" x="80" y="168">et 636 tuiles s'y retrouvent grâce aux « UV » (adresses), voir plus bas</text>
+</svg>
+<figcaption>Chaque carré est une feuille de 2048 pixels. La demi-feuille, à droite, est le « ,5 ».</figcaption>
+</figure>
+<script>
+(function(){var g=document.getElementById('sheets'),s='';for(var i=0;i<22;i++){var w=(i==21)?18:38;var x=30+(i%11)*44,y=40+Math.floor(i/11)*46;s+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="38" rx="3" fill="var(--ink2)" opacity=".55"/>';}g.innerHTML=s;})();
+</script>
+<h3>8.3 La disposition recommandée : 24 emplacements</h3>
+<p>Sur une feuille de 2 048 × 2 048 pixels, un emplacement de tuile mesure <b>420 × 330 pixels</b> : les 258 pixels de la partie visible, plus 72 pixels de sécurité, parce que chaque tuile est un peu penchée au hasard et que ses bords ne tombent pas toujours pile. Avec une marge de 8 pixels entre les emplacements (pour que la couleur d'une tuile ne déborde pas sur sa voisine quand l'image est réduite), il en tient <b>4 en largeur</b> (4 × 420 + 5 × 8 = 1 720 px) et <b>6 en hauteur</b> (6 × 330 + 7 × 8 = 2 036 px), donc <b>24</b>.</p>
+<div class="callout"><div class="t">Pourquoi on ne peint pas la tuile entière</div>Une tuile entière ferait 355 pixels de long. Six rangées de 355 pixels font 2 130 pixels, c'est plus que la feuille (2 048) : il n'en tiendrait que 5, soit <b>20 tuiles</b>. Comme les 0,095 m du haut de chaque tuile sont cachés sous la rangée suivante, personne ne les voit : on ne peint que ce qui se voit.</div>
+<figure>
+<svg viewBox="0 0 520 540" style="max-width:540px;margin:0 auto" role="img" aria-label="Feuille 2048 avec 24 emplacements de tuile, 4 colonnes par 6 rangées">
+  <rect width="520" height="540" fill="var(--card)"/>
+  <g id="slots"></g>
+  <text class="svgtext2" x="10" y="530">feuille de 2048 × 2048 px = 2 m × 2 m de bois : 24 emplacements de 420 × 330 px</text>
+</svg>
+<figcaption>La feuille recommandée. 24 emplacements occupent environ 79 % de la surface ; il reste 21 % pour les marges et pour de futurs emplacements (par exemple les tuiles de faîtage).</figcaption>
+</figure>
+<script>
+(function(){var g=document.getElementById('slots'),s='',cols=['var(--t1)','var(--t2)','var(--t3)','var(--t4)','var(--t5)','var(--t6)','var(--t7)'];
+var W=500,H=500,ox=10,oy=10,cw=420/2048*W,ch=330/2048*H,mx=(W-4*cw)/5,my=(H-6*ch)/7;
+for(var r=0;r<6;r++)for(var c=0;c<4;c++){var x=ox+mx+c*(cw+mx),y=oy+my+r*(ch+my),i=r*4+c;s+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+ch.toFixed(1)+'" fill="'+cols[i%7]+'" opacity=".8" rx="2"/><text class="svgtext" x="'+(x+cw/2).toFixed(1)+'" y="'+(y+ch/2+4).toFixed(1)+'" text-anchor="middle" fill="#fff" style="fill:#fff">'+(i+1)+'</text>';}
+g.innerHTML='<rect x="'+ox+'" y="'+oy+'" width="'+W+'" height="'+H+'" fill="none" stroke="var(--ink2)" stroke-width="1.5"/>'+s;})();
+</script>
+
+<table>
+  <tr><th>Quoi</th><th>Calcul</th><th>Résultat</th></tr>
+  <tr><td>Pixels pour 636 tuiles uniques</td><td class="n">636 × 141 558</td><td class="n">90,0 millions</td></tr>
+  <tr><td>Feuilles de 2048² nécessaires</td><td class="n">90,0 M ÷ 4,19 M</td><td class="n">21,5</td></tr>
+  <tr><td>… en ne peignant que le visible</td><td class="n">58 m² × 1 024² ÷ 4,19 M</td><td class="n">14,5</td></tr>
+  <tr><td>Part d'une tuile dans une feuille</td><td class="n">141 558 ÷ 4 194 304</td><td class="n">3,4 %</td></tr>
+  <tr><td>24 emplacements dans une feuille</td><td class="n">24 × 3,3 %</td><td class="n">environ 79 %</td></tr>
+  <tr><td>Tuiles par variante</td><td class="n">636 ÷ 24</td><td class="n">environ 26</td></tr>
+</table>
+
+<!-- ============ 9 ============ -->
+<h2 id="variation"><span class="step">9</span>Cacher la répétition</h2>
+<p>Avec 24 tuiles pour 636, <b>chaque dessin de tuile apparaît environ 26 fois</b>. Notre œil est très fort pour repérer deux motifs identiques. Heureusement, on a trois astuces gratuites qui ne coûtent aucun pixel de plus.</p>
+<figure>
+<svg viewBox="0 0 760 200" role="img" aria-label="Une tuile retournée de quatre façons">
+  <rect width="760" height="200" fill="var(--card)"/>
+  <g font-family="var(--zr-police-serif)" font-size="64" text-anchor="middle">
+    <rect x="30" y="30" width="130" height="100" rx="8" fill="var(--t1)"/>
+    <rect x="200" y="30" width="130" height="100" rx="8" fill="var(--t1)"/>
+    <rect x="370" y="30" width="130" height="100" rx="8" fill="var(--t1)"/>
+    <rect x="540" y="30" width="130" height="100" rx="8" fill="var(--t1)"/>
+    <g transform="translate(95,80)"><text y="22" style="fill:#fff">F</text></g>
+    <g transform="translate(265,80) scale(-1,1)"><text y="22" style="fill:#fff">F</text></g>
+    <g transform="translate(435,80) scale(1,-1)"><text y="22" style="fill:#fff">F</text></g>
+    <g transform="translate(605,80) rotate(180)"><text y="22" style="fill:#fff">F</text></g>
+  </g>
+  <text class="svgtext2" x="95" y="152" text-anchor="middle">normale</text>
+  <text class="svgtext2" x="265" y="152" text-anchor="middle">miroir gauche-droite</text>
+  <text class="svgtext2" x="435" y="152" text-anchor="middle">miroir haut-bas</text>
+  <text class="svgtext2" x="605" y="152" text-anchor="middle">tournée de 180°</text>
+</svg>
+<figcaption>La lettre « F » aide à voir comment chaque retournement change le dessin sans en changer les pixels.</figcaption>
+</figure>
+<ol>
+  <li><b>Le miroir et la rotation de 180°</b> : chaque tuile peut être lue de 4 façons (normale, miroir gauche-droite, miroir haut-bas, tournée). 24 tuiles × 4 = <b>96 aspects différents</b>.</li>
+  <li><b>Un décalage de teinte au hasard</b> : chaque tuile reçoit sa propre petite variation de couleur (par exemple ±3 %). L'œil ne le voit pas comme une variation, mais il ne reconnaît plus deux tuiles identiques.</li>
+  <li><b>Le choix aléatoire de la tuile</b> : chaque tuile 3D pioche l'un des 24 emplacements au hasard. C'est ce que fait déjà notre programme avec les 4 tuiles actuelles.</li>
+</ol>
+<div class="callout warn"><div class="t">Attention à la normale</div>
+La « normal map » est une image qui dit à la lumière comment la surface est inclinée. Quand on retourne une tuile, il faut aussi <b>inverser la direction</b> dans cette image (le canal vert pour un miroir haut-bas, le rouge pour un miroir gauche-droite), sinon les ombres des écailles regarderont du mauvais côté et l'œil le sentira.</div>
+
+<!-- ============ 10 ============ -->
+<h2 id="uv"><span class="step">10</span>Les UV : l'adresse de chaque tuile</h2>
+<p>Une tuile 3D est un petit objet dans l'espace, avec les trois directions X, Y, Z. Une texture est une image plate, avec deux directions. Pour dire « cette face de tuile va chercher sa couleur <b>ici</b> sur l'image », on donne à chaque coin de la face une <b>adresse sur l'image</b>. Ces adresses s'appellent les <b>UV</b> : U pour la direction horizontale de l'image, V pour la verticale. Elles vont de 0 à 1 : 0,5 veut dire « à la moitié ».</p>
+<figure>
+<svg viewBox="0 0 760 280" role="img" aria-label="Une tuile 3D reçoit une adresse UV sur la feuille">
+  <rect width="760" height="280" fill="var(--card)"/>
+  <polygon points="60,200 230,175 270,95 100,120" fill="var(--t4)" opacity=".8" stroke="var(--ink)" stroke-width="2"/>
+  <text class="svgtext" x="40" y="236">une tuile du toit (en 3D)</text>
+  <path d="M290 150 H400" stroke="var(--ink)" stroke-width="2"/><path d="M390 142 L402 150 L390 158" stroke="var(--ink)" fill="none" stroke-width="2"/>
+  <text class="svgtext2" x="296" y="138">ses UV</text>
+  <rect x="440" y="30" width="240" height="230" fill="var(--bg2)" stroke="var(--ink)" stroke-width="2"/>
+  <rect x="470" y="60" width="90" height="70" fill="var(--t4)" opacity=".85"/>
+  <text class="svgnum" x="472" y="150">U de 0,13 à 0,50</text><text class="svgnum" x="472" y="172">V de 0,62 à 0,87</text>
+  <text class="svgtext2" x="440" y="278">la feuille de texture (0 à 1 dans les deux sens)</text>
+</svg>
+<figcaption>Chaque tuile se « range » dans un rectangle de la feuille. Le programme du toit, pour chaque tuile, choisit un de ces rectangles au hasard.</figcaption>
+</figure>
+<h3>10.1 La feuille actuelle, et pourquoi elle est trop dense</h3>
+<p>Aujourd'hui, la feuille du toit contient seulement <b>4 tuiles</b>, appelées A, B, C et D. Leurs rectangles occupent en UV : A 0,29, B 0,173, C 0,265, D 0,103, soit environ 83 % de la feuille. L'ennui est la <b>densité</b> : la tuile A mesure à peu près 0,29 × 4,19 millions = 1,2 million de pixels pour environ 0,135 m² de bois, donc environ <b>2 980 pixels par mètre, 3 pixels par millimètre</b>, trois fois plus dense que ce qu'on a besoin. On gaspille de la place pour peu de variété.</p>
+<table>
+  <tr><th></th><th>Feuille actuelle</th><th>Feuille recommandée</th></tr>
+  <tr><td>Nombre de tuiles différentes</td><td class="n">4</td><td class="n">24</td></tr>
+  <tr><td>Densité</td><td class="n">environ 3 px/mm</td><td class="n">1 px/mm (1 024 px/m)</td></tr>
+  <tr><td>Part de la feuille utilisée</td><td class="n">83 %</td><td class="n">79 %</td></tr>
+  <tr><td>Répétitions par variante</td><td class="n">636 ÷ 4 = 159</td><td class="n">636 ÷ 24 = 26</td></tr>
+  <tr><td>Aspects possibles (avec miroirs)</td><td class="n">16</td><td class="n">96</td></tr>
+</table>
+<p>Pour un très gros plan « AAA », on garde la même disposition à 24 emplacements mais sur une feuille de <b>4 096 × 4 096 pixels à 2 px/mm</b> : mêmes calculs, deux fois plus fins.</p>
+
+<!-- ============ 11 ============ -->
+<h2 id="reste"><span class="step">11</span>Ce qui reste à faire, et les pièges</h2>
+<table>
+  <tr><th>Chose</th><th>État</th></tr>
+  <tr><td>Compter les tuiles de la référence</td><td>Fait, par script. 250 + 42 tuiles détectées</td></tr>
+  <tr><td>Règle des rangées et colonnes collées</td><td>Faite dans Houdini, avec 4 curseurs</td></tr>
+  <tr><td>Vérifier le porche de près et les joints en zoom</td><td>Pas encore regardé</td></tr>
+  <tr><td>Fabriquer la trim sheet à 24 tuiles</td><td>À faire, en height puis 5 cartes dans Copernicus (les matériaux fabriqués avec une image générée sont en rouge dans Houdini, car provisoires)</td></tr>
+  <tr><td>Rendre la feuille et recaler les adresses UV sur 24 emplacements</td><td>À faire une fois la feuille prête</td></tr>
+  <tr><td>Hauteur des tuiles du porche</td><td>À juger : le pas de rangée est environ 0,13 m, la moitié de celui de l'église</td></tr>
+</table>
+<div class="callout warn"><div class="t">Trois pièges de ce chapitre</div>
+<b>1.</b> Une photo penchée ment sur les tailles : il faut redresser avant de mesurer.<br>
+<b>2.</b> Du hasard sur le centre et sur la largeur en même temps donne des trous : il faut placer les choses l'une après l'autre.<br>
+<b>3.</b> Compter ce que fait un programme sur une image est toujours « environ » : un script rate des tuiles de même couleur. Un comptage visuel sur un zoom sert de contrôle.</div>
+
+<!-- ============ 12 ============ -->
+<h2 id="quiz"><span class="step">12</span>Le quiz</h2>
+<p>Réponds dans ta tête, puis ouvre la réponse.</p>
+<details><summary>1. Quelle différence entre une rangée et une colonne ?</summary><p>Une rangée est une ligne de tuiles de gauche à droite. Une colonne est le nombre de tuiles qui tiennent dans la largeur du toit.</p></details>
+<details><summary>2. Pourquoi une tuile mesure-t-elle 0,3465 m alors qu'on n'en voit que 0,2515 m ?</summary><p>Parce que la rangée du dessus la recouvre de 0,095 m. 0,2515 + 0,095 = 0,3465.</p></details>
+<details><summary>3. Pourquoi redresser l'image avant de compter les rangées ?</summary><p>Sur la photo le toit est penché : les rangées du bas paraissent plus grosses et ne sont pas horizontales. Après redressement, les rangées deviennent des lignes régulières et leurs pics se comptent sans se tromper.</p></details>
+<details><summary>4. Si je passe les rangées de l'église de 13 à 16, la tuile devient-elle plus grande ou plus petite ?</summary><p>Plus basse : le pas de rangée devient 3,269 ÷ 16 = 0,204 m au lieu de 0,2515 m. Le toit garde la même taille.</p></details>
+<details><summary>5. D'où venaient les trous entre les tuiles ?</summary><p>Du fait que chaque tuile avait un centre aléatoire et une largeur aléatoire indépendants. Deux voisines pouvaient finir et commencer avec un vide entre elles.</p></details>
+<details><summary>6. Comment la méthode du curseur garantit-elle qu'il n'y a pas de trou ?</summary><p>Chaque tuile commence exactement où la précédente finit, donc le vide est impossible. Le hasard reste dans la largeur et dans le point de départ de la rangée.</p></details>
+<details><summary>7. Combien de tuiles au total, et combien de feuilles sans trim sheet ?</summary><p>636 tuiles (540 + 96). Sans trim sheet, 21,5 feuilles de 2048².</p></details>
+<details><summary>8. Combien d'emplacements de 420 × 330 pixels tiennent dans une feuille de 2048² avec une marge ?</summary><p>24 : 4 en largeur et 6 en hauteur, avec des emplacements de 420 × 330 pixels et 8 pixels de marge. Ça occupe environ 79 % de la feuille.</p></details>
+<details><summary>9. Pourquoi inverser un canal dans la normal map quand on retourne une tuile ?</summary><p>Parce que la lumière doit toujours venir du même côté. Si on retourne l'image sans inverser la direction des reliefs, les ombres des tuiles se lisent à l'envers.</p></details>
+<details><summary>10. À quoi servent les UV ?</summary><p>À donner à chaque tuile 3D une adresse sur l'image de texture : quelle zone de la feuille elle doit afficher.</p></details>
+
+<!-- ============ 13 ============ -->
+<h2 id="glossaire"><span class="step">13</span>Le glossaire</h2>
+<dl>
+  <dt>Tuile (shingle)</dt><dd>Une petite planche de bois du toit.</dd>
+  <dt>Rangée / colonne</dt><dd>Ligne horizontale de tuiles / nombre de tuiles dans la largeur.</dd>
+  <dt>Pas de rangée</dt><dd>La hauteur visible d'une rangée : longueur de la pente ÷ nombre de rangées.</dd>
+  <dt>Recouvrement (overlap)</dt><dd>La partie d'une tuile cachée sous la rangée du dessus.</dd>
+  <dt>Joint</dt><dd>L'espace de 3 mm entre deux tuiles.</dd>
+  <dt>Égout / faîtage</dt><dd>Le bas du toit / la ligne la plus haute.</dd>
+  <dt>Script</dt><dd>Un petit programme qui exécute une tâche sans erreur de fatigue.</dd>
+  <dt>Homographie</dt><dd>Le calcul qui remet à plat une surface vue en perspective.</dd>
+  <dt>Procédural</dt><dd>Qui se fabrique à partir de règles et de nombres, donc que l'on reconfigure avec un curseur.</dd>
+  <dt>Curseur (cursor)</dt><dd>Ici : un point qui avance le long de la rangée et pose chaque tuile après la précédente. Ne pas confondre avec le curseur de la souris ni avec un slider.</dd>
+  <dt>Slider</dt><dd>Un bouton glissant, comme celui du volume, pour changer un nombre.</dd>
+  <dt>Pixel / texel</dt><dd>Un carré de couleur d'une image / un pixel d'une texture collée sur un objet 3D.</dd>
+  <dt>Densité de texels</dt><dd>Combien de pixels de texture par mètre d'objet : ici 1 024 px/m, soit 1 px/mm.</dd>
+  <dt>Trim sheet</dt><dd>Une feuille de texture partagée par beaucoup de pièces, qui contient plusieurs variantes.</dd>
+  <dt>UV</dt><dd>Les adresses horizontale (U) et verticale (V) d'une face sur la texture, de 0 à 1.</dd>
+  <dt>Normal map</dt><dd>Une image qui dit à la lumière comment la surface est inclinée, pour donner du relief sans ajouter de polygones.</dd>
+  <dt>Height</dt><dd>Une image en niveaux de gris où le clair est haut et le sombre est bas : la source du relief.</dd>
+  <dt>Copernicus</dt><dd>Le module de Houdini qui fabrique des textures par nœuds.</dd>
+</dl>
+
+<footer>
+  Leçon écrite le 9 October 2026 à partir de la discussion du toit de Louisiana Bayou. Sources et scripts : <span class="mono">CountRoofTiles.py</span>, <span class="mono">RoofTileFitRows.py</span>, <span class="mono">RoofTileLayout.py</span> dans <span class="mono">/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Scripts/</span>. Les nombres sont mesurés dans la scène, sauf mention « environ ».
+</footer>
+</div>
+</main>
+
+<script>
+/* ---------- simulation partagée : même règle que Houdini ---------- */
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+var PAL=['#d97e63','#e9a35c','#c8b25a','#7fb08a','#6fa3bd','#8a86c7','#b57fb6','#e0687f','#58b7a5','#d9c27a'];
+function layout(rows,cols,W,H,seed,glued){
+  var tiles=[],step=H/rows,cw=W/cols;
+  for(var r=0;r<rows;r++){
+    var R=mulberry(seed*131+r*7919+17);
+    if(glued){
+      var cur=-R()*cw;
+      for(var c=0;c<200&&cur<W+0.01;c++){var w=cw*(0.86+0.28*R());var x0=cur,x1=cur+w-0.003;cur+=w;tiles.push({r:r,x0:x0,x1:x1,k:Math.floor(R()*PAL.length)});}
+    }else{
+      var off=R()*cw;
+      for(var c2=-1;c2<=cols;c2++){var cen=c2*cw+cw/2+off+(R()-0.5)*0.10*cw,wd=cw*(0.96+(R()-0.5)*0.20);tiles.push({r:r,x0:cen-wd/2,x1:cen+wd/2,k:Math.floor(R()*PAL.length)});}
+    }
+  }
+  return {tiles:tiles,step:step,cw:cw};
+}
+function draw(cv,rows,cols,W,H,seed,glued,showGaps){
+  var ctx=cv.getContext('2d'),cwpx=cv.width,chpx=cv.height,sx=cwpx/W,sy=chpx/H,L=layout(rows,cols,W,H,seed,glued),n=0,gaps=0;
+  ctx.clearRect(0,0,cwpx,chpx);
+  var style=getComputedStyle(document.documentElement);
+  ctx.fillStyle=showGaps?'#e8344f':'#2a2826';ctx.fillRect(0,0,cwpx,chpx);
+  var byRow=[];for(var i=0;i<rows;i++)byRow.push([]);
+  L.tiles.forEach(function(t){
+    var x0=Math.max(0,t.x0),x1=Math.min(W,t.x1);if(x1-x0<0.01)return;n++;
+    var y=chpx-(t.r+1)*L.step*sy;
+    ctx.fillStyle=PAL[t.k];ctx.fillRect(x0*sx,y+1,(x1-x0)*sx,L.step*sy-2);
+    byRow[t.r].push([x0,x1]);
+  });
+  if(showGaps){
+    for(var r=0;r<rows;r++){var a=byRow[r].sort(function(p,q){return p[0]-q[0]}),prev=0;
+      a.forEach(function(p){if(p[0]-prev>0.01)gaps++;prev=Math.max(prev,p[1]);});
+      if(W-prev>0.01)gaps++;}
+  }
+  return {n:n,gaps:gaps,step:L.step,cw:L.cw};
+}
+/* ----- démo 1 ----- */
+(function(){
+  var cv=document.getElementById('c1'),rows=document.getElementById('d1rows'),cols=document.getElementById('d1cols'),seed=1,
+      P={church:{r:13,c:20,W:8.24,H:3.269},porch:{r:7,c:6,W:1.45,H:0.909}},cur='church';
+  function fmt(x){return (Math.round(x*1000)/1000).toString().replace('.',',')}
+  function go(){
+    var p=P[cur];cv.width=1200;cv.height=Math.round(1200*p.H/p.W);if(cv.height>520)cv.height=520;
+    var o=draw(cv,+rows.value,+cols.value,p.W,p.H,seed,true,false);
+    document.getElementById('d1rowsO').textContent=rows.value;document.getElementById('d1colsO').textContent=cols.value;
+    document.getElementById('d1n').textContent=o.n;document.getElementById('d1n2').textContent=o.n*2;
+    document.getElementById('d1step').textContent=fmt(o.step);document.getElementById('d1cw').textContent=fmt(o.cw);
+  }
+  rows.oninput=go;cols.oninput=go;
+  document.getElementById('d1seed').onclick=function(){seed++;go()};
+  document.querySelectorAll('#demo1 [data-preset]').forEach(function(b){b.onclick=function(){cur=b.dataset.preset;rows.value=P[cur].r;cols.value=P[cur].c;
+    document.querySelectorAll('#demo1 [data-preset]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});go()}});
+  go();
+})();
+/* ----- démo 2 ----- */
+(function(){
+  var cv=document.getElementById('c2'),seed=3,glued=true,W=8.24,H=3.269;cv.width=1200;cv.height=380;
+  function go(){var o=draw(cv,13,20,W,H,seed,glued,true);document.getElementById('d2gaps').textContent=o.gaps;
+    document.getElementById('d2old').setAttribute('aria-pressed',!glued);document.getElementById('d2new').setAttribute('aria-pressed',glued);}
+  document.getElementById('d2old').onclick=function(){glued=false;go()};
+  document.getElementById('d2new').onclick=function(){glued=true;go()};
+  document.getElementById('d2seed').onclick=function(){seed++;go()};
+  go();
+})();
+</script>
+</body>
+</html>
