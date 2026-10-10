@@ -80,6 +80,31 @@ footer{overflow-wrap:anywhere;border-top:1px solid var(--line);margin:4rem 0 3re
 .svgtext2{font-family:var(--zr-police-sans);font-size:12px;fill:var(--ink2)}
 .svgnum{font-family:var(--zr-police-serif);font-size:15px;fill:var(--ink);font-weight:400}
 </style>
+<style>
+/* 10 October 2026 : section « six cas concrets » (cartes de cas, étapes numérotées, grille kit / HDA géométrie / HDA texture) */
+.lab{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin:1.6rem 0 .3rem}
+.case{margin:2.6rem 0 3rem;padding-top:.2rem;border-top:1px solid var(--line)}
+.case h3{margin-top:1.6rem}
+.case .idea{color:var(--ink2)}
+.calc{display:table;width:100%}
+.calc td:nth-child(2){color:var(--ink2);font-size:.86rem}
+.calc td:nth-child(3){white-space:nowrap}
+.calc th{padding-top:.9rem}
+.lect{font-family:var(--zr-police-sans);font-size:.92rem;color:var(--ink2);margin:.5rem 0 0}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:.5rem 0}
+ol.steps li{counter-increment:s;position:relative;padding:.6rem 0 .6rem 2.7rem;border-bottom:1px solid var(--line);font-size:1.02rem;line-height:1.55}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:.7rem;width:1.8rem;height:1.8rem;border-radius:50%;background:var(--bg2);border:1px solid var(--line);font-family:var(--zr-police-sans);font-size:.82rem;display:flex;align-items:center;justify-content:center}
+.tool{display:inline-block;font-family:var(--zr-police-sans);font-size:.74rem;letter-spacing:.03em;background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.05rem .6rem;margin-right:.55rem;color:var(--ink2)}
+.dec{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:.6rem 0}
+@media(max-width:760px){.dec{grid-template-columns:1fr}}
+.dec .cell{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.8rem .95rem}
+.dec .k{font-family:var(--zr-police-sans);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.dec p{margin:.45rem 0 0;font-size:.98rem;line-height:1.5}
+.lvl{display:inline-block;font-family:var(--zr-police-sans);font-size:.8rem;border-radius:999px;padding:.05rem .7rem;margin-top:.4rem;color:#fff}
+.lvl.oui{background:var(--ok)}.lvl.peu{background:var(--warn)}.lvl.non{background:var(--ink2)}
+.matrix td,.matrix th{font-size:.88rem}
+.note{font-family:var(--zr-police-sans);font-size:.88rem;color:var(--ink2);margin:.8rem 0}
+</style>
 </head>
 <body>
 
@@ -93,6 +118,7 @@ footer{overflow-wrap:anywhere;border-top:1px solid var(--line);margin:4rem 0 3re
 <div class="wrap">
 
 <p class="callout" style="margin-top:1.4rem"><b>Leçon complémentaire :</b> <a href="texel-density.html" style="color:var(--acc)">la densité de texels, pour de vrai (3 paragraphes + un calcul à refaire dans la tête)</a></p>
+<p class="callout"><b>Nouveau (10 October 2026) :</b> <a href="#six" style="color:var(--acc)">six cas concrets</a> : personnage manga, personnage réaliste, prop organique, porte, pavillon asiatique, tour futuriste, avec le calcul et l'ordre des étapes pour aller vite.</p>
 <nav class="toc" aria-label="Plan de la leçon">
   <b>Plan de la leçon</b>
   <ol>
@@ -107,6 +133,7 @@ footer{overflow-wrap:anywhere;border-top:1px solid var(--line);margin:4rem 0 3re
     <li><a href="#variation">Cacher la répétition</a></li>
     <li><a href="#uv">Les UV : l'adresse de chaque tuile</a></li>
     <li><a href="#reste">Ce qui reste à faire, et les pièges</a></li>
+    <li><a href="#six">Six cas concrets : comment aller vite selon l'objet</a></li>
     <li><a href="#quiz">Le quiz</a></li>
     <li><a href="#glossaire">Le glossaire</a></li>
   </ol>
@@ -497,8 +524,39 @@ La « normal map » est une image qui dit à la lumière comment la surface est 
 <b>2.</b> Du hasard sur le centre et sur la largeur en même temps donne des trous : il faut placer les choses l'une après l'autre.<br>
 <b>3.</b> Compter ce que fait un programme sur une image est toujours « environ » : un script rate des tuiles de même couleur. Un comptage visuel sur un zoom sert de contrôle.</div>
 
-<!-- ============ 12 ============ -->
-<h2 id="quiz"><span class="step">12</span>Le quiz</h2>
+<!-- ============ 12 (nouveau, 10 October 2026) ============ -->
+<h2 id="six"><span class="step">12</span>Six cas concrets : comment aller vite selon l'objet</h2>
+<p>Jusqu'ici on a parlé d'un toit. Mais la vraie question est plus large : <b>pour un personnage, un objet ou un bâtiment, qu'est-ce qui va vite et qu'est-ce qui fait perdre des jours ?</b> Voici six cas. Pour chacun : un calcul que tu peux changer, l'ordre des étapes avec l'outil à utiliser, et la décision entre <b>kit modulaire</b>, <b>HDA de géométrie</b> et <b>HDA de texture</b>.</p>
+
+<div class="callout"><div class="t">Les trois questions, toujours dans cet ordre</div>
+<b>1. Combien d'exemplaires ?</b> Un seul : une feuille de texture rien que pour lui est possible. Beaucoup : trim sheet, textures en tuile, HDA.<br>
+<b>2. Angles droits ou organique ?</b> Angles droits : kit modulaire + trim sheet. Organique : HDA + masques.<br>
+<b>3. À quelle distance de la caméra ?</b> Plus on s'approche, plus il faut de pixels par mètre : environ 256 (vue du dessus), 512 (troisième personne), 1 024 (première personne), plus de 2 048 (gros plan). Ces repères viennent de la <a href="https://help.maxon.net/c4d/2026/en-us/Content/html/Texel_Density.html" style="color:var(--acc)">documentation de Maxon</a> et d'un <a href="https://polycount.com/discussion/216821/texel-density" style="color:var(--acc)">fil de Polycount</a> ; ce sont des points de départ, pas des lois.</div>
+
+<div class="callout"><div class="t">HDA de texture : ce que ça veut dire</div>
+Un HDA n'est pas réservé à la géométrie. Un <b>HDA de texture</b> est un graphe Copernicus emballé avec quelques curseurs (la graine, l'échelle, la quantité d'usure) : tu changes la graine, tu obtiens une autre feuille. C'est ce qui permet de fabriquer six variantes de panneau en quelques minutes au lieu d'en peindre six.</div>
+
+<h3>Le tableau de décision, d'un coup d'œil</h3>
+<table class="matrix">
+  <tr><th>Cas</th><th>Exemplaires</th><th>Texture</th><th>Kit modulaire</th><th>HDA géométrie</th><th>HDA texture</th></tr>
+  <tr><td>1. Personnage manga</td><td>1</td><td>Feuille unique 1K, couleurs à plat</td><td>Tenues</td><td>Peu</td><td>Peu</td></tr>
+  <tr><td>2. Personnage réaliste</td><td>1</td><td>UDIM 2K à 4K cuit + micro-détails en tuile</td><td>Tenues</td><td>Peu</td><td>Tissus, usure</td></tr>
+  <tr><td>3. Prop organique</td><td>1 à 10</td><td>Feuille unique 2K + tuile</td><td>Non</td><td>Oui</td><td>Oui</td></tr>
+  <tr><td>4. Porte, fenêtre</td><td>10 à 100</td><td>Trim sheet + décalques</td><td>Oui</td><td>Oui</td><td>Peu</td></tr>
+  <tr><td>5. Pavillon asiatique</td><td>1 à 5</td><td>Trim sheet + tuiles en tuile</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+  <tr><td>6. Tour futuriste</td><td>1</td><td>Trim sheet + 6 modules</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+</table>
+
+<div id="six-cases"></div>
+
+<div class="callout"><div class="t">Ce qui ne change jamais</div>
+Dans les six cas, l'ordre est le même que pour le toit : <b>1.</b> les tailles et la densité, <b>2.</b> les gros volumes à l'échelle, <b>3.</b> le plan de la feuille (des rectangles de couleur), <b>4.</b> les détails, avec les UV posés dans les bandes, <b>5.</b> la peinture, qui se change sans bouger un UV, <b>6.</b> le vérificateur, avant tout rendu. Ce qui change d'un cas à l'autre, c'est le nombre d'exemplaires, donc le choix entre feuille unique, trim sheet et HDA.</div>
+
+<div class="callout warn"><div class="t">Ce que ces calculs valent, honnêtement</div>
+Les surfaces en mètres carrés (corps, tête, souche, toit) sont des <b>ordres de grandeur que j'ai estimés</b>, pas des mesures : change-les dans les calculs. Les densités viennent de sources publiques (Maxon, Polycount), pas d'une loi. Pour Uncharted 4, je n'ai <b>pas pu vérifier</b> les tailles de textures : ce que j'ai trouvé tient à des propos rapportés (<a href="https://www.psu.com/news/uncharted-4-nathan-drake-model-has-same-level-of-detail-in-game-and-cutscenes/" style="color:var(--acc)">un membre de l'équipe dit traiter beaucoup de détail dans le shader</a>) et à la description générale du métier sur <a href="https://polycount.com/discussion/comment/2203745/" style="color:var(--acc)">Polycount</a>. Le ken (environ 1,82 m) est sourcé sur <a href="https://en.wikipedia.org/wiki/Ken_(unit)" style="color:var(--acc)">Wikipédia</a>, et la méthode de Guilty Gear Xrd sur les <a href="https://www.ggxrd.com/Motomura_Junya_GuiltyGearXrd.pdf" style="color:var(--acc)">diapositives de Motomura</a>. Le temps gagné n'est pas chiffré : je ne l'ai pas mesuré.</div>
+
+<!-- ============ 13 ============ -->
+<h2 id="quiz"><span class="step">13</span>Le quiz</h2>
 <p>Réponds dans ta tête, puis ouvre la réponse.</p>
 <details><summary>1. Quelle différence entre une rangée et une colonne ?</summary><p>Une rangée est une ligne de tuiles de gauche à droite. Une colonne est le nombre de tuiles qui tiennent dans la largeur du toit.</p></details>
 <details><summary>2. Pourquoi une tuile mesure-t-elle 0,3465 m alors qu'on n'en voit que 0,2515 m ?</summary><p>Parce que la rangée du dessus la recouvre de 0,095 m. 0,2515 + 0,095 = 0,3465.</p></details>
@@ -510,9 +568,12 @@ La « normal map » est une image qui dit à la lumière comment la surface est 
 <details><summary>8. Combien d'emplacements de 420 × 330 pixels tiennent dans une feuille de 2048² avec une marge ?</summary><p>24 : 4 en largeur et 6 en hauteur, avec des emplacements de 420 × 330 pixels et 8 pixels de marge. Ça occupe environ 79 % de la feuille.</p></details>
 <details><summary>9. Pourquoi inverser un canal dans la normal map quand on retourne une tuile ?</summary><p>Parce que la lumière doit toujours venir du même côté. Si on retourne l'image sans inverser la direction des reliefs, les ombres des tuiles se lisent à l'envers.</p></details>
 <details><summary>10. À quoi servent les UV ?</summary><p>À donner à chaque tuile 3D une adresse sur l'image de texture : quelle zone de la feuille elle doit afficher.</p></details>
+<details><summary>11. Pourquoi le visage d'un personnage réaliste reçoit-il environ 10 000 px/m, et un mur 512 ?</summary><p>Parce que la caméra s'approche du visage à moins d'un mètre, alors qu'on regarde le mur de loin. Plus c'est près, plus il faut de pixels par mètre.</p></details>
+<details><summary>12. Une porte de 2,10 m fait 2 150 px à 1 024 px/m, et la feuille fait 2 048 px. Que fait-on ?</summary><p>On répète la bande dans le sens de la longueur (le bois se répète sans couture), ou on baisse un peu la densité. La longueur n'a pas besoin de tenir en une fois.</p></details>
+<details><summary>13. Pourquoi une tour de 5 760 m² de façade se texture-t-elle avec 7 feuilles, et non 360 ?</summary><p>Parce qu'elle est faite de 384 modules qui répètent six variantes, plus une feuille de bords. On calcule des modules, pas des mètres carrés.</p></details>
 
-<!-- ============ 13 ============ -->
-<h2 id="glossaire"><span class="step">13</span>Le glossaire</h2>
+<!-- ============ 14 ============ -->
+<h2 id="glossaire"><span class="step">14</span>Le glossaire</h2>
 <dl>
   <dt>Tuile (shingle)</dt><dd>Une petite planche de bois du toit.</dd>
   <dt>Rangée / colonne</dt><dd>Ligne horizontale de tuiles / nombre de tuiles dans la largeur.</dd>
@@ -532,6 +593,14 @@ La « normal map » est une image qui dit à la lumière comment la surface est 
   <dt>Normal map</dt><dd>Une image qui dit à la lumière comment la surface est inclinée, pour donner du relief sans ajouter de polygones.</dd>
   <dt>Height</dt><dd>Une image en niveaux de gris où le clair est haut et le sombre est bas : la source du relief.</dd>
   <dt>Copernicus</dt><dd>Le module de Houdini qui fabrique des textures par nœuds.</dd>
+  <dt>Kit modulaire</dt><dd>Un jeu de pièces à l'échelle (colonne, mur, fenêtre) qui s'assemblent sur une grille, comme des briques de construction.</dd>
+  <dt>HDA</dt><dd>Un outil Houdini emballé avec des curseurs : une définition, autant d'exemplaires que tu veux. Il peut fabriquer de la géométrie ou une texture (un graphe Copernicus).</dd>
+  <dt>Blockout</dt><dd>Les gros volumes simples, à la bonne échelle, avant tout détail.</dd>
+  <dt>UDIM</dt><dd>Un système qui répartit les UV d'un objet sur plusieurs feuilles voisines, une par zone (tête, corps, mains).</dd>
+  <dt>Décalque (decal)</dt><dd>Une petite image posée par-dessus une surface : saleté, éraflure, enseigne, numéro.</dd>
+  <dt>Cuisson (bake)</dt><dd>Fabriquer des cartes (normal, occlusion, courbure) à partir d'un modèle très détaillé, pour les coller sur un modèle léger.</dd>
+  <dt>Texture en tuile (tileable)</dt><dd>Une image qui se répète sans couture, comme du bois ou du crépi.</dd>
+  <dt>Ken</dt><dd>Une unité japonaise : 6 shaku, environ 1,82 m, la distance entre deux colonnes. Elle sert de grille aux bâtiments traditionnels.</dd>
 </dl>
 
 <footer>
@@ -604,6 +673,213 @@ function draw(cv,rows,cols,W,H,seed,glued,showGaps){
   document.getElementById('d2new').onclick=function(){glued=true;go()};
   document.getElementById('d2seed').onclick=function(){seed++;go()};
   go();
+})();
+</script>
+<script>
+/* 10 October 2026 : six cas concrets. Un seul gabarit de carte, six jeux de paramètres (principe HDA : définition unique, instances). */
+(function(){
+ var fr=function(x,d){return Number(x).toLocaleString('fr-FR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0})};
+ function niveau(d){
+  if(d<256)return 'sous le niveau « vue du dessus » : de près, ça flotte';
+  if(d<512)return 'niveau vue du dessus ou mobile (environ 256 à 512 px/m)';
+  if(d<1024)return 'niveau troisième personne, le standard (environ 512 à 1 024 px/m)';
+  if(d<2048)return 'niveau première personne, objet vu de près (environ 1 024 à 2 048 px/m)';
+  return 'niveau gros plan : visage, détail de héros (plus de 2 048 px/m)';
+ }
+ function dens(sheets,S,u,area){return Math.sqrt(sheets*S*S*(u/100)/area)}
+ var BANDS=[['Cadre (montant), 8 cm',0.08],['Planche du battant, 14 cm',0.14],['Traverse, 12 cm',0.12],['Ferrure, 5 cm',0.05],['Petit-bois, 3 cm',0.03]];
+ var BSUM=BANDS.reduce(function(a,b){return a+b[1]},0);
+ var CASES=[
+ {id:'manga',n:1,t:'Personnage stylisé, manga ou anime',
+  idea:'Le style est dessiné par la lumière et par le trait, pas par des détails peints. Donc très peu de pixels suffisent, et le temps passe ailleurs : dans les sommets (les points du maillage) et dans le shader.',
+  params:[{k:'area',l:'Surface à peindre (m², gauche = droite par miroir)',v:1.8,s:0.1},{k:'sheets',l:'Feuilles',v:1,s:1},{k:'S',l:'Taille de la feuille (px)',v:1024,s:512},{k:'u',l:'Utilisation de la feuille (%)',v:85,s:5}],
+  rows:[
+   {l:'Pixels utiles',f:'feuilles × taille² × utilisation',v:function(p){return p.sheets*p.S*p.S*p.u/100},u:'px'},
+   {l:'Densité de texels',f:'√(pixels utiles ÷ surface)',v:function(p){return dens(p.sheets,p.S,p.u,p.area)},u:'px/m'},
+   {l:'La même, en px/cm',f:'÷ 100',v:function(p){return dens(p.sheets,p.S,p.u,p.area)/100},d:1,u:'px/cm'},
+   {l:'Face au standard troisième personne',f:'densité ÷ 512',v:function(p){return dens(p.sheets,p.S,p.u,p.area)/512},d:1,u:'×'}],
+  lect:function(p){var d=dens(p.sheets,p.S,p.u,p.area),h=Math.sqrt(p.S*p.S*(p.u/100)/0.12);return 'Le corps : '+niveau(d)+'. Pour les gros plans, une seconde feuille de la même taille rien que pour la tête (environ 0,12 m²) donne environ '+fr(h)+' px/m.'},
+  steps:[
+   ['Papier ou Blender','Silhouette et proportions d\'abord, sur le concept : une forme lisible de loin, c\'est le style.'],
+   ['Blender, Maya, Houdini','Modèle bas polygones propre. Les boucles d\'arêtes suivent les plis du visage et des vêtements.'],
+   ['UV','Une seule feuille. Gauche et droite se superposent (miroir) : le visage prend la plus grande place.'],
+   ['Substance Painter, Photoshop','Couleurs à plat et dégradés peints à la main. Aucun modèle à haute définition à cuire, donc pas de normal map à fabriquer.'],
+   ['Sommets et shader','L\'ombre se règle par les normales éditées et la couleur de sommet, puis une rampe d\'ombre (une image de 256 × 1 pixel). L\'équipe de Guilty Gear Xrd range une grande partie de ces données dans les sommets plutôt que dans des textures.'],
+   ['Shader','Contour : coque inversée (le modèle gonflé, retourné, en noir) ou post-traitement. Méthodes courantes.'],
+   ['Houdini (HDA), Blender','Cheveux en cartes : une seule bande de texture répétée sur toutes les mèches.'],
+   ['Rig','Squelette et expressions (blendshapes).']],
+  kit:['oui','Oui','Les tenues : chaque pièce partage la même feuille et la même densité.'],
+  geo:['peu','Peu','Cartes de cheveux et accessoires répétés. Le corps reste modelé à la main.'],
+  tex:['peu','Peu','Un motif de tissu en tuile (kimono, uniforme) fabriqué dans Copernicus.'],
+  fast:'Les détails vivent dans les sommets et dans le shader, pas dans la texture : une feuille de 1K suffit, il n\'y a rien à cuire, et on ne refait aucun UV quand on change la lumière.',
+  trap:'Peindre des détails réalistes sur une feuille de couleur : le style casse et on y passe des jours. Dans ce style, c\'est la lumière qui fait le dessin.'},
+
+ {id:'realiste',n:2,t:'Personnage réaliste, type Uncharted 4',
+  idea:'Ici, on regarde le visage de très près : la densité monte à un niveau de gros plan, et le travail est surtout de la sculpture, de la cuisson (bake) et de la peinture de peau. Le temps se gagne en ne refaisant pas ce qui existe déjà.',
+  params:[{k:'ah',l:'Surface de la tête (m²)',v:0.12,s:0.01},{k:'Sh',l:'Feuille de la tête (px)',v:4096,s:1024},{k:'ab',l:'Surface du corps et de la tenue (m²)',v:3,s:0.5},{k:'nb',l:'Feuilles du corps',v:3,s:1},{k:'Sb',l:'Taille des feuilles du corps (px)',v:4096,s:1024},{k:'u',l:'Utilisation (%)',v:85,s:5}],
+  rows:[
+   {l:'Densité sur la tête',f:'√(taille² × utilisation ÷ surface)',v:function(p){return dens(1,p.Sh,p.u,p.ah)},u:'px/m'},
+   {l:'Densité sur le corps',f:'√(feuilles × taille² × utilisation ÷ surface)',v:function(p){return dens(p.nb,p.Sb,p.u,p.ab)},u:'px/m'},
+   {l:'Tête ÷ corps',f:'densité tête ÷ densité corps',v:function(p){return dens(1,p.Sh,p.u,p.ah)/dens(p.nb,p.Sb,p.u,p.ab)},d:1,u:'×'},
+   {l:'Tête face à un mur de maison (512 px/m)',f:'densité tête ÷ 512',v:function(p){return dens(1,p.Sh,p.u,p.ah)/512},d:1,u:'×'}],
+  lect:function(p){return 'Tête : '+niveau(dens(1,p.Sh,p.u,p.ah))+'. Corps : '+niveau(dens(p.nb,p.Sb,p.u,p.ab))+'. Une densité très différente entre la tête et le corps se voit au cou : garde les jonctions proches.'},
+  steps:[
+   ['Photos, scans, MetaHuman','Partir d\'une base vraie : photos ou scans du modèle, ou une tête MetaHuman (Epic) comme point de départ, au lieu de sculpter depuis zéro.'],
+   ['ZBrush, Marvelous Designer','Sculpt à haute définition : pores, plis, tissus. Des millions de polygones, permis ici parce que ce n\'est pas ce qu\'on montre en jeu.'],
+   ['ZBrush, Maya, Houdini','Retopologie : un maillage léger et propre, de l\'ordre de quelques dizaines de milliers de triangles pour un héros (ordre de grandeur à régler selon le jeu).'],
+   ['UV en UDIM','Une tuile par zone (tête, corps, mains). La peau garde la même densité d\'une tuile à l\'autre, sinon le cou change de netteté.'],
+   ['Marmoset, Substance','Cuisson haut vers bas : normal map, occlusion, courbure, épaisseur.'],
+   ['Substance Painter, Mari','Peinture : couleur de peau, rugosité, diffusion sous la peau ; micro-détails (pores) en textures en tuile par-dessus.'],
+   ['XGen, Houdini','Cheveux : cartes ou brins, guidés par des courbes.'],
+   ['Moteur de jeu','Shaders de peau et d\'œil, test sous l\'éclairage réel du jeu avant d\'aller plus loin.']],
+  kit:['oui','Oui','Un corps de base partagé et des vêtements interchangeables : on refait la tenue, jamais le corps.'],
+  geo:['peu','Peu','Retopologie automatique et guides de cheveux. Le visage reste fait à la main.'],
+  tex:['oui','Oui','Tissus, cuir, usure et saleté en masques (Copernicus). La peau vient de scans ou de peinture, pas d\'un graphe.'],
+  fast:'Ne pas tout refaire : un corps de base, une tête partie d\'un MetaHuman et des textures en tuile pour le micro-détail. On ne dessine que ce qui est propre au personnage : la tenue.',
+  trap:'Des densités différentes d\'une tuile à l\'autre, ou des plis cuits sur un maillage qui bouge : la peau change de netteté et les plis s\'étirent aux articulations (cou, poignets, genoux).',
+  note:'Sur Uncharted 4 lui-même, je n\'ai pas pu vérifier de tailles de textures. Les budgets ci-dessus sont des valeurs d\'exemple.'},
+
+ {id:'organique',n:3,t:'Prop organique très détaillé (une souche moussue)',
+  idea:'Un objet unique, regardé de près, sans angle droit : une feuille de texture rien que pour lui est le bon choix. Le procédural sert à fabriquer beaucoup de variantes sans sculpter chaque exemplaire.',
+  params:[{k:'dia',l:'Diamètre (m)',v:0.9,s:0.1},{k:'h',l:'Hauteur (m)',v:0.7,s:0.1},{k:'roots',l:'Racines (m², estimation)',v:0.6,s:0.1},{k:'S',l:'Taille de la feuille (px)',v:2048,s:1024},{k:'u',l:'Utilisation (%)',v:85,s:5}],
+  rows:[
+   {l:'Surface du dessus',f:'π × (diamètre ÷ 2)²',v:function(p){return Math.PI*Math.pow(p.dia/2,2)},d:2,u:'m²'},
+   {l:'Surface des flancs',f:'π × diamètre × hauteur',v:function(p){return Math.PI*p.dia*p.h},d:2,u:'m²'},
+   {l:'Surface totale',f:'dessus + flancs + racines',v:function(p){return Math.PI*Math.pow(p.dia/2,2)+Math.PI*p.dia*p.h+p.roots},d:2,u:'m²'},
+   {l:'Densité sur cette feuille',f:'√(taille² × utilisation ÷ surface)',v:function(p){return dens(1,p.S,p.u,Math.PI*Math.pow(p.dia/2,2)+Math.PI*p.dia*p.h+p.roots)},u:'px/m'},
+   {l:'Densité avec une feuille deux fois plus grande',f:'× 2',v:function(p){return 2*dens(1,p.S,p.u,Math.PI*Math.pow(p.dia/2,2)+Math.PI*p.dia*p.h+p.roots)},u:'px/m'}],
+  lect:function(p){return niveau(dens(1,p.S,p.u,Math.PI*Math.pow(p.dia/2,2)+Math.PI*p.dia*p.h+p.roots))+'.'},
+  steps:[
+   ['Photos','Rassembler des photos de vraies souches : forme, mousse, direction de la lumière.'],
+   ['Blender ou Houdini','Blockout à l\'échelle : 0,9 m de diamètre, 0,7 m de haut. On valide la silhouette avant le détail.'],
+   ['Houdini (HDA), ZBrush','Haute définition : bruit + érosion en procédural (une graine = une souche), ou sculpt à la main pour la pièce héros.'],
+   ['Houdini, ZRemesher','Retopologie à environ 8 000 triangles (estimation).'],
+   ['UV','Un îlot ouvert, coupé le long d\'une racine cachée. Vérifier avec un damier : les creux étirent les UV.'],
+   ['Karma, Marmoset','Cuisson haut vers bas : normal, occlusion, courbure, position.'],
+   ['Copernicus, Substance','Matériau : écorce en tuile, mousse en masque (là où la surface regarde vers le haut et où l\'occlusion est forte). Résultat rangé en trois cartes.'],
+   ['HDA','Variantes : on change la graine, on recuit, dix souches en un après-midi.']],
+  kit:['non','Non','Un objet organique n\'a pas de pièces qui se répètent. Le kit servira pour le décor autour.'],
+  geo:['oui','Oui','Le terrain idéal : bruit, érosion, graine. Une forme organique n\'a pas d\'angle droit à respecter.'],
+  tex:['oui','Oui','Les masques de mousse et d\'usure naissent de la courbure, de l\'occlusion et de la direction vers le haut.'],
+  fast:'Un seul HDA qui sort la géométrie et les masques ensemble : dix variantes sans refaire dix fois le travail.',
+  trap:'Sculpter chaque exemplaire à la main (dix souches, dix sculptures), ou oublier qu\'une forme sans angle droit étire les UV dans les creux.'},
+
+ {id:'porte',n:4,t:'Prop très détaillé mais anguleux (une porte ou une fenêtre)',
+  idea:'Beaucoup d\'exemplaires, les mêmes règles, des tailles qui varient un peu : c\'est le cas rêvé de la trim sheet et du HDA. On calcule les bandes une fois, ensuite chaque porte est un curseur.',
+  params:[{k:'w',l:'Largeur de la porte (m)',v:0.9,s:0.05},{k:'h',l:'Hauteur (m)',v:2.1,s:0.05},{k:'d',l:'Densité (px/m)',v:1024,s:64},{k:'S',l:'Taille de la feuille (px)',v:2048,s:512}],
+  rows:[
+   {l:'Largeur de la porte en pixels',f:'largeur × densité',v:function(p){return p.w*p.d},u:'px'},
+   {l:'Hauteur de la porte en pixels',f:'hauteur × densité',v:function(p){return p.h*p.d},u:'px'},
+   {l:'Hauteur ÷ largeur de la feuille',f:'hauteur en px ÷ taille',v:function(p){return p.h*p.d/p.S},d:2,u:'×'},
+   {h:'Les bandes de la feuille (hauteur réelle × densité)'}
+  ].concat(BANDS.map(function(b){return {l:b[0],f:fr(b[1],2)+' × densité',v:function(p){return b[1]*p.d},u:'px'}})).concat([
+   {l:'Total des bandes avec 8 px de marge chacune',f:'somme + 5 × 8',v:function(p){return BSUM*p.d+40},u:'px'},
+   {l:'Part de la hauteur de la feuille',f:'total ÷ taille de la feuille',v:function(p){return 100*(BSUM*p.d+40)/p.S},u:'%'}]),
+  lect:function(p){var L=p.h*p.d;return 'La pièce la plus longue (le montant) fait '+fr(L)+' px de long. '+(L>p.S?'C\'est plus que la largeur de la feuille ('+fr(p.S)+' px) : on répète la bande dans le sens de la longueur, le bois se répète sans couture, c\'est permis. Ou on baisse un peu la densité.':'Elle tient dans la largeur de la feuille.')+' Le reste de la feuille accueille la fenêtre et les volets.'},
+  steps:[
+   ['Mètre','Mesures réelles : porte 0,90 × 2,10 m, épaisseur environ 4,5 cm, jeu autour du cadre.'],
+   ['Papier, tableur','Plan de la feuille : une bande par type de surface (cadre, planche, traverse, ferrure, petit-bois), avec sa hauteur réelle. Des rectangles de couleur, pas encore de peinture.'],
+   ['Blender, Houdini','Modèle bas polygones avec petits chanfreins (bevels) et normales pondérées (weighted normals) : les arêtes accrochent la lumière sans normal map.'],
+   ['UV','Chaque face se pose sur sa bande pendant la modélisation, pas après.'],
+   ['Moteur de jeu','Matériau : la feuille, du bois en tuile, des décalques (saleté, éraflures) et la couleur de sommet pour l\'usure.'],
+   ['Houdini (HDA)','HDA Porte : largeur, hauteur, nombre de panneaux, vitrage, quincaillerie. Les UV sont posés par la règle, donc toutes les portes sont déjà bonnes.'],
+   ['Script','Vérificateur : UV dans leur bande, densité dans la tolérance, aucune face cachée. Rouge ou vert avant tout rendu.']],
+  kit:['oui','Oui','Battant, cadre, ferrures : les pièces servent sur toutes les portes et fenêtres.'],
+  geo:['oui','Oui','Le meilleur cas : beaucoup d\'exemplaires, mêmes règles, quelques paramètres.'],
+  tex:['peu','Peu','La feuille se dessine une fois. Copernicus fabrique les bandes de bois et de métal, ou les décalques d\'usure.'],
+  fast:'La feuille d\'abord (une fois), puis un HDA : chaque nouvelle porte est un curseur, pas un chantier.',
+  trap:'Poser les UV avant d\'avoir arrêté les bandes : c\'est ce qui a coûté l\'après-midi du 9 octobre sur l\'église.'},
+
+ {id:'pavillon',n:5,t:'Bâtiment asiatique, organique (un pavillon à toit courbe)',
+  idea:'L\'architecture traditionnelle japonaise est déjà un kit : les colonnes sont à un ken l\'une de l\'autre (environ 1,82 m, six shaku). On pose des pièces sur une grille, et le toit est le HDA, comme dans cette leçon.',
+  params:[{k:'nx',l:'Travées en largeur',v:3,s:1},{k:'ny',l:'Travées en longueur',v:4,s:1},{k:'ken',l:'1 ken (m)',v:1.818,s:0.001},{k:'eave',l:'Débord du toit (m)',v:1.2,s:0.1},{k:'pitch',l:'Pente (degrés)',v:30,s:1},{k:'tw',l:'Tuile visible, largeur (m)',v:0.22,s:0.01},{k:'th',l:'Tuile visible, hauteur (m)',v:0.25,s:0.01},{k:'d',l:'Densité (px/m)',v:512,s:64},{k:'S',l:'Taille de la feuille (px)',v:2048,s:512}],
+  rows:[
+   {l:'Sous les colonnes, largeur',f:'travées × ken',v:function(p){return p.nx*p.ken},d:2,u:'m'},
+   {l:'Sous les colonnes, longueur',f:'travées × ken',v:function(p){return p.ny*p.ken},d:2,u:'m'},
+   {l:'Plan du toit, débords compris',f:'(largeur + 2 × débord) × (longueur + 2 × débord)',v:function(p){return (p.nx*p.ken+2*p.eave)*(p.ny*p.ken+2*p.eave)},d:1,u:'m²'},
+   {l:'Surface du toit (en pente)',f:'plan ÷ cos(pente)',v:function(p){return (p.nx*p.ken+2*p.eave)*(p.ny*p.ken+2*p.eave)/Math.cos(p.pitch*Math.PI/180)},d:1,u:'m²'},
+   {l:'Nombre de tuiles',f:'surface ÷ (largeur × hauteur visibles)',v:function(p){return (p.nx*p.ken+2*p.eave)*(p.ny*p.ken+2*p.eave)/Math.cos(p.pitch*Math.PI/180)/(p.tw*p.th)},u:'tuiles'},
+   {l:'Feuilles si chaque tuile est unique',f:'surface × densité² ÷ taille²',v:function(p){return (p.nx*p.ken+2*p.eave)*(p.ny*p.ken+2*p.eave)/Math.cos(p.pitch*Math.PI/180)*p.d*p.d/(p.S*p.S)},d:1,u:'feuilles'},
+   {l:'Feuilles avec une trim sheet',f:'une seule, quelle que soit la taille',v:function(){return 1},u:'feuille'},
+   {l:'Répétitions par aspect',f:'tuiles ÷ (36 emplacements × 4 retournements)',v:function(p){return (p.nx*p.ken+2*p.eave)*(p.ny*p.ken+2*p.eave)/Math.cos(p.pitch*Math.PI/180)/(p.tw*p.th)/144},u:'fois'}],
+  lect:function(){return 'Même logique que ton église : on compte des surfaces, jamais des volumes, et la feuille ne grossit pas avec le toit.'},
+  steps:[
+   ['Le module','1 ken = 6 shaku, environ 1,82 m : la distance entre deux colonnes. Toute la structure se pose sur cette grille (et un tatami fait un demi-ken sur un ken).'],
+   ['Blender, Houdini','Plan coté sur la grille, hauteur sous poutre, pente du toit : le blockout à l\'échelle.'],
+   ['Blender, Houdini','Kit modulaire : colonne, poutre, console, chevron, cloison coulissante, plancher. Chaque pièce à l\'échelle, sur la grille.'],
+   ['Houdini (HDA)','HDA du toit : la courbe de l\'avant-toit en entrée, des rangées et des colonnes de tuiles en sortie, et les chevrons répartis le long de la courbe.'],
+   ['Plan de la feuille','Trim sheet : tuiles (36 emplacements), bois (bandes), plâtre. Matériaux en tuile : bois, crépi.'],
+   ['Copernicus','Masques de mousse et d\'usure (courbure, occlusion, direction vers le haut) sur le toit et les bois ; teinte légèrement différente par instance.'],
+   ['Blender','Les détails uniques (sculptures, lanternes) sont des pièces séparées avec leur propre texture.'],
+   ['Script, Cycles','Vérificateur, puis un seul rendu.']],
+  kit:['oui','Oui','C\'est le cœur : l\'architecture traditionnelle est un kit sur une grille d\'un ken.'],
+  geo:['oui','Oui','Le toit courbe et les rangées de chevrons : une courbe en entrée, des tuiles en sortie, comme dans cette leçon.'],
+  tex:['oui','Oui','Mousse, patine, bois vieilli en masques ; les tuiles sur la trim sheet.'],
+  fast:'La grille du ken : on pose des pièces sur des multiples de 1,82 m au lieu de mesurer chaque position. Le toit est un HDA, le reste est un kit.',
+  trap:'Confondre organique et unique : un toit courbe n\'exige pas une texture unique. Avec les valeurs de départ, ce seul toit en demanderait environ 5,5 feuilles de 2K à 512 px/m.'},
+
+ {id:'tour',n:6,t:'Bâtiment futuriste, anguleux et agressif (une tour)',
+  idea:'Des centaines de modules presque identiques : on ne texture jamais des mètres carrés, on texture des modules. Houdini est dans son meilleur rôle : l\'empreinte au sol entre, la façade complète sort.',
+  params:[{k:'foot',l:'Côté de la tour (m)',v:24,s:1},{k:'H',l:'Hauteur (m)',v:60,s:1},{k:'mw',l:'Largeur d\'un module (m)',v:4,s:0.5},{k:'fh',l:'Hauteur d\'un étage (m)',v:3.75,s:0.05},{k:'nv',l:'Variantes de module',v:6,s:1},{k:'d',l:'Densité (px/m)',v:512,s:64},{k:'S',l:'Taille de la feuille (px)',v:2048,s:512}],
+  rows:[
+   {l:'Surface des quatre façades',f:'4 × côté × hauteur',v:function(p){return 4*p.foot*p.H},u:'m²'},
+   {l:'Feuilles si chaque mètre carré est unique',f:'surface × densité² ÷ taille²',v:function(p){return 4*p.foot*p.H*p.d*p.d/(p.S*p.S)},u:'feuilles'},
+   {l:'Un module, largeur en pixels',f:'largeur × densité',v:function(p){return p.mw*p.d},u:'px'},
+   {l:'Un module, hauteur en pixels',f:'étage × densité',v:function(p){return p.fh*p.d},u:'px'},
+   {l:'Modules par étage',f:'4 × côté ÷ largeur',v:function(p){return 4*p.foot/p.mw},d:1,u:'modules'},
+   {l:'Étages',f:'hauteur ÷ hauteur d\'étage',v:function(p){return p.H/p.fh},d:1,u:'étages'},
+   {l:'Modules en tout',f:'par étage × étages',v:function(p){return 4*p.foot/p.mw*p.H/p.fh},u:'modules'},
+   {l:'Répétitions par variante',f:'modules ÷ variantes',v:function(p){return 4*p.foot/p.mw*p.H/p.fh/p.nv},u:'fois'},
+   {l:'Feuilles avec des modules',f:'variantes + 1 feuille de bords',v:function(p){return p.nv+1},u:'feuilles'}],
+  lect:function(p){var u=4*p.foot*p.H*p.d*p.d/(p.S*p.S);return 'De '+fr(u)+' feuilles uniques à '+fr(p.nv+1)+' : on calcule des modules, pas des mètres carrés. Garde la même densité d\'un module à l\'autre, sinon le raccord se voit sur toute la hauteur.'},
+  steps:[
+   ['Papier, Blender','Masse et règles de style : angles, retraits, bandes lumineuses. Un style se décide en règles, pas en détails.'],
+   ['Tableur','Grille de façade : un module de 4 m de large et 3,75 m de haut (la hauteur d\'un étage). Tout se place sur cette grille.'],
+   ['Plan de la feuille','Bords, joints, cadres, bandes lumineuses (l\'émissif dans un canal à part).'],
+   ['Blender, Houdini, Copernicus','Six modules de panneaux : géométrie à chanfreins, textures de panneau (vis, évents, joints) fabriquées dans Copernicus, une graine par variante.'],
+   ['Houdini (HDA)','HDA façade : empreinte, étages, travées, puis instances de modules (des points avec leur orientation). Balcons, coins et toit en pièces à part. Export en instances.'],
+   ['Moteur de jeu','Décalques (enseignes, numéros) et émissif animé par un masque ; un seul matériau pour tous les modules.'],
+   ['Script','Vérificateur : échelle, densité identique d\'un module à l\'autre, modules bord à bord sans trou.']],
+  kit:['oui','Oui','Modules de façade et pièces de coin, sur une grille stricte.'],
+  geo:['oui','Oui','Le terrain de Houdini : de l\'empreinte à la façade complète, hauteur et largeur en paramètres.'],
+  tex:['oui','Oui','Copernicus fabrique les panneaux avec une graine par variante : six feuilles en quelques minutes.'],
+  fast:'De 360 feuilles uniques à 7 : six variantes de module et une feuille de bords. Les 384 modules sont des instances, pas des objets.',
+  trap:'Texturer la tour comme un seul objet, ou laisser deux modules à des densités différentes : le raccord se voit sur toute la hauteur.'}
+ ];
+
+ function run(c,box){
+  var p={};
+  c.params.forEach(function(q){p[q.k]=parseFloat(box.querySelector('[data-k="'+q.k+'"]').value)||0});
+  var h='';
+  c.rows.forEach(function(r){
+   if(r.h){h+='<tr><th colspan="3">'+r.h+'</th></tr>';return}
+   var val=r.v(p),s=(typeof val==='number'&&isFinite(val))?fr(val,r.d||0):'n/a';
+   h+='<tr><td>'+r.l+'</td><td>'+r.f+'</td><td class="n"><b>'+s+'</b> '+(r.u||'')+'</td></tr>';
+  });
+  box.querySelector('tbody').innerHTML=h;
+  box.querySelector('.lect').innerHTML=c.lect(p);
+ }
+
+ var root=document.getElementById('six-cases');
+ CASES.forEach(function(c){
+  var sec=document.createElement('section');sec.className='case';sec.id='cas-'+c.id;
+  var inputs=c.params.map(function(q){return '<label><b>'+q.l+'</b><input type="number" data-k="'+q.k+'" step="'+q.s+'" value="'+q.v+'"></label>'}).join('');
+  var steps=c.steps.map(function(s){return '<li><span class="tool">'+s[0]+'</span>'+s[1]+'</li>'}).join('');
+  var dec=[['Kit modulaire',c.kit],['HDA géométrie',c.geo],['HDA texture (Copernicus)',c.tex]].map(function(x){return '<div class="cell"><div class="k">'+x[0]+'</div><span class="lvl '+x[1][0]+'">'+x[1][1]+'</span><p>'+x[1][2]+'</p></div>'}).join('');
+  sec.innerHTML='<h3><span class="step">'+c.n+'</span>'+c.t+'</h3>'
+   +'<p class="idea">'+c.idea+'</p>'
+   +'<div class="lab">Le calcul (change les nombres)</div>'
+   +'<div class="demo"><div class="ctl ui">'+inputs+'</div><table class="calc"><tbody></tbody></table><p class="lect"></p></div>'
+   +(c.note?'<p class="note">'+c.note+'</p>':'')
+   +'<div class="lab">L\'ordre des étapes</div><ol class="steps">'+steps+'</ol>'
+   +'<div class="lab">Kit modulaire, HDA de géométrie, HDA de texture ?</div><div class="dec">'+dec+'</div>'
+   +'<div class="callout"><div class="t">Où se gagne le temps</div>'+c.fast+'</div>'
+   +'<div class="callout warn"><div class="t">Le piège</div>'+c.trap+'</div>';
+  root.appendChild(sec);
+  var box=sec.querySelector('.demo');
+  box.querySelectorAll('input').forEach(function(i){i.oninput=function(){run(c,box)}});
+  run(c,box);
+ });
 })();
 </script>
 </body>
