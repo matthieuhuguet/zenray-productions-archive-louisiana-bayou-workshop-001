@@ -1,0 +1,443 @@
+#### build_roof_structure
+
+void make_symmetric_prism_z(vector pts[]; float z_start, z_end; string grp_name; int pid) {
+    int p_l[];
+    resize(p_l, 8);
+    for (int i = 0; i < 4; ++i) {
+        p_l[i]   = addpoint(0, set(pts[i].x, pts[i].y, z_start));
+        p_l[i+4] = addpoint(0, set(pts[i].x, pts[i].y, z_end));
+    }
+    
+    // Left side faces (strictly outward normals)
+    int pr0 = addprim(0, "poly", p_l[0], p_l[4], p_l[5], p_l[1]); // Top (+Y outward)
+    int pr1 = addprim(0, "poly", p_l[1], p_l[5], p_l[6], p_l[2]); // Eave cut
+    int pr2 = addprim(0, "poly", p_l[2], p_l[6], p_l[7], p_l[3]); // Bottom (-Y ceiling outward)
+    int pr3 = addprim(0, "poly", p_l[3], p_l[7], p_l[4], p_l[0]); // Peak cut
+    int pr4 = addprim(0, "poly", p_l[0], p_l[1], p_l[2], p_l[3]); // -Z end cap
+    int pr5 = addprim(0, "poly", p_l[4], p_l[7], p_l[6], p_l[5]); // +Z end cap
+    
+    int prims_l[] = array(pr0, pr1, pr2, pr3, pr4, pr5);
+    foreach (int pr; prims_l) {
+        setprimgroup(0, grp_name, pr, 1);
+        setprimattrib(0, "piece_id", pr, pid);
+    }
+    
+    // Right side (mirrored across X=0 with reversed winding)
+    int p_r[];
+    resize(p_r, 8);
+    for (int i = 0; i < 4; ++i) {
+        p_r[i]   = addpoint(0, set(-pts[i].x, pts[i].y, z_start));
+        p_r[i+4] = addpoint(0, set(-pts[i].x, pts[i].y, z_end));
+    }
+    
+    int r0 = addprim(0, "poly", p_r[1], p_r[5], p_r[4], p_r[0]); // Top (+Y outward)
+    int r1 = addprim(0, "poly", p_r[2], p_r[6], p_r[5], p_r[1]); // Eave cut
+    int r2 = addprim(0, "poly", p_r[3], p_r[7], p_r[6], p_r[2]); // Bottom (-Y ceiling outward)
+    int r3 = addprim(0, "poly", p_r[0], p_r[4], p_r[7], p_r[3]); // Peak cut
+    int r4 = addprim(0, "poly", p_r[3], p_r[2], p_r[1], p_r[0]); // -Z end cap
+    int r5 = addprim(0, "poly", p_r[5], p_r[6], p_r[7], p_r[4]); // +Z end cap
+    
+    int prims_r[] = array(r0, r1, r2, r3, r4, r5);
+    foreach (int pr; prims_r) {
+        setprimgroup(0, grp_name, pr, 1);
+        setprimattrib(0, "piece_id", pr, pid + 10000);
+    }
+}
+float w = ch("../width");
+float l = ch("../length");
+float wh = ch("../wall_height");
+float gh = ch("../gable_height");
+float peak_y = wh + gh;
+
+float eave_oh = ch("../eave_overhang");
+float gable_oh = ch("../gable_overhang");
+float deck_th = ch("../decking_thickness");
+
+float total_len = l + gable_oh * 2.0;
+float half_w = w * 0.5 + eave_oh;
+float slope_len = sqrt(half_w * half_w + gh * gh);
+float pitch_angle = atan2(gh, half_w);
+float cos_p = cos(pitch_angle);
+float sin_p = sin(pitch_angle);
+
+vector N = set(-sin_p, cos_p, 0.0);
+vector T = set( cos_p, sin_p, 0.0);
+
+int pid = 100;
+
+// 1. Decking Slopes
+{
+    vector d_pts[];
+    resize(d_pts, 4);
+    d_pts[0] = set(0.0, peak_y, 0.0);
+    d_pts[1] = set(-half_w, wh, 0.0);
+    d_pts[2] = d_pts[1] - N * deck_th;
+    d_pts[3] = set(0.0, peak_y - deck_th / cos_p, 0.0);
+    
+    make_symmetric_prism_z(d_pts, -total_len * 0.5, total_len * 0.5, "group_decking", pid++);
+}
+
+// 2. Planche de facade d egout (Fascia Board)
+float fascia_h = ch("../fascia_depth");
+float fascia_th = ch("../fascia_thickness");
+{
+    vector f_pts[];
+    resize(f_pts, 4);
+    f_pts[0] = set(-half_w, wh, 0.0) - N * deck_th;
+    f_pts[1] = f_pts[0] - N * fascia_h;
+    f_pts[2] = f_pts[1] + T * fascia_th;
+    f_pts[3] = f_pts[0] + T * fascia_th;
+    
+    make_symmetric_prism_z(f_pts, -total_len * 0.5, total_len * 0.5, "group_fascia", pid++);
+}
+
+// 3. Planches de rive (Bargeboards)
+// 9 October 2026 (v3) : the verge board is glued UNDER the roof like on the porch : its top follows the deck underside, its outer face is set back 4 mm behind the roof edge, so the roof edge overhangs it.
+float barge_w = 0.18;
+float barge_th = 0.030;
+float barge_back = 0.004;
+float z_edge = l * 0.5 + gable_oh;
+float z_gables[] = array(z_edge - barge_back - barge_th * 0.5, -z_edge + barge_back + barge_th * 0.5);
+
+foreach (float z_pos; z_gables) {
+    vector b_pts[];
+    resize(b_pts, 4);
+    b_pts[0] = set(0.0, peak_y - deck_th / cos_p, 0.0);
+    b_pts[1] = set(-half_w, wh, 0.0) - N * deck_th;
+    b_pts[2] = b_pts[1] - N * barge_w;
+    b_pts[3] = set(0.0, b_pts[0].y - barge_w / cos_p, 0.0);
+    
+    make_symmetric_prism_z(b_pts, z_pos - barge_th * 0.5, z_pos + barge_th * 0.5, "group_bargeboard", pid++);
+}
+
+// 4. Chevrons interieurs (Rafters)
+float rafter_w = 0.065;
+float rafter_d = 0.075;
+float beam_z_positions[] = array(l * 0.5, -l * 0.5);
+
+foreach (float z_beam; beam_z_positions) {
+    vector r_pts[];
+    resize(r_pts, 4);
+    r_pts[0] = set(0.0, peak_y - deck_th / cos_p, 0.0);
+    r_pts[1] = set(-half_w, wh, 0.0) - N * deck_th;
+    r_pts[2] = set(-half_w, wh, 0.0) - N * (deck_th + rafter_d);
+    r_pts[3] = set(0.0, peak_y - (deck_th + rafter_d) / cos_p, 0.0);
+    
+    make_symmetric_prism_z(r_pts, z_beam - rafter_w * 0.5, z_beam + rafter_w * 0.5, "group_rafters", pid++);
+}
+
+
+#### build_shingles
+// 8 October 2026 13:46: Complete every row and preserve clipped edge shingles.
+
+void make_symmetric_wedge_shingle(vector center; float L, W, T_butt, T_head; matrix3 rot; string grp_name; int pid) {
+    float hx = L * 0.5;
+    float hz = W * 0.5;
+    
+    vector p[];
+    resize(p, 8);
+    p[0] = center + set(-hx, 0.0,    -hz) * rot;
+    p[1] = center + set( hx, 0.0,    -hz) * rot;
+    p[2] = center + set( hx, 0.0,     hz) * rot;
+    p[3] = center + set(-hx, 0.0,     hz) * rot;
+    p[4] = center + set(-hx, T_butt, -hz) * rot;
+    p[5] = center + set( hx, T_head, -hz) * rot;
+    p[6] = center + set( hx, T_head,  hz) * rot;
+    p[7] = center + set(-hx, T_butt,  hz) * rot;
+    
+    // Left side shingle (strictly outward normals)
+    int ipt_l[];
+    resize(ipt_l, 8);
+    for (int k = 0; k < 8; ++k) ipt_l[k] = addpoint(0, p[k]);
+    
+    int pr0 = addprim(0, "poly", ipt_l[5], ipt_l[6], ipt_l[7], ipt_l[4]); // Top (+Y outward)
+    int pr1 = addprim(0, "poly", ipt_l[3], ipt_l[2], ipt_l[1], ipt_l[0]); // Bottom (-Y outward)
+    int pr2 = addprim(0, "poly", ipt_l[4], ipt_l[7], ipt_l[3], ipt_l[0]); // Butt (-X outward)
+    int pr3 = addprim(0, "poly", ipt_l[2], ipt_l[6], ipt_l[5], ipt_l[1]); // Head (+X outward)
+    int pr4 = addprim(0, "poly", ipt_l[1], ipt_l[5], ipt_l[4], ipt_l[0]); // -Z outward
+    int pr5 = addprim(0, "poly", ipt_l[7], ipt_l[6], ipt_l[2], ipt_l[3]); // +Z outward
+    
+    int prims_l[] = array(pr0, pr1, pr2, pr3, pr4, pr5);
+    foreach (int pr; prims_l) {
+        setprimgroup(0, grp_name, pr, 1);
+        setprimattrib(0, "piece_id", pr, pid);
+    }
+    
+    // Right side shingle (mirrored across X=0 with strictly outward normals)
+    int ipt_r[];
+    resize(ipt_r, 8);
+    for (int k = 0; k < 8; ++k) {
+        vector pr_pos = set(-p[k].x, p[k].y, p[k].z);
+        ipt_r[k] = addpoint(0, pr_pos);
+    }
+    
+    int r0 = addprim(0, "poly", ipt_r[7], ipt_r[6], ipt_r[5], ipt_r[4]); // Top (+Y outward)
+    int r1 = addprim(0, "poly", ipt_r[0], ipt_r[1], ipt_r[2], ipt_r[3]); // Bottom (-Y outward)
+    int r2 = addprim(0, "poly", ipt_r[0], ipt_r[3], ipt_r[7], ipt_r[4]); // Butt (+X outward)
+    int r3 = addprim(0, "poly", ipt_r[1], ipt_r[5], ipt_r[6], ipt_r[2]); // Head (-X outward)
+    int r4 = addprim(0, "poly", ipt_r[0], ipt_r[4], ipt_r[5], ipt_r[1]); // -Z outward
+    int r5 = addprim(0, "poly", ipt_r[3], ipt_r[2], ipt_r[6], ipt_r[7]); // +Z outward
+    
+    int prims_r[] = array(r0, r1, r2, r3, r4, r5);
+    foreach (int pr; prims_r) {
+        setprimgroup(0, grp_name, pr, 1);
+        setprimattrib(0, "piece_id", pr, pid + 10000);
+    }
+}
+float w = ch("../width");
+float l = ch("../length");
+float wh = ch("../wall_height");
+float gh = ch("../gable_height");
+float peak_y = wh + gh;
+
+float eave_oh = ch("../eave_overhang");
+float gable_oh = ch("../gable_overhang");
+float total_len = l + gable_oh * 2.0;
+
+float half_w = w * 0.5 + eave_oh;
+float slope_len = sqrt(half_w * half_w + gh * gh);
+float pitch_angle = atan2(gh, half_w);
+float cos_p = cos(pitch_angle);
+float sin_p = sin(pitch_angle);
+
+float rot_rand   = ch("../shingle_rot_random");
+float slope_tilt = ch("../shingle_slope_tilt");
+
+int num_rows = chi("../shingle_rows");
+if (num_rows < 2) num_rows = 2;
+int num_cols = chi("../shingle_cols");
+if (num_cols < 2) num_cols = 2;
+float overlap = ch("../shingle_overlap");
+float sh_thick = ch("../shingle_thickness");
+float head_thick = max(0.003, sh_thick * 0.23);
+
+float row_step = slope_len / float(num_rows);
+float base_sh_len = row_step + overlap;
+float col_w = total_len / float(num_cols);
+
+float tw_min = ch("../tile_width_min");   // 9 October 2026 : tile width range in metres (Matthieu: 0.2 to 0.32)
+float tw_max = ch("../tile_width_max");
+float ref_cols = ch("../width_ref_cols");   // widths scale with ref_cols / cols so the columns slider stays alive
+
+int pid = 1000;
+
+vector dir_up_l = set( cos_p,  sin_p, 0.0);
+vector norm_l   = set(-sin_p,  cos_p, 0.0);
+vector eave_l   = set(-half_w, wh, 0.0);
+
+matrix3 rot_l = ident();
+rotate(rot_l, pitch_angle, set(0, 0, 1));
+
+float base_tilt = 1.8 + slope_tilt;
+
+float z_min_allowed = -total_len * 0.5 + 0.010;   // 9 October 2026 : shingles stop under the verge boards
+float z_max_allowed =  total_len * 0.5 - 0.010;
+
+// 9 October 2026 : rows run PAST the ridge, cut_ridge then trims them flush with the opposite slope.
+float max_slope_limit = slope_len + 0.10;
+
+// Supprimer UNIQUEMENT la derniere ligne des tuiles du haut (r < num_rows)
+for (int r = 0; r < num_rows; ++r) {
+    float dist = float(r) * row_step - ((r == num_rows - 1) ? overlap * 0.5 : 0.0);
+    
+    if (dist >= max_slope_limit) continue;
+    
+    // 9 October 2026 : tiles are GLUED edge to edge. The row starts at a random offset and each tile takes the next random width, so there is never an empty space (reference: tiles touch, joints are random).
+    float cursor = -total_len * 0.5 - rand(float(r) * 13.7 + 3.1) * col_w;
+
+    for (int c = 0; c < 100; ++c) {
+        if (cursor > z_max_allowed + 0.01) break;
+        float seed = float(r * 157 + (c + 2) * 43 + 9181);
+        float w_tile = lerp(tw_min, tw_max, rand(seed + 4.9)) * (ref_cols / float(num_cols));
+        float z_center = cursor + w_tile * 0.5;
+        cursor += w_tile;
+        float raw_width = w_tile - 0.003;
+        float j_z = 0.0;
+
+        float raw_len = base_sh_len + (rand(seed + 1.1) - 0.5) * 0.015;
+        float j_len = min(raw_len, max_slope_limit - dist);
+        if (j_len < 0.08) continue;
+
+        float j_thick_butt = sh_thick * (0.94 + 0.12 * rand(seed + 2.3));
+        float j_thick_head = head_thick * (0.94 + 0.12 * rand(seed + 3.7));
+
+        float z_min = max(z_min_allowed, z_center - raw_width * 0.5);
+        float z_max = min(z_max_allowed, z_center + raw_width * 0.5);
+        if (z_max <= z_min + 0.01) continue;   // no sliver tiles at the roof ends
+        
+        float j_width = z_max - z_min;
+        int edge_piece = (z_min <= z_min_allowed + 0.0001 || z_max >= z_max_allowed - 0.0001);
+        float final_z = (z_min + z_max) * 0.5 + (edge_piece ? 0.0 : j_z);
+        
+        float j_tilt = (rand(seed + 6.3) - 0.5) * rot_rand * 0.25;
+        float j_yaw = (edge_piece || r >= num_rows - 2) ? 0.0 : (rand(seed + 7.5) - 0.5) * rot_rand * 0.40;
+        
+        float sh_tilt = max(0.2, base_tilt + j_tilt);
+        float eave_adjust = (r == 0) ? -0.040 : 0.0;
+        
+        float head_elev = 0.004;
+        float elev = head_elev + (j_len * 0.5) * sin(radians(sh_tilt));
+        
+        vector pos = eave_l + dir_up_l * (dist + j_len * 0.5 + eave_adjust) + norm_l * elev;
+        pos.z = final_z;
+        
+        matrix3 rot_sh = rot_l;
+        rotate(rot_sh, -radians(sh_tilt), set(0, 0, 1));
+        rotate(rot_sh, radians(j_yaw), set(0, 1, 0));
+        
+        make_symmetric_wedge_shingle(pos, j_len, j_width, j_thick_butt, j_thick_head, rot_sh, "group_shingles", pid++);
+    }
+}
+
+
+#### build_ridge_cap
+
+void make_arched_ridge_tile(float z_center; float wing_w, tile_len, thickness; float pitch_angle, peak_y, h_sh; string grp_name; int pid) {
+    float hz = tile_len * 0.5;
+    
+    int num_pts = 7;
+    vector prof_top[];
+    resize(prof_top, 7);
+    vector prof_bot[];
+    resize(prof_bot, 7);
+    
+    float cos_p = cos(pitch_angle);
+    float sin_p = sin(pitch_angle);
+    
+    vector dir_l  = set(-cos_p, -sin_p, 0.0);
+    vector dir_r  = set( cos_p, -sin_p, 0.0);
+    vector norm_l = set(-sin_p,  cos_p, 0.0);
+    vector norm_r = set( sin_p,  cos_p, 0.0);
+    
+    float r_in = 0.030;
+    float r_out = r_in + thickness;
+    
+    float y_c = peak_y + max(0.004, (h_sh - r_in * 0.5) / cos_p);
+    
+    float pi_half = 1.57079632679;
+    float theta_left  = pi_half + pitch_angle;
+    float theta_right = pi_half - pitch_angle;
+    
+    prof_bot[0] = dir_l * wing_w + norm_l * h_sh + set(0, peak_y, 0);
+    prof_top[0] = prof_bot[0] + norm_l * thickness;
+    
+    for (int k = 0; k < 5; ++k) {
+        float t = float(k) / 4.0;
+        float ang = theta_left + t * (theta_right - theta_left);
+        float nx = cos(ang);
+        float ny = sin(ang);
+        
+        prof_bot[k + 1] = set(nx * r_in,  y_c + ny * r_in,  0.0);
+        prof_top[k + 1] = set(nx * r_out, y_c + ny * r_out, 0.0);
+    }
+    
+    prof_bot[6] = dir_r * wing_w + norm_r * h_sh + set(0, peak_y, 0);
+    prof_top[6] = prof_bot[6] + norm_r * thickness;
+    
+    int pts_t0[];
+    resize(pts_t0, 7);
+    int pts_b0[];
+    resize(pts_b0, 7);
+    int pts_t1[];
+    resize(pts_t1, 7);
+    int pts_b1[];
+    resize(pts_b1, 7);
+    
+    for (int i = 0; i < num_pts; ++i) {
+        pts_t0[i] = addpoint(0, prof_top[i] + set(0, 0, z_center - hz));
+        pts_b0[i] = addpoint(0, prof_bot[i] + set(0, 0, z_center - hz));
+        pts_t1[i] = addpoint(0, prof_top[i] + set(0, 0, z_center + hz));
+        pts_b1[i] = addpoint(0, prof_bot[i] + set(0, 0, z_center + hz));
+    }
+    
+    // Top surface quads (strictly outward normal: +Y)
+    for (int i = 0; i < num_pts - 1; ++i) {
+        int pr = addprim(0, "poly", pts_t0[i], pts_t0[i+1], pts_t1[i+1], pts_t1[i]);
+        setprimgroup(0, grp_name, pr, 1);
+        setprimattrib(0, "piece_id", pr, pid);
+    }
+    
+    // Bottom surface quads (strictly inward normal: -Y)
+    for (int i = 0; i < num_pts - 1; ++i) {
+        int pr = addprim(0, "poly", pts_b1[i], pts_b1[i+1], pts_b0[i+1], pts_b0[i]);
+        setprimgroup(0, grp_name, pr, 1);
+        setprimattrib(0, "piece_id", pr, pid);
+    }
+    
+    // Left edge
+    int pr_l = addprim(0, "poly", pts_b0[0], pts_t0[0], pts_t1[0], pts_b1[0]);
+    setprimgroup(0, grp_name, pr_l, 1);
+    setprimattrib(0, "piece_id", pr_l, pid);
+    
+    // Right edge
+    int pr_r = addprim(0, "poly", pts_t0[6], pts_b0[6], pts_b1[6], pts_t1[6]);
+    setprimgroup(0, grp_name, pr_r, 1);
+    setprimattrib(0, "piece_id", pr_r, pid);
+    
+    // End caps
+    for (int i = 0; i < num_pts - 1; ++i) {
+        int pr_f = addprim(0, "poly", pts_b0[i], pts_b0[i+1], pts_t0[i+1], pts_t0[i]);
+        setprimgroup(0, grp_name, pr_f, 1);
+        setprimattrib(0, "piece_id", pr_f, pid);
+        
+        int pr_b = addprim(0, "poly", pts_t1[i], pts_t1[i+1], pts_b1[i+1], pts_b1[i]);
+        setprimgroup(0, grp_name, pr_b, 1);
+        setprimattrib(0, "piece_id", pr_b, pid);
+    }
+}
+
+if (!chi("../enable_ridge_cap")) return;
+
+float w = ch("../width");
+float l = ch("../length");
+float wh = ch("../wall_height");
+float gh = ch("../gable_height");
+float peak_y = wh + gh;
+
+float eave_oh = ch("../eave_overhang");
+float gable_oh = ch("../gable_overhang");
+float total_len = l + gable_oh * 2.0;
+
+float half_w = w * 0.5 + eave_oh;
+float pitch_angle = atan2(gh, half_w);
+
+int ridge_count = chi("../ridge_count");
+if (ridge_count < 2) ridge_count = 2;
+float wing_w = ch("../ridge_width");
+float tile_th = 0.020;
+float ridge_step = total_len / float(ridge_count);
+float tile_len = ridge_step * 1.36;
+
+float sh_thick = ch("../shingle_thickness");
+// Parfaitement colle au toit :
+float h_sh = max(0.005, sh_thick * 0.35);
+
+int pid = 8000;
+
+for (int i = 0; i < ridge_count; ++i) {
+    float z_pos = -total_len * 0.5 + float(i) * ridge_step + ridge_step * 0.5;
+    make_arched_ridge_tile(z_pos, wing_w, tile_len, tile_th, pitch_angle, peak_y, h_sh, "group_ridge", pid++);
+}
+
+
+#### cut_ridge
+// 9 October 2026 : ridge cut. EN: each slope's shingles are cut flush by the TOP surface of the opposite slope, so the two slopes meet in a clean mitre with the real shingle thickness left visible (replaces the inverted-gutter ridge cap). FR : coupe au faitage par le plan de la pente opposée, l'épaisseur reste visible.
+float wh = ch("../wall_height");
+float gh = ch("../gable_height");
+float peak_y = wh + gh;
+float half_w = ch("../width") * 0.5 + ch("../eave_overhang");
+float p = atan2(gh, half_w);
+float off = 0.03;                                       // height of the shingle top above the deck at the ridge
+vector Q = set(0.0, peak_y + off, 0.0);
+vector n_r = set(sin(p), cos(p), 0.0);                  // outward normal of the RIGHT slope
+vector dir = set(cos(p), sin(p), 0.0);                  // up-slope direction of the LEFT slope
+int mirror = (prim(0, "piece_id", @primnum) >= 10000);
+foreach (int vtx; primvertices(0, @primnum)) {
+    int pt = vertexpoint(0, vtx);
+    vector pos = point(0, "P", pt);
+    if (mirror) pos.x = -pos.x;
+    float d = dot(pos - Q, n_r);
+    if (d > 0.0) pos -= dir * (d / dot(n_r, dir));
+    if (mirror) pos.x = -pos.x;
+    setpointattrib(0, "P", pt, pos);
+}

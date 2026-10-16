@@ -1,0 +1,375 @@
+#### arm_curves
+
+float w = ch("../width");
+float l = ch("../length");
+float wh = ch("../wall_height");
+float bs = ch("../beam_size");
+
+float z_front = l * 0.5;
+float z_rear = -l * 0.5;
+float x_left = -w * 0.5;
+float x_right = w * 0.5;
+
+// Base sill points elevated by half beam size so bottom face touches ground at Y = 0.0
+float y_base = bs * 0.5;
+
+int b_fl = addpoint(0, set(x_left, 0.0, z_front));   // 9 October 2026 : corner post runs down to the ground and is the only geometry at the corner
+int b_fr = addpoint(0, set(x_right, 0.0, z_front));   // 9 October 2026 : corner post runs down to the ground and is the only geometry at the corner
+int b_rl = addpoint(0, set(x_left, 0.0, z_rear));   // 9 October 2026 : corner post runs down to the ground and is the only geometry at the corner
+int b_rr = addpoint(0, set(x_right, 0.0, z_rear));   // 9 October 2026 : corner post runs down to the ground and is the only geometry at the corner
+
+// 9 October 2026 : sill ends overshoot by bs/2 so the corner closes square, no V notch at the foot of the corner posts.
+float ov = -bs * 0.5;   // 9 October 2026 : sills stop flush on the faces of the corner post (cut), nothing overshoots
+int s_fl_x = addpoint(0, set(x_left - ov, y_base, z_front));
+int s_fr_x = addpoint(0, set(x_right + ov, y_base, z_front));
+int s_rl_x = addpoint(0, set(x_left - ov, y_base, z_rear));
+int s_rr_x = addpoint(0, set(x_right + ov, y_base, z_rear));
+int s_fl_z = addpoint(0, set(x_left, y_base, z_front + ov));
+int s_rl_z = addpoint(0, set(x_left, y_base, z_rear - ov));
+int s_fr_z = addpoint(0, set(x_right, y_base, z_front + ov));
+int s_rr_z = addpoint(0, set(x_right, y_base, z_rear - ov));
+
+// Top wall eave points (Y = wall_height)
+int e_fl = addpoint(0, set(x_left, wh, z_front));
+int e_fr = addpoint(0, set(x_right, wh, z_front));
+int e_rl = addpoint(0, set(x_left, wh, z_rear));
+int e_rr = addpoint(0, set(x_right, wh, z_rear));
+
+// Base perimeter lines (all 4 sides at ground)
+int p_bf = addprim(0, "polyline"); addvertex(0, p_bf, s_fl_x); addvertex(0, p_bf, s_fr_x);
+int p_br = addprim(0, "polyline"); addvertex(0, p_br, s_rl_x); addvertex(0, p_br, s_rr_x);
+int p_bl = addprim(0, "polyline"); addvertex(0, p_bl, s_fl_z); addvertex(0, p_bl, s_rl_z);
+int p_brgt = addprim(0, "polyline"); addvertex(0, p_brgt, s_fr_z); addvertex(0, p_brgt, s_rr_z);
+
+// 10 October 2026 : each side is ONE continuous beam (post up, eave plate along, post down) so the corners are single mitered joints, no overlapping boxes. FR : un seul balayage par cote (poteau, sablière, poteau), les coins sont des onglets continus.
+int p_uL = addprim(0, "polyline");
+addvertex(0, p_uL, b_fl); addvertex(0, p_uL, e_fl); addvertex(0, p_uL, e_rl); addvertex(0, p_uL, b_rl);
+int p_uR = addprim(0, "polyline");
+addvertex(0, p_uR, b_fr); addvertex(0, p_uR, e_fr); addvertex(0, p_uR, e_rr); addvertex(0, p_uR, b_rr);
+
+
+#### arm_gables
+// 10 October 2026 (v5) : the arrow starts exactly at the top of window B on BOTH gables, the cross post is the SAME beam as the king post (one continuous swept post, no step, no overlap), the arch braces stop at the rafter underside instead of entering it, and the beams use three depth classes (rafters 1.0, posts 0.909, arms 0.818 through pscale) so no two faces ever lie in the same plane. FR : la fleche part du haut de la fenetre B sur les DEUX pignons, la croix est la MEME poutre que le poinçon, les aisseliers s'arretent sous les arbaletriers, trois profondeurs pour qu'aucune face ne soit coplanaire.
+float w = ch("../width");
+float l = ch("../length");
+float wh = ch("../wall_height");
+float fgh = ch("../front_gable_height");
+float rgh = ch("../rear_gable_height");
+float arch_deg = ch("../arch_angle");
+float cross_h = ch("../cross_height");
+float half = ch("../beam_size") * 0.5;
+float win_top = getbbox_max("op:../../Component_WindowB/OUT_window_b_v008").y;
+
+float z_front = l * 0.5;
+float z_rear = -l * 0.5;
+float x_left = -w * 0.5;
+float x_right = w * 0.5;
+float SC_RAFTER = 1.0; float SC_POST = 0.909; float SC_ARM = 0.818;
+float D_STOP = half * SC_RAFTER + 0.0025;   // the arm end (its cap vertices) lands 2.5 mm into the rafter underside: touching, not entering. FR : le bout de l'aisselier touche la face inferieure de l'arbaletrier.
+
+float gables_h[] = array(fgh, rgh);
+float gables_z[] = array(z_front, z_rear);
+float theta = radians(clamp(arch_deg, 5.0, 89.0));
+
+int add_pt(int geo; vector p; float sc) {
+    int pt = addpoint(geo, p);
+    setpointattrib(geo, "pscale", pt, sc);
+    return pt;
+}
+
+void build_arm(int geo; float side; float y_king; float R; float th; int nseg; float z; float peak_y; float slope; float dstop; float sc) {
+    int prim = addprim(geo, "polyline");
+    float prev_perp = 1e9;
+    vector prev = set(0, y_king, z);
+    float sl = sqrt(1.0 + slope * slope);
+    for (int i = 0; i <= nseg; ++i) {
+        float phi = th * float(i) / float(nseg);
+        float x = side * R * (1.0 - cos(phi));
+        float y = y_king + R * sin(phi);
+        vector cur = set(x, y, z);
+        float perp = (peak_y - slope * abs(x) - y) / sl;
+        if (i > 0 && perp <= dstop) {
+            float t = (prev_perp - dstop) / max(1e-6, prev_perp - perp);
+            addvertex(geo, prim, add_pt(geo, lerp(prev, cur, clamp(t, 0.0, 1.0)), sc));
+            return;
+        }
+        addvertex(geo, prim, add_pt(geo, cur, sc));
+        prev_perp = perp; prev = cur;
+    }
+}
+
+for (int g = 0; g < 2; ++g) {
+    float gh = gables_h[g];
+    float z = gables_z[g];
+    float timber_drop = half * sqrt(1.0 + pow(2.0 * gh / w, 2.0)) + 0.005;
+    float peak_y = wh + gh - timber_drop;
+    float slope = (2.0 * gh) / w;
+    float osign = (g == 0) ? 1.0 : -1.0;          // outward direction of this gable
+    float zp = z - 0.004 * osign;                 // posts sit 4 mm behind the rafter faces
+    float za = z - 0.008 * osign;                 // arms 8 mm behind : no two faces share a plane
+
+    // Rafters (own points : they carry their own depth class)
+    int r_l = addprim(0, "polyline");
+    addvertex(0, r_l, add_pt(0, set(x_left, wh - timber_drop, z), SC_RAFTER));
+    addvertex(0, r_l, add_pt(0, set(0, peak_y, z), SC_RAFTER));
+    int r_r = addprim(0, "polyline");
+    addvertex(0, r_r, add_pt(0, set(x_right, wh - timber_drop, z), SC_RAFTER));
+    addvertex(0, r_r, add_pt(0, set(0, peak_y, z), SC_RAFTER));
+
+    // Arrow : starts exactly at the top of window B
+    float y_pendant = win_top;
+    float y_king = y_pendant + 0.12;
+    float king_drop = max(0.2, peak_y - y_king);
+    int p_king = addprim(0, "polyline");
+    addvertex(0, p_king, add_pt(0, set(0, y_pendant, zp), SC_POST));
+    addvertex(0, p_king, add_pt(0, set(0, peak_y, zp), SC_POST));
+    if (g == 0) {
+        // the cross post is the SAME beam : the king post simply continues up to the cross top
+        addvertex(0, p_king, add_pt(0, set(0, wh + fgh + cross_h, zp), SC_POST));
+    }
+
+    float denom = sin(theta) + slope * (1.0 - cos(theta));
+    float R = (denom > 0.001) ? (king_drop / denom) : (king_drop * 0.5);
+    build_arm(0, -1.0, y_king, R, theta, 12, za, peak_y, slope, D_STOP, SC_ARM);
+    build_arm(0,  1.0, y_king, R, theta, 12, za, peak_y, slope, D_STOP, SC_ARM);
+}
+
+// Crossbar on the front gable, same plane as the post, thinner in depth afterwards by cross_fix
+float zc = z_front - 0.004;
+float crossbar_y = wh + fgh + cross_h * 0.68;
+float crossbar_half_w = cross_h * 0.26;
+int prim_c_bar = addprim(0, "polyline");
+addvertex(0, prim_c_bar, add_pt(0, set(-crossbar_half_w, crossbar_y, zc), SC_POST));
+addvertex(0, prim_c_bar, add_pt(0, set( crossbar_half_w, crossbar_y, zc), SC_POST));
+
+
+#### arm_pscale
+f@pscale = 1.0;
+
+
+#### arm_sweep
+{'surfaceshape': 2, 'surfacetype': 5, 'scale': 1.0, 'cols': 4, 'radius': 0.055, 'width': 0.11, 'stretcharoundturns': 1, 'maxstretcharoundturns': 10.0, 'endcaptype': 1, 'capdivs': 3, 'capscale': 1.0, 'caproundness': 1.0, 'endcapsgroup': 'endcaps', 'applyscale': 1, 'scaleramp': <hou.Ramp is_color=False num_keys=2 data=((t=0, 1), (t=1, 1))>, 'applyroll': 1, 'rollper': 4, 'rollattrib': 'roll', 'yawper': 4, 'yawattrib': 'yaw', 'pitchper': 4, 'pitchattrib': 'pitch', 'copyorder': 1, 'crosssectionattrib': 'variant', 'upvectoratstart': 1, 'upvectorattrib': 'start_up', 'endupvectorattrib': 'end_up', 'upvectory': 1.0, 'endupvectory': 1.0, 'continuousclosed': 1, 'transformbyattribs': 1, 'computeuvs': 1, 'lengthweighteduvs': 1, 'normalizeu': 1, 'flipu': 1, 'uvscale1': 0.44, 'uvscale2': 1.0, 'usemeshedgelengths': 1, 'propscalepercurve': 1, 'wrapu': 1, 'wrapv': 1, 'attribsfrombackbone': '* ^P ^N ^up ^pscale ^scale ^orient ^rot ^pivot ^trans ^transform', 'attribsfromcrosssection': '*', 'ptrowattrib': 'ptrow', 'ptcolattrib': 'ptcol', 'primrowattrib': 'primrow', 'primcolattrib': 'primcol', 'crosssectionnumattrib': 'crossnum', 'curvenumattrib': 'curvenum', 'scaleramp1value': 1.0, 'scaleramp1interp': 1, 'scaleramp2pos': 1.0, 'scaleramp2value': 1.0, 'scaleramp2interp': 1}
+
+#### fac_siding
+// 8 October 2026 13:46: Native Boolean cuts windows from full clapboard rows.
+
+// 8 October 2026 : siding with EXACT openings. EN: every clapboard row is cut analytically around the windows and the door (left, right, below the sill, above the lintel), so no boolean is needed and every piece stays a clean quad. The row count is multiplied by plank_multiplier (x1 = the old 28 rows, x2, x3). FR : ouvertures exactes, plus de boolean, nombre de planches multiplie.
+int addq(vector a; vector b; vector c; vector d; int rid; string grp) {
+    int p0 = addpoint(0, a); int p1 = addpoint(0, b); int p2 = addpoint(0, c); int p3 = addpoint(0, d);
+    int pr = addprim(0, "poly", p0, p1, p2, p3);
+    setprimattrib(0, "piece_id", pr, pr);
+    setprimattrib(0, "plank_row", pr, rid);
+    setprimgroup(0, grp, pr, 1);
+    return pr;
+}
+void sq(int flip; float xb; float xt; float yb; float yt; float ya; float yc; float z0; float z1; int rid; string grp) {
+    if (z1 - z0 < 0.0001 || yc - ya < 0.0001) return;
+    float ta = (ya - yb) / max(yt - yb, 0.000001); float tc = (yc - yb) / max(yt - yb, 0.000001);
+    float xa = lerp(xb, xt, ta); float xc = lerp(xb, xt, tc);
+    if (flip == 0) addq(set(xa, ya, z0), set(xc, yc, z0), set(xc, yc, z1), set(xa, ya, z1), rid, grp);
+    else addq(set(xa, ya, z1), set(xc, yc, z1), set(xc, yc, z0), set(xa, ya, z0), rid, grp);
+}
+void side_row(int flip; float xb; float xt; float yb; float yt; float l; float wz[]; float hw; float oy0; float oy1; int rid; string grp) {
+    float cur = -l * 0.5;
+    if (yb < oy1 && yt > oy0) {
+        for (int i = 0; i < len(wz); ++i) {
+            float z0 = wz[i] - hw; float z1 = wz[i] + hw;
+            sq(flip, xb, xt, yb, yt, yb, yt, cur, z0, rid, grp);                          // column left of the window, full row
+            if (yb < oy0) sq(flip, xb, xt, yb, yt, yb, min(yt, oy0), z0, z1, rid, grp);   // under the sill
+            if (yt > oy1) sq(flip, xb, xt, yb, yt, max(yb, oy1), yt, z0, z1, rid, grp);   // over the lintel
+            cur = z1;
+        }
+    }
+    sq(flip, xb, xt, yb, yt, yb, yt, cur, l * 0.5, rid, grp);
+}
+void gq(int flip; float zb; float zt; float yb; float yt; float hb; float ht; float ya; float yc; float x0; float x1; int rid; string grp) {
+    if (yc - ya < 0.0001) return;
+    float ta = (ya - yb) / max(yt - yb, 0.000001); float tc = (yc - yb) / max(yt - yb, 0.000001);
+    float ha = lerp(hb, ht, ta); float hc = lerp(hb, ht, tc);
+    float xla = max(x0, -ha); float xra = min(x1, ha); float xlc = max(x0, -hc); float xrc = min(x1, hc);
+    if (xra - xla < 0.0001 && xrc - xlc < 0.0001) return;
+    float za = lerp(zb, zt, ta); float zc = lerp(zb, zt, tc);
+    if (flip == 0) addq(set(xla, ya, za), set(xlc, yc, zc), set(xrc, yc, zc), set(xra, ya, za), rid, grp);
+    else addq(set(xra, ya, za), set(xrc, yc, zc), set(xlc, yc, zc), set(xla, ya, za), rid, grp);
+}
+void gable_row(int flip; float zb; float zt; float yb; float yt; float hb; float ht; float ox0[]; float ox1[]; float oy0[]; float oy1[]; int rid; string grp) {
+    float cur = -1000000.0;
+    for (int i = 0; i < len(ox0); ++i) {
+        if (yb < oy1[i] && yt > oy0[i]) {
+            gq(flip, zb, zt, yb, yt, hb, ht, yb, yt, cur, ox0[i], rid, grp);
+            if (yb < oy0[i]) gq(flip, zb, zt, yb, yt, hb, ht, yb, min(yt, oy0[i]), ox0[i], ox1[i], rid, grp);
+            if (yt > oy1[i]) gq(flip, zb, zt, yb, yt, hb, ht, max(yb, oy1[i]), yt, ox0[i], ox1[i], rid, grp);
+            cur = ox1[i];
+        }
+    }
+    gq(flip, zb, zt, yb, yt, hb, ht, yb, yt, cur, 1000000.0, rid, grp);
+}
+
+float w = ch("../../width");
+float l = ch("../../length");
+float wh = ch("../../wall_height");
+float fgh = ch("../../front_gable_height");
+float rgh = ch("../../rear_gable_height");
+int mult = chi("../../plank_multiplier") + 1;     // menu index 0,1,2 = x1 (old 28 rows), x2 (default), x3 (finest)
+int count = 28 * mult;
+float th = 0.025;
+float overlap = 0.02 / float(mult);
+float max_gh = max(fgh, rgh);
+float total_h = wh + max_gh;
+float step_h = total_h / float(count);
+float plank_h = step_h + overlap;
+
+float winA_w = ch("../../winA_width");
+float winA_h = ch("../../winA_height");
+float winA_sill = ch("../../winA_sill_y");
+float winA_sp = 1.60;
+if (ch("../../winA_spacing") > 0.0) winA_sp = ch("../../winA_spacing");
+int nwin = chi("../../Component_WindowA/num_side_windows");
+float winA_z[];
+if (nwin == 4) winA_z = array(-1.5 * winA_sp, -0.5 * winA_sp, 0.5 * winA_sp, 1.5 * winA_sp);
+else if (nwin == 2) winA_z = array(-winA_sp, winA_sp);
+else if (nwin == 1) winA_z = array(0.0);
+else winA_z = array(-winA_sp, 0.0, winA_sp);
+winA_z = array();
+float hwA = winA_w * 0.5 - 0.02;
+float winB_w = ch("../../winB_width");
+float winB_h = ch("../../winB_height");
+float winB_sill = ch("../../winB_sill_y");
+float hwB = winB_w * 0.5 - 0.025;
+
+// 1. LEFT WALL (X = -w/2) and 2. RIGHT WALL (X = +w/2)
+for (int k = 0; k < count; ++k) {
+    float y_bot = float(k) * step_h;
+    float y_top = min(y_bot + plank_h, wh);
+    if (y_bot >= wh) break;
+    side_row(0, -w * 0.5 - th, -w * 0.5, y_bot, y_top, l, winA_z, hwA, winA_sill, winA_sill + winA_h, k, "left_wall");
+    side_row(1,  w * 0.5 + th,  w * 0.5, y_bot, y_top, l, winA_z, hwA, winA_sill, winA_sill + winA_h, 100000 + k, "right_wall");
+}
+
+// 3. FRONT GABLE (Z = +l/2) : door and window B
+float door_cx = -0.38; float door_hw = 0.34; float door_bot = 0.60; float door_top = 1.85;
+float f_ox0[] = array(door_cx - door_hw);
+float f_ox1[] = array(door_cx + door_hw);
+float f_oy0[] = array(door_bot);
+float f_oy1[] = array(door_top);
+float r_ox0[]; float r_ox1[]; float r_oy0[]; float r_oy1[];
+float peak_f = wh + fgh;
+for (int k = 0; k < count; ++k) {
+    float y_bot = float(k) * step_h; float y_top = y_bot + plank_h;
+    if (y_bot >= peak_f) break;
+    float hb = w * 0.5; float ht = w * 0.5;
+    if (y_bot > wh) hb = w * 0.5 * clamp(1.0 - (y_bot - wh) / fgh, 0.0, 1.0);
+    if (y_top > wh) ht = w * 0.5 * clamp(1.0 - (y_top - wh) / fgh, 0.0, 1.0);
+    gable_row(0, l * 0.5 + th, l * 0.5, y_bot, y_top, hb, ht, f_ox0, f_ox1, f_oy0, f_oy1, 200000 + k, "front_wall");
+}
+
+// 4. REAR GABLE (Z = -l/2) : window B
+float peak_r = wh + rgh;
+for (int k = 0; k < count; ++k) {
+    float y_bot = float(k) * step_h; float y_top = y_bot + plank_h;
+    if (y_bot >= peak_r) break;
+    float hb = w * 0.5; float ht = w * 0.5;
+    if (y_bot > wh) hb = w * 0.5 * clamp(1.0 - (y_bot - wh) / rgh, 0.0, 1.0);
+    if (y_top > wh) ht = w * 0.5 * clamp(1.0 - (y_top - wh) / rgh, 0.0, 1.0);
+    gable_row(1, -l * 0.5 - th, -l * 0.5, y_bot, y_top, hb, ht, r_ox0, r_ox1, r_oy0, r_oy1, 300000 + k, "rear_wall");
+}
+
+
+#### fac_uv
+
+vector pos = point(0, "P", @vtxnum);
+int pr = @primnum;
+int pid = prim(0, "piece_id", pr);
+float texel = 4.0;
+
+v@uv = set(0, 0, 0);
+if (inprimgroup(0, "left_wall", pr)) {
+    @uv.x = (pos.z + 3.0) * texel;
+    @uv.y = pos.y * texel;
+} else if (inprimgroup(0, "right_wall", pr)) {
+    @uv.x = (3.0 - pos.z) * texel;
+    @uv.y = pos.y * texel;
+} else if (inprimgroup(0, "front_wall", pr)) {
+    @uv.x = (pos.x + 2.0) * texel;
+    @uv.y = pos.y * texel;
+} else if (inprimgroup(0, "rear_wall", pr)) {
+    @uv.x = (2.0 - pos.x) * texel;
+    @uv.y = pos.y * texel;
+}
+
+float rand_u = rand(float(pid) + 42.123);
+@uv.x += rand_u * 0.5;
+
+
+#### cross_fix
+# 10 October 2026 (v8 lower end cropped by the post inner face) (v7, rafter ends extended to the centre plane then cut flat) (v6) / (v5) : church cross + inverted arrow, ONE component. EN: the armature generator now builds the cross post as the SAME beam as the king post and starts the arrow exactly at the top of window B, so this node only (1) makes the crossbar thinner in depth, centred on the post depth, (2) gives post, crossbar and arms one piece_id and px_per_m = 1024. Pieces are found by shape on the front gable (z 6.1 to 6.45). FR : croix et fleche inversee = un seul composant ; la geometrie vient du generateur, ce noeud amincit le croisillon et unifie les identifiants.
+import hou
+import numpy as np
+geo = hou.pwd().geometry()
+CROSSBAR_DEPTH_RATIO = 0.78
+PX_PER_M = 1024.0
+win = hou.node(hou.pwd().parent().path() + '/Component_WindowB').geometry().boundingBox()
+WIN_TOP = win.maxvec()[1]
+for nm, dv in (('px_per_m', 0.0),):
+    if geo.findPrimAttrib(nm) is None: geo.addAttrib(hou.attribType.Prim, nm, dv)
+pieces = {}
+for pr in geo.prims(): pieces.setdefault(pr.attribValue('piece_id'), []).append(pr)
+def box(prs):
+    P = np.array([v.point().position() for pr in prs for v in pr.vertices()], float)
+    return P.min(axis=0), P.max(axis=0)
+# the front gable is the one with the highest z extent. FR : pignon avant.
+post = bar = None; arches = []
+for pid, prs in pieces.items():
+    lo, hi = box(prs); sx, sy = hi[0] - lo[0], hi[1] - lo[1]
+    if not (6.1 < lo[2] and hi[2] < 6.45 and abs(lo[0] + hi[0]) < 0.8 and lo[1] > WIN_TOP - 0.4 and hi[1] < 9.5): continue
+    if sx < 0.2 and sy > 1.0: post = (prs, lo, hi)
+    elif sx > 0.6 and sy < 0.2: bar = (prs, lo, hi)
+    elif 0.2 < sx < 0.6 and 0.2 < sy < 1.0: arches.append((prs, lo, hi))
+def move_points(prs, fn):
+    done = set()
+    for pr in prs:
+        for v in pr.vertices():
+            pt = v.point()
+            if pt.number() in done: continue
+            done.add(pt.number()); pt.setPosition(fn(pt.position()))
+if post and bar:
+    zc = (post[1][2] + post[2][2]) / 2.0
+    zb = (bar[1][2] + bar[2][2]) / 2.0
+    move_points(bar[0], lambda p: (p[0], p[1], zc + (p[2] - zb) * CROSSBAR_DEPTH_RATIO))
+
+# 10 October 2026 : ROTATED BEAM ENDS ARE CROPPED BY A STRAIGHT PLANE. EN: the two gable rafters of each gable (pieces whose box is long in x and y, thin in z) cross each other by 0.04 m at the apex with angled end caps ; every point past the vertical plane x = 0 is projected onto it, so each rafter ends flat against the king post and no angled face overlaps the other rafter (same result as a boolean with a straight cube, without a second solid). FR : le bout oblique est coupe par un plan droit, plus aucune face qui se chevauche.
+APEX_X = 0.0
+CAP_REACH = 0.12      # metres : points within this distance of the tip in x belong to the end cap. FR : points du bout.
+for pid, prs in pieces.items():
+    lo, hi = box(prs); sx, sy, sz = hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]
+    if not (sx > 2.5 and sy > 2.5 and sz < 0.3): continue
+    left = (lo[0] + hi[0]) / 2.0 < 0
+    n = (sx * sx + sy * sy) ** 0.5; dx, dy = sx / n, sy / n          # beam axis in the gable plane (rising toward the apex). FR : axe de la poutre.
+    ax = (dx, dy) if left else (-dx, dy)
+    def to_cut(p, ax=ax, left=left):
+        # 10 October 2026 v7 : the angled end cap is EXTENDED along the beam axis until it meets the plane x = 0, so top and bottom edges both reach the centre line and the cut is a flat vertical face (the previous clamp left a notch). FR : on prolonge le bout le long de l'axe jusqu'au plan x = 0.
+        if (left and p[0] > hi[0] - CAP_REACH) or (not left and p[0] < lo[0] + CAP_REACH):
+            t = (APEX_X - p[0]) / ax[0]
+            return (APEX_X, p[1] + ax[1] * t, p[2])
+        return p
+    move_points(prs, to_cut)
+    # 10 October 2026 v8 : LOWER END, same method. EN: the straight corner post is never cut ; the inclined rafter is cropped by the vertical plane of the post inner face (x = +/- (width / 2 - beam_size / 2)), the end points slide along the beam axis onto that plane, so the rafter ends flat against the post and no side face of the rafter runs inside the post. FR : bout bas, meme methode ; le poteau droit n'est jamais coupe, le chevron s'arrete a plat contre sa face interieure.
+    arm = hou.node(hou.pwd().parent().path() + '/Component_Armature')
+    x_in = arm.parm('width').eval() * 0.5 - arm.parm('beam_size').eval() * 0.5
+    def to_post(p, ax=ax, left=left):
+        if left and p[0] < -x_in:
+            t = (-x_in - p[0]) / ax[0]; return (-x_in, p[1] + ax[1] * t, p[2])
+        if (not left) and p[0] > x_in:
+            t = (x_in - p[0]) / ax[0]; return (x_in, p[1] + ax[1] * t, p[2])
+        return p
+    move_points(prs, to_post)
+members = [x for x in [post, bar] + arches if x]
+if members:
+    comp_id = members[0][0][0].attribValue('piece_id')
+    for prs, lo, hi in members:
+        for pr in prs:
+            pr.setAttribValue('piece_id', comp_id); pr.setAttribValue('px_per_m', PX_PER_M)
+
+
+#### church_extra
+{'corner_post_cutter': "# 10 October 2026 : four boxes, one per corner post of the armature, shrunk by 0.5 mm. The facade planks are cut by them so no plank runs inside a corner post and no plank end is coplanar with a post face. FR : quatre boites, une par poteau d'angle, reduites de 0,5 mm ; les planches de facade sont decoupees par elles, aucune planche ne traverse un poteau et aucune extremite n'est coplanaire avec une face de poteau.\ngeo = hou.pwd().geometry()\na = hou.node(hou.pwd().parent().path() + '/Component_Armature')\nw = a.parm('width').eval(); l = a.parm('length').eval(); wh = a.parm('wall_height').eval(); half = a.parm('beam_size').eval() * 0.5 - 0.0005\nfor sx in (-1, 1):\n    for sz in (-1, 1):\n        cx, cz = sx * w * 0.5, sz * l * 0.5\n        pts = []\n        for y in (0.0005, wh - 0.0005):\n            for dx, dz in ((-half, -half), (half, -half), (half, half), (-half, half)):\n                pts.append(geo.createPoint()); pts[-1].setPosition((cx + dx, y, cz + dz))\n        for quad in ((0,3,2,1),(4,5,6,7),(0,1,5,4),(1,2,6,5),(2,3,7,6),(3,0,4,7)):\n            poly = geo.createPolygon()\n            for i in quad: poly.addVertex(pts[i])\n", 'find_inward_faces': "# 11 October 2026 : painted faces turned toward the inside (winding and normal): a ray along the face normal hits the church while the opposite ray escapes. Cycles hid them (double sided), OpenGL and Unreal show them dark. FR : faces peintes tournees vers l interieur.\nimport hou\ngeo = hou.pwd().geometry()\nocc = hou.Geometry(); occ.merge(geo)\nocc.deletePrims([p for p in occ.prims() if p.stringAttribValue('material_name') not in ('01 Bois peint', '04 Bois des fenêtres', '03 Bardeaux')])\ngrp = geo.createPrimGroup('inward')\nP = hou.Vector3(); N = hou.Vector3(); U = hou.Vector3()\nfor p in geo.prims():\n    if p.stringAttribValue('material_name') != '01 Bois peint': continue\n    vs = p.vertices()\n    if len(vs) < 3: continue\n    n = p.normal()\n    c = hou.Vector3(0, 0, 0)\n    for v in vs: c += v.point().position()\n    c = c / len(vs)\n    if occ.intersect(c + n * 0.002, n * 50.0, P, N, U) >= 0 and occ.intersect(c - n * 0.002, -n * 50.0, P, N, U) < 0: grp.add(p)\n"}

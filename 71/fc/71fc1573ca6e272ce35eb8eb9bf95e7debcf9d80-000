@@ -1,0 +1,122 @@
+#### compute_uvs
+
+int pt = vertexpoint(0, @vtxnum);
+vector p = point(0, "P", pt);
+int pr = vertexprim(0, @vtxnum);
+int pid = prim(0, "piece_id", pr);
+
+float density = chf("../../texel_density");
+if (density <= 0.001) density = 2.0;
+int seed = chi("../uv_seed");
+int is_checker = chi("../../debug_uv_03") || chi("../../debug_uv_all");
+
+float w = ch("../width");
+float l = ch("../length");
+float wh = ch("../wall_height");
+float gh = ch("../gable_height");
+float eave_oh = ch("../eave_overhang");
+float gable_oh = ch("../gable_overhang");
+float half_w = w * 0.5 + eave_oh;
+float total_len = l + gable_oh * 2.0;
+float slope_len = sqrt(half_w * half_w + gh * gh);
+float pitch_angle = atan2(gh, half_w);
+float cos_p = cos(pitch_angle);
+float sin_p = sin(pitch_angle);
+
+vector T_l = set( cos_p,  sin_p, 0.0);
+vector T_r = set(-cos_p,  sin_p, 0.0);
+vector N_l = set(-sin_p,  cos_p, 0.0);
+vector N_r = set( sin_p,  cos_p, 0.0);
+
+vector T = (p.x < 0.0) ? T_l : T_r;
+vector N = (p.x < 0.0) ? N_l : N_r;
+
+vector eave_ref = (p.x < 0.0) ? set(-half_w, wh, 0.0) : set(half_w, wh, 0.0);
+
+float z_norm = (p.z + total_len * 0.5);
+float dist_slope = dot(p - eave_ref, T) + 0.10;
+
+vector2 uv_val = set(0.0, 0.0);
+
+if (inprimgroup(0, "group_shingles", pr)) {
+    float u_slope = dist_slope * density;
+    float v_width = z_norm * density;
+    float rnd_u = is_checker ? 0.0 : rand(float(pid) * 17.3 + float(seed));
+    float rnd_v = is_checker ? 0.0 : rand(float(pid) * 31.7 + float(seed));
+    uv_val = set(u_slope + rnd_u, v_width + rnd_v);
+}
+else if (inprimgroup(0, "group_ridge", pr)) {
+    float u_len = z_norm * density;
+    float v_arch = (p.x + 0.30) * density;
+    float rnd_u = is_checker ? 0.0 : rand(float(pid) * 19.1 + float(seed));
+    uv_val = set(u_len + rnd_u, v_arch);
+}
+else if (inprimgroup(0, "group_bargeboard", pr) || inprimgroup(0, "group_rafters", pr)) {
+    float u_slope = dist_slope * density;
+    float v_depth = dot(p, N) * density;
+    float rnd_u = is_checker ? 0.0 : rand(float(pid) * 23.4 + float(seed));
+    uv_val = set(u_slope + rnd_u, v_depth);
+}
+else if (inprimgroup(0, "group_fascia", pr)) {
+    float u_len = z_norm * density;
+    float v_h = dot(p, N) * density;
+    uv_val = set(u_len, v_h);
+}
+else {
+    float u_len = z_norm * density;
+    float v_slope = dist_slope * density;
+    uv_val = set(u_len, v_slope);
+}
+
+@uv = set(uv_val.x, uv_val.y, 0.0);
+
+
+#### clean_attribs
+[('doptdel', 1), ('ptdel', '* ^P'), ('dovtxdel', 1), ('doprimdel', 1), ('dodtldel', 1), ('updatevar', 1)]
+
+#### roof_rake_crop
+# 10 October 2026 : INCLINED RAKE BOARDS ARE CROPPED BY THE POST PLANE (Matthieu : the sloped beam enters the vertical one, cut only the edge that goes inside, never the straight post). EN: the four thin boards that follow the gable slope behind the front and back gable faces (long in x and y, thinner than 0.12 m in z, |z| about 6.2) run through the corner posts and stick out 0.29 m on the other side ; their lower-end points slide ALONG THE BOARD AXIS onto the vertical plane of the post inner face, so each board stops flat against the post. FR : planches de rive inclinees coupees au plan de la face interieure du poteau, le poteau droit n'est jamais coupe.
+import hou, numpy as np
+geo = hou.pwd().geometry()
+arm = hou.node(hou.pwd().parent().path() + '/Component_Armature')
+x_in = arm.parm('width').eval() * 0.5 - arm.parm('beam_size').eval() * 0.5
+pieces = {}
+for pr in geo.prims(): pieces.setdefault(pr.attribValue('piece_id'), []).append(pr)
+for pid, prs in pieces.items():
+    P = np.array([v.point().position() for pr in prs for v in pr.vertices()], float)
+    lo, hi = P.min(axis=0), P.max(axis=0); sx, sy, sz = hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]
+    if not (sx > 3.0 and sy > 3.0 and sz < 0.12 and 6.1 < abs((lo[2] + hi[2]) / 2.0) < 6.3): continue
+    left = (lo[0] + hi[0]) / 2.0 < 0
+    nrm = (sx * sx + sy * sy) ** 0.5; dx, dy = sx / nrm, sy / nrm
+    done = set()
+    for pr in prs:
+        for v in pr.vertices():
+            pt = v.point()
+            if pt.number() in done: continue
+            done.add(pt.number()); p = pt.position()
+            if left and p[0] < -x_in:
+                t = (-x_in - p[0]) / dx; pt.setPosition((-x_in, p[1] + dy * t, p[2]))
+            elif (not left) and p[0] > x_in:
+                t = (x_in - p[0]) / (-dx); pt.setPosition((x_in, p[1] + dy * t, p[2]))
+
+
+#### uv_roof_church
+# 9 October 2026 : loader. EN: the UV code lives in one file shared by the church and the porch roof; only KIND changes. FR : le code est dans un fichier unique.
+KIND = 'roof_church'
+exec(open('/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Scripts/UvRoofTrimSheet36.py').read())
+
+
+#### mat_tag_roof
+if (inprimgroup(0, "group_shingles", @primnum) || inprimgroup(0, "group_ridge", @primnum)) {
+    s@material_id = "M_WoodShinglesRoof_03";
+    s@material_name = "03 Bardeaux";
+    v@Cd = set(0.60, 0.56, 0.50);
+} else {
+    s@material_id = "M_WornWood_02";
+    s@material_name = "02 Bois exposé";
+    v@Cd = set(0.55, 0.46, 0.38);
+}
+
+
+#### hda
+{'name': 'zenray_component_roof', 'lib': '/Users/zenray/Create/Build/Memory/Houdini/otls/Component_Roof.hda', 'locked': False, 'matches': False}
