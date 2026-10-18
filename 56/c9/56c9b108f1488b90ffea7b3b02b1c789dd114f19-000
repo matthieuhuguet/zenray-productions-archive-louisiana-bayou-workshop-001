@@ -1,41 +1,41 @@
 {
- "out": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/EntranceArch_GeometryValidation_19-October-2026.png",
- "title": "Entrance_Arch_Clean : geometry to validate (19 October 2026, v2)",
- "subtitle": "909 faces instead of 2 928 (-69 %), 1 004 points instead of 3 636. 22 closed solids, 1 connected object (old : 2), 0 duplicate point, 0 open edge, 0 flipped face.",
+ "out": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/EntranceArch_GeometryValidation_v3_19-October-2026.png",
+ "title": "Entrance_Arch_Clean : geometry to validate (19 October 2026, v3, symmetric)",
+ "subtitle": "995 faces instead of 2 928 (-66 %), 1 114 points instead of 3 636. 26 closed solids, 1 connected object (old : 2), 0 duplicate point, 0 open edge, 0 flipped face. Left right and front back gap : 0.0004 mm.",
  "new": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/clean_faces.json",
  "old": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/old_faces.json",
  "px": 900,
  "top": [
-  {"src": "new", "view": "iso", "wire": false, "label": "new, 3/4 view, one colour per part"},
-  {"src": "new", "view": "front", "wire": true, "label": "new, front, wire"},
-  {"src": "old", "view": "iso", "wire": false, "label": "old, 3/4 view (2 928 faces)"}
+  {"src": "new", "view": "iso", "wire": false, "label": "front, 3/4 view"},
+  {"src": "new", "view": "iso_back", "wire": false, "label": "back, 3/4 view : the same details"},
+  {"src": "new", "view": "front", "wire": true, "label": "front, wire"}
  ],
  "details": [
   {"src": "new", "view": "front", "wire": false, "groups": ["arch", "pillar_R"], "frame": [0.80, 1.55, -0.2, 1.15, 2.30, 0.2], "label": "arch leg on the post axis (red line)",
    "guides": [{"p0": [0.9727, 1.50, 0.0], "p1": [0.9727, 2.40, 0.0], "colour": [1.0, 0.25, 0.25]}]},
-  {"src": "new", "view": "front", "wire": false, "groups": ["sign", "rivet", "wire", "arch", "pillar_R"], "frame": [0.35, 1.75, -0.2, 1.10, 2.55, 0.2], "label": "sign held by 4 square wires"},
-  {"src": "new", "view": "iso", "wire": false, "groups": ["pendant"], "label": "pendant, ribs on the web"},
-  {"src": "new", "view": "side", "wire": false, "groups": ["pendant"], "label": "pendant, side : both faces alike"}
+  {"src": "new", "view": "front", "wire": false, "groups": ["sign", "rivet", "wire", "arch", "pillar_R"], "frame": [0.35, 1.75, -0.2, 1.10, 2.55, 0.2], "label": "sign held by 4 square wires, front"},
+  {"src": "new", "view": "back", "wire": false, "groups": ["sign", "rivet", "wire", "arch", "pillar_R"], "frame": [0.35, 1.75, -0.2, 1.10, 2.55, 0.2], "label": "same corner seen from behind"},
+  {"src": "new", "view": "iso", "wire": true, "groups": ["pendant"], "label": "pendant, wire"}
  ],
  "table": {
-  "columns": ["Part", "Faces old → new", "Duplicate points", "Open edges", "Closed solids", "Max gap to old (mm)"],
-  "widths": [2.0, 2.2, 2.4, 2.2, 2.4, 3.2],
+  "columns": ["Part", "Faces old → new", "Duplicate points", "Open edges", "Closed solids", "Remark"],
+  "widths": [2.0, 2.2, 2.4, 2.2, 2.4, 3.4],
   "rows": [
-   ["arch", "1 282 → 194", "0 → 0", "0 → 0", "1/1 → 1/1", "27.6 (re-centred on the posts)"],
-   ["posts (2)", "312 → 308", "64 → 0", "0 → 0", "12/12 → 2/2", "1.0"],
-   ["cross", "56 → 86", "0 → 0", "0 → 0", "2 crossing → 1 welded", "0.0"],
-   ["sign plate", "1 064 → 71", "744 → 0", "1 196 → 0", "0/5 → 1/1", "4.1"],
-   ["rivets (4)", "in the sign → 40", "in the sign → 0", "in the sign → 0", "4/4", "7.3"],
-   ["wires (4)", "hangers 28 → 24", "0 → 0", "0 → 0", "2/2 → 4/4", "new, replace the hangers"],
+   ["arch", "1 282 → 194", "0 → 0", "0 → 0", "1/1 → 1/1", "re-centred on the post axes"],
+   ["posts (2)", "312 → 308", "64 → 0", "0 → 0", "12/12 → 2/2", "max gap to old 1.0 mm"],
+   ["cross", "56 → 86", "0 → 0", "0 → 0", "2 crossing → 1 welded", "same shape (0.0 mm)"],
+   ["sign plate", "1 064 → 117", "744 → 0", "1 196 → 0", "0/5 → 1/1", "frame and recess on both faces"],
+   ["rivets", "in the sign → 80", "in the sign → 0", "in the sign → 0", "8/8", "4 on each face"],
+   ["wires (4)", "hangers 28 → 24", "0 → 0", "0 → 0", "2/2 → 4/4", "replace the hangers"],
    ["pendant", "186 → 186", "0 → 0", "8 → 0", "7/8 → 9/9", "front view 99.8 % identical"],
-   ["TOTAL", "2 928 → 909", "808 → 0", "1 204 → 0", "24/30 → 22/22", "1 object instead of 2"]
+   ["TOTAL", "2 928 → 995", "808 → 0", "1 204 → 0", "24/30 → 26/26", "1 object instead of 2"]
   ]
  },
  "notes": [
-  "Re-centred : the arch centre line lands exactly on the axis of each post (arch radius follows the post span, crown height kept). Left right symmetry of the whole prop : 0.0004 mm.",
-  "Nothing floats : the sign is held by 4 square wires (upper pair to the arch, lower pair to the post collars, at the points you marked), the pendant ribs sit on the web on BOTH faces. The hangers are gone.",
-  "Pendant : same front view, ribs now rooted in the tablet and the die, symmetric front to back (the old ribs floated up to 53 mm in front of the web).",
-  "Cross : one welded solid, arm chamfers kept (arm_chamfer = 0 gives 66 faces). Top rivets 8 mm lower so they no longer cut into the frame. Arch : 24 segments (2.1 mm from the true circle).",
-  "All values live in CTRL_arch, CTRL_post, CTRL_cross, CTRL_sign, CTRL_wire, CTRL_pendant. Untouched : /obj/Entrance_Arch. New : /obj/Entrance_Arch_Clean/OUT_clean. UV and trim sheet start after your validation."
+  "Symmetry : the +z face, the one with the details, is kept, clipped on z = 0 and mirrored by the Mirror SOP in clip mode ; the 285 faces it cut in two are dissolved back, so every flat face is whole again (parameters in CTRL_sym).",
+  "Re-centred : the arch centre line lands exactly on the axis of each post (arch radius follows the post span, crown height kept).",
+  "Nothing floats : the sign is held by 4 square wires (upper pair to the arch, lower pair to the post collars, at the points you marked), the pendant ribs sit on the web. The hangers are gone.",
+  "Cross : one welded solid, arm chamfers kept (arm_chamfer = 0 gives 66 faces before mirroring). Top rivets 8 mm lower so they no longer cut into the frame. Arch : 24 segments (2.1 mm from the true circle).",
+  "All values live in CTRL_arch, CTRL_post, CTRL_cross, CTRL_sign, CTRL_wire, CTRL_pendant, CTRL_sym. Untouched : /obj/Entrance_Arch. New : /obj/Entrance_Arch_Clean/OUT_clean. UV and trim sheet start after your validation."
  ]
 }
