@@ -1,0 +1,23 @@
+# 18 October 2026 : KARMA MATERIALS OF THE CHURCH, thin script on top of KarmaLib (/Users/zenray/.claude/skills/zenray-houdini/scripts/karma/KarmaLib.py). EN: Karma reads MaterialX, not UsdPreviewSurface, so the six materials of /stage/PC_matlib are rebuilt as mtlxstandard_surface with the latest ZenRay Height maps. Edit NORMALS (step 2 of the debug protocol is False, step 3 is True) and the SPEC block, then exec this file in the live Houdini. The AO is already multiplied into the base colour maps, so there is no AO input. Documentation : /Users/zenray/.claude/skills/zenray-houdini/Karma1.md. FR : les six materiaux en MaterialX pour Karma, NORMALS et SPEC se reglent ici.
+exec(open('/Users/zenray/.claude/skills/zenray-houdini/scripts/karma/KarmaLib.py').read())
+
+NORMALS = False       # False : base colour + roughness only (protocol step 2). True : add the normal maps (step 3).
+T = TEX_DIR
+SPEC = {
+    'MX_WhitePaint': {'prim': '/PC/church_paint', 'bc': T + 'BayouWhitePaint_BaseColor_ZenRayHeight_18-October-2026.png',
+                      'rough': T + 'BayouWhitePaint_Roughness_ZenRayHeight_18-October-2026.png',
+                      'normal': T + 'BayouWhitePaint_Normal_OpenGL_ZenRayHeight_18-October-2026.png', 'wrap': 'periodic'},
+    'MX_Windows':    {'prim': '/PC/church_windows', 'bc': T + 'BayouShutterTrim_basecolor_2048.png', 'rough_const': 0.78, 'wrap': 'periodic'},
+    'MX_Glass':      {'prim': '/PC/church_glass', 'color': (0.80, 0.90, 0.95), 'rough_const': 0.05, 'transmission': 0.9, 'thin_walled': 1},
+    'MX_Floor':      {'prim': '/PC/floor', 'color': (0.32, 0.36, 0.20), 'rough_const': 1.0},
+    'MX_Roof':       {'prim': '/PC/church_roof', 'bc': T + 'BayouRoofTrimSheet36_BaseColor_ZenRayHeight_18October2026.png',
+                      'rough': T + 'BayouRoofTrimSheet36_Roughness_ZenRayHeight_18October2026.png',
+                      'normal': T + 'BayouRoofTrimSheet36_Normal_OpenGL_ZenRayHeight_18October2026.png', 'wrap': 'clamp'},
+    'MX_Manny':      {'prim': '/PC/manny', 'color': (0.95, 0.42, 0.18), 'rough_const': 0.6},
+}
+if not NORMALS:
+    SPEC = {m: {k: v for k, v in s.items() if k != 'normal'} for m, s in SPEC.items()}
+a = hou.node('/stage/PC_assign')
+if a.userData('zr_assign_backup'):          # leave the grey debug before rebuilding
+    a.destroyUserData('zr_assign_backup')
+result = build_mtlx_set(SPEC)
