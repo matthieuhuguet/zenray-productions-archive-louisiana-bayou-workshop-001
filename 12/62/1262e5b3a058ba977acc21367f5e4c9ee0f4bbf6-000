@@ -1,0 +1,109 @@
+# 18 October 2026 : ROOF MAPS FROM THE GENERATED HEIGHT, native COP nodes only. EN: the five maps of the zenray-houdini skill (Base Color, Roughness, Height, Normal, AO) are derived from OUT_height inside /obj/ZRH_RoofTiles36 with heighttoambientocclusion, heighttonormal, remap, blend, constant and colorcorrect (no rasterize, no channel extract). Every value is a parameter of one node ; colours come from the concept roof (measured crops, see PALETTE). Run inside Houdini : exec(open(this file).read()). Idempotent (deletes its own M_* nodes first). FR : les 5 maps du toit depuis la height, nodes natifs.
+import hou
+
+G = hou.node('/obj/ZRH_RoofTiles36')
+SRC = G.node('OUT_height')
+OUTDIR = '/Users/zenray/.claude/tmp/tmp-zenray-height/projects/RoofTiles36/maps/'
+NAME = 'RoofTiles36'
+
+# ---------------------------------------------------------------- parameters (one place)
+PALETTE = {                       # sRGB 0..1, measured on the concept roof crops (lit image, so approximate albedo)
+    'dark':  (0.21, 0.165, 0.143),
+    'mid':   (0.30, 0.240, 0.200),
+    'light': (0.42, 0.340, 0.270),
+}
+P = {
+    'mask_lo': (0.35, 0.55),      # height range that blends dark -> mid
+    'mask_hi': (0.55, 0.78),      # height range that blends mid -> light
+    'ao_floor': 0.5,              # base colour darkening in the deepest crevices (1 = no AO in the colour)
+    'rough_joint': 0.95,          # roughness where the height is 0 (joints)
+    'rough_top': 0.72,            # roughness where the height is 1 (raised grain)
+    'normal_scale': 0.005,        # normal strength, measured : red channel p5 0.29 and p95 0.72 (scale 10 saturated 40 percent of the pixels)
+    'normal_kernel': 1,           # sampling kernel
+    'normal_flip_green': True,    # True = DirectX (Unreal) ; False = OpenGL
+    'ao_space': 1,                # 0 image, 1 pixel, 2 local
+    'ao_radius_px': 30.0,
+    'ao_height_scale': 10.0,   # tuned 18 October 2026 : 1 gave a flat AO (p5 0.95), 10 gives p5 about 0.62
+}
+
+# ---------------------------------------------------------------- clean
+for n in list(G.children()):
+    if n.name().startswith('M_'):
+        n.destroy()
+for b in list(G.networkBoxes()):
+    if (b.comment() or '').startswith('MAPS toit'):
+        b.destroy()
+
+nodes = {}
+def mk(kind, name, inputs=(), **parms):
+    n = G.createNode(kind, name)
+    for i, src in enumerate(inputs):
+        if src is not None:
+            n.setInput(i, src)
+    for k, v in parms.items():
+        n.parm(k).set(v)
+    nodes[name] = n
+    return n
+
+# ---------------------------------------------------------------- AO
+ao = mk('heighttoambientocclusion', 'M_ao', [SRC], space=P['ao_space'], viewradius_pixel=P['ao_radius_px'], heightscale=P['ao_height_scale'])
+
+# ---------------------------------------------------------------- normal (offset encoding 0..1), DirectX = green flipped
+n_gl = mk('heighttonormal', 'M_normal_gl', [SRC], normaltype=1, scale=P['normal_scale'], kernel=P['normal_kernel'])
+if P['normal_flip_green']:
+    n_out = mk('colorcorrect', 'M_normal_dx', [n_gl], master_multg=-1.0, master_addg=1.0)
+else:
+    n_out = n_gl
+
+# ---------------------------------------------------------------- roughness
+rough = mk('remap', 'M_rough', [SRC], useramp=0, inputmin=0.0, inputmax=1.0, outputmin=P['rough_joint'], outputmax=P['rough_top'])
+
+# ---------------------------------------------------------------- base colour
+cols = {}
+for k, rgb in PALETTE.items():
+    c = mk('constant', 'M_col_' + k, [SRC], signature='f3', f3r=rgb[0], f3g=rgb[1], f3b=rgb[2])
+    cols[k] = c
+m_lo = mk('remap', 'M_mask_lo', [SRC], useramp=0, inputmin=P['mask_lo'][0], inputmax=P['mask_lo'][1], outputmin=0.0, outputmax=1.0)
+m_hi = mk('remap', 'M_mask_hi', [SRC], useramp=0, inputmin=P['mask_hi'][0], inputmax=P['mask_hi'][1], outputmin=0.0, outputmax=1.0)
+mix1 = mk('blend', 'M_mix_dark_mid', [cols['dark'], cols['mid'], m_lo])
+mix2 = mk('blend', 'M_mix_mid_light', [mix1, cols['light'], m_hi])
+ao_k = mk('remap', 'M_ao_floor', [ao], useramp=0, inputmin=0.0, inputmax=1.0, outputmin=P['ao_floor'], outputmax=1.0)
+bc = mk('blend', 'M_basecolor', [mix2, ao_k], mode=5)   # 5 = multiply
+
+# ---------------------------------------------------------------- exports (raw, like ZRH_export)
+def exporter(name, src, fname):
+    e = mk('rop_image', name, [src])
+    e.parm('copoutput').set(OUTDIR + NAME + '_' + fname + '.png')
+    e.parm('colorconversion').set(2)
+    e.parm('setres').set(1); e.parm('res1').set(2048); e.parm('res2').set(2048)
+    e.parm('mkpath').set(1)
+    return e
+exporter('M_export_BaseColor', bc, 'BaseColor')
+exporter('M_export_Normal', n_out, 'Normal')
+exporter('M_export_Roughness', rough, 'Roughness')
+exporter('M_export_AO', ao, 'AO')
+
+# ---------------------------------------------------------------- layout and box
+box = G.createNetworkBox('M_maps_box')
+box.setComment('MAPS toit : base color, normal, roughness, AO depuis la height (18 October 2026)')
+for n in nodes.values():
+    box.addNode(n)
+cols_x = {'M_ao': 0, 'M_normal_gl': 0, 'M_rough': 0, 'M_col_dark': 0, 'M_col_mid': 0, 'M_col_light': 0, 'M_mask_lo': 0, 'M_mask_hi': 0,
+          'M_normal_dx': 1, 'M_ao_floor': 1, 'M_mix_dark_mid': 1, 'M_mix_mid_light': 2, 'M_basecolor': 3,
+          'M_export_BaseColor': 4, 'M_export_Normal': 4, 'M_export_Roughness': 4, 'M_export_AO': 4}
+order = ['M_ao', 'M_normal_gl', 'M_rough', 'M_col_dark', 'M_col_mid', 'M_col_light', 'M_mask_lo', 'M_mask_hi']
+rows = {}
+for nm, c in cols_x.items():
+    r = rows.get(c, 0); rows[c] = r + 1
+    nodes[nm].setPosition(hou.Vector2(c * 3.4, -r * 1.0))
+box.fitAroundContents()
+# put the box under the existing layer boxes
+lowest = min(b.position()[1] for b in G.networkBoxes() if b.name() != 'M_maps_box')
+dy = (lowest - 3.6) - (box.position()[1] + box.size()[1])
+for n in nodes.values():
+    p = n.position(); n.setPosition(hou.Vector2(p[0], p[1] + dy))
+box.fitAroundContents()
+for n in nodes.values():
+    n.cook(force=True)
+errs = {n.name(): n.errors() for n in nodes.values() if n.errors()}
+result = {"nodes": len(nodes), "errors": errs}

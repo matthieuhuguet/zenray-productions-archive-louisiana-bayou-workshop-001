@@ -1,0 +1,24 @@
+# 18 October 2026 : contact sheet of the five roof maps (reference, height, base color, normal, roughness, AO). EN: run with /Users/zenray/.venvs/shorts/bin/python -I MapsSheet.py <project maps folder> <name> <reference height> ; writes <name>_MapsSheet.png in the folder. FR : planche des 5 maps du toit.
+import sys, numpy as np
+from PIL import Image, ImageDraw, ImageFont
+folder, name, ref = sys.argv[1].rstrip('/') + '/', sys.argv[2], sys.argv[3]
+T, PAD, LAB = 700, 24, 46
+def load(p, kind):
+    im = Image.open(p)
+    if kind == 'gray':
+        x = np.asarray(im, dtype=np.float64); x = x / (65535.0 if x.max() > 255 else 255.0)
+        if x.ndim == 3: x = x.mean(-1)
+        im = Image.fromarray((np.clip(x, 0, 1) * 255).astype(np.uint8), 'L').convert('RGB')
+    else:
+        im = im.convert('RGB')
+    return im.resize((T, T), Image.LANCZOS)
+tiles = [('Référence height', load(ref, 'gray')), ('Height', load(folder + name + '_Height.png', 'gray')), ('Base Color', load(folder + name + '_BaseColor.png', 'rgb')),
+         ('Normal (DirectX)', load(folder + name + '_Normal.png', 'rgb')), ('Roughness', load(folder + name + '_Roughness.png', 'gray')), ('AO', load(folder + name + '_AO.png', 'gray'))]
+W = 3 * T + 4 * PAD; H = 2 * (T + LAB) + 3 * PAD + 70
+sheet = Image.new('RGB', (W, H), (28, 28, 30)); d = ImageDraw.Draw(sheet)
+f = ImageFont.truetype('/Users/zenray/Library/Fonts/AnthropicSans-Regular.ttf', 30); ft = ImageFont.truetype('/Users/zenray/Library/Fonts/AnthropicSerif-Regular.ttf', 36)
+d.text((PAD, 14), name + ' : les 5 maps du toit depuis la height (état actuel)', fill=(235, 235, 235), font=ft)
+for i, (lab, im) in enumerate(tiles):
+    c, r = i % 3, i // 3; x = PAD + c * (T + PAD); y = 70 + PAD + r * (T + LAB + PAD)
+    d.text((x, y), lab, fill=(220, 220, 220), font=f); sheet.paste(im, (x, y + LAB))
+sheet.save(folder + name + '_MapsSheet.png'); print(folder + name + '_MapsSheet.png')
