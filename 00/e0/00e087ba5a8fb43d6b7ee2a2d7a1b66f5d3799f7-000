@@ -1,0 +1,41 @@
+# Arche Entrance_Arch : plan de méthodologie et liste des tâches (19 October 2026)
+
+19 October 2026 : retour de Matthieu sur le premier test (mots, grammaire seule) : l'esprit est le bon, mais le placement des UV et la superposition ne sont « pas du tout ça » ; la modélisation de l'arche, du panneau et de la croix n'est pas propre (trop de polygones, inutile) ; refaire au propre, le moins de polygones possible en gardant la forme, NURBS pour la courbe, sweeps, tout SOUDÉ ; puis UV alignées à gauche, composants répétés SUPERPOSÉS ; livrer une carte colorée (bandes et emplacement de la géométrie) pour une génération IA de la height, avec la certitude que les distances sont justes ; chercher avant si les nodes de base de Houdini font déjà le travail ; il valide d'abord la géométrie. (19 October 2026)
+
+## Règle de séquence (19 October 2026)
+
+- 19 October 2026 : aucune tâche ne commence avant que la précédente soit prouvée ; la preuve est de la nature de la tâche (mesure par script, compte, image relue). (19 October 2026)
+- 19 October 2026 : l'ordre est Géométrie, puis UV, puis densité de texels (règle du skill `tasks-sequence`). Les UV ne commencent qu'APRÈS la validation de la géométrie par Matthieu. (19 October 2026)
+- 19 October 2026 : l'asset d'origine `/obj/Entrance_Arch/OUT_entrance_arch` n'est jamais modifié (le jardin le lit) ; la version propre vit dans un objet à part. (19 October 2026)
+
+## Phase 1, recherche (19 October 2026)
+
+| Tâche | Un geste | La preuve |
+|---|---|---|
+| R1 | Chercher les outils Houdini natifs de trim sheet et d'UV (Labs, UV Layout, UV Transform, UV Project, groupes) | liste de nodes avec lien de doc et verdict « à utiliser » ou « à écarter ». (19 October 2026) |
+| R2 | Lire la doc du Sweep SOP, du Circle NURBS, du Resample, des UV natifs du sweep | paramètres relevés avec leur nom exact ; un essai à vide dans Houdini donne un maillage fermé. (19 October 2026) |
+| R3 | Chercher la pratique d'une trim sheet (superposition, bandes, alignement, densité) | règles notées avec leur source. (19 October 2026) |
+| R4 | Compléter ce plan avec les décisions | fichier relu. (19 October 2026) |
+
+## Phase 2, géométrie propre (validation de Matthieu avant la suite) (19 October 2026)
+
+| Tâche | Un geste | La preuve |
+|---|---|---|
+| G1 | Auditer l'existant par pièce | tableau : faces, points, points en double, arêtes ouvertes, arêtes non variétés, faces cachées, faces d'aire nulle. (19 October 2026) |
+| G2 | Relever les cotes de référence | JSON des cotes et, par pièce, boîte englobante, aire, volume de l'existant. (19 October 2026) |
+| G3 | Arche : cercle NURBS, rééchantillonné, sweep d'un profil chanfreiné | solide fermé, soudé, nombre de polygones, écart de forme maximal et moyen contre l'ancienne arche (`xyzdist`). (19 October 2026) |
+| G4 | Poteaux : UN solide soudé par poteau | mêmes preuves. (19 October 2026) |
+| G5 | Croix : mât et bras soudés | mêmes preuves. (19 October 2026) |
+| G6 | Panneau : contour NURBS mesuré, cadre, creux, épaisseur | mêmes preuves. (19 October 2026) |
+| G7 | Pendentif, tiges, rivets | mêmes preuves. (19 October 2026) |
+| G8 | Assembler : merge, fuse, contrôles globaux | zéro point en double, zéro arête ouverte, total de polygones contre 2 928, écart global. (19 October 2026) |
+| G9 | Planche de validation : 3/4 propre, fil de fer, comptes avant et après, écart | image relue et envoyée ; ARRÊT, attente de la validation de Matthieu. (19 October 2026) |
+
+## Phase 3, UV et cartes (après validation, non commencée) (19 October 2026)
+
+| Tâche | Un geste | La preuve |
+|---|---|---|
+| U1 | Une couleur par groupe de matériau sur la géométrie propre | nombre de faces par couleur. (19 October 2026) |
+| U2 | UV avec les nodes de base de Houdini, bandes alignées à gauche, composants répétés superposés | vérificateur : zéro hors bande, densité médiane 1,000, répétitions identiques en UV. (19 October 2026) |
+| U3 | Carte d'index colorée sans lignes ni textes (pour l'IA) et planche double vue | images relues ; tailles en mètres et en pixels relues contre la géométrie. (19 October 2026) |
+| U4 | Consigner la méthode et ses limites dans le skill | section datée et fichiers. (19 October 2026) |

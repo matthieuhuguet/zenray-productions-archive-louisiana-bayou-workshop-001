@@ -1,0 +1,91 @@
+{
+ "px_per_m": 1024.0,
+ "sheet_px": 2048.0,
+ "margin_px": 8.0,
+ "bands": [
+  {
+   "group": "sign",
+   "colour": [
+    0.25,
+    0.8,
+    0.35
+   ],
+   "faces": 1064,
+   "pieces": 7,
+   "area_m2": 2.299,
+   "w_max_m": 0.7575,
+   "l_max_m": 1.56,
+   "h_px": 792,
+   "l_max_px": 1597,
+   "top_px": 2048.0,
+   "bot_px": 1256.0,
+   "wraps_u": false
+  },
+  {
+   "group": "posts",
+   "colour": [
+    1.0,
+    0.75,
+    0.1
+   ],
+   "faces": 312,
+   "pieces": 24,
+   "area_m2": 2.995,
+   "w_max_m": 0.212,
+   "l_max_m": 1.0761,
+   "h_px": 234,
+   "l_max_px": 1102,
+   "top_px": 1256.0,
+   "bot_px": 1022.0,
+   "wraps_u": false
+  },
+  {
+   "group": "arch",
+   "colour": [
+    0.2,
+    0.45,
+    0.95
+   ],
+   "faces": 1496,
+   "pieces": 11,
+   "area_m2": 1.862,
+   "w_max_m": 0.128,
+   "l_max_m": 3.1416,
+   "h_px": 148,
+   "l_max_px": 3217,
+   "top_px": 1022.0,
+   "bot_px": 874.0,
+   "wraps_u": true
+  },
+  {
+   "group": "cross",
+   "colour": [
+    0.95,
+    0.2,
+    0.2
+   ],
+   "faces": 56,
+   "pieces": 2,
+   "area_m2": 0.516,
+   "w_max_m": 0.2219,
+   "l_max_m": 0.7029,
+   "h_px": 244,
+   "l_max_px": 720,
+   "top_px": 874.0,
+   "bot_px": 630.0,
+   "wraps_u": false
+  }
+ ],
+ "used_px": 1418.0,
+ "free_px": 630.0,
+ "fits": true,
+ "recommended_px_per_m_if_overflow": 1503,
+ "report": {
+  "fallback_rect_faces": 160,
+  "unmapped_names": [],
+  "degenerate_faces": 0
+ },
+ "anchored_pieces": {
+  "36": "sign"
+ }
+}
