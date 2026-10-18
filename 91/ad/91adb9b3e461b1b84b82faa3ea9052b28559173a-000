@@ -1,7 +1,7 @@
-# 18 October 2026 : contact sheet of the five roof maps (reference, height, base color, normal, roughness, AO). EN: run with /Users/zenray/.venvs/shorts/bin/python -I MapsSheet.py <project maps folder> <name> <reference height> ; writes <name>_MapsSheet.png in the folder. FR : planche des 5 maps du toit.
+# 18 October 2026 : contact sheet of the five roof maps (height, base color, old AI base color, normal, roughness, AO). EN: run with /Users/zenray/.venvs/shorts/bin/python -I MapsSheet.py <project maps folder> <name> <old base color to compare> ; writes <name>_MapsSheet.png in the folder. FR : planche des 5 maps du toit.
 import sys, numpy as np
 from PIL import Image, ImageDraw, ImageFont
-folder, name, ref = sys.argv[1].rstrip('/') + '/', sys.argv[2], sys.argv[3]
+folder, name, old_bc = sys.argv[1].rstrip('/') + '/', sys.argv[2], sys.argv[3]
 T, PAD, LAB = 700, 24, 46
 def load(p, kind):
     im = Image.open(p)
@@ -12,7 +12,7 @@ def load(p, kind):
     else:
         im = im.convert('RGB')
     return im.resize((T, T), Image.LANCZOS)
-tiles = [('Référence height', load(ref, 'gray')), ('Height', load(folder + name + '_Height.png', 'gray')), ('Base Color', load(folder + name + '_BaseColor.png', 'rgb')),
+tiles = [('Height (ZenRay Height)', load(folder + name + '_Height.png', 'gray')), ('Base Color (nouvelle)', load(folder + name + '_BaseColor.png', 'rgb')), ('Base Color IA (ancienne)', load(old_bc, 'rgb')),
          ('Normal (DirectX)', load(folder + name + '_Normal.png', 'rgb')), ('Roughness', load(folder + name + '_Roughness.png', 'gray')), ('AO', load(folder + name + '_AO.png', 'gray'))]
 W = 3 * T + 4 * PAD; H = 2 * (T + LAB) + 3 * PAD + 70
 sheet = Image.new('RGB', (W, H), (28, 28, 30)); d = ImageDraw.Draw(sheet)

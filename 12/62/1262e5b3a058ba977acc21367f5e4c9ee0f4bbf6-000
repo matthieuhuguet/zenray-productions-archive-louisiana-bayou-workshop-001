@@ -1,29 +1,44 @@
-# 18 October 2026 : ROOF MAPS FROM THE GENERATED HEIGHT, native COP nodes only. EN: the five maps of the zenray-houdini skill (Base Color, Roughness, Height, Normal, AO) are derived from OUT_height inside /obj/ZRH_RoofTiles36 with heighttoambientocclusion, heighttonormal, remap, blend, constant and colorcorrect (no rasterize, no channel extract). Every value is a parameter of one node ; colours come from the concept roof (measured crops, see PALETTE). Run inside Houdini : exec(open(this file).read()). Idempotent (deletes its own M_* nodes first). FR : les 5 maps du toit depuis la height, nodes natifs.
+# 18 October 2026 : ROOF MAPS FROM THE GENERATED HEIGHT, native COP nodes only (v2, base colour measured on the old AI map). EN: the five maps of the zenray-houdini skill (Base Color, Roughness, Height, Normal, AO) are derived from OUT_height inside /obj/ZRH_RoofTiles36 with heighttoambientocclusion, heighttonormal, remap, blend, constant, channeljoin and colorcorrect (no rasterize, no channel extract). The BASE COLOUR copies the more interesting gradient of the AI-generated placeholder (BayouRoofTrimSheet36_BaseColor_ChatGPT_9October2026.png) : (1) a colour ramp keyed on the height, measured per height quantile on that map ; (2) a vertical profile inside every tile (light at the top, darkest at 65 percent, warm at the cut bottom edge), measured per tile row on that map ; (3) a warm end-grain tint at the bottom edge ; (4) the AO in the creases. Every value is in the P block below. Idempotent (deletes its own M_* nodes first). FR : les 5 maps du toit depuis la height, base color avec le degrade mesure sur l'ancienne map AI.
 import hou
 
 G = hou.node('/obj/ZRH_RoofTiles36')
 SRC = G.node('OUT_height')
+CFY = G.node('C_fy')            # 1 at the top of a tile cell, 0 at its bottom, 6 cycles
 OUTDIR = '/Users/zenray/.claude/tmp/tmp-zenray-height/projects/RoofTiles36/maps/'
 NAME = 'RoofTiles36'
 
 # ---------------------------------------------------------------- parameters (one place)
-PALETTE = {                       # sRGB 0..1, measured on the concept roof crops (lit image, so approximate albedo)
-    'dark':  (0.21, 0.165, 0.143),
-    'mid':   (0.30, 0.240, 0.200),
-    'light': (0.42, 0.340, 0.270),
-}
 P = {
-    'mask_lo': (0.35, 0.55),      # height range that blends dark -> mid
-    'mask_hi': (0.55, 0.78),      # height range that blends mid -> light
-    'ao_floor': 0.5,              # base colour darkening in the deepest crevices (1 = no AO in the colour)
+    # base colour : sRGB stops keyed on the height (0..1), measured per height quantile on the old AI map
+    'bc_stops': [
+        (0.00, (0.008, 0.007, 0.006)),   # joints, black like the AI sheet
+        (0.12, (0.035, 0.030, 0.026)),
+        (0.25, (0.203, 0.167, 0.140)),
+        (0.43, (0.302, 0.261, 0.226)),
+        (0.515, (0.346, 0.300, 0.259)),
+        (0.58, (0.387, 0.334, 0.288)),
+        (0.66, (0.442, 0.381, 0.326)),
+        (0.85, (0.573, 0.495, 0.421)),
+        (1.00, (0.610, 0.530, 0.450)),
+    ],
+    # vertical profile inside one tile, tile-local v (0 top, 1 bottom) -> luminance factor, measured per tile row on the AI map
+    'bc_contrast': 1.6,           # stretch of the stops around the mid stop, 1 = as measured per quantile ; the AI map also has pore-level contrast that the height alone does not carry
+    'v_profile': [(0.05, 1.17), (0.15, 1.07), (0.25, 1.03), (0.35, 1.00), (0.45, 0.965), (0.55, 0.93), (0.65, 0.89), (0.75, 0.89), (0.85, 0.975), (0.95, 1.06)],
+    'tile_top': 0.081,            # tile top edge inside its cell, fraction from the cell top (17 px of 209 on the 1254 px sheet)
+    'tile_bottom': 0.947,         # tile bottom edge (198 px of 209)
+    'v_amount': 1.0,              # 0 = no vertical profile, 1 = as measured, 2 = twice as strong
+    'warm_color': (0.64, 0.46, 0.32),   # exposed end grain at the bottom edge
+    'warm_start_v': 0.72,         # the warm tint starts here (tile-local v)
+    'warm_strength': 0.40,        # 0 = none
+    'ao_floor': 0.75,             # darkening of the colour in the deepest crevices (1 = no AO in the colour)
     'rough_joint': 0.95,          # roughness where the height is 0 (joints)
     'rough_top': 0.72,            # roughness where the height is 1 (raised grain)
     'normal_scale': 0.005,        # normal strength, measured : red channel p5 0.29 and p95 0.72 (scale 10 saturated 40 percent of the pixels)
-    'normal_kernel': 1,           # sampling kernel
+    'normal_kernel': 1,
     'normal_flip_green': True,    # True = DirectX (Unreal) ; False = OpenGL
     'ao_space': 1,                # 0 image, 1 pixel, 2 local
     'ao_radius_px': 30.0,
-    'ao_height_scale': 10.0,   # tuned 18 October 2026 : 1 gave a flat AO (p5 0.95), 10 gives p5 about 0.62
+    'ao_height_scale': 10.0,      # 1 gave a flat AO (p5 0.95), 10 gives p5 about 0.62
 }
 
 # ---------------------------------------------------------------- clean
@@ -45,30 +60,55 @@ def mk(kind, name, inputs=(), **parms):
     nodes[name] = n
     return n
 
+def float_ramp(keys, values):
+    return hou.Ramp([hou.rampBasis.Linear] * len(keys), list(keys), list(values))
+
 # ---------------------------------------------------------------- AO
 ao = mk('heighttoambientocclusion', 'M_ao', [SRC], space=P['ao_space'], viewradius_pixel=P['ao_radius_px'], heightscale=P['ao_height_scale'])
 
 # ---------------------------------------------------------------- normal (offset encoding 0..1), DirectX = green flipped
 n_gl = mk('heighttonormal', 'M_normal_gl', [SRC], normaltype=1, scale=P['normal_scale'], kernel=P['normal_kernel'])
-if P['normal_flip_green']:
-    n_out = mk('colorcorrect', 'M_normal_dx', [n_gl], master_multg=-1.0, master_addg=1.0)
-else:
-    n_out = n_gl
+n_out = mk('colorcorrect', 'M_normal_dx', [n_gl], master_multg=-1.0, master_addg=1.0) if P['normal_flip_green'] else n_gl
 
 # ---------------------------------------------------------------- roughness
 rough = mk('remap', 'M_rough', [SRC], useramp=0, inputmin=0.0, inputmax=1.0, outputmin=P['rough_joint'], outputmax=P['rough_top'])
 
-# ---------------------------------------------------------------- base colour
-cols = {}
-for k, rgb in PALETTE.items():
-    c = mk('constant', 'M_col_' + k, [SRC], signature='f3', f3r=rgb[0], f3g=rgb[1], f3b=rgb[2])
-    cols[k] = c
-m_lo = mk('remap', 'M_mask_lo', [SRC], useramp=0, inputmin=P['mask_lo'][0], inputmax=P['mask_lo'][1], outputmin=0.0, outputmax=1.0)
-m_hi = mk('remap', 'M_mask_hi', [SRC], useramp=0, inputmin=P['mask_hi'][0], inputmax=P['mask_hi'][1], outputmin=0.0, outputmax=1.0)
-mix1 = mk('blend', 'M_mix_dark_mid', [cols['dark'], cols['mid'], m_lo])
-mix2 = mk('blend', 'M_mix_mid_light', [mix1, cols['light'], m_hi])
+# ---------------------------------------------------------------- base colour, 1 : colour ramp keyed on the height (one float remap per channel, then channeljoin)
+ch = []
+for i, nm in enumerate(('r', 'g', 'b')):
+    mid = P['bc_stops'][4][1][i]
+    keys = [s[0] for s in P['bc_stops']]; vals = [min(1.0, max(0.0, mid + (s[1][i] - mid) * P['bc_contrast'])) if s[0] >= 0.2 else s[1][i] for s in P['bc_stops']]
+    r = mk('remap', 'M_bc_%s' % nm, [SRC], useramp=1, inputmin=0.0, inputmax=1.0, outputmin=0.0, outputmax=1.0)
+    r.parm('ramp').set(float_ramp(keys, vals))
+    ch.append(r)
+bc_h = mk('channeljoin', 'M_bc_height', ch, signature='f3')
+
+# ---------------------------------------------------------------- base colour, 2 : vertical profile inside every tile (luminance factor, from C_fy)
+tt, tb = P['tile_top'], P['tile_bottom']
+pts = []
+for v, f in P['v_profile']:
+    pos = (1.0 - tt) - (tb - tt) * v                  # C_fy is 1 at the cell top
+    pts.append((pos, 1.0 + (f - 1.0) * P['v_amount']))
+pts.sort()
+FMIN, FMAX = 0.7, 1.4                                  # factor range encoded by the remap output
+keys = [0.0] + [p[0] for p in pts] + [1.0]
+vals = [pts[0][1]] + [p[1] for p in pts] + [pts[-1][1]]
+lum = mk('remap', 'M_lum_v', [CFY], useramp=1, inputmin=0.0, inputmax=1.0, outputmin=FMIN, outputmax=FMAX)
+lum.parm('ramp').set(float_ramp(keys, [(v - FMIN) / (FMAX - FMIN) for v in vals]))
+bc_l = mk('blend', 'M_bc_lum', [bc_h, lum], mode=5)   # multiply
+
+# ---------------------------------------------------------------- base colour, 3 : warm end-grain tint at the bottom edge
+w0 = (1.0 - tt) - (tb - tt) * P['warm_start_v']       # C_fy where the tint starts
+wm = mk('remap', 'M_warm_mask', [CFY], useramp=1, inputmin=0.0, inputmax=1.0, outputmin=0.0, outputmax=1.0)
+wm.parm('ramp').set(float_ramp([0.0, 1.0 - tb + 0.01, w0, 1.0], [1.0, 1.0, 0.0, 0.0]))
+tile_m = mk('remap', 'M_tile_mask', [SRC], useramp=0, inputmin=0.04, inputmax=0.2, outputmin=0.0, outputmax=1.0)   # 1 on the tiles, 0 in the black gaps, so the tint never paints the gaps
+wm_t = mk('blend', 'M_warm_mask_tiles', [wm, tile_m], mode=5)
+wc = mk('constant', 'M_warm_color', [SRC], signature='f3', f3r=P['warm_color'][0], f3g=P['warm_color'][1], f3b=P['warm_color'][2])
+bc_w = mk('blend', 'M_bc_warm', [bc_l, wc, wm_t], mask=P['warm_strength'])
+
+# ---------------------------------------------------------------- base colour, 4 : AO in the creases
 ao_k = mk('remap', 'M_ao_floor', [ao], useramp=0, inputmin=0.0, inputmax=1.0, outputmin=P['ao_floor'], outputmax=1.0)
-bc = mk('blend', 'M_basecolor', [mix2, ao_k], mode=5)   # 5 = multiply
+bc = mk('blend', 'M_basecolor', [bc_w, ao_k], mode=5)   # multiply
 
 # ---------------------------------------------------------------- exports (raw, like ZRH_export)
 def exporter(name, src, fname):
@@ -80,30 +120,40 @@ def exporter(name, src, fname):
     return e
 exporter('M_export_BaseColor', bc, 'BaseColor')
 exporter('M_export_Normal', n_out, 'Normal')
+exporter('M_export_NormalGL', n_gl, 'Normal_OpenGL')   # OpenGL variant for Karma, the Houdini viewport and the Principled shaders
 exporter('M_export_Roughness', rough, 'Roughness')
 exporter('M_export_AO', ao, 'AO')
 
-# ---------------------------------------------------------------- layout and box
+# ---------------------------------------------------------------- layout and box (columns by depth)
 box = G.createNetworkBox('M_maps_box')
 box.setComment('MAPS toit : base color, normal, roughness, AO depuis la height (18 October 2026)')
 for n in nodes.values():
     box.addNode(n)
-cols_x = {'M_ao': 0, 'M_normal_gl': 0, 'M_rough': 0, 'M_col_dark': 0, 'M_col_mid': 0, 'M_col_light': 0, 'M_mask_lo': 0, 'M_mask_hi': 0,
-          'M_normal_dx': 1, 'M_ao_floor': 1, 'M_mix_dark_mid': 1, 'M_mix_mid_light': 2, 'M_basecolor': 3,
-          'M_export_BaseColor': 4, 'M_export_Normal': 4, 'M_export_Roughness': 4, 'M_export_AO': 4}
-order = ['M_ao', 'M_normal_gl', 'M_rough', 'M_col_dark', 'M_col_mid', 'M_col_light', 'M_mask_lo', 'M_mask_hi']
+depth = {}
+def d(n):
+    if n.path() in depth: return depth[n.path()]
+    depth[n.path()] = 0
+    ins = [i for i in n.inputs() if i and i.name().startswith('M_')]
+    depth[n.path()] = 1 + max([d(i) for i in ins]) if ins else 0
+    return depth[n.path()]
+for n in nodes.values(): d(n)
 rows = {}
-for nm, c in cols_x.items():
-    r = rows.get(c, 0); rows[c] = r + 1
-    nodes[nm].setPosition(hou.Vector2(c * 3.4, -r * 1.0))
+for n in sorted(nodes.values(), key=lambda n: (depth[n.path()], n.name())):
+    c = depth[n.path()]; r = rows.get(c, 0); rows[c] = r + 1
+    n.setPosition(hou.Vector2(c * 3.4, -r * 1.0))
 box.fitAroundContents()
-# put the box under the existing layer boxes
-lowest = min(b.position()[1] for b in G.networkBoxes() if b.name() != 'M_maps_box')
+others = [b for b in G.networkBoxes() if b.name() != 'M_maps_box']
+lowest = min(b.position()[1] for b in others)
 dy = (lowest - 3.6) - (box.position()[1] + box.size()[1])
 for n in nodes.values():
     p = n.position(); n.setPosition(hou.Vector2(p[0], p[1] + dy))
 box.fitAroundContents()
 for n in nodes.values():
     n.cook(force=True)
+# the two loose output nodes of the graph go under the maps box
+bottom = box.position()[1] - 3.0
+for i, nm in enumerate(('OUT_height', 'ZRH_export')):
+    n0 = G.node(nm)
+    if n0: n0.setPosition(hou.Vector2(i * 3.4, bottom))
 errs = {n.name(): n.errors() for n in nodes.values() if n.errors()}
 result = {"nodes": len(nodes), "errors": errs}
