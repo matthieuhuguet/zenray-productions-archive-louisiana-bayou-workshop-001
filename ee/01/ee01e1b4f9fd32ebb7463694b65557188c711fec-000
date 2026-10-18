@@ -1,0 +1,33 @@
+{
+  "component": "Entrance_Arch_Clean",
+  "active_version": "v001",
+  "versions": [
+    {
+      "version": "v001",
+      "label": "geometry-validation-v2-19-October-2026",
+      "dir_name": "v001_geometry-validation-v2-19-October-2026",
+      "timestamp": "2026-10-19 01:10:17",
+      "saved_at_iso": "2026-10-19T01:10:17+02:00",
+      "kind": "object",
+      "node_path": "/obj/Entrance_Arch_Clean",
+      "hip_file": "graph.hiplc",
+      "proof_geo": {
+        "points": 1004,
+        "prims": 909,
+        "bbox": [
+          [
+            -1.082200050354004,
+            0.0,
+            -0.0963599905371666
+          ],
+          [
+            1.082200050354004,
+            3.632499933242798,
+            0.09635999798774719
+          ]
+        ]
+      },
+      "children_count": 61
+    }
+  ]
+}
