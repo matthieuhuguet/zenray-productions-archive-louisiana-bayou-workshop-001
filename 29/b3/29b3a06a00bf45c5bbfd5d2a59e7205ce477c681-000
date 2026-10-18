@@ -1,0 +1,118 @@
+{
+ "id": "M01_P1",
+ "methode": "M01",
+ "passe": 1,
+ "date": "10 October 2026, 21:10",
+ "serie": "v3",
+ "controleur": "pourcentages par région (v3, périmé : seuils de percentile)",
+ "N": {
+  "familles": 512,
+  "family_nodes": 4096,
+  "nodes": 4136,
+  "construction_s": 7.6,
+  "recalcul_s": 6.9,
+  "total_s": 20.3
+ },
+ "finition": {
+  "lip_w": 0.0015,
+  "paint_amp": 0.28,
+  "hole_amp": 0.22
+ },
+ "buckets": {
+  "top_P": 64,
+  "top_H": 64,
+  "lames_P": 64,
+  "lames_H": 64,
+  "bouts_P": 64,
+  "bouts_H": 64,
+  "carre_P": 64,
+  "carre_H": 64
+ },
+ "couverture_utilisee": {
+  "top": {
+   "P": 0.22,
+   "H": 0.18
+  },
+  "lames": {
+   "P": 0.2,
+   "H": 0.15
+  },
+  "bouts": {
+   "P": 0.3,
+   "H": 0.3
+  },
+  "carre": {
+   "P": 0.3,
+   "H": 0.3
+  }
+ },
+ "couverture_precedente": null,
+ "fractions_mesurees": {
+  "top": {
+   "L": 0.2527,
+   "D": 0.0758
+  },
+  "lames": {
+   "L": 0.2217,
+   "D": 0.3005
+  },
+  "bouts": {
+   "L": 0.2278,
+   "D": 0.305
+  },
+  "carre": {
+   "L": 0.271,
+   "D": 0.1081
+  }
+ },
+ "fractions_precedentes": null,
+ "cibles": {
+  "top": {
+   "L": 0.3355,
+   "D": 0.1487
+  },
+  "lames": {
+   "L": 0.2035,
+   "D": 0.3079
+  },
+  "bouts": {
+   "L": 0.1672,
+   "D": 0.2991
+  },
+  "carre": {
+   "L": 0.3562,
+   "D": 0.073
+  }
+ },
+ "ecarts_aux_cibles": {
+  "top": {
+   "L": -0.0828,
+   "D": -0.0729
+  },
+  "lames": {
+   "L": 0.0181,
+   "D": -0.0075
+  },
+  "bouts": {
+   "L": 0.0605,
+   "D": 0.0059
+  },
+  "carre": {
+   "L": -0.0852,
+   "D": 0.0351
+  }
+ },
+ "concentration": {
+  "L": 0.0311,
+  "D": -0.2247,
+  "cible_L": 0.1319,
+  "cible_D": -0.1592
+ },
+ "fichiers": {
+  "png": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Heights/versions/window/M01/P1.png",
+  "panneau": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Heights/versions/window/M01/panel_P1.png",
+  "spec": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Heights/Specs/window/M01/P1.json",
+  "masques": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Heights/measures/masks_M01_P1.json"
+ },
+ "avis_oeil": ""
+}

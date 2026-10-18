@@ -1,0 +1,21 @@
+{
+ "method": "M01",
+ "state": "running",
+ "passes_done": 36,
+ "phase_last": 44,
+ "next_phase": 45,
+ "k_next": 512,
+ "large_blacklisted": true,
+ "hole_next": 0.2741,
+ "failures": 0,
+ "note": "",
+ "tol_cell": 0.01,
+ "tol_region": 0.02,
+ "min_passes": 96,
+ "max_passes": 300,
+ "pause_s": 15,
+ "cook_budget_s": 20.0,
+ "best_cell_max": 0.0468,
+ "best_phase": 29,
+ "updated": "11 October 2026, 00:20"
+}

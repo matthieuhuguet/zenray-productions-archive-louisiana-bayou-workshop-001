@@ -1,0 +1,45 @@
+{
+ "original": {
+  "prims": 13128,
+  "pts": 17504,
+  "groups": {
+   "group_bargeboard": 24,
+   "group_decking": 12,
+   "group_fascia": 12,
+   "group_rafters": 24,
+   "group_shingles": 13056
+  },
+  "bbox": [
+   -3.7062,
+   3.4657,
+   -6.683,
+   3.7062,
+   7.5629,
+   6.683
+  ],
+  "area": 734.615
+ },
+ "new_zero": {
+  "prims": 13128,
+  "pts": 17504,
+  "groups": {
+   "group_bargeboard": 24,
+   "group_decking": 12,
+   "group_fascia": 12,
+   "group_rafters": 24,
+   "group_shingles": 13056
+  },
+  "bbox": [
+   -3.7052,
+   3.4657,
+   -6.683,
+   3.7052,
+   7.5629,
+   6.683
+  ],
+  "area": 734.017
+ },
+ "same_prims": true,
+ "same_pts": true,
+ "group_diff": {}
+}

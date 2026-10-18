@@ -1,0 +1,43 @@
+{
+ "original": {
+  "prims": 183,
+  "pts": 732,
+  "groups": {
+   "front_wall": 69,
+   "left_wall": 29,
+   "rear_wall": 56,
+   "right_wall": 29
+  },
+  "bbox": [
+   -3.3035,
+   0.0,
+   -6.2545,
+   3.3035,
+   7.1608,
+   6.2545
+  ],
+  "area": 174.941
+ },
+ "new_zero": {
+  "prims": 183,
+  "pts": 732,
+  "groups": {
+   "front_wall": 69,
+   "left_wall": 29,
+   "rear_wall": 56,
+   "right_wall": 29
+  },
+  "bbox": [
+   -3.3035,
+   0.0,
+   -6.2545,
+   3.3035,
+   7.1608,
+   6.2545
+  ],
+  "area": 174.941
+ },
+ "same_prims": true,
+ "same_pts": true,
+ "group_diff": {}
+}

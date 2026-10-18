@@ -1,0 +1,152 @@
+{
+ "id": "M11_P4",
+ "methode": "M11",
+ "passe": 4,
+ "date": "10 October 2026, 21:49",
+ "serie": "v4",
+ "controleur": "fractions absolues par région, gain 0,5, graine 7",
+ "N": {
+  "familles": 512,
+  "family_nodes": 4096,
+  "nodes": 4136,
+  "construction_s": 7.77,
+  "recalcul_s": 7.09,
+  "total_s": 20.9
+ },
+ "finition": {
+  "lip_w": 0.0015,
+  "paint_amp": 0.28,
+  "hole_amp": 0.22
+ },
+ "buckets": {
+  "top_P": 80,
+  "top_H": 91,
+  "lames_P": 16,
+  "lames_H": 40,
+  "bouts_P": 16,
+  "bouts_H": 16,
+  "carre_P": 237,
+  "carre_H": 16
+ },
+ "couverture_utilisee": {
+  "top": {
+   "P": 0.3458,
+   "H": 0.4454
+  },
+  "lames": {
+   "P": 0.2099,
+   "H": 0.1614
+  },
+  "bouts": {
+   "P": 0.186,
+   "H": 0.2894
+  },
+  "carre": {
+   "P": 0.4594,
+   "H": 0.2396
+  }
+ },
+ "couverture_precedente": {
+  "top": {
+   "P": 0.3109,
+   "H": 0.3132
+  },
+  "lames": {
+   "P": 0.2108,
+   "H": 0.1549
+  },
+  "bouts": {
+   "P": 0.214,
+   "H": 0.2905
+  },
+  "carre": {
+   "P": 0.2829,
+   "H": 0.3811
+  }
+ },
+ "fractions_mesurees": {
+  "top": {
+   "L": 0.2506,
+   "D": 0.0925
+  },
+  "lames": {
+   "L": 0.161,
+   "D": 0.3117
+  },
+  "bouts": {
+   "L": 0.1802,
+   "D": 0.3126
+  },
+  "carre": {
+   "L": 0.5866,
+   "D": 0.0292
+  }
+ },
+ "fractions_precedentes": {
+  "top": {
+   "L": 0.2712,
+   "D": 0.0735
+  },
+  "lames": {
+   "L": 0.2052,
+   "D": 0.2836
+  },
+  "bouts": {
+   "L": 0.2214,
+   "D": 0.3013
+  },
+  "carre": {
+   "L": 0.1351,
+   "D": 0.1847
+  }
+ },
+ "cibles": {
+  "top": {
+   "L": 0.3355,
+   "D": 0.1487
+  },
+  "lames": {
+   "L": 0.2035,
+   "D": 0.3079
+  },
+  "bouts": {
+   "L": 0.1672,
+   "D": 0.2991
+  },
+  "carre": {
+   "L": 0.3562,
+   "D": 0.073
+  }
+ },
+ "ecarts_aux_cibles": {
+  "top": {
+   "L": -0.0849,
+   "D": -0.0562
+  },
+  "lames": {
+   "L": -0.0425,
+   "D": 0.0038
+  },
+  "bouts": {
+   "L": 0.013,
+   "D": 0.0135
+  },
+  "carre": {
+   "L": 0.2304,
+   "D": -0.0438
+  }
+ },
+ "concentration": {
+  "L": 0.0896,
+  "D": -0.2192,
+  "cible_L": 0.1319,
+  "cible_D": -0.1592
+ },
+ "fichiers": {
+  "png": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Heights/versions/window/M11/P4.png",
+  "panneau": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Heights/versions/window/M11/panel_P4.png",
+  "spec": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Heights/Specs/window/M11/P4.json",
+  "masques": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/Heights/measures/masks_M11_P4.json"
+ },
+ "avis_oeil": ""
+}

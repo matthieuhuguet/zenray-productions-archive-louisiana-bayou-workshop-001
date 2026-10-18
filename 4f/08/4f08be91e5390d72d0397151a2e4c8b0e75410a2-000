@@ -1,0 +1,18 @@
+{
+ "width": 6.557,
+ "length": 12.459,
+ "wall_height": 3.607,
+ "front_gable_height": 3.5437887,
+ "rear_gable_height": 3.5437887,
+ "roof_eave_overhang": 0.361,
+ "roof_gable_overhang": 0.45352818371607523,
+ "roof_shingle_rows": 21,
+ "roof_shingle_cols": 52,
+ "roof_shingle_thickness": 0.022,
+ "roof_enable_ridge": 0,
+ "roof_tile_width_min": 0.2,
+ "roof_tile_width_max": 0.32,
+ "roof_curve_folder": 0,
+ "roof_curve_gable": 0.2,
+ "roof_curve_ridge": 0.3
+}
