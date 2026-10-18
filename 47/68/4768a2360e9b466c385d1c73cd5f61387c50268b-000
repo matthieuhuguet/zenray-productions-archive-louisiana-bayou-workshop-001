@@ -1,0 +1,98 @@
+# 18 October 2026 : WHITE PAINT HEIGHT x CONCRETE STAINS, native COP nodes only. EN: blends the ZenRay Height of the white paint (ZRH_Secondary_whitepaint, 0.9920) with the ZenRay Height of the concrete albedo (ZRH_ConcreteStains, 0.986, sheet 4 of the concrete board) after a levels adjustment, because the concrete reference is an ALBEDO (bright, 0.72 to 0.91 as a height) and not a height. Both programme graphs stay untouched : their exported FINAL_height.png are read by file nodes. Every value is in the P block. Idempotent. FR : height peinture blanche x taches du beton, levels reglables puis blend.
+import hou
+
+NAME = 'ZRH_WhitePaint_ConcreteMix'
+OUTDIR = '/Users/zenray/.claude/tmp/tmp-zenray-height/projects/ConcreteStains/mix/'
+P = {
+    'white_height': '/Users/zenray/.claude/tmp/tmp-zenray-height/versions/final/Secondary_whitepaint_L6/FINAL_height.png',
+    'concrete_height': '/Users/zenray/.claude/tmp/tmp-zenray-height/projects/ConcreteStains/versions/final/ConcreteStains_H2/FINAL_height.png',
+    'levels_in_min': 0.72,        # concrete height value that becomes 0 (deepest stains)
+    'levels_in_max': 0.905,       # concrete height value that becomes 1 (clean concrete)
+    'levels_invert': 0,           # 1 = swap (stains become raised instead of recessed)
+    'strength': 0.6,              # 0 = white paint only, 1 = full multiply by the concrete levels
+    'mode': 5,                    # blend mode : 5 multiply, 0 blend, 3 add, 4 subtract
+    'align_bands': 1,             # 1 = warp the concrete rows so each horizontal band lands ON a plank gap (interstice), 0 = no warp
+    'band_to_gap': [2, 4, 6],     # concrete band k (top to bottom, the top-edge drips excluded) goes on the interior plank gap number band_to_gap[k] (1 = first gap under the top plank)
+    'band_width_scale': 0.5,      # 1 = keep the measured thickness of each band, 0.5 = half as thick (closer to the width of a plank gap)
+    'top_edge_px': 200,           # concrete rows above this belong to the top-edge drips, not to a formwork band
+}
+OLD = hou.node('/obj/' + NAME)
+if OLD: OLD.destroy()
+G = hou.node('/obj').createNode('copnet', NAME)
+G.setComment('Blend of two ZenRay Height results : white paint (Secondary_whitepaint_L6) x concrete stains (ConcreteStains_H2). Levels and strength are parameters of C_levels and M_mix. 18 October 2026')
+G.setGenericFlag(hou.nodeFlag.DisplayComment, True)
+
+def mk(kind, name, inputs=(), **parms):
+    n = G.createNode(kind, name)
+    for i, s in enumerate(inputs):
+        if s is not None: n.setInput(i, s)
+    for k, v in parms.items(): n.parm(k).set(v)
+    return n
+
+w_f = mk('file', 'W_whitepaint_file', filename=P['white_height'], colorspace=1)      # 1 = raw, the heights are data
+c_f = mk('file', 'C_concrete_file', filename=P['concrete_height'], colorspace=1)
+for f_ in (w_f, c_f):
+    f_.parm('addaovs').pressButton()      # a file node only exposes its layer (C) after Add AOVs, without it every consumer says 'source is missing'
+w = mk('mono', 'W_whitepaint_height', [w_f])      # the file node outputs a colour layer, the height is its mono
+c = mk('mono', 'C_concrete_height', [c_f])
+c_lv = mk('remap', 'C_levels', [c], useramp=0, inputmin=P['levels_in_min'], inputmax=P['levels_in_max'],
+          outputmin=1.0 if P['levels_invert'] else 0.0, outputmax=0.0 if P['levels_invert'] else 1.0)
+
+def _measure(path, depth, base_pick):
+    import numpy as np
+    from PIL import Image
+    a = np.asarray(Image.open(path), dtype=np.float64); a = a / (65535.0 if a.max() > 255 else 255.0)
+    if a.ndim == 3: a = a.mean(-1)
+    p = a[:, int(a.shape[1] * 0.1):int(a.shape[1] * 0.9)].mean(1)
+    ps = np.convolve(p, np.ones(7) / 7, mode='same'); base = np.median(ps)
+    out = []; i = 0
+    while i < len(ps):
+        if ps[i] < base - depth:
+            j = i
+            while j < len(ps) and ps[j] < base - depth: j += 1
+            if j - i > 12: out.append((i, j, i + int(np.argmin(ps[i:j]))))
+            i = j
+        else: i += 1
+    return out, a.shape[0]
+
+c_use = c_lv
+if P['align_bands']:
+    import os
+    wp, cp = OUTDIR + '_white_check.png', OUTDIR + '_concrete_levels_check.png'
+    gaps, H = _measure(wp, 0.12, None)
+    gaps = [g for g in gaps if 60 < g[2] < H - 60]                       # interior plank gaps only
+    bands, _ = _measure(cp, 0.10, None)
+    bands = [b for b in bands if b[2] > P['top_edge_px'] and b[2] < H - 60]   # formwork bands only
+    nb = min(len(bands), len(P['band_to_gap']))
+    pairs = [(bands[k][2], gaps[P['band_to_gap'][k] - 1][2]) for k in range(nb)]
+    # control points (destination row -> source row), rows counted from the top, plus the two ends
+    f_ = P['band_width_scale']
+    pts = [(0, 0)]
+    for k in range(nb):
+        sc, dc = bands[k][2], gaps[P['band_to_gap'][k] - 1][2]
+        s0, s1 = bands[k][0], bands[k][1]
+        pts += [(dc - f_ * (sc - s0), s0), (dc, sc), (dc + f_ * (s1 - sc), s1)]   # the band edges are pulled toward the gap centre
+    pts = sorted(pts) + [(H - 1, H - 1)]
+    cx = hou.copyNodesTo([hou.node('/obj/ZRH_Secondary_whitepaint/C_x01')], G)[0]; cx.setName('A_x01')
+    cy = hou.copyNodesTo([hou.node('/obj/ZRH_Secondary_whitepaint/C_y01')], G)[0]; cy.setName('A_y01')
+    keys = sorted(1.0 - d / float(H) for d, s_ in pts)                     # destination v (0 bottom, 1 top)
+    vals = [1.0 - s_ / float(H) for d, s_ in sorted(pts, key=lambda q: -q[0])]  # source v at the same points
+    v_warp = mk('remap', 'A_v_warp', [cy], useramp=1, inputmin=0.0, inputmax=1.0, outputmin=0.0, outputmax=1.0)
+    v_warp.parm('ramp').set(hou.Ramp([hou.rampBasis.Linear] * len(keys), keys, vals))
+    uv_j = mk('channeljoin', 'A_uv', [cx, v_warp], signature='f2')
+    c_use = mk('sample', 'A_concrete_warped', [uv_j, None, c_lv], uvspace=0)   # 0 = texture space (v up), 1 = image space flips the warp
+    G.setUserData('zr_band_pairs', str(pairs))
+mix = mk('blend', 'M_mix', [w, c_use], mode=P['mode'], mask=P['strength'])
+out = mk('null', 'OUT_height', [mix])
+exp = mk('rop_image', 'ZRH_export', [out], copoutput=OUTDIR + 'WhitePaint_ConcreteMix_height.png', colorconversion=2, setres=1, res1=2048, res2=2048, mkpath=1)
+# also export the two inputs (raw) for the check sheet
+e_w = mk('rop_image', 'E_white', [w], copoutput=OUTDIR + '_white_check.png', colorconversion=2, setres=1, res1=2048, res2=2048, mkpath=1)
+e_cl = mk('rop_image', 'E_concrete_levels', [c_lv], copoutput=OUTDIR + '_concrete_levels_check.png', colorconversion=2, setres=1, res1=2048, res2=2048, mkpath=1)
+e_cw = mk('rop_image', 'E_concrete_warped', [c_use], copoutput=OUTDIR + '_concrete_warped_check.png', colorconversion=2, setres=1, res1=2048, res2=2048, mkpath=1)
+for i, n in enumerate((w_f, c_f, w, c, c_lv, mix, out, exp, e_w, e_cl, e_cw)):
+    n.setPosition(hou.Vector2((i % 5) * 3.4, -(i // 5) * 1.6))
+# put the copnet next to the ZenRay Height box
+ref = hou.node('/obj/ZRH_Secondary_whitepaint')
+G.setPosition(ref.position() + hou.Vector2(0, -2.0)) if ref else None
+for n in G.children(): n.cook(force=True)
+result = {"errors": {n.name(): n.errors() for n in G.children() if n.errors()}}

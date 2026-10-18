@@ -1,0 +1,92 @@
+# 18 October 2026 : WHITE PAINT MAPS FROM THE DIRTY HEIGHT, native COP nodes only. EN: inside /obj/ZRH_WhitePaint_ConcreteMix, the five maps (Base Color, Roughness, Height, Normal, AO) are recomputed from the DIRTY height (OUT_height = white paint x concrete stains aligned on the plank gaps). Base colour copies the AI-generated white paint (BayouWhitePaint_basecolor_edgeblack_2048.png) : a colour ramp keyed on the CLEAN white paint height, measured per height quantile on that map (paint white, wood grey, black joints) ; the AI map has no dirt, so the stains are coloured here : the concrete stain mask tints the paint toward a warm grey brown. Roughness uses the measured roughness-by-height curve of the AI roughness (rougher where the height is low, so rougher in the stains). Every value is in the P block. Idempotent. FR : les 5 maps de la peinture blanche depuis la height salie, la salissure colorée par moi.
+import hou
+
+G = hou.node('/obj/ZRH_WhitePaint_ConcreteMix')
+OUTDIR = '/Users/zenray/.claude/tmp/tmp-zenray-height/projects/WhitePaintDirty/maps/'
+NAME = 'WhitePaintDirty'
+CLEAN = G.node('W_whitepaint_height')
+DIRTY = G.node('OUT_height')
+STAINS = G.node('A_concrete_warped') or G.node('C_levels')    # concrete levels, 1 clean, 0 stain
+
+P = {
+    # (clean height, sRGB) stops measured on the AI white paint map, per height quantile of the ZenRay white paint height
+    'bc_stops': [(0.00, (0.020, 0.017, 0.013)), (0.11, (0.198, 0.165, 0.131)), (0.325, (0.467, 0.420, 0.370)), (0.50, (0.628, 0.588, 0.545)),
+                 (0.62, (0.752, 0.725, 0.693)), (0.70, (0.811, 0.790, 0.766)), (0.745, (0.839, 0.822, 0.802)), (0.78, (0.856, 0.841, 0.822)),
+                 (0.90, (0.880, 0.865, 0.847)), (1.00, (0.890, 0.876, 0.858))],
+    # roughness by DIRTY height, measured on the AI roughness
+    'rough_stops': [(0.00, 0.93), (0.11, 0.897), (0.325, 0.834), (0.50, 0.775), (0.62, 0.731), (0.70, 0.704), (0.745, 0.688), (0.78, 0.676), (0.90, 0.657), (1.00, 0.64)],
+    'dirt_color': (0.30, 0.265, 0.225),   # warm grey brown of the stains (the AI map has none)
+    'dirt_strength': 0.65,                # 0 = no dirt colour, 1 = full dirt colour where the stain mask is 1
+    'stain_in_min': 0.15,                 # concrete levels value (0 stain, 1 clean) that counts as full stain
+    'stain_in_max': 0.85,                 # value that counts as clean
+    'stain_blur_px': 1.5,                 # softens the black pores of the concrete so the dirt reads as stains, not as dots
+    'ao_floor': 0.85,                     # AO in the colour (1 = none)
+    'normal_scale': 0.008,                # measured on the dirty height : 0.005 gave red p5 0.42 (too flat), 0.008 gives about 0.37
+    'normal_kernel': 1,
+    'ao_height_scale': 10.0,
+    'ao_radius_px': 30.0,
+}
+
+for n in list(G.children()):
+    if n.name().startswith('P_'): n.destroy()
+for b in list(G.networkBoxes()):
+    if (b.comment() or '').startswith('MAPS peinture blanche'): b.destroy()
+nodes = {}
+def mk(kind, name, inputs=(), **parms):
+    n = G.createNode(kind, 'P_' + name)
+    for i, s in enumerate(inputs):
+        if s is not None: n.setInput(i, s)
+    for k, v in parms.items(): n.parm(k).set(v)
+    nodes[name] = n
+    return n
+def ramp(keys, vals):
+    return hou.Ramp([hou.rampBasis.Linear] * len(keys), list(keys), list(vals))
+
+# ---------------- base colour : clean ramp (3 channels), stains tint, AO
+chs = []
+for i, c in enumerate('rgb'):
+    r = mk('remap', 'bc_' + c, [CLEAN], useramp=1, inputmin=0.0, inputmax=1.0, outputmin=0.0, outputmax=1.0)
+    r.parm('ramp').set(ramp([s[0] for s in P['bc_stops']], [s[1][i] for s in P['bc_stops']]))
+    chs.append(r)
+bc_clean = mk('channeljoin', 'bc_clean', chs, signature='f3')
+stain = mk('remap', 'stain_mask', [STAINS], useramp=0, inputmin=P['stain_in_min'], inputmax=P['stain_in_max'], outputmin=1.0, outputmax=0.0)
+stain_s = mk('blur', 'stain_soft', [stain], units=1, size_pixel=P['stain_blur_px'])   # units 1 = pixels (the default unit is the whole image, which averaged the stains away)
+dirt_c = mk('constant', 'dirt_color', [CLEAN], signature='f3', f3r=P['dirt_color'][0], f3g=P['dirt_color'][1], f3b=P['dirt_color'][2])
+bc_dirty = mk('blend', 'bc_dirty', [bc_clean, dirt_c, stain_s], mask=P['dirt_strength'])
+ao = mk('heighttoambientocclusion', 'ao', [DIRTY], space=1, viewradius_pixel=P['ao_radius_px'], heightscale=P['ao_height_scale'])
+ao_k = mk('remap', 'ao_floor', [ao], useramp=0, inputmin=0.0, inputmax=1.0, outputmin=P['ao_floor'], outputmax=1.0)
+bc = mk('blend', 'basecolor', [bc_dirty, ao_k], mode=5)
+
+# ---------------- roughness, normal
+rough = mk('remap', 'rough', [DIRTY], useramp=1, inputmin=0.0, inputmax=1.0, outputmin=0.0, outputmax=1.0)
+rough.parm('ramp').set(ramp([s[0] for s in P['rough_stops']], [s[1] for s in P['rough_stops']]))
+n_gl = mk('heighttonormal', 'normal_gl', [DIRTY], normaltype=1, scale=P['normal_scale'], kernel=P['normal_kernel'])
+n_dx = mk('colorcorrect', 'normal_dx', [n_gl], master_multg=-1.0, master_addg=1.0)
+
+# ---------------- exports
+def exporter(name, src, fname):
+    e = mk('rop_image', name, [src])
+    e.parm('copoutput').set(OUTDIR + NAME + '_' + fname + '.png'); e.parm('colorconversion').set(2)
+    e.parm('setres').set(1); e.parm('res1').set(2048); e.parm('res2').set(2048); e.parm('mkpath').set(1)
+exporter('export_BaseColor', bc, 'BaseColor'); exporter('export_Roughness', rough, 'Roughness'); exporter('export_AO', ao, 'AO')
+exporter('export_Height', DIRTY, 'Height'); exporter('export_Normal_DirectX', n_dx, 'Normal_DirectX'); exporter('export_Normal_OpenGL', n_gl, 'Normal_OpenGL')
+
+# ---------------- layout, box under the existing nodes
+box = G.createNetworkBox('P_maps_box')
+box.setComment('MAPS peinture blanche : 5 maps depuis la height salie (18 October 2026)')
+for n in nodes.values(): box.addNode(n)
+depth = {}
+def d(n):
+    if n.path() in depth: return depth[n.path()]
+    depth[n.path()] = 0
+    ins = [i for i in n.inputs() if i and i.name().startswith('P_')]
+    depth[n.path()] = 1 + max([d(i) for i in ins]) if ins else 0
+    return depth[n.path()]
+for n in nodes.values(): d(n)
+rows = {}
+for n in sorted(nodes.values(), key=lambda n: (depth[n.path()], n.name())):
+    c = depth[n.path()]; r = rows.get(c, 0); rows[c] = r + 1
+    n.setPosition(hou.Vector2(c * 3.4, -6.0 - r * 1.0))
+box.fitAroundContents()
+for n in nodes.values(): n.cook(force=True)
+result = {"nodes": len(nodes), "errors": {n.name(): n.errors()[:1] for n in nodes.values() if n.errors()}}

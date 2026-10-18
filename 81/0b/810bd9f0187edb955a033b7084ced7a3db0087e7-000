@@ -1,0 +1,36 @@
+# 18 October 2026 : PROCEDURAL SKY DOME (Radiance .hdr, lat-long). EN: Cycles in Solaris shows no light from a dome without a texture, so this writes a clean sky : zenith blue, warm horizon, grey green ground, a soft sun glow. Every value is in P, run with python3 MakeSkyDome.py [out.hdr]. FR : ciel procedural pour le dome, tout est dans P.
+import sys, numpy as np
+P = {
+    'out': '/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/02_sources/textures/BayouSky_Procedural_18-October-2026.hdr',
+    'width': 1024, 'height': 512,
+    'zenith': (0.45, 0.58, 0.85), 'horizon': (0.90, 0.90, 0.88), 'ground': (0.34, 0.35, 0.30),
+    'sky_power': 1.6,                 # gradient curve from horizon to zenith
+    'sun_dir': (0.55, 0.62, 0.55),    # x, y (up), z of the sun glow in the dome
+    'sun_color': (1.0, 0.9, 0.75), 'sun_size': 0.12, 'sun_gain': 0.0,     # 0 : the real sun is the PC_sun distant light, a glow here only adds noise
+}
+def build(P):
+    W, H = P['width'], P['height']
+    v = (np.arange(H) + 0.5) / H; u = (np.arange(W) + 0.5) / W
+    theta = (0.5 - v) * np.pi                        # +90 deg zenith, -90 nadir
+    phi = (u - 0.5) * 2 * np.pi
+    th, ph = np.meshgrid(theta, phi, indexing='ij')
+    d = np.stack([np.cos(th) * np.sin(ph), np.sin(th), -np.cos(th) * np.cos(ph)], -1)
+    up = np.clip(d[..., 1], 0, 1)[..., None] ** (1.0 / P['sky_power'])
+    sky = np.array(P['horizon']) * (1 - up) + np.array(P['zenith']) * up
+    ground = np.array(P['ground'])
+    img = np.where(d[..., 1:2] >= 0, sky, ground)
+    s = np.array(P['sun_dir'], float); s /= np.linalg.norm(s)
+    cosang = np.clip((d * s).sum(-1), -1, 1)[..., None]
+    glow = np.exp(-(1 - cosang) / max(P['sun_size'] ** 2 / 2, 1e-6)) * P['sun_gain']
+    return img + glow * np.array(P['sun_color'])
+def write_hdr(path, img):
+    H, W, _ = img.shape
+    m = img.max(-1); e = np.where(m > 1e-32, np.ceil(np.log2(np.maximum(m, 1e-32))), 0)
+    f = np.where(m > 1e-32, 256.0 / (2.0 ** e), 0)[..., None]
+    rgbe = np.concatenate([np.clip(img * f, 0, 255), (e + 128)[..., None]], -1).astype(np.uint8)
+    with open(path, 'wb') as fh:
+        fh.write(b'#?RADIANCE\nFORMAT=32-bit_rle_rgbe\n\n' + ('-Y %d +X %d\n' % (H, W)).encode())
+        fh.write(rgbe.tobytes())
+if __name__ == '__main__':
+    if len(sys.argv) > 1: P['out'] = sys.argv[1]
+    write_hdr(P['out'], build(P)); print(P['out'])
