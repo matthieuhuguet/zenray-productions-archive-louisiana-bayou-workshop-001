@@ -1,0 +1,41 @@
+# 18 October 2026 : TIDY ONE ZENRAY HEIGHT GRAPH (copnet). EN: set GRAPH (path of the copnet) before exec. Network boxes (Coordinates, L01 ... Lnn, M_maps_box) are stacked top to bottom in layer order, the nodes of every box flow left to right by depth, the loose nodes (OUT_height, ZRH_export) go under the last box ; positions only, no connection or parameter changes. FR : range un graphe ZenRay Height, positions seulement.
+import hou, re
+G = hou.node(globals().get('GRAPH', '/obj/ZRH_Secondary_whitepaint'))
+children = G.children()
+depth = {}
+def d(n):
+    if n.path() in depth: return depth[n.path()]
+    depth[n.path()] = 0
+    ins = [i for i in n.inputs() if i]
+    depth[n.path()] = 1 + max([d(i) for i in ins]) if ins else 0
+    return depth[n.path()]
+for n in children: d(n)
+boxes = list(G.networkBoxes())
+def key(b):
+    t = b.comment() or b.name(); m = re.match(r'L(\d+)', t)
+    if m: return (1, int(m.group(1)))
+    return (2, 0) if (b.name() == 'M_maps_box') else (0, 0)
+boxes.sort(key=key)
+DX, DY, GAP = 3.2, 1.0, 3.6
+def place(nodes, y):
+    ds = sorted(set(depth[n.path()] for n in nodes)); colx = {dv: i for i, dv in enumerate(ds)}; rows = {}
+    for n in sorted(nodes, key=lambda n: (depth[n.path()], n.name())):
+        c = colx[depth[n.path()]]; r = rows.get(c, 0); rows[c] = r + 1
+        n.setPosition(hou.Vector2(c * DX, y - r * DY))
+y = 0.0
+for b in boxes:
+    place(list(b.nodes()), y); b.fitAroundContents(); y = b.position()[1] - GAP
+boxed = set(n.path() for b in boxes for n in b.nodes())
+loose = [n for n in children if n.path() not in boxed]
+if loose: place(loose, y)
+def rect(b):
+    p = b.position(); s = b.size(); return (p[0], p[1], p[0] + s[0], p[1] + s[1])
+ov = 0
+for i in range(len(boxes)):
+    for j in range(i + 1, len(boxes)):
+        a = rect(boxes[i]); c = rect(boxes[j])
+        if a[0] < c[2] and c[0] < a[2] and a[1] < c[3] and c[1] < a[3]: ov += 1
+for p in hou.ui.paneTabs():
+    if p.type() == hou.paneTabType.NetworkEditor and p.pwd().path() == G.path():
+        p.setVisibleBounds(hou.BoundingRect(-1, y - 6, 60, 3))
+result = {"graph": G.path(), "boxes": len(boxes), "overlaps": ov, "loose": [n.name() for n in loose], "nodes": len(children)}
