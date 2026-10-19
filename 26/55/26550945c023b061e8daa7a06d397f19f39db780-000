@@ -1,0 +1,33 @@
+# 19 October 2026 : the shader ball PreviewSurface : polygon sizes, sharp charts, organic flag, and the straighten stats, to see why 1368 faces end as single islands.
+import numpy as np, sys, json, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z
+base = hou.node('/obj/ZRUV_ShaderBall/BASE').geometry()
+sub = hou.node('/obj/ZRUV_ShaderBall/M1_unique')
+st = sub.node('straighten').geometry()
+names = base.primStringAttribValues('name')
+org = base.primIntAttribValues('zruv_organic')
+pv = [i for i, n in enumerate(names) if n == 'PreviewSurface']
+sizes = collections.Counter(len(base.prims()[i].vertices()) for i in pv)
+sg = base.findEdgeGroup('zruv_sharp')
+ns = len(sg.edges()) if sg else -1
+sharp = set()
+if sg:
+    for e in sg.edges():
+        a, b = e.points()
+        sharp.add((min(a.number(), b.number()), max(a.number(), b.number())))
+m = Z.from_geo(base, (), ['name'])
+pvs = set(pv)
+find, union = Z.uf(m.n)
+for e, fl in m.edges.items():
+    if len(fl) == 2 and fl[0] in pvs and fl[1] in pvs and e not in sharp:
+        union(fl[0], fl[1])
+ch = collections.Counter(find(f) for f in pv)
+chs = collections.Counter(min(v, 50) for v in ch.values())
+org_pv = collections.Counter(org[i] for i in pv)
+det = {a.name(): st.attribValue(a) for a in st.globalAttribs() if 'straight' in a.name() or 'kink' in a.name()}
+single = [i for i in pv if ch[find(i)] == 1]
+P = np.array([base.prims()[i].positions()[0] if hasattr(base.prims()[i], 'positions') else (0, 0, 0) for i in single[:5]]) if single else []
+cen = [[round(c, 3) for c in base.prims()[i].boundingBox().center()] for i in single[:8]]
+result = {'pv_faces': len(pv), 'poly_sizes': dict(sizes), 'sharp_edges': ns, 'pv_charts': len(ch), 'chart_size_hist(capped 50)': dict(sorted(chs.items())), 'organic_flag': dict(org_pv),
+          'single_face_charts': len(single), 'single_centres': cen, 'straighten_detail': det, 'crease': {a.name(): base.attribValue(a) for a in base.globalAttribs() if 'crease' in a.name() or 'organic' in a.name()}}

@@ -1,0 +1,24 @@
+# 19 October 2026 : plain ARAP against bounded distortion ARAP on the 177 Labs AutoUV charts of Manny : area out of 10 % / 10 %, time.
+import numpy as np, importlib, sys, time
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+sub = hou.node('/obj/ZRUV_Manny/organic_grains').geometry()
+sm = Z.from_geo(sub, ('uv_auto',), [])
+isl, _ = Z.uv_islands(sm, 'uv_auto')
+tot = 2.0902
+out = {}
+VARIANTS = (('arap', 0, 0.8), ('bd40_m08', 40, 0.8), ('bd40_m06', 40, 0.6), ('bd80_m07', 80, 0.7))
+for tag, bdi, mg in VARIANTS:
+    O._BD_ITERS, O._BD_MARGIN = bdi, mg
+    t = time.time()
+    R, S, A = [], [], []
+    for i in range(int(isl.max()) + 1):
+        fs = [int(f) for f in np.where(isl == i)[0]]
+        res, r, s, a3 = O._relax(sm, fs, {f: sm.uv['uv_auto'][f] for f in fs})
+        R.append(r); S.append(s); A.append(a3)
+    R, S, A = np.concatenate(R), np.concatenate(S), np.concatenate(A)
+    out[tag] = {'fail_10_10': round(float(A[~((np.abs(R - 1) <= 0.1) & (S <= 0.1))].sum() / tot), 5), 'fail_d10': round(float(A[np.abs(R - 1) > 0.1].sum() / tot), 5),
+                'stretch99': round(float(np.percentile(S, 99)), 3), 'stretch_max': round(float(S.max()), 3), 's': round(time.time() - t, 1)}
+O._BD_ITERS, O._BD_MARGIN = 40, 0.8
+result = out

@@ -1,0 +1,20 @@
+# 19 October 2026 : the shader ball M1 islands : how many per piece and per kind (straight strip, straight, organic, planar kink face), and their sizes.
+import numpy as np, importlib, sys, json, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvLayout as L
+sub = hou.node('/obj/ZRUV_ShaderBall/M1_unique')
+names = [n.name() for n in sub.children()]
+g = sub.geometry()
+outs = [sub.path()]
+attrs = [a.name() for a in g.primAttribs()]
+m, isl = L.islands(g, 'uv')
+pa = {k: (list(g.primIntAttribValues(k)) if g.findPrimAttrib(k) is not None and g.findPrimAttrib(k).dataType() == hou.attribData.Int else None) for k in ('zruv_straight_uv', 'zruv_strip_uv', 'zruv_organic')}
+cnt = collections.Counter()
+faces = collections.Counter()
+for d in isl:
+    f0 = d['faces'][0]
+    kind = 'organic' if pa['zruv_organic'] and pa['zruv_organic'][f0] else ('strip' if pa['zruv_strip_uv'] and pa['zruv_strip_uv'][f0] else ('straight' if pa['zruv_straight_uv'] and pa['zruv_straight_uv'][f0] else 'other'))
+    key = (d['piece'], kind, 'single' if len(d['faces']) == 1 else 'multi')
+    cnt[key] += 1
+    faces[key] += len(d['faces'])
+result = {'out_node': outs[0], 'nodes': names, 'n_islands': len(isl), 'by': sorted([[list(k), v, faces[k]] for k, v in cnt.items()], key=lambda t: -t[1])[:20], 'pieces': sorted(set(m.prim['name']))}

@@ -1,0 +1,44 @@
+# 19 October 2026 : the two 981 face charts of Manny that hold the failing area : what are they (euler characteristic, boundary loops, bbox, fail share, curvature).
+import numpy as np, importlib, sys, math
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+sub = hou.node('/obj/ZRUV_Manny/organic_grains').geometry()
+sm = Z.from_geo(sub, ('uv_auto',), [])
+isl, _ = Z.uv_islands(sm, 'uv_auto')
+rows = []
+for i in range(int(isl.max()) + 1):
+    fs = [int(f) for f in np.where(isl == i)[0]]
+    if len(fs) < 900:
+        continue
+    cnt = {}
+    for f in fs:
+        p = sm.polys[f]
+        for k in range(len(p)):
+            e = (min(p[k], p[(k + 1) % len(p)]), max(p[k], p[(k + 1) % len(p)]))
+            cnt[e] = cnt.get(e, 0) + 1
+    bnd = [e for e, n in cnt.items() if n == 1]
+    # boundary loops
+    adj = {}
+    for a, b in bnd:
+        adj.setdefault(a, []).append(b); adj.setdefault(b, []).append(a)
+    seen, loops = set(), 0
+    for v in adj:
+        if v in seen:
+            continue
+        loops += 1
+        st = [v]
+        while st:
+            u = st.pop()
+            if u in seen:
+                continue
+            seen.add(u); st.extend(adj[u])
+    pts = sorted({p for f in fs for p in sm.polys[f]})
+    P = sm.P[pts]
+    rel = O._relax(sm, fs, {f: sm.uv['uv_auto'][f] for f in fs}, tol=0.1)
+    fa = O._fail_area(rel[1], rel[2], rel[3], 0.1)
+    rows.append({'chart': i, 'faces': len(fs), 'chi': O._chi(sm, fs), 'boundary_loops': loops, 'area': round(float(rel[3].sum()), 4), 'fail_share': round(fa / float(rel[3].sum()), 3),
+                 'bbox_min': [round(float(x), 3) for x in P.min(0)], 'bbox_max': [round(float(x), 3) for x in P.max(0)], 'max_stretch': round(float(rel[2].max()), 3),
+                 'r_p5_p95': [round(float(x), 3) for x in np.percentile(rel[1], (5, 95))]})
+bb = sm.P.min(0), sm.P.max(0)
+result = {'asset_bbox': [[round(float(x), 3) for x in bb[0]], [round(float(x), 3) for x in bb[1]]], 'big': rows}

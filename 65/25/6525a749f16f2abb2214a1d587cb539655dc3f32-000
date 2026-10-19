@@ -1,0 +1,13 @@
+# 19 October 2026 : force the organic refine of one test asset with the current modules and read its report and time.
+import time, json, importlib, sys
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZruvOrganic as O
+importlib.reload(O)
+res = {}
+for obj in ASSETS:
+    n = hou.node('/obj/%s/organic_refine' % obj)
+    t = time.time()
+    n.cook(force=True)
+    g = n.geometry()
+    res[obj] = {'s': round(time.time() - t, 1), 'errors': list(n.errors())[:2], 'report': json.loads(g.attribValue('zruv_organic_report') or '{}')}
+result = res

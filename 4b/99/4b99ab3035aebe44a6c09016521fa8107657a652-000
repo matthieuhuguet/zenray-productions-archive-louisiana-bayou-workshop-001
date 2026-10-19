@@ -1,0 +1,39 @@
+# 19 October 2026 : on the 177 Labs AutoUV charts of Manny : bounded distortion ARAP, then slits to the cone vertices of the failing charts. Area out of tol, cuts, time.
+import numpy as np, importlib, sys, time
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+O._BD_ITERS, O._BD_MARGIN = 40, 0.6
+sub = hou.node('/obj/ZRUV_Manny/organic_grains').geometry()
+sm = Z.from_geo(sub, ('uv_auto',), [])
+isl, _ = Z.uv_islands(sm, 'uv_auto')
+tri_a = []
+for f in range(sm.n):
+    p = sm.polys[f]
+    for j in range(1, len(p) - 1):
+        tri_a.append(0.5 * float(np.linalg.norm(np.cross(sm.P[p[j]] - sm.P[p[0]], sm.P[p[j + 1]] - sm.P[p[0]]))))
+amin = 1e-6 * float(np.median(tri_a))
+opn = np.ones(sm.n)
+tot = 2.0902
+t = time.time()
+f0 = f1 = 0.0
+ncut = nch = 0
+worst = []
+for i in range(int(isl.max()) + 1):
+    fs = [int(f) for f in np.where(isl == i)[0]]
+    rel = O._relax(sm, fs, {f: sm.uv['uv_auto'][f] for f in fs}, amin=amin, tol=0.1)
+    fa = O._fail_area(rel[1], rel[2], rel[3], 0.1)
+    f0 += fa
+    if fa > 0:
+        cc = O._cone_cuts(sm, fs, rel, opn, 0.1, 0.999, amin, max_cuts=10)
+        if cc is not None:
+            fa2 = O._fail_area(cc[1], cc[2], cc[3], 0.1)
+            ncut += len(cc[4]); nch += 1
+        else:
+            fa2 = fa
+        worst.append((round(fa2 / tot * 100, 3), round(fa / tot * 100, 3), len(fs)))
+        f1 += fa2
+    else:
+        f1 += fa
+worst.sort(reverse=True)
+result = {'before_pc': round(f0 / tot * 100, 3), 'after_pc': round(f1 / tot * 100, 3), 'cut_edges': ncut, 'charts_cut': nch, 's': round(time.time() - t, 1), 'worst_after_before_faces': worst[:12]}
