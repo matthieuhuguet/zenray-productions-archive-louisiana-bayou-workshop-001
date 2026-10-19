@@ -1,25 +1,73 @@
 {
  "asset": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/clean_faces.json",
  "mannequin": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/mannequin_faces.json",
- "mannequin_at": [0.0, 0.45],
+ "mannequin_at": [
+  0.0,
+  0.45
+ ],
  "out": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/EntranceArch_ScaleProposals_19-October-2026.png",
  "title": "Entrance_Arch_Clean : choose the scale (19 October 2026)",
  "subtitle": "Same metres per pixel in every panel ; the grey figure is the zenray_mannequin HDA at 1.76 m, walking under the sign.",
- "panel_px": [820, 1420],
+ "panel_px": [
+  820,
+  1420
+ ],
  "metres_high": 8.0,
  "scales": [
-  {"scale": 1.0, "label": "x 1.00  (reference, today)", "note": "sign 6 cm above the head"},
-  {"scale": 1.27, "label": "x 1.27  (comfortable passage)", "note": "sign bottom at about 2.3 m"},
-  {"scale": 1.64, "label": "x 1.64  (recommended)", "note": "same factor as the church (door = 2.0 m)", "highlight": true},
-  {"scale": 2.0, "label": "x 2.00  (yard layout today)", "note": "Layout_ChurchYard scales the old arch by 2"}
+  {
+   "scale": 1.0,
+   "label": "x 1.00  (reference, today)",
+   "note": "sign 6 cm above the head"
+  },
+  {
+   "scale": 1.27,
+   "label": "x 1.27  (comfortable passage)",
+   "note": "sign bottom at about 2.3 m"
+  },
+  {
+   "scale": 1.64,
+   "label": "x 1.64  (recommended)",
+   "note": "same factor as the church (door = 2.0 m)",
+   "highlight": true
+  },
+  {
+   "scale": 2.0,
+   "label": "x 2.00  (yard layout today)",
+   "note": "Layout_ChurchYard scales the old arch by 2"
+  }
  ],
  "measures": [
-  {"group": "sign", "kind": "min_y", "label": "sign bottom", "colour": [255, 110, 110]},
-  {"group": "cross", "kind": "max_y", "label": "top", "colour": [120, 200, 255]},
-  {"group": ["pillar_L", "pillar_R"], "kind": "gap_x", "label": "clear width"}
+  {
+   "group": "sign",
+   "kind": "min_y",
+   "label": "sign bottom",
+   "colour": [
+    255,
+    110,
+    110
+   ]
+  },
+  {
+   "group": "cross",
+   "kind": "max_y",
+   "label": "top",
+   "colour": [
+    120,
+    200,
+    255
+   ]
+  },
+  {
+   "group": [
+    "pillar_L",
+    "pillar_R"
+   ],
+   "kind": "gap_x",
+   "label": "clear width"
+  }
  ],
  "footer": [
-  "1024 px/m (default) : x 1.00 = two 2048 sheets or one 4096 ; x 1.27 = two 2048 or one 4096 ; x 1.64 = one 4096 sheet (the 2.56 m sign front, 2 620 px, does not fit 2048) ; x 2.00 = two 4096 sheets.",
-  "512 px/m : one 2048 sheet up to x 1.64 ; 2048 px/m : one or two 4096 sheets up to x 1.27, an 8192 sheet beyond. Full table : proposals/proposals.md."
+  "Trim mode, 1024 px/m : x 1.00 = one 2048 sheet ; x 1.27 = one 4096 sheet ; x 1.64 = one 4096 sheet, or trims 2048 plus the sign as a 4096 x 2048 decal ; x 2.00 = the same as x 1.64.",
+  "The trim bands alone fit 2048 at every scale ; only the sign (unique text, 2.56 m at x 1.64) asks for the wider sheet. Full table : proposals_trim/proposals.md."
  ]
 }

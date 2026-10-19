@@ -1,0 +1,11 @@
+{
+ "asset_scale": 1.0,
+ "texel_density": 1024,
+ "sheet_size": 4096,
+ "padding_px": 16,
+ "crease_deg": 45.0,
+ "merge_views": true,
+ "pack_order": "height",
+ "cut_policy": "symmetry",
+ "symmetry_split": false
+}

@@ -1,0 +1,3219 @@
+{
+ "base": {
+  "asset_scale": 1.0,
+  "texel_density": 1024,
+  "sheet_size": 4096,
+  "padding_px": 16
+ },
+ "target": 0.999,
+ "grid": {
+  "crease_deg": [
+   30.0,
+   45.0,
+   60.0
+  ],
+  "merge_views": [
+   true,
+   false
+  ],
+  "pack_order": [
+   "height",
+   "area"
+  ],
+  "cut_policy": [
+   "symmetry",
+   "middle"
+  ],
+  "symmetry_split": [
+   false,
+   true
+  ]
+ },
+ "rows": [
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 224.868,
+    "units": 380,
+    "islands": 101,
+    "stacked": 279,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 87,
+     "stack:strip": 100,
+     "planar": 75,
+     "stack:planar": 252,
+     "view": 77,
+     "stack:view": 74,
+     "hinge": 69,
+     "stack:hinge": 111,
+     "stack:native": 59
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.35,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 224.868,
+    "units": 380,
+    "islands": 101,
+    "stacked": 279,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 87,
+     "stack:strip": 100,
+     "planar": 75,
+     "stack:planar": 252,
+     "view": 77,
+     "stack:view": 74,
+     "hinge": 69,
+     "stack:hinge": 111,
+     "stack:native": 59
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.36,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 224.868,
+    "units": 380,
+    "islands": 101,
+    "stacked": 279,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 87,
+     "stack:strip": 100,
+     "planar": 75,
+     "stack:planar": 252,
+     "view": 77,
+     "stack:view": 74,
+     "hinge": 69,
+     "stack:hinge": 111,
+     "stack:native": 59
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.34,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 224.868,
+    "units": 380,
+    "islands": 101,
+    "stacked": 279,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 87,
+     "stack:strip": 100,
+     "planar": 75,
+     "stack:planar": 252,
+     "view": 77,
+     "stack:view": 74,
+     "hinge": 69,
+     "stack:hinge": 111,
+     "stack:native": 59
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.41,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 225.538,
+    "units": 388,
+    "islands": 101,
+    "stacked": 287,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 51,
+     "stack:strip": 136,
+     "planar": 75,
+     "stack:planar": 252,
+     "view": 77,
+     "stack:view": 74,
+     "hinge": 69,
+     "stack:hinge": 111
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.5,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 225.538,
+    "units": 388,
+    "islands": 101,
+    "stacked": 287,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 51,
+     "stack:strip": 136,
+     "planar": 75,
+     "stack:planar": 252,
+     "view": 77,
+     "stack:view": 74,
+     "hinge": 69,
+     "stack:hinge": 111
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.66,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 225.538,
+    "units": 388,
+    "islands": 101,
+    "stacked": 287,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 51,
+     "stack:strip": 136,
+     "planar": 75,
+     "stack:planar": 252,
+     "view": 77,
+     "stack:view": 74,
+     "hinge": 69,
+     "stack:hinge": 111
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.75,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 225.538,
+    "units": 388,
+    "islands": 101,
+    "stacked": 287,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 51,
+     "stack:strip": 136,
+     "planar": 75,
+     "stack:planar": 252,
+     "view": 77,
+     "stack:view": 74,
+     "hinge": 69,
+     "stack:hinge": 111
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.9,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 261.378,
+    "units": 461,
+    "islands": 106,
+    "stacked": 355,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 82,
+     "stack:strip": 92,
+     "planar": 98,
+     "stack:planar": 362,
+     "view": 69,
+     "stack:view": 78,
+     "stack:native": 59,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.62,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 261.378,
+    "units": 461,
+    "islands": 106,
+    "stacked": 355,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 82,
+     "stack:strip": 92,
+     "planar": 98,
+     "stack:planar": 362,
+     "view": 69,
+     "stack:view": 78,
+     "stack:native": 59,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.67,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 261.378,
+    "units": 461,
+    "islands": 106,
+    "stacked": 355,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 82,
+     "stack:strip": 92,
+     "planar": 98,
+     "stack:planar": 362,
+     "view": 69,
+     "stack:view": 78,
+     "stack:native": 59,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.63,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 261.378,
+    "units": 461,
+    "islands": 106,
+    "stacked": 355,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 82,
+     "stack:strip": 92,
+     "planar": 98,
+     "stack:planar": 362,
+     "view": 69,
+     "stack:view": 78,
+     "stack:native": 59,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.68,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 262.048,
+    "units": 469,
+    "islands": 106,
+    "stacked": 363,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 46,
+     "stack:strip": 128,
+     "planar": 98,
+     "stack:planar": 362,
+     "view": 69,
+     "stack:view": 78,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.72,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 262.048,
+    "units": 469,
+    "islands": 106,
+    "stacked": 363,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 46,
+     "stack:strip": 128,
+     "planar": 98,
+     "stack:planar": 362,
+     "view": 69,
+     "stack:view": 78,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.81,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 262.048,
+    "units": 469,
+    "islands": 106,
+    "stacked": 363,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 46,
+     "stack:strip": 128,
+     "planar": 98,
+     "stack:planar": 362,
+     "view": 69,
+     "stack:view": 78,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.78,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 262.048,
+    "units": 469,
+    "islands": 106,
+    "stacked": 363,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 46,
+     "stack:strip": 128,
+     "planar": 98,
+     "stack:planar": 362,
+     "view": 69,
+     "stack:view": 78,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.72,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.221,
+    "units": 505,
+    "islands": 117,
+    "stacked": 388,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 72,
+     "stack:strip": 72,
+     "planar": 105,
+     "stack:planar": 391,
+     "view": 81,
+     "stack:view": 90,
+     "stack:native": 82
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.58,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.221,
+    "units": 505,
+    "islands": 117,
+    "stacked": 388,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 72,
+     "stack:strip": 72,
+     "planar": 105,
+     "stack:planar": 391,
+     "view": 81,
+     "stack:view": 90,
+     "stack:native": 82
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.32,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.221,
+    "units": 505,
+    "islands": 117,
+    "stacked": 388,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 72,
+     "stack:strip": 72,
+     "planar": 105,
+     "stack:planar": 391,
+     "view": 81,
+     "stack:view": 90,
+     "stack:native": 82
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.46,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.221,
+    "units": 505,
+    "islands": 117,
+    "stacked": 388,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 72,
+     "stack:strip": 72,
+     "planar": 105,
+     "stack:planar": 391,
+     "view": 81,
+     "stack:view": 90,
+     "stack:native": 82
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.34,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.891,
+    "units": 513,
+    "islands": 117,
+    "stacked": 396,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "strip": 36,
+     "stack:strip": 108,
+     "planar": 105,
+     "stack:planar": 391,
+     "view": 81,
+     "stack:view": 90
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.57,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.891,
+    "units": 513,
+    "islands": 117,
+    "stacked": 396,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "strip": 36,
+     "stack:strip": 108,
+     "planar": 105,
+     "stack:planar": 391,
+     "view": 81,
+     "stack:view": 90
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.5,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.891,
+    "units": 513,
+    "islands": 117,
+    "stacked": 396,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "strip": 36,
+     "stack:strip": 108,
+     "planar": 105,
+     "stack:planar": 391,
+     "view": 81,
+     "stack:view": 90
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.66,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2748
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.891,
+    "units": 513,
+    "islands": 117,
+    "stacked": 396,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "strip": 36,
+     "stack:strip": 108,
+     "planar": 105,
+     "stack:planar": 391,
+     "view": 81,
+     "stack:view": 90
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.63,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 224.868,
+    "units": 397,
+    "islands": 108,
+    "stacked": 289,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 87,
+     "stack:strip": 100,
+     "planar": 144,
+     "stack:planar": 334,
+     "hinge": 69,
+     "stack:hinge": 111,
+     "stack:native": 59
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.26,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 224.868,
+    "units": 397,
+    "islands": 108,
+    "stacked": 289,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 87,
+     "stack:strip": 100,
+     "planar": 144,
+     "stack:planar": 334,
+     "hinge": 69,
+     "stack:hinge": 111,
+     "stack:native": 59
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.27,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 224.868,
+    "units": 397,
+    "islands": 108,
+    "stacked": 289,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 87,
+     "stack:strip": 100,
+     "planar": 144,
+     "stack:planar": 334,
+     "hinge": 69,
+     "stack:hinge": 111,
+     "stack:native": 59
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.47,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 224.868,
+    "units": 397,
+    "islands": 108,
+    "stacked": 289,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 87,
+     "stack:strip": 100,
+     "planar": 144,
+     "stack:planar": 334,
+     "hinge": 69,
+     "stack:hinge": 111,
+     "stack:native": 59
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.28,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 225.538,
+    "units": 405,
+    "islands": 108,
+    "stacked": 297,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 51,
+     "stack:strip": 136,
+     "planar": 144,
+     "stack:planar": 334,
+     "hinge": 69,
+     "stack:hinge": 111
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.52,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 225.538,
+    "units": 405,
+    "islands": 108,
+    "stacked": 297,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 51,
+     "stack:strip": 136,
+     "planar": 144,
+     "stack:planar": 334,
+     "hinge": 69,
+     "stack:hinge": 111
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.5,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 225.538,
+    "units": 405,
+    "islands": 108,
+    "stacked": 297,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 51,
+     "stack:strip": 136,
+     "planar": 144,
+     "stack:planar": 334,
+     "hinge": 69,
+     "stack:hinge": 111
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.44,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 225.538,
+    "units": 405,
+    "islands": 108,
+    "stacked": 297,
+    "raw_charts": 289,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 51,
+     "stack:strip": 136,
+     "planar": 144,
+     "stack:planar": 334,
+     "hinge": 69,
+     "stack:hinge": 111
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.64,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 261.378,
+    "units": 479,
+    "islands": 114,
+    "stacked": 365,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 82,
+     "stack:strip": 92,
+     "planar": 167,
+     "stack:planar": 440,
+     "stack:native": 59,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.5,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 261.378,
+    "units": 479,
+    "islands": 114,
+    "stacked": 365,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 82,
+     "stack:strip": 92,
+     "planar": 167,
+     "stack:planar": 440,
+     "stack:native": 59,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.51,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 261.378,
+    "units": 479,
+    "islands": 114,
+    "stacked": 365,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 82,
+     "stack:strip": 92,
+     "planar": 167,
+     "stack:planar": 440,
+     "stack:native": 59,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.62,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 261.378,
+    "units": 479,
+    "islands": 114,
+    "stacked": 365,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 82,
+     "stack:strip": 92,
+     "planar": 167,
+     "stack:planar": 440,
+     "stack:native": 59,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.34,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 262.048,
+    "units": 487,
+    "islands": 114,
+    "stacked": 373,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 46,
+     "stack:strip": 128,
+     "planar": 167,
+     "stack:planar": 440,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.53,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 262.048,
+    "units": 487,
+    "islands": 114,
+    "stacked": 373,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 46,
+     "stack:strip": 128,
+     "planar": 167,
+     "stack:planar": 440,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.63,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 262.048,
+    "units": 487,
+    "islands": 114,
+    "stacked": 373,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 46,
+     "stack:strip": 128,
+     "planar": 167,
+     "stack:planar": 440,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.62,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 262.048,
+    "units": 487,
+    "islands": 114,
+    "stacked": 373,
+    "raw_charts": 190,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "strip": 46,
+     "stack:strip": 128,
+     "planar": 167,
+     "stack:planar": 440,
+     "hinge": 26,
+     "stack:hinge": 38
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.53,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.221,
+    "units": 525,
+    "islands": 126,
+    "stacked": 399,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 72,
+     "stack:strip": 72,
+     "planar": 186,
+     "stack:planar": 481,
+     "stack:native": 82
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.36,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.221,
+    "units": 525,
+    "islands": 126,
+    "stacked": 399,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 72,
+     "stack:strip": 72,
+     "planar": 186,
+     "stack:planar": 481,
+     "stack:native": 82
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.11,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.221,
+    "units": 525,
+    "islands": 126,
+    "stacked": 399,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 72,
+     "stack:strip": 72,
+     "planar": 186,
+     "stack:planar": 481,
+     "stack:native": 82
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.08,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.221,
+    "units": 525,
+    "islands": 126,
+    "stacked": 399,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 72,
+     "stack:strip": 72,
+     "planar": 186,
+     "stack:planar": 481,
+     "stack:native": 82
+    },
+    "max_u": 1.321,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.19,
+   "longest_island_m": 5.269
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.891,
+    "units": 533,
+    "islands": 126,
+    "stacked": 407,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "strip": 36,
+     "stack:strip": 108,
+     "planar": 186,
+     "stack:planar": 481
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.31,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.891,
+    "units": 533,
+    "islands": 126,
+    "stacked": 407,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "strip": 36,
+     "stack:strip": 108,
+     "planar": 186,
+     "stack:planar": 481
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.49,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.891,
+    "units": 533,
+    "islands": 126,
+    "stacked": 407,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "strip": 36,
+     "stack:strip": 108,
+     "planar": 186,
+     "stack:planar": 481
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.33,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true
+    },
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3960
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.5147,
+    "seam_m": 273.891,
+    "units": 533,
+    "islands": 126,
+    "stacked": 407,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "strip": 36,
+     "stack:strip": 108,
+     "planar": 186,
+     "stack:planar": 481
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim"
+   },
+   "seconds": 2.38,
+   "longest_island_m": 2.634
+  }
+ ],
+ "seconds": 8.1
+}

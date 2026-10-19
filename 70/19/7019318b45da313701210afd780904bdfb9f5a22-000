@@ -1,0 +1,26 @@
+{
+ "out": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/EntranceArch_UVTrimsheet_Trim_Validation_19-October-2026.png",
+ "title": "Entrance_Arch_Clean : ZenRay UV Trimsheet, trim mode, recommended choice to validate (19 October 2026)",
+ "subtitle": "x 1.64, 1024 px/m, one 4096 sheet. Each tiling material is a full width band that repeats in U, its islands overlap at the top left ; only the sign keeps its own pixels (text). Score 1.000, verifier green, red on 6 broken copies.",
+ "row_height": 1150,
+ "images": [
+  {"path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/maps_trim_s164_td1024_4096/EntranceArch_trim_s164_td1024_sheet1_colour.png", "label": "colour map : one colour = one band = one material ; bands must tile left to right"},
+  {"path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/maps_trim_s164_td1024_4096/EntranceArch_trim_s164_td1024_sheet1_guide.png", "label": "guide : islands overlapping in their band, real sizes"},
+  {"path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/capture_trim/checker_board4.png", "label": "3D check : equal squares, arch continuous, sign readable front and back"}
+ ],
+ "table": {
+  "columns": ["Option at x 1.64, 1024 px/m", "Texture sets", "Megapixels", "Used", "Verdict"],
+  "widths": [4.6, 2.0, 1.6, 3.0, 5.4],
+  "rows": [
+   {"cells": ["A : one 4096 sheet, trims + sign", "1", "16.8", "2 748 of 4 096 px", "recommended : one material"]},
+   ["B : trims 2048 + sign decal 4096 x 2048", "2", "12.6", "1 180 + 1 424 px", "25 % lighter, a second material for the text only"],
+   ["at x 1.00 : one 2048 sheet", "1", "4.2", "1 720 of 2 048 px", "if you keep today's scale"],
+   ["2048 px/m at x 1.64", "2", "50.3", "sign 5 240 px wide", "the sign needs an 8192 decal"]
+  ]
+ },
+ "notes": [
+  "Trim bands, top to bottom after the sign (1 472 px, unique) : pillar 356 px, cross 332, pendant 252, arch 204, rivet 80, wire 52 ; the arch runs to u = 1.32 and repeats, it is no longer cut at the top.",
+  "101 islands for 995 faces ; Houdini uvflatten unfolds 325 faces (it wins ties), the Python straightening only the arch rings (5.7 % stretch at their edges, density exact).",
+  "Measured against the native chain alone : uvflatten plus uvlayout keeps 99.6 % density but leaves 96 faces outside the sheet and no band ; forcing its rectify everywhere drops the density to 0 %."
+ ]
+}

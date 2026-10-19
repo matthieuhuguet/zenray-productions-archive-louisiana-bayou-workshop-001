@@ -1,0 +1,121 @@
+{
+ "texel_density_px_per_m": 1024.0,
+ "asset_scale": 1.0,
+ "tile_mode": "trim",
+ "padding_px": 16,
+ "sheets": [
+  {
+   "sheet": 1,
+   "width_px": 4096,
+   "height_px": 4096,
+   "kind": "shared",
+   "bands": [
+    {
+     "material": "sign",
+     "segment": 1,
+     "y_px": 0,
+     "height_px": 1472,
+     "height_m": 1.4375,
+     "width_m": 4.0,
+     "tiles_in_u": false,
+     "islands": 9,
+     "colour_rgb": [
+      89,
+      199,
+      102
+     ]
+    },
+    {
+     "material": "pillar",
+     "segment": 1,
+     "y_px": 1472,
+     "height_px": 356,
+     "height_m": 0.3477,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 36,
+     "colour_rgb": [
+      242,
+      204,
+      64
+     ]
+    },
+    {
+     "material": "cross",
+     "segment": 1,
+     "y_px": 1828,
+     "height_px": 332,
+     "height_m": 0.3242,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 16,
+     "colour_rgb": [
+      235,
+      76,
+      71
+     ]
+    },
+    {
+     "material": "pendant",
+     "segment": 1,
+     "y_px": 2160,
+     "height_px": 252,
+     "height_m": 0.2461,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 28,
+     "colour_rgb": [
+      250,
+      148,
+      56
+     ]
+    },
+    {
+     "material": "arch",
+     "segment": 1,
+     "y_px": 2412,
+     "height_px": 204,
+     "height_m": 0.1992,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 6,
+     "colour_rgb": [
+      76,
+      140,
+      242
+     ]
+    },
+    {
+     "material": "rivet",
+     "segment": 1,
+     "y_px": 2616,
+     "height_px": 80,
+     "height_m": 0.0781,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 3,
+     "colour_rgb": [
+      76,
+      217,
+      230
+     ]
+    },
+    {
+     "material": "wire",
+     "segment": 1,
+     "y_px": 2696,
+     "height_px": 52,
+     "height_m": 0.0508,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 3,
+     "colour_rgb": [
+      168,
+      107,
+      230
+     ]
+    }
+   ]
+  }
+ ]
+}

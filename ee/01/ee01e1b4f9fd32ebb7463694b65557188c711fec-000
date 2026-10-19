@@ -1,6 +1,6 @@
 {
   "component": "Entrance_Arch_Clean",
-  "active_version": "v003",
+  "active_version": "v004",
   "versions": [
     {
       "version": "v001",
@@ -82,6 +82,33 @@
         ]
       },
       "children_count": 71
+    },
+    {
+      "version": "v004",
+      "label": "Trim mode : full width bands tiling in U, sign unique, native uvflatten candidate, crease 45, x1.64 1024 px/m one 4096 sheet, score 1.0 (19 October 2026)",
+      "dir_name": "v004_Trim_mode___full_width_bands_tiling_in_U__sign_unique__native_uvflatten_candidate__crease_45__x1_64_1024_px_m_one_4096_sheet__score_1_0__19_October_2026_",
+      "timestamp": "2026-10-19 02:40:08",
+      "saved_at_iso": "2026-10-19T02:40:08+02:00",
+      "kind": "object",
+      "node_path": "/obj/Entrance_Arch_Clean",
+      "hip_file": "graph.hiplc",
+      "proof_geo": {
+        "points": 1114,
+        "prims": 995,
+        "bbox": [
+          [
+            -1.7748080492019653,
+            0.0,
+            -0.15803039073944092
+          ],
+          [
+            1.7748079299926758,
+            5.957299709320068,
+            0.15803039073944092
+          ]
+        ]
+      },
+      "children_count": 74
     }
   ]
 }
