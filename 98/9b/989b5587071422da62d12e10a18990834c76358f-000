@@ -1,0 +1,4286 @@
+{
+ "base": {
+  "asset_scale": 1.0,
+  "texel_density": 1024,
+  "sheet_size": 4096,
+  "padding_px": 16,
+  "materials": {
+   "arch": "iron",
+   "cross": "iron",
+   "wire": "iron",
+   "rivet": "iron",
+   "pendant": "iron"
+  },
+  "oriented_materials": [
+   "iron",
+   "pillar"
+  ]
+ },
+ "target": 0.999,
+ "grid": {
+  "crease_deg": [
+   30.0,
+   45.0,
+   60.0
+  ],
+  "merge_views": [
+   true,
+   false
+  ],
+  "pack_order": [
+   "height",
+   "area"
+  ],
+  "cut_policy": [
+   "symmetry",
+   "middle"
+  ],
+  "symmetry_split": [
+   false,
+   true
+  ]
+ },
+ "rows": [
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 449,
+    "islands": 126,
+    "stacked": 323,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 108,
+     "stack:planar": 301,
+     "strip": 46,
+     "stack:strip": 128,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 25,
+     "stack:hinge": 66
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.82,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 449,
+    "islands": 126,
+    "stacked": 323,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 108,
+     "stack:planar": 301,
+     "strip": 46,
+     "stack:strip": 128,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 25,
+     "stack:hinge": 66
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.85,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 449,
+    "islands": 126,
+    "stacked": 323,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 108,
+     "stack:planar": 301,
+     "strip": 46,
+     "stack:strip": 128,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 25,
+     "stack:hinge": 66
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.82,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 449,
+    "islands": 126,
+    "stacked": 323,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 108,
+     "stack:planar": 301,
+     "strip": 46,
+     "stack:strip": 128,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 25,
+     "stack:hinge": 66
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.84,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 443,
+    "islands": 128,
+    "stacked": 315,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 108,
+     "stack:planar": 301,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 25,
+     "stack:native": 59,
+     "stack:hinge": 66
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.71,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 443,
+    "islands": 128,
+    "stacked": 315,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 108,
+     "stack:planar": 301,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 25,
+     "stack:native": 59,
+     "stack:hinge": 66
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.73,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 443,
+    "islands": 128,
+    "stacked": 315,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 108,
+     "stack:planar": 301,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 25,
+     "stack:native": 59,
+     "stack:hinge": 66
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.73,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 443,
+    "islands": 128,
+    "stacked": 315,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 108,
+     "stack:planar": 301,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 25,
+     "stack:native": 59,
+     "stack:hinge": 66
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.7,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 461,
+    "islands": 129,
+    "stacked": 332,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 112,
+     "stack:planar": 313,
+     "strip": 46,
+     "stack:strip": 128,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 21,
+     "stack:hinge": 54
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.95,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 461,
+    "islands": 129,
+    "stacked": 332,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 112,
+     "stack:planar": 313,
+     "strip": 46,
+     "stack:strip": 128,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 21,
+     "stack:hinge": 54
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.91,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 461,
+    "islands": 129,
+    "stacked": 332,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 112,
+     "stack:planar": 313,
+     "strip": 46,
+     "stack:strip": 128,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 21,
+     "stack:hinge": 54
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.92,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 461,
+    "islands": 129,
+    "stacked": 332,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 112,
+     "stack:planar": 313,
+     "strip": 46,
+     "stack:strip": 128,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 21,
+     "stack:hinge": 54
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.91,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 455,
+    "islands": 131,
+    "stacked": 324,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 112,
+     "stack:planar": 313,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 21,
+     "stack:native": 59,
+     "stack:hinge": 54
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.83,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 455,
+    "islands": 131,
+    "stacked": 324,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 112,
+     "stack:planar": 313,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 21,
+     "stack:native": 59,
+     "stack:hinge": 54
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.8,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 455,
+    "islands": 131,
+    "stacked": 324,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 112,
+     "stack:planar": 313,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 21,
+     "stack:native": 59,
+     "stack:hinge": 54
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.8,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 455,
+    "islands": 131,
+    "stacked": 324,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 112,
+     "stack:planar": 313,
+     "view": 81,
+     "stack:view": 90,
+     "hinge": 21,
+     "stack:native": 59,
+     "stack:hinge": 54
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.79,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 525,
+    "islands": 146,
+    "stacked": 379,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "planar": 131,
+     "stack:planar": 365,
+     "strip": 36,
+     "stack:strip": 108,
+     "view": 81,
+     "stack:view": 90
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.67,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 525,
+    "islands": 146,
+    "stacked": 379,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "planar": 131,
+     "stack:planar": 365,
+     "strip": 36,
+     "stack:strip": 108,
+     "view": 81,
+     "stack:view": 90
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.66,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 525,
+    "islands": 146,
+    "stacked": 379,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "planar": 131,
+     "stack:planar": 365,
+     "strip": 36,
+     "stack:strip": 108,
+     "view": 81,
+     "stack:view": 90
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.66,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 525,
+    "islands": 146,
+    "stacked": 379,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "planar": 131,
+     "stack:planar": 365,
+     "strip": 36,
+     "stack:strip": 108,
+     "view": 81,
+     "stack:view": 90
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.67,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 519,
+    "islands": 148,
+    "stacked": 371,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 52,
+     "stack:strip": 92,
+     "planar": 131,
+     "stack:planar": 365,
+     "view": 81,
+     "stack:view": 90,
+     "stack:native": 82
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.58,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 519,
+    "islands": 148,
+    "stacked": 371,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 52,
+     "stack:strip": 92,
+     "planar": 131,
+     "stack:planar": 365,
+     "view": 81,
+     "stack:view": 90,
+     "stack:native": 82
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.57,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 519,
+    "islands": 148,
+    "stacked": 371,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 52,
+     "stack:strip": 92,
+     "planar": 131,
+     "stack:planar": 365,
+     "view": 81,
+     "stack:view": 90,
+     "stack:native": 82
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.57,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": true,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     2696
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 519,
+    "islands": 148,
+    "stacked": 371,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 52,
+     "stack:strip": 92,
+     "planar": 131,
+     "stack:planar": 365,
+     "view": 81,
+     "stack:view": 90,
+     "stack:native": 82
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.57,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 469,
+    "islands": 135,
+    "stacked": 334,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 189,
+     "stack:planar": 391,
+     "strip": 46,
+     "stack:strip": 128,
+     "hinge": 25,
+     "stack:hinge": 66
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.79,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 469,
+    "islands": 135,
+    "stacked": 334,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 189,
+     "stack:planar": 391,
+     "strip": 46,
+     "stack:strip": 128,
+     "hinge": 25,
+     "stack:hinge": 66
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.83,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 469,
+    "islands": 135,
+    "stacked": 334,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 189,
+     "stack:planar": 391,
+     "strip": 46,
+     "stack:strip": 128,
+     "hinge": 25,
+     "stack:hinge": 66
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.78,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 469,
+    "islands": 135,
+    "stacked": 334,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 189,
+     "stack:planar": 391,
+     "strip": 46,
+     "stack:strip": 128,
+     "hinge": 25,
+     "stack:hinge": 66
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.77,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 463,
+    "islands": 137,
+    "stacked": 326,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 189,
+     "stack:planar": 391,
+     "hinge": 25,
+     "stack:native": 59,
+     "stack:hinge": 66
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.66,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 463,
+    "islands": 137,
+    "stacked": 326,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 189,
+     "stack:planar": 391,
+     "hinge": 25,
+     "stack:native": 59,
+     "stack:hinge": 66
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.69,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 463,
+    "islands": 137,
+    "stacked": 326,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 189,
+     "stack:planar": 391,
+     "hinge": 25,
+     "stack:native": 59,
+     "stack:hinge": 66
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.66,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 45.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 252.583,
+    "units": 463,
+    "islands": 137,
+    "stacked": 326,
+    "raw_charts": 215,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 189,
+     "stack:planar": 391,
+     "hinge": 25,
+     "stack:native": 59,
+     "stack:hinge": 66
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 45.0,
+     "crease_effective": 46.838,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 382,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.67,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 481,
+    "islands": 138,
+    "stacked": 343,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 193,
+     "stack:planar": 403,
+     "strip": 46,
+     "stack:strip": 128,
+     "hinge": 21,
+     "stack:hinge": 54
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.87,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 481,
+    "islands": 138,
+    "stacked": 343,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 193,
+     "stack:planar": 403,
+     "strip": 46,
+     "stack:strip": 128,
+     "hinge": 21,
+     "stack:hinge": 54
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.86,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 481,
+    "islands": 138,
+    "stacked": 343,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 193,
+     "stack:planar": 403,
+     "strip": 46,
+     "stack:strip": 128,
+     "hinge": 21,
+     "stack:hinge": 54
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.85,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 481,
+    "islands": 138,
+    "stacked": 343,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 67,
+     "stack:native": 83,
+     "planar": 193,
+     "stack:planar": 403,
+     "strip": 46,
+     "stack:strip": 128,
+     "hinge": 21,
+     "stack:hinge": 54
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.86,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 475,
+    "islands": 140,
+    "stacked": 335,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 193,
+     "stack:planar": 403,
+     "hinge": 21,
+     "stack:native": 59,
+     "stack:hinge": 54
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.77,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 475,
+    "islands": 140,
+    "stacked": 335,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 193,
+     "stack:planar": 403,
+     "hinge": 21,
+     "stack:native": 59,
+     "stack:hinge": 54
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.79,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 475,
+    "islands": 140,
+    "stacked": 335,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 193,
+     "stack:planar": 403,
+     "hinge": 21,
+     "stack:native": 59,
+     "stack:hinge": 54
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.76,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 60.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 256.972,
+    "units": 475,
+    "islands": 140,
+    "stacked": 335,
+    "raw_charts": 203,
+    "faces_by_method": {
+     "native": 91,
+     "strip": 62,
+     "stack:strip": 112,
+     "planar": 193,
+     "stack:planar": 403,
+     "hinge": 21,
+     "stack:native": 59,
+     "stack:hinge": 54
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 60.0,
+     "crease_effective": 54.786,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 88,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.0
+    }
+   },
+   "seconds": 1.77,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 545,
+    "islands": 155,
+    "stacked": 390,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "planar": 212,
+     "stack:planar": 455,
+     "strip": 36,
+     "stack:strip": 108
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.61,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 545,
+    "islands": 155,
+    "stacked": 390,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "planar": 212,
+     "stack:planar": 455,
+     "strip": 36,
+     "stack:strip": 108
+    },
+    "max_u": 0.983,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.61,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 545,
+    "islands": 155,
+    "stacked": 390,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "planar": 212,
+     "stack:planar": 455,
+     "strip": 36,
+     "stack:strip": 108
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.63,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": true
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 545,
+    "islands": 155,
+    "stacked": 390,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 78,
+     "stack:native": 106,
+     "planar": 212,
+     "stack:planar": 455,
+     "strip": 36,
+     "stack:strip": 108
+    },
+    "max_u": 0.977,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.64,
+   "longest_island_m": 2.634
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 539,
+    "islands": 157,
+    "stacked": 382,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 52,
+     "stack:strip": 92,
+     "planar": 212,
+     "stack:planar": 455,
+     "stack:native": 82
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.51,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "height",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 539,
+    "islands": 157,
+    "stacked": 382,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 52,
+     "stack:strip": 92,
+     "planar": 212,
+     "stack:planar": 455,
+     "stack:native": 82
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.51,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "symmetry",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 539,
+    "islands": 157,
+    "stacked": 382,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 52,
+     "stack:strip": 92,
+     "planar": 212,
+     "stack:planar": 455,
+     "stack:native": 82
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.53,
+   "longest_island_m": 3.951
+  },
+  {
+   "params": {
+    "asset_scale": 1.0,
+    "texel_density": 1024,
+    "sheet_size": 4096,
+    "padding_px": 16,
+    "materials": {
+     "arch": "iron",
+     "cross": "iron",
+     "wire": "iron",
+     "rivet": "iron",
+     "pendant": "iron"
+    },
+    "oriented_materials": [
+     "iron",
+     "pillar"
+    ],
+    "crease_deg": 30.0,
+    "merge_views": false,
+    "pack_order": "area",
+    "cut_policy": "middle",
+    "symmetry_split": false
+   },
+   "score": {
+    "zenray_uv_score": 1.0,
+    "density_pass": 1.0,
+    "hard_ok": true,
+    "hard": {
+     "coverage": true,
+     "inside_sheet": true,
+     "inside_band": true,
+     "pixel_snapped": true,
+     "no_overlap": true,
+     "no_flip": true,
+     "left_aligned": true,
+     "no_overflow_island": true,
+     "stretch_ok": true,
+     "orientation_ok": true,
+     "cut_unambiguous": true
+    },
+    "orientation_pass": 1.0,
+    "stretch_mean": 0.00418,
+    "stretch_p99": 0.05658,
+    "stretch_max": 0.0566,
+    "overlap_px_half_res": 0,
+    "flipped_area_frac": 0.0,
+    "sheets": 1,
+    "sheet_size": [
+     [
+      4096,
+      4096,
+      "shared"
+     ]
+    ],
+    "used_height_px": [
+     3908
+    ],
+    "megapixels": 16.78,
+    "fill_uv": 0.502,
+    "seam_m": 274.324,
+    "units": 539,
+    "islands": 157,
+    "stacked": 382,
+    "raw_charts": 525,
+    "faces_by_method": {
+     "native": 102,
+     "strip": 52,
+     "stack:strip": 92,
+     "planar": 212,
+     "stack:planar": 455,
+     "stack:native": 82
+    },
+    "max_u": 0.992,
+    "tile_mode": "trim",
+    "cut_check": {
+     "crease_requested": 30.0,
+     "crease_effective": 29.185,
+     "ambiguous_edges": 0,
+     "ambiguous_edges_at_request": 4,
+     "seams_on_smooth_m": 1.05,
+     "sharp_not_seam_m": 0.554
+    }
+   },
+   "seconds": 1.5,
+   "longest_island_m": 3.951
+  }
+ ],
+ "seconds": 5.5
+}

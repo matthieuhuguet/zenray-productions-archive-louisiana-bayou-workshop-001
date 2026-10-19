@@ -1,0 +1,54 @@
+# ZenRay UV Trimsheet, measured loop (19 October 2026)
+
+Base : `{"asset_scale": 1.0, "texel_density": 1024, "sheet_size": 4096, "padding_px": 16, "materials": {"arch": "iron", "cross": "iron", "wire": "iron", "rivet": "iron", "pendant": "iron"}, "oriented_materials": ["iron", "pillar"]}` ; target score 0.999. Rank : hard rules, score, sheets, used height, seams, stretch. (19 October 2026)
+
+| Rank | crease_deg | merge_views | pack_order | cut_policy | symmetry_split | Score | Hard | Sheets | Used height px | Fill | Seams m | Stretch mean | Islands | s |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 45.0 | True | height | symmetry | True | 1.0 | ok | 1 | [2696] | 0.502 | 252.583 | 0.00418 | 126 | 1.82 |
+| 2 | 45.0 | True | height | middle | True | 1.0 | ok | 1 | [2696] | 0.502 | 252.583 | 0.00418 | 126 | 1.85 |
+| 3 | 45.0 | True | area | symmetry | True | 1.0 | ok | 1 | [2696] | 0.502 | 252.583 | 0.00418 | 126 | 1.82 |
+| 4 | 45.0 | True | area | middle | True | 1.0 | ok | 1 | [2696] | 0.502 | 252.583 | 0.00418 | 126 | 1.84 |
+| 5 | 45.0 | True | height | symmetry | False | 1.0 | ok | 1 | [2696] | 0.502 | 252.583 | 0.00418 | 128 | 1.71 |
+| 6 | 45.0 | True | height | middle | False | 1.0 | ok | 1 | [2696] | 0.502 | 252.583 | 0.00418 | 128 | 1.73 |
+| 7 | 45.0 | True | area | symmetry | False | 1.0 | ok | 1 | [2696] | 0.502 | 252.583 | 0.00418 | 128 | 1.73 |
+| 8 | 45.0 | True | area | middle | False | 1.0 | ok | 1 | [2696] | 0.502 | 252.583 | 0.00418 | 128 | 1.7 |
+| 9 | 60.0 | True | height | symmetry | True | 1.0 | ok | 1 | [2696] | 0.502 | 256.972 | 0.00418 | 129 | 1.95 |
+| 10 | 60.0 | True | height | middle | True | 1.0 | ok | 1 | [2696] | 0.502 | 256.972 | 0.00418 | 129 | 1.91 |
+| 11 | 60.0 | True | area | symmetry | True | 1.0 | ok | 1 | [2696] | 0.502 | 256.972 | 0.00418 | 129 | 1.92 |
+| 12 | 60.0 | True | area | middle | True | 1.0 | ok | 1 | [2696] | 0.502 | 256.972 | 0.00418 | 129 | 1.91 |
+| 13 | 60.0 | True | height | symmetry | False | 1.0 | ok | 1 | [2696] | 0.502 | 256.972 | 0.00418 | 131 | 1.83 |
+| 14 | 60.0 | True | height | middle | False | 1.0 | ok | 1 | [2696] | 0.502 | 256.972 | 0.00418 | 131 | 1.8 |
+| 15 | 60.0 | True | area | symmetry | False | 1.0 | ok | 1 | [2696] | 0.502 | 256.972 | 0.00418 | 131 | 1.8 |
+| 16 | 60.0 | True | area | middle | False | 1.0 | ok | 1 | [2696] | 0.502 | 256.972 | 0.00418 | 131 | 1.79 |
+| 17 | 30.0 | True | height | symmetry | True | 1.0 | ok | 1 | [2696] | 0.502 | 274.324 | 0.00418 | 146 | 1.67 |
+| 18 | 30.0 | True | height | middle | True | 1.0 | ok | 1 | [2696] | 0.502 | 274.324 | 0.00418 | 146 | 1.66 |
+| 19 | 30.0 | True | area | symmetry | True | 1.0 | ok | 1 | [2696] | 0.502 | 274.324 | 0.00418 | 146 | 1.66 |
+| 20 | 30.0 | True | area | middle | True | 1.0 | ok | 1 | [2696] | 0.502 | 274.324 | 0.00418 | 146 | 1.67 |
+| 21 | 30.0 | True | height | symmetry | False | 1.0 | ok | 1 | [2696] | 0.502 | 274.324 | 0.00418 | 148 | 1.58 |
+| 22 | 30.0 | True | height | middle | False | 1.0 | ok | 1 | [2696] | 0.502 | 274.324 | 0.00418 | 148 | 1.57 |
+| 23 | 30.0 | True | area | symmetry | False | 1.0 | ok | 1 | [2696] | 0.502 | 274.324 | 0.00418 | 148 | 1.57 |
+| 24 | 30.0 | True | area | middle | False | 1.0 | ok | 1 | [2696] | 0.502 | 274.324 | 0.00418 | 148 | 1.57 |
+| 25 | 45.0 | False | height | symmetry | True | 1.0 | ok | 1 | [3908] | 0.502 | 252.583 | 0.00418 | 135 | 1.79 |
+| 26 | 45.0 | False | height | middle | True | 1.0 | ok | 1 | [3908] | 0.502 | 252.583 | 0.00418 | 135 | 1.83 |
+| 27 | 45.0 | False | area | symmetry | True | 1.0 | ok | 1 | [3908] | 0.502 | 252.583 | 0.00418 | 135 | 1.78 |
+| 28 | 45.0 | False | area | middle | True | 1.0 | ok | 1 | [3908] | 0.502 | 252.583 | 0.00418 | 135 | 1.77 |
+| 29 | 45.0 | False | height | symmetry | False | 1.0 | ok | 1 | [3908] | 0.502 | 252.583 | 0.00418 | 137 | 1.66 |
+| 30 | 45.0 | False | height | middle | False | 1.0 | ok | 1 | [3908] | 0.502 | 252.583 | 0.00418 | 137 | 1.69 |
+| 31 | 45.0 | False | area | symmetry | False | 1.0 | ok | 1 | [3908] | 0.502 | 252.583 | 0.00418 | 137 | 1.66 |
+| 32 | 45.0 | False | area | middle | False | 1.0 | ok | 1 | [3908] | 0.502 | 252.583 | 0.00418 | 137 | 1.67 |
+| 33 | 60.0 | False | height | symmetry | True | 1.0 | ok | 1 | [3908] | 0.502 | 256.972 | 0.00418 | 138 | 1.87 |
+| 34 | 60.0 | False | height | middle | True | 1.0 | ok | 1 | [3908] | 0.502 | 256.972 | 0.00418 | 138 | 1.86 |
+| 35 | 60.0 | False | area | symmetry | True | 1.0 | ok | 1 | [3908] | 0.502 | 256.972 | 0.00418 | 138 | 1.85 |
+| 36 | 60.0 | False | area | middle | True | 1.0 | ok | 1 | [3908] | 0.502 | 256.972 | 0.00418 | 138 | 1.86 |
+| 37 | 60.0 | False | height | symmetry | False | 1.0 | ok | 1 | [3908] | 0.502 | 256.972 | 0.00418 | 140 | 1.77 |
+| 38 | 60.0 | False | height | middle | False | 1.0 | ok | 1 | [3908] | 0.502 | 256.972 | 0.00418 | 140 | 1.79 |
+| 39 | 60.0 | False | area | symmetry | False | 1.0 | ok | 1 | [3908] | 0.502 | 256.972 | 0.00418 | 140 | 1.76 |
+| 40 | 60.0 | False | area | middle | False | 1.0 | ok | 1 | [3908] | 0.502 | 256.972 | 0.00418 | 140 | 1.77 |
+| 41 | 30.0 | False | height | symmetry | True | 1.0 | ok | 1 | [3908] | 0.502 | 274.324 | 0.00418 | 155 | 1.61 |
+| 42 | 30.0 | False | height | middle | True | 1.0 | ok | 1 | [3908] | 0.502 | 274.324 | 0.00418 | 155 | 1.61 |
+| 43 | 30.0 | False | area | symmetry | True | 1.0 | ok | 1 | [3908] | 0.502 | 274.324 | 0.00418 | 155 | 1.63 |
+| 44 | 30.0 | False | area | middle | True | 1.0 | ok | 1 | [3908] | 0.502 | 274.324 | 0.00418 | 155 | 1.64 |
+| 45 | 30.0 | False | height | symmetry | False | 1.0 | ok | 1 | [3908] | 0.502 | 274.324 | 0.00418 | 157 | 1.51 |
+| 46 | 30.0 | False | height | middle | False | 1.0 | ok | 1 | [3908] | 0.502 | 274.324 | 0.00418 | 157 | 1.51 |
+| 47 | 30.0 | False | area | symmetry | False | 1.0 | ok | 1 | [3908] | 0.502 | 274.324 | 0.00418 | 157 | 1.53 |
+| 48 | 30.0 | False | area | middle | False | 1.0 | ok | 1 | [3908] | 0.502 | 274.324 | 0.00418 | 157 | 1.5 |
