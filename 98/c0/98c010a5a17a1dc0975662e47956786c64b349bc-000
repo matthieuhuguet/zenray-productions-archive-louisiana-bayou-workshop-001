@@ -1,0 +1,7 @@
+Height map for this sheet, same framing pixel for pixel : 4096 x 4096 px, 2048 px per metre (20.48 px per cm).
+Grey scale only, white = high, black = low ; the background between bands stays flat mid grey ; no text, no line, no frame.
+Bands from top to bottom (each colour is one material) :
+- pillar@V (rgb (242, 204, 64)) : rows 0 to 680 px, 0.332 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- pillar@U (rgb (242, 204, 64)) : rows 680 to 1316 px, 0.3105 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- iron@V (rgb (76, 140, 242)) : rows 1316 to 1944 px, 0.3066 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- iron@U (rgb (76, 140, 242)) : rows 1944 to 2312 px, 0.1797 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>

@@ -1,0 +1,333 @@
+{
+ "pass": true,
+ "rows": [
+  {
+   "case": "layout 256.0 px/m, trim, sheet 2048, unique sheet 0",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     2048,
+     1024
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    256.0,
+    256.28
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.0
+  },
+  {
+   "case": "layout 512.0 px/m, trim, sheet 2048, unique sheet 0",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     2048,
+     2048
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    511.99,
+    512.55
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.0
+  },
+  {
+   "case": "layout 700.0 px/m, trim, sheet 4096, unique sheet 0",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     4096,
+     2048
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    699.99,
+    700.75
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.1
+  },
+  {
+   "case": "layout 1024.0 px/m, trim, sheet 4096, unique sheet 0",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     4096,
+     4096
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    1023.99,
+    1025.1
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.0
+  },
+  {
+   "case": "layout 1500.0 px/m, trim, sheet 4096, unique sheet 0",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     4096,
+     512
+    ],
+    [
+     4096,
+     4096
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    1499.98,
+    1501.61
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.1
+  },
+  {
+   "case": "layout 2048.0 px/m, trim, sheet 4096, unique sheet 0",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     4096,
+     4096
+    ],
+    [
+     8192,
+     4096
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    2047.97,
+    2050.2
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.8
+  },
+  {
+   "case": "layout 2048.0 px/m, trim, sheet 8192, unique sheet 0",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     8192,
+     8192
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    2047.97,
+    2050.2
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.5
+  },
+  {
+   "case": "layout 1024.0 px/m, trim, sheet 2048, unique sheet 4096",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     2048,
+     2048
+    ],
+    [
+     4096,
+     2048
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    1023.99,
+    1025.1
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.1
+  },
+  {
+   "case": "layout 1024.0 px/m, atlas, sheet 4096, unique sheet 0",
+   "expect": "white",
+   "ok": true,
+   "missing_faces": 0,
+   "sheets": [
+    [
+     4096,
+     4096
+    ]
+   ],
+   "white": 1.0,
+   "red": 0.0,
+   "blue": 0.0,
+   "px_per_m": [
+    1023.99,
+    1025.1
+   ],
+   "stretch_max": 0.0566,
+   "seconds": 3.6
+  },
+  {
+   "case": "check asks 512 px/m on a 1024 layout",
+   "expect": "all blue",
+   "ok": true,
+   "blue": 1.0,
+   "px_per_m_median": 1024.0
+  },
+  {
+   "case": "check asks 2048 px/m on a 1024 layout",
+   "expect": "all red",
+   "ok": true,
+   "red": 1.0,
+   "px_per_m_median": 1024.0
+  },
+  {
+   "case": "sheet width read as half the real one",
+   "expect": "red",
+   "ok": true,
+   "red": 1.0
+  },
+  {
+   "case": "largest island scaled x 0.97",
+   "expect": "that island red (28.47 % of the surface)",
+   "ok": "True",
+   "measured": 0.284738,
+   "px_per_m_range": [
+    993.28,
+    1025.1
+   ]
+  },
+  {
+   "case": "largest island scaled x 1.03",
+   "expect": "that island blue (28.47 % of the surface)",
+   "ok": "True",
+   "measured": 0.284738,
+   "px_per_m_range": [
+    1023.99,
+    1054.72
+   ]
+  },
+  {
+   "case": "largest island moved, same size",
+   "expect": "white",
+   "ok": true,
+   "white": 1.0
+  },
+  {
+   "case": "largest island x 1.10 in U and / 1.10 in V (same area)",
+   "expect": "white area, stretch gate red",
+   "ok": true,
+   "white": 1.0,
+   "stretch_max": 0.1
+  },
+  {
+   "case": "wall 5.0 x 5.0 m at 1024 px/m on a 4096 sheet (cannot be cut, bigger than the sheet)",
+   "expect": "white, sheet grown",
+   "ok": true,
+   "missing_faces": 0,
+   "auto_sheets": [
+    {
+     "material": "wall",
+     "axis": "height",
+     "from_px": 4096,
+     "to_px": 8192,
+     "need_px": 5152,
+     "enough": true
+    }
+   ],
+   "sheets": [
+    [
+     4096,
+     8192,
+     "shared"
+    ]
+   ],
+   "white": 1.0,
+   "hard_ok": true
+  },
+  {
+   "case": "sign 5.0 x 0.8 m at 1024 px/m on a 4096 sheet (cannot be cut, bigger than the sheet)",
+   "expect": "white, sheet grown",
+   "ok": true,
+   "missing_faces": 0,
+   "auto_sheets": [
+    {
+     "material": "sign",
+     "axis": "width",
+     "from_px": 4096,
+     "to_px": 8192,
+     "need_px": 5156,
+     "enough": true
+    }
+   ],
+   "sheets": [
+    [
+     8192,
+     1024,
+     "unique"
+    ]
+   ],
+   "white": 1.0,
+   "hard_ok": true
+  },
+  {
+   "case": "sign 10 x 0.8 m at 1024 px/m, above the 8192 px limit",
+   "expect": "face named unplaced, red",
+   "ok": true,
+   "unplaced": [
+    {
+     "material": "sign",
+     "faces": 1,
+     "w_px": 10240,
+     "h_px": 819
+    }
+   ],
+   "auto_sheets": [
+    {
+     "material": "sign",
+     "axis": "width",
+     "from_px": 4096,
+     "to_px": 8192,
+     "need_px": 10276,
+     "enough": false
+    }
+   ],
+   "red": 1.0
+  }
+ ]
+}

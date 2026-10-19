@@ -1,0 +1,99 @@
+{
+ "texel_density_px_per_m": 2048.0,
+ "asset_scale": 1.0,
+ "tile_mode": "trim",
+ "padding_px": 16,
+ "sheets": [
+  {
+   "sheet": 1,
+   "width_px": 4096,
+   "height_px": 4096,
+   "kind": "shared",
+   "bands": [
+    {
+     "material": "pillar@V",
+     "segment": 1,
+     "y_px": 0,
+     "height_px": 680,
+     "height_m": 0.332,
+     "width_m": 2.0,
+     "tiles_in_u": true,
+     "islands": 28,
+     "colour_rgb": [
+      242,
+      204,
+      64
+     ]
+    },
+    {
+     "material": "pillar@U",
+     "segment": 1,
+     "y_px": 680,
+     "height_px": 636,
+     "height_m": 0.3105,
+     "width_m": 2.0,
+     "tiles_in_u": true,
+     "islands": 7,
+     "colour_rgb": [
+      242,
+      204,
+      64
+     ]
+    },
+    {
+     "material": "iron@V",
+     "segment": 1,
+     "y_px": 1316,
+     "height_px": 628,
+     "height_m": 0.3066,
+     "width_m": 2.0,
+     "tiles_in_u": true,
+     "islands": 67,
+     "colour_rgb": [
+      76,
+      140,
+      242
+     ]
+    },
+    {
+     "material": "iron@U",
+     "segment": 1,
+     "y_px": 1944,
+     "height_px": 368,
+     "height_m": 0.1797,
+     "width_m": 2.0,
+     "tiles_in_u": true,
+     "islands": 16,
+     "colour_rgb": [
+      76,
+      140,
+      242
+     ]
+    }
+   ]
+  },
+  {
+   "sheet": 2,
+   "width_px": 8192,
+   "height_px": 4096,
+   "kind": "unique",
+   "bands": [
+    {
+     "material": "sign",
+     "segment": 1,
+     "y_px": 0,
+     "height_px": 3292,
+     "height_m": 1.6074,
+     "width_m": 4.0,
+     "tiles_in_u": false,
+     "islands": 14,
+     "colour_rgb": [
+      89,
+      199,
+      102
+     ]
+    }
+   ]
+  }
+ ]
+}

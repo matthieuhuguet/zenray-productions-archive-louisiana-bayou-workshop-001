@@ -1,0 +1,4 @@
+Height map for this sheet, same framing pixel for pixel : 8192 x 4096 px, 2048 px per metre (20.48 px per cm).
+Grey scale only, white = high, black = low ; the background between bands stays flat mid grey ; no text, no line, no frame.
+Bands from top to bottom (each colour is one material) :
+- sign (rgb (89, 199, 102)) : rows 0 to 3292 px, 1.6074 m tall, unique content kept exactly in its island shapes, material : <write it here>
