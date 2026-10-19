@@ -17,10 +17,12 @@
  },
  "reports": {
   "uv": {
+   "organic_area": 0.0,
    "texel": {
     "set": "uv",
     "target_px_per_m": 1024.0,
     "tol": 0.01,
+    "tol_max": 0.01,
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
@@ -80,13 +82,14 @@
    "unique": true,
    "region": "sheet",
    "padding_px": 16,
-   "straight_tol": 0.08
+   "straight_tol": 0.08,
+   "organic_tol": 0.1
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.91,
+ "cook_s": 3.41,
  "score_s": 0.57,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
@@ -98,7 +101,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 22:48",
+ "date": "19 October 2026 23:03",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
