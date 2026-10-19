@@ -77,8 +77,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 7.81,
- "score_s": 79.98,
+ "cook_s": 7.73,
+ "score_s": 114.64,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_8192x8192.png",
@@ -88,11 +88,11 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_8192x8192.png"
   },
   "seconds": {
-   "custom": 69.24,
-   "occlusion": 1.07,
-   "curvature": 0.86,
-   "edge": 0.77,
-   "alpha": 0.53
+   "custom": 103.79,
+   "occlusion": 0.89,
+   "curvature": 1.07,
+   "edge": 0.82,
+   "alpha": 0.47
   },
   "size": [
    8192,
@@ -110,7 +110,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 19:52",
+ "date": "19 October 2026 20:23",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
