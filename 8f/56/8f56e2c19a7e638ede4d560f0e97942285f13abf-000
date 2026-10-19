@@ -1,0 +1,42 @@
+# 20 October 2026 : one failing chart of welded Manny (the hand, the head, the back) : how far the bounded distortion solver gets with more iterations, another
+# margin, or without stopping at the first flip.
+import numpy as np, sys, importlib, json, time
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+g = hou.node('/obj/ZRUV_Manny/organic_refine').geometry()
+O._TD, O._SUBPX, O._TOL = 1024.0, 1.0, 0.1
+m = Z.from_geo(g, ('uv_org',), ['zruv_ochart'])
+O._HARDSET = set()
+ch = np.array(m.prim['zruv_ochart'])
+out = {}
+for k in CHARTS:
+    fs = [int(f) for f in np.where(ch == k)[0]]
+    flat = O._flatten_faces({'_mesh': m}, fs)
+    keyv, P, UV, tris, corner = {}, [], [], [], []
+    for f in fs:
+        ids = []
+        for p, (u, v) in zip(m.polys[f], flat[f]):
+            kk = (p, round(u, 7), round(v, 7))
+            if kk not in keyv:
+                keyv[kk] = len(P); P.append(m.P[p]); UV.append((u, v))
+            ids.append(keyv[kk])
+        corner.append(ids)
+        for j in range(1, len(ids) - 1):
+            tris.append((ids[0], ids[j], ids[j + 1]))
+    P3, T, uv0 = np.array(P), np.array(tris, dtype=np.int64), np.array(UV)
+    r, s_, a3 = O.distortion(P3, T, uv0)
+    sc = np.sqrt(a3.sum() / (r ** 2 * a3).sum())
+    row = {}
+    for tag, bdi, mg, fg in (('bd40_m06', 40, 0.6, True), ('bd200_m06', 200, 0.6, True), ('bd200_m06_noflipguard', 200, 0.6, False), ('bd200_m04', 200, 0.4, True), ('bd200_m08', 200, 0.8, True), ('arap_only', 0, 0.6, True)):
+        t = time.time()
+        uv = O.arap(P3, T, uv0 * sc, iters=12, tol=0.1, bd_iters=bdi, margin=mg, flip_guard=fg)
+        r, s_, a3 = O.distortion(P3, T, uv)
+        rf, sf, af = O.face_measure(m, fs, r, s_, a3, 0.1)
+        bad = ~((np.abs(rf - 1) <= 0.1) & (sf <= 0.1))
+        C = uv[T]
+        sa = (C[:, 1, 0] - C[:, 0, 0]) * (C[:, 2, 1] - C[:, 0, 1]) - (C[:, 2, 0] - C[:, 0, 0]) * (C[:, 1, 1] - C[:, 0, 1])
+        flips = int(min((sa > 0).sum(), (sa < 0).sum()))
+        row[tag] = {'fail_share': round(float(af[bad].sum() / af.sum()), 4), 'flips': flips, 's': round(time.time() - t, 2)}
+    out[int(k)] = {'faces': len(fs), 'v': row}
+result = out

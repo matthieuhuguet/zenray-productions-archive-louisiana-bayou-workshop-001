@@ -1,0 +1,27 @@
+# 20 October 2026 : welded Manny after refine : the charts that still fail, where they are, how much, and whether their failing faces touch the chart outline.
+import numpy as np, sys, importlib, json, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+g = hou.node('/obj/ZRUV_Manny/organic_refine').geometry()
+O._TD, O._SUBPX, O._TOL = 1024.0, 1.0, 0.1
+m = Z.from_geo(g, ('uv_org',), ['zruv_ochart'])
+ch = np.array(m.prim['zruv_ochart'])
+rows = []
+for k in sorted(set(ch.tolist()) - {-1}):
+    fs = [int(f) for f in np.where(ch == k)[0]]
+    P3, T, uv, corner = O._island_arrays(m, 'uv_org', fs)
+    r, s, a3 = O.distortion(P3, T, uv)
+    rf, sf, af = O.face_measure(m, fs, r, s, a3, 0.1)
+    bad = ~((np.abs(rf - 1) <= 0.1) & (sf <= 0.1))
+    fa = float(af[bad].sum())
+    if fa <= 0:
+        continue
+    adj, border, ang = O._chart_graph(m, fs)
+    bf = [fs[i] for i in np.where(bad)[0]]
+    touch = sum(1 for f in bf if any(p in border for p in m.polys[f]))
+    c = m.P[sorted({p for f in bf for p in m.polys[f]})].mean(0)
+    rows.append({'chart': k, 'faces': len(fs), 'bad_faces': len(bf), 'touch_border': touch, 'fail_m2': round(fa, 6), 'share': round(fa / float(af.sum()), 3), 'center': [round(float(x), 3) for x in c],
+                 'dev_p50': round(float(np.median(np.maximum(np.abs(rf[bad] - 1), sf[bad]))), 3)})
+rows.sort(key=lambda d: -d['fail_m2'])
+result = {'n_fail': len(rows), 'total': round(sum(d['fail_m2'] for d in rows), 6), 'top': rows[:14]}

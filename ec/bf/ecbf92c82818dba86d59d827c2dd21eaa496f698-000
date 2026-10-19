@@ -2,8 +2,8 @@
  "ok": true,
  "result": {
   "ZRUV_Arch": {
-   "build_s": 0.0,
-   "total_s": 4.3,
+   "build_s": 0.1,
+   "total_s": 14.4,
    "score": 1.0,
    "errors": [],
    "low": {},
@@ -37,30 +37,30 @@
    "islands": 533
   },
   "ZRUV_RubberToy": {
-   "build_s": 0.0,
-   "total_s": 19.6,
-   "score": 0.999634,
+   "build_s": 0.1,
+   "total_s": 68.5,
+   "score": 0.999525,
    "errors": [],
    "low": {
-    "uv:stretch": 0.999634
+    "uv:stretch": 0.999525
    },
    "organic": {
     "from_unwrap": 47,
     "repaired": 1,
-    "merges": 21,
+    "merges": 0,
     "stuck": 0,
-    "economy_s": 9.5,
-    "economy_merges": 11,
+    "economy_s": 37.0,
+    "economy_merges": 8,
     "reflattened": 0,
-    "charts": 38,
-    "discs": 36,
+    "charts": 40,
+    "discs": 38,
     "tol": 0.1,
     "cover_asked": 0.999,
-    "within_tol": 0.99963,
-    "within_5pc": 0.98611,
-    "stretch_max": 0.1152,
+    "within_tol": 0.99953,
+    "within_5pc": 0.98561,
+    "stretch_max": 0.1961,
     "organic_share": 1.0012,
-    "fail_area_m2": 0.000366,
+    "fail_area_m2": 0.000475,
     "budget_m2": 0.0005
    },
    "hard": {
@@ -78,7 +78,7 @@
     "consistency": 1.0,
     "chains_mixed": 0,
     "sharp_kept_m": 0,
-    "seams_m": 12.505
+    "seams_m": 12.531
    },
    "sheet": [
     2048,
@@ -86,37 +86,34 @@
    ],
    "proven": true,
    "unique": 1.0,
-   "fill": 0.4975,
-   "islands": 38
+   "fill": 0.4974,
+   "islands": 40
   },
   "ZRUV_ShaderBall": {
-   "build_s": 0.0,
-   "total_s": 21.1,
-   "score": 0.999516,
+   "build_s": 0.1,
+   "total_s": 47.1,
+   "score": 0.999417,
    "errors": [],
    "low": {
-    "uv:density": 0.999788,
-    "uv:stretch": 0.999516
+    "uv:stretch": 0.999417
    },
    "organic": {
     "from_unwrap": 524,
     "repaired": 1,
-    "merges": 29,
-    "stuck": 0,
-    "cone_cuts": 1,
-    "coned_charts": 1,
-    "economy_s": 5.4,
-    "economy_merges": 241,
+    "merges": 0,
+    "stuck": 1,
+    "economy_s": 18.6,
+    "economy_merges": 237,
     "reflattened": 1,
-    "charts": 285,
-    "discs": 281,
+    "charts": 288,
+    "discs": 284,
     "tol": 0.1,
     "cover_asked": 0.999,
-    "within_tol": 0.99952,
-    "within_5pc": 0.9822,
-    "stretch_max": 0.6361,
+    "within_tol": 0.99942,
+    "within_5pc": 0.98218,
+    "stretch_max": 0.1914,
     "organic_share": 1.0002,
-    "fail_area_m2": 0.000484,
+    "fail_area_m2": 0.000583,
     "budget_m2": 0.0005
    },
    "hard": {
@@ -134,7 +131,7 @@
     "consistency": 1.0,
     "chains_mixed": 0,
     "sharp_kept_m": 0,
-    "seams_m": 22.917
+    "seams_m": 22.248
    },
    "sheet": [
     2048,
@@ -142,36 +139,35 @@
    ],
    "proven": true,
    "unique": 1.0,
-   "fill": 0.4959,
-   "islands": 295
+   "fill": 0.496,
+   "islands": 298
   },
   "ZRUV_Manny": {
-   "build_s": 0.0,
-   "total_s": 145.3,
-   "score": 0.999412,
+   "build_s": 0.1,
+   "total_s": 160.6,
+   "score": 0.994929,
    "errors": [],
    "low": {
-    "uv:stretch": 0.999412
+    "uv:density": 0.999231,
+    "uv:stretch": 0.994929
    },
    "organic": {
     "from_unwrap": 191,
-    "repaired": 27,
-    "merges": 635,
-    "stuck": 27,
-    "cone_cuts": 265,
-    "coned_charts": 84,
-    "economy_s": 51.7,
-    "economy_merges": 71,
+    "repaired": 56,
+    "merges": 0,
+    "stuck": 75,
+    "economy_s": 84.1,
+    "economy_merges": 106,
     "reflattened": 48,
-    "charts": 237,
-    "discs": 232,
+    "charts": 141,
+    "discs": 135,
     "tol": 0.1,
     "cover_asked": 0.999,
-    "within_tol": 0.99942,
-    "within_5pc": 0.99382,
-    "stretch_max": 2.4648,
+    "within_tol": 0.99494,
+    "within_5pc": 0.99054,
+    "stretch_max": 0.7462,
     "organic_share": 1.0,
-    "fail_area_m2": 0.001205,
+    "fail_area_m2": 0.010566,
     "budget_m2": 0.001045
    },
    "hard": {
@@ -188,8 +184,8 @@
    "seams": {
     "consistency": 1.0,
     "chains_mixed": 0,
-    "sharp_kept_m": 0.014,
-    "seams_m": 60.0
+    "sharp_kept_m": 0.007,
+    "seams_m": 50.608
    },
    "sheet": [
     4096,
@@ -197,8 +193,8 @@
    ],
    "proven": false,
    "unique": 1.0,
-   "fill": 0.2604,
-   "islands": 282
+   "fill": 0.2608,
+   "islands": 145
   }
  }
 }
