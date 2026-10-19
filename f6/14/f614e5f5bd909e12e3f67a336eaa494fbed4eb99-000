@@ -1,0 +1,1101 @@
+# 19 October 2026 : ZENRAY UV TRIMSHEET, core library v2 (pure numpy and PIL, no hou). EN: from a welded polygon mesh (points, polygons, a group name per polygon) it computes a trim sheet UV layout. (1) charts cut on sharp edges, closed rings cut at their lowest rung ; (2) every chart unfolded by the method that measures best : planar projection, rigid hinge unfold, strip straightening (rectangle, per face density kept), LSCM for organic charts ; (3) flat charts of one piece that face the same way are merged into ONE view island when that saves space (the frame and the recess of a sign become one picture) ; (4) islands too long for the sheet are cut at the symmetry plane or at the middle ; (5) congruent islands are proven by a rigid fit that also maps the normals, then STACKED on one island (rotations first, mirrors only where the material allows it) ; (6) one band per material, islands packed by pixel masks from the top left (left aligned, top to bottom, holes and gaps filled), pixel snapped ; (7) bands put on sheets, a second sheet (second material) or a UDIM tile when one sheet is not enough. Every number lives in Params (the HDA interface). `layout(mesh, params)` returns the result, `score(result)` the measured report (ZenRay UV score = surface fraction at the exact texel density, times the hard rules). FR : bibliotheque du depliage trim sheet, toutes les valeurs dans Params, mesure par score().
+import json, math
+from dataclasses import dataclass, field, asdict
+import numpy as np
+
+# 19 October 2026 : default colour per material band (RGB 0..1), the colours of the validation sheets ; FR : couleur de bande par materiau
+DEFAULT_COLOURS = {'pillar': (0.95, 0.80, 0.25), 'arch': (0.30, 0.55, 0.95), 'cross': (0.92, 0.30, 0.28), 'sign': (0.35, 0.78, 0.40),
+                   'rivet': (0.30, 0.85, 0.90), 'wire': (0.66, 0.42, 0.90), 'pendant': (0.98, 0.58, 0.22)}
+
+
+@dataclass
+class Params:
+    """19 October 2026 : the whole interface of the unwrap, defaults = the delivered result. FR : interface complete, defauts = resultat livre."""
+    # scale and density
+    asset_scale: float = 1.0          # uniform scale of the asset before UV (metres in the final scene)
+    texel_density: float = 1024.0     # pixels per metre
+    sheet_size: int = 2048            # width of one sheet in pixels (power of two)
+    max_sheet_height_ratio: int = 1   # sheet height = ratio x width (1 = square)
+    padding_px: int = 8               # bleed of each island ; two islands stay at least twice this apart
+    pack_cell_px: int = 4             # packing grid cell, the islands land on multiples of it
+    # unwrap
+    crease_deg: float = 30.0          # an edge sharper than this cuts the chart
+    flat_tol_m: float = 0.0002        # a chart flatter than this is projected exactly
+    stretch_tol: float = 0.06         # a method is accepted when every triangle stretches less than this (straightened rings of width / radius 0.11 stretch 5.2 %)
+    density_tol: float = 0.01         # a face is at the target texel density when its UV area / 3D area ratio is within this
+    straighten: str = 'auto'          # 'auto' (measured choice), 'always', 'never'
+    merge_views: bool = True          # merge flat charts of one piece that face the same way when it saves space
+    merge_gain: float = 0.98          # merge only if the merged box is at most this fraction of the separate boxes
+    symmetry_split: bool = False      # cut every island that spans the x = 0 plane into its two halves (they then stack as mirrors), when no face crosses the plane
+    # stacking
+    stack_tol_m: float = 0.0005       # max point distance for two islands to be called congruent
+    allow_mirror_stack: bool = True   # stack mirror images too (UV handedness flips on the copy)
+    no_mirror_materials: tuple = ('sign',)  # materials whose texture must never read mirrored (text)
+    # layout
+    cut_policy: str = 'symmetry'      # an island too long for the sheet is cut at the x = 0 plane first ('symmetry') or in the middle ('middle')
+    overflow: str = 'second_sheet'    # 'second_sheet' (a second material), 'udim' (tiles 1001, 1002 ...), 'grow' (taller sheet)
+    band_order: tuple = ()            # materials from top to bottom ; empty = by area, largest first
+    pack_order: str = 'height'        # islands of a band placed tallest first ('height') or largest first ('area')
+    materials: dict = field(default_factory=dict)   # group name -> material ; missing groups map to themselves without _L / _R
+    up_axis: tuple = (0.0, 1.0, 0.0)  # world up : tall islands read up = +U, the others up = +V
+
+    def material_of(self, group):
+        if group in self.materials:
+            return self.materials[group]
+        for suffix in ('_L', '_R', '_l', '_r'):
+            if group.endswith(suffix):
+                return group[:-len(suffix)]
+        return group
+
+
+# ---------------------------------------------------------------- mesh
+
+class Mesh:
+    """19 October 2026 : welded polygon mesh. P (n, 3), polys = lists of point ids, group = one name per polygon ; normal = OUTWARD unit normal with the Houdini winding (clockwise seen from outside)."""
+
+    def __init__(self, P, polys, group):
+        self.P = np.asarray(P, dtype=np.float64)
+        self.polys = [list(map(int, p)) for p in polys]
+        self.group = list(group)
+        self.n = len(self.polys)
+        self.normal = np.zeros((self.n, 3))
+        self.area = np.zeros(self.n)
+        self.centre = np.zeros((self.n, 3))
+        for i, pl in enumerate(self.polys):
+            q = self.P[pl]
+            nv = np.cross(q, np.roll(q, -1, axis=0)).sum(0)      # Newell vector, right hand rule
+            a = np.linalg.norm(nv)
+            self.area[i] = 0.5 * a
+            self.normal[i] = -nv / a if a > 0 else nv            # Houdini outward = clockwise seen from outside, so negate
+            self.centre[i] = q.mean(0)
+        self.edges = {}
+        for i, pl in enumerate(self.polys):
+            for j in range(len(pl)):
+                a, b = pl[j], pl[(j + 1) % len(pl)]
+                self.edges.setdefault((min(a, b), max(a, b)), []).append(i)
+        self.face_of_set = {frozenset(pl): i for i, pl in enumerate(self.polys)}
+
+    @classmethod
+    def from_json(cls, path):
+        d = json.load(open(path))
+        return cls(d['P'], d['polys'], d['group'])
+
+    def scaled(self, s):
+        m = Mesh.__new__(Mesh)
+        m.__dict__.update(self.__dict__)
+        m.P = self.P * s
+        m.area = self.area * s * s
+        m.centre = self.centre * s
+        return m
+
+
+def _uf(n):
+    parent = list(range(n))
+
+    def find(a):
+        while parent[a] != a:
+            parent[a] = parent[parent[a]]
+            a = parent[a]
+        return a
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[rb] = ra
+    return find, union
+
+
+def pieces(mesh):
+    """Piece id per face : faces of one group joined through shared points (a welded solid)."""
+    find, union = _uf(mesh.n)
+    first = {}
+    for f, pl in enumerate(mesh.polys):
+        for p in pl:
+            key = (mesh.group[f], p)
+            if key in first:
+                union(first[key], f)
+            else:
+                first[key] = f
+    return [find(f) for f in range(mesh.n)]
+
+
+def charts(mesh, params):
+    """Faces grouped into charts : same group, joined across a manifold edge whose dihedral angle is below crease_deg."""
+    find, union = _uf(mesh.n)
+    cos_c = math.cos(math.radians(params.crease_deg))
+    for (a, b), fs in mesh.edges.items():
+        if len(fs) != 2:
+            continue
+        f0, f1 = fs
+        if mesh.group[f0] != mesh.group[f1]:
+            continue
+        if float(np.dot(mesh.normal[f0], mesh.normal[f1])) >= cos_c:
+            union(f0, f1)
+    out = {}
+    for f in range(mesh.n):
+        out.setdefault(find(f), []).append(f)
+    return [sorted(v) for v in out.values()]
+
+
+def charts_subset(mesh, faces, crease_deg):
+    """Re chart a face subset at another crease angle (used when a chart fails every unfold method)."""
+    fs = set(faces)
+    idx = {f: i for i, f in enumerate(faces)}
+    find, union = _uf(len(faces))
+    cos_c = math.cos(math.radians(crease_deg))
+    for f in faces:
+        pl = mesh.polys[f]
+        for j in range(len(pl)):
+            e = (min(pl[j], pl[(j + 1) % len(pl)]), max(pl[j], pl[(j + 1) % len(pl)]))
+            nb = mesh.edges[e]
+            if len(nb) != 2:
+                continue
+            g = nb[0] if nb[1] == f else nb[1]
+            if g in fs and float(np.dot(mesh.normal[f], mesh.normal[g])) >= cos_c:
+                union(idx[f], idx[g])
+    out = {}
+    for f in faces:
+        out.setdefault(find(idx[f]), []).append(f)
+    return [sorted(v) for v in out.values()]
+
+
+def chart_points(mesh, faces):
+    pts, seen = [], set()
+    for f in faces:
+        for p in mesh.polys[f]:
+            if p not in seen:
+                seen.add(p)
+                pts.append(p)
+    return pts
+
+
+def _adjacency(mesh, faces, cut=None):
+    """Face adjacency inside the chart through its shared edges, the edges of `cut` excluded."""
+    fs = set(faces)
+    cut = cut or set()
+    nb = {f: [] for f in faces}
+    for f in faces:
+        pl = mesh.polys[f]
+        for j in range(len(pl)):
+            a, b = pl[j], pl[(j + 1) % len(pl)]
+            e = (min(a, b), max(a, b))
+            if e in cut:
+                continue
+            for g in mesh.edges[e]:
+                if g != f and g in fs:
+                    nb[f].append((g, j, (a, b)))
+    return nb
+
+
+def ring_cut(mesh, faces):
+    """If the chart is a CLOSED ring of quads, return the rung to cut : the one whose middle is lowest (then furthest back). Else an empty set."""
+    if len(faces) < 3 or any(len(mesh.polys[f]) != 4 for f in faces):
+        return set()
+    nb = _adjacency(mesh, faces)
+    if any(len(v) != 2 for v in nb.values()):
+        return set()
+    rungs = {}
+    for f, lst in nb.items():
+        for g, j, (a, b) in lst:
+            rungs[(min(a, b), max(a, b))] = 0.5 * (mesh.P[a] + mesh.P[b])
+    # must be a single cycle, opposite edges
+    for f, lst in nb.items():
+        if (lst[0][1] - lst[1][1]) % 4 != 2:
+            return set()
+    e = min(rungs, key=lambda k: (round(rungs[k][1], 6), round(rungs[k][2], 6)))
+    return {e}
+
+
+# ---------------------------------------------------------------- unfold methods (all return {point id: (u, v)} in metres)
+
+def _frame(normal):
+    n = normal / np.linalg.norm(normal)
+    t = np.array([1.0, 0.0, 0.0]) if abs(n[0]) < 0.9 else np.array([0.0, 1.0, 0.0])
+    e1 = np.cross(t, n)
+    e1 /= np.linalg.norm(e1)
+    e2 = np.cross(n, e1)
+    return e1, e2, n
+
+
+def unfold_planar(mesh, faces, frame=None, origin=None):
+    """Orthographic projection on the chart plane, basis right handed around the outward normal (the UV reads like the face seen from outside). Exact for a flat chart."""
+    pts = chart_points(mesh, faces)
+    if frame is None:
+        nsum = (mesh.normal[faces] * mesh.area[faces, None]).sum(0)
+        frame = _frame(nsum)
+    e1, e2, n = frame
+    c = mesh.P[pts].mean(0) if origin is None else origin
+    return {p: (float(np.dot(mesh.P[p] - c, e1)), float(np.dot(mesh.P[p] - c, e2))) for p in pts}
+
+
+def _place_face(mesh, f, uv, hinge):
+    """Rigidly unfold face f into the UV plane across its hinge edge (a, b) whose UVs are known. Exact for a planar face."""
+    a, b = hinge
+    pa, pb = mesh.P[a], mesh.P[b]
+    qa, qb = np.array(uv[a]), np.array(uv[b])
+    e3 = pb - pa
+    L3 = np.linalg.norm(e3)
+    e2d = qb - qa
+    L2 = np.linalg.norm(e2d)
+    if L3 < 1e-12 or L2 < 1e-12:
+        return {}
+    x3, x2 = e3 / L3, e2d / L2
+    perp2 = np.array([-x2[1], x2[0]])
+    y3 = np.cross(mesh.normal[f], x3)
+    s = L2 / L3
+    out = {}
+    for p in mesh.polys[f]:
+        if p in uv:
+            continue
+        d = mesh.P[p] - pa
+        out[p] = tuple(qa + s * (np.dot(d, x3) * x2 + np.dot(d, y3) * perp2))
+    return out
+
+
+def unfold_hinge(mesh, faces, cut=None):
+    """Breadth first rigid unfold across the chart's inner edges (the `cut` edges excluded). A developable chart (a strip of a cylinder or a cone) unfolds without any distortion."""
+    root = max(faces, key=lambda f: mesh.area[f])
+    e1, e2, n = _frame(mesh.normal[root])
+    c = mesh.P[mesh.polys[root]].mean(0)
+    uv = {p: (float(np.dot(mesh.P[p] - c, e1)), float(np.dot(mesh.P[p] - c, e2))) for p in mesh.polys[root]}
+    nb = _adjacency(mesh, faces, cut)
+    placed, queue = {root}, [root]
+    while queue:
+        f = queue.pop(0)
+        for g, j, (a, b) in nb[f]:
+            if g in placed:
+                continue
+            uv.update(_place_face(mesh, g, uv, (a, b)))
+            placed.add(g)
+            queue.append(g)
+    return uv
+
+
+def strip_order(mesh, faces, cut=None):
+    """If the chart is a strip of quads (each quad touches at most two others, across opposite edges), return (quads in order, rungs between them) ; else None."""
+    if any(len(mesh.polys[f]) != 4 for f in faces):
+        return None
+    nb = _adjacency(mesh, faces, cut)
+    for f, lst in nb.items():
+        if len(lst) > 2:
+            return None
+        if len(lst) == 2 and (lst[0][1] - lst[1][1]) % 4 != 2:
+            return None
+    if len(faces) == 1:
+        return [faces[0]], []
+    ends = [f for f, lst in nb.items() if len(lst) == 1]
+    if len(ends) != 2:
+        return None
+    order, prev = [min(ends)], None
+    rungs = []
+    while True:
+        cur = order[-1]
+        nxt = [(g, e) for g, _, e in nb[cur] if g != prev]
+        if not nxt:
+            break
+        prev = cur
+        order.append(nxt[0][0])
+        rungs.append(nxt[0][1])
+    if len(order) != len(faces):
+        return None
+    return order, rungs
+
+
+def _end_rung(quad, rung):
+    j = [k for k in range(4) if {quad[k], quad[(k + 1) % 4]} == set(rung)][0]
+    return (quad[(j + 2) % 4], quad[(j + 3) % 4])
+
+
+def unfold_strip(mesh, faces, cut=None):
+    """Straighten a quad strip into a rectangle : u = distance along the strip measured on its mid line, v = 0 on one rail and the mean rung length on the other. Each quad keeps its true area, so the per face texel density stays exact ; the anisotropic stretch is measured. None when the chart is not a strip."""
+    so = strip_order(mesh, faces, cut)
+    if so is None or not so[1]:
+        return None
+    order, rungs = so
+    all_rungs = [_end_rung(mesh.polys[order[0]], rungs[0])] + list(rungs) + [_end_rung(mesh.polys[order[-1]], rungs[-1])]
+    oriented = [all_rungs[0]]
+    for k in range(1, len(all_rungs)):
+        a, b = all_rungs[k]
+        pa, pb = oriented[-1]
+        quad = mesh.polys[order[k - 1]]
+        adjacent = any({quad[i], quad[(i + 1) % 4]} == {pa, a} for i in range(4))
+        oriented.append((a, b) if adjacent else (b, a))
+    mids = [0.5 * (mesh.P[a] + mesh.P[b]) for a, b in oriented]
+    u = [0.0]
+    for k in range(1, len(mids)):
+        u.append(u[-1] + float(np.linalg.norm(mids[k] - mids[k - 1])))
+    lens = [float(np.linalg.norm(mesh.P[a] - mesh.P[b])) for a, b in oriented]
+    w = float(np.mean(lens))
+    uv = {}
+    for k, (a, b) in enumerate(oriented):
+        uv[a] = (u[k], 0.0)
+        uv[b] = (u[k], w)
+    if _signed_uv_area(mesh, order[0], uv) * _expected_sign() < 0:
+        uv = {p: (x, w - y) for p, (x, y) in uv.items()}
+    return uv
+
+
+def _expected_sign():
+    """Sign of the UV shoelace area of a non mirrored face : Houdini faces run clockwise seen from outside, so a UV that reads like the face is clockwise, negative shoelace."""
+    return -1.0
+
+
+def _signed_uv_area(mesh, f, uv):
+    q = np.array([uv[p] for p in mesh.polys[f]])
+    return 0.5 * float(np.sum(q[:, 0] * np.roll(q[:, 1], -1) - np.roll(q[:, 0], -1) * q[:, 1]))
+
+
+def unfold_lscm(mesh, faces):
+    """Least squares conformal map (Levy 2002), dense solve, for organic charts no exact method unfolds. Two far points pinned, then rescaled to the true area."""
+    pts = chart_points(mesh, faces)
+    idx = {p: i for i, p in enumerate(pts)}
+    n = len(pts)
+    rows = []
+    for f in faces:
+        pl = mesh.polys[f]
+        for j in range(1, len(pl) - 1):
+            a, b, c = pl[0], pl[j], pl[j + 1]
+            pa = mesh.P[a]
+            e1, e2, nn = _frame(mesh.normal[f])
+            x = [np.array([np.dot(mesh.P[p] - pa, e1), np.dot(mesh.P[p] - pa, e2)]) for p in (a, b, c)]
+            ar = 0.5 * abs((x[1][0] - x[0][0]) * (x[2][1] - x[0][1]) - (x[2][0] - x[0][0]) * (x[1][1] - x[0][1]))
+            if ar < 1e-14:
+                continue
+            s = 1.0 / math.sqrt(2 * ar)
+            Wk = [x[2] - x[1], x[0] - x[2], x[1] - x[0]]
+            r_re, r_im = np.zeros(2 * n), np.zeros(2 * n)
+            for k, p in enumerate((a, b, c)):
+                i = idx[p]
+                wr, wi = Wk[k][0] * s, Wk[k][1] * s
+                r_re[i] += wr
+                r_re[n + i] -= wi
+                r_im[i] += wi
+                r_im[n + i] += wr
+            rows += [r_re, r_im]
+    A = np.array(rows)
+    P2 = mesh.P[pts]
+    d = np.linalg.norm(P2[:, None] - P2[None], axis=2)
+    i0, i1 = np.unravel_index(np.argmax(d), d.shape)
+    fixed = {i0: (0.0, 0.0), i1: (float(d[i0, i1]), 0.0)}
+    free = [k for k in range(2 * n) if (k % n) not in fixed]
+    bvec = np.zeros(A.shape[0])
+    for i, (u0, v0) in fixed.items():
+        bvec -= A[:, i] * u0 + A[:, n + i] * v0
+    sol, *_ = np.linalg.lstsq(A[:, free], bvec, rcond=None)
+    x = np.zeros(2 * n)
+    x[free] = sol
+    for i, (u0, v0) in fixed.items():
+        x[i], x[n + i] = u0, v0
+    uv = {p: (float(x[idx[p]]), float(x[n + idx[p]])) for p in pts}
+    a3 = float(mesh.area[faces].sum())
+    a2 = abs(sum(_signed_uv_area(mesh, f, uv) for f in faces))
+    k = math.sqrt(a3 / a2) if a2 > 0 else 1.0
+    uv = {p: (x0 * k, y0 * k) for p, (x0, y0) in uv.items()}
+    if sum(_signed_uv_area(mesh, f, uv) for f in faces) * _expected_sign() < 0:
+        uv = {p: (x0, -y0) for p, (x0, y0) in uv.items()}
+    return uv
+
+
+# ---------------------------------------------------------------- measures
+
+def tri_stretch(mesh, faces, uv):
+    """Per triangle (fan) : the two singular values of the 3D to UV map (1 = exact), the orientation sign (+1 = reads like the surface seen from outside) and the 3D area."""
+    s1, s2, sign, area = [], [], [], []
+    for f in faces:
+        pl = mesh.polys[f]
+        for j in range(1, len(pl) - 1):
+            a, b, c = pl[0], pl[j], pl[j + 1]
+            p0, p1, p2 = mesh.P[a], mesh.P[b], mesh.P[c]
+            e1 = p1 - p0
+            L = np.linalg.norm(e1)
+            ar = 0.5 * np.linalg.norm(np.cross(p1 - p0, p2 - p0))
+            lmax = max(L, np.linalg.norm(p2 - p0), np.linalg.norm(p2 - p1))
+            if L < 1e-12 or ar < 1e-6 * lmax * lmax:
+                continue                                   # sliver of a fan over collinear points (T junction) : no surface, no stretch to measure
+            x1 = e1 / L
+            y1 = np.cross(mesh.normal[f], x1)    # frame right handed around the outward normal
+            A = np.array([[L, np.dot(p2 - p0, x1)], [0.0, np.dot(p2 - p0, y1)]])
+            Q = np.array([[uv[b][0] - uv[a][0], uv[c][0] - uv[a][0]], [uv[b][1] - uv[a][1], uv[c][1] - uv[a][1]]])
+            if abs(np.linalg.det(A)) < 1e-18:
+                continue
+            M = Q @ np.linalg.inv(A)
+            sv = np.linalg.svd(M, compute_uv=False)
+            s1.append(sv[0])
+            s2.append(sv[1])
+            sign.append(np.sign(np.linalg.det(M)))
+            area.append(ar)
+    return np.array(s1), np.array(s2), np.array(sign), np.array(area)
+
+
+def face_density(mesh, faces, uv):
+    """Per face : sqrt(UV area / 3D area), 1 = the exact texel density."""
+    out = []
+    for f in faces:
+        a2 = abs(_signed_uv_area(mesh, f, uv))
+        out.append(math.sqrt(a2 / mesh.area[f]) if mesh.area[f] > 0 else 0.0)
+    return np.array(out)
+
+
+def chart_error(mesh, faces, uv, params):
+    s1, s2, sg, ar = tri_stretch(mesh, faces, uv)
+    if len(ar) == 0:
+        return {'stretch_max': 1.0, 'stretch_mean': 1.0, 'flipped': 1.0, 'density_pass': 0.0}
+    dev = np.maximum(np.abs(s1 - 1), np.abs(s2 - 1))
+    dens = face_density(mesh, faces, uv)
+    fa = mesh.area[faces]
+    return {'stretch_max': float(dev.max()), 'stretch_mean': float((dev * ar).sum() / ar.sum()), 'flipped': float(ar[sg < 0].sum() / ar.sum()),
+            'density_pass': float(fa[np.abs(dens - 1) <= params.density_tol].sum() / fa.sum())}
+
+
+# ---------------------------------------------------------------- 2D helpers
+
+def _hull(pts):
+    pts = sorted(set(map(tuple, np.round(pts, 9))))
+    if len(pts) <= 2:
+        return np.array(pts)
+    def cross(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+    lower, upper = [], []
+    for p in pts:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    for p in reversed(pts):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+    return np.array(lower[:-1] + upper[:-1])
+
+
+def min_area_rect_angle(q):
+    """Angle that makes the minimum area bounding rectangle axis aligned (rotating calipers over the hull edges)."""
+    h = _hull(q)
+    if len(h) < 3:
+        return 0.0
+    best = (float('inf'), 0.0)
+    for i in range(len(h)):
+        e = h[(i + 1) % len(h)] - h[i]
+        ang = -math.atan2(e[1], e[0])
+        c, s = math.cos(ang), math.sin(ang)
+        r = h @ np.array([[c, s], [-s, c]])
+        w, hh = np.ptp(r[:, 0]), np.ptp(r[:, 1])
+        if w * hh < best[0] - 1e-12:
+            best = (w * hh, ang)
+    return best[1]
+
+
+def box_fill(mesh, faces, uv):
+    q = np.array(list(uv.values()))
+    box = float(np.ptp(q[:, 0]) * np.ptp(q[:, 1]))
+    return float(mesh.area[faces].sum() / box) if box > 0 else 0.0
+
+
+def orient_island(mesh, faces, uv, up):
+    """Rotate the island so that its minimum area rectangle is axis aligned with the long side along U, then by 180 degrees if needed so that world up reads +U (tall faces) or +V. Pure rotations : the orientation is kept. Returns (uv, up label)."""
+    pts = list(uv.keys())
+    q = np.array([uv[p] for p in pts])
+    ang = min_area_rect_angle(q)
+    c, s = math.cos(ang), math.sin(ang)
+    q = q @ np.array([[c, -s], [s, c]]).T
+    if np.ptp(q[:, 1]) > np.ptp(q[:, 0]) + 1e-9:
+        q = q @ np.array([[0.0, 1.0], [-1.0, 0.0]])
+    P3 = mesh.P[pts] - mesh.P[pts].mean(0)
+    M, *_ = np.linalg.lstsq(P3, q - q.mean(0), rcond=None)
+    upv = np.asarray(up) @ M
+    label = 'none'
+    if np.linalg.norm(upv) > 0.3:
+        if abs(upv[0]) >= abs(upv[1]):
+            if upv[0] < 0:
+                q = -q
+            label = '+U'
+        else:
+            if upv[1] < 0:
+                q = -q
+            label = '+V'
+    q = q - q.min(0)
+    return {p: (float(q[i, 0]), float(q[i, 1])) for i, p in enumerate(pts)}, label
+
+
+def _raster_faces(mesh, faces, uv, scale, size, offset=(0, 0)):
+    """Boolean mask (h, w) of the faces drawn at `scale` pixels per metre, y down, shifted by offset (pixels)."""
+    from PIL import Image, ImageDraw
+    w, h = size
+    im = Image.new('L', (max(1, w), max(1, h)), 0)
+    d = ImageDraw.Draw(im)
+    for f in faces:
+        pts = [(offset[0] + uv[p][0] * scale, offset[1] + uv[p][1] * scale) for p in mesh.polys[f]]
+        d.polygon(pts, fill=1)
+    return np.asarray(im, dtype=bool)
+
+
+# ---------------------------------------------------------------- congruence
+
+_SIGNED_PERMS = []
+for _perm in ([0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]):
+    for _sx in (1, -1):
+        for _sy in (1, -1):
+            for _sz in (1, -1):
+                _M = np.zeros((3, 3))
+                for _r, _c in enumerate(_perm):
+                    _M[_r, _c] = (_sx, _sy, _sz)[_r]
+                _SIGNED_PERMS.append(_M)
+
+
+def island_signature(mesh, faces, material):
+    sizes = tuple(sorted(len(mesh.polys[f]) for f in faces))
+    return (material, len(faces), len(chart_points(mesh, faces)), sizes)     # the area is compared with a relative tolerance in rigid_match, never rounded into the key (a rounding boundary split true copies)
+
+
+def _test_map(mesh, fa, fbs, pa, pb, A0, B0, T, tol):
+    d = np.linalg.norm((A0 @ T.T)[:, None, :] - B0[None, :, :], axis=2)
+    j = d.argmin(1)
+    if d[np.arange(len(pa)), j].max() > tol or len(set(j.tolist())) != len(pa):
+        return None
+    pmap = {pa[i]: pb[j[i]] for i in range(len(pa))}
+    for f in fa:
+        g = mesh.face_of_set.get(frozenset(pmap[p] for p in mesh.polys[f]))
+        if g is None or g not in fbs or float(np.dot(T @ mesh.normal[f], mesh.normal[g])) < 0.999:
+            return None
+    return pmap
+
+
+def _triad(n, v):
+    e3 = n / np.linalg.norm(n)
+    e1 = v - np.dot(v, e3) * e3
+    L = np.linalg.norm(e1)
+    if L < 1e-9:
+        return None
+    e1 /= L
+    return np.column_stack([e1, np.cross(e3, e1), e3])
+
+
+def rigid_match(mesh, fa, fb, tol, allow_mirror):
+    """Orthogonal map T with T (A - ca) + cb = B for the points of islands fa and fb, faces onto faces, outward normals onto outward normals. Returns (point map, det) or None ; rotations (det +1) win over mirrors. Two searches : principal axes with their 48 signed permutations (shapes with distinct axes), then geometric triads (mean normal, farthest point) for symmetric shapes whose principal axes are arbitrary."""
+    pa, pb = chart_points(mesh, fa), chart_points(mesh, fb)
+    if len(pa) != len(pb):
+        return None
+    aa, ab = float(mesh.area[fa].sum()), float(mesh.area[fb].sum())
+    if abs(aa - ab) > 1e-4 * max(aa, ab) + tol * tol:
+        return None
+    A0 = mesh.P[pa] - mesh.P[pa].mean(0)
+    B0 = mesh.P[pb] - mesh.P[pb].mean(0)
+    fbs = set(fb)
+    found = {}
+    _, Va = np.linalg.eigh(A0.T @ A0)
+    _, Vb = np.linalg.eigh(B0.T @ B0)
+    for S in _SIGNED_PERMS:
+        T = Vb @ S @ Va.T
+        det = 1.0 if np.linalg.det(T) > 0 else -1.0
+        if (det < 0 and not allow_mirror) or det in found:
+            continue
+        pm = _test_map(mesh, fa, fbs, pa, pb, A0, B0, T, tol)
+        if pm is not None:
+            found[det] = pm
+            if det > 0:
+                return pm, 1.0
+    na = (mesh.normal[fa] * mesh.area[fa, None]).sum(0)
+    nb = (mesh.normal[fb] * mesh.area[fb, None]).sum(0)
+    if np.linalg.norm(na) > 1e-6 * aa and np.linalg.norm(nb) > 1e-6 * ab:
+        ra = np.linalg.norm(A0, axis=1)
+        ia = int(np.argmax(ra))
+        Fa = _triad(na, A0[ia])
+        if Fa is not None:
+            rb = np.linalg.norm(B0, axis=1)
+            for ib in np.nonzero(np.abs(rb - ra[ia]) <= tol)[0]:
+                Fb = _triad(nb, B0[ib])
+                if Fb is None:
+                    continue
+                for det, D in ((1.0, np.eye(3)), (-1.0, np.diag([1.0, -1.0, 1.0]))):
+                    if (det < 0 and not allow_mirror) or det in found:
+                        continue
+                    T = Fb @ D @ Fa.T
+                    pm = _test_map(mesh, fa, fbs, pa, pb, A0, B0, T, tol)
+                    if pm is not None:
+                        found[det] = pm
+                        if det > 0:
+                            return pm, 1.0
+    if -1.0 in found:
+        return found[-1.0], -1.0
+    return None
+
+
+# ---------------------------------------------------------------- unfold one chart, measured choice
+
+def unfold_chart(mesh, faces, params):
+    """Try every applicable method, keep the best measured one : stretch within stretch_tol and no flip first, then the best rectangle fill, then the lowest stretch. Returns (method, uv, report)."""
+    cut = ring_cut(mesh, faces)
+    pts = chart_points(mesh, faces)
+    X = mesh.P[pts] - mesh.P[pts].mean(0)
+    planar_dev = float(np.abs(X @ np.linalg.svd(X)[2][-1]).max()) if len(pts) >= 3 else 0.0
+    cands = []
+    if planar_dev <= params.flat_tol_m:
+        cands.append(('planar', unfold_planar(mesh, faces)))
+    cands.append(('hinge', unfold_hinge(mesh, faces, cut)))
+    if params.straighten != 'never':
+        uv = unfold_strip(mesh, faces, cut)
+        if uv is not None:
+            cands.append(('strip', uv))
+    if len(faces) > 1 and planar_dev > params.flat_tol_m:
+        try:
+            cands.append(('lscm', unfold_lscm(mesh, faces)))
+        except Exception:
+            pass
+    scored = []
+    for name, uv in cands:
+        uvo, _ = orient_island(mesh, faces, uv, params.up_axis)
+        err = chart_error(mesh, faces, uvo, params)
+        err['fill'] = box_fill(mesh, faces, uvo)
+        scored.append((name, uv, err))
+    if params.straighten == 'always':
+        for t in scored:
+            if t[0] == 'strip':
+                return t
+    # deterministic choice : the accepted methods whose box fill is within 0.5 % of the best, then a fixed priority (exact projection first) ; a tie never depends on float noise
+    priority = {'planar': 0, 'strip': 1, 'hinge': 2, 'lscm': 3}
+    ok = [t for t in scored if t[2]['stretch_max'] <= params.stretch_tol and t[2]['flipped'] == 0.0]
+    if ok:
+        best_fill = max(t[2]['fill'] for t in ok)
+        near = [t for t in ok if t[2]['fill'] >= best_fill - 0.005]
+        return min(near, key=lambda t: priority[t[0]])
+    return min(scored, key=lambda t: (t[2]['flipped'] > 0, t[2]['stretch_mean']))
+
+
+def merge_views(mesh, units, piece_of, params):
+    """Merge flat units of one piece and material that face the same way into one view island, kept at their true relative position, when their projections do not overlap and the merged box is smaller than the separate boxes (merge_gain)."""
+    groups = {}
+    for i, u in enumerate(units):
+        if u['method'] != 'planar':
+            continue
+        n = (mesh.normal[u['faces']] * mesh.area[u['faces'], None]).sum(0)
+        n /= np.linalg.norm(n)
+        key = (piece_of[u['faces'][0]], u['material'])
+        groups.setdefault(key, []).append((i, n))
+    drop = set()
+    new_units = []
+    for key, lst in groups.items():
+        dirs = []
+        for i, n in lst:
+            for d in dirs:
+                if float(np.dot(d['n'], n)) > 0.99995:
+                    d['ids'].append(i)
+                    break
+            else:
+                dirs.append({'n': n, 'ids': [i]})
+        for d in dirs:
+            if len(d['ids']) < 2:
+                continue
+            frame = _frame(d['n'])
+            allpts = chart_points(mesh, [f for i in d['ids'] for f in units[i]['faces']])
+            origin = mesh.P[allpts].mean(0)
+            ids = sorted(d['ids'], key=lambda i: -mesh.area[units[i]['faces']].sum())
+            clusters = []
+            for i in ids:
+                uv_i = unfold_planar(mesh, units[i]['faces'], frame, origin)
+                placed = False
+                for cl in clusters:
+                    faces = cl['faces'] + units[i]['faces']
+                    uv = dict(cl['uv'])
+                    uv.update(uv_i)
+                    q = np.array(list(uv.values()))
+                    box_m = float(np.ptp(q[:, 0]) * np.ptp(q[:, 1]))
+                    qi = np.array(list(uv_i.values()))
+                    sep = cl['box'] + float(np.ptp(qi[:, 0]) * np.ptp(qi[:, 1]))
+                    if box_m > params.merge_gain * sep:
+                        continue
+                    # overlap test at 2 mm per pixel, faces eroded by one pixel so shared borders do not count
+                    sc = 500.0
+                    mn = q.min(0)
+                    size = (int(np.ptp(q[:, 0]) * sc) + 3, int(np.ptp(q[:, 1]) * sc) + 3)
+                    shift = {p: (x - mn[0], y - mn[1]) for p, (x, y) in uv.items()}
+                    ma = _raster_faces(mesh, cl['faces'], shift, sc, size, (1, 1))
+                    mb = _raster_faces(mesh, units[i]['faces'], shift, sc, size, (1, 1))
+                    from PIL import Image, ImageFilter
+                    ea = np.asarray(Image.fromarray(ma.astype(np.uint8) * 255).filter(ImageFilter.MinFilter(3))) > 0
+                    eb = np.asarray(Image.fromarray(mb.astype(np.uint8) * 255).filter(ImageFilter.MinFilter(3))) > 0
+                    if (ea & eb).any():
+                        continue
+                    cl['faces'], cl['uv'], cl['box'], cl['ids'] = faces, uv, box_m, cl['ids'] + [i]
+                    placed = True
+                    break
+                if not placed:
+                    qi = np.array(list(uv_i.values()))
+                    clusters.append({'faces': list(units[i]['faces']), 'uv': uv_i, 'box': float(np.ptp(qi[:, 0]) * np.ptp(qi[:, 1])), 'ids': [i]})
+            for cl in clusters:
+                if len(cl['ids']) < 2:
+                    continue
+                drop.update(cl['ids'])
+                new_units.append({'faces': sorted(cl['faces']), 'method': 'view', 'uv': cl['uv'], 'material': units[cl['ids'][0]]['material'],
+                                  'frame': frame, 'origin': origin, 'err': {'stretch_max': 0.0, 'stretch_mean': 0.0, 'flipped': 0.0, 'density_pass': 1.0}})
+    return [u for i, u in enumerate(units) if i not in drop] + new_units
+
+
+# ---------------------------------------------------------------- long islands
+
+def split_unit(mesh, unit, params):
+    """Cut an island that is too long. Strip : at the rung nearest the x = 0 plane (cut_policy symmetry) or in the middle. Other islands : faces split by a line across U at the gap nearest the middle. Returns a list of face lists or None."""
+    faces = unit['faces']
+    cut = ring_cut(mesh, faces)
+    so = strip_order(mesh, faces, cut)
+    if so is not None and len(so[0]) >= 2:
+        order, rungs = so
+        if params.cut_policy == 'symmetry':
+            k = int(np.argmin([abs(0.5 * (mesh.P[a][0] + mesh.P[b][0])) for a, b in rungs]))
+        else:
+            k = len(rungs) // 2
+        return [order[:k + 1], order[k + 1:]]
+    if len(faces) < 2:
+        return None
+    uv = unit['uv']
+    cu = {f: np.mean([uv[p][0] for p in mesh.polys[f]]) for f in faces}
+    xs = [abs(mesh.centre[f][0]) for f in faces]
+    vals = sorted(cu.values())
+    mid = 0.5 * (vals[0] + vals[-1])
+    if params.cut_policy == 'symmetry':
+        # the symmetry plane in U : the u where the 3D x is nearest to 0
+        f0 = faces[int(np.argmin(xs))]
+        mid = cu[f0]
+    a = [f for f in faces if cu[f] < mid]
+    b = [f for f in faces if cu[f] >= mid]
+    if not a or not b:
+        srt = sorted(faces, key=lambda f: cu[f])
+        a, b = srt[:len(srt) // 2], srt[len(srt) // 2:]
+    return [a, b]
+
+
+# ---------------------------------------------------------------- packing
+
+def _cells(mask, cell):
+    h, w = mask.shape
+    H, W = -(-h // cell) * cell, -(-w // cell) * cell
+    m = np.zeros((H, W), dtype=bool)
+    m[:h, :w] = mask
+    return m.reshape(H // cell, cell, W // cell, cell).any(axis=(1, 3))
+
+
+def _dilate(m, r):
+    if r <= 0:
+        return m
+    out = m.copy()
+    for _ in range(r):
+        o = out.copy()
+        o[1:, :] |= out[:-1, :]
+        o[:-1, :] |= out[1:, :]
+        o[:, 1:] |= out[:, :-1]
+        o[:, :-1] |= out[:, 1:]
+        o[1:, 1:] |= out[:-1, :-1]
+        o[:-1, :-1] |= out[1:, 1:]
+        o[1:, :-1] |= out[:-1, 1:]
+        o[:-1, 1:] |= out[1:, :-1]
+        out = o
+    return out
+
+
+def island_footprint(mesh, isl, tdp, pad, cell):
+    """Packing mask of an island in cells : the faces rasterised at the texel density, a margin of ceil(pad / cell) cells all around (the bleed), returned with the content offset in cells."""
+    w_px, h_px = int(math.ceil(isl['w'])), int(math.ceil(isl['h']))
+    q = isl['uv_m']
+    uvpx = {p: (u * tdp, (isl['h'] / tdp - v) * tdp) for p, (u, v) in q.items()}       # y down
+    mask = _raster_faces(mesh, isl['faces'], uvpx, 1.0, (w_px + 1, h_px + 1))
+    mc = _cells(mask, cell)
+    pc = int(math.ceil(pad / cell))
+    big = np.zeros((mc.shape[0] + 2 * pc, mc.shape[1] + 2 * pc), dtype=bool)
+    big[pc:pc + mc.shape[0], pc:pc + mc.shape[1]] = mc
+    return _dilate(big, pc), pc
+
+
+def _fast_len(n, step=64):
+    return -(-n // step) * step
+
+
+def _first_fit(occ, m, used_h):
+    """Top left first position (reading order) where mask m fits in occupancy occ without collision. Only the rows down to used_h + mask height are searched (everything below is empty). Rectangles use a summed area table, other masks an FFT correlation. Returns (y, x) or None."""
+    H, W = occ.shape
+    hm, wm = m.shape
+    if hm > H or wm > W:
+        return None
+    R = min(H, used_h + hm)
+    sub = occ[:R]
+    ny, nx = R - hm + 1, W - wm + 1
+    if m.all():
+        S = np.zeros((R + 1, W + 1), dtype=np.int32)
+        S[1:, 1:] = sub.astype(np.int32).cumsum(0).cumsum(1)
+        win = S[hm:hm + ny, wm:wm + nx] - S[:ny, wm:wm + nx] - S[hm:hm + ny, :nx] + S[:ny, :nx]
+        valid = win == 0
+    else:
+        sh = (_fast_len(R + hm), _fast_len(W + wm))
+        F = np.fft.rfft2(sub.astype(np.float32), sh)
+        G = np.fft.rfft2(m[::-1, ::-1].astype(np.float32), sh)
+        c = np.fft.irfft2(F * G, sh)[hm - 1:hm - 1 + ny, wm - 1:wm - 1 + nx]
+        valid = c < 0.5
+    rows = valid.any(1)
+    if not rows.any():
+        return None
+    y = int(np.argmax(rows))
+    return y, int(np.argmax(valid[y]))
+
+
+def pack_band(islands, W, Hmax, cell):
+    """Place the islands of one band from the top left. A band longer than one sheet is cut into segments. Returns segments [{'items': [(isl, y_cell, x_cell)], 'h_cells'}]."""
+    Wc, Hc = W // cell, Hmax // cell
+    segs = []
+    cur = {'occ': np.zeros((Hc, Wc), dtype=bool), 'items': [], 'h': 0}
+    for isl in islands:
+        m = isl['mask']
+        if m.shape[1] > Wc or m.shape[0] > Hc:
+            isl['overflow'] = True
+            continue
+        pos = _first_fit(cur['occ'], m, cur['h'])
+        if pos is None:
+            segs.append(cur)
+            cur = {'occ': np.zeros((Hc, Wc), dtype=bool), 'items': [], 'h': 0}
+            pos = _first_fit(cur['occ'], m, 0)
+        y, x = pos
+        cur['occ'][y:y + m.shape[0], x:x + m.shape[1]] |= m
+        cur['items'].append((isl, y, x))
+        cur['h'] = max(cur['h'], y + m.shape[0])
+    segs.append(cur)
+    return [s for s in segs if s['items']]
+
+
+# ---------------------------------------------------------------- layout
+
+def layout(mesh_in, params):
+    """Full pipeline. Returns islands, bands, sheets, per face uv and info ; everything score() and the maps need."""
+    mesh = mesh_in.scaled(params.asset_scale)
+    tdp, W, pad, cell = params.texel_density, params.sheet_size, params.padding_px, params.pack_cell_px
+    piece_of = pieces(mesh)
+    mat_of = [params.material_of(g) for g in mesh.group]
+    raw = charts(mesh, params)
+    # 1. unfold every chart ; a chart that no method unfolds within stretch_tol without a flip is re charted at a lower crease, down to one face (always exact)
+    units = []
+    work = [(faces, params.crease_deg) for faces in raw]
+    while work:
+        faces, crease = work.pop()
+        name, uv, err = unfold_chart(mesh, faces, params)
+        ok = err['stretch_max'] <= params.stretch_tol and err['flipped'] == 0.0
+        if not ok and len(faces) > 1:
+            lower = crease * 0.5 if crease > 4 else 0.0
+            sub = charts_subset(mesh, faces, lower)
+            if len(sub) == 1:
+                sub = [[f] for f in faces]
+            work.extend((s_, lower) for s_ in sub)
+            continue
+        units.append({'faces': faces, 'method': name, 'uv': uv, 'material': mat_of[faces[0]], 'err': err})
+    # 2. merge flat charts of one piece into view islands
+    if params.merge_views:
+        units = merge_views(mesh, units, piece_of, params)
+    # 2b. optional : halves across the x = 0 symmetry plane become two islands, which the stacking then superposes
+    if params.symmetry_split:
+        eps = 1e-5 * max(1.0, params.asset_scale)
+        out = []
+        for u in units:
+            if u['material'] in params.no_mirror_materials:
+                out.append(u)
+                continue
+            side = []
+            for f in u['faces']:
+                xs = mesh.P[mesh.polys[f]][:, 0]
+                side.append(-1 if xs.max() <= eps else (1 if xs.min() >= -eps else 0))
+            if 0 in side or -1 not in side or 1 not in side:
+                out.append(u)
+                continue
+            for sgn in (-1, 1):
+                fs = sorted(f for f, sd in zip(u['faces'], side) if sd == sgn)
+                if u['method'] == 'view':
+                    out.append(dict(u, faces=fs, uv=unfold_planar(mesh, fs, u['frame'], u['origin'])))
+                else:
+                    name, uvp, err = unfold_chart(mesh, fs, params)
+                    out.append({'faces': fs, 'method': name, 'uv': uvp, 'material': u['material'], 'err': err})
+        units = out
+    # 3. orient, then cut what is too long for the sheet
+    limit_px = W - 2 * int(math.ceil(pad / cell)) * cell
+    final, work, guard = [], list(units), 0
+    while work and guard < 20000:
+        guard += 1
+        u = work.pop()
+        uvo, up = orient_island(mesh, u['faces'], u['uv'], params.up_axis)
+        q = np.array(list(uvo.values()))
+        if float(np.ptp(q[:, 0])) * tdp > limit_px:
+            parts = split_unit(mesh, dict(u, uv=uvo), params)
+            if parts and all(parts) and len(parts) > 1:
+                for fs in parts:
+                    if u['method'] == 'view':
+                        uvp = unfold_planar(mesh, fs, u['frame'], u['origin'])
+                        work.append(dict(u, faces=sorted(fs), uv=uvp))
+                    else:
+                        name, uvp, err = unfold_chart(mesh, sorted(fs), params)
+                        work.append({'faces': sorted(fs), 'method': name, 'uv': uvp, 'material': u['material'], 'err': err})
+                continue
+        u = dict(u, uv=uvo, up=up)
+        u['err'] = dict(chart_error(mesh, u['faces'], uvo, params), fill=box_fill(mesh, u['faces'], uvo))
+        final.append(u)
+    final.sort(key=lambda u: (u['material'], -mesh.area[u['faces']].sum(), min(u['faces'])))
+    # 4. stacking : congruent islands share one footprint
+    by_sig = {}
+    for i, u in enumerate(final):
+        by_sig.setdefault(island_signature(mesh, u['faces'], u['material']), []).append(i)
+    rep_of, det_of, pmap_of = list(range(len(final))), [1.0] * len(final), [None] * len(final)
+    stacked = 0
+    for ids in by_sig.values():
+        reps = []
+        for i in ids:
+            mirror_ok = params.allow_mirror_stack and final[i]['material'] not in params.no_mirror_materials
+            hit = None
+            for r in reps:
+                m = rigid_match(mesh, final[r]['faces'], final[i]['faces'], params.stack_tol_m, mirror_ok)
+                if m is not None:
+                    hit = (r, m)
+                    break
+            if hit is None:
+                reps.append(i)
+            else:
+                r, (pmap, det) = hit
+                rep_of[i], det_of[i], pmap_of[i] = r, det, pmap
+                stacked += 1
+    # 5. islands in pixels and their packing masks
+    islands = []
+    for r in sorted(set(rep_of)):
+        u = final[r]
+        q = np.array(list(u['uv'].values()))
+        isl = {'rep': r, 'material': u['material'], 'faces': u['faces'], 'uv_m': u['uv'], 'w': float(np.ptp(q[:, 0])) * tdp, 'h': float(np.ptp(q[:, 1])) * tdp,
+               'members': [i for i in range(len(final)) if rep_of[i] == r]}
+        isl['mask'], isl['pc'] = island_footprint(mesh, isl, tdp, pad, cell)
+        islands.append(isl)
+    # 6. bands, then sheets
+    mats = {}
+    for isl in islands:
+        mats.setdefault(isl['material'], []).append(isl)
+    order = [m for m in params.band_order if m in mats]
+    order += sorted([m for m in mats if m not in order], key=lambda m: -sum(i['mask'].sum() for i in mats[m]))
+    Hmax = W * params.max_sheet_height_ratio
+    pieces_b = []
+    for m in order:
+        lst = mats[m]
+        lst = sorted(lst, key=(lambda i: (-i['mask'].shape[0], -i['mask'].shape[1])) if params.pack_order == 'height' else (lambda i: -int(i['mask'].sum())))
+        for k, seg in enumerate(pack_band(lst, W, Hmax, cell)):
+            pieces_b.append({'material': m, 'segment': k, 'items': seg['items'], 'h': seg['h'] * cell, 'rank': order.index(m)})
+    sheets = []
+    for b in sorted(pieces_b, key=lambda b: -b['h']):               # first fit decreasing over the sheets
+        for sh in sheets:
+            if sh['h'] + b['h'] <= Hmax or params.overflow == 'grow':
+                sh['bands'].append(b)
+                sh['h'] += b['h']
+                break
+        else:
+            sheets.append({'bands': [b], 'h': b['h']})
+    for si, sh in enumerate(sheets):
+        sh['bands'].sort(key=lambda b: (b['rank'], b['segment']))   # top to bottom in band order
+        H = W * params.max_sheet_height_ratio
+        while params.overflow == 'grow' and H < sh['h']:
+            H *= 2
+        sh['H'], sh['index'] = H, si
+        y = 0
+        for b in sh['bands']:
+            b['sheet'], b['y'] = si, y
+            for isl, yc, xc in b['items']:
+                isl['sheet'] = si
+                isl['px'] = ((xc + isl['pc']) * cell, y + (yc + isl['pc']) * cell)     # top left of the content box, pixels, y down
+                isl['band'] = b
+            y += b['h']
+    # 7. normalised UVs per island (v up), UDIM shift on u
+    for isl in islands:
+        if 'px' not in isl:
+            continue
+        H = sheets[isl['sheet']]['H']
+        x0, y0 = isl['px']
+        isl['uv01'] = {p: ((x0 + u * tdp) / W, 1.0 - (y0 + isl['h'] - v * tdp) / H) for p, (u, v) in isl['uv_m'].items()}
+    face_uv, face_info = {}, {}
+    isl_of_rep = {isl['rep']: k for k, isl in enumerate(islands)}
+    for i, u in enumerate(final):
+        k = isl_of_rep[rep_of[i]]
+        isl = islands[k]
+        if 'uv01' not in isl:
+            continue
+        inv = {p: p for p in isl['uv_m']} if i == rep_of[i] else {v: kk for kk, v in pmap_of[i].items()}
+        du = isl['sheet'] if params.overflow == 'udim' else 0
+        for f in u['faces']:
+            face_uv[f] = [(isl['uv01'][inv[p]][0] + du, isl['uv01'][inv[p]][1]) for p in mesh.polys[f]]
+            face_info[f] = {'unit': i, 'island': k, 'material': u['material'], 'sheet': isl['sheet'], 'method': u['method'] if i == rep_of[i] else 'stack:' + u['method'],
+                            'mirror': det_of[i] < 0, 'up': final[rep_of[i]]['up']}
+    return {'params': asdict(params), 'mesh': mesh, 'units': final, 'islands': islands, 'bands': pieces_b, 'sheets': sheets,
+            'face_uv': face_uv, 'face_info': face_info, 'raw_charts': len(raw), 'stacked': stacked, 'rep_of': rep_of}
+
+
+# ---------------------------------------------------------------- score
+
+def score(res):
+    """Measured report. Hard rules must all hold ; ZenRay UV score = surface fraction whose per face texel density is within density_tol of the target, times the hard rules (0 or 1)."""
+    p = res['params']
+    mesh = res['mesh']
+    tdp, W, pad, cell = p['texel_density'], p['sheet_size'], p['padding_px'], p['pack_cell_px']
+    total = float(mesh.area.sum())
+    margin = int(math.ceil(pad / cell)) * cell
+    covered = len(res['face_uv']) == mesh.n
+    dens_good, dev_all, ar_all, flips = 0.0, [], [], 0.0
+    for f in range(mesh.n):
+        if f not in res['face_uv']:
+            continue
+        info = res['face_info'][f]
+        H = res['sheets'][info['sheet']]['H']
+        du = info['sheet'] if p['overflow'] == 'udim' else 0
+        uvm = {pp: ((u - du) * W / tdp, v * H / tdp) for pp, (u, v) in zip(mesh.polys[f], res['face_uv'][f])}
+        s1, s2, sg, ar = tri_stretch(mesh, [f], uvm)
+        if len(ar) == 0:
+            continue
+        dev_all.append(np.maximum(np.abs(s1 - 1), np.abs(s2 - 1)))
+        ar_all.append(ar)
+        if abs(face_density(mesh, [f], uvm)[0] - 1) <= p['density_tol']:
+            dens_good += mesh.area[f]
+        expected = -1.0 if info['mirror'] else 1.0
+        flips += float(ar[sg * expected < 0].sum())
+    dev_all, ar_all = np.concatenate(dev_all), np.concatenate(ar_all)
+    inside = in_band = snapped = True
+    for isl in res['islands']:
+        if 'px' not in isl:
+            inside = False
+            continue
+        x0, y0 = isl['px']
+        H = res['sheets'][isl['sheet']]['H']
+        if x0 < margin or y0 < margin or x0 + isl['w'] > W - margin + 1e-6 or y0 + isl['h'] > H - margin + 1e-6:
+            inside = False
+        b = isl['band']
+        if y0 < b['y'] + margin - 1e-6 or y0 + isl['h'] > b['y'] + b['h'] - margin + 1e-6:
+            in_band = False
+        if x0 != int(x0) or y0 != int(y0):
+            snapped = False
+    overlap = 0
+    for si, sh in enumerate(res['sheets']):
+        cnt = np.zeros((sh['H'] // 2, W // 2), dtype=np.int32)
+        for isl in res['islands']:
+            if isl.get('sheet') != si:
+                continue
+            uvh = {pp: (u * W / 2, (1 - v) * sh['H'] / 2) for pp, (u, v) in isl['uv01'].items()}
+            cnt += _raster_faces(mesh, isl['faces'], uvh, 1.0, (W // 2, sh['H'] // 2)).astype(np.int32)
+        overlap += int((cnt > 1).sum())
+    left = all(min(isl['px'][0] for isl, _, _ in b['items']) == margin for b in res['bands'])
+    seam = 0.0
+    for (a, b_), fs in mesh.edges.items():
+        if len(fs) == 2 and all(f in res['face_uv'] for f in fs):
+            uvs = []
+            for f in fs:
+                pl = mesh.polys[f]
+                uvs.append({pl[k]: res['face_uv'][f][k] for k in range(len(pl))})
+            if any(np.hypot(uvs[0][x][0] - uvs[1][x][0], uvs[0][x][1] - uvs[1][x][1]) > 1e-7 for x in (a, b_)):
+                seam += float(np.linalg.norm(mesh.P[a] - mesh.P[b_]))
+    uv_px = sum(abs(_signed_uv_area(mesh, f, {pp: (u * tdp, v * tdp) for pp, (u, v) in isl['uv_m'].items()})) for isl in res['islands'] for f in isl['faces'])
+    sheet_px = sum(W * sh['H'] for sh in res['sheets'])
+    hard = {'coverage': covered, 'inside_sheet': inside, 'inside_band': in_band, 'pixel_snapped': snapped, 'no_overlap': overlap == 0,
+            'no_flip': flips == 0.0, 'left_aligned': left, 'no_overflow_island': not any(isl.get('overflow') for isl in res['islands']),
+            'stretch_ok': bool(dev_all.max() <= p['stretch_tol'] + 1e-9)}
+    hard_ok = all(hard.values())
+    methods = {}
+    for f, info in res['face_info'].items():
+        methods[info['method']] = methods.get(info['method'], 0) + 1
+    dens = dens_good / total
+    return {'zenray_uv_score': round(dens * (1.0 if hard_ok else 0.0), 5), 'density_pass': round(dens, 5), 'hard_ok': hard_ok, 'hard': hard,
+            'stretch_mean': round(float((dev_all * ar_all).sum() / ar_all.sum()), 5), 'stretch_p99': round(float(np.percentile(dev_all, 99)), 5),
+            'stretch_max': round(float(dev_all.max()), 5), 'overlap_px_half_res': overlap, 'flipped_area_frac': round(flips / total, 6),
+            'sheets': len(res['sheets']), 'sheet_size': [W, [sh['H'] for sh in res['sheets']]], 'used_height_px': [sh['h'] for sh in res['sheets']],
+            'fill_uv': round(uv_px / sheet_px, 4), 'seam_m': round(seam, 3), 'units': len(res['units']), 'islands': len(res['islands']),
+            'stacked': res['stacked'], 'raw_charts': res['raw_charts'], 'faces_by_method': methods,
+            'bands': [{'material': b['material'], 'segment': b['segment'], 'sheet': b['sheet'], 'y': b['y'], 'h': b['h'], 'islands': len(b['items'])} for b in res['bands']]}
