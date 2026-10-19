@@ -1,10 +1,10 @@
 {
- "score": 0.999516,
+ "score": 0.999417,
  "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.999788,
-  "uv:stretch": 0.999516,
+  "uv:density": 0.999987,
+  "uv:stretch": 0.999417,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -22,23 +22,23 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9997877945664709,
-    "low_frac": 0.00021220543352921308,
+    "exact_frac": 0.9999874703325,
+    "low_frac": 1.2529667499901318e-05,
     "high_frac": 0.0,
-    "px_per_m_min": 802.8631214173588,
-    "px_per_m_median": 1023.9990504153877,
-    "px_per_m_max": 1068.5723618998059,
-    "stretch_max": 0.6360765342757149,
+    "px_per_m_min": 913.6950849387492,
+    "px_per_m_median": 1024.0003096445325,
+    "px_per_m_max": 1076.7078262549503,
+    "stretch_max": 0.19126516325431742,
     "faces": 7000
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "subtexel_area": 4e-06,
-   "stretch_over_2pc_area": 0.7836,
-   "islands": 295,
+   "stretch_over_2pc_area": 0.79,
+   "islands": 298,
    "overlap_px": 0,
-   "covered_px": 4068926,
-   "fill": 0.4851,
+   "covered_px": 4071475,
+   "fill": 0.4854,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 15,
    "u_range": [
@@ -47,7 +47,7 @@
    ],
    "v_range": [
     0.0156,
-    0.9623
+    0.9811
    ]
   }
  },
@@ -59,8 +59,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 22.917,
-  "seams_on_smooth_m": 0.489,
+  "seams_m": 22.248,
+  "seams_on_smooth_m": 0.274,
   "sharp_kept_m": 0,
   "sharp_m": 6.916,
   "border_m": 0,
@@ -76,7 +76,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 295, \"stacked_possible\": 249, \"stacked\": 0, \"fill\": 0.4959, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1318939, \"lower_bound_unique_px2\": 1318939, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 298, \"stacked_possible\": 253, \"stacked\": 0, \"fill\": 0.496, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1320090, \"lower_bound_unique_px2\": 1320090, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 1}",
   "zruv_straight_uv": "{\"charts\": 72, \"grids\": 3, \"tubes\": 3, \"cut_long\": 0, \"worst_dev\": 0.0676, \"kink_faces\": 4, \"cut_at_kinks\": 1, \"kept_native\": 1, \"straight_area\": 0.0311}"
  },
  "method": "M1",
@@ -98,8 +98,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.17,
- "score_s": 0.71,
+ "cook_s": 8.39,
+ "score_s": 1.94,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/shaderball",
  "asset_scale": 1.0,
@@ -110,7 +110,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 00:31",
+ "date": "20 October 2026 00:40",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball",
   "asset_scale": 1.0,
