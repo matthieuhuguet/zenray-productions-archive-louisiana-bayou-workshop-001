@@ -1,0 +1,21 @@
+# 19 October 2026 : the shader ball M1 : which faces fail the score stretch, and are they organic, which chart, what deviation.
+import numpy as np, sys, importlib, json, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Score as S, TexelDensityChecker as TD
+importlib.reload(S)
+g = hou.node('/obj/ZRUV_ShaderBall/M1_unique').geometry()
+c = json.loads(g.attribValue('zruv_contract'))[0]
+c['target'] = 1024.0; c['organic_tol'] = 0.1; c['subtexel_px'] = 1.0
+m = Z.from_geo(g, ('uv',), ['zruv_organic', 'zruv_chart_uv', 'zruv_straight_uv', 'name', 'zruv_ochart'])
+ratio, fdev, _, trep = TD.check(m, c, 0.1)
+org = np.array(m.prim['zruv_organic']) == 1
+bad = (np.abs(ratio - 1) > 0.1) | (fdev > 0.1)
+a = m.area
+tot = a.sum()
+byc = collections.Counter()
+for f in np.where(bad)[0]:
+    byc[(int(org[f]), m.prim['name'][f], int(m.prim['zruv_ochart'][f]))] += a[f]
+worst = sorted(byc.items(), key=lambda kv: -kv[1])[:10]
+result = {'bad_share': float(a[bad].sum() / tot), 'bad_org_share': float(a[bad & org].sum() / tot), 'bad_nonorg_share': float(a[bad & ~org].sum() / tot),
+          'worst': [[list(k), round(float(v / tot), 6)] for k, v in worst], 'ratio_bad_p': [round(float(x), 3) for x in np.percentile(ratio[bad], (5, 50, 95))] if bad.any() else None,
+          'fdev_bad_p': [round(float(x), 3) for x in np.percentile(fdev[bad], (5, 50, 95))] if bad.any() else None}

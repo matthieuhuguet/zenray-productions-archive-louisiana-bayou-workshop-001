@@ -13,6 +13,6 @@ for obj in ('ZRUV_Arch', 'ZRUV_RubberToy', 'ZRUV_ShaderBall', 'ZRUV_Manny'):
     lay = json.loads(r['layout'].get('zruv_layout_uv', '{}')) if r.get('layout') else {}
     out[obj] = {'build_s': tb, 'total_s': round(time.time() - t, 1), 'score': r.get('score'), 'errors': (r.get('errors') or [])[:2],
                 'low': {k: v for k, v in (r.get('components') or {}).items() if v < 0.9999},
-                'organic': json.loads(base.attribValue('zruv_organic_report')) if base.findGlobalAttrib('zruv_organic_report') else None, 'hard': json.loads(base.attribValue('zruv_hard')) if base.findGlobalAttrib('zruv_hard') else None, 'seams': {k: r.get('seams', {}).get(k) for k in ('consistency', 'chains_mixed', 'sharp_kept_m', 'seams_m')},
+                'organic': json.loads(base.attribValue('zruv_organic_report')) if base.findGlobalAttrib('zruv_organic_report') else None, 'hard': json.loads(base.attribValue('zruv_hard')) if base.findGlobalAttrib('zruv_hard') else None, 'weld_points': base.attribValue('zruv_weld_points') if base.findGlobalAttrib('zruv_weld_points') else None, 'base_points': len(base.points()), 'seams': {k: r.get('seams', {}).get(k) for k in ('consistency', 'chains_mixed', 'sharp_kept_m', 'seams_m')},
                 'sheet': (lay.get('W'), lay.get('H')), 'proven': lay.get('minimal_proven'), 'unique': lay.get('unique_share'), 'fill': lay.get('fill'), 'islands': lay.get('islands')}
 result = out

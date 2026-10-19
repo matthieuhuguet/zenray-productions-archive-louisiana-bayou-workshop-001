@@ -3,7 +3,7 @@
  "result": {
   "ZRUV_Arch": {
    "build_s": 0.0,
-   "total_s": 4.5,
+   "total_s": 4.3,
    "score": 1.0,
    "errors": [],
    "low": {},
@@ -19,6 +19,8 @@
     "narrow_parts": 0,
     "narrowest_px": 16.0
    },
+   "weld_points": 0,
+   "base_points": 1114,
    "seams": {
     "consistency": 1.0,
     "chains_mixed": 0,
@@ -30,30 +32,35 @@
     4096
    ],
    "proven": true,
-   "unique": 0.5102,
-   "fill": 0.6167,
+   "unique": 0.5212,
+   "fill": 0.63,
    "islands": 533
   },
   "ZRUV_RubberToy": {
    "build_s": 0.0,
-   "total_s": 9.4,
-   "score": 1.0,
+   "total_s": 19.6,
+   "score": 0.999634,
    "errors": [],
-   "low": {},
+   "low": {
+    "uv:stretch": 0.999634
+   },
    "organic": {
     "from_unwrap": 47,
     "repaired": 1,
     "merges": 21,
     "stuck": 0,
-    "charts": 49,
-    "discs": 47,
+    "economy_s": 9.5,
+    "economy_merges": 11,
+    "reflattened": 0,
+    "charts": 38,
+    "discs": 36,
     "tol": 0.1,
     "cover_asked": 0.999,
-    "within_tol": 1.0,
-    "within_5pc": 0.98561,
-    "stretch_max": 0.0999,
+    "within_tol": 0.99963,
+    "within_5pc": 0.98611,
+    "stretch_max": 0.1152,
     "organic_share": 1.0012,
-    "fail_area_m2": 0.0,
+    "fail_area_m2": 0.000366,
     "budget_m2": 0.0005
    },
    "hard": {
@@ -65,11 +72,13 @@
     "narrow_parts": 0,
     "narrowest_px": 16.0
    },
+   "weld_points": 0,
+   "base_points": 12874,
    "seams": {
     "consistency": 1.0,
     "chains_mixed": 0,
     "sharp_kept_m": 0,
-    "seams_m": 13.15
+    "seams_m": 12.505
    },
    "sheet": [
     2048,
@@ -77,33 +86,37 @@
    ],
    "proven": true,
    "unique": 1.0,
-   "fill": 0.4977,
-   "islands": 49
+   "fill": 0.4975,
+   "islands": 38
   },
   "ZRUV_ShaderBall": {
    "build_s": 0.0,
-   "total_s": 8.7,
-   "score": 0.999413,
+   "total_s": 21.1,
+   "score": 0.999516,
    "errors": [],
    "low": {
-    "uv:stretch": 0.999413
+    "uv:density": 0.999788,
+    "uv:stretch": 0.999516
    },
    "organic": {
     "from_unwrap": 524,
-    "repaired": 0,
-    "merges": 0,
+    "repaired": 1,
+    "merges": 29,
     "stuck": 0,
     "cone_cuts": 1,
     "coned_charts": 1,
-    "charts": 524,
-    "discs": 520,
+    "economy_s": 5.4,
+    "economy_merges": 241,
+    "reflattened": 1,
+    "charts": 285,
+    "discs": 281,
     "tol": 0.1,
     "cover_asked": 0.999,
-    "within_tol": 0.99965,
-    "within_5pc": 0.99967,
-    "stretch_max": 0.1914,
+    "within_tol": 0.99952,
+    "within_5pc": 0.9822,
+    "stretch_max": 0.6361,
     "organic_share": 1.0002,
-    "fail_area_m2": 0.000349,
+    "fail_area_m2": 0.000484,
     "budget_m2": 0.0005
    },
    "hard": {
@@ -115,11 +128,13 @@
     "narrow_parts": 1368,
     "narrowest_px": 16.0
    },
+   "weld_points": 0,
+   "base_points": 7126,
    "seams": {
     "consistency": 1.0,
     "chains_mixed": 0,
-    "sharp_kept_m": 1.552,
-    "seams_m": 26.657
+    "sharp_kept_m": 0,
+    "seams_m": 22.917
    },
    "sheet": [
     2048,
@@ -127,58 +142,63 @@
    ],
    "proven": true,
    "unique": 1.0,
-   "fill": 0.4996,
-   "islands": 534
+   "fill": 0.4959,
+   "islands": 295
   },
   "ZRUV_Manny": {
    "build_s": 0.0,
-   "total_s": 49.8,
-   "score": 0.999497,
+   "total_s": 145.3,
+   "score": 0.999412,
    "errors": [],
    "low": {
-    "uv:stretch": 0.999497
+    "uv:stretch": 0.999412
    },
    "organic": {
-    "from_unwrap": 177,
-    "repaired": 22,
-    "merges": 426,
-    "stuck": 12,
-    "cone_cuts": 106,
-    "coned_charts": 37,
-    "charts": 238,
-    "discs": 235,
+    "from_unwrap": 191,
+    "repaired": 27,
+    "merges": 635,
+    "stuck": 27,
+    "cone_cuts": 265,
+    "coned_charts": 84,
+    "economy_s": 51.7,
+    "economy_merges": 71,
+    "reflattened": 48,
+    "charts": 237,
+    "discs": 232,
     "tol": 0.1,
     "cover_asked": 0.999,
-    "within_tol": 0.9995,
-    "within_5pc": 0.99102,
-    "stretch_max": 3.334,
-    "organic_share": 0.9887,
-    "fail_area_m2": 0.001031,
+    "within_tol": 0.99942,
+    "within_5pc": 0.99382,
+    "stretch_max": 2.4648,
+    "organic_share": 1.0,
+    "fail_area_m2": 0.001205,
     "budget_m2": 0.001045
    },
    "hard": {
     "source": "normals",
-    "hard_edges": 0,
-    "hard_m": 0,
+    "hard_edges": 710,
+    "hard_m": 6.0694,
     "demoted_edges": 0,
     "demoted_m": 0,
     "narrow_parts": 0,
     "narrowest_px": 16.0
    },
+   "weld_points": 2966,
+   "base_points": 15211,
    "seams": {
     "consistency": 1.0,
     "chains_mixed": 0,
-    "sharp_kept_m": 0,
-    "seams_m": 69.884
+    "sharp_kept_m": 0.014,
+    "seams_m": 60.0
    },
    "sheet": [
-    2048,
+    4096,
     2048
    ],
-   "proven": true,
+   "proven": false,
    "unique": 1.0,
-   "fill": 0.521,
-   "islands": 245
+   "fill": 0.2604,
+   "islands": 282
   }
  }
 }

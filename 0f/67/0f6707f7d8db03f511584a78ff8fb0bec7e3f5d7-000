@@ -1,0 +1,152 @@
+<!doctype html>
+<!-- 19 October 2026 : ZenRay UV verification sheet, reusable template. EN: Sheet.py replaces the data placeholder below with the JSON of a run (one asset, up to
+five methods) ; everything on the page is drawn from that JSON, nothing is written by hand. Light and dark themes from the same tokens. FR : gabarit de la
+feuille de verification ZenRay UV, rempli par Sheet.py. -->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZenRay UV, cinq méthodes</title>
+<style>
+@font-face { font-family: 'InterVariable'; src: url('fonts/InterVariable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'AnthropicSerif'; src: url('fonts/AnthropicSerif-Romans.woff2') format('woff2'); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: 'AnthropicMono'; src: url('fonts/AnthropicMono.woff2') format('woff2'); font-weight: 300 800; font-display: swap; }
+:root {
+  --zr-police-sans: 'InterVariable', 'Hiragino Sans W4', 'Hiragino Sans', sans-serif;
+  --zr-police-serif: 'AnthropicSerif', 'Hiragino Mincho ProN W3', serif;
+  --zr-police-mono: 'AnthropicMono', ui-monospace, monospace;
+  --zr-poids-sans: 500; --zr-poids-serif: 500; --zr-poids-nombres: 500;
+  --bg: #f6f5f2; --card: #ffffff; --ink: #1d1d1f; --ink2: #5b5b62; --line: #e3e1dc; --accent: #cc7c5e;
+  --ok: #2f8f4e; --warn: #c2412d; --chip: #efede8; --img: #eeeef0;
+  --gap: 16px; --radius: 14px; --base: 15px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161618; --card: #1f1f22; --ink: #ececee; --ink2: #a3a3aa; --line: #34343a; --chip: #2a2a2f; --img: #2a2a2e; --ok: #5cc27e; --warn: #ff7a66; } }
+:root[data-theme="dark"] { --bg: #161618; --card: #1f1f22; --ink: #ececee; --ink2: #a3a3aa; --line: #34343a; --chip: #2a2a2f; --img: #2a2a2e; --ok: #5cc27e; --warn: #ff7a66; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--zr-police-sans); font-weight: var(--zr-poids-sans); font-size: var(--base); line-height: 1.5; }
+main { max-width: 1240px; margin: 0 auto; padding: 24px var(--gap) 80px; }
+h1, h2, h3 { font-family: var(--zr-police-serif); font-weight: var(--zr-poids-serif); margin: 0; }
+h1 { font-size: 2.1rem; } h2 { font-size: 1.5rem; } h3 { font-size: 1.05rem; color: var(--ink2); }
+.num { font-family: var(--zr-police-serif); font-weight: var(--zr-poids-nombres); font-variant-numeric: tabular-nums; }
+code, .mono { font-family: var(--zr-police-mono); font-size: .86em; overflow-wrap: anywhere; }
+.muted { color: var(--ink2); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin-top: var(--gap); }
+.grid { display: grid; gap: var(--gap); }
+.g2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+figure { margin: 0; }
+figure img { width: 100%; height: auto; display: block; border-radius: 10px; background: var(--img); border: 1px solid var(--line); }
+figcaption { font-size: .86rem; color: var(--ink2); margin-top: 6px; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--ink2); font-weight: var(--zr-poids-sans); }
+.scroll { overflow-x: auto; }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 99px; font-family: var(--zr-police-serif); font-size: 1.1rem; }
+.pass { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.fail { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 99px; background: var(--chip); font-size: .88rem; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,.15); }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+nav.toc a { color: var(--ink); text-decoration: none; padding: 4px 12px; border-radius: 99px; background: var(--chip); font-size: .9rem; }
+.head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px; }
+.steps { margin: 6px 0 10px 20px; padding: 0; } .steps li { margin: 4px 0; } .lab { font-weight: var(--zr-poids-sans); color: var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .85rem; color: var(--ink2); margin-top: 6px; }
+.theme { position: fixed; bottom: 12px; right: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 99px; padding: 4px 12px;
+  font: inherit; cursor: pointer; }
+@media (max-width: 640px) { h1 { font-size: 1.6rem; } .card { padding: 14px; } }
+</style>
+</head>
+<body>
+<button class="theme" type="button" onclick="toggleTheme()">Thème</button>
+<main id="app"></main>
+<script id="zruv-data" type="application/json">{"asset": "/obj/ZRUV_Assets/rubbertoy", "asset_scale": 1.0, "texel_density": 1024.0, "date": "20 October 2026 00:27", "families": [{"name": "rubber", "rgb": [51, 140, 242]}], "methods": [{"id": "M1", "title": "UV unique et bake", "idea": "Chaque point de l'objet a ses propres pixels dans une texture unique de 4096 px au plus ; les îles jumelles (les deux piliers, les deux faces de l'arche, les rivets) partagent la même place, et les cartes du maillage sont cuites dedans.", "score": 0.999634, "weakest": "uv:stretch", "components": {"uv:present": 1.0, "uv:density": 1.0, "uv:stretch": 0.999634, "uv:no_flip": 1.0, "uv:not_mirrored": 1.0, "uv:region": 1.0, "uv:horizontal": 1.0, "uv:no_overlap": 1.0, "uv:padding": 1.0, "seams:consistency": 1.0, "seams:robust_crease": 1.0}, "contracts": [{"set": "uv", "W": 2048, "H": 1024, "space": "sheet", "unique": true, "region": "sheet", "padding_px": 16, "straight_tol": 0.08, "organic_tol": 0.1, "subtexel_px": 1.0}], "views": {"family_3d": "M1/view_family_3d.png", "density_3d": "M1/view_density_3d.png", "checker_3d": "M1/view_checker_3d.png", "seams_3d": "M1/view_seams_3d.png", "uv_family": "M1/view_uv_family.png", "uv_density": "M1/view_uv_density.png"}, "bake": {}, "textures": [{"label": "texture unique", "w": 2048, "h": 1024, "count": 1, "mib_each": 2.7, "mib": 2.7}], "texel": {"set": "uv", "target_px_per_m": 1024.0, "tol": 0.01, "tol_max": 0.01, "exact_frac": 0.4879627095685403, "low_frac": 0.2981372296953818, "high_frac": 0.2139000607360779, "px_per_m_min": 942.0395355954395, "px_per_m_median": 1024.6145888962722, "px_per_m_max": 1110.8310893048408, "stretch_max": 0.1152187708497725, "faces": 12854}, "seams": {"crease_requested": 57.218997955322266, "crease_effective": 57.219, "edges_near_requested": 0, "ambiguous_edges": 0, "chains_mixed": 0, "mixed_detail": [], "consistency": 1.0, "seams_m": 12.505, "seams_on_smooth_m": 1.815, "sharp_kept_m": 0, "sharp_m": 0, "border_m": 0, "pass": true}, "islands": 38, "fill": 0.4913, "u_range": [0.0078, 0.9918], "v_range": [0.0156, 0.8197], "cook_s": 17.42, "bake_s": null, "date": "20 October 2026 00:27", "report": "M1/report.json", "example": {}, "method_text": {"steps": ["Les arêtes plus vives que le pli deviennent des coutures. Chaque carte entre deux coutures faite d'une grille de quads (une bande de l'arche, un côté de pilier) est posée en rectangle exact, mesuré sur ses arêtes 3D : l'arche courbe devient une bande droite d'une seule pièce. Un quad qui n'est pas un rectangle (un chanfrein en trapèze, un coin de cadre) devient sa propre petite île, à plat sur son plan ; le reste garde le dépliage natif uvflatten, et labs texel density met tout à 1024 px/m.", "Une bande plus longue que la plus grande texture permise est coupée sur une colonne de sa grille : l'arche à son sommet, en deux moitiés de 2,6 m.", "Les îles jumelles, mêmes faces et même taille, sont posées l'une sur l'autre ; les autres sont rangées en rangées depuis le haut à gauche, les plus hautes d'abord, toutes couchées.", "La feuille est la plus petite taille permise qui tient les rangées (2048, 4096 par 2048, puis 4096) ; Copernicus y cuit la couleur ID, l'occlusion, la courbure et les arêtes."], "when": "Objet unique vu de près, personnage, arme, prop de moins de deux mètres : chaque point a ses propres pixels, on peut tout peindre et tout cuire.", "check": "Une seule texture de 4096 au plus, des rangées de bandes droites et horizontales, les jumelles superposées, la densité blanche partout et le damier aux carrés égaux."}}], "scale_img": "view_scale.png", "scale": {"asset_h": 0.583, "asset_w": 0.714, "asset_d": 0.642, "mannequin_h": 1.76}, "materials": {"iron": "metal001_basecolor.png", "pillar": "wood_color.jpg", "sign": "wood_color.jpg"}}</script>
+<script>
+// 19 October 2026 : renders the sheet from the JSON above ; one function per block, the same for every asset and every method.
+const D = JSON.parse(document.getElementById('zruv-data').textContent);
+const fr = (x, d = 0) => Number(x).toLocaleString('fr-FR', {minimumFractionDigits: d, maximumFractionDigits: d}).replace(/ /g, ' ');
+const pct = x => fr(100 * x, 2) + ' %';
+const n = (x, d = 0) => `<span class="num">${fr(x, d)}</span>`;
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;'}[c]));
+const fig = (src, cap) => src ? `<figure><img loading="lazy" src="${src}" alt="${esc(cap)}"><figcaption>${cap}</figcaption></figure>` : '';
+const badge = s => `<span class="badge ${s >= 0.999 ? 'pass' : 'fail'}">${fr(s, 4)}</span>`;
+function toggleTheme() { const r = document.documentElement; r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark'; }
+function header() {
+  const fam = D.families.map(f => `<span class="chip"><span class="dot" style="background:rgb(${f.rgb.join(',')})"></span>${esc(f.name)}</span>`).join('');
+  const sc = D.scale || {};
+  return `<div class="card"><div class="head"><h1>ZenRay UV, cinq méthodes</h1><span class="muted">${esc(D.date)}</span></div>
+  <p class="muted">Asset <code>${esc(D.asset)}</code>, échelle ${n(D.asset_scale, 2)}, densité demandée ${n(D.texel_density)} px/m. Chaque score est la plus petite
+  de ses composantes, mesurées sur les UV réellement écrites ; une méthode est finie à ${n(0.999, 3)}.</p>
+  <h3 style="margin-top:12px">Familles de matériaux (couleur ID)</h3><div class="chips" style="margin-top:6px">${fam}</div>
+  <nav class="toc">${D.methods.map(m => `<a href="#${m.id}">${m.id} ${esc(m.title)}</a>`).join('')}</nav></div>
+  <div class="card"><h2>Échelle, à côté du mannequin de ${n(sc.mannequin_h || 1.76, 2)} m</h2>
+  <p class="muted">Vue de face orthographique, mêmes mètres par pixel pour l'asset et le mannequin, une ligne par mètre. Asset : ${n(sc.asset_w || 0, 2)} m de large,
+  ${n(sc.asset_h || 0, 2)} m de haut, ${n(sc.asset_d || 0, 2)} m de profondeur.</p>${fig(D.scale_img, 'Asset et mannequin à la même échelle')}</div>`;
+}
+function summary() {
+  const rows = D.methods.map(m => {
+    const mem = m.textures.reduce((a, t) => a + t.mib, 0);
+    const tex = m.textures.map(t => `${t.count > 1 ? t.count + ' × ' : ''}${fr(t.w)} × ${fr(t.h)}`).join(' + ');
+    return `<tr><td><a href="#${m.id}">${m.id}</a> ${esc(m.title)}</td><td>${badge(m.score)}</td><td>${tex}</td><td>${n(mem, 1)} Mio</td>
+      <td>${n(m.islands)}</td><td>${n(m.seams.seams_m, 1)} m</td><td>${n(m.cook_s, 2)} s</td></tr>`;
+  }).join('');
+  return `<div class="card"><h2>Comparaison</h2><p class="muted">Mémoire par carte en BC7 (un octet par pixel) avec mipmaps ; un matériau complet en compte
+  plusieurs (couleur, normale, rugosité).</p><div class="scroll"><table><thead><tr><th>Méthode</th><th>Score</th><th>Textures</th><th>Mémoire, une carte de chaque texture</th>
+  <th>Îles</th><th>Coutures</th><th>Calcul</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+}
+function method(m) {
+  const v = m.views, t = m.texel, s = m.seams;
+  const comps = Object.entries(m.components).map(([k, x]) => `<tr><td><code>${esc(k)}</code></td><td>${badge(x)}</td></tr>`).join('');
+  const tex = m.textures.map(t => `<tr><td>${esc(t.label)}</td><td>${n(t.count)} × ${n(t.w)} × ${n(t.h)}</td><td>${n(t.mib_each, 1)} Mio</td></tr>`).join('');
+  // 19 October 2026 : one image per texture : M5 base tile and decal atlas, M3 trim bands and tileable faces, otherwise the single uv set
+  const parts = v.uv_family_base ? [['_base', 'la base sur sa tuile'], ['_decals', 'les decals dans leur atlas']]
+              : v.uv_family_bands ? [['_bands', 'les bandes de la trim sheet (u se répète)'], ['_tile', 'les grandes faces sur la tuile de leur famille']] : [['', 'à leur vraie place']];
+  const base = parts.map(([k, c]) => fig(v['uv_family' + k], 'UV par famille : ' + c));
+  const dens = parts.map(([k, c]) => fig(v['uv_density' + k], 'Densité : ' + c));
+  const uv2 = v.uv2_family ? `<h3 style="margin-top:18px">uv2, le jeu unique du masque</h3><div class="grid g2" style="margin-top:8px">${fig(v.uv2_family, 'uv2 par famille')}
+    ${fig(v.uv2_density, 'Densité de uv2 (' + fr(m.uv2.texel.target_px_per_m) + ' px/m)')}</div>` : '';
+  const LAB = {custom: 'couleur ID', occlusion: 'occlusion', curvature: 'courbure', edge: 'arêtes', alpha: 'couverture', worldnormal: 'normale monde', position: 'position',
+               mask_R: 'canal rouge : usure des arêtes', mask_G: 'canal vert : faces tournées vers le ciel', mask_B: 'canal bleu : vers le sol', base: 'matières avant les couches',
+               layered: 'résultat des couches (Copernicus)', mask_rgb: 'masque RVB empaqueté (Channel Join, Copernicus)'};
+  const ORDER = ['mask_rgb', 'mask_R', 'mask_G', 'mask_B', 'base', 'layered', 'custom', 'occlusion', 'curvature', 'edge', 'worldnormal', 'position', 'alpha'];
+  const bk = Object.entries(m.bake || {}).sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]));
+  const bake = bk.length ? `<h3 style="margin-top:18px">${m.id === 'M4' ? 'Les trois canaux, puis le mélange des couches' : 'Cartes cuites'}</h3><div class="grid g3" style="margin-top:8px">${
+      bk.map(([k, p]) => fig(p, LAB[k] || k)).join('')}</div>` : '';
+  const mt = m.method_text || {}, ex = m.example || {};
+  const steps = (mt.steps || []).map(x => `<li>${esc(x)}</li>`).join('');
+  const meth = mt.steps ? `<h3>Méthodologie</h3><ol class="steps">${steps}</ol><p><b class="lab">Quand la choisir :</b> ${esc(mt.when)}</p>
+    <p><b class="lab">Comment la valider ici :</b> ${esc(mt.check)}</p>` : '';
+  const exm = ex.textured_3d ? `<h3 style="margin-top:18px">Exemple texturé, avec les matières de Houdini</h3><div class="grid g2" style="margin-top:8px">
+    ${fig(ex.textured_3d, 'Vue trois-quarts texturée')}${fig(ex.textured_close, 'Gros plan texturé : chapiteau du pilier et départ de l’arche')}</div>
+    ${ex.texture ? `<div class="grid g2" style="margin-top:8px">${fig(ex.texture, 'La texture de la méthode')}</div>` : ''}` : '';
+  return `<section class="card" id="${m.id}"><div class="head"><h2>${m.id} ${esc(m.title)}</h2>${badge(m.score)}</div>
+  <p>${esc(m.idea)}</p>${meth}${exm}
+  <h3>Couleur ID par famille : la vue 3D et le placement des UV</h3><div class="grid g2" style="margin-top:8px">${fig(v.family_3d, 'Vue 3D en perspective, une couleur par famille')}${base.join('')}</div>
+  <h3 style="margin-top:18px">Texel density, ${n(t.target_px_per_m)} px/m demandés</h3>
+  <p class="muted">Blanc ${pct(t.exact_frac)}, rouge (pas assez) ${pct(t.low_frac)}, bleu (trop) ${pct(t.high_frac)} de la surface ; mesuré de ${n(t.px_per_m_min, 1)}
+  à ${n(t.px_per_m_max, 1)} px/m, étirement maximal ${pct(t.stretch_max)}.</p>
+  <div class="grid g2" style="margin-top:8px">${fig(v.density_3d, 'Densité sur le modèle (blanc juste à 1 %)')}${dens.join('')}</div>
+  <h3 style="margin-top:18px">UV checker et UV Seam Checker</h3>
+  <div class="legend"><span><span class="dot" style="background:#ebebeb"></span> <span class="dot" style="background:#19191c"></span> damier noir et blanc : des carrés égaux veulent dire une densité égale</span>
+  <span><span class="dot" style="background:#ec48aa"></span> couture</span><span><span class="dot" style="background:#5adceb"></span> arête vive gardée dans une île</span></div>
+  <div class="grid g2" style="margin-top:8px">${fig(v.checker_3d, 'Damier noir et blanc lu dans les UV')}${fig(v.seams_3d, 'UV Seam Checker')}</div>
+  <p class="muted">Pli demandé ${n(s.crease_requested, 1)}°, appliqué ${n(s.crease_effective, 3)}° (jamais sur un angle du maillage), ${n(s.ambiguous_edges)} arête ambiguë,
+  ${n(s.chains_mixed)} chaîne coupée à moitié ; coutures ${n(s.seams_m, 1)} m dont ${n(s.seams_on_smooth_m, 2)} m sur des arêtes lisses (fermeture des tubes).</p>
+  ${uv2}${bake}${m.variant ? `<h3 style="margin-top:18px">Variante hotspot, mesurée et écartée</h3><p class="muted">${esc(m.variant.nodes)}. Densité juste à 1 % sur
+  ${pct(m.variant.density_within_1pc)} de la surface, à 30 % sur ${pct(m.variant.density_within_30pc)} ; de ${n(m.variant.px_per_m_min)} à ${n(m.variant.px_per_m_max)} px/m ;
+  ${pct(1 - m.variant.not_mirrored)} des faces en miroir. ${esc(m.variant.verdict)}</p>` : ''}
+  <div class="grid g2" style="margin-top:18px"><div><h3>Composantes du score</h3><div class="scroll"><table><tbody>${comps}</tbody></table></div></div>
+  <div><h3>Textures</h3><div class="scroll"><table><tbody>${tex}</tbody></table></div>
+  <p class="muted">${n(m.islands)} îles${m.fill != null ? ', remplissage ' + pct(m.fill) : ''}, calcul ${n(m.cook_s, 2)} s${m.bake_s ? ', cuisson ' + n(m.bake_s, 1) + ' s' : ''}.</p>
+  <p class="muted">Rapport : <code>${esc(m.report)}</code></p></div></div></section>`;
+}
+function footer() {
+  return `<div class="card"><h2>Relancer</h2><p class="muted">Depuis un terminal, Houdini ouvert :</p>
+  <p><code>/Users/zenray/.venvs/shorts/bin/python -I /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZenRayUV.py run --methods ${D.methods.map(m => m.id).join(',')} --asset ${esc(D.asset)} --td ${D.texel_density} --scale ${D.asset_scale}</code></p>
+  <p class="muted">Ou dans Houdini, bouton « Run, score and write the sheet » de <code>CTRL_zruv</code> ; chaque réglage y vit, huit au plus par dossier.</p></div>`;
+}
+document.getElementById('app').innerHTML = D ? header() + summary() + D.methods.map(method).join('') + footer() : '<p>Aucune donnée.</p>';
+</script>
+</body>
+</html>

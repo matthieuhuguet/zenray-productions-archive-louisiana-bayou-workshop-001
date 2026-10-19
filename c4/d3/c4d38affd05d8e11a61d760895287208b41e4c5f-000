@@ -1,0 +1,39 @@
+# 19 October 2026 : one pebble of the shader ball (24 faces) : its organic charts, and why their pairwise merges fail (chi, flatten, fail area, fill).
+import numpy as np, sys, importlib, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O, ZruvSops as ZS
+importlib.reload(O)
+sub = hou.node('/obj/ZRUV_ShaderBall/organic_grains').geometry()
+ref = hou.node('/obj/ZRUV_ShaderBall/organic_refine').geometry()
+sm = Z.from_geo(sub, ('uv_auto',), ['zruv_fid'])
+fid = [int(x) for x in sm.prim['zruv_fid']]
+och = ref.primIntAttribValues('zruv_ochart')
+O._HARDSET = O._sharp_set(sub, sm)
+find, union = Z.uf(sm.n)
+for e, fl in sm.edges.items():
+    for k in range(1, len(fl)):
+        union(fl[0], fl[k])
+comp = collections.defaultdict(list)
+for f in range(sm.n):
+    comp[find(f)].append(f)
+peb = [v for v in comp.values() if len(v) == 24][0]
+ch = collections.defaultdict(list)
+for f in peb:
+    ch[och[fid[f]]].append(f)
+rows = []
+keys = list(ch)
+res = {k: O._relax(sm, v, O._flatten_faces({'_mesh': sm}, v), amin=0.0, tol=0.1) for k, v in ch.items()}
+for i in range(len(keys)):
+    for j in range(i + 1, len(keys)):
+        a, b = ch[keys[i]], ch[keys[j]]
+        shared = [e for e, fl in sm.edges.items() if len(fl) == 2 and ((fl[0] in a and fl[1] in b) or (fl[0] in b and fl[1] in a))]
+        if not shared:
+            continue
+        merged = a + b
+        chi = O._chi(sm, merged)
+        flat = O._flatten_faces({'_mesh': sm}, merged)
+        rr = O._relax(sm, merged, flat, amin=0.0, tol=0.1)
+        rows.append({'pair': (keys[i], keys[j]), 'faces': (len(a), len(b)), 'shared_edges': len(shared), 'hard_shared': sum(1 for e in shared if e in O._HARDSET), 'chi': chi, 'flat_ok': len(flat) == len(merged),
+                     'fail_merged': O._fail_area(rr[1], rr[2], rr[3], 0.1), 'fail_parts': O._fail_area(res[keys[i]][1], res[keys[i]][2], res[keys[i]][3], 0.1) + O._fail_area(res[keys[j]][1], res[keys[j]][2], res[keys[j]][3], 0.1),
+                     'fill': round(O._bbox_fill(rr[0]), 3), 'smax': round(float(rr[2].max()), 3)})
+result = {'charts': {int(k): len(v) for k, v in ch.items()}, 'pairs': rows[:12], 'hard_in_pebble': sum(1 for e in O._HARDSET if all(f in set(peb) for f in sm.edges.get(e, ())))}

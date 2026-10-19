@@ -8,6 +8,6 @@ for k, v in d['result'].items():
     o = v.get('organic') or {}
     print(k, 'score', v['score'], 'tot', v['total_s'], 'sheet', v['sheet'], 'proven', v['proven'], 'fill', v['fill'], 'isl', v['islands'], 'uniq', v['unique'])
     print('   low', v['low'], 'err', [e[:300] for e in v['errors']])
-    print('   hard', v.get('hard'), 'seams', v.get('seams'))
+    print('   hard', v.get('hard'), 'weld', v.get('weld_points'), 'pts', v.get('base_points'), 'seams', v.get('seams'))
     if o:
         print('   organic', {x: o.get(x) for x in ('charts', 'within_tol', 'within_5pc', 'stretch_max', 'fail_area_m2', 'budget_m2', 'stuck', 'cone_cuts')})
