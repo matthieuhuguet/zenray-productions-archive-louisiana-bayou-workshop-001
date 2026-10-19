@@ -25,24 +25,24 @@
     "low_frac": 0.0,
     "high_frac": 0.0,
     "px_per_m_min": 1023.9517315380082,
-    "px_per_m_median": 1024.0001462748755,
-    "px_per_m_max": 1024.0375982362245,
-    "stretch_max": 0.00011847506022544252,
+    "px_per_m_median": 1024.000157447014,
+    "px_per_m_max": 1024.0375837004683,
+    "stretch_max": 0.0003324748004107647,
     "faces": 995
    },
    "islands": 552,
    "overlap_px": 0,
-   "covered_px": 4895213,
-   "fill": 0.5836,
+   "covered_px": 4900195,
+   "fill": 0.2921,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 5,
    "u_range": [
-    0.0029,
-    0.9971
+    0.0015,
+    0.9429
    ],
    "v_range": [
-    0.0059,
-    0.9449
+    0.0015,
+    0.8731
    ]
   }
  },
@@ -67,7 +67,7 @@
   {
    "set": "uv",
    "W": 8192,
-   "H": 4096,
+   "H": 8192,
    "space": "sheet",
    "unique": true,
    "region": "sheet",
@@ -77,26 +77,26 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 5.66,
- "score_s": 83.39,
+ "cook_s": 5.87,
+ "score_s": 5.73,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_8192x4096.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_8192x4096.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_8192x4096.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_8192x4096.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_8192x4096.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_2048x2048.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_2048x2048.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_2048x2048.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_2048x2048.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_2048x2048.png"
   },
   "seconds": {
-   "custom": 71.86,
-   "occlusion": 1.02,
-   "curvature": 0.85,
-   "edge": 0.76,
-   "alpha": 0.49
+   "custom": 3.99,
+   "occlusion": 0.22,
+   "curvature": 0.23,
+   "edge": 0.22,
+   "alpha": 0.19
   },
   "size": [
-   8192,
-   4096
+   2048,
+   2048
   ],
   "coverage": 1.0,
   "id_match": 1.0
@@ -110,7 +110,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 18:53",
+ "date": "19 October 2026 19:39",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -128,10 +128,11 @@
   "m1_flatten": 1,
   "m1_bake": 1,
   "m1_allow_rect": 1,
-  "m1_bake_scale": 1.0,
+  "m1_bake_scale": 0.25,
   "m2_tile_px": 2048,
-  "m2_grain": "pillar:h sign:h",
-  "m2_fill": 0.4,
+  "m2_grain": "pillar:up sign:h",
+  "m2_fill": 0.45,
+  "m2_max_tile_px": 8192,
   "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,

@@ -34,10 +34,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9671798301291,
-    "px_per_m_median": 1024.0000051530349,
-    "px_per_m_max": 1024.046981355083,
-    "stretch_max": 0.0003511476467670249,
+    "px_per_m_min": 1023.98389603468,
+    "px_per_m_median": 1023.9999925269868,
+    "px_per_m_max": 1024.0460460738898,
+    "stretch_max": 0.0005018600321080591,
     "faces": 995
    },
    "islands": 552,
@@ -45,12 +45,12 @@
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
-    0.0,
-    7.0673
+    0.002,
+    2.9517
    ],
    "v_range": [
-    0.0,
-    1.3352
+    0.001,
+    0.6274
    ]
   },
   "uv2": {
@@ -62,24 +62,24 @@
     "low_frac": 0.0,
     "high_frac": 0.0,
     "px_per_m_min": 127.99396644225102,
-    "px_per_m_median": 128.00002161541406,
-    "px_per_m_max": 128.00469796255854,
+    "px_per_m_median": 128.0000204124921,
+    "px_per_m_max": 128.00468343225242,
     "stretch_max": 0.00011847506022544252,
     "faces": 995
    },
    "islands": 552,
    "overlap_px": 0,
-   "covered_px": 4895337,
-   "fill": 0.2918,
+   "covered_px": 4915463,
+   "fill": 0.293,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 7,
    "u_range": [
     0.0039,
-    0.9957
+    0.996
    ],
    "v_range": [
     0.0039,
-    0.5108
+    0.5432
    ]
   }
  },
@@ -107,7 +107,8 @@
    "H": 2048,
    "space": "tile",
    "unique": "per_group",
-   "region": "free",
+   "region": "square",
+   "sizes": "per_face",
    "grain": "u",
    "padding_px": 8
   },
@@ -126,8 +127,8 @@
   "uv": 1024.0,
   "uv2": 128.0
  },
- "cook_s": 7.65,
- "score_s": 4.35,
+ "cook_s": 8.33,
+ "score_s": 3.99,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_custom_1024x1024.png",
@@ -139,10 +140,10 @@
    "mask_rgb": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_mask_rgb_1024x1024.png"
   },
   "seconds": {
-   "custom": 1.38,
-   "edge": 0.18,
+   "custom": 1.21,
+   "edge": 0.19,
    "worldnormal": 0.22,
-   "position": 0.21,
+   "position": 0.2,
    "occlusion": 0.19,
    "alpha": 0.18
   },
@@ -153,9 +154,9 @@
   "coverage": 1.0,
   "id_match": 1.0,
   "mask_std": [
-   0.0456,
-   0.3041,
-   0.2307
+   0.0452,
+   0.3042,
+   0.2293
   ],
   "mask_channels": 1.0
  },
@@ -168,7 +169,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 18:55",
+ "date": "19 October 2026 19:37",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -180,8 +181,9 @@
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
-  "m2_grain": "pillar:h sign:h",
-  "m2_fill": 0.4,
+  "m2_grain": "pillar:up sign:h",
+  "m2_fill": 0.45,
+  "m2_max_tile_px": 8192,
   "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,

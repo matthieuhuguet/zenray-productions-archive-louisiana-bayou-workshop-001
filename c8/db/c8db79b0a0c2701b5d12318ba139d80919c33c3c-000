@@ -2,7 +2,7 @@
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "19 October 2026 18:57",
+ "date": "19 October 2026 19:39",
  "families": [
   {
    "name": "iron",
@@ -54,7 +54,7 @@
     {
      "set": "uv",
      "W": 8192,
-     "H": 4096,
+     "H": 8192,
      "space": "sheet",
      "unique": true,
      "region": "sheet",
@@ -80,10 +80,10 @@
     {
      "label": "texture unique",
      "w": 8192,
-     "h": 4096,
+     "h": 8192,
      "count": 1,
-     "mib_each": 42.7,
-     "mib": 42.7
+     "mib_each": 85.3,
+     "mib": 85.3
     }
    ],
    "texel": {
@@ -94,9 +94,9 @@
     "low_frac": 0.0,
     "high_frac": 0.0,
     "px_per_m_min": 1023.9517315380082,
-    "px_per_m_median": 1024.0001462748755,
-    "px_per_m_max": 1024.0375982362245,
-    "stretch_max": 0.00011847506022544252,
+    "px_per_m_median": 1024.000157447014,
+    "px_per_m_max": 1024.0375837004683,
+    "stretch_max": 0.0003324748004107647,
     "faces": 995
    },
    "seams": {
@@ -115,18 +115,18 @@
     "pass": true
    },
    "islands": 552,
-   "fill": 0.5836,
+   "fill": 0.2921,
    "u_range": [
-    0.0029,
-    0.9971
+    0.0015,
+    0.9429
    ],
    "v_range": [
-    0.0059,
-    0.9449
+    0.0015,
+    0.8731
    ],
-   "cook_s": 5.66,
-   "bake_s": 74.98,
-   "date": "19 October 2026 18:53",
+   "cook_s": 5.87,
+   "bake_s": 4.8500000000000005,
+   "date": "19 October 2026 19:39",
    "report": "M1/report.json"
   },
   {
@@ -155,7 +155,8 @@
      "H": 2048,
      "space": "tile",
      "unique": "per_group",
-     "region": "free",
+     "region": "square",
+     "sizes": "per_face",
      "grain": "u",
      "padding_px": 8
     }
@@ -186,10 +187,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9671798301291,
-    "px_per_m_median": 1024.0000051530349,
-    "px_per_m_max": 1024.046981355083,
-    "stretch_max": 0.0003511476467670249,
+    "px_per_m_min": 1023.98389603468,
+    "px_per_m_median": 1023.9999925269868,
+    "px_per_m_max": 1024.0460460738898,
+    "stretch_max": 0.0005018600321082811,
     "faces": 995
    },
    "seams": {
@@ -210,16 +211,16 @@
    "islands": 552,
    "fill": null,
    "u_range": [
-    0.0,
-    7.0673
+    0.002,
+    2.9517
    ],
    "v_range": [
-    0.0,
-    1.3352
+    0.001,
+    0.6274
    ],
-   "cook_s": 6.58,
+   "cook_s": 6.93,
    "bake_s": null,
-   "date": "19 October 2026 18:53",
+   "date": "19 October 2026 19:36",
    "report": "M2/report.json"
   },
   {
@@ -245,14 +246,13 @@
    "contracts": [
     {
      "set": "uv",
-     "W": 4096,
-     "H": 4096,
-     "space": "tile",
+     "W": 8192,
+     "H": 8192,
+     "space": "sheet",
      "unique": "per_group",
      "region": "band",
      "sizes": "per_face",
      "padding_px": 16,
-     "group_padding_px": 8,
      "grain": "u",
      "min_straight": 0.6
     }
@@ -262,10 +262,8 @@
     "density_3d": "M3/view_density_3d.png",
     "checker_3d": "M3/view_checker_3d.png",
     "seams_3d": "M3/view_seams_3d.png",
-    "uv_family_bands": "M3/view_uv_family_bands.png",
-    "uv_density_bands": "M3/view_uv_density_bands.png",
-    "uv_family_tile": "M3/view_uv_family_tile.png",
-    "uv_density_tile": "M3/view_uv_density_tile.png"
+    "uv_family": "M3/view_uv_family.png",
+    "uv_density": "M3/view_uv_density.png"
    },
    "bake": {},
    "textures": [
@@ -279,11 +277,11 @@
     },
     {
      "label": "trim sheet",
-     "w": 4096,
-     "h": 4096,
+     "w": 8192,
+     "h": 8192,
      "count": 1,
-     "mib_each": 21.3,
-     "mib": 21.3
+     "mib_each": 85.3,
+     "mib": 85.3
     }
    ],
    "texel": {
@@ -293,10 +291,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9596782939616,
-    "px_per_m_median": 1024.0001699385784,
-    "px_per_m_max": 1024.0378162071315,
-    "stretch_max": 0.0003174370725054221,
+    "px_per_m_min": 1023.9517315380082,
+    "px_per_m_median": 1024.000111852467,
+    "px_per_m_max": 1024.0375837004683,
+    "stretch_max": 0.00011847506022544252,
     "faces": 995
    },
    "seams": {
@@ -307,26 +305,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 346.861,
+    "seams_m": 375.081,
     "seams_on_smooth_m": 1.489,
     "sharp_kept_m": 0,
-    "sharp_m": 203.777,
-    "border_m": 141.399,
+    "sharp_m": 175.558,
+    "border_m": 197.837,
     "pass": true
    },
    "islands": 552,
    "fill": null,
    "u_range": [
     0.0,
-    7.0962
+    0.9979
    ],
    "v_range": [
-    0.0,
-    1.2094
+    0.002,
+    0.999
    ],
-   "cook_s": 6.69,
+   "cook_s": 6.97,
    "bake_s": null,
-   "date": "19 October 2026 18:55",
+   "date": "19 October 2026 19:38",
    "report": "M3/report.json",
    "variant": {
     "date": "19 October 2026 18:55",
@@ -383,7 +381,8 @@
      "H": 2048,
      "space": "tile",
      "unique": "per_group",
-     "region": "free",
+     "region": "square",
+     "sizes": "per_face",
      "grain": "u",
      "padding_px": 8
     },
@@ -442,10 +441,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9671798301291,
-    "px_per_m_median": 1024.0000051530349,
-    "px_per_m_max": 1024.046981355083,
-    "stretch_max": 0.0003511476467670249,
+    "px_per_m_min": 1023.98389603468,
+    "px_per_m_median": 1023.9999925269868,
+    "px_per_m_max": 1024.0460460738898,
+    "stretch_max": 0.0005018600321082811,
     "faces": 995
    },
    "seams": {
@@ -466,20 +465,20 @@
    "islands": 552,
    "fill": null,
    "u_range": [
-    0.0,
-    7.0673
+    0.002,
+    2.9517
    ],
    "v_range": [
-    0.0,
-    1.3352
+    0.001,
+    0.6274
    ],
-   "cook_s": 7.65,
-   "bake_s": 2.36,
-   "date": "19 October 2026 18:55",
+   "cook_s": 8.33,
+   "bake_s": 2.19,
+   "date": "19 October 2026 19:37",
    "report": "M4/report.json",
    "uv2": {
     "islands": 552,
-    "fill": 0.2918,
+    "fill": 0.293,
     "texel": {
      "set": "uv2",
      "target_px_per_m": 128.0,
@@ -488,16 +487,16 @@
      "low_frac": 0.0,
      "high_frac": 0.0,
      "px_per_m_min": 127.99396644225102,
-     "px_per_m_median": 128.00002161541406,
-     "px_per_m_max": 128.00469796255854,
+     "px_per_m_median": 128.0000204124921,
+     "px_per_m_max": 128.00468343225242,
      "stretch_max": 0.00011847506022544252,
      "faces": 995
     }
    },
    "mask_std": [
-    0.0456,
-    0.3041,
-    0.2307
+    0.0452,
+    0.3042,
+    0.2293
    ]
   },
   {
@@ -530,6 +529,7 @@
      "region": "free",
      "grain": "u",
      "padding_px": 16,
+     "group_padding_px": 8,
      "band": {
       "v0": 0.987060546875,
       "v1": 0.998046875
@@ -572,10 +572,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9671798301291,
-    "px_per_m_median": 1023.9990350992216,
-    "px_per_m_max": 1024.046981355083,
-    "stretch_max": 0.0003511476467670249,
+    "px_per_m_min": 1023.98389603468,
+    "px_per_m_median": 1023.9990948289576,
+    "px_per_m_max": 1024.0460460738898,
+    "stretch_max": 0.0005018600321082811,
     "faces": 1903
    },
    "seams": {
@@ -596,16 +596,16 @@
    "islands": 996,
    "fill": 0.1825,
    "u_range": [
-    0.0,
-    7.0673
+    0.002,
+    2.9517
    ],
    "v_range": [
-    0.0,
-    1.3352
+    0.001,
+    0.9979
    ],
-   "cook_s": 5.7,
+   "cook_s": 7.54,
    "bake_s": null,
-   "date": "19 October 2026 18:55",
+   "date": "19 October 2026 19:38",
    "report": "M5/report.json"
   }
  ],

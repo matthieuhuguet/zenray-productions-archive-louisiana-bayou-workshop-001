@@ -24,23 +24,23 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9596782939616,
-    "px_per_m_median": 1024.0001699385784,
-    "px_per_m_max": 1024.0378162071315,
-    "stretch_max": 0.0003174370725054221,
+    "px_per_m_min": 1023.9517315380082,
+    "px_per_m_median": 1024.000111852467,
+    "px_per_m_max": 1024.0375837004683,
+    "stretch_max": 0.00011847506022544252,
     "faces": 995
    },
    "islands": 552,
-   "groups": 3,
+   "groups": 1,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
     0.0,
-    7.0962
+    0.9979
    ],
    "v_range": [
-    0.0,
-    1.2094
+    0.002,
+    0.999
    ]
   }
  },
@@ -52,11 +52,11 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 346.861,
+  "seams_m": 375.081,
   "seams_on_smooth_m": 1.489,
   "sharp_kept_m": 0,
-  "sharp_m": 203.777,
-  "border_m": 141.399,
+  "sharp_m": 175.558,
+  "border_m": 197.837,
   "pass": true
  },
  "method": "M3",
@@ -64,14 +64,13 @@
  "contracts": [
   {
    "set": "uv",
-   "W": 4096,
-   "H": 4096,
-   "space": "tile",
+   "W": 8192,
+   "H": 8192,
+   "space": "sheet",
    "unique": "per_group",
    "region": "band",
    "sizes": "per_face",
    "padding_px": 16,
-   "group_padding_px": 8,
    "grain": "u",
    "min_straight": 0.6
   }
@@ -79,8 +78,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 6.69,
- "score_s": 78.16,
+ "cook_s": 6.97,
+ "score_s": 0.34,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -91,7 +90,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 18:55",
+ "date": "19 October 2026 19:38",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -103,19 +102,20 @@
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
-  "m2_grain": "pillar:h sign:h",
-  "m2_fill": 0.4,
+  "m2_grain": "pillar:up sign:h",
+  "m2_fill": 0.45,
+  "m2_max_tile_px": 8192,
   "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1,
-  "m3_sheet_px": 4096,
+  "m3_sheet_px": 8192,
   "m3_max_band_px": 512,
   "m3_merge_px": 32,
   "m3_padding_px": 16,
-  "m3_grain": "pillar:h sign:h",
+  "m3_grain": "pillar:up sign:h",
   "m3_min_straight": 0.6,
-  "m3_hotspot": 1,
+  "m3_hotspot": 0,
   "m3_flatten": 1
  }
 }

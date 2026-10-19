@@ -24,10 +24,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9671798301291,
-    "px_per_m_median": 1023.9990350992216,
-    "px_per_m_max": 1024.046981355083,
-    "stretch_max": 0.0003511476467670249,
+    "px_per_m_min": 1023.98389603468,
+    "px_per_m_median": 1023.9990948289576,
+    "px_per_m_max": 1024.0460460738898,
+    "stretch_max": 0.0005018600321080591,
     "faces": 1903
    },
    "islands": 996,
@@ -40,12 +40,12 @@
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
-    0.0,
-    7.0673
+    0.002,
+    2.9517
    ],
    "v_range": [
-    0.0,
-    1.3352
+    0.001,
+    0.9979
    ]
   }
  },
@@ -76,6 +76,7 @@
    "region": "free",
    "grain": "u",
    "padding_px": 16,
+   "group_padding_px": 8,
    "band": {
     "v0": 0.987060546875,
     "v1": 0.998046875
@@ -85,8 +86,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 5.7,
- "score_s": 1.49,
+ "cook_s": 7.54,
+ "score_s": 1.43,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -97,7 +98,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 18:55",
+ "date": "19 October 2026 19:38",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -109,8 +110,9 @@
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
-  "m2_grain": "pillar:h sign:h",
-  "m2_fill": 0.4,
+  "m2_grain": "pillar:up sign:h",
+  "m2_fill": 0.45,
+  "m2_max_tile_px": 8192,
   "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
