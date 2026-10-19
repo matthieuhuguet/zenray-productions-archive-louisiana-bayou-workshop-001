@@ -1,14 +1,15 @@
 {
- "score": 0.999261,
- "weakest": "uv:stretch",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
-  "uv:stretch": 0.999261,
+  "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
-  "uv:grain": 0.999716,
+  "uv:grain": 1.0,
+  "uv:horizontal": 1.0,
   "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
@@ -24,27 +25,27 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9855687327127,
-    "px_per_m_median": 1024.0,
-    "px_per_m_max": 1024.0189071683617,
-    "stretch_max": 0.2110050159075132,
+    "px_per_m_min": 1023.9874914665908,
+    "px_per_m_median": 1024.0000572920324,
+    "px_per_m_max": 1024.014601233526,
+    "stretch_max": 0.07316417936975328,
     "faces": 995
    },
-   "straight_area": 0.6039,
-   "straight_stretch_max": 0.211,
-   "stretch_over_2pc_area": 0.1086,
+   "straight_area": 0.6002,
+   "straight_stretch_max": 0.0732,
+   "stretch_over_2pc_area": 0.1049,
    "islands": 661,
-   "stacked_faces": 570,
+   "stacked_faces": 575,
    "groups": 3,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
-    0.001,
+    0.002,
     2.6362
    ],
    "v_range": [
-    0.1056,
-    2.999
+    0.1084,
+    2.998
    ]
   }
  },
@@ -62,6 +63,10 @@
   "sharp_m": 273.827,
   "border_m": 0,
   "pass": true
+ },
+ "layout": {
+  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 2048, \"islands\": 329, \"stacked\": 244, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 2048, \"islands\": 280, \"stacked\": 220, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 2048, \"islands\": 52, \"stacked\": 31, \"past_u1\": 4}]",
+  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 260, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.0732, \"kink_faces\": 368, \"kept_native\": 246, \"cut_at_kinks\": 6, \"straight_area\": 0.6002}"
  },
  "method": "M2",
  "title": "Texture tileable",
@@ -83,8 +88,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 6.17,
- "score_s": 1.54,
+ "cook_s": 2.45,
+ "score_s": 0.36,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -95,7 +100,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 21:39",
+ "date": "19 October 2026 21:52",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

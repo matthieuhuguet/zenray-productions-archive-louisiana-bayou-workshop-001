@@ -1,14 +1,15 @@
 {
- "score": 0.999261,
- "weakest": "uv:stretch",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
-  "uv:stretch": 0.999261,
+  "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
-  "uv:grain": 0.999716,
+  "uv:grain": 1.0,
+  "uv:horizontal": 1.0,
   "uv:band_straight": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0
@@ -25,12 +26,12 @@
     "px_per_m_min": 1023.9856858291099,
     "px_per_m_median": 1024.0,
     "px_per_m_max": 1024.0143131704938,
-    "stretch_max": 0.21100507196980067,
+    "stretch_max": 0.07316409542358526,
     "faces": 995
    },
-   "straight_area": 0.6039,
-   "straight_stretch_max": 0.211,
-   "stretch_over_2pc_area": 0.1086,
+   "straight_area": 0.6002,
+   "straight_stretch_max": 0.0732,
+   "stretch_over_2pc_area": 0.1049,
    "islands": 661,
    "u_range": [
     0.001,
@@ -57,6 +58,11 @@
   "border_m": 0,
   "pass": true
  },
+ "layout": {
+  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 260, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.0732, \"kink_faces\": 368, \"kept_native\": 246, \"cut_at_kinks\": 6, \"straight_area\": 0.6002}",
+  "zruv_sheet_m3": 4096,
+  "zruv_bands": "[{\"h\": 2.63, \"px\": 11, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.997314453125, \"kind\": \"band\"}, {\"h\": 11.76, \"px\": 20, \"top\": 11.0, \"v1\": 0.997314453125, \"v0\": 0.992431640625, \"kind\": \"band\"}, {\"h\": 19.96, \"px\": 28, \"top\": 31.0, \"v1\": 0.992431640625, \"v0\": 0.985595703125, \"kind\": \"band\"}, {\"h\": 31.87, \"px\": 40, \"top\": 59.0, \"v1\": 0.985595703125, \"v0\": 0.975830078125, \"kind\": \"band\"}, {\"h\": 50.38, \"px\": 59, \"top\": 99.0, \"v1\": 0.975830078125, \"v0\": 0.96142578125, \"kind\": \"band\"}, {\"h\": 58.86, \"px\": 67, \"top\": 158.0, \"v1\": 0.96142578125, \"v0\": 0.945068359375, \"kind\": \"band\"}, {\"h\": 68.07, \"px\": 77, \"top\": 225.0, \"v1\": 0.945068359375, \"v0\": 0.92626953125, \"kind\": \"band\"}, {\"h\": 80.07, \"px\": 89, \"top\": 302.0, \"v1\": 0.92626953125, \"v0\": 0.904541015625, \"kind\": \"band\"}, {\"h\": 97.4, \"px\": 106, \"top\": 391.0, \"v1\": 0.904541015625, \"v0\": 0.878662109375, \"kind\": \"band\"}, {\"h\": 110.0, \"px\": 118, \"top\": 497.0, \"v1\": 0.878662109375, \"v0\": 0.849853515625, \"kind\": \"band\"}, {\"h\": 124.27, \"px\": 133, \"top\": 615.0, \"v1\": 0.849853515625, \"v0\": 0.8173828125, \"kind\": \"band\"}, {\"h\": 137.71, \"px\": 146, \"top\": 748.0, \"v1\": 0.8173828125, \"v0\": 0.78173828125, \"kind\": \"band\"}, {\"h\": 147.78, \"px\": 156, \"top\": 894.0, \"v1\": 0.78173828125, \"v0\": 0.74365234375, \"kind\": \"band\"}, {\"h\": 161.15, \"px\": 170, \"top\": 1050.0, \"v1\": 0.74365234375, \"v0\": 0.7021484375, \"kind\": \"band\"}, {\"h\": 172.97, \"px\": 181, \"top\": 1220.0, \"v1\": 0.7021484375, \"v0\": 0.657958984375, \"kind\": \"band\"}, {\"h\": 201.52, \"px\": 210, \"top\": 1401.0, \"v1\": 0.657958984375, \"v0\": 0.606689453125, \"kind\": \"band\"}, {\"h\": 1178.1295166015625, \"px\": 2485.0, \"top\": 1611.0, \"v0\": 0.0, \"v1\": 0.606689453125, \"kind\": \"plain\"}]"
+ },
  "method": "M3",
  "title": "Trim sheet et hotspot",
  "contracts": [
@@ -77,8 +83,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 6.15,
- "score_s": 0.15,
+ "cook_s": 2.38,
+ "score_s": 0.05,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -89,7 +95,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 21:39",
+ "date": "19 October 2026 21:52",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
