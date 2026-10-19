@@ -78,8 +78,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 6.97,
- "score_s": 0.34,
+ "cook_s": 7.83,
+ "score_s": 1361.88,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -90,7 +90,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 19:38",
+ "date": "19 October 2026 20:15",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -115,7 +115,7 @@
   "m3_padding_px": 16,
   "m3_grain": "pillar:up sign:h",
   "m3_min_straight": 0.6,
-  "m3_hotspot": 0,
+  "m3_hotspot": 1,
   "m3_flatten": 1
  }
 }
