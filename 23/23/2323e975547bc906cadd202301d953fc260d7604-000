@@ -1,0 +1,118 @@
+{
+ "texel_density_px_per_m": 1024.0,
+ "asset_scale": 1.0,
+ "sheet_size": 2048,
+ "padding_px": 8,
+ "sheets": [
+  {
+   "sheet": 1,
+   "height_px": 2048,
+   "bands": [
+    {
+     "material": "sign",
+     "segment": 1,
+     "y_px": 0,
+     "height_px": 956,
+     "height_m": 0.9336,
+     "width_m": 2.0,
+     "islands": 9,
+     "colour_rgb": [
+      89,
+      199,
+      102
+     ]
+    },
+    {
+     "material": "pillar",
+     "segment": 1,
+     "y_px": 956,
+     "height_px": 596,
+     "height_m": 0.582,
+     "width_m": 2.0,
+     "islands": 27,
+     "colour_rgb": [
+      242,
+      204,
+      64
+     ]
+    },
+    {
+     "material": "arch",
+     "segment": 1,
+     "y_px": 1552,
+     "height_px": 388,
+     "height_m": 0.3789,
+     "width_m": 2.0,
+     "islands": 6,
+     "colour_rgb": [
+      76,
+      140,
+      242
+     ]
+    },
+    {
+     "material": "wire",
+     "segment": 1,
+     "y_px": 1940,
+     "height_px": 28,
+     "height_m": 0.0273,
+     "width_m": 2.0,
+     "islands": 3,
+     "colour_rgb": [
+      168,
+      107,
+      230
+     ]
+    },
+    {
+     "material": "rivet",
+     "segment": 1,
+     "y_px": 1968,
+     "height_px": 48,
+     "height_m": 0.0469,
+     "width_m": 2.0,
+     "islands": 3,
+     "colour_rgb": [
+      76,
+      217,
+      230
+     ]
+    }
+   ]
+  },
+  {
+   "sheet": 2,
+   "height_px": 2048,
+   "bands": [
+    {
+     "material": "pendant",
+     "segment": 1,
+     "y_px": 0,
+     "height_px": 212,
+     "height_m": 0.207,
+     "width_m": 2.0,
+     "islands": 29,
+     "colour_rgb": [
+      250,
+      148,
+      56
+     ]
+    },
+    {
+     "material": "cross",
+     "segment": 1,
+     "y_px": 212,
+     "height_px": 200,
+     "height_m": 0.1953,
+     "width_m": 2.0,
+     "islands": 18,
+     "colour_rgb": [
+      235,
+      76,
+      71
+     ]
+    }
+   ]
+  }
+ ]
+}

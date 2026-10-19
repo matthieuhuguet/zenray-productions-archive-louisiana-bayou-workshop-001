@@ -1,0 +1,8 @@
+{
+ "asset_scale": 1.0,
+ "crease_deg": 60.0,
+ "merge_views": true,
+ "pack_order": "height",
+ "cut_policy": "symmetry",
+ "symmetry_split": false
+}
