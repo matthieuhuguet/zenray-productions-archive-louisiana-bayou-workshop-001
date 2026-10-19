@@ -25,10 +25,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 942.0410587511611,
-    "px_per_m_median": 1024.584644108614,
+    "px_per_m_min": 942.0395355954395,
+    "px_per_m_median": 1024.5816289112286,
     "px_per_m_max": 1110.8310893048408,
-    "stretch_max": 0.16158657761690076,
+    "stretch_max": 0.1615839579927565,
     "faces": 12854
    },
    "straight_area": 0.0,
@@ -76,7 +76,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 40, \"stacked_possible\": 1, \"stacked\": 0, \"fill\": 0.4975, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1186857, \"lower_bound_unique_px2\": 1186857, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 40, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4975, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1186857, \"lower_bound_unique_px2\": 1186857, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -98,8 +98,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.11,
- "score_s": 0.99,
+ "cook_s": 9.52,
+ "score_s": 3.63,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
@@ -108,7 +108,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 01:03",
+ "date": "20 October 2026 01:09",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,
