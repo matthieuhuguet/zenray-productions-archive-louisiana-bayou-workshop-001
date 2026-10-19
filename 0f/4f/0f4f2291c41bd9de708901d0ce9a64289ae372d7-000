@@ -1,14 +1,14 @@
 {
- "score": 0.408613,
- "weakest": "uv:region",
+ "score": 0.999398,
+ "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.958926,
-  "uv:stretch": 0.871053,
+  "uv:density": 1.0,
+  "uv:stretch": 0.999398,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
-  "uv:region": 0.408613,
-  "uv:grain": 0.994261,
+  "uv:region": 1.0,
+  "uv:grain": 0.999768,
   "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
@@ -22,18 +22,20 @@
     "set": "uv",
     "target_px_per_m": 1024.0,
     "tol": 0.01,
-    "exact_frac": 0.9589264053396201,
+    "exact_frac": 1.0,
     "low_frac": 0.0,
-    "high_frac": 0.041073594660379804,
-    "px_per_m_min": 1023.9881113601774,
-    "px_per_m_median": 1023.9998255473671,
-    "px_per_m_max": 1492.1553069931747,
-    "stretch_max": 1.9697991908832475,
+    "high_frac": 0.0,
+    "px_per_m_min": 1023.9855687327127,
+    "px_per_m_median": 1023.9996389281946,
+    "px_per_m_max": 1024.0189071683617,
+    "stretch_max": 0.2110050159075132,
     "faces": 1903
    },
-   "stretch_over_2pc_area": 0.1289,
-   "islands": 1015,
-   "stacked_faces": 642,
+   "straight_area": 0.4921,
+   "straight_stretch_max": 0.211,
+   "stretch_over_2pc_area": 0.0885,
+   "islands": 1105,
+   "stacked_faces": 570,
    "overlap_px": 0,
    "covered_px": 3061785,
    "fill": 0.1825,
@@ -47,7 +49,7 @@
     2.6362
    ],
    "v_range": [
-    0.1055,
+    0.1056,
     2.999
    ]
   }
@@ -60,8 +62,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 431.268,
-  "seams_on_smooth_m": 3.842,
+  "seams_m": 440.433,
+  "seams_on_smooth_m": 13.007,
   "sharp_kept_m": 49.781,
   "sharp_m": 323.608,
   "border_m": 152.497,
@@ -78,6 +80,8 @@
    "unique": "per_face",
    "region": "free",
    "grain": "u",
+   "overflow_u": true,
+   "straight_tol": 0.08,
    "padding_px": 16,
    "group_padding_px": 8,
    "band": {
@@ -89,8 +93,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 1.58,
- "score_s": 0.58,
+ "cook_s": 6.31,
+ "score_s": 2.25,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -101,7 +105,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 21:33",
+ "date": "19 October 2026 21:39",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
