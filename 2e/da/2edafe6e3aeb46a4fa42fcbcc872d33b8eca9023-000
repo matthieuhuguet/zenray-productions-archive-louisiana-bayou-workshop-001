@@ -19,7 +19,7 @@
   {"group": ["pillar_L", "pillar_R"], "kind": "gap_x", "label": "clear width"}
  ],
  "footer": [
-  "1024 px/m (default) : x 1.00 = two 2048 sheets or one 4096 ; x 1.27 = two 2048 or one 4096 ; x 1.64 = one 4096 sheet (the 2.13 m sign does not fit 2048) ; x 2.00 = two 4096 sheets.",
+  "1024 px/m (default) : x 1.00 = two 2048 sheets or one 4096 ; x 1.27 = two 2048 or one 4096 ; x 1.64 = one 4096 sheet (the 2.56 m sign front, 2 620 px, does not fit 2048) ; x 2.00 = two 4096 sheets.",
   "512 px/m : one 2048 sheet up to x 1.64 ; 2048 px/m : one or two 4096 sheets up to x 1.27, an 8192 sheet beyond. Full table : proposals/proposals.md."
  ]
 }

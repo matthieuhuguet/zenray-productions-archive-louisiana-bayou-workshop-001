@@ -105,10 +105,10 @@
    "used_height_px": [
     1660,
     2028,
-    1580
+    1920
    ],
-   "fill": 0.8774,
-   "islands": 128,
+   "fill": 0.9223,
+   "islands": 146,
    "longest_island_m": 1.56,
    "failed": [
     "coverage",
@@ -156,10 +156,10 @@
    "score": 1.0,
    "sheets": 1,
    "used_height_px": [
-    1368
+    1356
    ],
    "fill": 0.3056,
-   "islands": 119,
+   "islands": 117,
    "longest_island_m": 3.878,
    "failed": [],
    "best_strategy": {
@@ -182,7 +182,7 @@
     1300
    ],
    "fill": 0.0817,
-   "islands": 107,
+   "islands": 106,
    "longest_island_m": 4.08,
    "failed": [],
    "best_strategy": {
@@ -203,10 +203,10 @@
    "sheets": 2,
    "used_height_px": [
     2004,
-    1424
+    1412
    ],
    "fill": 0.5579,
-   "islands": 121,
+   "islands": 119,
    "longest_island_m": 1.981,
    "failed": [],
    "best_strategy": {
@@ -226,14 +226,14 @@
    "score": 1.0,
    "sheets": 1,
    "used_height_px": [
-    2688
+    2676
    ],
-   "fill": 0.3083,
-   "islands": 107,
+   "fill": 0.3056,
+   "islands": 117,
    "longest_island_m": 3.878,
    "failed": [],
    "best_strategy": {
-    "crease_deg": 60.0,
+    "crease_deg": 30.0,
     "merge_views": true,
     "pack_order": "height",
     "cut_policy": "symmetry",
@@ -249,14 +249,14 @@
    "score": 0.0,
    "sheets": 5,
    "used_height_px": [
-    2032,
-    2016,
-    1308,
+    2048,
+    2020,
+    1728,
     1100,
-    1088
+    1060
    ],
-   "fill": 0.8305,
-   "islands": 140,
+   "fill": 0.8747,
+   "islands": 156,
    "longest_island_m": 1.981,
    "failed": [
     "coverage",
@@ -266,7 +266,7 @@
    "best_strategy": {
     "crease_deg": 30.0,
     "merge_views": true,
-    "pack_order": "height",
+    "pack_order": "area",
     "cut_policy": "symmetry",
     "symmetry_split": false
    }
@@ -281,10 +281,10 @@
    "sheets": 2,
    "used_height_px": [
     3988,
-    2804
+    2752
    ],
    "fill": 0.5579,
-   "islands": 121,
+   "islands": 119,
    "longest_island_m": 1.981,
    "failed": [],
    "best_strategy": {
@@ -350,12 +350,12 @@
    "score": 0.0,
    "sheets": 3,
    "used_height_px": [
-    1892,
-    1984,
-    488
+    1948,
+    1692,
+    832
    ],
-   "fill": 0.6179,
-   "islands": 139,
+   "fill": 0.6277,
+   "islands": 146,
    "longest_island_m": 2.558,
    "failed": [
     "coverage",
@@ -365,7 +365,7 @@
    "best_strategy": {
     "crease_deg": 30.0,
     "merge_views": true,
-    "pack_order": "height",
+    "pack_order": "area",
     "cut_policy": "symmetry",
     "symmetry_split": false
    }
@@ -402,15 +402,15 @@
    "score": 0.0,
    "sheets": 6,
    "used_height_px": [
+    2008,
     2000,
     1820,
-    1696,
     1616,
-    1608,
-    1564
+    1564,
+    2048
    ],
-   "fill": 1.1495,
-   "islands": 148,
+   "fill": 1.2017,
+   "islands": 164,
    "longest_island_m": 2.558,
    "failed": [
     "coverage",
@@ -434,12 +434,12 @@
    "score": 0.0,
    "sheets": 3,
    "used_height_px": [
-    3760,
-    3944,
+    3840,
+    4076,
     940
    ],
-   "fill": 0.6179,
-   "islands": 139,
+   "fill": 0.6277,
+   "islands": 146,
    "longest_island_m": 2.558,
    "failed": [
     "coverage",
@@ -449,7 +449,7 @@
    "best_strategy": {
     "crease_deg": 30.0,
     "merge_views": true,
-    "pack_order": "height",
+    "pack_order": "area",
     "cut_policy": "symmetry",
     "symmetry_split": false
    }
@@ -512,10 +512,10 @@
    "used_height_px": [
     1660,
     1956,
-    1760
+    2024
    ],
-   "fill": 0.8915,
-   "islands": 132,
+   "fill": 0.9223,
+   "islands": 146,
    "longest_island_m": 3.12,
    "failed": [
     "coverage",
@@ -561,18 +561,19 @@
    "padding_px": 8,
    "hard_ok": false,
    "score": 0.0,
-   "sheets": 7,
+   "sheets": 8,
    "used_height_px": [
     2048,
     1996,
     2040,
+    1952,
     2036,
-    2044,
+    1880,
     1824,
-    1252
+    720
    ],
-   "fill": 1.4232,
-   "islands": 152,
+   "fill": 1.2984,
+   "islands": 168,
    "longest_island_m": 3.12,
    "failed": [
     "coverage",
@@ -598,10 +599,10 @@
    "used_height_px": [
     3308,
     3896,
-    3488
+    4004
    ],
-   "fill": 0.8915,
-   "islands": 132,
+   "fill": 0.9223,
+   "islands": 146,
    "longest_island_m": 3.12,
    "failed": [
     "coverage",
@@ -618,5 +619,5 @@
   }
  ],
  "layouts": 96,
- "seconds": 141.7
+ "seconds": 31.8
 }

@@ -1,0 +1,11 @@
+Height map for this trim sheet, same framing pixel for pixel : 4096 px wide, 1024 px per metre (10.24 px per cm).
+Grey scale only, white = high, black = low, the background stays flat mid grey. Keep every coloured island exactly where it is, no text, no line, no frame.
+Bands from top to bottom (each colour is one material) :
+- sign (rgb (89, 199, 102)) : rows 0 to 1472 px, 1.4375 m tall, 9 islands, material : <write it here>
+- pillar (rgb (242, 204, 64)) : rows 1472 to 2256 px, 0.7656 m tall, 46 islands, material : <write it here>
+- arch (rgb (76, 140, 242)) : rows 2256 to 2912 px, 0.6406 m tall, 6 islands, material : <write it here>
+- pendant (rgb (250, 148, 56)) : rows 2912 to 3208 px, 0.2891 m tall, 32 islands, material : <write it here>
+- cross (rgb (235, 76, 71)) : rows 3208 to 3540 px, 0.3242 m tall, 18 islands, material : <write it here>
+- wire (rgb (168, 107, 230)) : rows 3540 to 3592 px, 0.0508 m tall, 3 islands, material : <write it here>
+- rivet (rgb (76, 217, 230)) : rows 3592 to 3672 px, 0.0781 m tall, 3 islands, material : <write it here>
+Long thin islands are straightened strips : the detail runs along their length. Tall faces read bottom = left, top = right.

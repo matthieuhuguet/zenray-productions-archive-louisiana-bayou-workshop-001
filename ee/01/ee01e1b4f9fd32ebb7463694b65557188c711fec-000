@@ -1,6 +1,6 @@
 {
   "component": "Entrance_Arch_Clean",
-  "active_version": "v002",
+  "active_version": "v003",
   "versions": [
     {
       "version": "v001",
@@ -55,6 +55,33 @@
         ]
       },
       "children_count": 66
+    },
+    {
+      "version": "v003",
+      "label": "ZenRay UV Trimsheet applied : CTRL_uv, scale_asset, trim_uv, OUT_uv ; x1.64, 1024 px/m, one 4096 sheet, score 1.0 (19 October 2026)",
+      "dir_name": "v003_ZenRay_UV_Trimsheet_applied___CTRL_uv__scale_asset__trim_uv__OUT_uv___x1_64__1024_px_m__one_4096_sheet__score_1_0__19_October_2026_",
+      "timestamp": "2026-10-19 02:19:38",
+      "saved_at_iso": "2026-10-19T02:19:38+02:00",
+      "kind": "object",
+      "node_path": "/obj/Entrance_Arch_Clean",
+      "hip_file": "graph.hiplc",
+      "proof_geo": {
+        "points": 1114,
+        "prims": 995,
+        "bbox": [
+          [
+            -1.7748080492019653,
+            0.0,
+            -0.15803039073944092
+          ],
+          [
+            1.7748079299926758,
+            5.957299709320068,
+            0.15803039073944092
+          ]
+        ]
+      },
+      "children_count": 71
     }
   ]
 }

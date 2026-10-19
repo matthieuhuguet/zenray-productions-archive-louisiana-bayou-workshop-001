@@ -1,0 +1,26 @@
+{
+ "out": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/EntranceArch_UVTrimsheet_Validation_19-October-2026.png",
+ "title": "Entrance_Arch_Clean : ZenRay UV Trimsheet, recommended choice to validate (19 October 2026)",
+ "subtitle": "Scale x 1.64, 1024 px/m, one 4096 sheet, 16 px padding. ZenRay UV score 1.000 : 100 % of the surface at the exact density, 0 overlap, 0 flip, nothing outside. Verifier green, and red on 4 broken copies.",
+ "row_height": 1150,
+ "images": [
+  {"path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/maps_s164_td1024_4096/EntranceArch_s164_td1024_sheet1_colour.png", "label": "colour map : the image for the height generation (one colour = one band = one material)"},
+  {"path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/maps_s164_td1024_4096/EntranceArch_s164_td1024_sheet1_guide.png", "label": "guide : face edges, band limits, real sizes"},
+  {"path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/capture/checker_board4.png", "label": "3D check : equal squares everywhere, sign readable front and back"}
+ ],
+ "table": {
+  "columns": ["px/m at x 1.64", "Sheet", "Sheets", "Used height", "Fill", "Verdict"],
+  "widths": [2.2, 1.6, 1.4, 2.0, 1.4, 6.0],
+  "rows": [
+   ["512", "2048", "1", "1 860 px", "47 %", "lightest ; 0.5 px per mm, soft from close"],
+   {"cells": ["1024 (default)", "4096", "1", "3 672 px", "47 %", "recommended : 1 px per mm, one texture set"]},
+   ["1024", "2048", "no", "", "", "the 2.56 m sign front (2 620 px) does not fit 2048"],
+   ["2048", "4096", "no", "", "", "the sign needs 5 240 px : an 8192 sheet"]
+  ]
+ },
+ "notes": [
+  "117 islands for 995 faces : 695 faces (70 %) reuse a shared island (two pillars, 8 rivets, 4 wires, front and back, arch halves) ; 671 by a turn, only 24 by a mirror (cross, pendant), the sign never mirrored.",
+  "Each band is one material, packed from the top left : sign 1 472 px, pillar 784, arch 656, pendant 296, cross 332, wire 52, rivet 80 ; 384 px left free at the bottom.",
+  "Straightened arch strips stretch 5.7 % at most at their edges, per face density stays exact. Everything is set on /obj/Entrance_Arch_Clean/CTRL_uv ; the Write maps button rewrites these images."
+ ]
+}
