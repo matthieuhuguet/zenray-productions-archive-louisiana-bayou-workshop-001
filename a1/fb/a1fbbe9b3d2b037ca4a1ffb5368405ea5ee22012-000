@@ -1,5 +1,5 @@
 {
- "date": "19 October 2026 20:15",
+ "date": "19 October 2026 20:45",
  "network": "/obj/ZRUV_Arch/M3_hotspot",
  "idmap": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M3/hotspot_idmap_8192.png",
  "nodes": "labs::trim_texture_utility (ID map, rectangles of 1 to 8 times their height, 16 to 512 px, 8192 sheet) then labs::automatic_trim_texture (existing islands, max texel error 0.3)",

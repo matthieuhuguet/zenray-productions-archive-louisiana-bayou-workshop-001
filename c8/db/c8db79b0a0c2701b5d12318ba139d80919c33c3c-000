@@ -2,7 +2,7 @@
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "19 October 2026 20:19",
+ "date": "19 October 2026 20:47",
  "families": [
   {
    "name": "iron",
@@ -124,9 +124,9 @@
     0.0015,
     0.8731
    ],
-   "cook_s": 7.81,
-   "bake_s": 72.47,
-   "date": "19 October 2026 19:52",
+   "cook_s": 7.73,
+   "bake_s": 107.04,
+   "date": "19 October 2026 20:23",
    "report": "M1/report.json",
    "example": {
     "texture": "M1/texture_unique.png",
@@ -233,9 +233,9 @@
     0.001,
     0.6274
    ],
-   "cook_s": 7.75,
+   "cook_s": 7.89,
    "bake_s": null,
-   "date": "19 October 2026 20:17",
+   "date": "19 October 2026 20:23",
    "report": "M2/report.json",
    "example": {
     "textured_3d": "M2/view_textured_3d.png",
@@ -350,9 +350,9 @@
     0.002,
     0.999
    ],
-   "cook_s": 7.83,
+   "cook_s": 7.9,
    "bake_s": null,
-   "date": "19 October 2026 20:15",
+   "date": "19 October 2026 20:45",
    "report": "M3/report.json",
    "example": {
     "texture": "M3/texture_trim.png",
@@ -369,7 +369,7 @@
     "check": "Un seul carré, bandes horizontales, panneau présent sous les bandes, et sur la vue texturée les filets de bande qui suivent les arêtes."
    },
    "variant": {
-    "date": "19 October 2026 20:15",
+    "date": "19 October 2026 20:45",
     "network": "/obj/ZRUV_Arch/M3_hotspot",
     "idmap": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M3/hotspot_idmap_8192.png",
     "nodes": "labs::trim_texture_utility (ID map, rectangles of 1 to 8 times their height, 16 to 512 px, 8192 sheet) then labs::automatic_trim_texture (existing islands, max texel error 0.3)",
@@ -519,9 +519,9 @@
     0.001,
     0.6274
    ],
-   "cook_s": 7.79,
-   "bake_s": 4.81,
-   "date": "19 October 2026 20:19",
+   "cook_s": 8.46,
+   "bake_s": 7.609999999999999,
+   "date": "19 October 2026 20:45",
    "report": "M4/report.json",
    "example": {
     "texture": "M4/ZRUV_Arch_M4_layered_1024x1024.png",
@@ -664,9 +664,9 @@
     0.001,
     0.9979
    ],
-   "cook_s": 8.33,
+   "cook_s": 7.9,
    "bake_s": null,
-   "date": "19 October 2026 20:18",
+   "date": "19 October 2026 20:45",
    "report": "M5/report.json",
    "example": {
     "texture": "M5/texture_decal_atlas_preview.png",
