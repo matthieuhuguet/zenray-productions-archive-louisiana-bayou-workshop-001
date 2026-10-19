@@ -1,0 +1,72 @@
+// 19 October 2026 14:30 : widgets of loop 3 : the method simulator (screen density, unique texture size, the rules made visible) and the quiz copy button.
+// The rules are written in plain sight on purpose : the simulator is a calculator that shows its reasons, the choice stays Matthieu's. FR : simulateur de methode et bouton de copie du quiz.
+(function () {
+  const ZR = window.ZR, L = window.LESSON;
+  const NAMES = { 1: 'UV unique et bake', 2: 'Texture tileable', 3: 'Trim sheet', 4: 'Matériaux en couches et masque RGB', 5: 'Mesh decals' };
+  const link = (m) => `<a href="#m${m}">méthode ${m}, ${NAMES[m]}</a>`;
+
+  ZR.w.choose = (root) => {
+    const P = L.choose, out = root.querySelector('.stats');
+    let ctl = null, lastPreset = -1;
+    const draw = (st) => {
+      if (ctl && st.preset !== lastPreset) {
+        lastPreset = st.preset;
+        const p = P.presets[st.preset];
+        ctl.set('surface', p.s); ctl.set('copies', p.copies); ctl.set('dist', p.d); ctl.set('type', p.type); ctl.set('text', p.text);
+        return;
+      }
+      lastPreset = st.preset;
+      const k = Math.tan(P.fovDeg * Math.PI / 360), screen = P.screenPx / (2 * st.dist * k), td = ZR.pow2Round(screen);
+      const side = Math.sqrt(st.surface * td * td / P.fill), side2 = ZR.pow2Ceil(side), copies = Math.round(st.copies);
+      const uniqueMem = ZR.mib(side2, 1) * P.maps;
+      const maskSide = ZR.pow2Ceil(Math.sqrt(st.surface * P.maskTd * P.maskTd / P.fill)), maskMem = ZR.mib(maskSide, 0.5);
+      let main, why;
+      const also = [];
+      if (st.type === 'organic') {
+        if (side2 <= P.maxUnique) { main = 1; why = `l'objet est organique et sa texture unique tient en ${ZR.n(side2)} px`; }
+        else { main = 2; why = `l'objet est organique mais trop grand : une texture unique demanderait ${ZR.n(side)} px`; also.push([4, 'des masques pour varier les matériaux répétés sur une si grande surface']); }
+      } else if (st.type === 'modular') {
+        main = 3; why = "c'est de l'architecture ou un kit : les pièces partagent des bandes qui se répètent";
+        also.push([2, 'pour les grandes surfaces planes (murs pleins, sols)'], [5, 'pour les détails fins sans agrandir la feuille']);
+      } else {
+        if (side2 <= P.maxUnique) { main = 1; why = `l'objet est unique et sa texture tient en ${ZR.n(side2)} px`; }
+        else { main = 4; why = `l'objet est unique mais trop grand pour une texture (${ZR.n(side)} px) : on répète des matériaux et un petit masque dit où les poser`; }
+        also.push([5, 'pour les rivets, soudures et lignes de panneaux']);
+      }
+      const notes = [];
+      if (st.text) notes.push('Le contenu unique (texte, logo, panneau) garde ses propres pixels, ou passe par une decal ; jamais dans une bande qui se répète.');
+      if (copies >= 10 && main === 1) notes.push(`L'objet est répété ${ZR.n(copies)} fois : la même texture sert à toutes les copies, et pour qu'elles ne se ressemblent pas toutes on ajoute une variation par instance (teinte, masque).`);
+      notes.push("Ce calcul donne ce que l'écran peut montrer ; les studios montent souvent plus haut pour un visage ou une arme tenue en main.");
+      const mem = (m) => m === 1 ? (side2 <= 16384 ? ZR.mem(uniqueMem) : 'impossible') : m === 4 ? `${ZR.mem(maskMem)} de masque (${ZR.n(maskSide)} px à ${P.maskTd} px/m)` : 'partagée, rien de plus pour cet objet';
+      out.innerHTML = `<div class="verdict">À <b>${ZR.n(st.dist, 2)} m</b>, sur un écran de ${ZR.n(P.screenPx)} px et ${P.fovDeg}°, un mètre de l'objet couvre <b>${ZR.n(screen)}</b> pixels : densité juste d'environ <b>${ZR.n(td)} px/m</b>. ` +
+        `Une texture unique demanderait <b>${ZR.n(side)}</b> px de côté, soit une image de <b>${ZR.n(side2)}</b>.</div>` +
+        `<div class="verdict"><b>Méthode principale :</b> ${link(main)}, parce que ${why}.` +
+        (also.length ? `<br><b>En complément :</b> ${also.map(([m, r]) => `${link(m)} ${r}`).join(' ; ')}.` : '') + `</div>` +
+        `<table><thead><tr><th>Méthode</th><th>Mémoire pour cet objet</th></tr></thead><tbody>` +
+        [1, 2, 3, 4, 5].map((m) => `<tr${m === main ? ' style="background:var(--bg2)"' : ''}><td>${m}. ${NAMES[m]}</td><td class="num">${mem(m)}</td></tr>`).join('') + `</tbody></table>` +
+        notes.map((n) => `<p class="ui" style="font-size:.9rem;margin:.4rem 0">${n}</p>`).join('');
+    };
+    ctl = ZR.controls(root.querySelector('.ctl'), [
+      { key: 'preset', label: 'Exemple', options: P.presets.map((p, i) => ({ v: i, t: p.t })), value: 0 },
+      { key: 'surface', label: 'Surface', ...P.surfaceM2 },
+      { key: 'copies', label: 'Copies dans le niveau', ...P.copies, fmt: (v) => ZR.n(Math.round(v)) },
+      { key: 'dist', label: 'Distance la plus courte à la caméra', ...P.distM },
+      { key: 'type', label: 'Genre', options: P.types, value: P.type },
+      { key: 'text', label: 'Texte ou logo unique', toggle: true, value: P.text, on: 'Oui', off: 'Non' }
+    ], draw);
+    lastPreset = 0;
+    return ctl;
+  };
+
+  // the quiz : copies the questions and Matthieu's answers to paste in the conversation
+  ZR.w.quiz = (root) => {
+    const btn = root.querySelector('button.copy'), msg = root.querySelector('.copied');
+    btn.addEventListener('click', async () => {
+      const txt = [...root.querySelectorAll('li')].map((li, i) => `${i + 1}. ${li.querySelector('.q').textContent.trim()}\nRéponse : ${li.querySelector('textarea').value.trim() || '(vide)'}`).join('\n\n');
+      try { await navigator.clipboard.writeText(txt); }
+      catch (e) { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
+      msg.textContent = 'Copié : colle-le dans la conversation.';
+    });
+    return null;
+  };
+})();

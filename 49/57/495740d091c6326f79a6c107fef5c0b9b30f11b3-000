@@ -1,0 +1,370 @@
+// 19 October 2026 14:10 : widgets of loop 2 (the five methods) : m1 unique UV and bake, m2 tileable, m3 trim sheet and hotspot, m4 layered materials with an RGB mask, m5 mesh decals.
+// Every number comes from LESSON (params.js). FR : graphes de la boucle 2 (les cinq methodes).
+(function () {
+  const ZR = window.ZR, L = window.LESSON;
+  const mix = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
+
+  // ---------------------------------------------------------------- method 1 : unique UV and bake (high poly relief -> normal map on the low poly)
+  ZR.w.m1 = (root) => {
+    const P = L.m1, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const relief = (xm, A) => {           // height of the high poly above the low poly, mm, for a position xm in metres (0 to 1)
+      const g = (c, s) => Math.exp(-((xm - c) * (xm - c)) / (2 * s * s));
+      const groove = ZR.smooth(0.46, 0.48, xm) * (1 - ZR.smooth(0.52, 0.54, xm));
+      const bevel = ZR.smooth(0.0, 0.06, xm) * (1 - ZR.smooth(0.94, 1.0, xm));
+      return A * (0.55 * bevel + 0.9 * g(0.18, 0.012) + 0.9 * g(0.82, 0.012) + 0.6 * g(0.30, 0.008) + 0.6 * g(0.70, 0.008) - 0.7 * groove);
+    };
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink = ZR.css('--ink'), ink2 = ZR.css('--ink2'), x0 = 30, x1 = w - 30, base = 130, mmPx = 2;
+      const X = (xm) => x0 + xm * (x1 - x0);
+      ZR.text(ctx, 'en haut : le modèle détaillé (high poly) et le modèle léger (low poly), vus en coupe', x0, 18, { color: ink2, size: 12 });
+      ctx.strokeStyle = ink2; ctx.setLineDash([6, 4]); ctx.beginPath(); ctx.moveTo(x0, base); ctx.lineTo(x1, base); ctx.stroke(); ctx.setLineDash([]);
+      ZR.text(ctx, 'low poly : un plan, quelques polygones', x1, base + 16, { color: ink2, align: 'right', size: 12 });
+      if (st.rays) {
+        ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 1;
+        for (let xm = 0.02; xm < 1; xm += 0.04) {
+          ctx.beginPath(); ctx.moveTo(X(xm), base); ctx.lineTo(X(xm), base - relief(xm, st.relief) * mmPx); ctx.stroke();
+        }
+      }
+      ctx.strokeStyle = ink; ctx.lineWidth = 2.2; ctx.beginPath();
+      for (let i = 0; i <= 600; i++) { const xm = i / 600, y = base - relief(xm, st.relief) * mmPx; i ? ctx.lineTo(X(xm), y) : ctx.moveTo(X(xm), y); }
+      ctx.stroke();
+      ZR.text(ctx, 'high poly : rivets, rainure, chanfreins', x0, base - 74, { color: ink, size: 12 });
+      // the normal map baked on the low poly : tangent space colour of the high poly slope above each texel
+      const yb = 178, hb = 40, n = Math.round(x1 - x0);
+      for (let i = 0; i < n; i++) {
+        const xm = i / n, e = 0.0005, d = (relief(xm + e, st.relief) - relief(xm - e, st.relief)) / (2 * e * 1000);   // slope, mm per mm
+        const len = Math.hypot(d, 1), nx = -d / len, nz = 1 / len;
+        ctx.fillStyle = `rgb(${Math.round((nx + 1) * 127.5)},128,${Math.round((nz + 1) * 127.5)})`;
+        ctx.fillRect(x0 + i, yb, 1.2, hb);
+      }
+      ctx.strokeStyle = ink2; ctx.strokeRect(x0, yb, n, hb);
+      ZR.text(ctx, 'en bas : la normal map cuite (bake) sur le low poly : le bleu-violet est plat, le rouge et le cyan sont des pentes', x0, yb + hb + 18, { color: ink2, size: 12 });
+      const area = st.surface * (st.mirror ? 0.5 : 1), exact = Math.sqrt(area * st.target * st.target / (P.fillPct / 100)), p2 = ZR.pow2Ceil(exact);
+      stats.innerHTML = `<span class="line">Objet de <b>${ZR.n(st.surface, 2)} m²</b>${st.mirror ? ', moitiés symétriques empilées (surface à texturer divisée par deux)' : ''}, à <b>${ZR.n(st.target)} px/m</b> : texture unique de <b>${ZR.n(exact)}</b> px, donc <b>${ZR.n(p2)} × ${ZR.n(p2)}</b></span>` +
+        `<span>${P.maps} maps compressées : <b>${ZR.mem(ZR.mib(p2, P.bpp) * P.maps)}</b> pour ce seul objet</span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'relief', label: 'Relief du high poly', ...P.reliefMm },
+      { key: 'rays', label: 'Rayons du bake', toggle: true, value: true, on: 'Montrer', off: 'Cacher' },
+      { key: 'surface', label: "Surface de l'objet", ...P.surfaceM2 },
+      { key: 'target', label: 'Densité visée', ...P.targetPx, unit: 'px/m' },
+      { key: 'mirror', label: 'UV en miroir', toggle: true, value: false, on: 'Oui', off: 'Non' }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- method 2 : tileable texture, UV outside 0 to 1, repetition broken by vertex paint
+  ZR.w.m2 = (root) => {
+    const P = L.m2, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const tile = document.createElement('canvas');
+    tile.width = 256; tile.height = 256;
+    (function buildTile() {                // stone bricks in running bond, seamless (4 bricks across, 8 rows), one brick with a dark stain that betrays the repetition
+      const c = tile.getContext('2d');
+      c.fillStyle = '#8d877d'; c.fillRect(0, 0, 256, 256);
+      for (let r = 0; r < 8; r++) for (let b = -1; b < 5; b++) {
+        const x = b * 64 + (r % 2 ? 32 : 0), y = r * 32, v = 0.82 + 0.3 * ZR.hash(((b % 4) + 4) % 4, r, 5);
+        c.fillStyle = `rgb(${Math.round(176 * v)},${Math.round(150 * v)},${Math.round(122 * v)})`;
+        c.fillRect(x + 2, y + 2, 60, 28);
+      }
+      c.fillStyle = 'rgba(40,30,22,0.55)'; c.beginPath(); c.ellipse(150, 120, 26, 14, 0.3, 0, 7); c.fill();
+      c.fillStyle = 'rgba(40,30,22,0.35)'; c.beginPath(); c.ellipse(168, 132, 14, 9, 0.2, 0, 7); c.fill();
+    })();
+    const work = document.createElement('canvas');
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink2 = ZR.css('--ink2'), H = P.wallHeightM;
+      const k = Math.min((w - 40) / st.wall, 180 / H), ww = Math.round(st.wall * k), wh = Math.round(H * k), x0 = 20, y0 = 34;
+      work.width = ww; work.height = wh;
+      const c = work.getContext('2d'), pat = c.createPattern(tile, 'repeat');
+      pat.setTransform(new DOMMatrix().scale(st.tileM * k / 256));
+      c.fillStyle = pat; c.fillRect(0, 0, ww, wh);
+      if (st.vary) {                       // vertex paint : moss and dirt, plus a large scale colour change, both in metres so they never repeat
+        const img = c.getImageData(0, 0, ww, wh), d = img.data;
+        for (let y = 0; y < wh; y++) for (let x = 0; x < ww; x++) {
+          const xm = x / k, ym = y / k, i = (y * ww + x) * 4;
+          const macro = 0.86 + 0.28 * ZR.fbm(xm * 0.22, ym * 0.22, P.seed, 3);
+          const moss = ZR.smooth(0.52, 0.66, ZR.fbm(xm * 0.45, ym * 0.45, P.seed + 7, 3) + 0.25 * (ym / H - 0.5));
+          for (let ch = 0; ch < 3; ch++) d[i + ch] = d[i + ch] * macro * (1 - 0.8 * moss) + [70, 92, 46][ch] * 0.8 * moss;
+        }
+        c.putImageData(img, 0, 0);
+      }
+      ctx.drawImage(work, x0, y0);
+      ctx.strokeStyle = ZR.css('--ink'); ctx.strokeRect(x0 + 0.5, y0 + 0.5, ww - 1, wh - 1);
+      ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 1.5;
+      for (let m = 0; m <= st.wall + 1e-9; m += st.tileM) { ctx.beginPath(); ctx.moveTo(x0 + m * k, y0 + wh + 2); ctx.lineTo(x0 + m * k, y0 + wh + 10); ctx.stroke(); }
+      ZR.text(ctx, `un mur de ${ZR.n(st.wall)} m × ${H} m ; les traits marquent chaque répétition de la texture`, x0, 22, { color: ink2, size: 12 });
+      const td = P.texPx / st.tileM, unique = ZR.pow2Ceil(Math.sqrt(st.wall * H * td * td / 0.7));
+      stats.innerHTML = `<span>La texture de ${ZR.n(P.texPx)} px couvre <b>${ZR.n(st.tileM, 2)} m</b> : <b>${ZR.n(td)} px/m</b></span>` +
+        `<span>Elle se répète <b>${ZR.n(st.wall / st.tileM, 1)}</b> fois en largeur</span>` +
+        `<span>Mémoire : <b>la même</b> pour 2 m ou 40 m de mur</span>` +
+        `<span>En texture unique, ce mur demanderait <b>${ZR.n(unique)} × ${ZR.n(unique)}</b></span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'wall', label: 'Longueur du mur', ...P.wallM },
+      { key: 'tileM', label: 'Taille couverte par une répétition', ...P.tileM },
+      { key: 'vary', label: 'Casser la répétition (vertex paint)', toggle: true, value: false, on: 'Oui', off: 'Non' }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- method 3a : trim sheet (bands that tile in U)
+  const bandPainter = (c, style, x0, y0, W, H, s) => {   // draws one band at scale s (sheet px -> canvas px), seamless in U because every pattern has a whole number of periods per width
+    const per = (n) => W / n;
+    c.save(); c.beginPath(); c.rect(x0, y0, W, H); c.clip();
+    if (style === 'molding') {
+      const g = c.createLinearGradient(0, y0, 0, y0 + H);
+      [[0, '#efe6d2'], [0.2, '#cfc3a9'], [0.35, '#f6efe0'], [0.55, '#bfb296'], [0.7, '#e9dfc9'], [0.85, '#a99c80'], [1, '#e5dbc5']].forEach(([o, col]) => g.addColorStop(o, col));
+      c.fillStyle = g; c.fillRect(x0, y0, W, H);
+    } else if (style === 'planks') {
+      c.fillStyle = '#8a5a35'; c.fillRect(x0, y0, W, H);
+      const rows = 4;
+      for (let r = 0; r < rows; r++) {
+        const yy = y0 + r * H / rows, v = 0.85 + 0.25 * ZR.hash(r, 3, 9);
+        c.fillStyle = `rgb(${Math.round(150 * v)},${Math.round(100 * v)},${Math.round(62 * v)})`; c.fillRect(x0, yy + 1, W, H / rows - 2);
+        c.strokeStyle = 'rgba(60,35,18,0.35)'; c.lineWidth = 1;
+        for (let k = 0; k < 6; k++) { c.beginPath(); for (let i = 0; i <= 64; i++) { const xx = x0 + W * i / 64, y = yy + (k + 0.5) * H / rows / 6 + 2 * Math.sin(2 * Math.PI * (i / 64) * 3 + k + r); i ? c.lineTo(xx, y) : c.moveTo(xx, y); } c.stroke(); }
+      }
+    } else if (style === 'iron') {
+      c.fillStyle = '#4c5866'; c.fillRect(x0, y0, W, H);
+      c.fillStyle = '#7f8c99';
+      const n = 16;
+      for (let i = 0; i < n; i++) { c.beginPath(); c.arc(x0 + (i + 0.5) * per(n), y0 + H / 2, Math.max(1.2, H * 0.16), 0, 7); c.fill(); }
+    } else if (style === 'stone') {
+      c.fillStyle = '#7b7770'; c.fillRect(x0, y0, W, H);
+      const rows = 3, n = 8;
+      for (let r = 0; r < rows; r++) for (let i = -1; i <= n; i++) {
+        const v = 0.8 + 0.3 * ZR.hash(((i % n) + n) % n, r, 4), bw = per(n), xx = x0 + i * bw + (r % 2 ? bw / 2 : 0);
+        c.fillStyle = `rgb(${Math.round(170 * v)},${Math.round(165 * v)},${Math.round(155 * v)})`;
+        c.fillRect(xx + 1.5, y0 + r * H / rows + 1.5, bw - 3, H / rows - 3);
+      }
+    } else if (style === 'trim') {
+      c.fillStyle = '#e8e2d4'; c.fillRect(x0, y0, W, H);
+      c.fillStyle = '#9b3d2c'; c.fillRect(x0, y0 + H * 0.2, W, H * 0.18); c.fillRect(x0, y0 + H * 0.62, W, H * 0.18);
+    } else {
+      c.fillStyle = '#d9cdb3'; c.fillRect(x0, y0, W, H);
+      c.fillStyle = 'rgba(120,100,70,0.12)';
+      const n = 24;
+      for (let i = 0; i < n; i++) for (let j = 0; j < 4; j++) { c.beginPath(); c.arc(x0 + (i + 0.5) * per(n), y0 + (j + 0.5) * H / 4, Math.max(1, H * 0.05 * (0.5 + ZR.hash(i, j, 2))), 0, 7); c.fill(); }
+    }
+    c.restore();
+  };
+  ZR.w.m3trim = (root) => {
+    const P = L.m3, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink = ZR.css('--ink'), ink2 = ZR.css('--ink2');
+      const T = 250, sx = 20, sy = 30, s = T / P.sheetPx;
+      let y = sy;
+      const bandY = [];
+      P.bands.forEach((b, i) => {
+        const bh = b.px * s;
+        bandPainter(ctx, b.style, sx, y, T, bh, s);
+        bandY.push([y, bh]);
+        ZR.text(ctx, `${b.name} · ${b.px} px`, sx + 6, y + Math.min(bh - 4, 15), { color: '#1d1c1a', size: 11 });
+        y += bh;
+      });
+      ctx.strokeStyle = ink2; ctx.lineWidth = 1; ctx.strokeRect(sx, sy, T, T);
+      const [by, bh] = bandY[st.band];
+      ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 3; ctx.strokeRect(sx - 1, by, T + 2, bh);
+      ZR.text(ctx, `trim sheet ${ZR.n(P.sheetPx)} px`, sx, 20, { color: ink2, size: 12 });
+      // the beam face : length st.beam m, height st.face cm, filled by the chosen band repeated in U
+      const band = P.bands[st.band], bandM = band.px / st.target, repM = P.sheetPx / st.target, faceM = st.face / 100;
+      const bx = 310, byy = 60, k = Math.min((w - bx - 20) / st.beam, 150 / Math.max(faceM, bandM)), bw = st.beam * k, fh = faceM * k;
+      const off = document.createElement('canvas');
+      off.width = Math.max(8, Math.round(repM * k)); off.height = Math.max(4, Math.round(bandM * k));
+      bandPainter(off.getContext('2d'), band.style, 0, 0, off.width, off.height, 1);
+      ctx.save(); ctx.beginPath(); ctx.rect(bx, byy, bw, fh); ctx.clip();
+      for (let x = bx; x < bx + bw; x += off.width) ctx.drawImage(off, x, byy);
+      if (faceM > bandM) {
+        ctx.fillStyle = ZR.rgb(L.ramp.low, 0.45); ctx.fillRect(bx, byy + bandM * k, bw, fh - bandM * k);
+      }
+      ctx.restore();
+      ctx.strokeStyle = ink; ctx.lineWidth = 1; ctx.strokeRect(bx + 0.5, byy + 0.5, bw - 1, fh - 1);
+      ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 1.5;
+      for (let m = 0; m <= st.beam + 1e-9; m += repM) { ctx.beginPath(); ctx.moveTo(bx + m * k, byy + fh + 2); ctx.lineTo(bx + m * k, byy + fh + 10); ctx.stroke(); }
+      ZR.text(ctx, `une face de poutre : ${ZR.n(st.beam, 1)} m de long, ${ZR.n(st.face)} cm de haut`, bx, 44, { color: ink2, size: 12 });
+      ZR.text(ctx, 'chaque trait orange : la bande recommence (U dépasse 1)', bx, byy + fh + 26, { color: ink2, size: 12 });
+      const fits = faceM <= bandM + 1e-9;
+      stats.innerHTML = `<span>La bande ${band.name} : <b>${band.px} px</b> = <b>${ZR.n(bandM * 100, 1)} cm</b> à ${ZR.n(st.target)} px/m</span>` +
+        `<span>Une largeur de feuille = <b>${ZR.n(repM, 2)} m</b> de poutre</span><span>La poutre lit la bande <b>${ZR.n(st.beam / repM, 1)}</b> fois</span>` +
+        `<span class="line">${fits ? 'La face tient dans la bande : aucune texture de plus, quelle que soit la longueur.' : `La face mesure ${ZR.n(st.face)} cm mais la bande seulement ${ZR.n(bandM * 100, 1)} cm : la partie rouge n'a pas de texture. Il faut une bande plus haute, ou couper la face.`}</span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'band', label: 'Bande de la trim sheet', options: P.bands.map((b, i) => ({ v: i, t: b.name })), value: P.band },
+      { key: 'beam', label: 'Longueur de la poutre', ...P.beamM },
+      { key: 'face', label: 'Hauteur de la face', ...P.faceCm },
+      { key: 'target', label: 'Densité visée', ...P.targetPx, unit: 'px/m' }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- method 3b : hotspot (each face goes to the rectangle that looks most like it)
+  ZR.w.m3hot = (root) => {
+    const P = L.m3, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const pick = (fw, fh) => {
+      let best = null;
+      P.rects.forEach((r, i) => {
+        const td = Math.min(r[2] / fw, r[3] / fh), cost = Math.abs(Math.log((fw / fh) / (r[2] / r[3]))) + 0.5 * Math.abs(Math.log(td / P.hotTarget));
+        if (!best || cost < best.cost) best = { i, r, td, cost };
+      });
+      return best;
+    };
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink2 = ZR.css('--ink2'), T = 230, ax = 20, ay = 30, s = T / P.atlasPx, b = pick(st.fw, st.fh), ratio = b.td / P.hotTarget, col = ZR.densityRGB(ratio);
+      ctx.fillStyle = ZR.css('--card'); ctx.fillRect(ax, ay, T, T);
+      P.rects.forEach((r, i) => {
+        ctx.fillStyle = i === b.i ? ZR.css('--acc') : ZR.css('--bg2');
+        ctx.fillRect(ax + r[0] * s + 1.5, ay + r[1] * s + 1.5, r[2] * s - 3, r[3] * s - 3);
+        ctx.strokeStyle = ink2; ctx.lineWidth = 1; ctx.strokeRect(ax + r[0] * s + 1.5, ay + r[1] * s + 1.5, r[2] * s - 3, r[3] * s - 3);
+        ZR.text(ctx, String(i + 1), ax + r[0] * s + 6, ay + r[1] * s + 15, { color: i === b.i ? '#fff' : ink2, size: 11 });
+      });
+      ZR.text(ctx, `atlas de hotspots ${ZR.n(P.atlasPx)} px`, ax, 20, { color: ink2, size: 12 });
+      const fx = 300, fy = 50, k = Math.min(420 / st.fw, 180 / st.fh);
+      ctx.fillStyle = ZR.rgb(col); ctx.fillRect(fx, fy, st.fw * k, st.fh * k);
+      ctx.strokeStyle = ZR.css('--ink'); ctx.strokeRect(fx + 0.5, fy + 0.5, st.fw * k - 1, st.fh * k - 1);
+      ZR.text(ctx, `la face : ${ZR.n(st.fw, 2)} × ${ZR.n(st.fh, 2)} m`, fx, 40, { color: ink2, size: 12 });
+      stats.innerHTML = `<span>Rectangle choisi : <b>n° ${b.i + 1}</b> (${b.r[2]} × ${b.r[3]} px)</span><span>Densité obtenue : <b>${ZR.n(b.td)} px/m</b> pour ${ZR.n(P.hotTarget)} visés</span>` +
+        `<span class="line"><span class="sw" style="background:${ZR.rgb(col)}"></span>${ZR.densityWord(ratio)} : le hotspot choisit la forme la plus proche et met la face à son échelle, d'où une densité qui varie d'une face à l'autre.</span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'fw', label: 'Largeur de la face', ...P.faceW },
+      { key: 'fh', label: 'Hauteur de la face', ...P.faceH }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- method 4 : layered materials and an RGB mask (UV0 tiles the library materials, UV1 carries a small mask)
+  ZR.w.m4 = (root) => {
+    const P = L.m4, C = P.colours, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const PANEL = 230, dpr = Math.min(window.devicePixelRatio || 1, 2), NF = Math.round(PANEL * dpr);
+    const hi = new Float32Array(NF * NF), mid = new Float32Array(NF * NF), grain = new Float32Array(NF * NF);
+    for (let y = 0; y < NF; y++) for (let x = 0; x < NF; x++) {   // the fine noises come from the tiled library materials (UV0), computed once
+      const xm = x / NF, ym = y / NF, i = y * NF + x;
+      hi[i] = ZR.fbm(xm * 60, ym * 60, 3, 3); mid[i] = ZR.fbm(xm * 7, ym * 7, 8, 3); grain[i] = ZR.fbm(xm * 140, ym * 5, 13, 2);
+    }
+    const [pa, pb, pc, pd] = P.paintRect;
+    const maskAt = (u, v, dirtM) => {      // the three masks at a point of the plate (metres, v from the top) : R paint id, G edge wear, B dirt from the ground
+      const inside = u > pa && u < pc && v > pb && v < pd ? 1 : 0;
+      const dPanel = Math.min(Math.abs(u - pa), Math.abs(u - pc), Math.abs(v - pb), Math.abs(v - pd));
+      const dEdge = Math.min(u, 1 - u, v, 1 - v);
+      const g = Math.max(0, 1 - Math.min(dPanel, dEdge) / P.wearFalloffM);
+      const b = dirtM > 0 ? Math.max(0, 1 - (1 - v) / dirtM) : 0;
+      return [inside, g, b];
+    };
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink2 = ZR.css('--ink2'), N = st.mask, dirtM = st.dirt / 100;
+      // panel 1 : the mask at its own (low) resolution, 2 x 2 samples per texel
+      const mk = new Float32Array(N * N * 3), off = document.createElement('canvas');
+      off.width = N; off.height = N;
+      const oc = off.getContext('2d'), oimg = oc.createImageData(N, N);
+      for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+        let r = 0, g = 0, b = 0;
+        for (const [a, c] of [[0.25, 0.25], [0.75, 0.25], [0.25, 0.75], [0.75, 0.75]]) { const m = maskAt((i + a) / N, (j + c) / N, dirtM); r += m[0] / 4; g += m[1] / 4; b += m[2] / 4; }
+        const k = (j * N + i) * 3;
+        mk[k] = r; mk[k + 1] = g; mk[k + 2] = b;
+        const show = st.view === 'rgb' ? [r, g, b] : st.view === 'r' ? [r, r, r] : st.view === 'g' ? [g, g, g] : [b, b, b];
+        oimg.data.set([show[0] * 255, show[1] * 255, show[2] * 255, 255], (j * N + i) * 4);
+      }
+      oc.putImageData(oimg, 0, 0);
+      ctx.imageSmoothingEnabled = false; ctx.drawImage(off, 15, 34, PANEL, PANEL); ctx.imageSmoothingEnabled = true;
+      ZR.text(ctx, `UV1 : le masque, ${N} × ${N} px`, 15, 22, { color: ink2, size: 12 });
+      // panel 2 : the library materials, tiled on UV0 and shared by every object
+      const lib = [['métal', C.metal, 'grain'], ['peinture', C.paint, 'mid'], ['saleté', C.dirt, 'mid']];
+      lib.forEach(([name, col, nz], k) => {
+        const yy = 34 + k * 80, sw = document.createElement('canvas');
+        sw.width = 100; sw.height = 64;
+        const sc = sw.getContext('2d'), im = sc.createImageData(100, 64);
+        for (let y = 0; y < 64; y++) for (let x = 0; x < 100; x++) {
+          const i = (y * 2 % NF) * NF + (x * 2 % NF), f = nz === 'grain' ? 0.85 + 0.3 * grain[i] : 0.9 + 0.2 * mid[i];
+          im.data.set([col[0] * f * 255, col[1] * f * 255, col[2] * f * 255, 255], (y * 100 + x) * 4);
+        }
+        sc.putImageData(im, 0, 0);
+        ctx.drawImage(sw, 265, yy, 100, 64);
+        ZR.text(ctx, name, 375, yy + 36, { size: 13 });
+      });
+      ZR.text(ctx, 'UV0 : matériaux de bibliothèque', 265, 22, { color: ink2, size: 12 });
+      // panel 3 : the final pixel = library materials mixed by the mask, the mask edge sharpened by the fine noise
+      const fin = document.createElement('canvas');
+      fin.width = NF; fin.height = NF;
+      const fc = fin.getContext('2d'), fimg = fc.createImageData(NF, NF), fd = fimg.data;
+      const samp = (u, v, ch) => {       // bilinear sample of the low resolution mask, texel centres at (i + 0.5) / N
+        const x = ZR.clamp(u * N - 0.5, 0, N - 1), y = ZR.clamp(v * N - 0.5, 0, N - 1), x0 = Math.floor(x), y0 = Math.floor(y);
+        const x1 = Math.min(N - 1, x0 + 1), y1 = Math.min(N - 1, y0 + 1), fx = x - x0, fy = y - y0;
+        const A = mk[(y0 * N + x0) * 3 + ch], B = mk[(y0 * N + x1) * 3 + ch], Cc = mk[(y1 * N + x0) * 3 + ch], D = mk[(y1 * N + x1) * 3 + ch];
+        return A + (B - A) * fx + (Cc - A) * fy + (A - B - Cc + D) * fx * fy;
+      };
+      for (let y = 0; y < NF; y++) for (let x = 0; x < NF; x++) {
+        const i = y * NF + x, u = (x + 0.5) / NF, v = (y + 0.5) / NF, nh = hi[i] - 0.5, nm = mid[i] - 0.5;
+        const paint = ZR.smooth(0.42, 0.58, samp(u, v, 0) + nh * st.breakup * 0.6);
+        const wear = st.wear > 0 ? ZR.smooth(1 - st.wear, 1 - st.wear + 0.12, samp(u, v, 1) + nh * st.breakup * 0.8) : 0;
+        const dirt = 0.78 * ZR.smooth(0.35, 0.75, samp(u, v, 2) + nm * 0.7);
+        let c = mix(C.metal.map((q) => q * (0.85 + 0.3 * grain[i])), C.paint.map((q) => q * (0.92 + 0.16 * mid[i])), paint * (1 - wear));
+        c = mix(c, C.dirt, dirt);
+        fd[i * 4] = c[0] * 255; fd[i * 4 + 1] = c[1] * 255; fd[i * 4 + 2] = c[2] * 255; fd[i * 4 + 3] = 255;
+      }
+      fc.putImageData(fimg, 0, 0);
+      ctx.drawImage(fin, 515, 34, PANEL, PANEL);
+      ZR.text(ctx, "le résultat à l'écran", 515, 22, { color: ink2, size: 12 });
+      const maskMem = ZR.mib(N, 0.5), uniqueMem = ZR.mib(P.libraryPx, 1) * P.maps;
+      stats.innerHTML = `<span>Masque : <b>${N} × ${N}</b> px pour ${P.plateM} m, soit <b>${ZR.n(N)} px/m</b>, <b>${ZR.mem(maskMem)}</b> en BC1</span>` +
+        `<span>Détail fin : celui des matériaux de bibliothèque, à ${ZR.n(P.libraryPx)} px/m, partagés par tout le jeu</span>` +
+        `<span class="line">La même plaque en texture unique à ${ZR.n(P.libraryPx)} px/m : <b>${ZR.mem(uniqueMem)}</b>, soit ${ZR.n(uniqueMem / maskMem)} fois le masque</span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'mask', label: 'Résolution du masque', ...P.maskPx, unit: 'px/m' },
+      { key: 'view', label: 'Voir le masque', options: [{ v: 'rgb', t: 'RVB' }, { v: 'r', t: 'R peinture' }, { v: 'g', t: 'V usure' }, { v: 'b', t: 'B saleté' }], value: P.view },
+      { key: 'wear', label: 'Usure des arêtes', ...P.wear },
+      { key: 'breakup', label: 'Bruit de bord', ...P.breakup },
+      { key: 'dirt', label: 'Saleté depuis le sol', ...P.dirtCm }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- method 5 : mesh decals (crisp details on a soft base)
+  ZR.w.m5 = (root) => {
+    const P = L.m5, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const VIEW_W = 2, VIEW_H = 0.68;          // metres of hull shown
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink2 = ZR.css('--ink2'), x0 = 20, y0 = 30, k = (w - 40) / VIEW_W, pw = VIEW_W * k, ph = VIEW_H * k;
+      const bw = Math.max(4, Math.round(VIEW_W * st.base)), bh = Math.max(2, Math.round(VIEW_H * st.base)), base = document.createElement('canvas');
+      base.width = bw; base.height = bh;
+      const bc = base.getContext('2d'), im = bc.createImageData(bw, bh);
+      for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
+        const xm = x / st.base, ym = y / st.base, f = 0.78 + 0.18 * ZR.fbm(xm * 30, ym * 3, 21, 3) + 0.1 * ZR.fbm(xm * 4, ym * 4, 22, 2);
+        im.data.set([118 * f, 128 * f, 138 * f, 255], (y * bw + x) * 4);
+      }
+      bc.putImageData(im, 0, 0);
+      ctx.imageSmoothingEnabled = true; ctx.drawImage(base, x0, y0, pw, ph);
+      if (st.on) {
+        const X = (m) => x0 + m * k, Y = (m) => y0 + m * k, r = 0.008 * k;
+        const groove = (xm) => { ctx.strokeStyle = 'rgba(20,24,30,0.85)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X(xm), y0); ctx.lineTo(X(xm), y0 + ph); ctx.stroke(); ctx.strokeStyle = 'rgba(255,255,255,0.35)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(xm) + 2, y0); ctx.lineTo(X(xm) + 2, y0 + ph); ctx.stroke(); };
+        groove(0.66); groove(1.34);
+        const n = st.count;
+        for (let i = 0; i < n; i++) for (const ym of [0.05, VIEW_H - 0.05]) {
+          const xm = 0.04 + (VIEW_W - 0.08) * (n > 1 ? i / (n - 1) : 0.5), g = ctx.createRadialGradient(X(xm) - r * 0.35, Y(ym) - r * 0.35, r * 0.1, X(xm), Y(ym), r);
+          g.addColorStop(0, '#e9eef3'); g.addColorStop(0.6, '#8d98a4'); g.addColorStop(1, '#39414a');
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(X(xm), Y(ym), r, 0, 7); ctx.fill();
+        }
+        if (n >= 6) {
+          ctx.fillStyle = '#1e2329';
+          for (let s = 0; s < 5; s++) { ctx.beginPath(); ctx.roundRect(X(0.86), Y(0.22 + s * 0.05), 0.28 * k, 0.022 * k, 4); ctx.fill(); }
+        }
+        if (n >= 12) {
+          ctx.save(); ctx.beginPath(); ctx.rect(X(1.46), Y(0.46), 0.4 * k, 0.08 * k); ctx.clip();
+          ctx.fillStyle = '#e8b923'; ctx.fillRect(X(1.46), Y(0.46), 0.4 * k, 0.08 * k); ctx.fillStyle = '#1b1b1b';
+          for (let s = -2; s < 12; s++) { ctx.beginPath(); ctx.moveTo(X(1.46 + s * 0.04), Y(0.54)); ctx.lineTo(X(1.48 + s * 0.04), Y(0.54)); ctx.lineTo(X(1.48 + s * 0.04 + 0.08), Y(0.46)); ctx.lineTo(X(1.46 + s * 0.04 + 0.08), Y(0.46)); ctx.fill(); }
+          ctx.restore();
+        }
+      }
+      ctx.strokeStyle = ZR.css('--ink'); ctx.strokeRect(x0 + 0.5, y0 + 0.5, pw - 1, ph - 1);
+      ZR.text(ctx, `une coque de ${VIEW_W} m : la base à ${ZR.n(st.base)} px/m${st.on ? `, les decals à ${ZR.n(P.decalTd)} px/m` : ''}`, x0, 20, { color: ink2, size: 12 });
+      const atlasM = P.atlasPx / P.decalTd;
+      stats.innerHTML = `<span>Base : <b>${ZR.n(st.base)} px/m</b>, texture partagée (méthode 2 ou 3)</span>` +
+        `<span>Decals : atlas de ${ZR.n(P.atlasPx)} px qui couvre <b>${ZR.n(atlasM, 2)} m</b> de détails, soit <b>${ZR.n(P.decalTd)} px/m</b>, <b>${ZR.mem(ZR.mib(P.atlasPx, 1))}</b> partagés par toutes les coques</span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'on', label: 'Mesh decals', toggle: true, value: true, on: 'Avec', off: 'Sans' },
+      { key: 'base', label: 'Densité de la base', ...P.baseTd, unit: 'px/m' },
+      { key: 'count', label: 'Rivets par rangée', ...P.count }
+    ], draw);
+  };
+})();

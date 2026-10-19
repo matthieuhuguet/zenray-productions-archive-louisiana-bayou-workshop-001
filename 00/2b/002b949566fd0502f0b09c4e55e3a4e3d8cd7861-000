@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UV et texel density</title>
+<meta name="description" content="Leçon interactive : les UV, la texel density et les cinq méthodes de texturing des studios, de A à Z, avec un graphe à manipuler par idée.">
+<!-- 19 October 2026 14:40 : lesson index. Text in this file, numbers in js/params.js, widgets in js/w-*.js. -->
+<link rel="stylesheet" href="css/lesson.css">
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">Leçon · UV et texel density · 19 October 2026</div>
+  <h1>Les UV et la texel density, de A à Z</h1>
+  <p class="lead">Trois boucles de quinze minutes. La première explique ce que sont les UV et ce que mesure la texel density, la deuxième les cinq méthodes que les studios emploient pour habiller un objet, la troisième de quoi choisir la bonne pour n'importe quel asset. Chaque idée a son graphe, et c'est en bougeant ses curseurs que la règle devient évidente.</p>
+</div></header>
+
+<main><div class="wrap">
+
+<div class="callout"><span class="k">Mode d'emploi</span>Chaque chapitre suit la même forme : l'idée en une phrase, un graphe à manipuler, un exemple chiffré, puis trois points à retenir. Les mots du métier restent en anglais, comme dans les tutoriels (UV island, seam, tileable, trim sheet, bake). À la fin, cinq questions auxquelles tu réponds avec tes mots dans la conversation ; je vérifie, et la leçon n'entre dans la mémoire qu'ensuite.</div>
+
+<nav class="toc" aria-label="Plan de la leçon">
+  <div class="loop">Boucle 1 · les bases</div>
+  <ol>
+    <li><a href="#c1">Une texture est une grille de texels</a></li>
+    <li><a href="#c2">Les UV : le patron de l'objet</a></li>
+    <li><a href="#c3">La texel density : des pixels par mètre</a></li>
+    <li><a href="#c4">Pourquoi 512 ou 1 024 : l'écran décide</a></li>
+    <li><a href="#c5">Les mipmaps et la mémoire</a></li>
+    <li><a href="#c6">Le mur de la taille</a></li>
+  </ol>
+  <div class="loop">Boucle 2 · les cinq méthodes</div>
+  <ol start="7">
+    <li><a href="#m1">Méthode 1 : UV unique et bake</a></li>
+    <li><a href="#m2">Méthode 2 : texture tileable</a></li>
+    <li><a href="#m3">Méthode 3 : trim sheet et hotspot</a></li>
+    <li><a href="#m4">Méthode 4 : matériaux en couches et masque RGB</a></li>
+    <li><a href="#m5">Méthode 5 : mesh decals</a></li>
+    <li><a href="#c12">Et le cinéma : UDIM et Ptex</a></li>
+  </ol>
+  <div class="loop">Boucle 3 · choisir</div>
+  <ol start="13">
+    <li><a href="#c13">Les cinq méthodes côte à côte</a></li>
+    <li><a href="#c14">Le simulateur : quelle méthode pour cet asset</a></li>
+    <li><a href="#c15">Où en sont nos outils</a></li>
+    <li><a href="#quiz">Le test : cinq questions</a></li>
+    <li><a href="#glossaire">Le glossaire</a></li>
+    <li><a href="#sources">Les sources</a></li>
+  </ol>
+</nav>
+
+<div class="loophead"><div class="k">Boucle 1 · 15 minutes</div><div class="t">Les bases : ce qu'est un UV, ce que mesure la densité</div></div>
+
+<section class="chap" id="c1">
+  <h2><span class="n">1</span>Une texture est une grille de texels</h2>
+  <p class="idea"><span class="k">L'idée</span>Une texture est une image, donc une grille de pixels, et l'on appelle texel (texture element) chacun de ces pixels une fois posé sur l'objet 3D.</p>
+  <div class="demo" data-widget="texel"><div class="dt">Graphe 1 · la même image à plusieurs tailles</div><div class="ctl"></div><canvas width="700" height="350" aria-label="Une image et la même image pixélisée"></canvas><div class="stats"></div></div>
+  <p>Une texture de 1 024 px de côté contient 1 024 × 1 024, soit 1 048 576 texels. Comme une image est un carré, doubler son côté multiplie le nombre de texels par quatre, ce qui explique le prix de chaque saut de 2 048 à 4 096 que l'on retrouvera au chapitre 5.</p>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>Un texel est un pixel de texture posé sur l'objet.</li>
+    <li>Les côtés vont par puissances de deux : 512, 1 024, 2 048, 4 096.</li>
+    <li>Doubler le côté multiplie les texels par quatre.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="c2">
+  <h2><span class="n">2</span>Les UV : le patron de l'objet</h2>
+  <p class="idea"><span class="k">L'idée</span>Les UV sont le patron de couture de l'objet : on coupe sa surface le long de coutures (seams), on l'étale à plat en morceaux (UV islands), et chaque coin de polygone reçoit deux nombres, u et v, compris entre 0 et 1, qui disent où lire dans l'image.</p>
+  <div class="demo" data-widget="unfold"><div class="dt">Graphe 2 · déplier une boîte</div><div class="ctl"></div><canvas width="760" height="380" aria-label="Une boîte qui se déplie et son patron dans le carré des UV"></canvas><div class="stats"></div></div>
+  <p>Pousse le curseur « Déplier » jusqu'à 100 % : la boîte posée à plat devient exactement l'image de droite, et c'est cela, un dépliage (unwrap). Les arêtes orange sont les coutures, là où le carton est coupé ; les autres restent pliées, ce sont des charnières, et la texture y passe sans rupture. Le u se lit de gauche à droite et le v de bas en haut, toujours de 0 à 1, quelle que soit la taille de l'image : une image de 512 ou de 4 096 px se lit avec les mêmes UV.</p>
+  <p>Une couture ne coûte presque rien, mais elle peut laisser voir un raccord, parce que de part et d'autre les pixels viennent de deux endroits différents de l'image. Une surface courbe, elle, ne s'aplatit pas sans se déformer : c'est l'étirement (stretch), et un damier posé sur le modèle le trahit aussitôt, ses carrés devenant des rectangles.</p>
+  <div class="callout tool"><span class="k">Dans tes outils</span>UV Flatten déplie et UV Layout range les îles dans le carré (Houdini) ; Substance Painter montre le même carré dans sa vue 2D ; ZenRay UV Trimsheet fait les deux, puis vérifie ses coutures avec le cut check.</div>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>u et v vont de 0 à 1, quelle que soit la taille de l'image.</li>
+    <li>Seam : la coupure ; island : le morceau ; unwrap : le dépliage.</li>
+    <li>Un damier régulier sur le modèle prouve un dépliage sans étirement.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="c3">
+  <h2><span class="n">3</span>La texel density : des pixels par mètre</h2>
+  <p class="idea"><span class="k">L'idée</span>La texel density dit combien de pixels de la texture recouvrent un mètre de l'objet ; elle se calcule en divisant la taille de l'île en pixels par la taille réelle de la surface en mètres.</p>
+  <div class="formula">texel density (px/m) = taille de la texture (px) × part de l'image prise par l'île ÷ taille réelle (m)</div>
+  <div class="demo" data-widget="density"><div class="dt">Graphe 3 · la densité d'un mur</div><div class="ctl"></div><canvas width="760" height="300" aria-label="La texture, le mur et une loupe de 2 cm"></canvas><div class="stats"></div></div>
+  <p>Un mur de 2 m dont l'île occupe toute la largeur d'une texture de 2 048 px reçoit 2 048 ÷ 2 = 1 024 px/m, à peu près un pixel par millimètre. Si l'île n'occupe que la moitié de l'image, ou si la même île habille un mur de 4 m, la densité tombe à 512 px/m, et la loupe montre deux fois moins de pixels sur ses 2 cm.</p>
+  <p>La règle d'or est la cohérence : deux objets voisins doivent avoir la même densité, sinon l'un paraît flou à côté de l'autre. C'est ce que colore le bouton <code>Show texel density</code> de <code>CTRL_uv</code>, avec les couleurs de RizomUV : blanc quand la densité est juste à 1 % près, rouge quand il manque des pixels, bleu quand il y en a trop.</p>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>La densité se compte en px/m ; 1 024 px/m font 10,24 px/cm.</li>
+    <li>Elle dépend de trois nombres : la taille de l'image, la place de l'île dans l'image, la taille réelle.</li>
+    <li>Même densité partout, même netteté partout.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="c4">
+  <h2><span class="n">4</span>Pourquoi 512 ou 1 024 : l'écran décide</h2>
+  <p class="idea"><span class="k">L'idée</span>La bonne densité dépend de l'écran : à la distance où l'on regarde la surface, un texel devrait couvrir à peu près un pixel d'écran.</p>
+  <div class="formula">pixels d'écran par mètre = largeur de l'écran (px) ÷ (2 × distance (m) × tan(champ de vision ÷ 2))</div>
+  <div class="demo" data-widget="screen"><div class="dt">Graphe 4 · combien de pixels d'écran pour un mètre, selon la distance</div><div class="ctl"></div><canvas width="760" height="360" aria-label="Pixels d'écran par mètre selon la distance"></canvas><div class="stats"></div></div>
+  <p>Sur un écran de 1 920 px, avec un champ de vision horizontal de 90 degrés, une surface vue à 1 m reçoit 960 pixels d'écran par mètre, si bien qu'une texture à 1 024 px/m y est juste ; vue à 2 m, elle n'en reçoit plus que 480, et 512 px/m suffisent. On retrouve ainsi par le calcul les repères des studios : environ 1 024 px/m pour une vue à la première personne, où les murs passent à un mètre de la caméra, environ 512 pour une vue à la troisième personne, où la caméra recule de plusieurs mètres, et bien davantage pour l'arme tenue en main, à 40 cm des yeux. <span class="conf">calcul exact ; les repères des studios viennent de Polycount et de Bend Studio</span></p>
+  <p>Dans la zone bleue, la texture a plus de texels que l'écran n'a de pixels : la carte graphique lit alors une version réduite, une mipmap, et les texels en trop ne servent à rien. Dans la zone rouge, un texel s'étale sur plusieurs pixels d'écran et l'image devient floue. Un écran 4K, deux fois plus large, double le besoin.</p>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>On choisit la densité à la distance la plus courte où la surface sera vue.</li>
+    <li>512 et 1 024 px/m sont des repères, et aucune norme ne les impose.</li>
+    <li>Un écran 4K demande deux fois plus de pixels par mètre.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="c5">
+  <h2><span class="n">5</span>Les mipmaps et la mémoire</h2>
+  <p class="idea"><span class="k">L'idée</span>Pour chaque texture, la carte graphique garde une pile de copies réduites de moitié, les mipmaps, qui ajoutent un tiers à sa taille ; elle lit celle qui correspond à la taille à l'écran, mais la mémoire se paie pour la plus grande.</p>
+  <div class="demo" data-widget="memory"><div class="dt">Graphe 5 · le prix d'une texture</div><div class="ctl"></div><canvas width="760" height="236" aria-label="Pyramide de mipmaps et budget de mémoire"></canvas><div class="stats"></div></div>
+  <p>Une texture de 4 096 px compressée en BC7 pèse 16 Mio, et 21,3 Mio avec ses mipmaps. Un matériau PBR en compte d'ordinaire trois, la couleur (base color), la normale (normal map) et une image ORM qui range dans ses trois canaux l'occlusion, la roughness et le metallic, soit 64 Mio ; à 8 192 px, tout est multiplié par quatre. <span class="conf">BC1 : 0,5 octet par pixel, BC5 et BC7 : 1 octet ; connaissance interne, confiance élevée</span></p>
+  <p>Les mipmaps expliquent aussi les marges (padding) autour des îles : à chaque niveau, la marge est divisée par deux, et une marge trop fine laisse la couleur d'une île baver sur sa voisine quand l'objet s'éloigne. Notre outil laisse 16 px à 4 096.</p>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>Les mipmaps ajoutent un tiers de mémoire.</li>
+    <li>Doubler le côté multiplie la mémoire par quatre.</li>
+    <li>La compression divise la mémoire par quatre (BC7) ou par huit (BC1).</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="c6">
+  <h2><span class="n">6</span>Le mur de la taille</h2>
+  <p class="idea"><span class="k">L'idée</span>À densité fixe, la texture unique d'un objet grandit avec sa surface, et au-delà de quelques mètres carrés elle dépasse ce qu'une seule image peut contenir : il faut alors partager des textures.</p>
+  <div class="formula">côté de la texture unique (px) = √( surface (m²) × densité² ÷ remplissage du carré UV )</div>
+  <div class="demo" data-widget="wall"><div class="dt">Graphe 6 · la taille d'une texture unique</div><div class="ctl"></div><canvas width="760" height="160" aria-label="Côté de la texture unique selon la surface"></canvas><div class="stats"></div></div>
+  <p>L'arche, mise à l'échelle 1,64, a 19,34 m² de surface, mesurés par le texel check. À 1 024 px/m, avec 70 % du carré rempli, une texture unique devrait faire 5 382 px de côté, donc une image de 8 192, soit 256 Mio pour ses trois maps. Notre trim sheet tient au contraire dans une feuille de 4 096 px, 64 Mio, avec encore 34,2 % de place libre, parce que les faces répétées partagent leurs pixels et que les bandes se répètent en U. Le toit de l'église, 144,8 m², demanderait 14 728 px, et aucune image ne le porte. <span class="conf">la limite de 8 192 px est un repère, elle dépend du moteur et de la plateforme</span></p>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>La surface décide de la taille d'une texture unique.</li>
+    <li>Au-delà de 8 192 px, une seule image ne suffit d'ordinaire plus en temps réel.</li>
+    <li>Les grandes surfaces partagent leurs textures : c'est tout l'objet des méthodes 2 à 5.</li>
+  </ol></div>
+</section>
+
+<div class="loopend">Fin de la boucle 1. Pause de deux minutes, puis les cinq méthodes.</div>
+
+<div class="loophead"><div class="k">Boucle 2 · 15 minutes</div><div class="t">Les cinq méthodes des studios</div></div>
+<p>Les studios suivent une règle simple : ce qui est vu de près et ne se répète pas reçoit sa propre texture, ce qui est grand ou répété partage des textures. Les cinq méthodes qui suivent sont cinq façons d'habiller un objet, et un même objet en combine souvent deux ou trois. <span class="conf">déduction, d'après Bend Studio, Insomniac et Ready at Dawn</span></p>
+
+<section class="chap" id="m1">
+  <h2><span class="n">M1</span>UV unique et bake</h2>
+  <p class="idea"><span class="k">L'idée</span>Chaque point de l'objet a ses propres pixels dans le carré 0 à 1 ; on y cuit (bake) le relief d'une version très détaillée du modèle, puis on peint l'ensemble, souvent dans Substance Painter.</p>
+  <p><b>Pour quoi :</b> personnages, armes, objets héros, petits props de moins de deux mètres, tout ce qui est vu de près et ne se répète pas.</p>
+  <div class="demo" data-widget="m1"><div class="dt">Graphe 7 · le bake et le prix d'une texture unique</div><div class="ctl"></div><canvas width="760" height="250" aria-label="Coupe du high poly et du low poly, normal map cuite"></canvas><div class="stats"></div></div>
+  <p>Le bake projette le relief du modèle détaillé (high poly) sur le modèle léger (low poly) : chaque texel enregistre la direction de la surface détaillée au-dessus de lui, dans une normal map, et le modèle léger renvoie alors la lumière comme s'il portait les rivets et la rainure. Les moitiés symétriques peuvent partager la même zone de l'image (UV en miroir), ce qui divise par deux la surface à texturer, à condition qu'aucun texte n'y figure, puisqu'il se lirait à l'envers.</p>
+  <p>C'est la méthode la plus belle et la plus chère, puisqu'elle demande une texture et un travail de peinture par objet. Un technical artist de Bend Studio cite plus de 2 000 px/m pour l'arme vue en première personne, parce qu'elle reste à quelques dizaines de centimètres de l'œil. <span class="conf">web, d'après Bend Studio et 80.lv</span></p>
+  <div class="callout tool"><span class="k">Dans tes outils</span>UV Flatten et UV Layout pour le patron, Labs Maps Baker pour le bake dans Houdini, Substance Painter pour la peinture. Rien n'est encore construit de notre côté pour cette méthode.</div>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>Une texture par objet, rangée dans le carré 0 à 1.</li>
+    <li>Le bake transfère le relief du high poly dans une normal map.</li>
+    <li>Les UV en miroir divisent la surface par deux, jamais sous un texte.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="m2">
+  <h2><span class="n">M2</span>Texture tileable</h2>
+  <p class="idea"><span class="k">L'idée</span>Une texture qui se raccorde sur ses quatre bords se répète sans fin ; les UV sortent librement du carré 0 à 1, si bien qu'un mur de 40 m coûte la même mémoire qu'un mur de 2 m.</p>
+  <p><b>Pour quoi :</b> sols, grands murs, routes, terrain. Chez Ready at Dawn, ces textures couvraient 90 à 95 % des surfaces de The Order: 1886. <span class="conf">web, SIGGRAPH 2015</span></p>
+  <div class="demo" data-widget="m2"><div class="dt">Graphe 8 · un mur qui se répète</div><div class="ctl"></div><canvas width="760" height="240" aria-label="Un mur couvert par une texture qui se répète"></canvas><div class="stats"></div></div>
+  <p>Le défaut de la méthode est la répétition, que l'œil repère très vite : regarde la tache sombre revenir à chaque trait orange. On la casse en peignant sur les sommets du modèle (vertex paint) un second matériau, mousse ou saleté, et en ajoutant une variation de couleur à grande échelle, qui, elle, ne se répète pas. Active « Casser la répétition » : la texture n'a pas changé, et pourtant le mur cesse d'avoir l'air copié.</p>
+  <div class="callout tool"><span class="k">Dans tes outils</span>ZenRay Height et Substance Designer produisent le matériau qui se raccorde ; dans Houdini, une projection de type box mise à l'échelle de la densité (UV Transform) pose les UV.</div>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>Les UV dépassent 1, la texture se répète, la mémoire ne bouge pas.</li>
+    <li>La densité vaut la taille de l'image divisée par la taille couverte par une répétition.</li>
+    <li>Vertex paint et variation à grande échelle cassent la répétition.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="m3">
+  <h2><span class="n">M3</span>Trim sheet et hotspot</h2>
+  <p class="idea"><span class="k">L'idée</span>Une trim sheet range plusieurs matériaux en bandes horizontales qui se répètent en U ; chaque pièce modulaire pose ses faces dans la bande de son matériau, si bien qu'une poutre de 12 m utilise la même bande qu'une poutre de 1 m.</p>
+  <p><b>Pour quoi :</b> architecture modulaire, façades, poutres, moulures, tuyaux, kits d'environnement. Insomniac a présenté la technique au GDC 2015 avec Sunset Overdrive (« The Ultimate Trim »). <span class="conf">web ; rien ne prouve qu'Insomniac l'ait inventée</span></p>
+  <div class="demo" data-widget="m3trim"><div class="dt">Graphe 9 · une bande, une poutre de n'importe quelle longueur</div><div class="ctl"></div><canvas width="760" height="300" aria-label="Une trim sheet et une poutre qui lit une bande"></canvas><div class="stats"></div></div>
+  <p>La hauteur de chaque bande, en pixels, devient une hauteur réelle dès qu'on fixe la densité : à 1 024 px/m, la bande Planches de 512 px couvre 50 cm. Une face plus haute que sa bande n'a pas de texture pour sa partie haute, c'est la zone rouge du graphe, et l'on dessine donc les bandes d'après les sections réelles des pièces du kit. La longueur, elle, est gratuite, puisque U dépasse 1 et que la bande recommence.</p>
+  <p>C'est exactement ce que fait ZenRay UV Trimsheet sur l'arche : une bande par matériau, les îles empilées en haut à gauche, U libre au-delà de 1, et la texture unique du panneau gardée à part.</p>
+  <div class="demo" data-widget="m3hot"><div class="dt">Graphe 10 · le hotspot choisit le rectangle</div><div class="ctl"></div><canvas width="760" height="280" aria-label="Un atlas de rectangles et la face qui y est envoyée"></canvas><div class="stats"></div></div>
+  <p>Le hotspot texturing automatise le choix : l'atlas contient des rectangles de proportions variées, et chaque face part dans celui qui lui ressemble le plus ; Valve l'emploie dans Half-Life: Alyx, avec des fichiers <code>.rect</code>. Le prix se lit dans la couleur, puisque la face est mise à l'échelle de son rectangle et que sa densité varie d'une face à l'autre. <span class="conf">web, Valve Developer Community</span></p>
+  <div class="callout tool"><span class="k">Dans tes outils</span>ZenRay UV Trimsheet, notre outil, et SideFX Labs Trim Texture dans Houdini ; ZenRay Height fabrique la matière de chaque bande.</div>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>Une bande par matériau, qui se répète en U.</li>
+    <li>Sa hauteur en pixels fixe la hauteur réelle qu'elle peut couvrir.</li>
+    <li>Le hotspot choisit seul la bande, au prix d'une densité moins exacte.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="m4">
+  <h2><span class="n">M4</span>Matériaux en couches et masque RGB</h2>
+  <p class="idea"><span class="k">L'idée</span>L'objet porte deux jeux d'UV : le premier répète des matériaux de bibliothèque (métal, peinture, rouille) à la bonne densité, le second, unique et petit, porte une image dont les canaux rouge, vert et bleu disent où poser chaque matériau ; le shader mélange le tout à l'affichage.</p>
+  <p><b>Pour quoi :</b> gros objets hard-surface non modulaires (véhicules, machines, grosses pièces d'architecture), et tout ce que l'on veut automatiser. Ready at Dawn et The Coalition, pour Gears of War 4, ont décrit ce genre de système. <span class="conf">web, SIGGRAPH 2013 et 2017</span></p>
+  <div class="demo" data-widget="m4"><div class="dt">Graphe 11 · un petit masque, un résultat net</div><div class="ctl"></div><canvas width="760" height="280" aria-label="Masque RGB, matériaux de bibliothèque et résultat"></canvas><div class="stats"></div></div>
+  <p>Baisse la résolution du masque jusqu'à 16 px/m : il devient une mosaïque grossière, et pourtant le résultat reste net. Le masque dit seulement, de façon floue, « ici de la peinture, ici de l'usure » ; la netteté vient du bruit très fin des matériaux répétés, qui découpe la frontière (curseur « Bruit de bord »). C'est ce qui permet à un masque de quelques kilo-octets de remplacer une texture unique de plusieurs méga-octets.</p>
+  <p>Chaque canal porte un masque : ici le rouge dit où est la peinture (ID), le vert l'usure des arêtes (curvature) et le bleu la saleté qui monte du sol (occlusion ou hauteur). Ranger trois masques dans une seule image s'appelle le channel packing. L'ordre des UV n'a rien de fixe : certains studios mettent la répétition en UV0 et le masque en UV1, d'autres l'inverse. <span class="conf">web, 80.lv</span></p>
+  <div class="callout tool"><span class="k">Dans tes outils</span>Tu as déjà le début : le bouton <code>Bake masks</code> de <code>CTRL_uv</code> écrit sur <code>uv2</code> un masque rouge (usure des arêtes), vert (faces tournées vers le ciel) et bleu (hauteur), calculé depuis la géométrie. C'est la méthode la plus automatisable, puisque ses masques se calculent ; il manque le shader qui mélange, dans Unreal (Material Layers), et une bibliothèque de matériaux.</div>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>UV0 répète les matériaux, UV1 porte un petit masque unique (ou l'inverse).</li>
+    <li>Un masque par canal : trois masques dans une seule image.</li>
+    <li>Le masque peut être minuscule, car la netteté vient du bruit des matériaux.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="m5">
+  <h2><span class="n">M5</span>Mesh decals</h2>
+  <p class="idea"><span class="k">L'idée</span>Une mesh decal est une petite bande de géométrie posée juste au-dessus de la surface et texturée dans un atlas de détails (rivets, soudures, lignes de panneaux), qui ne modifie que la normale, la rugosité ou la couleur de ce qu'elle recouvre.</p>
+  <p><b>Pour quoi :</b> le détail fin des grandes coques et des murs, sans agrandir leur texture. Star Citizen en fait grand usage, et Unreal les gère par son DBuffer. <span class="conf">web, Polycount et Epic</span></p>
+  <div class="demo" data-widget="m5"><div class="dt">Graphe 12 · des détails nets sur une base floue</div><div class="ctl"></div><canvas width="760" height="290" aria-label="Une coque avec et sans mesh decals"></canvas><div class="stats"></div></div>
+  <p>Baisse la densité de la base à 128 px/m : la coque devient floue, mais les rivets, les grilles et la bande d'avertissement restent nets, parce que leur atlas vise 4 096 px/m. Un détail petit coûte peu de pixels même à très haute densité, et un seul atlas sert à toutes les coques du jeu.</p>
+  <div class="callout tool"><span class="k">Dans tes outils</span>Rien encore. Dans Houdini, ce sont des bandes de polygones collées à la surface avec un léger décalage ; l'atlas se fait dans Substance Designer ou avec ZenRay Height.</div>
+  <div class="keep"><span class="k">À retenir</span><ol>
+    <li>Une decal est de la géométrie flottante, pas une texture de plus sur l'objet.</li>
+    <li>Elle peut viser une densité bien plus haute que la surface qu'elle décore.</li>
+    <li>Un atlas de decals se partage entre tous les objets.</li>
+  </ol></div>
+</section>
+
+<section class="chap" id="c12">
+  <h2><span class="n">12</span>Et le cinéma : UDIM et Ptex</h2>
+  <p>Le cinéma n'a pas la contrainte de mémoire du temps réel : il multiplie les images par objet, avec les UDIM (des tuiles 1001, 1002, et ainsi de suite, posées côte à côte en U, un système né chez Weta Digital), ou supprime le patron, avec Ptex, de Disney, qui donne une petite texture à chaque face. Unreal lit les UDIM par sa virtual texturing ; en jeu, cela sert surtout à un objet héros très détaillé. <span class="conf">web pour les origines ; déduction pour l'usage en jeu</span></p>
+  <p>Nanite, dans Unreal 5, gère la densité de la géométrie et non celle des textures : la texel density reste entièrement ton affaire. <span class="conf">connaissance interne, confiance élevée</span></p>
+</section>
+
+<div class="loopend">Fin de la boucle 2. Pause de deux minutes, puis le choix.</div>
+
+<div class="loophead"><div class="k">Boucle 3 · 15 minutes</div><div class="t">Choisir la méthode d'un asset</div></div>
+
+<section class="chap" id="c13">
+  <h2><span class="n">13</span>Les cinq méthodes côte à côte</h2>
+  <table>
+    <thead><tr><th>Méthode</th><th>Pour quoi</th><th>Les UV</th><th>Mémoire</th><th>Travail</th><th>Automatisable</th><th>Dans ton projet</th></tr></thead>
+    <tbody>
+      <tr><td>1. UV unique et bake</td><td>personnages, armes, objets héros</td><td>uniques, dans 0 à 1</td><td>une texture par objet</td><td>élevé (bake, peinture)</td><td>en partie (le bake)</td><td>une lanterne vue de près, à faire</td></tr>
+      <tr><td>2. Tileable</td><td>sols, grands murs, terrain</td><td>dépassent 1</td><td>partagée</td><td>faible</td><td>oui</td><td>les murs de l'église</td></tr>
+      <tr><td>3. Trim sheet, hotspot</td><td>architecture, kits</td><td>bandes, U au-delà de 1</td><td>partagée</td><td>faible, une fois la feuille faite</td><td>oui, ZenRay UV Trimsheet</td><td>l'arche, le toit</td></tr>
+      <tr><td>4. Couches et masque RGB</td><td>gros objets hard-surface</td><td>UV0 répété, UV1 masque</td><td>partagée, plus un petit masque</td><td>faible</td><td>le plus (masques calculés)</td><td>les masques uv2 de l'arche</td></tr>
+      <tr><td>5. Mesh decals</td><td>détails fins</td><td>géométrie flottante</td><td>atlas partagé</td><td>moyen (placement)</td><td>en partie</td><td>à faire</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chap" id="c14">
+  <h2><span class="n">14</span>Le simulateur : quelle méthode pour cet asset</h2>
+  <p>Le simulateur refait les calculs des chapitres 4 et 6 et affiche ses règles en clair ; il propose, et c'est toi qui décides. Choisis un exemple ou règle les curseurs, puis regarde comment la distance et la surface font basculer la méthode.</p>
+  <div class="demo" data-widget="choose"><div class="dt">Simulateur</div><div class="ctl"></div><div class="stats" style="display:block"></div></div>
+</section>
+
+<section class="chap" id="c15">
+  <h2><span class="n">15</span>Où en sont nos outils</h2>
+  <table>
+    <thead><tr><th>Outil</th><th>Méthode</th><th>Ce qu'il fait</th><th>Ce qui manque</th></tr></thead>
+    <tbody>
+      <tr><td>ZenRay UV Trimsheet (<code>trim_uv</code>)</td><td>3</td><td>une bande par matériau, faces répétées empilées, U libre, contenu unique à part, densité exacte</td><td>le shader et l'export vers Unreal</td></tr>
+      <tr><td>Texel check, <code>Show texel density</code>, damier</td><td>toutes</td><td>la place de chaque bande, la densité en blanc, rouge et bleu, l'étirement</td><td>rien pour la mesure</td></tr>
+      <tr><td><code>Bake masks</code> (uv2)</td><td>4</td><td>masque rouge usure, vert ciel, bleu hauteur, calculé depuis la géométrie</td><td>le shader qui mélange, la bibliothèque de matériaux</td></tr>
+      <tr><td>ZenRay Height</td><td>2, 3, 4</td><td>des matières qui se raccordent, mesurées</td><td>la ligne de bord vue le 19 October 2026</td></tr>
+      <tr><td>Bake high poly vers normal map</td><td>1</td><td>non construit</td><td>tout</td></tr>
+      <tr><td>Mesh decals</td><td>5</td><td>non construit</td><td>tout</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chap" id="quiz">
+  <h2><span class="n">16</span>Le test : cinq questions</h2>
+  <p>Réponds sans relire, avec tes mots, puis copie tes réponses et colle-les dans la conversation. Je corrige, je réexplique ce qui coince, et c'est seulement ensuite que la leçon entre dans la mémoire.</p>
+  <div data-widget="quiz">
+    <ol class="quiz">
+      <li><span class="q">Avec tes mots : qu'est-ce que la texel density ? Et combien de px/m donne une île qui occupe 1 024 px d'une texture, posée sur un mur de 2 m ?</span><textarea aria-label="Réponse 1"></textarea></li>
+      <li><span class="q">Pourquoi 1 024 px/m convient-il à une vue à la première personne et 512 à une vue à la troisième ? Donne le calcul.</span><textarea aria-label="Réponse 2"></textarea></li>
+      <li><span class="q">Pourquoi ne peut-on pas donner une texture unique à 1 024 px/m au toit de l'église, et par quoi la remplace-t-on ?</span><textarea aria-label="Réponse 3"></textarea></li>
+      <li><span class="q">Dans la méthode à masque RGB, que portent UV0 et UV1, et pourquoi le masque peut-il être en très basse résolution sans que l'objet paraisse flou ?</span><textarea aria-label="Réponse 4"></textarea></li>
+      <li><span class="q">Pour l'arche, pour une lanterne de 40 cm vue de près et pour le terrain : quelle méthode, et pourquoi ?</span><textarea aria-label="Réponse 5"></textarea></li>
+    </ol>
+    <button type="button" class="copy">Copier mes réponses</button> <span class="copied ui"></span>
+  </div>
+</section>
+
+<section class="chap" id="glossaire">
+  <h2><span class="n">17</span>Le glossaire</h2>
+  <dl>
+    <dt>Texel</dt><dd>Un pixel de texture, une fois posé sur l'objet.</dd>
+    <dt>Texel density</dt><dd>Les pixels de texture par mètre de surface (px/m).</dd>
+    <dt>UV (u, v)</dt><dd>Les deux coordonnées, de 0 à 1, qui disent où lire dans l'image.</dd>
+    <dt>Unwrap</dt><dd>Le dépliage de la surface à plat.</dd>
+    <dt>UV island, UV shell</dt><dd>Un morceau d'un seul tenant du patron.</dd>
+    <dt>Seam</dt><dd>Une arête coupée, frontière entre deux îles ou entre deux bords d'une même île.</dd>
+    <dt>Stretch</dt><dd>La déformation d'une île aplatie : le damier se change en rectangles.</dd>
+    <dt>Checker</dt><dd>Le damier qui sert à juger la densité et l'étirement.</dd>
+    <dt>UV0, UV1 (UV channels)</dt><dd>Plusieurs jeux d'UV sur un même objet, chacun pour un usage.</dd>
+    <dt>Padding</dt><dd>La marge autour d'une île, contre les bavures des mipmaps.</dd>
+    <dt>Mipmap</dt><dd>Une copie réduite de moitié de la texture ; la pile entière ajoute un tiers.</dd>
+    <dt>Tileable</dt><dd>Qui se raccorde sur ses bords et se répète sans couture visible.</dd>
+    <dt>Trim sheet</dt><dd>Une texture en bandes horizontales qui se répètent en U.</dd>
+    <dt>Hotspot</dt><dd>Un atlas de rectangles où chaque face part dans le plus ressemblant.</dd>
+    <dt>Atlas</dt><dd>Une image partagée par plusieurs objets ou plusieurs détails.</dd>
+    <dt>Bake</dt><dd>Le transfert d'une information (relief, occlusion) du high poly vers une texture du low poly.</dd>
+    <dt>High poly, low poly</dt><dd>Le modèle très détaillé, et le modèle léger qui tourne dans le jeu.</dd>
+    <dt>Normal map</dt><dd>Une texture qui stocke la direction de la surface pour imiter un relief.</dd>
+    <dt>ID map</dt><dd>Une texture dont chaque couleur désigne un matériau.</dd>
+    <dt>Channel packing, ORM</dt><dd>Trois masques rangés dans les canaux rouge, vert et bleu d'une image ; ORM range occlusion, roughness et metallic.</dd>
+    <dt>Layered material</dt><dd>Un matériau qui en mélange plusieurs à l'aide de masques.</dd>
+    <dt>Vertex paint</dt><dd>Des valeurs peintes sur les sommets du modèle, pour mélanger des matériaux.</dd>
+    <dt>Mesh decal</dt><dd>De la géométrie flottante qui ajoute un détail sur une surface.</dd>
+    <dt>UDIM</dt><dd>Plusieurs images côte à côte pour un seul objet, surtout au cinéma.</dd>
+    <dt>BC1, BC7</dt><dd>Des formats de compression de texture, à 0,5 et 1 octet par pixel.</dd>
+  </dl>
+</section>
+
+<section class="chap" id="sources">
+  <h2><span class="n">18</span>Les sources</h2>
+  <p>Les formules et tous les nombres calculés viennent des définitions et se refont avec les curseurs. Les faits sur les studios viennent des sources ci-dessous, rassemblées dans la recherche que tu m'as transmise le 19 October 2026 ; je ne les ai pas relues une à une.</p>
+  <ul class="src">
+    <li>Texel density, définition : <a href="https://rebusfarm.net/blog/texel-density-basics-every-artist-should-know">RebusFarm</a></li>
+    <li>Aucune norme, cibles et validation : <a href="https://stefangroenewoud.artstation.com/blog/BdY2m/day-38-quick-texel-density-targets-and-validation">Stefan Groenewoud, Bend Studio</a> ; repères 512 et 1 024 : <a href="https://polycount.com/discussion/comment/2709190">Polycount</a></li>
+    <li>Arme en première personne : <a href="https://80.lv/articles/breakdown-how-to-make-a-weapon-look-realistic-and-eye-catching">80.lv</a></li>
+    <li>Trim sheets : <a href="https://gdcvault.com/play/1022323/The-Ultimate-Trim-Texturing-Techniques">GDC 2015, The Ultimate Trim</a> ; <a href="https://www.sidefx.com/docs/houdini/nodes/sop/labs--trim_texture.html">SideFX Labs Trim Texture</a></li>
+    <li>Hotspot texturing : <a href="https://developer.valvesoftware.com/wiki/Hotspot_texturing">Valve Developer Community</a></li>
+    <li>Textures répétées dans The Order: 1886 : <a href="https://history.siggraph.org/wp-content/uploads/2022/10/2015-Talks-Phail-Liff_Crafting-Victorian-London-The-Environment-Art-and-Material-Pipelines-of-The-Order-1886.pdf">Ready at Dawn, SIGGRAPH 2015</a></li>
+    <li>Matériaux en couches : <a href="https://blog.selfshadow.com/publications/s2013-shading-course/rad/s2013_pbs_rad_notes.pdf">Ready at Dawn, 2013</a> ; <a href="https://history.siggraph.org/learning/gears-of-war-4-creating-a-layered-material-system-for-60fps">Gears of War 4</a> ; <a href="https://dev.epicgames.com/documentation/unreal-engine/layered-materials-in-unreal-engine">Unreal, Layered Materials</a> ; ordre des UV : <a href="https://80.lv/articles/creating-a-warhammer-40k-inspired-scene-with-blender-ue5-s-substrate">80.lv</a></li>
+    <li>Mesh decals : <a href="https://dev.epicgames.com/documentation/unreal-engine/using-mesh-decals-in-unreal-engine">Unreal, Mesh Decals</a> ; <a href="https://polycount.com/discussion/203081/star-citizen-assets-workflow-questions">Polycount, Star Citizen</a></li>
+    <li>UDIM et Ptex : <a href="https://www.fxguide.com/?p=50155">fxguide</a> ; <a href="https://disneyanimation.com/open-source/ptex">Disney</a> ; <a href="https://dev.epicgames.com/documentation/unreal-engine/streaming-virtual-texturing-in-unreal-engine">Unreal, virtual texturing</a></li>
+  </ul>
+</section>
+
+<footer>Leçon écrite le 19 October 2026 pour Matthieu, chantier Louisiana Bayou. Le texte vit dans <code>index.html</code>, tous les nombres réglables dans <code>js/params.js</code>, les graphes dans <code>js/w-*.js</code>. Dossier : <code>/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/lesson-uv-texel-density/</code></footer>
+
+</div></main>
+
+<script src="js/params.js"></script>
+<script src="js/core.js"></script>
+<script src="js/w-basics.js"></script>
+<script src="js/w-methods.js"></script>
+<script src="js/w-choose.js"></script>
+</body>
+</html>
