@@ -1,0 +1,24 @@
+# 19 October 2026 : where does Manny fail the organic tolerance ? Per chart of uv_org : fail area, size, position, worst triangles.
+import numpy as np, importlib, sys, json
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+g = hou.node('/obj/ZRUV_Manny/BASE').geometry()
+m = Z.from_geo(g, ('uv_org',), ['zruv_ochart', 'zruv_organic'])
+ch = np.array(m.prim['zruv_ochart'])
+rows = []
+allfail = 0.0
+for k in sorted(set(ch.tolist()) - {-1}):
+    fs = [int(f) for f in np.where(ch == k)[0]]
+    P3, T, uv, corner = O._island_arrays(m, 'uv_org', fs)
+    r, s, a3 = O.distortion(P3, T, uv)
+    bad = ~((np.abs(r - 1) <= 0.1) & (s <= 0.1))
+    fa = float(a3[bad].sum())
+    allfail += fa
+    if fa > 0:
+        c = P3.mean(0)
+        rows.append({'chart': k, 'faces': len(fs), 'area': round(float(a3.sum()), 5), 'fail': round(fa, 6), 'bad_tris': int(bad.sum()), 'center': [round(float(x), 2) for x in c],
+                     'bad_tri_area_med': float(np.median(a3[bad])), 'tri_area_med': float(np.median(a3)), 'r_bad': [round(float(x), 2) for x in np.percentile(r[bad], (5, 50, 95))],
+                     's_bad': [round(float(x), 2) for x in np.percentile(s[bad], (5, 50, 95))]})
+rows.sort(key=lambda d: -d['fail'])
+result = {'fail_total': round(allfail, 6), 'n_fail_charts': len(rows), 'worst': rows[:15], 'report': json.loads(g.attribValue('zruv_organic_report'))}

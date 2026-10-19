@@ -1,0 +1,29 @@
+# 19 October 2026 : does labs::autouv honour its uv attribute name and its group ? Compares uv vs uv_auto, with and without the group, on the rubber toy.
+import numpy as np, importlib, sys
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+g = hou.node('/obj/ZRUV_Tests')
+om = g.node('in_det') or g.createNode('object_merge', 'in_det')
+om.parm('objpath1').set('/obj/ZRUV_RubberToy/organic_detect'); om.parm('xformtype').set(0)
+
+
+def score(geo, name):
+    m = Z.from_geo(geo, (name,), ['zruv_organic'])
+    isl, _ = Z.uv_islands(m, name)
+    fail = 0.0; zero = 0
+    for i in range(int(isl.max()) + 1):
+        fs = [int(f) for f in np.where(isl == i)[0]]
+        res, r, s, a3 = O._relax(m, fs, {f: m.uv[name][f] for f in fs})
+        fail += O._fail_area(r, s, a3, 0.1)
+    allv = np.array([q for qs in m.uv[name] for q in qs])
+    return {'islands': int(isl.max()) + 1, 'fail_m2': round(fail, 5), 'zero_uv_share': round(float((np.abs(allv).sum(1) == 0).mean()), 4)}
+
+
+out = {}
+for tag, attr, grp in (('uv_nogroup', 'uv', ''), ('uv_group', 'uv', 'zruv_organic'), ('uvauto_nogroup', 'uv_auto', ''), ('uvauto_group', 'uv_auto', 'zruv_organic')):
+    n = g.node('au_' + tag) or g.createNode('labs::autouv', 'au_' + tag)
+    n.setInput(0, om)
+    n.parm('method').set(3); n.parm('uvattrib').set(attr); n.parm('group').set(grp)
+    out[tag] = score(n.geometry(), attr)
+result = out

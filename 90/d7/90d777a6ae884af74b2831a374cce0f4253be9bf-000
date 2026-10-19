@@ -1,0 +1,22 @@
+# 19 October 2026 : inspects the organic charts of one asset (BASE with uv_auto and uv_clu) : worst charts, their topology, their grains.
+import numpy as np, importlib, sys, json
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+obj = globals().get('OBJ', 'ZRUV_RubberToy')
+g = hou.node(f'/obj/{obj}/organic_grains').geometry()
+m = Z.from_geo(g, ('uv_auto', 'uv_clu'), ['zruv_organic'])
+org = np.array(m.prim['zruv_organic']) == 1
+isl, _ = Z.uv_islands(m, 'uv_auto')
+gi, _ = Z.uv_islands(m, 'uv_clu')
+rows = []
+tot_fail = 0.0
+for i in sorted(set(int(isl[f]) for f in np.where(org)[0])):
+    fs = [int(f) for f in np.where(isl == i)[0] if org[f]]
+    res, r, s, a3 = O._relax(m, fs, {f: m.uv['uv_auto'][f] for f in fs})
+    fa = O._fail_area(r, s, a3, 0.1)
+    tot_fail += fa
+    rows.append({'chart': i, 'faces': len(fs), 'chi': O._chi(m, fs), 'area': round(float(a3.sum()), 5), 'fail': round(fa, 6), 'grains': len(set(int(gi[f]) for f in fs)),
+                 'r_pct': [round(float(np.percentile(r, q)), 3) for q in (1, 50, 99)], 's99': round(float(np.percentile(s, 99)), 3)})
+rows.sort(key=lambda d: -d['fail'])
+result = {'charts': len(rows), 'total_fail_m2': round(tot_fail, 6), 'surface_m2': round(float(m.area.sum()), 4), 'worst': rows[:12]}
