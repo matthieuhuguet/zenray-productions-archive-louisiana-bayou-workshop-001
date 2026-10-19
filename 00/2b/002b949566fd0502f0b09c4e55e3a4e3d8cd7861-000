@@ -80,16 +80,9 @@
 
 <section class="chap" id="c3">
   <h2><span class="n">3</span>La texel density : des pixels par mètre</h2>
-  <p class="idea"><span class="k">L'idée</span>La texel density dit combien de pixels de la texture recouvrent un mètre de l'objet ; elle se calcule en divisant la taille de l'île en pixels par la taille réelle de la surface en mètres.</p>
-  <div class="formula">texel density (px/m) = taille de la texture (px) × part de l'image prise par l'île ÷ taille réelle (m)</div>
-  <div class="demo" data-widget="density"><div class="dt">Graphe 3 · la densité d'un mur</div><div class="ctl"></div><canvas width="760" height="300" aria-label="La texture, le mur et une loupe de 2 cm"></canvas><div class="stats"></div></div>
-  <p>Un mur de 2 m dont l'île occupe toute la largeur d'une texture de 2 048 px reçoit 2 048 ÷ 2 = 1 024 px/m, à peu près un pixel par millimètre. Si l'île n'occupe que la moitié de l'image, ou si la même île habille un mur de 4 m, la densité tombe à 512 px/m, et la loupe montre deux fois moins de pixels sur ses 2 cm.</p>
-  <p>La règle d'or est la cohérence : deux objets voisins doivent avoir la même densité, sinon l'un paraît flou à côté de l'autre. C'est ce que colore le bouton <code>Show texel density</code> de <code>CTRL_uv</code>, avec les couleurs de RizomUV : blanc quand la densité est juste à 1 % près, rouge quand il manque des pixels, bleu quand il y en a trop.</p>
-  <div class="keep"><span class="k">À retenir</span><ol>
-    <li>La densité se compte en px/m ; 1 024 px/m font 10,24 px/cm.</li>
-    <li>Elle dépend de trois nombres : la taille de l'image, la place de l'île dans l'image, la taille réelle.</li>
-    <li>Même densité partout, même netteté partout.</li>
-  </ol></div>
+  <!-- 19 October 2026 : chapter rewritten (Matthieu : incomprehensible, needs an example and a 3D object whose texture he adjusts) -->
+  <div class="demo" data-widget="density"><div class="dt">Graphe 3 · la même image sur une caisse qui grandit</div><div class="ctl"></div><canvas width="760" height="340" aria-label="Une caisse texturée en 3D et une vue de près de 10 cm"></canvas><div class="stats"></div></div>
+  <p>Prends la caisse du graphe : chacune de ses faces porte la même image de 1 024 × 1 024 pixels, et comme la caisse mesure 1 m, chaque mètre de bois reçoit 1 024 pixels, si bien qu'un pixel y fait à peu près 1 mm ; c'est cela, la texel density, le nombre de pixels de l'image qui tombent sur un mètre de l'objet, et elle se calcule en divisant les pixels de l'image par les mètres qu'elle recouvre. Pousse maintenant la caisse à 2 m sans toucher à l'image : les mêmes 1 024 pixels s'étalent sur deux fois plus de bois, la densité tombe à 512 px/m, chaque pixel fait 2 mm, et la vue de près, qui montre toujours 10 cm de la face, devient nettement plus floue, le petit texte « FRAGILE » se fondant dans le bois ; pour retrouver la netteté de départ, il faut une image de 2 048 px, puisque 2 048 ÷ 2 = 1 024 px/m. La même chose arrive quand une île n'occupe qu'une partie de l'image, puisqu'elle ne dispose alors que d'une partie des pixels, et c'est pour cette raison qu'on règle tous les objets d'une scène sur une même densité : deux voisins, l'un à 1 024 et l'autre à 512 px/m, se voient tout de suite, l'un net et l'autre flou, ce que le bouton <code>Show texel density</code> de <code>CTRL_uv</code> colore en blanc, en rouge ou en bleu.</p>
 </section>
 
 <section class="chap" id="c4">

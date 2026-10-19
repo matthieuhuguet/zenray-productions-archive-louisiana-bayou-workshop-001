@@ -28,13 +28,13 @@ window.LESSON = {
     }
   },
 
-  density: {
-    wallM: { min: 0.25, max: 10, value: 2, step: 0.25, unit: 'm', digits: 2 },
-    texPx: { choices: [256, 512, 1024, 2048, 4096, 8192], value: 2048 },
-    sharePct: { min: 5, max: 100, value: 100, step: 1, unit: '%' },
-    targetPx: { choices: [256, 512, 1024, 2048], value: 1024 },
-    wallHeightM: 1,               // the wall is 1 m tall in the drawing
-    loupeM: 0.02                  // the magnifier shows 2 cm x 2 cm of wall
+  density: {                    // 19 October 2026 (rework) : a textured crate, the same image on a crate that grows
+    texPx: { choices: [64, 128, 256, 512, 1024, 2048, 4096], value: 1024 },
+    crateM: { min: 0.25, max: 4, value: 1, step: 0.25, unit: 'm', digits: 2 },
+    yaw: { min: -80, max: 80, value: 28, unit: '°' },
+    zoomM: 0.1,                   // the close up shows 10 cm of the front face (30 cm hid the pixels, 19 October 2026)
+    zoomAt: [0.5, 0.47],          // centre of the close up on the face (the small FRAGILE text)
+    refPx: 1024                   // the reference density the colours compare to
   },
 
   screen: {

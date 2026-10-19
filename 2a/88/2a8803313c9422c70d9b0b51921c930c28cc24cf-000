@@ -12,7 +12,7 @@ p2 = lambda x: 2 ** math.ceil(math.log2(x))
 checks = [
     ('texels of a 1 024 texture', fr(1024 * 1024), '1 048 576'),
     ('wall 2 m, 2 048 px island', fr(2048 / 2), '2 048 ÷ 2 = 1 024 px/m'),
-    ('px per cm at 1 024 px/m', fr(1024 / 100, 2), '10,24 px/cm'),
+    ('same image on a 2 m crate', fr(1024 / 2), 'tombe à 512 px/m'),
     ('screen px per metre at 1 m', fr(screen(1920, 1)), 'reçoit 960 pixels'),
     ('screen px per metre at 2 m', fr(screen(1920, 2)), "plus que 480"),
     ('4096 BC7 without mips (MiB)', fr(4096 * 4096 / 2**20), '16 Mio'),

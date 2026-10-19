@@ -171,64 +171,83 @@
     ], draw);
   };
 
-  // ---------------------------------------------------------------- 3. texel density : pixels per metre
+  // ---------------------------------------------------------------- 3. texel density : one image on a crate that grows (19 October 2026 rework, Matthieu : « un exemple et un objet 3D dont j'ajuste la texture »)
   ZR.w.density = (root) => {
     const P = L.density, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const tex = document.createElement('canvas');
+    let texN = 0;
+    const paintCrate = (c, N) => {          // the crate image, drawn at N x N pixels : planks, frame, brace, nails, stencil ; the small details vanish when N is small
+      const u = N / 100;
+      c.fillStyle = '#b07a45'; c.fillRect(0, 0, N, N);
+      for (let k = 0; k < 5; k++) {
+        c.fillStyle = k % 2 ? '#a8723f' : '#b9844e'; c.fillRect(0, k * 20 * u, N, 20 * u);
+        c.strokeStyle = 'rgba(70,40,15,0.45)'; c.lineWidth = Math.max(0.5, 0.35 * u);
+        for (let g = 0; g < 4; g++) { c.beginPath(); for (let i = 0; i <= 40; i++) { const x = i * N / 40, y = (k * 20 + 4 + g * 4.5 + 1.2 * Math.sin(i * 0.7 + g + k)) * u; i ? c.lineTo(x, y) : c.moveTo(x, y); } c.stroke(); }
+        c.fillStyle = '#5a3a1c'; c.fillRect(0, (k * 20 + 19.4) * u, N, 0.6 * u);
+      }
+      c.strokeStyle = '#6e4723'; c.lineWidth = 9 * u; c.strokeRect(4.5 * u, 4.5 * u, 91 * u, 91 * u);
+      c.beginPath(); c.moveTo(9 * u, 9 * u); c.lineTo(91 * u, 91 * u); c.lineWidth = 7 * u; c.stroke();
+      c.fillStyle = '#2c2c2c';
+      for (const [x, y] of [[4.5, 4.5], [95.5, 4.5], [4.5, 95.5], [95.5, 95.5], [50, 4.5], [50, 95.5], [4.5, 50], [95.5, 50]]) { c.beginPath(); c.arc(x * u, y * u, 1.1 * u, 0, 7); c.fill(); }
+      c.fillStyle = 'rgba(30,30,30,0.85)'; c.textAlign = 'center'; c.textBaseline = 'middle';
+      c.font = `500 ${11 * u}px 'InterVariable', sans-serif`; c.fillText('ZENRAY', 63 * u, 36 * u);
+      c.font = `500 ${4 * u}px 'InterVariable', sans-serif`; c.fillText('FRAGILE · HAUT ↑ · 19 OCT 2026', 63 * u, 47 * u);
+    };
+    const faces = [                          // unit cube faces : corners in order (0,0) (1,0) (1,1) (0,1) of the image ; each face carries the whole image
+      { n: [0, 0, 1], c: [[-1, 1, 1], [1, 1, 1], [1, -1, 1], [-1, -1, 1]], front: true },
+      { n: [1, 0, 0], c: [[1, 1, 1], [1, 1, -1], [1, -1, -1], [1, -1, 1]] },
+      { n: [-1, 0, 0], c: [[-1, 1, -1], [-1, 1, 1], [-1, -1, 1], [-1, -1, -1]] },
+      { n: [0, 1, 0], c: [[-1, 1, -1], [1, 1, -1], [1, 1, 1], [-1, 1, 1]] }
+    ];
     const draw = (st) => {
       const { ctx, w, h } = ZR.setup(cv);
-      const ink = ZR.css('--ink'), ink2 = ZR.css('--ink2'), line = ZR.css('--line');
-      const td = st.tex * st.share / 100 / st.wall, ratio = td / st.target, col = ZR.densityRGB(ratio);
-      // texture square and the island of the wall
-      const T = 220, tx = 20, ty = 34;
-      ctx.fillStyle = '#2b2a28'; ctx.fillRect(tx, ty, T, T);           // dark like an empty UV square, so a white (exact) island stays visible
-      ctx.strokeStyle = ink2; ctx.lineWidth = 1.2; ctx.strokeRect(tx, ty, T, T);
-      const islandPxW = st.tex * st.share / 100, islandPxH = td * P.wallHeightM;
-      const iw = T * st.share / 100, ih = Math.min(T, T * islandPxH / st.tex);
-      ctx.fillStyle = ZR.rgb(col); ctx.fillRect(tx, ty, iw, ih);
-      ctx.strokeStyle = ink; ctx.lineWidth = 1; ctx.strokeRect(tx + 0.5, ty + 0.5, iw - 1, ih - 1);
-      if (islandPxH > st.tex) ZR.text(ctx, "l'île ne tient pas en hauteur", tx + 8, ty + T - 10, { color: '#b00', size: 12 });
-      ZR.text(ctx, `texture ${ZR.n(st.tex)} × ${ZR.n(st.tex)} px`, tx, 22, { color: ink2 });
-      ZR.text(ctx, `île : ${ZR.n(islandPxW)} × ${ZR.n(Math.round(islandPxH))} px`, tx, ty + T + 18, { color: ink2 });
-      // the wall drawn to scale
-      const wx = 270, wy = 34, k = Math.min(220 / st.wall, 120 / P.wallHeightM), ww = st.wall * k, wh = P.wallHeightM * k;
-      const cell = 0.1 * k;                                            // the wall carries a 10 cm checker in its density colour
-      for (let i = 0; i * cell < ww; i++) for (let j = 0; j * cell < wh; j++) {
-        ctx.fillStyle = (i + j) % 2 ? ZR.rgb(col.map((v) => v * 0.86)) : ZR.rgb(col);
-        ctx.fillRect(wx + i * cell, wy + j * cell, Math.min(cell, ww - i * cell), Math.min(cell, wh - j * cell));
-      }
-      ctx.strokeStyle = ink; ctx.strokeRect(wx + 0.5, wy + 0.5, ww - 1, wh - 1);
-      ctx.strokeStyle = ink2;
-      for (let m = 0; m <= st.wall + 1e-9; m += (st.wall > 4 ? 1 : 0.25)) {
-        const x = wx + m * k, major = Math.abs(m - Math.round(m)) < 1e-9;
-        ctx.beginPath(); ctx.moveTo(x, wy + wh + 3); ctx.lineTo(x, wy + wh + (major ? 11 : 6)); ctx.stroke();
-      }
-      ZR.text(ctx, `le mur : ${ZR.n(st.wall, 2)} m × ${P.wallHeightM} m`, wx, 22, { color: ink2 });
-      ZR.text(ctx, st.wall > 4 ? 'un trait = 1 m' : 'grands traits = 1 m, petits = 25 cm', wx, wy + wh + 26, { color: ink2, size: 11 });
-      // the magnifier : 2 cm x 2 cm of wall
-      const Lp = 200, lx = w - 20 - Lp, ly = 34, cells = td * P.loupeM;
-      ctx.fillStyle = ZR.css('--card'); ctx.fillRect(lx, ly, Lp, Lp);
-      if (cells <= 220) {
-        const c = Lp / cells, n = Math.ceil(cells);
-        for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
-          ctx.fillStyle = (i + j) % 2 ? ZR.rgb(col.map((v) => v * 0.78)) : ZR.rgb(col);
-          ctx.fillRect(lx + i * c, ly + j * c, Math.min(c, Lp - i * c), Math.min(c, Lp - j * c));
+      const ink = ZR.css('--ink'), ink2 = ZR.css('--ink2'), N = st.tex;
+      if (texN !== N) { tex.width = N; tex.height = N; paintCrate(tex.getContext('2d'), N); texN = N; }
+      const td = N / st.crate, ratio = td / P.refPx, col = ZR.densityRGB(ratio);
+      // left : the crate in 3D, drawn to scale (1 m = k px), clamped so a tiny or a huge crate stays readable
+      const k = 80, half = st.crate / 2 * k, cx = 175, ground = h - 40, yaw = st.yaw * Math.PI / 180, pit = 0.42;
+      const rot = (v) => { const x1 = v[0] * Math.cos(yaw) - v[2] * Math.sin(yaw), z1 = v[0] * Math.sin(yaw) + v[2] * Math.cos(yaw); return [x1, v[1] * Math.cos(pit) - z1 * Math.sin(pit), v[1] * Math.sin(pit) + z1 * Math.cos(pit)]; };
+      const sc = ZR.clamp(half, 22, 125), cy = ground - sc * 1.25;
+      const proj = (v) => { const r = rot(v); return [cx + r[0] * sc, cy - r[1] * sc, r[2]]; };
+      ctx.fillStyle = ZR.css('--bg2'); ctx.fillRect(0, 0, 360, h);
+      ctx.save(); ctx.imageSmoothingEnabled = false;
+      faces.map((f) => ({ f, p: f.c.map(proj), nz: rot(f.n)[2] })).filter((F) => F.nz > 0).sort((a, b) => a.nz - b.nz).forEach((F) => {
+        const [p0, p1, , p3] = F.p;
+        ctx.save(); ctx.beginPath(); F.p.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.clip();
+        ctx.transform((p1[0] - p0[0]) / N, (p1[1] - p0[1]) / N, (p3[0] - p0[0]) / N, (p3[1] - p0[1]) / N, p0[0], p0[1]);
+        ctx.drawImage(tex, 0, 0); ctx.restore();
+        ctx.save(); ctx.beginPath(); F.p.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+        ctx.fillStyle = `rgba(0,0,0,${(0.3 * (1 - F.nz)).toFixed(3)})`; ctx.fill(); ctx.restore();
+        if (F.f.front) {             // the 30 cm square of the close up, outlined on the front face
+          const zr = Math.min(1, P.zoomM / st.crate), a = [P.zoomAt[0] - zr / 2, P.zoomAt[1] - zr / 2];
+          const q = [[a[0], a[1]], [a[0] + zr, a[1]], [a[0] + zr, a[1] + zr], [a[0], a[1] + zr]].map(([s, t]) => [p0[0] + s * (p1[0] - p0[0]) + t * (p3[0] - p0[0]), p0[1] + s * (p1[1] - p0[1]) + t * (p3[1] - p0[1])]);
+          ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 2; ctx.beginPath(); q.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.stroke();
         }
-      } else {
-        ctx.fillStyle = ZR.rgb(col); ctx.fillRect(lx, ly, Lp, Lp);
-        ZR.text(ctx, 'trop fin pour être dessiné', lx + Lp / 2, ly + Lp / 2, { color: '#333', align: 'center', size: 12 });
+      });
+      ctx.restore();
+      ZR.text(ctx, `la caisse : ${ZR.n(st.crate, 2)} m de côté${half > 125 ? ' (vue réduite)' : half < 22 ? ' (vue agrandie)' : ''}`, 14, 20, { color: ink2, size: 12 });
+      ZR.text(ctx, `chaque face porte la même image de ${ZR.n(N)} × ${ZR.n(N)} px`, 14, h - 14, { color: ink2, size: 12 });
+      // right : the close up, 30 cm of the front face, with its real pixels
+      const zs = 250, zx = w - 20 - zs, zy = 34, cw = Math.min(N, N * P.zoomM / st.crate), sx = (P.zoomAt[0] * N) - cw / 2, sy = (P.zoomAt[1] * N) - cw / 2;
+      ctx.save(); ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(tex, Math.max(0, sx), Math.max(0, sy), cw, cw, zx, zy, zs, zs);
+      ctx.restore();
+      if (cw <= 64) {
+        ctx.strokeStyle = 'rgba(0,0,0,0.25)'; ctx.lineWidth = 1;
+        for (let i = 1; i < cw; i++) { const d = zs * i / cw; ctx.beginPath(); ctx.moveTo(zx + d, zy); ctx.lineTo(zx + d, zy + zs); ctx.stroke(); ctx.beginPath(); ctx.moveTo(zx, zy + d); ctx.lineTo(zx + zs, zy + d); ctx.stroke(); }
       }
-      ctx.strokeStyle = ink2; ctx.strokeRect(lx, ly, Lp, Lp);
-      ZR.text(ctx, 'loupe : 2 cm × 2 cm du mur', lx, 22, { color: ink2 });
-      ZR.text(ctx, `${ZR.n(cells, 1)} pixels de côté`, lx, ly + Lp + 18, { color: ink2 });
-      stats.innerHTML = `<span class="line"><b>${ZR.n(st.tex)}</b> px × <b>${st.share}</b> % ÷ <b>${ZR.n(st.wall, 2)}</b> m = <b>${ZR.n(td)}</b> px/m</span>` +
-        `<span><b>${ZR.n(td / 100, 2)}</b> px par centimètre</span><span>un pixel couvre <b>${ZR.n(1000 / td, 2)}</b> mm</span>` +
-        `<span class="line"><span class="sw" style="background:${ZR.rgb(col)}"></span>Cible ${ZR.n(st.target)} px/m : ${ZR.densityWord(ratio)}</span>`;
+      ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 2; ctx.strokeRect(zx, zy, zs, zs);
+      ctx.fillStyle = ZR.rgb(col); ctx.fillRect(zx, zy + zs + 8, zs, 10); ctx.strokeStyle = ZR.css('--line'); ctx.strokeRect(zx, zy + zs + 8, zs, 10);
+      ZR.text(ctx, `de près : ${ZR.n(P.zoomM * 100)} cm de la face avant`, zx, 22, { color: ink2, size: 12 });
+      ZR.text(ctx, `${ZR.n(td * P.zoomM)} pixels sur ces ${ZR.n(P.zoomM * 100)} cm`, zx, zy + zs + 34, { color: ink, size: 13 });
+      const word = Math.abs(ratio - 1) <= L.ramp.tol ? `aussi net que la référence de ${ZR.n(P.refPx)} px/m` : ratio < 1 ? `${ZR.n(1 / ratio, 1)} fois plus flou que la référence de ${ZR.n(P.refPx)} px/m` : `${ZR.n(ratio, 1)} fois plus fin que la référence de ${ZR.n(P.refPx)} px/m`;
+      stats.innerHTML = `<span class="line">${ZR.n(N)} px ÷ ${ZR.n(st.crate, 2)} m = <b>${ZR.n(td)} px/m</b> : chaque mètre de caisse reçoit ${ZR.n(td)} pixels de l'image.</span>` +
+        `<span>Un pixel mesure <b>${ZR.n(1000 / td, 1)} mm</b> sur la caisse.</span><span><span class="sw" style="background:${ZR.rgb(col)}"></span>${word}</span>`;
     };
     return ZR.controls(root.querySelector('.ctl'), [
-      { key: 'wall', label: 'Largeur du mur', ...P.wallM },
-      { key: 'tex', label: 'Taille de la texture', ...P.texPx, unit: 'px' },
-      { key: 'share', label: "Part de la largeur de l'image prise par l'île", ...P.sharePct },
-      { key: 'target', label: 'Densité visée', ...P.targetPx, unit: 'px/m' }
+      { key: 'tex', label: "Taille de l'image", ...P.texPx, fmt: (v) => `${ZR.n(v)} × ${ZR.n(v)} px` },
+      { key: 'crate', label: 'Taille de la caisse', ...P.crateM },
+      { key: 'yaw', label: 'Tourner la caisse', ...P.yaw }
     ], draw);
   };
 
