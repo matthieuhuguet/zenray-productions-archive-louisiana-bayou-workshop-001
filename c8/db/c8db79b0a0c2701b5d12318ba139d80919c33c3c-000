@@ -2,7 +2,7 @@
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "19 October 2026 18:33",
+ "date": "19 October 2026 18:57",
  "families": [
   {
    "name": "iron",
@@ -124,9 +124,9 @@
     0.0059,
     0.9449
    ],
-   "cook_s": 3.69,
-   "bake_s": 74.37,
-   "date": "19 October 2026 18:30",
+   "cook_s": 5.66,
+   "bake_s": 74.98,
+   "date": "19 October 2026 18:53",
    "report": "M1/report.json"
   },
   {
@@ -143,6 +143,8 @@
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:grain": 1.0,
+    "uv:no_overlap": 1.0,
+    "uv:padding": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0
    },
@@ -152,9 +154,10 @@
      "W": 2048,
      "H": 2048,
      "space": "tile",
-     "unique": false,
+     "unique": "per_group",
      "region": "free",
-     "grain": "u"
+     "grain": "u",
+     "padding_px": 8
     }
    ],
    "views": {
@@ -183,10 +186,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9809442217305,
-    "px_per_m_median": 1024.0,
-    "px_per_m_max": 1024.018913293868,
-    "stretch_max": 0.0003542368483473446,
+    "px_per_m_min": 1023.9671798301291,
+    "px_per_m_median": 1024.0000051530349,
+    "px_per_m_max": 1024.046981355083,
+    "stretch_max": 0.0003511476467670249,
     "faces": 995
    },
    "seams": {
@@ -207,16 +210,16 @@
    "islands": 552,
    "fill": null,
    "u_range": [
-    0.0033,
-    2.4243
+    0.0,
+    7.0673
    ],
    "v_range": [
-    0.0037,
-    1.8815
+    0.0,
+    1.3352
    ],
-   "cook_s": 3.5,
+   "cook_s": 6.58,
    "bake_s": null,
-   "date": "19 October 2026 18:30",
+   "date": "19 October 2026 18:53",
    "report": "M2/report.json"
   },
   {
@@ -234,6 +237,8 @@
     "uv:region": 1.0,
     "uv:grain": 1.0,
     "uv:band_straight": 1.0,
+    "uv:no_overlap": 1.0,
+    "uv:padding": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0
    },
@@ -243,9 +248,11 @@
      "W": 4096,
      "H": 4096,
      "space": "tile",
-     "unique": false,
+     "unique": "per_group",
      "region": "band",
+     "sizes": "per_face",
      "padding_px": 16,
+     "group_padding_px": 8,
      "grain": "u",
      "min_straight": 0.6
     }
@@ -286,10 +293,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9596786407443,
-    "px_per_m_median": 1024.0000899860288,
-    "px_per_m_max": 1024.0375959403582,
-    "stretch_max": 0.00021895751457501333,
+    "px_per_m_min": 1023.9596782939616,
+    "px_per_m_median": 1024.0001699385784,
+    "px_per_m_max": 1024.0378162071315,
+    "stretch_max": 0.0003174370725054221,
     "faces": 995
    },
    "seams": {
@@ -300,29 +307,29 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 276.162,
-    "seams_on_smooth_m": 2.138,
+    "seams_m": 346.861,
+    "seams_on_smooth_m": 1.489,
     "sharp_kept_m": 0,
-    "sharp_m": 273.827,
-    "border_m": 0,
+    "sharp_m": 203.777,
+    "border_m": 141.399,
     "pass": true
    },
    "islands": 552,
    "fill": null,
    "u_range": [
     0.0,
-    0.8243
+    7.0962
    ],
    "v_range": [
     0.0,
-    0.998
+    1.2094
    ],
-   "cook_s": 3.57,
+   "cook_s": 6.69,
    "bake_s": null,
-   "date": "19 October 2026 18:31",
+   "date": "19 October 2026 18:55",
    "report": "M3/report.json",
    "variant": {
-    "date": "19 October 2026 18:31",
+    "date": "19 October 2026 18:55",
     "network": "/obj/ZRUV_Arch/M3_hotspot",
     "idmap": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M3/hotspot_idmap_4096.png",
     "nodes": "labs::trim_texture_utility (ID map, 21 rectangles of 1 to 8 times their height, 16 to 512 px, 4096 sheet) then labs::automatic_trim_texture (existing islands, max texel error 0.3)",
@@ -353,6 +360,8 @@
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:grain": 1.0,
+    "uv:no_overlap": 1.0,
+    "uv:padding": 1.0,
     "uv2:present": 1.0,
     "uv2:density": 1.0,
     "uv2:stretch": 1.0,
@@ -373,9 +382,10 @@
      "W": 2048,
      "H": 2048,
      "space": "tile",
-     "unique": false,
+     "unique": "per_group",
      "region": "free",
-     "grain": "u"
+     "grain": "u",
+     "padding_px": 8
     },
     {
      "set": "uv2",
@@ -432,10 +442,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9809442217305,
-    "px_per_m_median": 1024.0,
-    "px_per_m_max": 1024.018913293868,
-    "stretch_max": 0.0003542368483473446,
+    "px_per_m_min": 1023.9671798301291,
+    "px_per_m_median": 1024.0000051530349,
+    "px_per_m_max": 1024.046981355083,
+    "stretch_max": 0.0003511476467670249,
     "faces": 995
    },
    "seams": {
@@ -456,16 +466,16 @@
    "islands": 552,
    "fill": null,
    "u_range": [
-    0.0033,
-    2.4243
+    0.0,
+    7.0673
    ],
    "v_range": [
-    0.0037,
-    1.8815
+    0.0,
+    1.3352
    ],
-   "cook_s": 3.52,
-   "bake_s": 2.4,
-   "date": "19 October 2026 18:32",
+   "cook_s": 7.65,
+   "bake_s": 2.36,
+   "date": "19 October 2026 18:55",
    "report": "M4/report.json",
    "uv2": {
     "islands": 552,
@@ -562,10 +572,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9809442217305,
-    "px_per_m_median": 1023.9993734762189,
-    "px_per_m_max": 1024.018913293868,
-    "stretch_max": 0.0003542368483473446,
+    "px_per_m_min": 1023.9671798301291,
+    "px_per_m_median": 1023.9990350992216,
+    "px_per_m_max": 1024.046981355083,
+    "stretch_max": 0.0003511476467670249,
     "faces": 1903
    },
    "seams": {
@@ -586,16 +596,16 @@
    "islands": 996,
    "fill": 0.1825,
    "u_range": [
-    0.002,
-    2.4243
+    0.0,
+    7.0673
    ],
    "v_range": [
-    0.0037,
-    1.8815
+    0.0,
+    1.3352
    ],
-   "cook_s": 3.8,
+   "cook_s": 5.7,
    "bake_s": null,
-   "date": "19 October 2026 18:32",
+   "date": "19 October 2026 18:55",
    "report": "M5/report.json"
   }
  ],
