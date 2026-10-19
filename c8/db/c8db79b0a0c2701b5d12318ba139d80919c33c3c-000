@@ -2,7 +2,7 @@
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "19 October 2026 21:40",
+ "date": "19 October 2026 21:55",
  "families": [
   {
    "name": "iron",
@@ -33,21 +33,24 @@
   {
    "id": "M1",
    "title": "UV unique et bake",
-   "idea": "Chaque point de l'objet a ses propres pixels dans une seule texture ; les cartes du maillage (couleur ID, occlusion, courbure, arêtes) sont cuites dedans.",
-   "score": 0.999261,
-   "weakest": "uv:stretch",
+   "idea": "Chaque point de l'objet a ses propres pixels dans une texture unique de 4096 px au plus ; les îles jumelles (les deux piliers, les deux faces de l'arche, les rivets) partagent la même place, et les cartes du maillage sont cuites dedans.",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
-    "uv:stretch": 0.999261,
+    "uv:stretch": 1.0,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
+    "uv:horizontal": 1.0,
     "uv:stack": 1.0,
     "uv:no_overlap": 1.0,
     "uv:padding": 1.0,
     "seams:consistency": 1.0,
-    "seams:robust_crease": 1.0
+    "seams:robust_crease": 1.0,
+    "bake:coverage": 1.0,
+    "bake:id_match": 1.0
    },
    "contracts": [
     {
@@ -69,7 +72,13 @@
     "uv_family": "M1/view_uv_family.png",
     "uv_density": "M1/view_uv_density.png"
    },
-   "bake": {},
+   "bake": {
+    "custom": "M1/thumb_custom.png",
+    "occlusion": "M1/thumb_occlusion.png",
+    "curvature": "M1/thumb_curvature.png",
+    "edge": "M1/thumb_edge.png",
+    "alpha": "M1/thumb_alpha.png"
+   },
    "textures": [
     {
      "label": "texture unique",
@@ -88,9 +97,9 @@
     "low_frac": 0.0,
     "high_frac": 0.0,
     "px_per_m_min": 1023.9860437728893,
-    "px_per_m_median": 1023.9999999999995,
+    "px_per_m_median": 1023.9999699274964,
     "px_per_m_max": 1024.015951086523,
-    "stretch_max": 0.2110050159075132,
+    "stretch_max": 0.07316506499145392,
     "faces": 995
    },
    "seams": {
@@ -109,18 +118,18 @@
     "pass": true
    },
    "islands": 669,
-   "fill": 0.5095,
+   "fill": 0.5076,
    "u_range": [
     0.002,
-    0.9812
+    0.983
    ],
    "v_range": [
-    0.1314,
+    0.1328,
     0.998
    ],
-   "cook_s": 6.58,
-   "bake_s": null,
-   "date": "19 October 2026 21:38",
+   "cook_s": 2.31,
+   "bake_s": 23.49,
+   "date": "19 October 2026 21:52",
    "report": "M1/report.json",
    "example": {
     "texture": "M1/texture_unique.png",
@@ -129,29 +138,30 @@
    },
    "method_text": {
     "steps": [
-     "Les arêtes plus vives que le pli deviennent des coutures ; uvautoseam ajoute les coupes de fermeture des tubes ; uvflatten déplie ; labs texel density met chaque île à la densité demandée.",
-     "Chaque île est couchée, son axe le plus long sur u ; chaque pièce (arche, croix, pendentif, piliers, panneau, rivets, fils) est rangée dans sa propre boîte, sans rotation.",
-     "Les pièces sont posées en rangées depuis le haut à gauche, les semblables côte à côte ; la feuille unique est la plus petite puissance de deux qui les tient.",
-     "Copernicus cuit dans ces UV la couleur ID, l'occlusion, la courbure et les arêtes ; l'exemple texturé est la matière de chaque famille, multipliée par l'occlusion et éclaircie sur les arêtes cuites."
+     "Les arêtes plus vives que le pli deviennent des coutures. Chaque carte entre deux coutures faite d'une grille de quads (une bande de l'arche, un côté de pilier) est posée en rectangle exact, mesuré sur ses arêtes 3D : l'arche courbe devient une bande droite d'une seule pièce. Un quad qui n'est pas un rectangle (un chanfrein en trapèze, un coin de cadre) devient sa propre petite île, à plat sur son plan ; le reste garde le dépliage natif uvflatten, et labs texel density met tout à 1024 px/m.",
+     "Une bande plus longue que la plus grande texture permise est coupée sur une colonne de sa grille : l'arche à son sommet, en deux moitiés de 2,6 m.",
+     "Les îles jumelles, mêmes faces et même taille, sont posées l'une sur l'autre ; les autres sont rangées en rangées depuis le haut à gauche, les plus hautes d'abord, toutes couchées.",
+     "La feuille est la plus petite taille permise qui tient les rangées (2048, 4096 par 2048, puis 4096) ; Copernicus y cuit la couleur ID, l'occlusion, la courbure et les arêtes."
     ],
     "when": "Objet unique vu de près, personnage, arme, prop de moins de deux mètres : chaque point a ses propres pixels, on peut tout peindre et tout cuire.",
-    "check": "Damier aux carrés égaux, densité blanche partout, îles toutes horizontales et groupées par pièce, et sur la vue texturée l'usure qui suit chaque arête."
+    "check": "Une seule texture de 4096 au plus, des rangées de bandes droites et horizontales, les jumelles superposées, la densité blanche partout et le damier aux carrés égaux."
    }
   },
   {
    "id": "M2",
    "title": "Texture tileable",
-   "idea": "Une texture qui se raccorde sur ses bords se répète sur l'objet ; le fil du bois suit u, chaque île est décalée au hasard et une peinture de sommets casse la répétition.",
-   "score": 0.999261,
-   "weakest": "uv:stretch",
+   "idea": "Une texture qui se raccorde sur ses bords par famille, 2048 px d'abord ; les bandes droites se couchent dans son carré, les jumelles s'empilent, et une bande plus longue que la tuile continue le long de u sur la texture qui se répète.",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
-    "uv:stretch": 0.999261,
+    "uv:stretch": 1.0,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
-    "uv:grain": 0.999716,
+    "uv:grain": 1.0,
+    "uv:horizontal": 1.0,
     "uv:stack": 1.0,
     "uv:no_overlap": 1.0,
     "uv:padding": 1.0,
@@ -184,12 +194,28 @@
    "bake": {},
    "textures": [
     {
-     "label": "tuile répétée par famille",
+     "label": "tuile répétée iron",
      "w": 2048,
      "h": 2048,
-     "count": 3,
+     "count": 1,
      "mib_each": 5.3,
-     "mib": 16.0
+     "mib": 5.3
+    },
+    {
+     "label": "tuile répétée pillar",
+     "w": 2048,
+     "h": 2048,
+     "count": 1,
+     "mib_each": 5.3,
+     "mib": 5.3
+    },
+    {
+     "label": "tuile répétée sign",
+     "w": 2048,
+     "h": 2048,
+     "count": 1,
+     "mib_each": 5.3,
+     "mib": 5.3
     }
    ],
    "texel": {
@@ -199,10 +225,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9855687327127,
-    "px_per_m_median": 1024.0,
-    "px_per_m_max": 1024.0189071683617,
-    "stretch_max": 0.2110050159075132,
+    "px_per_m_min": 1023.9874914665908,
+    "px_per_m_median": 1024.0000572920324,
+    "px_per_m_max": 1024.014601233526,
+    "stretch_max": 0.07316417936975328,
     "faces": 995
    },
    "seams": {
@@ -223,16 +249,16 @@
    "islands": 661,
    "fill": null,
    "u_range": [
-    0.001,
+    0.002,
     2.6362
    ],
    "v_range": [
-    0.1056,
-    2.999
+    0.1084,
+    2.998
    ],
-   "cook_s": 6.17,
+   "cook_s": 2.45,
    "bake_s": null,
-   "date": "19 October 2026 21:39",
+   "date": "19 October 2026 21:52",
    "report": "M2/report.json",
    "example": {
     "textured_3d": "M2/view_textured_3d.png",
@@ -240,28 +266,30 @@
    },
    "method_text": {
     "steps": [
-     "Même dépliage que M1, puis chaque île tourne pour que le fil de sa famille suive u : le long du poteau pour les piliers, à l'horizontale pour le panneau, l'axe le plus long pour le fer.",
-     "Chaque famille reçoit sa propre texture répétée, un seul carré : la tuile grandit par puissances de deux jusqu'à tenir toute la famille à la densité demandée.",
-     "Les îles d'une famille sont rangées dans son carré, sans chevauchement ni rotation ; un bruit de peinture de sommets (zruv_breakup) casse la répétition."
+     "Les arêtes plus vives que le pli deviennent des coutures. Chaque carte entre deux coutures faite d'une grille de quads (une bande de l'arche, un côté de pilier) est posée en rectangle exact, mesuré sur ses arêtes 3D : l'arche courbe devient une bande droite d'une seule pièce. Un quad qui n'est pas un rectangle (un chanfrein en trapèze, un coin de cadre) devient sa propre petite île, à plat sur son plan ; le reste garde le dépliage natif uvflatten, et labs texel density met tout à 1024 px/m.",
+     "Chaque famille reçoit sa texture répétée, un seul carré, 2048 px d'abord, 4096 seulement si ses rangées ne tiennent pas ; les jumelles s'empilent, les autres îles se rangent en rangées.",
+     "Une île plus longue que la tuile (les bandes de 5,3 m de l'arche) garde sa rangée et continue au-delà du carré, sur la texture qui se répète le long de u : aucune coupe sur l'arche.",
+     "Un bruit de peinture de sommets (zruv_breakup) casse la répétition."
     ],
     "when": "Grandes surfaces d'une même matière, murs, sols, poteaux : la mémoire ne dépend plus de la taille de l'objet.",
-    "check": "Un carré par famille sans île dehors, la tôle et le bois à la même échelle partout sur la vue texturée, le fil du bois le long des piliers."
+    "check": "Un panneau par famille, son carré cerclé de jaune, les îles couchées, et sur la vue texturée la tôle continue le long de l'arche sans couture."
    }
   },
   {
    "id": "M3",
    "title": "Trim sheet et hotspot",
-   "idea": "Des bandes horizontales par famille qui se répètent en u : chaque île fine se pose dans la bande de sa hauteur, les grandes faces gardent la texture répétée de leur famille.",
-   "score": 0.999261,
-   "weakest": "uv:stretch",
+   "idea": "Une seule trim sheet partagée par toutes les familles, à la manière de Naughty Dog : des bandes pleine largeur, une par hauteur mesurée, les plus fines en haut, puis une zone pleine en bas pour le panneau et les grandes faces.",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
-    "uv:stretch": 0.999261,
+    "uv:stretch": 1.0,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
-    "uv:grain": 0.999716,
+    "uv:grain": 1.0,
+    "uv:horizontal": 1.0,
     "uv:band_straight": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0
@@ -292,20 +320,12 @@
    "bake": {},
    "textures": [
     {
-     "label": "tuile répétée par famille",
-     "w": 2048,
-     "h": 2048,
-     "count": 3,
-     "mib_each": 5.3,
-     "mib": 16.0
-    },
-    {
-     "label": "trim sheet",
+     "label": "trim sheet, une par matière",
      "w": 4096,
      "h": 4096,
-     "count": 1,
+     "count": 2,
      "mib_each": 21.3,
-     "mib": 21.3
+     "mib": 42.7
     }
    ],
    "texel": {
@@ -318,7 +338,7 @@
     "px_per_m_min": 1023.9856858291099,
     "px_per_m_median": 1024.0,
     "px_per_m_max": 1024.0143131704938,
-    "stretch_max": 0.21100507196980067,
+    "stretch_max": 0.07316409542358526,
     "faces": 995
    },
    "seams": {
@@ -346,9 +366,9 @@
     0.001,
     0.999
    ],
-   "cook_s": 6.15,
+   "cook_s": 2.38,
    "bake_s": null,
-   "date": "19 October 2026 21:39",
+   "date": "19 October 2026 21:52",
    "report": "M3/report.json",
    "example": {
     "texture": "M3/texture_trim.png",
@@ -357,58 +377,47 @@
    },
    "method_text": {
     "steps": [
-     "Même dépliage et même orientation que M2 ; les îles fines et droites vont dans des bandes horizontales, une par famille et par hauteur, empilées du haut, posées en haut à gauche de leur bande (u se répète).",
-     "Les grandes faces, le panneau compris, sont rangées sous les bandes, dans le même carré, sans chevauchement.",
-     "La texture d'exemple peint chaque bande avec la matière de sa famille à l'échelle réelle, avec un filet sombre et un chanfrein clair sur ses bords."
+     "Les arêtes plus vives que le pli deviennent des coutures. Chaque carte entre deux coutures faite d'une grille de quads (une bande de l'arche, un côté de pilier) est posée en rectangle exact, mesuré sur ses arêtes 3D : l'arche courbe devient une bande droite d'une seule pièce. Un quad qui n'est pas un rectangle (un chanfrein en trapèze, un coin de cadre) devient sa propre petite île, à plat sur son plan ; le reste garde le dépliage natif uvflatten, et labs texel density met tout à 1024 px/m.",
+     "Une seule trim sheet pour tout l'objet : des bandes pleine largeur, une par hauteur d'île mesurée (deux hauteurs à 8 px près partagent la plus haute), les plus fines en haut.",
+     "Chaque île rectangulaire se pose à gauche de la bande de sa hauteur, les semblables l'une sur l'autre, et u se répète le long de la bande ; le panneau et les faces non rectangulaires vont dans la zone pleine du bas.",
+     "La même mise en page est peinte une fois par matière (fer, bois des piliers, bois du panneau), avec un filet et un chanfrein cuits sur les bords de chaque bande, comme les baked bevel trims de TLOU Part I."
     ],
-    "when": "Architecture, kits modulaires, moulures, poutres : une seule texture sert toutes les pièces fines, quelle que soit leur longueur.",
-    "check": "Un seul carré, bandes horizontales, panneau présent sous les bandes, et sur la vue texturée les filets de bande qui suivent les arêtes."
-   },
-   "variant": {
-    "date": "19 October 2026 20:45",
-    "network": "/obj/ZRUV_Arch/M3_hotspot",
-    "idmap": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M3/hotspot_idmap_8192.png",
-    "nodes": "labs::trim_texture_utility (ID map, rectangles of 1 to 8 times their height, 16 to 512 px, 8192 sheet) then labs::automatic_trim_texture (existing islands, max texel error 0.3)",
-    "score": 0.0,
-    "weakest": "uv:stretch",
-    "density_within_1pc": 0.0259,
-    "density_within_10pc": 0.2074,
-    "density_within_30pc": 0.3372,
-    "px_per_m_min": 808,
-    "px_per_m_median": 6588,
-    "px_per_m_max": 1493551,
-    "not_mirrored": 0.50799,
-    "grain": 0.900796,
-    "verdict": "Écartée : le hotspot range chaque île dans le rectangle le plus proche en la redimensionnant, il ne peut pas tenir la densité demandée ; la trim sheet par bandes (M3) la garde exacte."
+    "when": "Architecture, kits modulaires, moulures, poutres : une seule mise en page sert toutes les pièces fines, quelle que soit leur longueur, et chaque matière n'est qu'une texture de plus.",
+    "check": "Des bandes horizontales pleine largeur, le panneau dans la zone pleine, et sur la vue texturée les filets de bande qui suivent les arêtes de l'arche."
    }
   },
   {
    "id": "M4",
    "title": "Matériaux en couches et masque RGB",
-   "idea": "uv répète les matériaux de bibliothèque comme M2 ; uv2, unique et petite, porte un masque RVB cuit qui dit où poser chaque couche (R usure, V ciel, B hauteur).",
-   "score": 0.999261,
-   "weakest": "uv:stretch",
+   "idea": "uv répète les matériaux de bibliothèque comme M2 ; uv2, unique et petite, porte un masque RVB empaqueté dans Copernicus (R usure, V ciel, B sol) qui dit où poser chaque couche.",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
-    "uv:stretch": 0.999261,
+    "uv:stretch": 1.0,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
-    "uv:grain": 0.999716,
+    "uv:grain": 1.0,
+    "uv:horizontal": 1.0,
     "uv:stack": 1.0,
     "uv:no_overlap": 1.0,
     "uv:padding": 1.0,
     "uv2:present": 1.0,
     "uv2:density": 1.0,
-    "uv2:stretch": 0.999261,
+    "uv2:stretch": 1.0,
     "uv2:no_flip": 1.0,
     "uv2:not_mirrored": 1.0,
     "uv2:region": 1.0,
+    "uv2:horizontal": 1.0,
     "uv2:no_overlap": 1.0,
     "uv2:padding": 1.0,
     "seams:consistency": 1.0,
-    "seams:robust_crease": 1.0
+    "seams:robust_crease": 1.0,
+    "bake:coverage": 1.0,
+    "bake:id_match": 1.0,
+    "mask:channels": 1.0
    },
    "contracts": [
     {
@@ -446,15 +455,44 @@
     "uv2_family": "M4/view_uv2_family.png",
     "uv2_density": "M4/view_uv2_density.png"
    },
-   "bake": {},
+   "bake": {
+    "custom": "M4/thumb_custom.png",
+    "edge": "M4/thumb_edge.png",
+    "worldnormal": "M4/thumb_worldnormal.png",
+    "position": "M4/thumb_position.png",
+    "occlusion": "M4/thumb_occlusion.png",
+    "alpha": "M4/thumb_alpha.png",
+    "layered": "M4/thumb_layered.png",
+    "mask_rgb": "M4/thumb_mask_rgb.png",
+    "mask_R": "M4/thumb_mask_R.png",
+    "mask_G": "M4/thumb_mask_G.png",
+    "mask_B": "M4/thumb_mask_B.png",
+    "base": "M4/thumb_base.png"
+   },
    "textures": [
     {
-     "label": "tuile répétée par famille",
+     "label": "tuile répétée iron",
      "w": 2048,
      "h": 2048,
-     "count": 3,
+     "count": 1,
      "mib_each": 5.3,
-     "mib": 16.0
+     "mib": 5.3
+    },
+    {
+     "label": "tuile répétée pillar",
+     "w": 2048,
+     "h": 2048,
+     "count": 1,
+     "mib_each": 5.3,
+     "mib": 5.3
+    },
+    {
+     "label": "tuile répétée sign",
+     "w": 2048,
+     "h": 2048,
+     "count": 1,
+     "mib_each": 5.3,
+     "mib": 5.3
     },
     {
      "label": "masque RVB sur uv2",
@@ -472,10 +510,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9855687327127,
-    "px_per_m_median": 1024.0,
-    "px_per_m_max": 1024.0189071683617,
-    "stretch_max": 0.2110050159075132,
+    "px_per_m_min": 1023.9874914665908,
+    "px_per_m_median": 1024.0000572920324,
+    "px_per_m_max": 1024.014601233526,
+    "stretch_max": 0.07316417936975328,
     "faces": 995
    },
    "seams": {
@@ -496,30 +534,35 @@
    "islands": 661,
    "fill": null,
    "u_range": [
-    0.001,
+    0.002,
     2.6362
    ],
    "v_range": [
-    0.1056,
-    2.999
+    0.1084,
+    2.998
    ],
-   "cook_s": 6.12,
-   "bake_s": null,
-   "date": "19 October 2026 21:39",
+   "cook_s": 2.43,
+   "bake_s": 4.85,
+   "date": "19 October 2026 21:52",
    "report": "M4/report.json",
-   "example": {},
+   "example": {
+    "texture": "M4/ZRUV_Arch_M4_layered_1024x1024.png",
+    "textured_3d": "M4/view_textured_3d.png",
+    "textured_close": "M4/view_textured_close.png"
+   },
    "method_text": {
     "steps": [
-     "uv répète les matériaux de bibliothèque comme M2 ; uv2 est un second jeu unique, petit (128 px/m), couché à l'horizontale et rangé dans sa feuille.",
+     "uv répète les matériaux de bibliothèque comme M2 ; uv2 suit le même dépliage droit à 128 px/m, rangé sans empilement (chaque point a sa propre valeur de masque).",
      "Copernicus cuit dans uv2 les UV de tuile, un masque par famille, les arêtes, la normale monde et la position ; des nœuds sample lisent chaque matière à travers les UV de tuile.",
-     "Trois couches mélangées par blend : la saleté sur les faces tournées vers le ciel (canal V), le laiton usé sur les arêtes (canal R), un assombrissement vers le sol (canal B)."
+     "Trois masques, empaquetés par un Channel Join natif en une texture RVB : rouge l'usure des arêtes, vert les faces tournées vers le ciel, bleu l'approche du sol.",
+     "Trois couches mélangées par blend : la saleté sur le vert, le laiton usé sur le rouge, un assombrissement sur le bleu."
     ],
     "when": "Gros objets non modulaires et tout ce qu'on veut automatiser : deux ou trois matériaux répétés et un petit masque remplacent une texture unique.",
-    "check": "Les trois canaux du masque montrés seuls, la base avant les couches, puis la texture mélangée et la vue texturée : la saleté sur le dessus, le laiton sur les arêtes."
+    "check": "Le masque RVB empaqueté et ses trois canaux, chacun dans sa couleur, puis la base, le mélange et la vue texturée : la saleté sur le dessus, le laiton sur les arêtes."
    },
    "uv2": {
     "islands": 661,
-    "fill": 0.293,
+    "fill": 0.2929,
     "texel": {
      "set": "uv2",
      "target_px_per_m": 128.0,
@@ -527,29 +570,34 @@
      "exact_frac": 1.0,
      "low_frac": 0.0,
      "high_frac": 0.0,
-     "px_per_m_min": 127.99549831729311,
-     "px_per_m_median": 127.99997715999402,
+     "px_per_m_min": 127.99825547161116,
+     "px_per_m_median": 127.9999843200311,
      "px_per_m_max": 128.0037636621613,
-     "stretch_max": 0.21100546440602286,
+     "stretch_max": 0.07316350780195213,
      "faces": 995
     }
    },
-   "mask_std": null
+   "mask_std": [
+    0.0396,
+    0.2394,
+    0.145
+   ]
   },
   {
    "id": "M5",
    "title": "Mesh decals",
-   "idea": "La base répétée de M2, plus des decals de géométrie posés 1 mm au-dessus : bandes d'usure pliées sur les arêtes vives et decal unique du panneau, rangés dans un atlas.",
-   "score": 0.999398,
-   "weakest": "uv:stretch",
+   "idea": "La base répétée de M2, plus des decals de géométrie posés 1 mm au-dessus : bandes d'usure pliées sur les arêtes vives et decal unique du panneau, rangés dans un atlas de 2048 à 4096 px.",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
-    "uv:stretch": 0.999398,
+    "uv:stretch": 1.0,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
-    "uv:grain": 0.999768,
+    "uv:grain": 1.0,
+    "uv:horizontal": 1.0,
     "uv:stack": 1.0,
     "uv:no_overlap": 1.0,
     "uv:padding": 1.0,
@@ -589,12 +637,28 @@
    "bake": {},
    "textures": [
     {
-     "label": "tuile répétée par famille",
+     "label": "tuile répétée iron",
      "w": 2048,
      "h": 2048,
-     "count": 3,
+     "count": 1,
      "mib_each": 5.3,
-     "mib": 16.0
+     "mib": 5.3
+    },
+    {
+     "label": "tuile répétée pillar",
+     "w": 2048,
+     "h": 2048,
+     "count": 1,
+     "mib_each": 5.3,
+     "mib": 5.3
+    },
+    {
+     "label": "tuile répétée sign",
+     "w": 2048,
+     "h": 2048,
+     "count": 1,
+     "mib_each": 5.3,
+     "mib": 5.3
     },
     {
      "label": "atlas de decals",
@@ -612,10 +676,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9855687327127,
-    "px_per_m_median": 1023.9996389281946,
-    "px_per_m_max": 1024.0189071683617,
-    "stretch_max": 0.2110050159075132,
+    "px_per_m_min": 1023.9874914665908,
+    "px_per_m_median": 1023.999797210933,
+    "px_per_m_max": 1024.017032573134,
+    "stretch_max": 0.07316417936975328,
     "faces": 1903
    },
    "seams": {
@@ -636,16 +700,16 @@
    "islands": 1105,
    "fill": 0.1825,
    "u_range": [
-    0.001,
+    0.002,
     2.6362
    ],
    "v_range": [
-    0.1056,
-    2.999
+    0.1084,
+    2.998
    ],
-   "cook_s": 6.31,
+   "cook_s": 2.53,
    "bake_s": null,
-   "date": "19 October 2026 21:39",
+   "date": "19 October 2026 21:52",
    "report": "M5/report.json",
    "example": {
     "texture": "M5/texture_decal_atlas_preview.png",
@@ -655,7 +719,7 @@
    "method_text": {
     "steps": [
      "La base est M2 ; sur chaque arête vive convexe de 80 à 120 degrés du fer et des piliers, une bande pliée sur l'arête, soulevée de 1 mm, prend ses UV dans la bande de l'atlas.",
-     "La face avant du panneau reçoit un decal unique, projeté sur son plan, avec ses propres pixels sous la bande.",
+     "La face avant du panneau reçoit un decal unique, projeté sur son plan, avec ses propres pixels sous la bande ; l'atlas fait 2048 px et ne double que si les decals ne tiennent pas.",
      "L'atlas d'exemple porte une bande d'usure dont l'alpha tombe vers les bords et le lettrage du panneau ; la vue texturée découpe les decals par leur alpha."
     ],
     "when": "Détail fin sur de grandes coques ou de grands murs : arêtes usées, inscriptions, plaques, sans agrandir la texture de base.",

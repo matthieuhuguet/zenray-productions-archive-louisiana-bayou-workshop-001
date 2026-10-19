@@ -1,14 +1,15 @@
 {
- "score": 0.999398,
- "weakest": "uv:stretch",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
-  "uv:stretch": 0.999398,
+  "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
-  "uv:grain": 0.999768,
+  "uv:grain": 1.0,
+  "uv:horizontal": 1.0,
   "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
@@ -25,17 +26,17 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9855687327127,
-    "px_per_m_median": 1023.9996389281946,
-    "px_per_m_max": 1024.0189071683617,
-    "stretch_max": 0.2110050159075132,
+    "px_per_m_min": 1023.9874914665908,
+    "px_per_m_median": 1023.999797210933,
+    "px_per_m_max": 1024.017032573134,
+    "stretch_max": 0.07316417936975328,
     "faces": 1903
    },
-   "straight_area": 0.4921,
-   "straight_stretch_max": 0.211,
-   "stretch_over_2pc_area": 0.0885,
+   "straight_area": 0.4891,
+   "straight_stretch_max": 0.0732,
+   "stretch_over_2pc_area": 0.0855,
    "islands": 1105,
-   "stacked_faces": 570,
+   "stacked_faces": 575,
    "overlap_px": 0,
    "covered_px": 3061785,
    "fill": 0.1825,
@@ -45,12 +46,12 @@
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
-    0.001,
+    0.002,
     2.6362
    ],
    "v_range": [
-    0.1056,
-    2.999
+    0.1084,
+    2.998
    ]
   }
  },
@@ -68,6 +69,11 @@
   "sharp_m": 323.608,
   "border_m": 152.497,
   "pass": true
+ },
+ "layout": {
+  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 2048, \"islands\": 329, \"stacked\": 244, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 2048, \"islands\": 280, \"stacked\": 220, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 2048, \"islands\": 52, \"stacked\": 31, \"past_u1\": 4}]",
+  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 260, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.0732, \"kink_faces\": 368, \"kept_native\": 246, \"cut_at_kinks\": 6, \"straight_area\": 0.6002}",
+  "zruv_decal_band": "{\"v0\": 0.985107421875, \"v1\": 1.0, \"v0_content\": 0.987060546875, \"v1_content\": 0.998046875, \"px\": 61, \"strips\": 884, \"unique_faces\": 24, \"atlas_px\": 4096.0, \"strips_dropped_too_close\": 8}"
  },
  "method": "M5",
  "title": "Mesh decals",
@@ -93,8 +99,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 6.31,
- "score_s": 2.25,
+ "cook_s": 2.53,
+ "score_s": 0.6,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -105,7 +111,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 21:39",
+ "date": "19 October 2026 21:52",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
