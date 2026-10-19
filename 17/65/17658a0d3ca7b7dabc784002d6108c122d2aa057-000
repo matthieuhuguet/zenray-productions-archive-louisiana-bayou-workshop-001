@@ -1,0 +1,86 @@
+{
+ "score": 1.0,
+ "weakest": "uv:present",
+ "components": {
+  "uv:present": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
+  "uv:region": 1.0,
+  "uv:grain": 1.0,
+  "seams:consistency": 1.0,
+  "seams:robust_crease": 1.0
+ },
+ "reports": {
+  "uv": {
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.01,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1023.9596762526182,
+    "px_per_m_median": 1024.000083434972,
+    "px_per_m_max": 1024.0375837004683,
+    "stretch_max": 0.00021690936921126003,
+    "faces": 995
+   },
+   "islands": 552,
+   "u_range": [
+    0.0,
+    0.8243
+   ],
+   "v_range": [
+    0.0,
+    0.998
+   ]
+  }
+ },
+ "seams": {
+  "crease_requested": 30.0,
+  "crease_effective": 29.185,
+  "edges_near_requested": 4,
+  "ambiguous_edges": 0,
+  "chains_mixed": 0,
+  "mixed_detail": [],
+  "consistency": 1.0,
+  "seams_m": 276.162,
+  "seams_on_smooth_m": 2.138,
+  "sharp_kept_m": 0,
+  "sharp_m": 273.827,
+  "border_m": 0,
+  "pass": true
+ },
+ "method": "M3",
+ "title": "Trim sheet et hotspot",
+ "contracts": [
+  {
+   "set": "uv",
+   "W": 4096,
+   "H": 4096,
+   "space": "tile",
+   "unique": false,
+   "region": "band",
+   "padding_px": 16,
+   "grain": "u"
+  }
+ ],
+ "targets": {
+  "uv": 1024.0
+ },
+ "cook_s": 3.35,
+ "score_s": 0.03,
+ "bake": null,
+ "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
+ "asset_scale": 1.64,
+ "texel_density": 1024.0,
+ "families": [
+  "iron",
+  "pillar",
+  "sign"
+ ],
+ "crease_effective": 29.1846923828125,
+ "date": "19 October 2026 18:08"
+}

@@ -1,0 +1,166 @@
+{
+ "score": 1.0,
+ "weakest": "uv:present",
+ "components": {
+  "uv:present": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
+  "uv:region": 1.0,
+  "uv:grain": 1.0,
+  "uv2:present": 1.0,
+  "uv2:density": 1.0,
+  "uv2:stretch": 1.0,
+  "uv2:no_flip": 1.0,
+  "uv2:not_mirrored": 1.0,
+  "uv2:region": 1.0,
+  "uv2:no_overlap": 1.0,
+  "uv2:padding": 1.0,
+  "seams:consistency": 1.0,
+  "seams:robust_crease": 1.0,
+  "bake:coverage": 1.0,
+  "bake:id_match": 1.0,
+  "mask:channels": 1.0
+ },
+ "reports": {
+  "uv": {
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.01,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1023.9809442217305,
+    "px_per_m_median": 1024.0,
+    "px_per_m_max": 1024.018913293868,
+    "stretch_max": 0.0003542368483473446,
+    "faces": 995
+   },
+   "islands": 552,
+   "u_range": [
+    0.0033,
+    2.4243
+   ],
+   "v_range": [
+    0.0037,
+    1.8815
+   ]
+  },
+  "uv2": {
+   "texel": {
+    "set": "uv2",
+    "target_px_per_m": 128.0,
+    "tol": 0.01,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 127.99396644225102,
+    "px_per_m_median": 128.00002161541406,
+    "px_per_m_max": 128.00469796255854,
+    "stretch_max": 0.00011847506022544252,
+    "faces": 995
+   },
+   "islands": 552,
+   "overlap_px": 0,
+   "covered_px": 4895337,
+   "fill": 0.2918,
+   "padding_overlap_px": 0,
+   "padding_check_radius_px": 7,
+   "u_range": [
+    0.0039,
+    0.9957
+   ],
+   "v_range": [
+    0.0039,
+    0.5108
+   ]
+  }
+ },
+ "seams": {
+  "crease_requested": 30.0,
+  "crease_effective": 29.185,
+  "edges_near_requested": 4,
+  "ambiguous_edges": 0,
+  "chains_mixed": 0,
+  "mixed_detail": [],
+  "consistency": 1.0,
+  "seams_m": 276.162,
+  "seams_on_smooth_m": 2.138,
+  "sharp_kept_m": 0,
+  "sharp_m": 273.827,
+  "border_m": 0,
+  "pass": true
+ },
+ "method": "M4",
+ "title": "Mat\u00e9riaux en couches et masque RGB",
+ "contracts": [
+  {
+   "set": "uv",
+   "W": 2048,
+   "H": 2048,
+   "space": "tile",
+   "unique": false,
+   "region": "free",
+   "grain": "u"
+  },
+  {
+   "set": "uv2",
+   "W": 1024,
+   "H": 1024,
+   "space": "sheet",
+   "unique": true,
+   "region": "sheet",
+   "target": 128.0,
+   "padding_px": 4
+  }
+ ],
+ "targets": {
+  "uv": 1024.0,
+  "uv2": 128.0
+ },
+ "cook_s": 3.4,
+ "score_s": 2.73,
+ "bake": {
+  "files": {
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_custom_1024x1024.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_edge_1024x1024.png",
+   "worldnormal": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_worldnormal_1024x1024.png",
+   "position": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_position_1024x1024.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_occlusion_1024x1024.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_alpha_1024x1024.png",
+   "mask_rgb": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_mask_rgb_1024x1024.png"
+  },
+  "seconds": {
+   "custom": 1.14,
+   "edge": 0.18,
+   "worldnormal": 0.22,
+   "position": 0.2,
+   "occlusion": 0.19,
+   "alpha": 0.18
+  },
+  "size": [
+   1024,
+   1024
+  ],
+  "coverage": 1.0,
+  "id_match": 1.0,
+  "mask_std": [
+   0.0456,
+   0.3041,
+   0.2307
+  ],
+  "mask_channels": 1.0
+ },
+ "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
+ "asset_scale": 1.64,
+ "texel_density": 1024.0,
+ "families": [
+  "iron",
+  "pillar",
+  "sign"
+ ],
+ "crease_effective": 29.1846923828125,
+ "date": "19 October 2026 18:08"
+}

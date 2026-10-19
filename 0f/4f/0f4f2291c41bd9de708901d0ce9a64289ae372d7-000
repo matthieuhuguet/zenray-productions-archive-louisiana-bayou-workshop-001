@@ -1,0 +1,98 @@
+{
+ "score": 1.0,
+ "weakest": "uv:present",
+ "components": {
+  "uv:present": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
+  "uv:region": 1.0,
+  "uv:grain": 1.0,
+  "uv:no_overlap": 1.0,
+  "uv:padding": 1.0,
+  "seams:consistency": 1.0,
+  "seams:robust_crease": 1.0,
+  "decals:lift": 1.0
+ },
+ "reports": {
+  "uv": {
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.01,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1023.9809442217305,
+    "px_per_m_median": 1023.9993734762189,
+    "px_per_m_max": 1024.018913293868,
+    "stretch_max": 0.0003542368483473446,
+    "faces": 1903
+   },
+   "islands": 996,
+   "overlap_px": 0,
+   "covered_px": 3061785,
+   "fill": 0.1825,
+   "padding_overlap_px": 0,
+   "padding_check_radius_px": 7,
+   "u_range": [
+    0.002,
+    2.4243
+   ],
+   "v_range": [
+    0.0037,
+    1.8815
+   ]
+  }
+ },
+ "seams": {
+  "crease_requested": 30.0,
+  "crease_effective": 29.185,
+  "edges_near_requested": 4,
+  "ambiguous_edges": 0,
+  "chains_mixed": 0,
+  "mixed_detail": [],
+  "consistency": 1.0,
+  "seams_m": 428.659,
+  "seams_on_smooth_m": 2.138,
+  "sharp_kept_m": 49.781,
+  "sharp_m": 323.608,
+  "border_m": 152.497,
+  "pass": true
+ },
+ "method": "M5",
+ "title": "Mesh decals",
+ "contracts": [
+  {
+   "set": "uv",
+   "W": 4096,
+   "H": 4096,
+   "space": "tile",
+   "unique": "per_face",
+   "region": "free",
+   "grain": "u",
+   "padding_px": 16,
+   "band": {
+    "v0": 0.987060546875,
+    "v1": 0.998046875
+   }
+  }
+ ],
+ "targets": {
+  "uv": 1024.0
+ },
+ "cook_s": 3.6,
+ "score_s": 0.2,
+ "bake": null,
+ "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
+ "asset_scale": 1.64,
+ "texel_density": 1024.0,
+ "families": [
+  "iron",
+  "pillar",
+  "sign"
+ ],
+ "crease_effective": 29.1846923828125,
+ "date": "19 October 2026 18:12"
+}
