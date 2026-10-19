@@ -1,0 +1,138 @@
+// 19 October 2026 13:35 : every number of the lesson lives here, and only here (HDA rule) : slider ranges and defaults, presets, measured values of the project, colours of the density ramp.
+// Change a value here and every widget follows ; the widgets in w-*.js hold no literal of their own.
+// FR : tous les nombres de la lecon vivent ici, et seulement ici (loi HDA).
+window.LESSON = {
+  // measured on the project (19 October 2026), quoted by the text and the presets
+  measured: {
+    archSurfaceM2: 19.34,        // Entrance_Arch_Clean at x 1.64, texel check report (object_surface_m2 19.3404)
+    archSizeM: [3.55, 5.96, 0.32], // bounding box at x 1.64, snapshot v007
+    archSheetPx: 4096,           // one trim sheet at 1024 px/m
+    archFreePct: 34.2,           // free height left in that sheet
+    roofSurfaceM2: 144.8,        // church roof, two pans of 13.51 x 5.36 m (roof lesson, 9 October 2026)
+    mannequinM: 1.76
+  },
+  // density ramp : same colours and rule as TrimTexelCheck.py (white within tol, at least 65 % tint outside, full colour one mip level off)
+  ramp: { tol: 0.01, tintMin: 0.65, fullAtStops: 1.0, low: [0.93, 0.12, 0.10], high: [0.10, 0.32, 0.96], ok: [1, 1, 1] },
+  pow2: [256, 512, 1024, 2048, 4096, 8192],
+
+  texel: { res: { choices: [4, 8, 16, 32, 64, 128, 256], value: 16 } },
+
+  unfold: {
+    t: { min: 0, max: 100, value: 0, unit: '%' },
+    yaw: { min: -180, max: 180, value: 30, unit: '°' },
+    pitch: { min: 5, max: 89, value: 35, unit: '°' },
+    cells: 4,                     // checker squares per face side
+    faces: {                       // name, letter, colour of each face of the box
+      top: ['Dessus', 'H', '#8a86c7'], front: ['Avant', 'A', '#d97e63'], back: ['Arrière', 'R', '#6fa3bd'],
+      left: ['Gauche', 'G', '#7fb08a'], right: ['Droite', 'D', '#c8b25a'], bottom: ['Dessous', 'B', '#b57fb6']
+    }
+  },
+
+  density: {
+    wallM: { min: 0.25, max: 10, value: 2, step: 0.25, unit: 'm', digits: 2 },
+    texPx: { choices: [256, 512, 1024, 2048, 4096, 8192], value: 2048 },
+    sharePct: { min: 5, max: 100, value: 100, step: 1, unit: '%' },
+    targetPx: { choices: [256, 512, 1024, 2048], value: 1024 },
+    wallHeightM: 1,               // the wall is 1 m tall in the drawing
+    loupeM: 0.02                  // the magnifier shows 2 cm x 2 cm of wall
+  },
+
+  screen: {
+    distM: { min: 0.25, max: 30, value: 1, log: true, unit: 'm', digits: 2 },
+    screenPx: { choices: [1280, 1920, 2560, 3840], value: 1920 },
+    fovDeg: { min: 50, max: 110, value: 90, step: 1, unit: '°' },
+    tds: [256, 512, 1024, 2048, 4096],
+    axis: { dMin: 0.25, dMax: 30, pMin: 16, pMax: 16384 }
+  },
+
+  memory: {
+    texPx: { choices: [512, 1024, 2048, 4096, 8192], value: 4096 },
+    formats: [{ v: 'rgba8', t: 'RGBA8 non compressé', bpp: 4 }, { v: 'bc7', t: 'BC7 ou BC5', bpp: 1 }, { v: 'bc1', t: 'BC1', bpp: 0.5 }],
+    format: 'bc7',
+    maps: { min: 1, max: 5, value: 3, step: 1 },
+    materials: { min: 1, max: 500, value: 40, log: true },
+    budgetGB: { min: 0.5, max: 16, value: 4, step: 0.5, unit: 'Go', digits: 1 },
+    mipFactor: 4 / 3
+  },
+
+  wall: {
+    presets: [
+      { t: 'Caisse 0,5 m', s: 1.5 }, { t: 'Porte 2 x 1 m', s: 4.5 },
+      { t: 'Arche (mesurée)', s: 19.34 }, { t: 'Toit (mesuré)', s: 144.8 }, { t: 'Terrain 100 x 100 m', s: 10000 }
+    ],
+    surfaceM2: { min: 0.1, max: 10000, value: 19.34, log: true, unit: 'm²', digits: 2 },
+    targetPx: { choices: [256, 512, 1024, 2048], value: 1024 },
+    fillPct: { min: 40, max: 90, value: 70, step: 1, unit: '%' },
+    maxPx: 8192, maps: 3, bpp: 1
+  },
+
+  m1: {
+    reliefMm: { min: 0, max: 30, value: 12, step: 1, unit: 'mm' },
+    surfaceM2: { min: 0.05, max: 20, value: 0.6, log: true, unit: 'm²', digits: 2 },
+    targetPx: { choices: [512, 1024, 2048, 4096], value: 2048 },
+    fillPct: 70, maps: 3, bpp: 1
+  },
+
+  m2: {
+    wallM: { min: 2, max: 40, value: 12, step: 1, unit: 'm' },
+    tileM: { min: 0.5, max: 4, value: 2, step: 0.25, unit: 'm', digits: 2 },
+    texPx: 2048, wallHeightM: 3, seed: 11
+  },
+
+  m3: {
+    sheetPx: 2048,
+    bands: [                        // a trim sheet of 2048 px : name, height in px, drawing style
+      { name: 'Moulure', px: 256, style: 'molding' }, { name: 'Planches', px: 512, style: 'planks' },
+      { name: 'Fer', px: 128, style: 'iron' }, { name: 'Pierre', px: 384, style: 'stone' },
+      { name: 'Bordure', px: 192, style: 'trim' }, { name: 'Plâtre', px: 512, style: 'plaster' }
+    ],
+    band: 1,
+    beamM: { min: 0.5, max: 12, value: 6, step: 0.5, unit: 'm', digits: 1 },
+    faceCm: { min: 5, max: 80, value: 30, step: 1, unit: 'cm' },
+    targetPx: { choices: [512, 1024, 2048], value: 1024 },
+    // hotspot atlas of 1024 px : rectangles x, y, w, h in px
+    atlasPx: 1024,
+    rects: [[0, 0, 1024, 256], [0, 256, 512, 512], [512, 256, 256, 512], [768, 256, 256, 256], [768, 512, 256, 128], [768, 640, 128, 128],
+            [896, 640, 128, 128], [0, 768, 512, 128], [0, 896, 512, 128], [512, 768, 128, 256], [640, 768, 384, 256]],
+    faceW: { min: 0.1, max: 3, value: 1.2, step: 0.05, unit: 'm', digits: 2 },
+    faceH: { min: 0.1, max: 3, value: 0.3, step: 0.05, unit: 'm', digits: 2 },
+    hotTarget: 512
+  },
+
+  m4: {
+    plateM: 1,                      // the object is a 1 m x 1 m plate
+    maskPx: { choices: [16, 32, 64, 128, 256], value: 32 },
+    wear: { min: 0, max: 1, value: 0.45, step: 0.01, digits: 2 },
+    breakup: { min: 0, max: 1, value: 0.6, step: 0.01, digits: 2 },
+    dirtCm: { min: 0, max: 60, value: 25, step: 1, unit: 'cm' },
+    view: 'rgb',
+    paintRect: [0.12, 0.12, 0.88, 0.88], stripe: [0.12, 0.44, 0.88, 0.56],  // painted panel and its stripe, metres
+    wearFalloffM: 0.06,
+    colours: { metal: [0.62, 0.63, 0.64], paint: [0.17, 0.42, 0.40], stripe: [0.80, 0.62, 0.20], dirt: [0.30, 0.24, 0.17] },
+    libraryPx: 1024, maps: 3
+  },
+
+  m5: {
+    baseTd: { choices: [128, 256, 512, 1024], value: 256 },
+    count: { min: 0, max: 40, value: 18, step: 1 },
+    decalTd: 4096, atlasPx: 2048
+  },
+
+  choose: {
+    presets: [
+      { t: 'Arche (mesurée)', s: 19.34, copies: 1, d: 2, type: 'modular', text: true },
+      { t: 'Toit (mesuré)', s: 144.8, copies: 1, d: 3, type: 'modular', text: false },
+      { t: 'Lanterne (estimée)', s: 0.5, copies: 12, d: 0.8, type: 'unique', text: false },
+      { t: 'Personnage (estimé)', s: 1.9, copies: 1, d: 1.5, type: 'organic', text: false },
+      { t: 'Rocher (estimé)', s: 6, copies: 30, d: 2, type: 'organic', text: false },
+      { t: 'Véhicule (estimé)', s: 25, copies: 1, d: 1.5, type: 'unique', text: true },
+      { t: 'Terrain (estimé)', s: 10000, copies: 1, d: 1.5, type: 'organic', text: false }
+    ],
+    surfaceM2: { min: 0.05, max: 10000, value: 19.34, log: true, unit: 'm²', digits: 2 },
+    copies: { min: 1, max: 1000, value: 1, log: true },
+    distM: { min: 0.25, max: 30, value: 2, log: true, unit: 'm', digits: 2 },
+    types: [{ v: 'organic', t: 'Organique' }, { v: 'modular', t: 'Hard-surface modulaire' }, { v: 'unique', t: 'Hard-surface unique' }],
+    type: 'modular', text: true,
+    screenPx: 1920, fovDeg: 90, fill: 0.7, maxUnique: 4096, maskTd: 128, maps: 3
+  }
+};

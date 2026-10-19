@@ -1,0 +1,151 @@
+// 19 October 2026 13:40 : lesson core helpers. Controls built from the LESSON specs (sliders, choice sliders, button groups, toggles), sharp canvas setup, French number format,
+// the density colour ramp (same rule as TrimTexelCheck.py), value noise, redraw on theme change. Classic script (no module) so the page also works opened as a file.
+// FR : outils communs de la lecon : curseurs, canevas nets, nombres a la francaise, rampe de densite, bruit, redessin au changement de theme.
+(function () {
+  const ZR = window.ZR = window.ZR || {};
+  ZR.w = ZR.w || {};
+  ZR.css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  ZR.n = (x, d = 0) => Number(x).toLocaleString('fr-FR', { maximumFractionDigits: d, minimumFractionDigits: d });
+  ZR.nAuto = (x) => {
+    const a = Math.abs(x);
+    return ZR.n(x, a >= 100 ? 0 : a >= 10 ? 1 : a >= 1 ? 2 : 3);
+  };
+  ZR.pow2Ceil = (x) => 2 ** Math.ceil(Math.log2(Math.max(1, x)));
+  ZR.pow2Round = (x) => 2 ** Math.round(Math.log2(Math.max(1, x)));
+  ZR.clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+  ZR.smooth = (e0, e1, x) => { const t = ZR.clamp((x - e0) / (e1 - e0), 0, 1); return t * t * (3 - 2 * t); };
+  ZR.mib = (px, bpp, mips = true) => px * px * bpp * (mips ? 4 / 3 : 1) / 1048576;
+  ZR.mem = (mib) => mib >= 1024 ? ZR.n(mib / 1024, 2) + ' Gio' : mib >= 1 ? ZR.n(mib, mib >= 100 ? 0 : 1) + ' Mio' : ZR.n(mib * 1024, 1) + ' Kio';
+
+  // density colour : white within tol, red below, blue above, never a pale tint out of tolerance
+  ZR.densityRGB = (ratio) => {
+    const R = window.LESSON.ramp;
+    if (!isFinite(ratio) || ratio <= 0) return R.low.slice();
+    if (Math.abs(ratio - 1) <= R.tol) return R.ok.slice();
+    const t = Math.min(1, Math.abs(Math.log2(ratio)) / R.fullAtStops);
+    const k = R.tintMin + (1 - R.tintMin) * t;
+    const c = ratio < 1 ? R.low : R.high;
+    return c.map((ci) => (1 - k) + k * ci);
+  };
+  ZR.rgb = (c, a = 1) => `rgba(${Math.round(c[0] * 255)},${Math.round(c[1] * 255)},${Math.round(c[2] * 255)},${a})`;
+  ZR.densityWord = (ratio) => {
+    const tol = window.LESSON.ramp.tol;
+    if (Math.abs(ratio - 1) <= tol) return 'blanc, la densité est juste';
+    const pct = Math.round((ratio - 1) * 100);
+    return ratio < 1 ? `rouge, il manque ${-pct} % de pixels par mètre` : `bleu, ${pct} % de pixels en trop`;
+  };
+
+  // sharp canvas : the width and height attributes are the design size, the backing store follows the device pixel ratio
+  ZR.setup = (canvas) => {
+    if (!canvas.dataset.w) { canvas.dataset.w = canvas.width; canvas.dataset.h = canvas.height; }
+    const w = +canvas.dataset.w, h = +canvas.dataset.h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); }
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    ctx.imageSmoothingEnabled = true;
+    return { ctx, w, h, dpr };
+  };
+  ZR.font = (px, kind = 'sans') => `500 ${px}px ${kind === 'serif' ? "'AnthropicSerif', serif" : kind === 'mono' ? "'AnthropicMono', monospace" : "'InterVariable', sans-serif"}`;
+  ZR.text = (ctx, s, x, y, o = {}) => {
+    ctx.font = ZR.font(o.size || 13, o.kind || 'sans');
+    ctx.fillStyle = o.color || ZR.css('--ink');
+    ctx.textAlign = o.align || 'left';
+    ctx.textBaseline = o.base || 'alphabetic';
+    ctx.fillText(s, x, y);
+  };
+
+  // controls : spec = { key, label, min, max, step, value, unit, digits, log } | { choices: [...] } | { options: [{v, t}] } | { toggle: true }
+  ZR.controls = (box, specs, onChange) => {
+    const state = {}, setters = {};
+    let raf = 0;
+    const fire = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; onChange(state); }); };
+    const fmt = (s, v) => s.fmt ? s.fmt(v) : (s.choices ? ZR.n(v) : ZR.n(v, s.digits || 0)) + (s.unit ? ' ' + s.unit : '');
+    for (const s of specs) {
+      state[s.key] = s.value;
+      const lab = document.createElement('label');
+      const head = document.createElement('span');
+      head.className = 'lab';
+      head.textContent = s.label + ' ';
+      lab.appendChild(head);
+      if (s.options || s.toggle) {
+        const g = document.createElement('span');
+        g.className = 'group';
+        const opts = s.toggle ? [{ v: true, t: s.on || 'Oui' }, { v: false, t: s.off || 'Non' }] : s.options;
+        const btns = opts.map((o) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = o.t;
+          b.addEventListener('click', () => { set(o.v); });
+          g.appendChild(b);
+          return [o.v, b];
+        });
+        const set = (v) => { state[s.key] = v; btns.forEach(([ov, b]) => b.setAttribute('aria-pressed', String(ov === v))); fire(); };
+        setters[s.key] = set;
+        btns.forEach(([ov, b]) => b.setAttribute('aria-pressed', String(ov === s.value)));
+        lab.appendChild(g);
+      } else {
+        const out = document.createElement('output');
+        head.appendChild(out);
+        const r = document.createElement('input');
+        r.type = 'range';
+        let toVal, toPos;
+        if (s.choices) {
+          r.min = 0; r.max = s.choices.length - 1; r.step = 1;
+          toVal = (p) => s.choices[+p];
+          toPos = (v) => Math.max(0, s.choices.indexOf(v));
+        } else if (s.log) {
+          r.min = 0; r.max = 1000; r.step = 1;
+          toVal = (p) => s.min * Math.pow(s.max / s.min, p / 1000);
+          toPos = (v) => Math.round(1000 * Math.log(v / s.min) / Math.log(s.max / s.min));
+        } else {
+          r.min = s.min; r.max = s.max; r.step = s.step || 1;
+          toVal = (p) => +p;
+          toPos = (v) => v;
+        }
+        r.value = toPos(s.value);
+        r.setAttribute('aria-label', s.label);
+        const show = () => { out.textContent = fmt(s, state[s.key]); };
+        r.addEventListener('input', () => { state[s.key] = toVal(r.value); show(); fire(); });
+        setters[s.key] = (v) => { state[s.key] = v; r.value = toPos(v); show(); fire(); };
+        show();
+        lab.appendChild(r);
+      }
+      box.appendChild(lab);
+    }
+    onChange(state);
+    return { state, set: (k, v) => setters[k](v), redraw: () => onChange(state) };
+  };
+
+  // value noise and fractal sum, seeded, deterministic
+  ZR.hash = (x, y, s) => {
+    let h = Math.imul(x | 0, 374761393) ^ Math.imul(y | 0, 668265263) ^ Math.imul(s | 0, 1274126177);
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+  };
+  ZR.noise = (x, y, s = 0) => {
+    const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+    const a = ZR.hash(xi, yi, s), b = ZR.hash(xi + 1, yi, s), c = ZR.hash(xi, yi + 1, s), d = ZR.hash(xi + 1, yi + 1, s);
+    return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+  };
+  ZR.fbm = (x, y, s = 0, oct = 4) => {
+    let amp = 0.5, f = 1, t = 0, n = 0;
+    for (let i = 0; i < oct; i++) { t += amp * ZR.noise(x * f, y * f, s + i * 17); n += amp; amp *= 0.5; f *= 2; }
+    return t / n;
+  };
+
+  // redraw every widget when the theme changes
+  ZR.redraws = [];
+  ZR.onRedraw = (f) => ZR.redraws.push(f);
+  if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => ZR.redraws.forEach((f) => f()));
+
+  // boot : every element with data-widget="name" gets ZR.w[name](element)
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-widget]').forEach((el) => {
+      const f = ZR.w[el.dataset.widget];
+      if (!f) { console.error('unknown widget', el.dataset.widget); return; }
+      try { const r = f(el); if (r && r.redraw) ZR.onRedraw(r.redraw); } catch (e) { console.error('widget', el.dataset.widget, e); }
+    });
+  });
+})();

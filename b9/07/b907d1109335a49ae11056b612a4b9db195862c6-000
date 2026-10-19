@@ -1,0 +1,359 @@
+// 19 October 2026 13:50 : widgets of loop 1 (the basics) : texel, unfold, density, screen, memory, wall. Each widget reads its numbers from LESSON (params.js) and draws on its own canvas.
+// FR : graphes de la boucle 1 (les bases) ; chaque graphe lit ses nombres dans LESSON.
+(function () {
+  const ZR = window.ZR, L = window.LESSON;
+
+  // ---------------------------------------------------------------- 1. a texture is a grid of texels
+  ZR.w.texel = (root) => {
+    const P = L.texel, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const off = document.createElement('canvas');
+    const scene = (c, s) => {            // the "image" : sky, ground, the arch with its sign and cross, drawn at any size
+      const g = c.createLinearGradient(0, 0, 0, s);
+      g.addColorStop(0, '#8fb7d9'); g.addColorStop(1, '#e4edf3');
+      c.fillStyle = g; c.fillRect(0, 0, s, s);
+      c.fillStyle = '#7c8f5a'; c.fillRect(0, s * 0.82, s, s * 0.18);
+      c.fillStyle = '#e2c56a'; c.fillRect(s * 0.22, s * 0.38, s * 0.08, s * 0.46); c.fillRect(s * 0.70, s * 0.38, s * 0.08, s * 0.46);
+      c.strokeStyle = '#4f7fd6'; c.lineWidth = s * 0.06; c.beginPath(); c.arc(s * 0.5, s * 0.40, s * 0.24, Math.PI, 0); c.stroke();
+      c.fillStyle = '#5fb86c'; c.fillRect(s * 0.32, s * 0.40, s * 0.36, s * 0.17);
+      c.fillStyle = '#4f7fd6'; c.fillRect(s * 0.485, s * 0.03, s * 0.03, s * 0.13); c.fillRect(s * 0.45, s * 0.065, s * 0.10, s * 0.03);
+    };
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const N = st.res, side = h - 44, x0 = 20, x1 = w - 20 - side, y0 = 10;
+      off.width = N; off.height = N;
+      scene(off.getContext('2d'), N);
+      ctx.save(); ctx.translate(x0, y0); scene(ctx, side); ctx.restore();
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(off, x1, y0, side, side);
+      ctx.imageSmoothingEnabled = true;
+      if (N <= 32) {
+        ctx.strokeStyle = 'rgba(0,0,0,0.28)'; ctx.lineWidth = 1;
+        for (let i = 1; i < N; i++) {
+          const k = side * i / N;
+          ctx.beginPath(); ctx.moveTo(x1 + k, y0); ctx.lineTo(x1 + k, y0 + side); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(x1, y0 + k); ctx.lineTo(x1 + side, y0 + k); ctx.stroke();
+        }
+      }
+      ZR.text(ctx, "l'image que l'on voudrait", x0, h - 12, { color: ZR.css('--ink2') });
+      ZR.text(ctx, `la même, stockée en ${N} × ${N} texels`, x1, h - 12, { color: ZR.css('--ink2') });
+      stats.innerHTML = `<span>Texture <b>${N} × ${N}</b> px</span><span><b>${ZR.n(N * N)}</b> texels en tout</span>` +
+        `<span>Doubler le côté donne <b>${ZR.n(4 * N * N)}</b> texels, quatre fois plus</span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [{ key: 'res', label: 'Taille de la texture', ...P.res, fmt: (v) => `${v} × ${v} px` }], draw);
+  };
+
+  // ---------------------------------------------------------------- 2. UVs : unfolding a box (the top face stays put, the sides open outward, the bottom follows the back face)
+  ZR.w.unfold = (root) => {
+    const P = L.unfold, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const S = 512, tex = document.createElement('canvas');
+    tex.width = S; tex.height = S;
+    const order = ['top', 'front', 'back', 'left', 'right', 'bottom'];
+    const net = {                         // face parameters (s, h) in [0, 1] -> position in the flat pattern (metres)
+      top: (s, h) => [s, h], front: (s, h) => [s, 1 + h], back: (s, h) => [s, -h],
+      left: (s, h) => [-h, s], right: (s, h) => [1 + h, s], bottom: (s, h) => [s, -1 - h]
+    };
+    const geo = {                         // face parameters and hinge angle f (pi/2 folded, 0 flat) -> 3D point of the unit box
+      top: (s, h) => [s, 1, h],
+      front: (s, h, f) => [s, 1 - h * Math.sin(f), 1 + h * Math.cos(f)],
+      back: (s, h, f) => [s, 1 - h * Math.sin(f), -h * Math.cos(f)],
+      left: (s, h, f) => [-h * Math.cos(f), 1 - h * Math.sin(f), s],
+      right: (s, h, f) => [1 + h * Math.cos(f), 1 - h * Math.sin(f), s],
+      bottom: (s, h, f) => [s, 1 - Math.sin(f) - h * Math.sin(2 * f), -Math.cos(f) - h * Math.cos(2 * f)]
+    };
+    const outward = { top: [0, 1, 0], front: [0, 0, 1], back: [0, 0, -1], left: [-1, 0, 0], right: [1, 0, 0], bottom: [0, -1, 0] };
+    const seams = { top: [], front: ['s0', 's1', 'h1'], back: ['s0', 's1'], left: ['s0', 's1', 'h1'], right: ['s0', 's1', 'h1'], bottom: ['h1', 's0', 's1'] };
+    const edgeOf = { h0: [[0, 0], [1, 0]], h1: [[0, 1], [1, 1]], s0: [[0, 0], [0, 1]], s1: [[1, 0], [1, 1]] };
+    const corners = [[0, 0], [1, 0], [1, 1], [0, 1]];
+    const toPx = (nx, nz) => [((nx + 1) / 4 + 0.125) * S, (nz + 2) / 4 * S];      // pattern -> texture pixels (the 0 to 1 square)
+    const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+    const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    const sign = {};
+    for (const f of order) {
+      const c = corners.map(([s, h]) => geo[f](s, h, Math.PI / 2));
+      sign[f] = dot(cross(sub(c[1], c[0]), sub(c[3], c[0])), outward[f]) > 0 ? 1 : -1;
+    }
+    const shade = (hex, k) => {
+      const v = parseInt(hex.slice(1), 16), r = v >> 16, g = (v >> 8) & 255, b = v & 255;
+      return `rgb(${Math.round(r * k)},${Math.round(g * k)},${Math.round(b * k)})`;
+    };
+    (function buildTexture() {
+      const c = tex.getContext('2d');
+      c.fillStyle = '#2b2a28'; c.fillRect(0, 0, S, S);
+      for (const f of order) {
+        const [name, letter, col] = P.faces[f], n = P.cells;
+        for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+          const q = [[i / n, j / n], [(i + 1) / n, j / n], [(i + 1) / n, (j + 1) / n], [i / n, (j + 1) / n]].map(([s, h]) => toPx(...net[f](s, h)));
+          c.fillStyle = (i + j) % 2 ? col : shade(col, 0.62);
+          c.beginPath(); q.forEach((p, k) => (k ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1]))); c.closePath(); c.fill();
+        }
+        const cen = toPx(...net[f](0.5, 0.5)), upP = toPx(...net[f](0.5, 0.35));    // letters read upright when the face hangs from its hinge
+        const a = Math.atan2(upP[0] - cen[0], -(upP[1] - cen[1]));
+        c.save(); c.translate(cen[0], cen[1]); c.rotate(a);
+        c.fillStyle = '#ffffff'; c.textAlign = 'center'; c.textBaseline = 'middle';
+        c.font = "500 54px 'InterVariable', sans-serif"; c.fillText(letter, 0, -6);
+        c.font = "500 15px 'InterVariable', sans-serif"; c.fillText(name, 0, 34);
+        c.restore();
+      }
+    })();
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const t = st.t / 100, fh = (1 - t) * Math.PI / 2, yaw = st.yaw * Math.PI / 180, pit = st.pitch * Math.PI / 180;
+      const cen = [0.5, 0.5 + 0.5 * t, 0.5 - 0.5 * t], sc = 112 - 46 * t, cx = 190, cy = 200;
+      const rot = (v) => {
+        const x1 = v[0] * Math.cos(yaw) - v[2] * Math.sin(yaw), z1 = v[0] * Math.sin(yaw) + v[2] * Math.cos(yaw);
+        return [x1, v[1] * Math.cos(pit) - z1 * Math.sin(pit), v[1] * Math.sin(pit) + z1 * Math.cos(pit)];
+      };
+      const proj = (p) => { const r = rot(sub(p, cen)); return [cx + r[0] * sc, cy - r[1] * sc, r[2]]; };
+      const faces = order.map((f) => {
+        const c3 = corners.map(([s, hh]) => geo[f](s, hh, fh));
+        const c2 = c3.map(proj), tx = corners.map(([s, hh]) => toPx(...net[f](s, hh)));
+        const nrm = rot(cross(sub(c3[1], c3[0]), sub(c3[3], c3[0])).map((x) => x * sign[f]));
+        return { f, c3, c2, tx, depth: c2.reduce((a, p) => a + p[2], 0) / 4, front: nrm[2] > 0, lit: Math.abs(nrm[2]) / Math.hypot(...nrm) };
+      }).sort((a, b) => a.depth - b.depth);
+      ctx.fillStyle = ZR.css('--bg2'); ctx.fillRect(0, 0, 380, h);
+      for (const F of faces) {
+        const [p0, p1, , p3] = F.c2, [t0, t1, , t3] = F.tx;
+        const du1 = t1[0] - t0[0], dv1 = t1[1] - t0[1], du2 = t3[0] - t0[0], dv2 = t3[1] - t0[1];
+        const dx1 = p1[0] - p0[0], dy1 = p1[1] - p0[1], dx2 = p3[0] - p0[0], dy2 = p3[1] - p0[1];
+        const det = du1 * dv2 - du2 * dv1;
+        ctx.save();
+        ctx.beginPath(); F.c2.forEach((p, k) => (k ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath(); ctx.clip();
+        if (Math.abs(det) > 1e-9) {
+          const a = (dx1 * dv2 - dx2 * dv1) / det, c = (dx2 * du1 - dx1 * du2) / det;
+          const b = (dy1 * dv2 - dy2 * dv1) / det, d = (dy2 * du1 - dy1 * du2) / det;
+          ctx.transform(a, b, c, d, p0[0] - a * t0[0] - c * t0[1], p0[1] - b * t0[0] - d * t0[1]);
+          ctx.drawImage(tex, 0, 0);
+        }
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath(); F.c2.forEach((p, k) => (k ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.closePath();
+        ctx.fillStyle = F.front ? `rgba(0,0,0,${(0.28 * (1 - F.lit)).toFixed(3)})` : 'rgba(20,20,24,0.62)';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,0.35)'; ctx.lineWidth = 1; ctx.stroke();
+        ctx.restore();
+        if (st.seams) {
+          ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 3.2; ctx.lineCap = 'round';
+          for (const e of seams[F.f]) {
+            const [a, b] = edgeOf[e].map(([s, hh]) => proj(geo[F.f](s, hh, fh)));
+            ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+          }
+        }
+      }
+      // the UV square
+      const ux = 410, uy = 22, us = 330;
+      ctx.drawImage(tex, ux, uy, us, us);
+      ctx.strokeStyle = ZR.css('--ink2'); ctx.lineWidth = 1.2; ctx.strokeRect(ux, uy, us, us);
+      if (st.seams) {
+        ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 3; ctx.lineCap = 'round';
+        for (const f of order) for (const e of seams[f]) {
+          const [a, b] = edgeOf[e].map(([s, hh]) => toPx(...net[f](s, hh)).map((v, k) => (k ? uy : ux) + v * us / S));
+          ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+        }
+      }
+      const ink2 = ZR.css('--ink2');
+      ZR.text(ctx, '0', ux - 4, uy + us + 16, { color: ink2, align: 'right' });
+      ZR.text(ctx, '1', ux + us, uy + us + 16, { color: ink2, align: 'center' });
+      ZR.text(ctx, 'u →', ux + us / 2, uy + us + 18, { color: ink2, align: 'center' });
+      ZR.text(ctx, '1', ux - 8, uy + 10, { color: ink2, align: 'right' });
+      ZR.text(ctx, 'v ↑', ux - 8, uy + us / 2, { color: ink2, align: 'right' });
+      ZR.text(ctx, 'la boîte, en 3D', 16, 20, { color: ink2 });
+      ZR.text(ctx, "l'image (le carré des UV)", ux + us, 14, { color: ink2, align: 'right', size: 12 });
+      stats.innerHTML = `<span>Dépliage <b>${ZR.n(st.t)} %</b></span><span><b>1</b> île (un seul morceau)</span>` +
+        `<span><b>7</b> coutures (arêtes coupées, en couleur)</span><span><b>5</b> charnières (arêtes restées pliées)</span>`;
+    };
+    const P2 = P;
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 't', label: 'Déplier', ...P2.t },
+      { key: 'yaw', label: 'Tourner la vue', ...P2.yaw },
+      { key: 'pitch', label: 'Hauteur de la vue', ...P2.pitch },
+      { key: 'seams', label: 'Coutures', toggle: true, value: true, on: 'Montrer', off: 'Cacher' }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- 3. texel density : pixels per metre
+  ZR.w.density = (root) => {
+    const P = L.density, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink = ZR.css('--ink'), ink2 = ZR.css('--ink2'), line = ZR.css('--line');
+      const td = st.tex * st.share / 100 / st.wall, ratio = td / st.target, col = ZR.densityRGB(ratio);
+      // texture square and the island of the wall
+      const T = 220, tx = 20, ty = 34;
+      ctx.fillStyle = ZR.css('--card'); ctx.fillRect(tx, ty, T, T);
+      ctx.strokeStyle = ink2; ctx.lineWidth = 1.2; ctx.strokeRect(tx, ty, T, T);
+      const islandPxW = st.tex * st.share / 100, islandPxH = td * P.wallHeightM;
+      const iw = T * st.share / 100, ih = Math.min(T, T * islandPxH / st.tex);
+      ctx.fillStyle = ZR.rgb(col); ctx.fillRect(tx, ty, iw, ih);
+      ctx.strokeStyle = ink; ctx.lineWidth = 1; ctx.strokeRect(tx + 0.5, ty + 0.5, iw - 1, ih - 1);
+      if (islandPxH > st.tex) ZR.text(ctx, "l'île ne tient pas en hauteur", tx + 8, ty + T - 10, { color: '#b00', size: 12 });
+      ZR.text(ctx, `texture ${ZR.n(st.tex)} × ${ZR.n(st.tex)} px`, tx, 22, { color: ink2 });
+      ZR.text(ctx, `île : ${ZR.n(islandPxW)} × ${ZR.n(Math.round(islandPxH))} px`, tx, ty + T + 18, { color: ink2 });
+      // the wall drawn to scale
+      const wx = 270, wy = 34, k = Math.min(220 / st.wall, 120 / P.wallHeightM), ww = st.wall * k, wh = P.wallHeightM * k;
+      ctx.fillStyle = ZR.rgb(col); ctx.fillRect(wx, wy, ww, wh);
+      ctx.strokeStyle = ink; ctx.strokeRect(wx + 0.5, wy + 0.5, ww - 1, wh - 1);
+      ctx.strokeStyle = ink2;
+      for (let m = 0; m <= st.wall + 1e-9; m += (st.wall > 4 ? 1 : 0.25)) {
+        const x = wx + m * k, major = Math.abs(m - Math.round(m)) < 1e-9;
+        ctx.beginPath(); ctx.moveTo(x, wy + wh + 3); ctx.lineTo(x, wy + wh + (major ? 11 : 6)); ctx.stroke();
+      }
+      ZR.text(ctx, `le mur : ${ZR.n(st.wall, 2)} m × ${P.wallHeightM} m`, wx, 22, { color: ink2 });
+      ZR.text(ctx, st.wall > 4 ? 'un trait = 1 m' : 'grands traits = 1 m, petits = 25 cm', wx, wy + wh + 26, { color: ink2, size: 11 });
+      // the magnifier : 2 cm x 2 cm of wall
+      const Lp = 200, lx = w - 20 - Lp, ly = 34, cells = td * P.loupeM;
+      ctx.fillStyle = ZR.css('--card'); ctx.fillRect(lx, ly, Lp, Lp);
+      if (cells <= 220) {
+        const c = Lp / cells, n = Math.ceil(cells);
+        for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+          ctx.fillStyle = (i + j) % 2 ? ZR.rgb(col.map((v) => v * 0.78)) : ZR.rgb(col);
+          ctx.fillRect(lx + i * c, ly + j * c, Math.min(c, Lp - i * c), Math.min(c, Lp - j * c));
+        }
+      } else {
+        ctx.fillStyle = ZR.rgb(col); ctx.fillRect(lx, ly, Lp, Lp);
+        ZR.text(ctx, 'trop fin pour être dessiné', lx + Lp / 2, ly + Lp / 2, { color: '#333', align: 'center', size: 12 });
+      }
+      ctx.strokeStyle = ink2; ctx.strokeRect(lx, ly, Lp, Lp);
+      ZR.text(ctx, 'loupe : 2 cm × 2 cm du mur', lx, 22, { color: ink2 });
+      ZR.text(ctx, `${ZR.n(cells, 1)} pixels de côté`, lx, ly + Lp + 18, { color: ink2 });
+      stats.innerHTML = `<span class="line"><b>${ZR.n(st.tex)}</b> px × <b>${st.share}</b> % ÷ <b>${ZR.n(st.wall, 2)}</b> m = <b>${ZR.n(td)}</b> px/m</span>` +
+        `<span><b>${ZR.n(td / 100, 2)}</b> px par centimètre</span><span>un pixel couvre <b>${ZR.n(1000 / td, 2)}</b> mm</span>` +
+        `<span class="line"><span class="sw" style="background:${ZR.rgb(col)}"></span>Cible ${ZR.n(st.target)} px/m : ${ZR.densityWord(ratio)}</span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'wall', label: 'Largeur du mur', ...P.wallM },
+      { key: 'tex', label: 'Taille de la texture', ...P.texPx, unit: 'px' },
+      { key: 'share', label: "Part de la largeur de l'image prise par l'île", ...P.sharePct },
+      { key: 'target', label: 'Densité visée', ...P.targetPx, unit: 'px/m' }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- 4. the screen decides : screen pixels per metre at a distance
+  ZR.w.screen = (root) => {
+    const P = L.screen, A = P.axis, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink = ZR.css('--ink'), ink2 = ZR.css('--ink2'), line = ZR.css('--line');
+      const Lm = 64, Rm = 18, Tm = 16, Bm = 44, k = Math.tan(st.fov * Math.PI / 360);
+      const X = (d) => Lm + Math.log(d / A.dMin) / Math.log(A.dMax / A.dMin) * (w - Lm - Rm);
+      const Y = (p) => h - Bm - Math.log(p / A.pMin) / Math.log(A.pMax / A.pMin) * (h - Tm - Bm);
+      const Pd = (d) => st.screen / (2 * d * k);
+      const R = L.ramp;
+      // regions : under the curve the texture is coarser than the screen (red, blurry), above it is finer (blue, wasted)
+      ctx.save(); ctx.beginPath(); ctx.rect(Lm, Tm, w - Lm - Rm, h - Tm - Bm); ctx.clip();
+      const curve = [];
+      for (let i = 0; i <= 200; i++) { const d = A.dMin * Math.pow(A.dMax / A.dMin, i / 200); curve.push([X(d), Y(Pd(d))]); }
+      ctx.beginPath(); ctx.moveTo(Lm, h - Bm); curve.forEach((p) => ctx.lineTo(p[0], p[1])); ctx.lineTo(w - Rm, h - Bm); ctx.closePath();
+      ctx.fillStyle = ZR.rgb(R.low, 0.10); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(Lm, Tm); curve.forEach((p) => ctx.lineTo(p[0], p[1])); ctx.lineTo(w - Rm, Tm); ctx.closePath();
+      ctx.fillStyle = ZR.rgb(R.high, 0.10); ctx.fill();
+      ctx.restore();
+      ctx.strokeStyle = line; ctx.lineWidth = 1;
+      for (const d of [0.25, 0.5, 1, 2, 5, 10, 20]) {
+        ctx.beginPath(); ctx.moveTo(X(d), Tm); ctx.lineTo(X(d), h - Bm); ctx.stroke();
+        ZR.text(ctx, ZR.n(d, d < 1 ? 2 : 0) + ' m', X(d), h - Bm + 16, { color: ink2, align: 'center', size: 12 });
+      }
+      for (const p of [32, 128, 512, 2048, 8192]) ZR.text(ctx, ZR.n(p), Lm - 6, Y(p) + 4, { color: ink2, align: 'right', size: 12 });
+      ZR.text(ctx, 'distance entre la caméra et la surface', (Lm + w - Rm) / 2, h - 8, { color: ink2, align: 'center', size: 12 });
+      ZR.text(ctx, 'px/m', 8, Tm + 10, { color: ink2, size: 12 });
+      ctx.setLineDash([5, 4]);
+      for (const td of P.tds) {
+        ctx.strokeStyle = ink2; ctx.beginPath(); ctx.moveTo(Lm, Y(td)); ctx.lineTo(w - Rm, Y(td)); ctx.stroke();
+      }
+      ctx.setLineDash([]);
+      for (const td of P.tds) {
+        const ds = st.screen / (2 * td * k);
+        ZR.text(ctx, `${ZR.n(td)} px/m`, w - Rm - 4, Y(td) - 5, { color: ink2, align: 'right', size: 12 });
+        if (ds >= A.dMin && ds <= A.dMax) {
+          ctx.fillStyle = ink; ctx.beginPath(); ctx.arc(X(ds), Y(td), 3.5, 0, 7); ctx.fill();
+          ZR.text(ctx, `${ZR.n(ds, 2)} m`, X(ds) + 6, Y(td) + 15, { color: ink, size: 12 });
+        }
+      }
+      ctx.strokeStyle = ink; ctx.lineWidth = 2.4; ctx.beginPath(); curve.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke();
+      const pd = Pd(st.dist);
+      ctx.strokeStyle = ZR.css('--acc'); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X(st.dist), Tm); ctx.lineTo(X(st.dist), h - Bm); ctx.stroke();
+      ctx.fillStyle = ZR.css('--acc'); ctx.beginPath(); ctx.arc(X(st.dist), Y(pd), 6, 0, 7); ctx.fill();
+      ZR.text(ctx, 'bleu : plus de texels que de pixels, le GPU lit une mip plus petite', Lm + 8, Tm + 16, { color: ZR.rgb(R.high), size: 12 });
+      ZR.text(ctx, "rouge : moins de texels que de pixels, l'image devient floue", Lm + 8, h - Bm - 10, { color: ZR.rgb(R.low), size: 12 });
+      const best = ZR.pow2Round(pd);
+      stats.innerHTML = `<span class="line">À <b>${ZR.n(st.dist, 2)} m</b>, un mètre de surface couvre <b>${ZR.n(pd)}</b> pixels d'écran : la texture juste y est d'environ <b>${ZR.n(best)} px/m</b> (la puissance de deux la plus proche).</span>` +
+        P.tds.slice(1, 4).map((td) => `<span>${ZR.n(td)} px/m est juste à <b>${ZR.n(st.screen / (2 * td * k), 2)} m</b></span>`).join('');
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'dist', label: 'Distance', ...P.distM },
+      { key: 'screen', label: "Largeur de l'écran", ...P.screenPx, unit: 'px' },
+      { key: 'fov', label: 'Champ de vision horizontal', ...P.fovDeg }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- 5. mipmaps and memory
+  ZR.w.memory = (root) => {
+    const P = L.memory, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    const draw = (st) => {
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink2 = ZR.css('--ink2'), fmt = P.formats.find((f) => f.v === st.fmt);
+      let side = 170, x = 20;
+      const yb = 190;
+      for (let px = st.tex, lvl = 0; px >= 1 && side >= 1; px /= 2, lvl++) {
+        ctx.fillStyle = lvl === 0 ? ZR.css('--acc') : ZR.css('--acc2');
+        ctx.fillRect(x, yb - side, side, side);
+        ctx.strokeStyle = ZR.css('--ink2'); ctx.lineWidth = 0.8; ctx.strokeRect(x, yb - side, side, side);
+        if (side >= 14) ZR.text(ctx, ZR.n(px), x + side / 2, yb + 15, { color: ink2, align: 'center', size: 11 });
+        x += side + 8; side /= 2;
+      }
+      ZR.text(ctx, "la texture et ses mipmaps : chaque niveau est deux fois plus petit, l'ensemble ajoute un tiers", 20, 16, { color: ink2, size: 12 });
+      const perTex = ZR.mib(st.tex, fmt.bpp), perMat = perTex * st.maps, n = Math.round(st.mats), scene = perMat * n, budget = st.budget * 1024;
+      const bx = 20, by = 212, bw = w - 40, frac = Math.min(1, scene / budget);
+      ctx.fillStyle = ZR.css('--bg2'); ctx.fillRect(bx, by, bw, 14);
+      ctx.fillStyle = scene > budget ? ZR.rgb(L.ramp.low) : ZR.css('--ok'); ctx.fillRect(bx, by, bw * frac, 14);
+      ctx.strokeStyle = ZR.css('--line'); ctx.strokeRect(bx, by, bw, 14);
+      stats.innerHTML = `<span>Une texture : <b>${ZR.mem(perTex)}</b> (dont mips)</span><span>Un matériau de ${st.maps} maps : <b>${ZR.mem(perMat)}</b></span>` +
+        `<span>${ZR.n(n)} matériaux : <b>${ZR.mem(scene)}</b></span><span>Budget ${ZR.n(st.budget, 1)} Go : <b>${ZR.n(100 * scene / budget)} %</b> utilisés</span>`;
+    };
+    return ZR.controls(root.querySelector('.ctl'), [
+      { key: 'tex', label: 'Taille de la texture', ...P.texPx, unit: 'px' },
+      { key: 'fmt', label: 'Format', options: P.formats, value: P.format },
+      { key: 'maps', label: 'Maps par matériau', ...P.maps },
+      { key: 'mats', label: 'Matériaux différents dans la scène', ...P.materials, fmt: (v) => ZR.n(Math.round(v)) },
+      { key: 'budget', label: 'Mémoire vidéo pour les textures', ...P.budgetGB }
+    ], draw);
+  };
+
+  // ---------------------------------------------------------------- 6. the size wall : one unique texture grows like the surface
+  ZR.w.wall = (root) => {
+    const P = L.wall, cv = root.querySelector('canvas'), stats = root.querySelector('.stats');
+    let ctl = null, lastPreset = -1;
+    const draw = (st) => {
+      if (ctl && st.preset !== lastPreset) { lastPreset = st.preset; if (st.preset >= 0) { ctl.set('surface', P.presets[st.preset].s); return; } }
+      lastPreset = st.preset;
+      const { ctx, w, h } = ZR.setup(cv);
+      const ink2 = ZR.css('--ink2');
+      const exact = Math.sqrt(st.surface * st.target * st.target / (st.fill / 100)), p2 = ZR.pow2Ceil(exact);
+      const lo = 256, hi = 65536, Lm = 30, Rm = 30, y = 70;
+      const X = (v) => Lm + Math.log(v / lo) / Math.log(hi / lo) * (w - Lm - Rm);
+      ctx.fillStyle = ZR.rgb(L.ramp.low, 0.12); ctx.fillRect(X(P.maxPx), y - 30, w - Rm - X(P.maxPx), 60);
+      ctx.strokeStyle = ZR.css('--line'); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(Lm, y); ctx.lineTo(w - Rm, y); ctx.stroke();
+      for (let v = 256; v <= hi; v *= 2) {
+        ctx.strokeStyle = ink2; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(v), y - 6); ctx.lineTo(X(v), y + 6); ctx.stroke();
+        ZR.text(ctx, ZR.n(v), X(v), y + 22, { color: ink2, align: 'center', size: 11 });
+      }
+      ZR.text(ctx, `au-delà de ${ZR.n(P.maxPx)} px, une seule image ne suffit plus en temps réel`, X(P.maxPx) + 6, y - 36, { color: ZR.rgb(L.ramp.low), size: 12 });
+      const xe = X(Math.min(hi, exact));
+      ctx.fillStyle = ZR.css('--acc'); ctx.beginPath(); ctx.moveTo(xe, y - 4); ctx.lineTo(xe - 7, y - 18); ctx.lineTo(xe + 7, y - 18); ctx.closePath(); ctx.fill();
+      ZR.text(ctx, `besoin : ${ZR.n(exact)} px`, xe, y + 44, { align: 'center', size: 13 });
+      ZR.text(ctx, 'côté de la texture unique, échelle logarithmique', Lm, h - 10, { color: ink2, size: 11 });
+      const mem = ZR.mib(p2, P.bpp) * P.maps, ok = p2 <= P.maxPx;
+      stats.innerHTML = `<span class="line">√(${ZR.n(st.surface, 2)} m² × ${ZR.n(st.target)}² ÷ ${st.fill} %) = <b>${ZR.n(exact)}</b> px, donc une image de <b>${ZR.n(p2)} × ${ZR.n(p2)}</b></span>` +
+        `<span>${ZR.n(p2 * p2 / 1e6, 1)} millions de texels</span><span>${P.maps} maps compressées : <b>${ZR.mem(mem)}</b></span>` +
+        `<span class="line">${ok ? 'Possible en une texture unique.' : 'Impossible en une texture unique : il faut partager (méthodes 2 à 5).'}</span>`;
+    };
+    ctl = ZR.controls(root.querySelector('.ctl'), [
+      { key: 'preset', label: 'Exemple', options: P.presets.map((p, i) => ({ v: i, t: p.t })), value: 2 },
+      { key: 'surface', label: "Surface de l'objet", ...P.surfaceM2 },
+      { key: 'target', label: 'Densité visée', ...P.targetPx, unit: 'px/m' },
+      { key: 'fill', label: 'Remplissage du carré UV', ...P.fillPct }
+    ], draw);
+    lastPreset = 2;
+    return ctl;
+  };
+})();
