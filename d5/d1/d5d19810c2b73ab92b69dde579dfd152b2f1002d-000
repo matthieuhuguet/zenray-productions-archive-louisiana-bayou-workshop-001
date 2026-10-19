@@ -1,0 +1,73 @@
+{
+ "out": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/EntranceArch_CompiledSheet_Test_v2_19-October-2026.png",
+ "title": "Test v2 : materials first, compiled sheet, cutting redone (19 October 2026) : Entrance_Arch_Clean, x 1.64, 1024 px/m, one 4096 sheet",
+ "subtitle": "Your cut check found the dashed arch : the 45 degree crease sat on 382 chamfers at 45 degrees and cut one in two by float noise. Redone with a robust crease, same angle same cut, wear on its own threshold.",
+ "row_height": 1150,
+ "images": [
+  {
+   "path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/maps_compiled_test/Arch_s164_C_compiled_sheet1_display.png",
+   "label": "compiled sheet : sign unique, pillar @V and @U, iron @V and @U"
+  },
+  {
+   "path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/capture_compiled6/height_board4.png",
+   "label": "on the model, mannequin 1.76 m"
+  },
+  {
+   "path": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/EntranceArch_Trimsheet_19-October-2026/capture_compiled6/cutcheck_before_after.png",
+   "label": "CUT CHECK : before (dashed) and after (continuous)"
+  }
+ ],
+ "table": {
+  "columns": [
+   "Gate",
+   "Measured",
+   "Verdict"
+  ],
+  "widths": [
+   4.0,
+   7.5,
+   3.0
+  ],
+  "rows": [
+   [
+    "UV : density, inside band, overlap, stretch",
+    "score 1.000, 127 islands, stretch 5.7 % max",
+    "green"
+   ],
+   [
+    "UV : world up reads as the band up",
+    "100 % of vertical faces",
+    "green"
+   ],
+   [
+    "CUT CHECK : crease never on a mesh angle",
+    "requested 45, effective 46.8 (382 chamfers at 45), 0 ambiguous edge",
+    "green"
+   ],
+   [
+    "CUT CHECK : same angle, same cut",
+    "0 mixed group (old cutting : 316 of 374 chamfers cut)",
+    "green"
+   ],
+   [
+    "Compiled sheet reread through the UVs",
+    "100 % of faces read their own material",
+    "green"
+   ],
+   [
+    "Material border (ZenRay Height outputs)",
+    "border jump 2.3 to 10 x normal on 5 of 5 outputs",
+    "red"
+   ],
+   [
+    "Real ChatGPT swatch, metric size, engine shader",
+    "not tested : stand-ins used",
+    "not tested"
+   ]
+  ]
+ },
+ "notes": [
+  "Times in Houdini : unwrap 6.6 s, compile and reread 21 s, masks 0.5 s. The AI is called once per material family, never per layout.",
+  "Also fixed : wear had the cutting threshold (the arch lost its edge wear) ; it now has its own (29.2 degrees, convex edges) ; the viewport kept an old texture by its file name."
+ ]
+}
