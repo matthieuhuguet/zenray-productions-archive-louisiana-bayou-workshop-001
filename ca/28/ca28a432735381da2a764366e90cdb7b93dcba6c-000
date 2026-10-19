@@ -2,7 +2,7 @@
  "asset": "/obj/ZRUV_Assets/shaderball",
  "asset_scale": 1.0,
  "texel_density": 1024.0,
- "date": "20 October 2026 00:27",
+ "date": "20 October 2026 01:42",
  "families": [
   {
    "name": "surface",
@@ -34,12 +34,12 @@
    "id": "M1",
    "title": "UV unique et bake",
    "idea": "Chaque point de l'objet a ses propres pixels dans une texture unique de 4096 px au plus ; les îles jumelles (les deux piliers, les deux faces de l'arche, les rivets) partagent la même place, et les cartes du maillage sont cuites dedans.",
-   "score": 0.999516,
+   "score": 0.999567,
    "weakest": "uv:stretch",
    "components": {
     "uv:present": 1.0,
-    "uv:density": 0.999788,
-    "uv:stretch": 0.999516,
+    "uv:density": 0.999981,
+    "uv:stretch": 0.999567,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
@@ -47,7 +47,9 @@
     "uv:no_overlap": 1.0,
     "uv:padding": 1.0,
     "seams:consistency": 1.0,
-    "seams:robust_crease": 1.0
+    "seams:robust_crease": 1.0,
+    "bake:coverage": 0.999962,
+    "bake:id_match": 1.0
    },
    "contracts": [
     {
@@ -71,7 +73,13 @@
     "uv_family": "M1/view_uv_family.png",
     "uv_density": "M1/view_uv_density.png"
    },
-   "bake": {},
+   "bake": {
+    "custom": "M1/thumb_custom.png",
+    "occlusion": "M1/thumb_occlusion.png",
+    "curvature": "M1/thumb_curvature.png",
+    "edge": "M1/thumb_edge.png",
+    "alpha": "M1/thumb_alpha.png"
+   },
    "textures": [
     {
      "label": "texture unique",
@@ -87,13 +95,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.5278163978505749,
-    "low_frac": 0.29477394576220145,
-    "high_frac": 0.1774096563872236,
-    "px_per_m_min": 802.8631214173588,
-    "px_per_m_median": 1023.9990411753763,
-    "px_per_m_max": 1068.5723754285702,
-    "stretch_max": 0.6360767206179403,
+    "exact_frac": 0.5524438250516731,
+    "low_frac": 0.2711026994384085,
+    "high_frac": 0.17645347550991836,
+    "px_per_m_min": 663.287285318602,
+    "px_per_m_median": 1024.0005706076863,
+    "px_per_m_max": 1211.6633684947412,
+    "stretch_max": 0.9914371231321164,
     "faces": 7000
    },
    "seams": {
@@ -104,26 +112,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 22.917,
-    "seams_on_smooth_m": 0.489,
+    "seams_m": 23.566,
+    "seams_on_smooth_m": 0.56,
     "sharp_kept_m": 0,
     "sharp_m": 6.916,
     "border_m": 0,
     "pass": true
    },
-   "islands": 295,
-   "fill": 0.4851,
+   "islands": 313,
+   "fill": 0.4866,
    "u_range": [
     0.0078,
-    0.9922
+    0.9921
    ],
    "v_range": [
     0.0156,
-    0.9623
+    0.9746
    ],
-   "cook_s": 20.2,
-   "bake_s": null,
-   "date": "20 October 2026 00:27",
+   "cook_s": 75.17,
+   "bake_s": 52.669999999999995,
+   "date": "20 October 2026 01:42",
    "report": "M1/report.json",
    "example": {},
    "method_text": {

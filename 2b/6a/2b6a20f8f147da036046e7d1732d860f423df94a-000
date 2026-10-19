@@ -12,7 +12,9 @@
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
-  "seams:robust_crease": 1.0
+  "seams:robust_crease": 1.0,
+  "bake:coverage": 0.999975,
+  "bake:id_match": 1.0
  },
  "reports": {
   "uv": {
@@ -25,8 +27,8 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 942.0395355954395,
-    "px_per_m_median": 1024.584869758357,
+    "px_per_m_min": 942.0419912442824,
+    "px_per_m_median": 1024.5849317210884,
     "px_per_m_max": 1110.8310893048408,
     "stretch_max": 0.1615898466750434,
     "faces": 12854
@@ -98,9 +100,30 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 8.88,
- "score_s": 3.19,
- "bake": null,
+ "cook_s": 18.14,
+ "score_s": 7.04,
+ "bake": {
+  "files": {
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_2048x1024.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_occlusion_2048x1024.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_curvature_2048x1024.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_edge_2048x1024.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_2048x1024.png"
+  },
+  "seconds": {
+   "custom": 4.63,
+   "occlusion": 0.23,
+   "curvature": 0.26,
+   "edge": 0.22,
+   "alpha": 0.2
+  },
+  "size": [
+   2048,
+   1024
+  ],
+  "coverage": 0.999975,
+  "id_match": 1.0
+ },
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
  "texel_density": 1024.0,
@@ -108,7 +131,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 01:26",
+ "date": "20 October 2026 01:43",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,
