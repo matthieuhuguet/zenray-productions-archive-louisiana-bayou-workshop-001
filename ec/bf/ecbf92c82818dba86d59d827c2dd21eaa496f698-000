@@ -1,0 +1,124 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_Arch": {
+   "build_s": 0.0,
+   "total_s": 5.2,
+   "score": 1.0,
+   "errors": [],
+   "low": {},
+   "organic": {
+    "charts": 0
+   },
+   "sheet": [
+    4096,
+    4096
+   ],
+   "proven": true,
+   "unique": 0.5102,
+   "fill": 0.6167,
+   "islands": 533
+  },
+  "ZRUV_RubberToy": {
+   "build_s": 0.0,
+   "total_s": 155.4,
+   "score": 0.999122,
+   "errors": [],
+   "low": {
+    "uv:stretch": 0.999122
+   },
+   "organic": {
+    "from_unwrap": 47,
+    "repaired": 16,
+    "merges": 349,
+    "stuck": 0,
+    "charts": 90,
+    "discs": 87,
+    "tol": 0.1,
+    "cover_asked": 0.999,
+    "within_tol": 0.99958,
+    "within_5pc": 0.99931,
+    "stretch_max": 0.2771,
+    "organic_share": 1.0012,
+    "fail_area_m2": 0.000418,
+    "budget_m2": 0.0005
+   },
+   "sheet": [
+    2048,
+    1024
+   ],
+   "proven": true,
+   "unique": 1.0,
+   "fill": 0.5001,
+   "islands": 91
+  },
+  "ZRUV_ShaderBall": {
+   "build_s": 0.0,
+   "total_s": 50.6,
+   "score": 0.999763,
+   "errors": [],
+   "low": {
+    "uv:stretch": 0.999763
+   },
+   "organic": {
+    "from_unwrap": 48,
+    "repaired": 1,
+    "merges": 34,
+    "stuck": 0,
+    "charts": 50,
+    "discs": 46,
+    "tol": 0.1,
+    "cover_asked": 0.999,
+    "within_tol": 0.99988,
+    "within_5pc": 0.99997,
+    "stretch_max": 0.2691,
+    "organic_share": 0.9639,
+    "fail_area_m2": 0.00012,
+    "budget_m2": 0.0005
+   },
+   "sheet": [
+    2048,
+    1024
+   ],
+   "proven": false,
+   "unique": 0.9797,
+   "fill": 0.4892,
+   "islands": 1431
+  },
+  "ZRUV_Manny": {
+   "build_s": 0.0,
+   "total_s": 205.7,
+   "score": 0.997658,
+   "errors": [],
+   "low": {
+    "uv:density": 0.999476,
+    "uv:stretch": 0.997658
+   },
+   "organic": {
+    "from_unwrap": 179,
+    "repaired": 90,
+    "merges": 1115,
+    "stuck": 126,
+    "charts": 435,
+    "discs": 421,
+    "tol": 0.1,
+    "cover_asked": 0.999,
+    "within_tol": 0.99763,
+    "within_5pc": 0.99793,
+    "stretch_max": 0.8866,
+    "organic_share": 0.9887,
+    "fail_area_m2": 0.004894,
+    "budget_m2": 0.001045
+   },
+   "sheet": [
+    4096,
+    2048
+   ],
+   "proven": false,
+   "unique": 1.0,
+   "fill": 0.261,
+   "islands": 475
+  }
+ }
+}
+done

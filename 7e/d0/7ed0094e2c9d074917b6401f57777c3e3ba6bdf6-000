@@ -1,0 +1,23 @@
+# 19 October 2026 : ARAP variants on the 177 Labs AutoUV charts of Manny : clamped or true cotangent weights, plain or reweighted.
+import numpy as np, importlib, sys, time
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+sub = hou.node('/obj/ZRUV_Manny/organic_grains').geometry()
+sm = Z.from_geo(sub, ('uv_auto',), [])
+isl, _ = Z.uv_islands(sm, 'uv_auto')
+tot = 2.0902
+out = {}
+for tag, clamp, rw in (('clamped_plain', True, 0.0), ('true_plain', False, 0.0), ('true_reweight8', False, 8.0), ('true_reweight30', False, 30.0)):
+    O._CLAMP, O._REWEIGHT = clamp, rw
+    t = time.time()
+    R, S, A, flips = [], [], [], 0
+    for i in range(int(isl.max()) + 1):
+        fs = [int(f) for f in np.where(isl == i)[0]]
+        res, r, s, a3 = O._relax(sm, fs, {f: sm.uv['uv_auto'][f] for f in fs})
+        R.append(r); S.append(s); A.append(a3)
+    R, S, A = np.concatenate(R), np.concatenate(S), np.concatenate(A)
+    out[tag] = {'fail_10_10': round(float(A[~((np.abs(R - 1) <= 0.1) & (S <= 0.1))].sum() / tot), 5), 'fail_d10': round(float(A[np.abs(R - 1) > 0.1].sum() / tot), 5),
+                'stretch99': round(float(np.percentile(S, 99)), 3), 's': round(time.time() - t, 1)}
+O._CLAMP, O._REWEIGHT = False, 8.0
+result = out

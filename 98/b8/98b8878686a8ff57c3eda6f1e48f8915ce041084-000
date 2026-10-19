@@ -1,0 +1,23 @@
+# 19 October 2026 : on the Labs AutoUV charts of Manny (no repair), after reweighted ARAP : failing surface for several density and stretch tolerances.
+import numpy as np, importlib, sys, json
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+sub = hou.node('/obj/ZRUV_Manny/organic_grains').geometry()
+sm = Z.from_geo(sub, ('uv_auto',), [])
+isl, _ = Z.uv_islands(sm, 'uv_auto')
+R, S, A = [], [], []
+for i in range(int(isl.max()) + 1):
+    fs = [int(f) for f in np.where(isl == i)[0]]
+    res, r, s, a3 = O._relax(sm, fs, {f: sm.uv['uv_auto'][f] for f in fs})
+    R.append(r); S.append(s); A.append(a3)
+R, S, A = np.concatenate(R), np.concatenate(S), np.concatenate(A)
+tot = float(sum(p.intrinsicValue('measuredarea') for p in hou.node('/obj/ZRUV_Manny/BASE').geometry().prims()))
+out = {'charts': int(isl.max()) + 1, 'surface': round(tot, 4)}
+for dt in (0.05, 0.10):
+    for st in (0.10, 0.12, 0.15, 0.20):
+        bad = ~((np.abs(R - 1) <= dt) & (S <= st))
+        out[f'd{dt}_s{st}'] = {'fail_share': round(float(A[bad].sum() / tot), 5)}
+out['density_only_10'] = round(float(A[np.abs(R - 1) > 0.1].sum() / tot), 5)
+out['stretch_pct'] = [round(float(np.percentile(S, q)), 3) for q in (50, 90, 99, 99.9)]
+result = out
