@@ -1,0 +1,21 @@
+# 19 October 2026 : the shader ball, connected pieces : how many, their face counts and extents, and where the small ones sit.
+import numpy as np, sys, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z
+g = hou.node('/obj/ZRUV_ShaderBall/BASE').geometry()
+m = Z.from_geo(g, (), ['name'])
+find, union = Z.uf(m.n)
+for e, fl in m.edges.items():
+    for k in range(1, len(fl)):
+        union(fl[0], fl[k])
+comp = collections.defaultdict(list)
+for f in range(m.n):
+    comp[find(f)].append(f)
+rows = []
+for r, fs in comp.items():
+    pts = sorted({p for f in fs for p in m.polys[f]})
+    P = m.P[pts]
+    rows.append((len(fs), round(float(np.linalg.norm(P.max(0) - P.min(0))) * 1000, 1), m.prim['name'][fs[0]], [round(float(x), 3) for x in P.mean(0)]))
+rows.sort()
+cnt = collections.Counter((r[0], r[2]) for r in rows)
+result = {'pieces': len(rows), 'by_faces_name': sorted([[k[0], k[1], v] for k, v in cnt.items()], key=lambda t: -t[2])[:12], 'smallest': rows[:5], 'largest': rows[-6:]}

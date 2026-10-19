@@ -1,0 +1,24 @@
+# 19 October 2026 : faces touching a demoted crease painted red (blue elsewhere) on the shader ball and the arch, whole view and a close view centred on them.
+import numpy as np, sys, importlib, math
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, ZruvSops as ZS
+from PIL import Image
+importlib.reload(R)
+out = {}
+for obj in ('ZRUV_ShaderBall', 'ZRUV_Arch'):
+    g = hou.node('/obj/%s/openness' % obj).geometry()
+    m = Z.from_geo(g, (), ['name'])
+    dem = ZS._edge_set(g, 'zruv_sharp_demoted')
+    red = set(f for e in dem for f in m.edges.get(e, ()))
+    rgb = np.array([(0.9, 0.25, 0.2) if f in red else (0.62, 0.72, 0.86) for f in range(m.n)])
+    cam = R.camera_for(m, 'persp', size=(1000, 1000))
+    img = R.render(m, cam, face_rgb=rgb)
+    img = img[0] if isinstance(img, tuple) else img
+    p = '%s/runs/diagnostics/%s_demoted_persp.png' % (WS, obj)
+    (img if hasattr(img, 'save') else Image.fromarray(np.asarray(img).astype(np.uint8))).save(p)
+    out[obj] = {'path': p, 'red_faces': len(red), 'faces': m.n}
+    if red:
+        c = m.centroid[sorted(red)].mean(0)
+        lo, hi = m.centroid[sorted(red)].min(0), m.centroid[sorted(red)].max(0)
+        out[obj]['red_bbox'] = [[round(float(x), 3) for x in lo], [round(float(x), 3) for x in hi]]
+result = out

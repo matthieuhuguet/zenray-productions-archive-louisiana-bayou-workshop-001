@@ -1,0 +1,23 @@
+# 19 October 2026 : look at the shader ball and the arch : faces coloured by piece, hard edges red, demoted creases blue (numpy renderer of the sheet).
+import numpy as np, sys, json, importlib
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, ZruvSops as ZS
+importlib.reload(R)
+out = {}
+for obj, views in (('ZRUV_ShaderBall', ('persp', 'close')), ('ZRUV_Arch', ('persp', 'close'))):
+    g = hou.node('/obj/%s/openness' % obj).geometry()
+    m = Z.from_geo(g, (), ['name'])
+    hard = ZS._edge_set(g, 'zruv_sharp')
+    dem = ZS._edge_set(g, 'zruv_sharp_demoted')
+    names = sorted(set(m.prim['name']))
+    pal = [(0.85, 0.78, 0.62), (0.62, 0.74, 0.86), (0.72, 0.84, 0.66), (0.86, 0.66, 0.66), (0.8, 0.8, 0.8)]
+    rgb = np.array([pal[names.index(n) % len(pal)] for n in m.prim['name']])
+    for v in views:
+        cam = R.camera_for(m, 'persp', size=(1100, 1100)) if v == 'persp' else R.camera_close(m, size=(1100, 1100))
+        img, zb = R.render(m, cam, face_rgb=rgb)
+        R.draw_edges(img, zb, m, cam, sorted(dem), (40, 90, 230), width=2)
+        R.draw_edges(img, zb, m, cam, sorted(hard), (220, 30, 30), width=2)
+        p = '%s/runs/diagnostics/%s_hard_%s.png' % (WS, obj, v)
+        img.save(p) if hasattr(img, 'save') else __import__('PIL.Image', fromlist=['Image']).fromarray(img).save(p)
+        out[obj + '_' + v] = p
+result = out

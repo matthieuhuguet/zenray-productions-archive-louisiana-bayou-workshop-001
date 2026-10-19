@@ -67,8 +67,17 @@
   "border_m": 0,
   "pass": true
  },
+ "hard_edges": {
+  "source": "angle",
+  "hard_edges": 1538,
+  "hard_m": 273.8269,
+  "demoted_edges": 0,
+  "demoted_m": 0,
+  "narrow_parts": 0,
+  "narrowest_px": 16.0
+ },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 533, \"stacked_possible\": 397, \"stacked\": 375, \"fill\": 0.6167, \"unique_share\": 0.5102, \"lower_bound_px2\": 9901529, \"next_smaller\": [4096, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"why\": \"area of the islands above the sheet\"}, {\"W\": 512, \"H\": 256, \"why\": \"area of the islands above the sheet\"}, {\"W\": 512, \"H\": 512, \"why\": \"area of the islands above the sheet\"}, {\"W\": 1024, \"H\": 512, \"why\": \"area of the islands above the sheet\"}, {\"W\": 1024, \"H\": 1024, \"why\": \"area of the islands above the sheet\"}, {\"W\": 2048, \"H\": 1024, \"why\": \"area of the islands above the sheet\"}, {\"W\": 2048, \"H\": 2048, \"why\": \"area of the islands above the sheet\"}, {\"W\": 4096, \"H\": 2048, \"why\": \"area of the islands above the sheet\"}], \"rows\": 28}",
+  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 533, \"stacked_possible\": 397, \"stacked\": 375, \"fill\": 0.6167, \"unique_share\": 0.5102, \"mode\": \"stacked\", \"lower_bound_px2\": 10123119, \"lower_bound_unique_px2\": 23807361, \"next_smaller\": [4096, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 4096, \"H\": 2048, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 4096, \"H\": 4096, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 4096, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 28}",
   "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 8, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
  },
  "method": "M1",
@@ -89,7 +98,7 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 3.02,
+ "cook_s": 3.27,
  "score_s": 0.57,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
@@ -101,7 +110,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 23:55",
+ "date": "20 October 2026 00:09",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

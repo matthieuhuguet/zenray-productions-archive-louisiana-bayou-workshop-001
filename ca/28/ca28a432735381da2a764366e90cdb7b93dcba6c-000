@@ -1,0 +1,152 @@
+{
+ "asset": "/obj/ZRUV_Assets/shaderball",
+ "asset_scale": 1.0,
+ "texel_density": 1024.0,
+ "date": "20 October 2026 00:10",
+ "families": [
+  {
+   "name": "surface",
+   "rgb": [
+    51,
+    140,
+    242
+   ]
+  },
+  {
+   "name": "neutral",
+   "rgb": [
+    249,
+    204,
+    38
+   ]
+  },
+  {
+   "name": "bars",
+   "rgb": [
+    63,
+    216,
+    102
+   ]
+  }
+ ],
+ "methods": [
+  {
+   "id": "M1",
+   "title": "UV unique et bake",
+   "idea": "Chaque point de l'objet a ses propres pixels dans une texture unique de 4096 px au plus ; les îles jumelles (les deux piliers, les deux faces de l'arche, les rivets) partagent la même place, et les cartes du maillage sont cuites dedans.",
+   "score": 0.999414,
+   "weakest": "uv:stretch",
+   "components": {
+    "uv:present": 1.0,
+    "uv:density": 0.999987,
+    "uv:stretch": 0.999414,
+    "uv:no_flip": 1.0,
+    "uv:not_mirrored": 1.0,
+    "uv:region": 1.0,
+    "uv:horizontal": 1.0,
+    "uv:no_overlap": 1.0,
+    "uv:padding": 1.0,
+    "seams:consistency": 1.0,
+    "seams:robust_crease": 1.0
+   },
+   "contracts": [
+    {
+     "set": "uv",
+     "W": 2048,
+     "H": 1024,
+     "space": "sheet",
+     "unique": true,
+     "region": "sheet",
+     "padding_px": 16,
+     "straight_tol": 0.08,
+     "organic_tol": 0.1
+    }
+   ],
+   "views": {
+    "family_3d": "M1/view_family_3d.png",
+    "density_3d": "M1/view_density_3d.png",
+    "checker_3d": "M1/view_checker_3d.png",
+    "seams_3d": "M1/view_seams_3d.png",
+    "uv_family": "M1/view_uv_family.png",
+    "uv_density": "M1/view_uv_density.png"
+   },
+   "bake": {},
+   "textures": [
+    {
+     "label": "texture unique",
+     "w": 2048,
+     "h": 1024,
+     "count": 1,
+     "mib_each": 2.7,
+     "mib": 2.7
+    }
+   ],
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.01,
+    "tol_max": 0.01,
+    "exact_frac": 0.7601030612884425,
+    "low_frac": 0.1519972387886706,
+    "high_frac": 0.08789969992288686,
+    "px_per_m_min": 913.7045112851982,
+    "px_per_m_median": 1024.00085455444,
+    "px_per_m_max": 1076.7229121985795,
+    "stretch_max": 0.19125935243052372,
+    "faces": 7000
+   },
+   "seams": {
+    "crease_requested": 35.04174041748047,
+    "crease_effective": 35.042,
+    "edges_near_requested": 0,
+    "ambiguous_edges": 0,
+    "chains_mixed": 0,
+    "mixed_detail": [],
+    "consistency": 1.0,
+    "seams_m": 26.657,
+    "seams_on_smooth_m": 0.528,
+    "sharp_kept_m": 1.552,
+    "sharp_m": 6.916,
+    "border_m": 0,
+    "pass": true
+   },
+   "islands": 534,
+   "fill": 0.4868,
+   "u_range": [
+    0.0078,
+    0.9918
+   ],
+   "v_range": [
+    0.0156,
+    0.9682
+   ],
+   "cook_s": 7.49,
+   "bake_s": null,
+   "date": "20 October 2026 00:10",
+   "report": "M1/report.json",
+   "example": {},
+   "method_text": {
+    "steps": [
+     "Les arêtes plus vives que le pli deviennent des coutures. Chaque carte entre deux coutures faite d'une grille de quads (une bande de l'arche, un côté de pilier) est posée en rectangle exact, mesuré sur ses arêtes 3D : l'arche courbe devient une bande droite d'une seule pièce. Un quad qui n'est pas un rectangle (un chanfrein en trapèze, un coin de cadre) devient sa propre petite île, à plat sur son plan ; le reste garde le dépliage natif uvflatten, et labs texel density met tout à 1024 px/m.",
+     "Une bande plus longue que la plus grande texture permise est coupée sur une colonne de sa grille : l'arche à son sommet, en deux moitiés de 2,6 m.",
+     "Les îles jumelles, mêmes faces et même taille, sont posées l'une sur l'autre ; les autres sont rangées en rangées depuis le haut à gauche, les plus hautes d'abord, toutes couchées.",
+     "La feuille est la plus petite taille permise qui tient les rangées (2048, 4096 par 2048, puis 4096) ; Copernicus y cuit la couleur ID, l'occlusion, la courbure et les arêtes."
+    ],
+    "when": "Objet unique vu de près, personnage, arme, prop de moins de deux mètres : chaque point a ses propres pixels, on peut tout peindre et tout cuire.",
+    "check": "Une seule texture de 4096 au plus, des rangées de bandes droites et horizontales, les jumelles superposées, la densité blanche partout et le damier aux carrés égaux."
+   }
+  }
+ ],
+ "scale_img": "view_scale.png",
+ "scale": {
+  "asset_h": 0.344,
+  "asset_w": 0.335,
+  "asset_d": 0.36,
+  "mannequin_h": 1.76
+ },
+ "materials": {
+  "iron": "metal001_basecolor.png",
+  "pillar": "wood_color.jpg",
+  "sign": "wood_color.jpg"
+ }
+}

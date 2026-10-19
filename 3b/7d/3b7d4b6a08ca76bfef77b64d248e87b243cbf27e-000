@@ -1,0 +1,24 @@
+# 19 October 2026 : the 1368 single face charts of the shader ball : dihedral angles to their neighbours, face size, and whether the source assets carry normals.
+import numpy as np, sys, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z
+base = hou.node('/obj/ZRUV_ShaderBall/BASE').geometry()
+m = Z.from_geo(base, (), ['name'])
+ang = m.dihedral()
+names = m.prim['name']
+pv = set(i for i, n in enumerate(names) if n == 'PreviewSurface')
+cnt = collections.Counter()
+for e, fl in m.edges.items():
+    if len(fl) == 2 and fl[0] in pv and fl[1] in pv:
+        cnt[int(round(ang[e]))] += 1
+ar = np.array([m.area[f] for f in pv])
+src = {}
+for obj in ('/obj/ZRUV_Assets/shaderball', '/obj/ZRUV_Assets/rubbertoy', '/obj/ZRUV_Assets/manny_fbx', '/obj/Entrance_Arch_Clean/OUT_clean'):
+    n = hou.node(obj)
+    if n is None:
+        src[obj] = 'missing'
+        continue
+    g = n.geometry()
+    src[obj] = {'N_point': g.findPointAttrib('N') is not None, 'N_vertex': g.findVertexAttrib('N') is not None, 'prims': len(g.prims())}
+hist = sorted(cnt.items())
+result = {'dihedral_hist_pv': [h for h in hist if h[1] > 5], 'area_med_mm2': float(np.median(ar) * 1e6), 'area_p5_p95_mm2': [float(x * 1e6) for x in np.percentile(ar, (5, 95))], 'normals': src}

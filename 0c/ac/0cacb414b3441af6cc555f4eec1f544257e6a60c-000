@@ -1,0 +1,12 @@
+# 19 October 2026 : runs, bakes and writes the verification sheet of the given methods on the given test assets, all into the workshop runs folder.
+import time, json
+exec(open('/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZenRayUV.py').read(), globals())
+_reload()
+out = {}
+for obj in OBJS:
+    t = time.time()
+    geo = ensure(obj, None, tuple(METHS))
+    geo.node('CTRL_zruv').parm('out_dir').set(RUNS)
+    r = run(tuple(METHS), obj_name=obj, do_bake=BAKE)
+    out[obj] = {'s': round(time.time() - t, 1), 'res': r}
+result = out
