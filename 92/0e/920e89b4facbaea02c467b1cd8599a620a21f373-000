@@ -13,7 +13,9 @@
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
-  "seams:robust_crease": 1.0
+  "seams:robust_crease": 1.0,
+  "bake:coverage": 1.0,
+  "bake:id_match": 1.0
  },
  "reports": {
   "uv": {
@@ -26,8 +28,8 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9789197523203,
-    "px_per_m_median": 1023.999940434361,
+    "px_per_m_min": 1023.9789199214039,
+    "px_per_m_median": 1023.9999408675247,
     "px_per_m_max": 1024.0308829900703,
     "stretch_max": 0.05599937250270792,
     "faces": 995
@@ -38,8 +40,8 @@
    "islands": 533,
    "stacked_faces": 501,
    "overlap_px": 0,
-   "covered_px": 10499530,
-   "fill": 0.6258,
+   "covered_px": 10500225,
+   "fill": 0.6259,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 7,
    "u_range": [
@@ -99,9 +101,30 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 9.41,
- "score_s": 1.41,
- "bake": null,
+ "cook_s": 3.37,
+ "score_s": 38.4,
+ "bake": {
+  "files": {
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_4096x4096.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_4096x4096.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_4096x4096.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_4096x4096.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_4096x4096.png"
+  },
+  "seconds": {
+   "custom": 34.67,
+   "occlusion": 0.49,
+   "curvature": 0.37,
+   "edge": 0.3,
+   "alpha": 0.26
+  },
+  "size": [
+   4096,
+   4096
+  ],
+  "coverage": 1.0,
+  "id_match": 1.0
+ },
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
@@ -111,7 +134,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 01:07",
+ "date": "20 October 2026 01:44",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

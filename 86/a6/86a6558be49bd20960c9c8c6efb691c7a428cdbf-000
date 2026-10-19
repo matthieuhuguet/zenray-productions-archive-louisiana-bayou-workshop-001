@@ -1,0 +1,46 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_Manny": {
+   "s": 805.9,
+   "res": {
+    "M1": {
+     "score": 0.999481,
+     "weakest": "uv:stretch",
+     "errors": null
+    }
+   }
+  },
+  "ZRUV_ShaderBall": {
+   "s": 134.2,
+   "res": {
+    "M1": {
+     "score": 0.999567,
+     "weakest": "uv:stretch",
+     "errors": null
+    }
+   }
+  },
+  "ZRUV_RubberToy": {
+   "s": 32.5,
+   "res": {
+    "M1": {
+     "score": 0.999598,
+     "weakest": "uv:stretch",
+     "errors": null
+    }
+   }
+  },
+  "ZRUV_Arch": {
+   "s": 47.4,
+   "res": {
+    "M1": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    }
+   }
+  }
+ }
+}
+done
