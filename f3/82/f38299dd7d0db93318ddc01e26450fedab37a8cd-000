@@ -24,7 +24,7 @@
       const also = [];
       if (st.type === 'organic') {
         if (side2 <= P.maxUnique) { main = 1; why = `l'objet est organique et sa texture unique tient en ${ZR.n(side2)} px`; }
-        else { main = 2; why = `l'objet est organique mais trop grand : une texture unique demanderait ${ZR.n(side)} px`; also.push([4, 'des masques pour varier les matériaux répétés sur une si grande surface']); }
+        else { main = 2; why = `l'objet est organique mais trop grand : une texture unique demanderait ${ZR.n(side)} px`; also.push([4, 'pour varier par des masques les matériaux répétés sur une si grande surface']); }
       } else if (st.type === 'modular') {
         main = 3; why = "c'est de l'architecture ou un kit : les pièces partagent des bandes qui se répètent";
         also.push([2, 'pour les grandes surfaces planes (murs pleins, sols)'], [5, 'pour les détails fins sans agrandir la feuille']);

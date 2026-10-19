@@ -328,11 +328,18 @@
       const bw = Math.max(4, Math.round(VIEW_W * st.base)), bh = Math.max(2, Math.round(VIEW_H * st.base)), base = document.createElement('canvas');
       base.width = bw; base.height = bh;
       const bc = base.getContext('2d'), im = bc.createImageData(bw, bh);
-      for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
-        const xm = x / st.base, ym = y / st.base, f = 0.78 + 0.18 * ZR.fbm(xm * 30, ym * 3, 21, 3) + 0.1 * ZR.fbm(xm * 4, ym * 4, 22, 2);
+      for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {   // fine brushed grain (150 streaks per metre), averaged over 2 x 2 samples : a low density can only keep its average
+        let f = 0;
+        for (const [a, c] of [[0.25, 0.25], [0.75, 0.25], [0.25, 0.75], [0.75, 0.75]]) {
+          const xm = (x + a) / st.base, ym = (y + c) / st.base;
+          f += (0.74 + 0.22 * ZR.fbm(xm * 5, ym * 150, 21, 2) + 0.08 * ZR.fbm(xm * 3, ym * 3, 22, 2)) / 4;
+        }
         im.data.set([118 * f, 128 * f, 138 * f, 255], (y * bw + x) * 4);
       }
       bc.putImageData(im, 0, 0);
+      bc.fillStyle = 'rgba(235,235,225,0.85)'; bc.textBaseline = 'middle';    // a stencil painted IN the base texture : it blurs with the base, unlike the decals
+      bc.font = `500 ${Math.max(2, 0.09 * st.base)}px 'InterVariable', sans-serif`;
+      bc.fillText('Z-07', 0.18 * st.base, 0.34 * st.base);
       ctx.imageSmoothingEnabled = true; ctx.drawImage(base, x0, y0, pw, ph);
       if (st.on) {
         const X = (m) => x0 + m * k, Y = (m) => y0 + m * k, r = 0.008 * k;

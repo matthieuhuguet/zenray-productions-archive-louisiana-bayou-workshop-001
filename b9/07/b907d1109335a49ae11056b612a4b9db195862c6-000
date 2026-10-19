@@ -180,7 +180,7 @@
       const td = st.tex * st.share / 100 / st.wall, ratio = td / st.target, col = ZR.densityRGB(ratio);
       // texture square and the island of the wall
       const T = 220, tx = 20, ty = 34;
-      ctx.fillStyle = ZR.css('--card'); ctx.fillRect(tx, ty, T, T);
+      ctx.fillStyle = '#2b2a28'; ctx.fillRect(tx, ty, T, T);           // dark like an empty UV square, so a white (exact) island stays visible
       ctx.strokeStyle = ink2; ctx.lineWidth = 1.2; ctx.strokeRect(tx, ty, T, T);
       const islandPxW = st.tex * st.share / 100, islandPxH = td * P.wallHeightM;
       const iw = T * st.share / 100, ih = Math.min(T, T * islandPxH / st.tex);
@@ -191,7 +191,11 @@
       ZR.text(ctx, `île : ${ZR.n(islandPxW)} × ${ZR.n(Math.round(islandPxH))} px`, tx, ty + T + 18, { color: ink2 });
       // the wall drawn to scale
       const wx = 270, wy = 34, k = Math.min(220 / st.wall, 120 / P.wallHeightM), ww = st.wall * k, wh = P.wallHeightM * k;
-      ctx.fillStyle = ZR.rgb(col); ctx.fillRect(wx, wy, ww, wh);
+      const cell = 0.1 * k;                                            // the wall carries a 10 cm checker in its density colour
+      for (let i = 0; i * cell < ww; i++) for (let j = 0; j * cell < wh; j++) {
+        ctx.fillStyle = (i + j) % 2 ? ZR.rgb(col.map((v) => v * 0.86)) : ZR.rgb(col);
+        ctx.fillRect(wx + i * cell, wy + j * cell, Math.min(cell, ww - i * cell), Math.min(cell, wh - j * cell));
+      }
       ctx.strokeStyle = ink; ctx.strokeRect(wx + 0.5, wy + 0.5, ww - 1, wh - 1);
       ctx.strokeStyle = ink2;
       for (let m = 0; m <= st.wall + 1e-9; m += (st.wall > 4 ? 1 : 0.25)) {
@@ -337,15 +341,15 @@
         ctx.strokeStyle = ink2; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(v), y - 6); ctx.lineTo(X(v), y + 6); ctx.stroke();
         ZR.text(ctx, ZR.n(v), X(v), y + 22, { color: ink2, align: 'center', size: 11 });
       }
-      ZR.text(ctx, `au-delà de ${ZR.n(P.maxPx)} px, une seule image ne suffit plus en temps réel`, X(P.maxPx) + 6, y - 36, { color: ZR.rgb(L.ramp.low), size: 12 });
+      ZR.text(ctx, `au-delà de ${ZR.n(P.maxPx)} px, une seule image ne suffit plus en temps réel`, w - Rm, y - 36, { color: ZR.rgb(L.ramp.low), size: 12, align: 'right' });
       const xe = X(Math.min(hi, exact));
       ctx.fillStyle = ZR.css('--acc'); ctx.beginPath(); ctx.moveTo(xe, y - 4); ctx.lineTo(xe - 7, y - 18); ctx.lineTo(xe + 7, y - 18); ctx.closePath(); ctx.fill();
       ZR.text(ctx, `besoin : ${ZR.n(exact)} px`, xe, y + 44, { align: 'center', size: 13 });
       ZR.text(ctx, 'côté de la texture unique, échelle logarithmique', Lm, h - 10, { color: ink2, size: 11 });
-      const mem = ZR.mib(p2, P.bpp) * P.maps, ok = p2 <= P.maxPx;
+      const mem = ZR.mib(p2, P.bpp) * P.maps, ok = p2 <= P.maxPx, light = p2 <= P.maxPx / 2;
       stats.innerHTML = `<span class="line">√(${ZR.n(st.surface, 2)} m² × ${ZR.n(st.target)}² ÷ ${st.fill} %) = <b>${ZR.n(exact)}</b> px, donc une image de <b>${ZR.n(p2)} × ${ZR.n(p2)}</b></span>` +
         `<span>${ZR.n(p2 * p2 / 1e6, 1)} millions de texels</span><span>${P.maps} maps compressées : <b>${ZR.mem(mem)}</b></span>` +
-        `<span class="line">${ok ? 'Possible en une texture unique.' : 'Impossible en une texture unique : il faut partager (méthodes 2 à 5).'}</span>`;
+        `<span class="line">${light ? 'Possible en une texture unique.' : ok ? `Possible, mais lourd : ${ZR.mem(mem)} pour ce seul objet.` : 'Impossible en une texture unique : il faut partager (méthodes 2 à 5).'}</span>`;
     };
     ctl = ZR.controls(root.querySelector('.ctl'), [
       { key: 'preset', label: 'Exemple', options: P.presets.map((p, i) => ({ v: i, t: p.t })), value: 2 },

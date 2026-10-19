@@ -5,7 +5,8 @@
   const ZR = window.ZR = window.ZR || {};
   ZR.w = ZR.w || {};
   ZR.css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  ZR.n = (x, d = 0) => Number(x).toLocaleString('fr-FR', { maximumFractionDigits: d, minimumFractionDigits: d });
+  // the French thousands separator is a narrow no-break space (U+202F), which AnthropicSerif does not draw : use a no-break space (U+00A0) instead (19 October 2026)
+  ZR.n = (x, d = 0) => Number(x).toLocaleString('fr-FR', { maximumFractionDigits: d, minimumFractionDigits: d }).replace(/\u202f/g, '\u00a0');
   ZR.nAuto = (x) => {
     const a = Math.abs(x);
     return ZR.n(x, a >= 100 ? 0 : a >= 10 ? 1 : a >= 1 ? 2 : 3);
