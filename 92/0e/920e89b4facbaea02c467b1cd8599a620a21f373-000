@@ -1,19 +1,18 @@
 {
- "score": 1.0,
- "weakest": "uv:present",
+ "score": 0.947711,
+ "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 1.0,
-  "uv:stretch": 1.0,
+  "uv:density": 0.949594,
+  "uv:stretch": 0.947711,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
+  "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
-  "seams:robust_crease": 1.0,
-  "bake:coverage": 1.0,
-  "bake:id_match": 1.0
+  "seams:robust_crease": 1.0
  },
  "reports": {
   "uv": {
@@ -21,28 +20,32 @@
     "set": "uv",
     "target_px_per_m": 1024.0,
     "tol": 0.01,
-    "exact_frac": 1.0,
+    "exact_frac": 0.9495943829786696,
     "low_frac": 0.0,
-    "high_frac": 0.0,
-    "px_per_m_min": 1023.9517315380082,
-    "px_per_m_median": 1024.000157447014,
-    "px_per_m_max": 1024.0375837004683,
-    "stretch_max": 0.0003324748004107647,
+    "high_frac": 0.05040561702133029,
+    "px_per_m_min": 1023.9861729952928,
+    "px_per_m_median": 1024.0005721800583,
+    "px_per_m_max": 1492.1533493560828,
+    "stretch_max": 1.9697954354192557,
     "faces": 995
    },
-   "islands": 552,
+   "straight_area": 0.6536,
+   "straight_stretch_max": 1.9698,
+   "stretch_over_2pc_area": 0.1582,
+   "islands": 579,
+   "stacked_faces": 690,
    "overlap_px": 0,
-   "covered_px": 4900195,
-   "fill": 0.2921,
+   "covered_px": 8075434,
+   "fill": 0.4813,
    "padding_overlap_px": 0,
-   "padding_check_radius_px": 5,
+   "padding_check_radius_px": 7,
    "u_range": [
-    0.0015,
-    0.9429
+    0.002,
+    0.9822
    ],
    "v_range": [
-    0.0015,
-    0.8731
+    0.1999,
+    0.998
    ]
   }
  },
@@ -54,8 +57,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 276.162,
-  "seams_on_smooth_m": 2.138,
+  "seams_m": 279.44,
+  "seams_on_smooth_m": 4.511,
   "sharp_kept_m": 0,
   "sharp_m": 273.827,
   "border_m": 0,
@@ -66,41 +69,21 @@
  "contracts": [
   {
    "set": "uv",
-   "W": 8192,
-   "H": 8192,
+   "W": 4096,
+   "H": 4096,
    "space": "sheet",
    "unique": true,
    "region": "sheet",
-   "padding_px": 24.0
+   "padding_px": 16,
+   "straight_tol": 0.08
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 7.73,
- "score_s": 114.64,
- "bake": {
-  "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_8192x8192.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_8192x8192.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_8192x8192.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_8192x8192.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_8192x8192.png"
-  },
-  "seconds": {
-   "custom": 103.79,
-   "occlusion": 0.89,
-   "curvature": 1.07,
-   "edge": 0.82,
-   "alpha": 0.47
-  },
-  "size": [
-   8192,
-   8192
-  ],
-  "coverage": 1.0,
-  "id_match": 1.0
- },
+ "cook_s": 1.43,
+ "score_s": 0.38,
+ "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
@@ -110,7 +93,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 20:23",
+ "date": "19 October 2026 21:32",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -122,17 +105,15 @@
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
   "m1_sheet_px": 0,
-  "m1_fill": 0.6,
-  "m1_max_sheet_px": 16384,
   "m1_padding_px": 0,
+  "m1_stack": 1,
+  "m1_unique_pieces": "",
   "m1_flatten": 1,
   "m1_bake": 1,
   "m1_allow_rect": 1,
   "m1_bake_scale": 1.0,
   "m2_tile_px": 2048,
   "m2_grain": "pillar:up sign:h",
-  "m2_fill": 0.45,
-  "m2_max_tile_px": 8192,
   "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,

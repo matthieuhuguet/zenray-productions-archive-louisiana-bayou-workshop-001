@@ -1,14 +1,15 @@
 {
- "score": 1.0,
- "weakest": "uv:present",
+ "score": 0.408613,
+ "weakest": "uv:region",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 1.0,
-  "uv:stretch": 1.0,
+  "uv:density": 0.958926,
+  "uv:stretch": 0.871053,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
-  "uv:region": 1.0,
-  "uv:grain": 1.0,
+  "uv:region": 0.408613,
+  "uv:grain": 0.994261,
+  "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
@@ -21,16 +22,18 @@
     "set": "uv",
     "target_px_per_m": 1024.0,
     "tol": 0.01,
-    "exact_frac": 1.0,
+    "exact_frac": 0.9589264053396201,
     "low_frac": 0.0,
-    "high_frac": 0.0,
-    "px_per_m_min": 1023.98389603468,
-    "px_per_m_median": 1023.9990948289576,
-    "px_per_m_max": 1024.0460460738898,
-    "stretch_max": 0.0005018600321080591,
+    "high_frac": 0.041073594660379804,
+    "px_per_m_min": 1023.9881113601774,
+    "px_per_m_median": 1023.9998255473671,
+    "px_per_m_max": 1492.1553069931747,
+    "stretch_max": 1.9697991908832475,
     "faces": 1903
    },
-   "islands": 996,
+   "stretch_over_2pc_area": 0.1289,
+   "islands": 1015,
+   "stacked_faces": 642,
    "overlap_px": 0,
    "covered_px": 3061785,
    "fill": 0.1825,
@@ -40,12 +43,12 @@
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
-    0.002,
-    2.9517
+    0.001,
+    2.6362
    ],
    "v_range": [
-    0.001,
-    0.9979
+    0.1055,
+    2.999
    ]
   }
  },
@@ -57,8 +60,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 428.659,
-  "seams_on_smooth_m": 2.138,
+  "seams_m": 431.268,
+  "seams_on_smooth_m": 3.842,
   "sharp_kept_m": 49.781,
   "sharp_m": 323.608,
   "border_m": 152.497,
@@ -86,8 +89,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 7.9,
- "score_s": 1.37,
+ "cook_s": 1.58,
+ "score_s": 0.58,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -98,7 +101,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 20:45",
+ "date": "19 October 2026 21:33",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -111,13 +114,11 @@
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
   "m2_grain": "pillar:up sign:h",
-  "m2_fill": 0.45,
-  "m2_max_tile_px": 8192,
   "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1,
-  "m5_atlas_px": 4096,
+  "m5_atlas_px": 2048,
   "m5_strip_families": "iron pillar",
   "m5_strip_angle": 80.0,
   "m5_strip_max_angle": 120.0,

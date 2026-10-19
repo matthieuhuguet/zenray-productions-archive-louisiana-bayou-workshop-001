@@ -1,14 +1,15 @@
 {
- "score": 1.0,
- "weakest": "uv:present",
+ "score": 0.947711,
+ "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 1.0,
-  "uv:stretch": 1.0,
+  "uv:density": 0.949594,
+  "uv:stretch": 0.947711,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
-  "uv:grain": 1.0,
+  "uv:grain": 0.992957,
+  "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
@@ -20,26 +21,30 @@
     "set": "uv",
     "target_px_per_m": 1024.0,
     "tol": 0.01,
-    "exact_frac": 1.0,
+    "exact_frac": 0.9495943829786696,
     "low_frac": 0.0,
-    "high_frac": 0.0,
-    "px_per_m_min": 1023.98389603468,
-    "px_per_m_median": 1023.9999925269868,
-    "px_per_m_max": 1024.0460460738898,
-    "stretch_max": 0.0005018600321080591,
+    "high_frac": 0.05040561702133029,
+    "px_per_m_min": 1023.9881113601774,
+    "px_per_m_median": 1024.0003252143056,
+    "px_per_m_max": 1492.1553069931747,
+    "stretch_max": 1.9697991908832475,
     "faces": 995
    },
-   "islands": 552,
+   "straight_area": 0.6536,
+   "straight_stretch_max": 1.9698,
+   "stretch_over_2pc_area": 0.1582,
+   "islands": 571,
+   "stacked_faces": 642,
    "groups": 3,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
-    0.002,
-    2.9517
+    0.001,
+    2.6362
    ],
    "v_range": [
-    0.001,
-    0.6274
+    0.1055,
+    2.999
    ]
   }
  },
@@ -51,8 +56,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 276.162,
-  "seams_on_smooth_m": 2.138,
+  "seams_m": 278.771,
+  "seams_on_smooth_m": 3.842,
   "sharp_kept_m": 0,
   "sharp_m": 273.827,
   "border_m": 0,
@@ -70,14 +75,16 @@
    "region": "square",
    "sizes": "per_face",
    "grain": "u",
-   "padding_px": 8
+   "overflow_u": true,
+   "padding_px": 8,
+   "straight_tol": 0.08
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 7.89,
- "score_s": 1.16,
+ "cook_s": 1.44,
+ "score_s": 0.36,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -88,7 +95,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 20:23",
+ "date": "19 October 2026 21:32",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -101,8 +108,6 @@
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
   "m2_grain": "pillar:up sign:h",
-  "m2_fill": 0.45,
-  "m2_max_tile_px": 8192,
   "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
