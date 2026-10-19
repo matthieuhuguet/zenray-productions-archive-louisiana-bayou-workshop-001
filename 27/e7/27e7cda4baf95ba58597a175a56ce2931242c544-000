@@ -1,0 +1,38 @@
+# 20 October 2026 : the hand of welded Manny (a stuck chart) : every repair gesture, its parts and their failing area, to see why none helps.
+import numpy as np, sys, importlib, json
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+g = hou.node('/obj/ZRUV_Manny/organic_refine').geometry()
+O._TD, O._SUBPX, O._TOL = 1024.0, 1.0, 0.1
+m = Z.from_geo(g, ('uv_org',), ['zruv_ochart', 'zruv_open'])
+sub = hou.node('/obj/ZRUV_Manny/organic_grains').geometry()
+O._HARDSET = set()
+opn = np.array(m.prim.get('zruv_open', [1.0] * m.n))
+ch = np.array(m.prim['zruv_ochart'])
+fs = [int(f) for f in np.where(ch == CH)[0]]
+rel = O._relax(m, fs, {f: m.uv['uv_org'][f] for f in fs}, tol=0.1)
+worst = O._fail_area(rel[1], rel[2], rel[3], 0.1)
+info = {'faces': len(fs), 'chi': O._chi(m, fs), 'fail_now': worst, 'area': float(rel[3].sum())}
+cands = []
+for share in (0.15, 0.03):
+    b = O._bisect(m, fs, opn, min_share=share)
+    if b is None:
+        cands.append(('neck %g' % share, 'none')); continue
+    row = []
+    for half in b:
+        chi = O._chi(m, half)
+        st = [('parent', {f: rel[0][f] for f in half}), ('abf', O._flatten_faces({'_mesh': m}, half))]
+        best = None
+        for nm, uvd in st:
+            if len(uvd) != len(half):
+                continue
+            rr = O._relax(m, half, uvd, tol=0.1)
+            fa = O._fail_area(rr[1], rr[2], rr[3], 0.1)
+            best = min(best, (fa, nm)) if best else (fa, nm)
+        row.append({'faces': len(half), 'chi': chi, 'best': best})
+    cands.append(('neck %g' % share, row))
+r = O._repair(m, fs, rel, opn, 0.1, 0.0)
+info['repair'] = None if r is None else (r[2], r[1], [len(p[0]) for p in r[0]], sum(O._fail_area(p[2], p[3], p[4], 0.1) for p in r[0]))
+info['cands'] = cands
+result = info

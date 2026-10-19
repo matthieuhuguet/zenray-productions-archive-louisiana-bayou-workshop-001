@@ -1,0 +1,42 @@
+# 20 October 2026 : the hand of welded Manny replayed exactly as refine sees it (the organic sub mesh, its hard edges, its openness) : every gesture and why it fails.
+import numpy as np, sys, importlib, json
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+full = hou.node('/obj/ZRUV_Manny/organic_refine').geometry()
+sub = hou.node('/obj/ZRUV_Manny/organic_grains').geometry()
+O._TD, O._SUBPX, O._TOL = 1024.0, 1.0, 0.1
+sm = Z.from_geo(sub, ('uv_auto', 'uv_clu'), ['zruv_fid', 'zruv_open'])
+fid = [int(x) for x in sm.prim['zruv_fid']]
+och = full.primIntAttribValues('zruv_ochart')
+O._HARDSET = set(O._sharp_set(sub, sm))
+opn = np.array(sm.prim.get('zruv_open', [1.0] * sm.n))
+fs = [f for f in range(sm.n) if och[fid[f]] == CH]
+uvo = full.findVertexAttrib('uv_org')
+prs = full.prims()
+uvd = {f: [tuple(vt.attribValue('uv_org')[:2]) for vt in prs[fid[f]].vertices()] for f in fs}
+rel = O._relax(sm, fs, uvd, tol=0.1)
+inner = O._inner_hard(sm, fs)
+info = {'faces': len(fs), 'chi': O._chi(sm, fs), 'fail': O._fail_area(rel[1], rel[2], rel[3], 0.1), 'hard_inner': len(inner), 'hard_touch': sum(1 for e in O._HARDSET if any(f in set(fs) for f in sm.edges.get(e, ())))}
+rows = []
+adj, border, ang = O._chart_graph(sm, fs)
+for share in (0.15, 0.03):
+    b = O._bisect(sm, fs, opn, min_share=share)
+    if b is None:
+        rows.append(('neck', share, None)); continue
+    parts = []
+    for half in b:
+        fl_ = O._flatten_faces({'_mesh': sm}, half)
+        st = {'parent': {f: rel[0][f] for f in half}}
+        if len(fl_) == len(half):
+            st['abf'] = fl_
+        res_ = {}
+        for nm, u in st.items():
+            rr = O._relax(sm, half, u, tol=0.1)
+            res_[nm] = O._fail_area(rr[1], rr[2], rr[3], 0.1)
+        parts.append({'faces': len(half), 'chi': O._chi(sm, half), 'abf_ok': len(fl_) == len(half), 'fails': res_, 'inner_hard': len(O._inner_hard(sm, half))})
+    rows.append(('neck', share, parts))
+r = O._repair(sm, fs, rel, opn, 0.1, 0.0)
+info['repair'] = None if r is None else (r[2], [len(p[0]) for p in r[0]], sum(O._fail_area(p[2], p[3], p[4], 0.1) for p in r[0]))
+info['rows'] = rows
+result = info

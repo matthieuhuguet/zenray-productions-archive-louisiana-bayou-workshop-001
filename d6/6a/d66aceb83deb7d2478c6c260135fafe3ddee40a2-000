@@ -1,0 +1,49 @@
+# 20 October 2026 : the native uvflatten 3.0, SCP (method 0) against ABF (method 1), on the charts of welded Manny : folded triangles and area out of tol after ARAP.
+import numpy as np, sys, importlib, json
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+g = hou.node('/obj/ZRUV_Manny/organic_refine').geometry()
+O._TD, O._SUBPX, O._TOL = 1024.0, 1.0, 0.1
+m = Z.from_geo(g, ('uv_org',), ['zruv_ochart'])
+O._HARDSET = set()
+ch = np.array(m.prim['zruv_ochart'])
+
+def flatten(faces, method):
+    gg = hou.Geometry()
+    pts = sorted(set(p for f in faces for p in m.polys[f])); idx = {p: i for i, p in enumerate(pts)}
+    gg.createPoints([tuple(float(x) for x in m.P[p]) for p in pts])
+    gg.addAttrib(hou.attribType.Prim, 'zruv_src', -1); gg.addAttrib(hou.attribType.Vertex, 'uv', (0.0, 0.0, 0.0))
+    for pr, f in zip(gg.createPolygons([tuple(idx[p] for p in m.polys[f]) for f in faces]), faces):
+        pr.setAttribValue('zruv_src', int(f))
+    vb = hou.sopNodeTypeCategory().nodeVerb('uvflatten::3.0')
+    vb.setParms({'method': method, 'uvattrib': 'uv', 'seamgroup': '', 'rectifygroup': ''})
+    out = hou.Geometry(); vb.execute(out, [gg])
+    return {pr.attribValue('zruv_src'): [tuple(vt.attribValue('uv')[:2]) for vt in pr.vertices()] for pr in out.prims()}
+
+def folds(faces, uvd):
+    sa = []
+    for f in faces:
+        q = np.array(uvd[f])
+        for k in range(1, len(q) - 1):
+            a, b, c = q[0], q[k], q[k + 1]
+            sa.append((b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1]))
+    sa = np.array(sa)
+    return int(min((sa > 0).sum(), (sa < 0).sum()))
+
+out = {}
+ks = sorted(set(ch.tolist()) - {-1})
+tot = {'scp_folds': 0, 'abf_folds': 0, 'scp_fail': 0.0, 'abf_fail': 0.0, 'charts': 0}
+for k in ks:
+    fs = [int(f) for f in np.where(ch == k)[0]]
+    if len(fs) < 30:
+        continue
+    for meth, tag in ((0, 'scp'), (1, 'abf')):
+        fl = flatten(fs, meth)
+        if len(fl) != len(fs):
+            continue
+        tot[tag + '_folds'] += folds(fs, fl)
+        rr = O._relax(m, fs, fl, tol=0.1)
+        tot[tag + '_fail'] += O._fail_area(rr[1], rr[2], rr[3], 0.1)
+    tot['charts'] += 1
+result = {k: (round(v, 6) if isinstance(v, float) else v) for k, v in tot.items()}
