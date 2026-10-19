@@ -1,0 +1,123 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_ShaderBall": {
+   "build_s": 0.0,
+   "total_s": 95.7,
+   "score": 0.99956,
+   "errors": [],
+   "low": {
+    "uv:stretch": 0.99956
+   },
+   "organic": {
+    "from_unwrap": 524,
+    "repaired": 4,
+    "merges": 0,
+    "stuck": 0,
+    "gestures": {
+     "dart": 1,
+     "neck 0.15": 3
+    },
+    "added_seam_m": 0.208,
+    "polished": 1,
+    "economy_s": 26.3,
+    "economy_merges": 226,
+    "reflattened": 1,
+    "charts": 301,
+    "discs": 295,
+    "tol": 0.1,
+    "cover_asked": 0.999,
+    "within_tol": 0.99956,
+    "within_5pc": 0.9502,
+    "stretch_max": 0.9001,
+    "organic_share": 1.0002,
+    "fail_area_m2": 0.00044,
+    "budget_m2": 0.0005
+   },
+   "hard": {
+    "source": "angle",
+    "hard_edges": 304,
+    "hard_m": 6.916,
+    "demoted_edges": 2736,
+    "demoted_m": 14.2355,
+    "narrow_parts": 1368,
+    "narrowest_px": 16.0
+   },
+   "weld_points": 0,
+   "base_points": 7126,
+   "seams": {
+    "consistency": 1.0,
+    "chains_mixed": 0,
+    "sharp_kept_m": 0,
+    "seams_m": 23.566
+   },
+   "sheet": [
+    2048,
+    1024
+   ],
+   "proven": true,
+   "unique": 1.0,
+   "fill": 0.4978,
+   "islands": 313
+  },
+  "ZRUV_RubberToy": {
+   "build_s": 0.1,
+   "total_s": 73.9,
+   "score": 0.999598,
+   "errors": [],
+   "low": {
+    "uv:stretch": 0.999598
+   },
+   "organic": {
+    "from_unwrap": 47,
+    "repaired": 1,
+    "merges": 0,
+    "stuck": 0,
+    "gestures": {
+     "neck 0.15": 1
+    },
+    "added_seam_m": 0.139,
+    "polished": 1,
+    "economy_s": 37.6,
+    "economy_merges": 8,
+    "reflattened": 0,
+    "charts": 40,
+    "discs": 38,
+    "tol": 0.1,
+    "cover_asked": 0.999,
+    "within_tol": 0.9996,
+    "within_5pc": 0.98595,
+    "stretch_max": 0.1616,
+    "organic_share": 1.0012,
+    "fail_area_m2": 0.000403,
+    "budget_m2": 0.0005
+   },
+   "hard": {
+    "source": "normals",
+    "hard_edges": 0,
+    "hard_m": 0,
+    "demoted_edges": 0,
+    "demoted_m": 0,
+    "narrow_parts": 0,
+    "narrowest_px": 16.0
+   },
+   "weld_points": 0,
+   "base_points": 12874,
+   "seams": {
+    "consistency": 1.0,
+    "chains_mixed": 0,
+    "sharp_kept_m": 0,
+    "seams_m": 12.563
+   },
+   "sheet": [
+    2048,
+    1024
+   ],
+   "proven": true,
+   "unique": 1.0,
+   "fill": 0.4975,
+   "islands": 40
+  }
+ }
+}
+done

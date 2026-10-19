@@ -1,0 +1,80 @@
+# 20 October 2026 : the seam / distortion trade off on Manny : ZenRay's organic chain at several declared tolerances against Epic's own artist uv, measured the
+# same way (share of the surface within 10 % and within 20 % of density and stretch, islands, seam length). Writes runs/ZRUV_Manny/pareto.json.
+import numpy as np, sys, importlib, json, time, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+
+def measure(P3, tris, uv, area_w):
+    r, s, a3 = O.distortion(P3, tris, uv, 0.0)
+    sc = np.sqrt(a3.sum() / (r ** 2 * a3).sum())
+    r, s, a3 = O.distortion(P3, tris, uv * sc, 0.0)
+    w = a3 / a3.sum()
+    out = {}
+    for t in (0.1, 0.2):
+        out['within_%d' % int(t * 100)] = round(float(w[(np.abs(r - 1) <= t) & (s <= t)].sum()), 4)
+    out['stretch_p50'] = round(float(np.median(s)), 3)
+    out['stretch_p95'] = round(float(np.percentile(s, 95)), 3)
+    return out
+
+def chart_measure(m, name, chart):
+    # every chart scaled on its own (an island is normalised to the density by itself, like the layout does), then the surface shares
+    R, S_, A = [], [], []
+    for k in sorted(set(chart.tolist()) - {-1}):
+        fs = [int(f) for f in np.where(chart == k)[0]]
+        P3, T, uv, corner = O._island_arrays(m, name, fs)
+        r, s, a3 = O.distortion(P3, T, uv, 0.0)
+        sc = np.sqrt(a3.sum() / max((r ** 2 * a3).sum(), 1e-30))
+        r, s, a3 = O.distortion(P3, T, uv * sc, 0.0)
+        R.append(r); S_.append(s); A.append(a3)
+    R, S_, A = np.concatenate(R), np.concatenate(S_), np.concatenate(A)
+    w = A / A.sum()
+    out = {t: round(float(w[(np.abs(R - 1) <= t) & (S_ <= t)].sum()), 4) for t in (0.1, 0.2)}
+    return {'within_10': out[0.1], 'within_20': out[0.2], 'stretch_p50': round(float(np.median(S_)), 3), 'stretch_p95': round(float(np.percentile(S_, 95)), 3)}
+
+rows = []
+# Epic : the asset's own uv (point uv, points split along its seams), islands = connected pieces
+g = hou.node('/obj/ZRUV_Assets/manny_fbx').geometry()
+P = np.array(g.pointFloatAttribValues('P')).reshape(-1, 3) * 0.01
+UVp = np.array(g.pointFloatAttribValues('uv')).reshape(-1, 3)[:, :2]
+polys = [[v.point().number() for v in pr.vertices()] for pr in g.prims()]
+me = Z.Mesh(P, polys)
+me.uv['uv_e'] = [[tuple(UVp[p]) for p in pp] for pp in polys]
+find, union = Z.uf(me.n)
+for e, fl in me.edges.items():
+    for k in range(1, len(fl)):
+        union(fl[0], fl[k])
+comp = np.array([find(f) for f in range(me.n)])
+_, comp = np.unique(comp, return_inverse=True)
+seam_e = sum(me.edge_length(e) for e, fl in me.edges.items() if len(fl) == 1) / 2.0
+row = {'who': 'Epic (artist)', 'islands': int(comp.max() + 1), 'seams_m': round(seam_e, 2)}
+row.update(chart_measure(me, 'uv_e', comp))
+rows.append(row)
+# ZenRay at several tolerances
+c = hou.node('/obj/ZRUV_Manny/CTRL_zruv')
+t0 = c.evalParm('organic_tol')
+n = hou.node('/obj/ZRUV_Manny/organic_refine')
+for tol in TOLS:
+    c.parm('organic_tol').set(tol)
+    t = time.time()
+    n.cook(force=True)
+    gg = n.geometry()
+    rep = json.loads(gg.attribValue('zruv_organic_report'))
+    m = Z.from_geo(gg, ('uv_org',), ['zruv_ochart'])
+    ch = np.array(m.prim['zruv_ochart'])
+    sem = 0.0
+    for e, fl in m.edges.items():
+        if len(fl) == 2 and ch[fl[0]] != ch[fl[1]]:
+            sem += m.edge_length(e)
+        elif len(fl) == 2 and ch[fl[0]] == ch[fl[1]]:
+            u0 = [m.uv['uv_org'][fl[0]][m.polys[fl[0]].index(p)] for p in e]
+            u1 = [m.uv['uv_org'][fl[1]][m.polys[fl[1]].index(p)] for p in e]
+            if max(abs(a[0] - b[0]) + abs(a[1] - b[1]) for a, b in zip(u0, u1)) > 1e-7:
+                sem += m.edge_length(e)          # a slit (dart) inside a chart
+    row = {'who': 'ZenRay tol %g' % tol, 'islands': rep['charts'], 'seams_m': round(sem, 2), 's': round(time.time() - t, 1)}
+    row.update(chart_measure(m, 'uv_org', ch))
+    rows.append(row)
+c.parm('organic_tol').set(t0)
+n.cook(force=True)
+json.dump(rows, open(RUNS + '/ZRUV_Manny/pareto.json', 'w'), indent=1)
+result = rows

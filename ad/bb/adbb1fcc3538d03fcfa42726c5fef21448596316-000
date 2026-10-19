@@ -1,0 +1,27 @@
+# 20 October 2026 : the shader ball islands at 2048 x 1024 : the native packer with the rigid rows of strips, without them, and with more iterations.
+import numpy as np, sys, importlib, json, time
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvLayout as L, ZruvSops as S
+importlib.reload(L)
+node = hou.node('/obj/ZRUV_ShaderBall/M1_unique/orient')
+g0 = node.geometry()
+geo = hou.Geometry(); geo.merge(g0)
+c = S.ctrl(hou.node('/obj/ZRUV_ShaderBall/M1_unique/layout'))
+td = 1024.0
+m, isls = L.islands(geo, 'uv')
+full = L.twins(isls, same_family=True)
+order = json.loads(geo.attribValue('zruv_families'))
+pad = L.pad_px(c, td)
+rect = {d['id'] for d in isls if d['fill'] >= 0.98}
+out = {'islands': len(isls), 'rects': len(rect), 'twins': len(full)}
+for tag, rids, it, sd in (('rows', rect, 2, 0), ('rows_it12', rect, 12, 2), ('no_rows', set(), 2, 0), ('no_rows_it12', set(), 12, 2)):
+    t = time.time()
+    pl = L._place_unique(geo, 'uv', m, isls, full, td, 2048, 1024, pad, order, rids, None, it, sd)
+    out[tag] = {'ok': pl is not None, 's': round(time.time() - t, 1), 'rows': (pl or {}).get('_rows')}
+result = out
+big = sorted(isls, key=lambda d: -max(d['w'], d['h']))[:6]
+out['biggest_px'] = [(round(d['w'] * td), round(d['h'] * td), round(d['fill'], 2), len(d['faces'])) for d in big]
+for H in (1024, 1100, 1200, 1400):
+    pl = L._place_unique(geo, 'uv', m, isls, full, td, 2048, H, pad, order, rect, None, 2, 0)
+    out['h%d' % H] = pl is not None
+result = out

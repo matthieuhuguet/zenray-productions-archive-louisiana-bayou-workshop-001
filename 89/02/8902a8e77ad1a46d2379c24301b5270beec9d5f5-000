@@ -1,0 +1,14 @@
+# 20 October 2026 : the shader ball pebbles after M1 orient : do identical pebbles give identical islands (twin keys, face centres) ?
+import numpy as np, sys, importlib, collections
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvLayout as L
+importlib.reload(L)
+g = hou.node('/obj/ZRUV_ShaderBall/M1_unique/orient').geometry()
+m, isl = L.islands(g, 'uv')
+small = [d for d in isl if len(d['faces']) <= 24]
+keys = collections.Counter((d['family'], d['key'][:3]) for d in small)
+full = L.twins(isl, same_family=True)
+sizes = collections.Counter(len(d['faces']) for d in small)
+ex = [d for d in small if len(d['faces']) == max(sizes, key=sizes.get)][:4]
+result = {'small_islands': len(small), 'face_count_hist': dict(sizes), 'distinct_wh_keys': len(keys), 'top_keys': [[list(k), v] for k, v in keys.most_common(5)], 'twins_found': len(full),
+          'examples': [{'faces': len(d['faces']), 'w': round(d['w'], 5), 'h': round(d['h'], 5), 'areas': sorted(round(float(m.area[f]) * 1e6, 3) for f in d['faces'])[:6]} for d in ex]}

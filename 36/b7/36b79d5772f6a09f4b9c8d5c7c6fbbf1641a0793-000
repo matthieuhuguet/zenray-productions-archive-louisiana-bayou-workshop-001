@@ -1,0 +1,8 @@
+ZRUV_ShaderBall score 0.99956 tot 95.7 sheet [2048, 1024] proven True fill 0.4978 isl 313 uniq 1.0
+   low {'uv:stretch': 0.99956} err []
+   hard {'source': 'angle', 'hard_edges': 304, 'hard_m': 6.916, 'demoted_edges': 2736, 'demoted_m': 14.2355, 'narrow_parts': 1368, 'narrowest_px': 16.0} weld 0 pts 7126 seams {'consistency': 1.0, 'chains_mixed': 0, 'sharp_kept_m': 0, 'seams_m': 23.566}
+   organic {'charts': 301, 'within_tol': 0.99956, 'within_5pc': 0.9502, 'stretch_max': 0.9001, 'fail_area_m2': 0.00044, 'budget_m2': 0.0005, 'stuck': 0, 'cone_cuts': None}
+ZRUV_RubberToy score 0.999598 tot 73.9 sheet [2048, 1024] proven True fill 0.4975 isl 40 uniq 1.0
+   low {'uv:stretch': 0.999598} err []
+   hard {'source': 'normals', 'hard_edges': 0, 'hard_m': 0, 'demoted_edges': 0, 'demoted_m': 0, 'narrow_parts': 0, 'narrowest_px': 16.0} weld 0 pts 12874 seams {'consistency': 1.0, 'chains_mixed': 0, 'sharp_kept_m': 0, 'seams_m': 12.563}
+   organic {'charts': 40, 'within_tol': 0.9996, 'within_5pc': 0.98595, 'stretch_max': 0.1616, 'fail_area_m2': 0.000403, 'budget_m2': 0.0005, 'stuck': 0, 'cone_cuts': None}
