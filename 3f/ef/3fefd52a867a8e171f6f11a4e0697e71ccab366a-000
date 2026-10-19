@@ -1,0 +1,17 @@
+Crash report from 8f521bdc; Houdini FX Version 22.0.368 [macosx15-arm64-clang17.0-targetosx10.15]
+Uptime 48358 seconds
+Tue Oct 20 00:34:57 2026
+Caught signal 11
+
+2   libHoudiniUI.dylib                  0x0000000102601444 AP_Interface::coreDumpChaser(UTsignalHandlerArg) + 568
+3   libHoudiniUI.dylib                  0x0000000102603560 AP_Interface::si_CrashHandler::chaser(UTsignalHandlerArg) + 64
+4   libHoudiniUT.dylib                  0x000000010b2de898 signalCallback(UTsignalHandlerArg) + 624
+5   libHoudiniUT.dylib                  0x000000010bb3fc40 UT_Signal::processSignal(int, __siginfo*, void*) + 172
+6   libsystem_platform.dylib            0x00000001876b8144 _sigtramp + 56
+7   libHoudiniAPPS1.dylib               0x0000000116dbee4c IMGUI_ViewerManager::switchEditors(UI_Event*) + 44
+8   libHoudiniUI.dylib                  0x00000001023d137c UI_Queue::processNextEvent() + 844
+9   libHoudiniUI.dylib                  0x00000001023d1a2c UI_Queue::eventLoop() + 200
+10  libHoudiniUI.dylib                  0x000000010260d1dc main_part2(UT_Array<std::__1::unique_ptr<AP_Interface, std::__1::default_delete<AP_Interface>>>&, int, char const* const*) + 2168
+11  libHoudiniUI.dylib                  0x000000010260bee0 main + 5452
+12  dyld                                0x00000001872d7e80 start + 6688
+

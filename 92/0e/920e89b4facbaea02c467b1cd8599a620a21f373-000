@@ -99,8 +99,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 3.41,
- "score_s": 0.58,
+ "cook_s": 11.36,
+ "score_s": 2.26,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -111,7 +111,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 00:30",
+ "date": "20 October 2026 00:38",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -132,7 +132,7 @@
   "m1_allow_rect": 1,
   "m1_bake_scale": 1.0,
   "m2_tile_px": 2048,
-  "m2_grain": "pillar:up sign:h",
+  "m2_grain": "pillar:h sign:h",
   "m2_stitch": 1,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
