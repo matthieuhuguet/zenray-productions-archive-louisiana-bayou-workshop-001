@@ -1,0 +1,290 @@
+{
+ "texel_density_px_per_m": 1024.0,
+ "object_surface_m2": 19.34,
+ "sheets": [
+  {
+   "sheet": 1,
+   "width_px": 4096,
+   "height_px": 4096,
+   "kind": "shared",
+   "used_px": 3760,
+   "free_px": 336,
+   "free_pct": 8.2,
+   "bands": [
+    {
+     "band": "sign",
+     "kind": "unique",
+     "y_px": 0,
+     "height_px": 1472,
+     "height_m": 1.438,
+     "sheet_height_pct": 35.9,
+     "sheet_area_pct": 35.9,
+     "islands": 9,
+     "faces": 117,
+     "surface_m2": 6.297,
+     "surface_pct": 32.6,
+     "reuse": 1.71,
+     "longest_island_m": 2.558,
+     "sheet_widths_run": null,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "pillar@V",
+     "kind": "tiles in U",
+     "y_px": 1472,
+     "height_px": 356,
+     "height_m": 0.348,
+     "sheet_height_pct": 8.7,
+     "sheet_area_pct": 8.7,
+     "islands": 28,
+     "faces": 236,
+     "surface_m2": 2.196,
+     "surface_pct": 11.4,
+     "reuse": 1.58,
+     "longest_island_m": 0.359,
+     "sheet_widths_run": 0.09,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "pillar@U",
+     "kind": "tiles in U",
+     "y_px": 1828,
+     "height_px": 336,
+     "height_m": 0.328,
+     "sheet_height_pct": 8.2,
+     "sheet_area_pct": 8.2,
+     "islands": 7,
+     "faces": 72,
+     "surface_m2": 4.804,
+     "surface_pct": 24.8,
+     "reuse": 3.66,
+     "longest_island_m": 1.765,
+     "sheet_widths_run": 0.44,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "cross@V",
+     "kind": "tiles in U",
+     "y_px": 2164,
+     "height_px": 332,
+     "height_m": 0.324,
+     "sheet_height_pct": 8.1,
+     "sheet_area_pct": 8.1,
+     "islands": 23,
+     "faces": 58,
+     "surface_m2": 0.689,
+     "surface_pct": 3.6,
+     "reuse": 0.53,
+     "longest_island_m": 0.364,
+     "sheet_widths_run": 0.09,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "pendant@V",
+     "kind": "tiles in U",
+     "y_px": 2496,
+     "height_px": 252,
+     "height_m": 0.246,
+     "sheet_height_pct": 6.2,
+     "sheet_area_pct": 6.2,
+     "islands": 30,
+     "faces": 94,
+     "surface_m2": 0.836,
+     "surface_pct": 4.3,
+     "reuse": 0.85,
+     "longest_island_m": 0.614,
+     "sheet_widths_run": 0.15,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "arch@V",
+     "kind": "tiles in U",
+     "y_px": 2748,
+     "height_px": 204,
+     "height_m": 0.199,
+     "sheet_height_pct": 5.0,
+     "sheet_area_pct": 5.0,
+     "islands": 4,
+     "faces": 66,
+     "surface_m2": 0.946,
+     "surface_pct": 4.9,
+     "reuse": 1.19,
+     "longest_island_m": 1.252,
+     "sheet_widths_run": 0.31,
+     "density_px_per_m": [
+      1024.0,
+      1024.6,
+      1025.1
+     ]
+    },
+    {
+     "band": "pendant@U",
+     "kind": "tiles in U",
+     "y_px": 2952,
+     "height_px": 200,
+     "height_m": 0.195,
+     "sheet_height_pct": 4.9,
+     "sheet_area_pct": 4.9,
+     "islands": 6,
+     "faces": 92,
+     "surface_m2": 0.453,
+     "surface_pct": 2.3,
+     "reuse": 0.58,
+     "longest_island_m": 0.325,
+     "sheet_widths_run": 0.08,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "cross@U",
+     "kind": "tiles in U",
+     "y_px": 3152,
+     "height_px": 192,
+     "height_m": 0.188,
+     "sheet_height_pct": 4.7,
+     "sheet_area_pct": 4.7,
+     "islands": 2,
+     "faces": 28,
+     "surface_m2": 0.577,
+     "surface_pct": 3.0,
+     "reuse": 0.77,
+     "longest_island_m": 1.008,
+     "sheet_widths_run": 0.25,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "arch@U",
+     "kind": "tiles in U",
+     "y_px": 3344,
+     "height_px": 180,
+     "height_m": 0.176,
+     "sheet_height_pct": 4.4,
+     "sheet_area_pct": 4.4,
+     "islands": 5,
+     "faces": 128,
+     "surface_m2": 2.467,
+     "surface_pct": 12.8,
+     "reuse": 3.51,
+     "longest_island_m": 2.634,
+     "sheet_widths_run": 0.66,
+     "density_px_per_m": [
+      1024.0,
+      1024.5,
+      1025.1
+     ]
+    },
+    {
+     "band": "rivet@V",
+     "kind": "tiles in U",
+     "y_px": 3524,
+     "height_px": 80,
+     "height_m": 0.078,
+     "sheet_height_pct": 2.0,
+     "sheet_area_pct": 2.0,
+     "islands": 4,
+     "faces": 48,
+     "surface_m2": 0.029,
+     "surface_pct": 0.1,
+     "reuse": 0.09,
+     "longest_island_m": 0.045,
+     "sheet_widths_run": 0.01,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "rivet@U",
+     "kind": "tiles in U",
+     "y_px": 3604,
+     "height_px": 52,
+     "height_m": 0.051,
+     "sheet_height_pct": 1.3,
+     "sheet_area_pct": 1.3,
+     "islands": 2,
+     "faces": 32,
+     "surface_m2": 0.008,
+     "surface_pct": 0.0,
+     "reuse": 0.04,
+     "longest_island_m": 0.019,
+     "sheet_widths_run": 0.0,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "wire@V",
+     "kind": "tiles in U",
+     "y_px": 3656,
+     "height_px": 52,
+     "height_m": 0.051,
+     "sheet_height_pct": 1.3,
+     "sheet_area_pct": 1.3,
+     "islands": 6,
+     "faces": 16,
+     "surface_m2": 0.037,
+     "surface_pct": 0.2,
+     "reuse": 0.18,
+     "longest_island_m": 0.15,
+     "sheet_widths_run": 0.04,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    },
+    {
+     "band": "wire@U",
+     "kind": "tiles in U",
+     "y_px": 3708,
+     "height_px": 52,
+     "height_m": 0.051,
+     "sheet_height_pct": 1.3,
+     "sheet_area_pct": 1.3,
+     "islands": 1,
+     "faces": 8,
+     "surface_m2": 0.002,
+     "surface_pct": 0.0,
+     "reuse": 0.01,
+     "longest_island_m": 0.016,
+     "sheet_widths_run": 0.0,
+     "density_px_per_m": [
+      1024.0,
+      1024.0,
+      1024.0
+     ]
+    }
+   ]
+  }
+ ]
+}

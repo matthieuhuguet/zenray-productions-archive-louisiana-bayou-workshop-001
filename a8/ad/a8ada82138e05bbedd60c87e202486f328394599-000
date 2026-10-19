@@ -1,0 +1,8 @@
+Height map for this sheet, same framing pixel for pixel : 4096 x 4096 px, 1024 px per metre (10.24 px per cm).
+Grey scale only, white = high, black = low ; the background between bands stays flat mid grey ; no text, no line, no frame.
+Bands from top to bottom (each colour is one material) :
+- sign (rgb (89, 199, 102)) : rows 0 to 1472 px, 1.4375 m tall, unique content kept exactly in its island shapes, material : <write it here>
+- pillar@V (rgb (242, 204, 64)) : rows 1472 to 1828 px, 0.3477 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- pillar@U (rgb (242, 204, 64)) : rows 1828 to 2164 px, 0.3281 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- iron@V (rgb (76, 140, 242)) : rows 2164 to 2496 px, 0.3242 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- iron@U (rgb (76, 140, 242)) : rows 2496 to 2696 px, 0.1953 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>

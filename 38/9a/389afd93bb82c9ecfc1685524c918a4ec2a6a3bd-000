@@ -1,0 +1,91 @@
+{
+ "texel_density_px_per_m": 1024.0,
+ "asset_scale": 1.0,
+ "tile_mode": "trim",
+ "padding_px": 16,
+ "sheets": [
+  {
+   "sheet": 1,
+   "width_px": 4096,
+   "height_px": 4096,
+   "kind": "shared",
+   "bands": [
+    {
+     "material": "sign",
+     "segment": 1,
+     "y_px": 0,
+     "height_px": 1472,
+     "height_m": 1.4375,
+     "width_m": 4.0,
+     "tiles_in_u": false,
+     "islands": 9,
+     "colour_rgb": [
+      89,
+      199,
+      102
+     ]
+    },
+    {
+     "material": "pillar@V",
+     "segment": 1,
+     "y_px": 1472,
+     "height_px": 356,
+     "height_m": 0.3477,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 28,
+     "colour_rgb": [
+      242,
+      204,
+      64
+     ]
+    },
+    {
+     "material": "pillar@U",
+     "segment": 1,
+     "y_px": 1828,
+     "height_px": 336,
+     "height_m": 0.3281,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 7,
+     "colour_rgb": [
+      242,
+      204,
+      64
+     ]
+    },
+    {
+     "material": "iron@V",
+     "segment": 1,
+     "y_px": 2164,
+     "height_px": 332,
+     "height_m": 0.3242,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 67,
+     "colour_rgb": [
+      92,
+      140,
+      230
+     ]
+    },
+    {
+     "material": "iron@U",
+     "segment": 1,
+     "y_px": 2496,
+     "height_px": 200,
+     "height_m": 0.1953,
+     "width_m": 4.0,
+     "tiles_in_u": true,
+     "islands": 16,
+     "colour_rgb": [
+      92,
+      140,
+      230
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+Height map for this sheet, same framing pixel for pixel : 4096 x 4096 px, 1024 px per metre (10.24 px per cm).
+Grey scale only, white = high, black = low ; the background between bands stays flat mid grey ; no text, no line, no frame.
+Bands from top to bottom (each colour is one material) :
+- sign (rgb (89, 199, 102)) : rows 0 to 1472 px, 1.4375 m tall, unique content kept exactly in its island shapes, material : <write it here>
+- pillar@V (rgb (242, 204, 64)) : rows 1472 to 1828 px, 0.3477 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- pillar@U (rgb (242, 204, 64)) : rows 1828 to 2164 px, 0.3281 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- cross@V (rgb (235, 76, 71)) : rows 2164 to 2496 px, 0.3242 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- pendant@V (rgb (250, 148, 56)) : rows 2496 to 2748 px, 0.2461 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- arch@V (rgb (76, 140, 242)) : rows 2748 to 2952 px, 0.1992 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- pendant@U (rgb (250, 148, 56)) : rows 2952 to 3152 px, 0.1953 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- cross@U (rgb (235, 76, 71)) : rows 3152 to 3344 px, 0.1875 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- arch@U (rgb (76, 140, 242)) : rows 3344 to 3524 px, 0.1758 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- rivet@V (rgb (76, 217, 230)) : rows 3524 to 3604 px, 0.0781 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- rivet@U (rgb (76, 217, 230)) : rows 3604 to 3656 px, 0.0508 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- wire@V (rgb (168, 107, 230)) : rows 3656 to 3708 px, 0.0508 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
+- wire@U (rgb (168, 107, 230)) : rows 3708 to 3760 px, 0.0508 m tall, a horizontal strip that must TILE seamlessly left to right, detail running along the length, material : <write it here>
