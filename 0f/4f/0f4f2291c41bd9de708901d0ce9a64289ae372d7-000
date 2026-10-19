@@ -24,10 +24,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9809442217305,
-    "px_per_m_median": 1023.9993734762189,
-    "px_per_m_max": 1024.018913293868,
-    "stretch_max": 0.0003542368483473446,
+    "px_per_m_min": 1023.9671798301291,
+    "px_per_m_median": 1023.9990350992216,
+    "px_per_m_max": 1024.046981355083,
+    "stretch_max": 0.0003511476467670249,
     "faces": 1903
    },
    "islands": 996,
@@ -36,13 +36,16 @@
    "fill": 0.1825,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 7,
+   "groups": 3,
+   "group_overlap_faces": 0,
+   "group_padding_faces": 0,
    "u_range": [
-    0.002,
-    2.4243
+    0.0,
+    7.0673
    ],
    "v_range": [
-    0.0037,
-    1.8815
+    0.0,
+    1.3352
    ]
   }
  },
@@ -82,8 +85,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 3.8,
- "score_s": 0.22,
+ "cook_s": 5.91,
+ "score_s": 1.5,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -94,7 +97,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 18:32",
+ "date": "19 October 2026 18:51",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -107,7 +110,8 @@
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
   "m2_grain": "pillar:h sign:h",
-  "m2_offset": 1,
+  "m2_fill": 0.4,
+  "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1,

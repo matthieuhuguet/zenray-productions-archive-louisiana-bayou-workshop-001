@@ -10,6 +10,8 @@
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:band_straight": 1.0,
+  "uv:no_overlap": 1.0,
+  "uv:padding": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0
  },
@@ -22,20 +24,23 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9596786407443,
-    "px_per_m_median": 1024.0000899860288,
-    "px_per_m_max": 1024.0375959403582,
-    "stretch_max": 0.00021895751457501333,
+    "px_per_m_min": 1023.9596782939616,
+    "px_per_m_median": 1024.0001699385784,
+    "px_per_m_max": 1024.0378162071315,
+    "stretch_max": 0.0003174370725054221,
     "faces": 995
    },
    "islands": 552,
+   "groups": 3,
+   "group_overlap_faces": 0,
+   "group_padding_faces": 0,
    "u_range": [
     0.0,
-    0.8243
+    7.0962
    ],
    "v_range": [
     0.0,
-    0.998
+    1.2094
    ]
   }
  },
@@ -47,11 +52,11 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 276.162,
-  "seams_on_smooth_m": 2.138,
+  "seams_m": 346.861,
+  "seams_on_smooth_m": 1.489,
   "sharp_kept_m": 0,
-  "sharp_m": 273.827,
-  "border_m": 0,
+  "sharp_m": 203.777,
+  "border_m": 141.399,
   "pass": true
  },
  "method": "M3",
@@ -62,9 +67,11 @@
    "W": 4096,
    "H": 4096,
    "space": "tile",
-   "unique": false,
+   "unique": "per_group",
    "region": "band",
+   "sizes": "per_face",
    "padding_px": 16,
+   "group_padding_px": 8,
    "grain": "u",
    "min_straight": 0.6
   }
@@ -72,8 +79,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 3.57,
- "score_s": 73.32,
+ "cook_s": 5.78,
+ "score_s": 0.94,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -84,7 +91,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 18:31",
+ "date": "19 October 2026 18:51",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
@@ -97,7 +104,8 @@
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
   "m2_grain": "pillar:h sign:h",
-  "m2_offset": 1,
+  "m2_fill": 0.4,
+  "m2_padding_px": 8,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1,
@@ -107,7 +115,7 @@
   "m3_padding_px": 16,
   "m3_grain": "pillar:h sign:h",
   "m3_min_straight": 0.6,
-  "m3_hotspot": 1,
+  "m3_hotspot": 0,
   "m3_flatten": 1
  }
 }
