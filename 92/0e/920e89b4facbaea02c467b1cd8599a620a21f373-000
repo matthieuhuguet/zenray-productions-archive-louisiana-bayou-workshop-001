@@ -1,0 +1,114 @@
+{
+ "score": 1.0,
+ "weakest": "uv:present",
+ "components": {
+  "uv:present": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
+  "uv:region": 1.0,
+  "uv:no_overlap": 1.0,
+  "uv:padding": 1.0,
+  "seams:consistency": 1.0,
+  "seams:robust_crease": 1.0,
+  "bake:coverage": 1.0,
+  "bake:id_match": 1.0
+ },
+ "reports": {
+  "uv": {
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.01,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1023.9517315380082,
+    "px_per_m_median": 1024.0001462748755,
+    "px_per_m_max": 1024.0375982362245,
+    "stretch_max": 0.00011847506022544252,
+    "faces": 995
+   },
+   "islands": 552,
+   "overlap_px": 0,
+   "covered_px": 4895213,
+   "fill": 0.5836,
+   "padding_overlap_px": 0,
+   "padding_check_radius_px": 5,
+   "u_range": [
+    0.0029,
+    0.9971
+   ],
+   "v_range": [
+    0.0059,
+    0.9449
+   ]
+  }
+ },
+ "seams": {
+  "crease_requested": 30.0,
+  "crease_effective": 29.185,
+  "edges_near_requested": 4,
+  "ambiguous_edges": 0,
+  "chains_mixed": 0,
+  "mixed_detail": [],
+  "consistency": 1.0,
+  "seams_m": 276.162,
+  "seams_on_smooth_m": 2.138,
+  "sharp_kept_m": 0,
+  "sharp_m": 273.827,
+  "border_m": 0,
+  "pass": true
+ },
+ "method": "M1",
+ "title": "UV unique et bake",
+ "contracts": [
+  {
+   "set": "uv",
+   "W": 8192,
+   "H": 4096,
+   "space": "sheet",
+   "unique": true,
+   "region": "sheet",
+   "padding_px": 24.0
+  }
+ ],
+ "targets": {
+  "uv": 1024.0
+ },
+ "cook_s": 0.0,
+ "score_s": 87.28,
+ "bake": {
+  "files": {
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_8192x4096.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_8192x4096.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_8192x4096.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_8192x4096.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_8192x4096.png"
+  },
+  "seconds": {
+   "custom": 74.75,
+   "occlusion": 1.41,
+   "curvature": 0.92,
+   "edge": 0.83,
+   "alpha": 0.53
+  },
+  "size": [
+   8192,
+   4096
+  ],
+  "coverage": 1.0,
+  "id_match": 1.0
+ },
+ "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
+ "asset_scale": 1.64,
+ "texel_density": 1024.0,
+ "families": [
+  "iron",
+  "pillar",
+  "sign"
+ ],
+ "crease_effective": 29.1846923828125,
+ "date": "19 October 2026 17:57"
+}
