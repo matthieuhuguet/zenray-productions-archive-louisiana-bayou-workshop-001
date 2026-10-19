@@ -1,6 +1,6 @@
 {
   "component": "Entrance_Arch_Clean",
-  "active_version": "v004",
+  "active_version": "v006",
   "versions": [
     {
       "version": "v001",
@@ -109,6 +109,60 @@
         ]
       },
       "children_count": 74
+    },
+    {
+      "version": "v005",
+      "label": "Test materials first compiled sheet : families, oriented bands, compile and reread, uv2 masks, orientation 100 percent (19 October 2026)",
+      "dir_name": "v005_Test_materials_first_compiled_sheet___families__oriented_bands__compile_and_reread__uv2_masks__orientation_100_percent__19_October_2026_",
+      "timestamp": "2026-10-19 11:26:09",
+      "saved_at_iso": "2026-10-19T11:26:09+02:00",
+      "kind": "object",
+      "node_path": "/obj/Entrance_Arch_Clean",
+      "hip_file": "graph.hiplc",
+      "proof_geo": {
+        "points": 1114,
+        "prims": 995,
+        "bbox": [
+          [
+            -1.7748080492019653,
+            0.0,
+            -0.15803039073944092
+          ],
+          [
+            1.7748079299926758,
+            5.957299709320068,
+            0.15803039073944092
+          ]
+        ]
+      },
+      "children_count": 77
+    },
+    {
+      "version": "v006",
+      "label": "Cutting redone : robust crease 46.8, same angle same cut, wear own threshold, cut check green (19 October 2026)",
+      "dir_name": "v006_Cutting_redone___robust_crease_46_8__same_angle_same_cut__wear_own_threshold__cut_check_green__19_October_2026_",
+      "timestamp": "2026-10-19 11:35:11",
+      "saved_at_iso": "2026-10-19T11:35:11+02:00",
+      "kind": "object",
+      "node_path": "/obj/Entrance_Arch_Clean",
+      "hip_file": "graph.hiplc",
+      "proof_geo": {
+        "points": 1114,
+        "prims": 995,
+        "bbox": [
+          [
+            -1.7748080492019653,
+            0.0,
+            -0.15803039073944092
+          ],
+          [
+            1.7748079299926758,
+            5.957299709320068,
+            0.15803039073944092
+          ]
+        ]
+      },
+      "children_count": 77
     }
   ]
 }

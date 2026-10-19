@@ -1,0 +1,337 @@
+{
+  "component": "Entrance_Arch_Clean",
+  "version": "v006",
+  "label": "Cutting redone : robust crease 46.8, same angle same cut, wear own threshold, cut check green (19 October 2026)",
+  "timestamp": "2026-10-19 11:35:11",
+  "saved_at_iso": "2026-10-19T11:35:11+02:00",
+  "src_hip": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/LouisianaBayou.hiplc",
+  "node_path": "/obj/Entrance_Arch_Clean",
+  "children": [
+    {
+      "name": "arch_curve",
+      "type": "circle"
+    },
+    {
+      "name": "arch_resample",
+      "type": "resample"
+    },
+    {
+      "name": "arch_carve",
+      "type": "carve"
+    },
+    {
+      "name": "CTRL_arch",
+      "type": "null"
+    },
+    {
+      "name": "arch_profile",
+      "type": "python"
+    },
+    {
+      "name": "arch_sweep",
+      "type": "sweep::2.0"
+    },
+    {
+      "name": "arch_name",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "arch_tangent",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "CTRL_post",
+      "type": "null"
+    },
+    {
+      "name": "post_spine",
+      "type": "python"
+    },
+    {
+      "name": "post_section",
+      "type": "circle"
+    },
+    {
+      "name": "post_sweep",
+      "type": "sweep::2.0"
+    },
+    {
+      "name": "post_upright",
+      "type": "xform"
+    },
+    {
+      "name": "post_mid_edges",
+      "type": "python"
+    },
+    {
+      "name": "post_bevel",
+      "type": "polybevel::3.0"
+    },
+    {
+      "name": "post_frame_faces",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "post_frame_1",
+      "type": "polyextrude::2.0"
+    },
+    {
+      "name": "post_frame_2",
+      "type": "polyextrude::2.0"
+    },
+    {
+      "name": "post_frame_3",
+      "type": "polyextrude::2.0"
+    },
+    {
+      "name": "pillar_L_x",
+      "type": "xform"
+    },
+    {
+      "name": "pillar_L_name",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "pillar_R_x",
+      "type": "xform"
+    },
+    {
+      "name": "pillar_R_name",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "pillars_merge",
+      "type": "merge"
+    },
+    {
+      "name": "CTRL_cross",
+      "type": "null"
+    },
+    {
+      "name": "cross_spine",
+      "type": "python"
+    },
+    {
+      "name": "cross_sweep",
+      "type": "sweep::2.0"
+    },
+    {
+      "name": "cross_up",
+      "type": "xform"
+    },
+    {
+      "name": "cross_arm_roots",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "cross_arm_inset",
+      "type": "polyextrude::2.0"
+    },
+    {
+      "name": "cross_arm_extrude",
+      "type": "polyextrude::2.0"
+    },
+    {
+      "name": "cross_arm_edges",
+      "type": "python"
+    },
+    {
+      "name": "cross_arm_bevel",
+      "type": "polybevel::3.0"
+    },
+    {
+      "name": "cross_out",
+      "type": "switch"
+    },
+    {
+      "name": "arch_reverse",
+      "type": "reverse"
+    },
+    {
+      "name": "CTRL_sign",
+      "type": "null"
+    },
+    {
+      "name": "sign_pts",
+      "type": "python"
+    },
+    {
+      "name": "sign_fit",
+      "type": "fit"
+    },
+    {
+      "name": "sign_dense",
+      "type": "resample"
+    },
+    {
+      "name": "sign_contour",
+      "type": "python"
+    },
+    {
+      "name": "sign_spine",
+      "type": "python"
+    },
+    {
+      "name": "sign_sweep",
+      "type": "sweep::2.0"
+    },
+    {
+      "name": "sign_front",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "sign_inset",
+      "type": "polyextrude::2.0"
+    },
+    {
+      "name": "sign_recess",
+      "type": "polyextrude::2.0"
+    },
+    {
+      "name": "rivet_spines",
+      "type": "python"
+    },
+    {
+      "name": "rivet_section",
+      "type": "circle"
+    },
+    {
+      "name": "rivet_sweep",
+      "type": "sweep::2.0"
+    },
+    {
+      "name": "CTRL_pendant",
+      "type": "null"
+    },
+    {
+      "name": "pendant_spine",
+      "type": "python"
+    },
+    {
+      "name": "pendant_sweep",
+      "type": "sweep::2.0"
+    },
+    {
+      "name": "pendant_up",
+      "type": "xform"
+    },
+    {
+      "name": "cross_name",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "sign_name",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "rivet_name",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "pendant_name",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "assembly_merge",
+      "type": "merge"
+    },
+    {
+      "name": "OUT_clean",
+      "type": "null"
+    },
+    {
+      "name": "CTRL_wire",
+      "type": "null"
+    },
+    {
+      "name": "wire_boxes",
+      "type": "python"
+    },
+    {
+      "name": "wire_name",
+      "type": "attribwrangle"
+    },
+    {
+      "name": "sym_mirror",
+      "type": "mirror"
+    },
+    {
+      "name": "sym_seam",
+      "type": "python"
+    },
+    {
+      "name": "CTRL_sym",
+      "type": "null"
+    },
+    {
+      "name": "sym_dissolve",
+      "type": "dissolve::2.0"
+    },
+    {
+      "name": "sym_switch",
+      "type": "switch"
+    },
+    {
+      "name": "CTRL_uv",
+      "type": "null"
+    },
+    {
+      "name": "scale_asset",
+      "type": "xform"
+    },
+    {
+      "name": "trim_uv",
+      "type": "python"
+    },
+    {
+      "name": "uv_preview",
+      "type": "uvquickshade"
+    },
+    {
+      "name": "OUT_uv",
+      "type": "null"
+    },
+    {
+      "name": "native_seams",
+      "type": "groupcreate"
+    },
+    {
+      "name": "native_flatten",
+      "type": "uvflatten::3.0"
+    },
+    {
+      "name": "native_layout",
+      "type": "uvlayout::3.0"
+    },
+    {
+      "name": "trim_masks",
+      "type": "python"
+    },
+    {
+      "name": "uv2_as_uv",
+      "type": "python"
+    },
+    {
+      "name": "mask_preview",
+      "type": "uvquickshade"
+    }
+  ],
+  "external_inputs": [],
+  "hip_file": "graph.hiplc",
+  "proof_geo": {
+    "points": 1114,
+    "prims": 995,
+    "bbox": [
+      [
+        -1.7748080492019653,
+        0.0,
+        -0.15803039073944092
+      ],
+      [
+        1.7748079299926758,
+        5.957299709320068,
+        0.15803039073944092
+      ]
+    ]
+  }
+}
