@@ -1,0 +1,89 @@
+{
+  "component": "ZRUV_Arch",
+  "version": "v001",
+  "label": "zenray-uv five methods scored 1.000, verification sheet",
+  "timestamp": "2026-10-19 18:33:57",
+  "saved_at_iso": "2026-10-19T18:33:57+02:00",
+  "src_hip": "/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/LouisianaBayou.hiplc",
+  "node_path": "/obj/ZRUV_Arch",
+  "children": [
+    {
+      "name": "CTRL_zruv",
+      "type": "null"
+    },
+    {
+      "name": "IN_asset",
+      "type": "object_merge"
+    },
+    {
+      "name": "scale_asset",
+      "type": "xform"
+    },
+    {
+      "name": "families",
+      "type": "python"
+    },
+    {
+      "name": "crease_robust",
+      "type": "python"
+    },
+    {
+      "name": "sharp_edges",
+      "type": "groupcreate"
+    },
+    {
+      "name": "BASE",
+      "type": "null"
+    },
+    {
+      "name": "M1_unique",
+      "type": "subnet"
+    },
+    {
+      "name": "M1_bake",
+      "type": "copnet"
+    },
+    {
+      "name": "M2_tileable",
+      "type": "subnet"
+    },
+    {
+      "name": "M3_trim",
+      "type": "subnet"
+    },
+    {
+      "name": "M4_layered",
+      "type": "subnet"
+    },
+    {
+      "name": "M4_bake",
+      "type": "copnet"
+    },
+    {
+      "name": "M5_decals",
+      "type": "subnet"
+    },
+    {
+      "name": "M3_hotspot",
+      "type": "subnet"
+    }
+  ],
+  "external_inputs": [],
+  "hip_file": "graph.hiplc",
+  "proof_geo": {
+    "points": 1114,
+    "prims": 995,
+    "bbox": [
+      [
+        -1.7748080492019653,
+        0.0,
+        -0.15803039073944092
+      ],
+      [
+        1.7748079299926758,
+        5.957299709320068,
+        0.15803039073944092
+      ]
+    ]
+  }
+}

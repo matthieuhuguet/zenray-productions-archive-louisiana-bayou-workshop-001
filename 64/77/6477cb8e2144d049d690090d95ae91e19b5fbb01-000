@@ -1,0 +1,33 @@
+{
+  "component": "ZRUV_Arch",
+  "active_version": "v001",
+  "versions": [
+    {
+      "version": "v001",
+      "label": "zenray-uv five methods scored 1.000, verification sheet",
+      "dir_name": "v001_zenray-uv_five_methods_scored_1_000__verification_sheet",
+      "timestamp": "2026-10-19 18:33:57",
+      "saved_at_iso": "2026-10-19T18:33:57+02:00",
+      "kind": "object",
+      "node_path": "/obj/ZRUV_Arch",
+      "hip_file": "graph.hiplc",
+      "proof_geo": {
+        "points": 1114,
+        "prims": 995,
+        "bbox": [
+          [
+            -1.7748080492019653,
+            0.0,
+            -0.15803039073944092
+          ],
+          [
+            1.7748079299926758,
+            5.957299709320068,
+            0.15803039073944092
+          ]
+        ]
+      },
+      "children_count": 15
+    }
+  ]
+}

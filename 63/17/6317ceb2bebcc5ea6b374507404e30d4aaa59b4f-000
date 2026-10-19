@@ -24,7 +24,7 @@
     "px_per_m_min": 1023.9809442217305,
     "px_per_m_median": 1024.0,
     "px_per_m_max": 1024.018913293868,
-    "stretch_max": 0.00035894675059178205,
+    "stretch_max": 0.0003542368483473446,
     "faces": 995
    },
    "islands": 552,
@@ -69,7 +69,7 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 7.78,
+ "cook_s": 3.5,
  "score_s": 0.02,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
@@ -81,5 +81,22 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 18:08"
+ "date": "19 October 2026 18:30",
+ "params": {
+  "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
+  "asset_scale": 1.64,
+  "texel_density": 1024.0,
+  "families": "arch:iron cross:iron wire:iron rivet:iron pendant:iron pillar_L:pillar pillar_R:pillar sign:sign",
+  "density_tol": 0.01,
+  "stretch_tol": 0.02,
+  "crease_deg": 30.0,
+  "crease_margin": 1.0,
+  "smooth_deg": 10.0,
+  "m2_tile_px": 2048,
+  "m2_grain": "pillar:h sign:h",
+  "m2_offset": 1,
+  "m2_seed": 7,
+  "m2_breakup_size_m": 0.8,
+  "m2_flatten": 1
+ }
 }

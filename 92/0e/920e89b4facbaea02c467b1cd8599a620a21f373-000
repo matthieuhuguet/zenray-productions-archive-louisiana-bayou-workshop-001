@@ -77,26 +77,26 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.17,
- "score_s": 5.96,
+ "cook_s": 3.69,
+ "score_s": 82.89,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_2048x1024.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_2048x1024.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_2048x1024.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_2048x1024.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_2048x1024.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_8192x4096.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_8192x4096.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_8192x4096.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_8192x4096.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_8192x4096.png"
   },
   "seconds": {
-   "custom": 4.05,
-   "occlusion": 0.23,
-   "curvature": 0.33,
-   "edge": 0.22,
-   "alpha": 0.2
+   "custom": 71.11,
+   "occlusion": 1.13,
+   "curvature": 0.87,
+   "edge": 0.79,
+   "alpha": 0.47
   },
   "size": [
-   2048,
-   1024
+   8192,
+   4096
   ],
   "coverage": 1.0,
   "id_match": 1.0
@@ -110,5 +110,30 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 18:04"
+ "date": "19 October 2026 18:30",
+ "params": {
+  "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
+  "asset_scale": 1.64,
+  "texel_density": 1024.0,
+  "families": "arch:iron cross:iron wire:iron rivet:iron pendant:iron pillar_L:pillar pillar_R:pillar sign:sign",
+  "density_tol": 0.01,
+  "stretch_tol": 0.02,
+  "crease_deg": 30.0,
+  "crease_margin": 1.0,
+  "smooth_deg": 10.0,
+  "m1_sheet_px": 0,
+  "m1_fill": 0.6,
+  "m1_max_sheet_px": 16384,
+  "m1_padding_px": 0,
+  "m1_flatten": 1,
+  "m1_bake": 1,
+  "m1_allow_rect": 1,
+  "m1_bake_scale": 1.0,
+  "m2_tile_px": 2048,
+  "m2_grain": "pillar:h sign:h",
+  "m2_offset": 1,
+  "m2_seed": 7,
+  "m2_breakup_size_m": 0.8,
+  "m2_flatten": 1
+ }
 }
