@@ -13,9 +13,7 @@
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
-  "seams:robust_crease": 1.0,
-  "bake:coverage": 1.0,
-  "bake:id_match": 1.0
+  "seams:robust_crease": 1.0
  },
  "reports": {
   "uv": {
@@ -26,29 +24,29 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9860437728893,
-    "px_per_m_median": 1023.9999699274964,
-    "px_per_m_max": 1024.015951086523,
-    "stretch_max": 0.07316506499145392,
+    "px_per_m_min": 1023.9789199214039,
+    "px_per_m_median": 1023.9999971581134,
+    "px_per_m_max": 1024.0308829900703,
+    "stretch_max": 0.05599952485331561,
     "faces": 995
    },
-   "straight_area": 0.6002,
-   "straight_stretch_max": 0.0732,
-   "stretch_over_2pc_area": 0.1049,
-   "islands": 669,
-   "stacked_faces": 647,
+   "straight_area": 0.5921,
+   "straight_stretch_max": 0.056,
+   "stretch_over_2pc_area": 0.0984,
+   "islands": 533,
+   "stacked_faces": 551,
    "overlap_px": 0,
-   "covered_px": 8516202,
-   "fill": 0.5076,
+   "covered_px": 10218949,
+   "fill": 0.6091,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 7,
    "u_range": [
-    0.002,
-    0.983
+    0.0039,
+    0.981
    ],
    "v_range": [
-    0.1328,
-    0.998
+    0.0039,
+    0.9845
    ]
   }
  },
@@ -60,16 +58,16 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 288.606,
-  "seams_on_smooth_m": 13.677,
+  "seams_m": 274.496,
+  "seams_on_smooth_m": 0.669,
   "sharp_kept_m": 0,
   "sharp_m": 273.827,
   "border_m": 0,
   "pass": true
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16, \"islands\": 669, \"stacked\": 501, \"fill\": 0.5533}",
-  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 260, \"tubes\": 0, \"cut_long\": 8, \"worst_dev\": 0.0732, \"kink_faces\": 368, \"kept_native\": 246, \"cut_at_kinks\": 6, \"straight_area\": 0.6002}"
+  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 533, \"stacked_possible\": 397, \"stacked\": 375, \"fill\": 0.6167, \"unique_share\": 0.5102, \"lower_bound_px2\": 9901529, \"next_smaller\": [4096, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"why\": \"area of the islands above the sheet\"}, {\"W\": 512, \"H\": 256, \"why\": \"area of the islands above the sheet\"}, {\"W\": 512, \"H\": 512, \"why\": \"area of the islands above the sheet\"}, {\"W\": 1024, \"H\": 512, \"why\": \"area of the islands above the sheet\"}, {\"W\": 1024, \"H\": 1024, \"why\": \"area of the islands above the sheet\"}, {\"W\": 2048, \"H\": 1024, \"why\": \"area of the islands above the sheet\"}, {\"W\": 2048, \"H\": 2048, \"why\": \"area of the islands above the sheet\"}, {\"W\": 4096, \"H\": 2048, \"why\": \"area of the islands above the sheet\"}], \"rows\": 28}",
+  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 8, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
  },
  "method": "M1",
  "title": "UV unique et bake",
@@ -88,30 +86,9 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.31,
- "score_s": 25.64,
- "bake": {
-  "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_4096x4096.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_4096x4096.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_4096x4096.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_4096x4096.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_4096x4096.png"
-  },
-  "seconds": {
-   "custom": 22.27,
-   "occlusion": 0.36,
-   "curvature": 0.32,
-   "edge": 0.29,
-   "alpha": 0.25
-  },
-  "size": [
-   4096,
-   4096
-  ],
-  "coverage": 1.0,
-  "id_match": 1.0
- },
+ "cook_s": 2.91,
+ "score_s": 0.57,
+ "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
@@ -121,10 +98,11 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 21:52",
+ "date": "19 October 2026 22:48",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
+  "asset_area_m2": 0.0,
   "texel_density": 1024.0,
   "families": "arch:iron cross:iron wire:iron rivet:iron pendant:iron pillar_L:pillar pillar_R:pillar sign:sign",
   "density_tol": 0.01,
@@ -133,8 +111,8 @@
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
   "m1_sheet_px": 0,
-  "m1_padding_px": 0,
   "m1_stack": 1,
+  "m1_unstack": 1,
   "m1_unique_pieces": "",
   "m1_flatten": 1,
   "m1_bake": 1,
@@ -142,7 +120,7 @@
   "m1_bake_scale": 1.0,
   "m2_tile_px": 2048,
   "m2_grain": "pillar:up sign:h",
-  "m2_padding_px": 8,
+  "m2_stitch": 1,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1
