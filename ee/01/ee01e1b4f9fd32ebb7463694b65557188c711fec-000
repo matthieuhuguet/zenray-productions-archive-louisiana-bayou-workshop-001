@@ -1,6 +1,6 @@
 {
   "component": "Entrance_Arch_Clean",
-  "active_version": "v007",
+  "active_version": "v008",
   "versions": [
     {
       "version": "v001",
@@ -170,6 +170,33 @@
       "dir_name": "v007_texel_density_check_RizomUV_colours__UV_checker__grown_sheets__work_sheet_v2__19_October_2026_",
       "timestamp": "2026-10-19 12:16:23",
       "saved_at_iso": "2026-10-19T12:16:23+02:00",
+      "kind": "object",
+      "node_path": "/obj/Entrance_Arch_Clean",
+      "hip_file": "graph.hiplc",
+      "proof_geo": {
+        "points": 1114,
+        "prims": 995,
+        "bbox": [
+          [
+            -1.7748080492019653,
+            0.0,
+            -0.15803039073944092
+          ],
+          [
+            1.7748079299926758,
+            5.957299709320068,
+            0.15803039073944092
+          ]
+        ]
+      },
+      "children_count": 80
+    },
+    {
+      "version": "v008",
+      "label": "before zenray-uv five methods, labs state frozen",
+      "dir_name": "v008_before_zenray-uv_five_methods__labs_state_frozen",
+      "timestamp": "2026-10-19 17:41:26",
+      "saved_at_iso": "2026-10-19T17:41:26+02:00",
       "kind": "object",
       "node_path": "/obj/Entrance_Arch_Clean",
       "hip_file": "graph.hiplc",
