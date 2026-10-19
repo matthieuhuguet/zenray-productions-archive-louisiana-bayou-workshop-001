@@ -1,0 +1,52 @@
+# 19 October 2026 : compares the Labs AutoUV methods on the rubber toy body and on Manny, after ARAP (ZruvOrganic), to choose the organic seams. Run through the bridge.
+import time, numpy as np, importlib, sys
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvOrganic as O
+importlib.reload(O)
+from collections import Counter
+g = hou.node('/obj/ZRUV_Tests')
+
+
+def evaluate(geo, name='uv'):
+    m = Z.from_geo(geo, (name,), [])
+    il, _ = Z.uv_islands(m, name)
+    R, S, A, chis = [], [], [], []
+    for i in range(int(il.max()) + 1):
+        ff = np.where(il == i)[0]
+        P3, T, uv, _c = O._island_arrays(m, name, ff)
+        E = set()
+        for f in ff:
+            p = m.polys[f]
+            for k in range(len(p)):
+                E.add((min(p[k], p[(k + 1) % len(p)]), max(p[k], p[(k + 1) % len(p)])))
+        chis.append(len(set(pp for f in ff for pp in m.polys[f])) - len(E) + len(ff))
+        r, s, a3 = O.distortion(P3, T, uv)
+        sc = np.sqrt(a3.sum() / max((r ** 2 * a3).sum(), 1e-30))
+        uv = O.arap(P3, T, uv * sc)
+        r, s, a3 = O.distortion(P3, T, uv)
+        R.append(r); S.append(s); A.append(a3)
+    R, S, A = np.concatenate(R), np.concatenate(S), np.concatenate(A)
+    w = A / A.sum()
+    return {'islands': int(il.max()) + 1, 'chi': dict(Counter(chis)), 'd5': round(float(w[np.abs(R - 1) <= 0.05].sum()), 4), 'd10': round(float(w[np.abs(R - 1) <= 0.1].sum()), 4),
+            's10': round(float(w[S <= 0.1].sum()), 4), 'prims': len(geo.prims()), 'points': len(geo.points())}
+
+
+out = {}
+for tag, src in (('toy', '/obj/ZRUV_RubberToy/BASE'), ('manny', '/obj/ZRUV_Manny/BASE'), ('ball', '/obj/ZRUV_ShaderBall/BASE')):
+    om = g.node('in_' + tag) or g.createNode('object_merge', 'in_' + tag)
+    om.parm('objpath1').set(src); om.parm('xformtype').set(0)
+    au = g.node('au_' + tag) or g.createNode('labs::autouv', 'au_' + tag)
+    au.setInput(0, om)
+    out[tag + ' input'] = {'prims': len(om.geometry().prims()), 'points': len(om.geometry().points())}
+    for val, label in ((0, 'Shortest Path'), (1, 'Cluster'), (3, 'UV Unwrap'), (4, 'UV AutoSeam')):
+        au.parm('method').set(val)
+        t = time.time()
+        try:
+            geo = au.geometry()
+            ts = round(time.time() - t, 1)
+            r = evaluate(geo)
+            r['s'] = ts
+            out[f'{tag} {label}'] = r
+        except Exception as e:
+            out[f'{tag} {label}'] = 'err ' + str(e)[:150]
+result = out
