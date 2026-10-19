@@ -20,7 +20,7 @@
     256.28
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.0
+   "seconds": 2.8
   },
   {
    "case": "layout 512.0 px/m, trim, sheet 2048, unique sheet 0",
@@ -41,7 +41,7 @@
     512.55
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.0
+   "seconds": 2.9
   },
   {
    "case": "layout 700.0 px/m, trim, sheet 4096, unique sheet 0",
@@ -62,7 +62,7 @@
     700.75
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.1
+   "seconds": 2.9
   },
   {
    "case": "layout 1024.0 px/m, trim, sheet 4096, unique sheet 0",
@@ -83,7 +83,7 @@
     1025.1
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.0
+   "seconds": 2.9
   },
   {
    "case": "layout 1500.0 px/m, trim, sheet 4096, unique sheet 0",
@@ -108,7 +108,7 @@
     1501.61
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.1
+   "seconds": 3.0
   },
   {
    "case": "layout 2048.0 px/m, trim, sheet 4096, unique sheet 0",
@@ -133,7 +133,7 @@
     2050.2
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.8
+   "seconds": 3.6
   },
   {
    "case": "layout 2048.0 px/m, trim, sheet 8192, unique sheet 0",
@@ -154,7 +154,7 @@
     2050.2
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.5
+   "seconds": 3.3
   },
   {
    "case": "layout 1024.0 px/m, trim, sheet 2048, unique sheet 4096",
@@ -179,7 +179,7 @@
     1025.1
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.1
+   "seconds": 2.9
   },
   {
    "case": "layout 1024.0 px/m, atlas, sheet 4096, unique sheet 0",
@@ -200,7 +200,7 @@
     1025.1
    ],
    "stretch_max": 0.0566,
-   "seconds": 3.6
+   "seconds": 3.5
   },
   {
    "case": "check asks 512 px/m on a 1024 layout",
