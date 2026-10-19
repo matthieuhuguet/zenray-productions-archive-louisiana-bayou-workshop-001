@@ -1,0 +1,27 @@
+# ZenRay UV, cinq méthodes pour l'arche : plan, faits mesurés et premortem (19 October 2026)
+
+## Faits mesurés (19 October 2026)
+
+- 19 October 2026 : asset `/obj/Entrance_Arch_Clean`, sortie `OUT_clean` (995 faces), échelle choisie x 1,64 (`CTRL_uv.asset_scale`), taille mise à l'échelle 3,55 x 5,96 x 0,32 m, surface 19,34 m2. Pièces (`name`) : arch 3,414 m2, cross 1,266, pendant 1,288, pillar_L 3,5, pillar_R 3,5, rivet 0,037, sign 6,297, wire 0,039. Familles de matériau actuelles : iron (arch, cross, wire, rivet, pendant), pillar (pillar_L, pillar_R), sign. Mannequin : `/obj/ZR_Mannequin_Scale` (1,76 m). (19 October 2026)
+- 19 October 2026 : nœuds natifs présents dans Houdini 22.0.368 : `uvautoseam`, `uvflatten::3.0` (scp, abf), `uvlayout::3.0` (scaling custom, targets boxes ou udim, stacking), `labs::texel_density::1.1`, `labs::calculate_uv_distortion::1.0`, `labs::visualize_uvs::2.0`, `labs::automatic_trim_texture` et `labs::trim_texture_utility`, `labs::decal_projector::1.1`, `labs::maps_baker::5.0`, COP `bakegeometrytextures::2.0`, COP `triplanaruv`. (19 October 2026)
+- 19 October 2026 : l'ancien code `scripts/uv/` est appelé par chemin absolu depuis cinq nœuds et les boutons de `CTRL_uv` de la scène : il reste en place, figé, comme Labs ; le nouveau logiciel vit dans `scripts/zenray_uv/`. (19 October 2026)
+
+## Premortem, les cinq risques gardés (19 October 2026)
+
+| N | Risque | Preuve | Vérification | Date |
+|---|---|---|---|---|
+| 1 | un score qui vaut 1,000 sur tout, y compris sur des UV fausses | le score 1,000 de l'ancienne boucle n'avait pas vu les chanfreins coupés un sur deux (section 17 de l'ancien fichier) | chaque méthode a un test qui casse ses UV (densité x 0,97, île déplacée hors de sa bande, chevauchement, couture sur une arête lisse) et doit voir le score tomber sous 0,999 | 19 October 2026 |
+| 2 | M1 ne tient pas dans 4096 à 1024 px/m | racine de 19,34 x 1024 au carré divisée par un remplissage de 0,7 = 5 382 px | la méthode choisit 8192 (256 Mio en BC7 avec mips pour une map) et le dit sur la feuille | 19 October 2026 |
+| 3 | renommer casse la scène ouverte | chemins absolus vers `scripts/uv/TrimUVHou.py` dans `trim_uv`, `trim_masks`, `texel_density`, `texel_metric_uv` et les boutons | aucun fichier de `scripts/uv/` ne bouge ; la scène recalcule `OUT_uv` sans erreur après le travail | 19 October 2026 |
+| 4 | un nœud natif rééchelonne les îles en silence (uvlayout `correctareas`, `scaling auto`) et la densité n'est plus 1024 | paramètres `correctareas`, `scaling[auto custom]`, `scale` de `uvlayout::3.0` | le contrôle de densité relit les UV écrites, jamais les paramètres | 19 October 2026 |
+| 5 | le dépliage conforme (SCP) d'une pièce courbe déforme les aires au-delà de 1 pour cent | le pendentif et l'arche sont des sweeps courbes | densité mesurée par face, tolérance 1 pour cent ; repli sur les UV natives du sweep ou ABF si un îlot échoue | 19 October 2026 |
+
+Écartés : sécurité, coût récurrent, concurrence (une seule session écrit dans la scène). (19 October 2026)
+
+## Les feuilles de travail, dans l'ordre (19 October 2026)
+
+1. squelette `scripts/zenray_uv/` : `ZenRayUV.py` (commande unique, Python et MCP), `Params.py` (défauts, 8 par catégorie), `UVSeamChecker.py`, `TexelDensityChecker.py`, `Score.py`, `Families.py` (color ID) ; tests dans les deux sens. (19 October 2026)
+2. réseau Houdini `/obj/ZRUV_Arch` : entrée `OUT_clean`, échelle, un sous-réseau par méthode, un `CTRL_zruv` maître. (19 October 2026)
+3. M1 à M5, une à la fois, chacune à 0,999 et prouvée cassée avant la suivante. (19 October 2026)
+4. feuille HTML gabarit `templates/zenray-uv-sheet/` remplie par `Sheet.py`. (19 October 2026)
+5. renommages, skill `zenray-uv`, `zenray-uv-1.md`, section Labs, index dans `zenray-houdini`, synchronisation. (19 October 2026)
