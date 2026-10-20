@@ -1,2 +1,4 @@
 ZRUV_ShaderBall 387.2 {'M1': (0.999998, 'bake:coverage', ''), 'M2': (1.0, 'uv:present', ''), 'M3': (1.0, 'uv:present', ''), 'M3B': (1.0, 'uv:present', ''), 'M3C': (1.0, 'uv:present', ''), 'M4': (1.0, 'uv:present', ''), 'M5': (1.0, 'uv:present', '')}
 finished ZRUV_ShaderBall 08:39:13
+ZRUV_RubberToy 812.1 {'M1': (0.999997, 'bake:coverage', ''), 'M2': (1.0, 'uv:present', ''), 'M3': (1.0, 'uv:present', ''), 'M3B': (1.0, 'uv:present', ''), 'M3C': (1.0, 'uv:present', ''), 'M4': (0.999679, 'bake:coverage', ''), 'M5': (0.999169, 'uv:stretch', '')}
+finished ZRUV_RubberToy 08:52:45
