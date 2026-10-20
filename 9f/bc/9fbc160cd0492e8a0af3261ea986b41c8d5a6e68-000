@@ -1,0 +1,53 @@
+# 20 October 2026 : the learned rules measured against a reference cut on its own mesh (uv set 'orig') : per rule, its length, how much of it the reference
+# also cuts (exact and within one ring), and a board of the rule seams over the reference seams. Usage : python -I RuleCheck.py <mesh json> <out png> [asset]
+import sys, os, json, time
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvArtist as A, Render as R, M1Boards as B
+
+COL = {'set_edge': (235, 125, 20), 'group_edge': (200, 160, 20), 'blade_rim': (150, 60, 205), 'buried_edge': (30, 165, 85), 'flap_rim': (225, 35, 45),
+       'flap_root': (240, 140, 40), 'cap': (30, 110, 230)}
+
+
+def run(path, out, asset=None):
+    if asset:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import OrigStudy as O
+        m, _ = O.load_pair(asset)
+    else:
+        m = Z.from_json(path)
+    so = A.inner_seams(m, 'orig', 1e-5)
+    po = {p for e in so for p in e}
+    t = time.time()
+    rs = A.rule_seams(m, None, materials=m.prim.get('piece') if asset == 'ZRUV_Manny' else None)
+    dt = time.time() - t
+    L = lambda S: sum(m.edge_length(e) for e in S)
+    rep = {}
+    for k, v in rs.items():
+        v = set(v)
+        if not v:
+            continue
+        near = {e for e in v if e[0] in po or e[1] in po}
+        rep[k] = {'m': round(L(v), 4), 'precision': round(L(v & so) / L(v), 3), 'precision_1ring': round(L(near) / L(v), 3)}
+    rep['_seconds'] = round(dt, 1)
+    rep['_flaps'] = getattr(m, '_flap_info', [])
+    rep['_caps'] = [c for c in getattr(m, '_cap_info', []) if c['cap']]
+    rep['_caps_rejected'] = len([c for c in getattr(m, '_cap_info', []) if not c['cap']])
+    print(json.dumps(rep, indent=1))
+    lab, _ = Z.uv_islands(m, 'orig', 1e-5)
+    grey = np.tile(np.array([0.86, 0.86, 0.88]), (m.n, 1))
+    ims = []
+    for nm, cam in B.views(m, 560):
+        img, zb = R.render(m, cam, face_rgb=grey)
+        im = R.draw_edges(img, zb, m, cam, sorted(so), (40, 40, 44), 2)
+        for k, v in rs.items():
+            if v:
+                im = R.draw_edges(np.asarray(im), zb, m, cam, sorted(set(v)), COL.get(k, (230, 40, 40)), 4)
+        ImageDraw.Draw(im).text((8, 6), nm, fill=(20, 20, 22), font=B.font(20))
+        ims.append(im)
+    B.grid6(ims, 'Rule seams in colour over the reference seams (black)', ' '.join('%s %s' % (k, v['m']) for k, v in rep.items() if not k.startswith('_')), out)
+
+
+if __name__ == '__main__':
+    run(sys.argv[1], sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)

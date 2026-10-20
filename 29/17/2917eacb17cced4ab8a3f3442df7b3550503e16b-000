@@ -1,0 +1,31 @@
+# 20 October 2026 : one pig ear up close : the reference islands in colour, the reference seams in black, the flap rule seams over them (rim red, root orange).
+# Usage : python -I EarZoom.py <mesh json with uv orig> <out png>
+import sys
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvArtist as A, Render as R, M1Boards as B
+m = Z.from_json(sys.argv[1])
+lab, seams = Z.uv_islands(m, 'orig', 1e-5)
+cols = B.palette(int(lab.max()) + 1)
+rs = A.rule_seams(m, None)
+so = [e for e in seams if len(m.edges[e]) == 2]
+lo, hi = m.P.min(0), m.P.max(0)
+ext = hi - lo
+ear = np.array([lo[0] + 0.16 * ext[0], hi[1] - 0.14 * ext[1], lo[2] + 0.42 * ext[2]])
+ims = []
+for nm, d in (('front', (0.2, 0.1, 1)), ('back', (-0.2, 0.1, -1)), ('outside', (-1, 0.3, 0)), ('above', (0, 1, 0.2)), ('inside', (1, 0.2, 0.3))):
+    d = np.array(d, float)
+    cam = {'ortho': True, 'eye': ear + 10 * d / np.linalg.norm(d), 'target': ear, 'half': 0.2 * ext[0], 'size': (560, 560), 'c': ear}
+    img, zb = R.render(m, cam, face_rgb=cols[lab])
+    im = R.draw_edges(img, zb, m, cam, so, (18, 18, 22), 2)
+    im = R.draw_edges(np.asarray(im), zb, m, cam, rs['flap_root'], (240, 140, 40), 4)
+    im = R.draw_edges(np.asarray(im), zb, m, cam, rs['flap_rim'], (225, 35, 45), 4)
+    ImageDraw.Draw(im).text((8, 6), nm, fill=(20, 20, 22), font=B.font(20))
+    ims.append(im)
+w, h = ims[0].size
+out = Image.new('RGB', (w * len(ims), h + 40), (246, 246, 248))
+ImageDraw.Draw(out).text((10, 8), 'ear : reference islands, reference seams black, rule rim red, rule root orange', fill=(20, 20, 22), font=B.font(22))
+for i, im in enumerate(ims):
+    out.paste(im, (i * w, 40))
+out.save(sys.argv[2])
