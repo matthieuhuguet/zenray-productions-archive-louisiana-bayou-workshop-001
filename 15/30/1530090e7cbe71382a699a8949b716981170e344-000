@@ -1,12 +1,12 @@
 {
- "score": 0.999502,
- "weakest": "uv:stretch",
+ "score": 0.940035,
+ "weakest": "uv:density",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 1.0,
-  "uv:stretch": 0.999502,
-  "uv:no_flip": 1.0,
-  "uv:not_mirrored": 1.0,
+  "uv:density": 0.940035,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 0.999996,
+  "uv:not_mirrored": 0.999996,
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
@@ -22,27 +22,34 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 1.0,
-    "low_frac": 0.0,
-    "high_frac": 0.0,
-    "px_per_m_min": 925.6476810641503,
-    "px_per_m_median": 1024.5504183103876,
-    "px_per_m_max": 1084.4254159742916,
-    "stretch_max": 0.19656495052597722,
+    "exact_frac": 0.940035356222445,
+    "low_frac": 0.03649794573649097,
+    "high_frac": 0.023466698041063994,
+    "px_per_m_min": 467.20084232124384,
+    "px_per_m_median": 1025.3944406075452,
+    "px_per_m_max": 1408.265873925785,
+    "stretch_max": 1.311715332245769,
     "faces": 12854
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 3.5e-05,
-   "stretch_over_2pc_area": 0.806,
-   "islands": 41,
+   "organic_artist": {
+    "islands": 11,
+    "passing": 11,
+    "p50": 0.09,
+    "p95": 0.35,
+    "worst_island_p50": 0.1053,
+    "worst_island_p95": 0.3348
+   },
+   "stretch_over_2pc_area": 0.9862,
+   "islands": 11,
    "u_range": [
     0.0039,
-    0.3745
+    0.5699
    ],
    "v_range": [
     0.0039,
-    0.2542
+    0.3775
    ]
   }
  },
@@ -54,8 +61,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 12.556,
-  "seams_on_smooth_m": 1.868,
+  "seams_m": 6.431,
+  "seams_on_smooth_m": 2.306,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -73,7 +80,7 @@
  "layout": {
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
   "zruv_sheet_m3": 2048,
-  "zruv_bands": "[{\"h\": 512.6660766601562, \"px\": 2048.0, \"top\": 0.0, \"v0\": 0.0, \"v1\": 1.0, \"kind\": \"plain\"}]"
+  "zruv_bands": "[{\"h\": 765.0979614257812, \"px\": 2048.0, \"top\": 0.0, \"v0\": 0.0, \"v1\": 1.0, \"kind\": \"plain\"}]"
  },
  "method": "M3",
  "title": "Trim sheet inverse (depuis la g\u00e9om\u00e9trie)",
@@ -91,14 +98,20 @@
    "min_straight_band": 0.98,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0,
+    "tiny_px": 48.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 1.58,
- "score_s": 0.26,
+ "cook_s": 6.28,
+ "score_s": 1.13,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
@@ -107,7 +120,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 03:12",
+ "date": "20 October 2026 05:28",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,

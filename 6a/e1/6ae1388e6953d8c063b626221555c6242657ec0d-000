@@ -58,7 +58,7 @@ if __name__ == '__main__':
     ref = os.path.join(runs, 'reference')
     out = {}
     ep = RV.epic_mesh(os.path.join(ref, 'epic_manny.json'))
-    for a, short in (('ZRUV_Manny', 'Manny'), ('ZRUV_RubberToy', 'Rubber toy'), ('ZRUV_ShaderBall', 'Shader ball')):
+    for a, short in (('ZRUV_Manny', 'Manny'), ('ZRUV_RubberToy', 'Rubber toy'), ('ZRUV_ShaderBall', 'Shader ball'), ('ZRUV_Arch', 'Arche')):
         now = Z.from_json(os.path.join(runs, a, 'M1', 'mesh.json'))
         bp = os.path.join(ref, 'before', a, 'mesh.json')
         before = Z.from_json(bp) if os.path.exists(bp) else None
@@ -69,8 +69,8 @@ if __name__ == '__main__':
             rows.append(("Epic, l'artiste", ep))
         if before is not None:
             rec['before'] = CU.measure_layout(before.P, before.polys, CU.sheet_uv(before))
-            rows.append(('ZenRay, 19 octobre (réparation à 10 %)', before))
-        rows.append(('ZenRay, le tailleur', now))
+            rows.append(('ZenRay, 19 octobre' + (' (réparation à 10 %)' if a != 'ZRUV_Arch' else ' (chaque chanfrein coupé)'), before))
+        rows.append(('ZenRay, le tailleur' if a != 'ZRUV_Arch' else 'ZenRay, chanfreins recousus', now))
         rec['board'] = os.path.relpath(rows_board(rows, os.path.join(ref, a + '_seams_board.png')), runs)
         out[a] = rec
         print(a, json.dumps({k: v for k, v in rec.items() if k != 'board'}))
