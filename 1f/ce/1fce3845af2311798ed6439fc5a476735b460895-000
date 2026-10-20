@@ -1,12 +1,12 @@
 {
- "score": 0.984977,
- "weakest": "uv:no_flip",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
   "uv:stretch": 1.0,
-  "uv:no_flip": 0.984977,
-  "uv:not_mirrored": 0.984977,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
@@ -22,34 +22,35 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.969166987701662,
-    "low_frac": 0.0177369634093089,
-    "high_frac": 0.013096048889029028,
-    "px_per_m_min": 142.8640284146954,
-    "px_per_m_median": 1031.0054003449468,
-    "px_per_m_max": 1679.10269712362,
-    "stretch_max": 1.3740823254411545,
+    "exact_frac": 0.9540777769639989,
+    "low_frac": 0.025465007958486212,
+    "high_frac": 0.020457215077515085,
+    "px_per_m_min": 358.074130976633,
+    "px_per_m_median": 1029.9330132462053,
+    "px_per_m_max": 1502.5535750239906,
+    "stretch_max": 0.9938302095128635,
     "faces": 30418
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 24,
-    "passing": 24,
+    "islands": 12,
+    "passing": 12,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.2281,
-    "worst_island_p95": 0.5662
+    "worst_island_p50": 0.0742,
+    "worst_island_p95": 0.2928,
+    "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9189,
-   "islands": 24,
+   "stretch_over_2pc_area": 0.9367,
+   "islands": 12,
    "u_range": [
-    0.0039,
-    0.7081
+    0.002,
+    0.4659
    ],
    "v_range": [
-    0.0039,
-    0.5232
+    0.002,
+    0.3006
    ]
   }
  },
@@ -61,8 +62,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 14.079,
-  "seams_on_smooth_m": 5.344,
+  "seams_m": 13.8,
+  "seams_on_smooth_m": 4.709,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -79,16 +80,16 @@
  },
  "layout": {
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
-  "zruv_sheet_m3": 2048,
-  "zruv_bands": "[{\"h\": 16.0, \"px\": 32, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.984375, \"kind\": \"band\"}, {\"h\": 32.0, \"px\": 48, \"top\": 32.0, \"v1\": 0.984375, \"v0\": 0.9609375, \"kind\": \"band\"}, {\"h\": 48.0, \"px\": 64, \"top\": 80.0, \"v1\": 0.9609375, \"v0\": 0.9296875, \"kind\": \"band\"}, {\"h\": 64.0, \"px\": 80, \"top\": 144.0, \"v1\": 0.9296875, \"v0\": 0.890625, \"kind\": \"band\"}, {\"h\": 96.0, \"px\": 112, \"top\": 224.0, \"v1\": 0.890625, \"v0\": 0.8359375, \"kind\": \"band\"}, {\"h\": 128.0, \"px\": 144, \"top\": 336.0, \"v1\": 0.8359375, \"v0\": 0.765625, \"kind\": \"band\"}, {\"h\": 192.0, \"px\": 208, \"top\": 480.0, \"v1\": 0.765625, \"v0\": 0.6640625, \"kind\": \"band\"}, {\"h\": 256.0, \"px\": 272, \"top\": 688.0, \"v1\": 0.6640625, \"v0\": 0.53125, \"kind\": \"band\"}, {\"h\": 1072.0, \"px\": 1088.0, \"top\": 960.0, \"v0\": 0.0, \"v1\": 0.53125, \"kind\": \"plain\"}]"
+  "zruv_sheet_m3": 4096,
+  "zruv_bands": "[{\"h\": 16.0, \"px\": 32, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.9921875, \"kind\": \"band\"}, {\"h\": 32.0, \"px\": 48, \"top\": 32.0, \"v1\": 0.9921875, \"v0\": 0.98046875, \"kind\": \"band\"}, {\"h\": 48.0, \"px\": 64, \"top\": 80.0, \"v1\": 0.98046875, \"v0\": 0.96484375, \"kind\": \"band\"}, {\"h\": 64.0, \"px\": 80, \"top\": 144.0, \"v1\": 0.96484375, \"v0\": 0.9453125, \"kind\": \"band\"}, {\"h\": 96.0, \"px\": 112, \"top\": 224.0, \"v1\": 0.9453125, \"v0\": 0.91796875, \"kind\": \"band\"}, {\"h\": 128.0, \"px\": 144, \"top\": 336.0, \"v1\": 0.91796875, \"v0\": 0.8828125, \"kind\": \"band\"}, {\"h\": 192.0, \"px\": 208, \"top\": 480.0, \"v1\": 0.8828125, \"v0\": 0.83203125, \"kind\": \"band\"}, {\"h\": 256.0, \"px\": 272, \"top\": 688.0, \"v1\": 0.83203125, \"v0\": 0.765625, \"kind\": \"band\"}, {\"h\": 3120.0, \"px\": 3136.0, \"top\": 960.0, \"v0\": 0.0, \"v1\": 0.765625, \"kind\": \"plain\"}]"
  },
  "method": "M3B",
  "title": "Trim sheet d'abord, puis la g\u00e9om\u00e9trie",
  "contracts": [
   {
    "set": "uv",
-   "W": 2048,
-   "H": 2048,
+   "W": 4096,
+   "H": 4096,
    "space": "sheet",
    "unique": false,
    "region": "band",
@@ -110,8 +111,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 13.49,
- "score_s": 1.89,
+ "cook_s": 12.92,
+ "score_s": 2.39,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
@@ -120,7 +121,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 05:51",
+ "date": "20 October 2026 07:36",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,

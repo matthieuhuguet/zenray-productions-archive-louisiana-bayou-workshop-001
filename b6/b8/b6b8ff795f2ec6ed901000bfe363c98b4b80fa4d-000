@@ -2,7 +2,7 @@
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
  "texel_density": 1024.0,
- "date": "20 October 2026 05:52",
+ "date": "20 October 2026 07:37",
  "families": [
   {
    "name": "body",
@@ -18,21 +18,21 @@
    "id": "M1",
    "title": "UV unique et bake",
    "idea": "Chaque point de l'objet a ses propres pixels dans une texture unique de 4096 px au plus ; les îles jumelles (les deux piliers, les deux faces de l'arche, les rivets) partagent la même place, et les cartes du maillage sont cuites dedans.",
-   "score": 0.984977,
-   "weakest": "uv:no_flip",
+   "score": 0.999996,
+   "weakest": "bake:coverage",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
     "uv:stretch": 1.0,
-    "uv:no_flip": 0.984977,
-    "uv:not_mirrored": 0.984977,
+    "uv:no_flip": 1.0,
+    "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:horizontal": 1.0,
     "uv:no_overlap": 1.0,
     "uv:padding": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0,
-    "bake:coverage": 0.999998,
+    "bake:coverage": 0.999996,
     "bake:id_match": 1.0
    },
    "contracts": [
@@ -45,6 +45,7 @@
      "region": "sheet",
      "padding_px": 16,
      "straight_tol": 0.08,
+     "twin_bake": true,
      "organic_tol": 0.1,
      "subtexel_px": 1.0,
      "organic_artist": {
@@ -85,13 +86,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.24677757831609154,
-    "low_frac": 0.37615285943130433,
-    "high_frac": 0.37706956225260413,
-    "px_per_m_min": 142.79796900306386,
-    "px_per_m_median": 1031.005968333483,
-    "px_per_m_max": 1679.10269712362,
-    "stretch_max": 1.3740823254411545,
+    "exact_frac": 0.23921794676689345,
+    "low_frac": 0.3791630112290196,
+    "high_frac": 0.38161904200408703,
+    "px_per_m_min": 358.0086348297291,
+    "px_per_m_median": 1029.927350929213,
+    "px_per_m_max": 1502.5535750239906,
+    "stretch_max": 0.9938277085921057,
     "faces": 30418
    },
    "seams": {
@@ -102,26 +103,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 14.079,
-    "seams_on_smooth_m": 5.344,
+    "seams_m": 13.8,
+    "seams_on_smooth_m": 4.709,
     "sharp_kept_m": 0,
     "sharp_m": 0,
     "border_m": 0,
     "pass": true
    },
-   "islands": 24,
-   "fill": 0.2494,
+   "islands": 12,
+   "fill": 0.2537,
    "u_range": [
     0.0039,
-    0.9961
+    0.9958
    ],
    "v_range": [
     0.0078,
-    0.5271
+    0.6051
    ],
-   "cook_s": 34.06,
-   "bake_s": 85.78999999999999,
-   "date": "20 October 2026 05:51",
+   "cook_s": 24.85,
+   "bake_s": 82.94999999999999,
+   "date": "20 October 2026 07:35",
    "report": "M1/report.json",
    "example": {
     "texture": "M1/texture_unique.png",
@@ -143,14 +144,14 @@
    "id": "M2",
    "title": "Texture tileable",
    "idea": "Une texture qui se raccorde sur ses bords par famille, 2048 px d'abord ; les bandes droites se couchent dans son carré, les jumelles s'empilent, et une bande plus longue que la tuile continue le long de u sur la texture qui se répète.",
-   "score": 0.984977,
-   "weakest": "uv:no_flip",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
     "uv:stretch": 1.0,
-    "uv:no_flip": 0.984977,
-    "uv:not_mirrored": 0.984977,
+    "uv:no_flip": 1.0,
+    "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:grain": 1.0,
     "uv:horizontal": 1.0,
@@ -208,13 +209,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.24663338512853675,
-    "low_frac": 0.3762756219252629,
-    "high_frac": 0.37709099294620035,
-    "px_per_m_min": 142.8778446162427,
-    "px_per_m_median": 1031.0095662307285,
-    "px_per_m_max": 1679.10850995911,
-    "stretch_max": 1.3740717825838038,
+    "exact_frac": 0.2391926986092041,
+    "low_frac": 0.379155885229936,
+    "high_frac": 0.3816514161608599,
+    "px_per_m_min": 357.99810713385546,
+    "px_per_m_median": 1029.9197114016338,
+    "px_per_m_max": 1502.5535750239906,
+    "stretch_max": 0.9939159262418815,
     "faces": 30418
    },
    "seams": {
@@ -225,26 +226,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 14.079,
-    "seams_on_smooth_m": 5.344,
+    "seams_m": 13.8,
+    "seams_on_smooth_m": 4.709,
     "sharp_kept_m": 0,
     "sharp_m": 0,
     "border_m": 0,
     "pass": true
    },
-   "islands": 24,
+   "islands": 12,
    "fill": null,
    "u_range": [
     0.002,
-    0.9256
+    0.9699
    ],
    "v_range": [
-    0.6143,
+    0.6994,
     0.998
    ],
    "cook_s": 0.02,
    "bake_s": null,
-   "date": "20 October 2026 05:51",
+   "date": "20 October 2026 07:35",
    "report": "M2/report.json",
    "example": {
     "textured_3d": "M2/view_textured_3d.png",
@@ -265,14 +266,14 @@
    "id": "M3",
    "title": "Trim sheet inverse (depuis la géométrie)",
    "idea": "Une seule trim sheet partagée par toutes les familles, à la manière de Naughty Dog : des bandes pleine largeur, une par hauteur mesurée, les plus fines en haut, puis une zone pleine en bas pour le panneau et les grandes faces.",
-   "score": 0.984977,
-   "weakest": "uv:no_flip",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
     "uv:stretch": 1.0,
-    "uv:no_flip": 0.984977,
-    "uv:not_mirrored": 0.984977,
+    "uv:no_flip": 1.0,
+    "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:grain": 1.0,
     "uv:horizontal": 1.0,
@@ -327,13 +328,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.24677025656031443,
-    "low_frac": 0.37613194628688623,
-    "high_frac": 0.37709779715279934,
-    "px_per_m_min": 142.8640284146954,
-    "px_per_m_median": 1031.0054003449468,
-    "px_per_m_max": 1679.10269712362,
-    "stretch_max": 1.3740823254411545,
+    "exact_frac": 0.23923909473391766,
+    "low_frac": 0.37914599582909153,
+    "high_frac": 0.3816149094369909,
+    "px_per_m_min": 358.074130976633,
+    "px_per_m_median": 1029.9330132462053,
+    "px_per_m_max": 1502.5535750239906,
+    "stretch_max": 0.9938302095128635,
     "faces": 30418
    },
    "seams": {
@@ -344,26 +345,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 14.079,
-    "seams_on_smooth_m": 5.344,
+    "seams_m": 13.8,
+    "seams_on_smooth_m": 4.709,
     "sharp_kept_m": 0,
     "sharp_m": 0,
     "border_m": 0,
     "pass": true
    },
-   "islands": 24,
+   "islands": 12,
    "fill": null,
    "u_range": [
     0.0039,
-    0.7081
+    0.9318
    ],
    "v_range": [
     0.0039,
-    0.5232
+    0.6011
    ],
-   "cook_s": 14.19,
+   "cook_s": 12.93,
    "bake_s": null,
-   "date": "20 October 2026 05:51",
+   "date": "20 October 2026 07:36",
    "report": "M3/report.json",
    "example": {
     "texture": "M3/texture_trim.png",
@@ -385,14 +386,14 @@
    "id": "M3B",
    "title": "Trim sheet d'abord, puis la géométrie",
    "idea": "La trim sheet existe avant l'objet : une bibliothèque fixe de bandes (16 à 256 px) ; la géométrie est construite à ces largeurs, chaque bande droite remplit la sienne sans perte, et une seule feuille sert tout un kit.",
-   "score": 0.984977,
-   "weakest": "uv:no_flip",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
     "uv:stretch": 1.0,
-    "uv:no_flip": 0.984977,
-    "uv:not_mirrored": 0.984977,
+    "uv:no_flip": 1.0,
+    "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:grain": 1.0,
     "uv:horizontal": 1.0,
@@ -403,8 +404,8 @@
    "contracts": [
     {
      "set": "uv",
-     "W": 2048,
-     "H": 2048,
+     "W": 4096,
+     "H": 4096,
      "space": "sheet",
      "unique": false,
      "region": "band",
@@ -438,13 +439,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.24677025656031443,
-    "low_frac": 0.37613194628688623,
-    "high_frac": 0.37709779715279934,
-    "px_per_m_min": 142.8640284146954,
-    "px_per_m_median": 1031.0054003449468,
-    "px_per_m_max": 1679.10269712362,
-    "stretch_max": 1.3740823254411545,
+    "exact_frac": 0.23923909473391766,
+    "low_frac": 0.37914599582909153,
+    "high_frac": 0.3816149094369909,
+    "px_per_m_min": 358.074130976633,
+    "px_per_m_median": 1029.9330132462053,
+    "px_per_m_max": 1502.5535750239906,
+    "stretch_max": 0.9938302095128635,
     "faces": 30418
    },
    "seams": {
@@ -455,26 +456,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 14.079,
-    "seams_on_smooth_m": 5.344,
+    "seams_m": 13.8,
+    "seams_on_smooth_m": 4.709,
     "sharp_kept_m": 0,
     "sharp_m": 0,
     "border_m": 0,
     "pass": true
    },
-   "islands": 24,
+   "islands": 12,
    "fill": null,
    "u_range": [
-    0.0039,
-    0.7081
+    0.002,
+    0.4659
    ],
    "v_range": [
-    0.0039,
-    0.5232
+    0.002,
+    0.3006
    ],
-   "cook_s": 13.49,
+   "cook_s": 12.92,
    "bake_s": null,
-   "date": "20 October 2026 05:51",
+   "date": "20 October 2026 07:36",
    "report": "M3B/report.json",
    "example": {
     "texture": "M3B/texture_trim.png",
@@ -495,15 +496,15 @@
    "id": "M3C",
    "title": "Trim sheet hotspot",
    "idea": "Une feuille de rectangles fixes, à la manière du hotspot de Valve : chaque île prend, par une échelle uniforme, le rectangle qui change le moins sa densité ; l'erreur est bornée par le pas de la bibliothèque.",
-   "score": 0.981919,
+   "score": 0.928413,
    "weakest": "uv:region",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
     "uv:stretch": 1.0,
-    "uv:no_flip": 0.984977,
-    "uv:not_mirrored": 0.984977,
-    "uv:region": 0.981919,
+    "uv:no_flip": 1.0,
+    "uv:not_mirrored": 1.0,
+    "uv:region": 0.928413,
     "uv:horizontal": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0
@@ -545,13 +546,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.11101452361019398,
-    "low_frac": 0.6866556278352378,
-    "high_frac": 0.2023298485545682,
-    "px_per_m_min": 152.14429428165224,
-    "px_per_m_median": 995.3762795259572,
-    "px_per_m_max": 1733.1557663219862,
-    "stretch_max": 1.3740823254411545,
+    "exact_frac": 0.11066297201757881,
+    "low_frac": 0.36314144969505957,
+    "high_frac": 0.5261955782873616,
+    "px_per_m_min": 299.19510832714894,
+    "px_per_m_median": 1053.3556273938552,
+    "px_per_m_max": 1617.1194171919851,
+    "stretch_max": 1.3475478229912912,
     "faces": 30418
    },
    "seams": {
@@ -562,26 +563,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 14.079,
-    "seams_on_smooth_m": 5.344,
+    "seams_m": 13.8,
+    "seams_on_smooth_m": 4.709,
     "sharp_kept_m": 0,
     "sharp_m": 0,
     "border_m": 0,
     "pass": true
    },
-   "islands": 24,
+   "islands": 12,
    "fill": null,
    "u_range": [
     0.0039,
-    0.8945
+    0.9318
    ],
    "v_range": [
     0.0039,
     0.9961
    ],
-   "cook_s": 13.92,
+   "cook_s": 14.65,
    "bake_s": null,
-   "date": "20 October 2026 05:52",
+   "date": "20 October 2026 07:37",
    "report": "M3C/report.json",
    "example": {
     "texture": "M3C/texture_hotspot.png",
@@ -602,14 +603,14 @@
    "id": "M4",
    "title": "Matériaux en couches et masque RGB",
    "idea": "uv répète les matériaux de bibliothèque comme M2 ; uv2, unique et petite, porte un masque RVB empaqueté dans Copernicus (R usure, V ciel, B sol) qui dit où poser chaque couche.",
-   "score": 0.984977,
-   "weakest": "uv:no_flip",
+   "score": 0.999964,
+   "weakest": "bake:coverage",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
     "uv:stretch": 1.0,
-    "uv:no_flip": 0.984977,
-    "uv:not_mirrored": 0.984977,
+    "uv:no_flip": 1.0,
+    "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:grain": 1.0,
     "uv:horizontal": 1.0,
@@ -619,15 +620,15 @@
     "uv2:present": 1.0,
     "uv2:density": 1.0,
     "uv2:stretch": 1.0,
-    "uv2:no_flip": 0.984977,
-    "uv2:not_mirrored": 0.984977,
+    "uv2:no_flip": 1.0,
+    "uv2:not_mirrored": 1.0,
     "uv2:region": 1.0,
     "uv2:horizontal": 1.0,
     "uv2:no_overlap": 1.0,
     "uv2:padding": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0,
-    "bake:coverage": 0.999926,
+    "bake:coverage": 0.999964,
     "bake:id_match": 1.0,
     "mask:channels": 1.0
    },
@@ -656,7 +657,7 @@
     },
     {
      "set": "uv2",
-     "W": 256,
+     "W": 512,
      "H": 256,
      "space": "sheet",
      "unique": true,
@@ -664,6 +665,7 @@
      "target": 128.0,
      "padding_px": 2,
      "straight_tol": 0.08,
+     "twin_bake": true,
      "organic_tol": 0.1,
      "subtexel_px": 1.0,
      "organic_artist": {
@@ -709,11 +711,11 @@
     },
     {
      "label": "masque RVB sur uv2",
-     "w": 256,
+     "w": 512,
      "h": 256,
      "count": 1,
-     "mib_each": 0.1,
-     "mib": 0.1
+     "mib_each": 0.2,
+     "mib": 0.2
     }
    ],
    "texel": {
@@ -721,13 +723,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.24663338512853675,
-    "low_frac": 0.3762756219252629,
-    "high_frac": 0.37709099294620035,
-    "px_per_m_min": 142.8778446162427,
-    "px_per_m_median": 1031.0095662307285,
-    "px_per_m_max": 1679.10850995911,
-    "stretch_max": 1.3740717825838038,
+    "exact_frac": 0.2391926986092041,
+    "low_frac": 0.379155885229936,
+    "high_frac": 0.3816514161608599,
+    "px_per_m_min": 357.99810713385546,
+    "px_per_m_median": 1029.9197114016338,
+    "px_per_m_max": 1502.5535750239906,
+    "stretch_max": 0.9939159262418815,
     "faces": 30418
    },
    "seams": {
@@ -738,29 +740,29 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 14.079,
-    "seams_on_smooth_m": 5.344,
+    "seams_m": 13.8,
+    "seams_on_smooth_m": 4.709,
     "sharp_kept_m": 0,
     "sharp_m": 0,
     "border_m": 0,
     "pass": true
    },
-   "islands": 24,
+   "islands": 12,
    "fill": null,
    "u_range": [
     0.002,
-    0.9256
+    0.9699
    ],
    "v_range": [
-    0.6143,
+    0.6994,
     0.998
    ],
    "cook_s": 0.01,
-   "bake_s": 16.14,
-   "date": "20 October 2026 05:52",
+   "bake_s": 11.18,
+   "date": "20 October 2026 07:37",
    "report": "M4/report.json",
    "example": {
-    "texture": "M4/ZRUV_Manny_M4_layered_256x256.png",
+    "texture": "M4/ZRUV_Manny_M4_layered_512x256.png",
     "textured_3d": "M4/view_textured_3d.png",
     "textured_close": "M4/view_textured_close.png"
    },
@@ -775,41 +777,41 @@
     "check": "Le masque RVB empaqueté et ses trois canaux, chacun dans sa couleur, puis la base, le mélange et la vue texturée : la saleté sur le dessus, le laiton sur les arêtes."
    },
    "uv2": {
-    "islands": 24,
-    "fill": 0.5017,
+    "islands": 12,
+    "fill": 0.2537,
     "texel": {
      "set": "uv2",
      "target_px_per_m": 128.0,
      "tol": 0.1,
      "tol_max": 0.1,
-     "exact_frac": 0.969166987701662,
-     "low_frac": 0.0177369634093089,
-     "high_frac": 0.013096048889029028,
-     "px_per_m_min": 17.859531784101584,
-     "px_per_m_median": 128.87567504311835,
-     "px_per_m_max": 209.8878371404525,
-     "stretch_max": 1.3740823254411545,
+     "exact_frac": 0.9540777769639989,
+     "low_frac": 0.025465007958486212,
+     "high_frac": 0.020457215077515085,
+     "px_per_m_min": 44.751079353716136,
+     "px_per_m_median": 128.74091886615162,
+     "px_per_m_max": 187.81919687799882,
+     "stretch_max": 0.9938277085921057,
      "faces": 30418
     }
    },
    "mask_std": [
-    0.1529,
-    0.1806,
-    0.1388
+    0.1577,
+    0.1836,
+    0.1491
    ]
   },
   {
    "id": "M5",
    "title": "Mesh decals de normale",
    "idea": "La base répétée de M2, plus des decals de géométrie posés 1 mm au-dessus qui ne portent qu'une normale : biseaux d'usure sur les arêtes vives, rainure de panneau et rivets, tous en rangées répétées d'un petit atlas.",
-   "score": 0.508523,
-   "weakest": "decals:lift",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
     "uv:density": 1.0,
     "uv:stretch": 1.0,
-    "uv:no_flip": 0.985022,
-    "uv:not_mirrored": 0.985022,
+    "uv:no_flip": 1.0,
+    "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:grain": 1.0,
     "uv:horizontal": 1.0,
@@ -818,7 +820,7 @@
     "uv:padding": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0,
-    "decals:lift": 0.508523
+    "decals:lift": 1.0
    },
    "contracts": [
     {
@@ -878,14 +880,14 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.24887867786048792,
-    "low_frac": 0.37515419060292676,
-    "high_frac": 0.3759671315365853,
-    "px_per_m_min": 142.8778446162427,
-    "px_per_m_median": 1030.7278053875498,
-    "px_per_m_max": 1679.10850995911,
-    "stretch_max": 1.3740717825838038,
-    "faces": 30594
+    "exact_frac": 0.2393758139316981,
+    "low_frac": 0.3790646278878042,
+    "high_frac": 0.3815595581804977,
+    "px_per_m_min": 357.99810713385546,
+    "px_per_m_median": 1029.8412095250276,
+    "px_per_m_max": 1502.5535750239906,
+    "stretch_max": 0.9939159262418815,
+    "faces": 30478
    },
    "seams": {
     "crease_requested": 132.36300659179688,
@@ -895,26 +897,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 17.486,
-    "seams_on_smooth_m": 5.344,
+    "seams_m": 14.232,
+    "seams_on_smooth_m": 4.709,
     "sharp_kept_m": 0,
     "sharp_m": 0,
-    "border_m": 3.407,
+    "border_m": 0.432,
     "pass": true
    },
-   "islands": 112,
+   "islands": 26,
    "fill": 0.0,
    "u_range": [
     0.002,
-    0.9256
+    0.9699
    ],
    "v_range": [
-    0.6143,
+    0.6994,
     0.998
    ],
-   "cook_s": 2.09,
+   "cook_s": 1.41,
    "bake_s": null,
-   "date": "20 October 2026 05:52",
+   "date": "20 October 2026 07:37",
    "report": "M5/report.json",
    "example": {
     "texture": "M5/texture_decal_relief.png",
