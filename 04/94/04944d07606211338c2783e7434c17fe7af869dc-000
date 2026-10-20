@@ -1,0 +1,135 @@
+# 20 October 2026 (Matthieu : « chaque fois que tu vois des bords carrés non anti-aliasés sur la sheet UV, et pas un bord droit ou lisse, c'est une erreur dans la
+# découpe ») : the steps of every seam, measured two ways.
+#   loops (quad meshes) : at a regular vertex (four quads) a seam goes straight on along its edge loop or turns onto the crossing loop ; a seam edge turned at both
+#       of its ends is a STEP, and two steps or more in a row are a staircase ;
+#   sheet (any mesh, what Matthieu sees) : along the border of every island in uv, two sharp turns of opposite signs in a row (a tooth) ; their edges are the
+#       saw-tooth length of the border.
+# Usage : python -I StairSeams.py <mesh.json> <uv set> [<mesh.json> <uv set> ...]   FR : les marches d'escalier des coutures.
+import sys, os, json, math
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z
+import ZruvLoops as L
+
+TOOTH_DEG = 50.0      # a turn of the border at least this sharp, followed by one of the opposite sign as sharp, is a tooth
+
+
+def loop_steps(m, name, lab, seams):
+    Q = L.Quads(m)
+    at = {}
+    for e in seams:
+        for p in e:
+            at.setdefault(p, []).append(e)
+    kind = {}
+    for p, es in at.items():
+        if len(es) != 2 or not Q.regular(p):
+            kind[p] = 'other'
+            continue
+        kind[p] = 'straight' if Q.opposite_at(es[0], p) == es[1] else 'turn'
+    step = {e for e in seams if kind.get(e[0]) == 'turn' and kind.get(e[1]) == 'turn'}
+    return step, sum(1 for k in kind.values() if k == 'turn'), sum(1 for k in kind.values() if k == 'straight')
+
+
+def border_loops(m, name, lab):
+    """The border of every island in uv : loops of half edges (a, b, face, corner) in the face winding."""
+    out = {}
+    for f in range(m.n):
+        p = m.polys[f]
+        k = len(p)
+        for i in range(k):
+            a, b = p[i], p[(i + 1) % k]
+            e = (a, b) if a < b else (b, a)
+            fs = m.edges[e]
+            if not (len(fs) == 2 and lab[fs[0]] == lab[fs[1]] and e not in m._zruv_seams):
+                out.setdefault((int(lab[f]), a), []).append((a, b, f, i))
+    used, loops = set(), []
+    for (isl, _a), hs in out.items():
+        for h in hs:
+            if h in used:
+                continue
+            lp, cur = [], h
+            while cur is not None and cur not in used:
+                used.add(cur)
+                lp.append(cur)
+                nx = [c for c in out.get((isl, cur[1]), []) if c not in used]
+                cur = nx[0] if nx else None
+            if len(lp) >= 3:
+                loops.append((isl, lp))
+    return loops
+
+
+def sheet_teeth(m, name, lab):
+    teeth, tot = set(), 0.0
+    per = {}
+    for isl, lp in border_loops(m, name, lab):
+        uvs = []
+        for a, b, f, i in lp:
+            uvs.append(np.array(m.uv[name][f][i], dtype=float))
+        n = len(lp)
+        ang = []
+        for j in range(n):
+            d0 = uvs[j] - uvs[j - 1]
+            d1 = uvs[(j + 1) % n] - uvs[j]
+            if np.linalg.norm(d0) < 1e-12 or np.linalg.norm(d1) < 1e-12:
+                ang.append(0.0)
+                continue
+            ang.append(math.degrees(math.atan2(d0[0] * d1[1] - d0[1] * d1[0], float(np.dot(d0, d1)))))
+        flag = []
+        for j in range(n):
+            a, b, f, i = lp[j]
+            e = (a, b) if a < b else (b, a)
+            tot += m.edge_length(e)
+            # the edge j runs from corner j to corner j+1 : a tooth when the turns at its two ends are sharp and of opposite signs
+            t0, t1 = ang[j], ang[(j + 1) % n]
+            flag.append(abs(t0) >= TOOTH_DEG and abs(t1) >= TOOTH_DEG and t0 * t1 < 0)
+        # runs of teeth along the border : two teeth or more in a row (at most one plain edge between them) are a staircase
+        j0 = next((j for j in range(n) if not flag[j]), None)
+        if j0 is None:
+            continue
+        run = []
+        for k in range(1, n + 1):
+            j = (j0 + k) % n
+            if flag[j]:
+                run.append(j)
+            elif run and k < n and flag[(j + 1) % n]:
+                run.append(j)          # one plain edge between two teeth keeps the run
+            else:
+                if run:
+                    nt = sum(1 for x in run if flag[x])
+                    es = [(lp[x][0], lp[x][1]) if lp[x][0] < lp[x][1] else (lp[x][1], lp[x][0]) for x in run]
+                    Lr = sum(m.edge_length(x) for x in es)
+                    P = m.P[sorted({q for x in es for q in x})]
+                    RUNS.append({'island': int(isl), 'teeth': nt, 'length': round(Lr, 4), 'centre': [round(float(c), 3) for c in P.mean(0)]})
+                    for x in run:
+                        if flag[x]:
+                            teeth.add(es[run.index(x)])
+                            per[isl] = per.get(isl, 0.0) + m.edge_length(es[run.index(x)])
+                run = []
+    return teeth, tot, per
+
+
+RUNS = []
+
+
+def stairs(m, name, tol=1e-5):
+    lab, seams = Z.uv_islands(m, name, tol)
+    m._zruv_seams = set(seams)
+    seams = {e for e in seams if len(m.edges[e]) == 2}
+    step, nt, ns = loop_steps(m, name, lab, seams)
+    RUNS.clear()
+    teeth, border_m, per = sheet_teeth(m, name, lab)
+    Lg = lambda S: float(sum(m.edge_length(x) for x in S))
+    return {'seam_m': round(Lg(seams), 4), 'loop_step_m': round(Lg(step), 4), 'turn_vertices': nt, 'straight_vertices': ns,
+            'border_m': round(border_m, 4), 'tooth_m': round(Lg(teeth), 4), 'tooth_share': round(Lg(teeth) / max(Lg(seams), 1e-12), 4),
+            'tooth_islands': {int(k): round(v, 4) for k, v in sorted(per.items(), key=lambda kv: -kv[1])[:8]},
+            'stair_runs': sum(1 for r in RUNS if r['teeth'] >= 2), 'stair_m': round(sum(r['length'] for r in RUNS if r['teeth'] >= 2), 4),
+            'runs': sorted(RUNS, key=lambda r: -r['length'])[:8]}
+
+
+if __name__ == '__main__':
+    a = sys.argv[1:]
+    for i in range(0, len(a), 2):
+        m = Z.from_json(a[i])
+        r = stairs(m, a[i + 1])
+        r['what'] = os.path.basename(os.path.dirname(os.path.dirname(a[i]))) + '/' + os.path.basename(a[i]) + ':' + a[i + 1]
+        print(json.dumps(r))
