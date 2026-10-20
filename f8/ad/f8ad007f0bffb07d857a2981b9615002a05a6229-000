@@ -1,0 +1,97 @@
+# 20 October 2026 : edge loops of a quad dominant mesh, the lines an artist cuts along. Around a point with four quads, a loop leaves by the edge opposite to the
+# one it came in (the edge sharing no face with it) ; it stops at a pole (three, five or more edges), a border or a non quad face. Also the parallel loops
+# (one quad over, across the faces of the loop), so a chosen loop can be compared with its neighbours.
+# FR : boucles d'aretes d'un maillage en quads, les lignes ou coupe un artiste.
+import numpy as np
+
+
+class Quads:
+    def __init__(self, m):
+        self.m = m
+        self.pf = [[] for _ in range(len(m.P))]
+        for f, p in enumerate(m.polys):
+            for q in p:
+                self.pf[q].append(f)
+        self.pe = [[] for _ in range(len(m.P))]
+        for e in m.edges:
+            self.pe[e[0]].append(e)
+            self.pe[e[1]].append(e)
+
+    @staticmethod
+    def key(a, b):
+        return (a, b) if a < b else (b, a)
+
+    def regular(self, p):
+        return len(self.pf[p]) == 4 and len(self.pe[p]) == 4 and all(len(self.m.polys[f]) == 4 for f in self.pf[p])
+
+    def opposite_at(self, e, p):
+        """The edge continuing e straight through point p, or None at a pole, a border or a triangle."""
+        if not self.regular(p):
+            return None
+        fe = set(self.m.edges[e])
+        for e2 in self.pe[p]:
+            if e2 != e and not (set(self.m.edges[e2]) & fe):
+                return e2
+        return None
+
+    def other(self, e, p):
+        return e[1] if e[0] == p else e[0]
+
+    def walk(self, e, p, stop=None, limit=100000):
+        """Edges from e going through p onwards, until a pole, the start again, or an edge in stop."""
+        out = []
+        cur, at = e, p
+        for _ in range(limit):
+            nx = self.opposite_at(cur, at)
+            if nx is None or nx == e or (stop is not None and nx in stop):
+                return out, nx == e
+            out.append(nx)
+            at = self.other(nx, at)
+            cur = nx
+        return out, False
+
+    def loop(self, e):
+        """The whole loop through edge e : (points in order, edges in order, closed)."""
+        fwd, closed = self.walk(e, e[1])
+        if closed:
+            edges = [e] + fwd
+        else:
+            bwd, _ = self.walk(e, e[0])
+            edges = bwd[::-1] + [e] + fwd
+        pts = self.edge_points(edges)
+        return pts, edges, closed
+
+    def edge_points(self, edges):
+        if not edges:
+            return []
+        if len(edges) == 1:
+            return list(edges[0])
+        a, b = edges[0]
+        pts = [b, a] if a in edges[1] else [a, b]
+        for e in edges[1:]:
+            pts.append(self.other(e, pts[-1]))
+        return pts
+
+    def across(self, e):
+        """The edges opposite to e in its (one or two) quads : the rungs to the parallel loops."""
+        out = []
+        for f in self.m.edges[e]:
+            p = self.m.polys[f]
+            if len(p) != 4:
+                continue
+            i = None
+            for k in range(4):
+                if self.key(p[k], p[(k + 1) % 4]) == e:
+                    i = k
+            if i is not None:
+                out.append(self.key(p[(i + 2) % 4], p[(i + 3) % 4]))
+        return out
+
+    def parallel(self, edges, side_face):
+        """The loop one quad over on the side of side_face (a face touching the first edge)."""
+        e = edges[0]
+        p = self.m.polys[side_face]
+        for k in range(4):
+            if self.key(p[k], p[(k + 1) % 4]) == e:
+                return self.key(p[(k + 2) % 4], p[(k + 3) % 4])
+        return None

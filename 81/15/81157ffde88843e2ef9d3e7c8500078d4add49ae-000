@@ -1,0 +1,38 @@
+# 20 October 2026 : runs inside Houdini (bridge). Flattens a bench asset with Houdini's own UV Flatten on a given seam set, to measure how close a native
+# unfold comes to the artist's islands once the cut is the artist's. Globals : ASSET (ZRUV_RubberToy ...), METHOD (0 SCP, 1 ABF), OUT (json path),
+# SEAMS ('orig' = the edges where uv_org splits, or a json path holding {'seams': [[a, b], ...]} point pairs of the bench mesh). Nodes live in /obj/ZRUV_Study.
+# FR : aplatissement natif de Houdini sur la coupe de l'artiste, pour mesurer la distance au depliage d'origine.
+import json
+st = hou.node('/obj/ZRUV_Study') or hou.node('/obj').createNode('geo', 'ZRUV_Study')
+st.setDisplayFlag(False)
+tag = ASSET.replace('ZRUV_', '')
+def node(name, typ, inp=None):
+    n = st.node(name)
+    if n is not None and n.type().name() != typ:
+        n.destroy()
+        n = None
+    n = n or st.createNode(typ, name)
+    if inp is not None:
+        n.setInput(0, inp)
+    return n
+mg = node('IN_' + tag, 'object_merge')
+mg.parm('objpath1').set('/obj/%s/BASE' % ASSET)
+if SEAMS == 'orig':
+    gb = node('seams_' + tag, 'groupfromattribboundary', mg)
+    gb.parm('groupname').set('art_seams')
+    gb.parm('attrib').set('uv_org')
+    gb.parm('tol').set(1e-5)
+else:
+    gb = node('seams_' + tag, 'python', mg)
+    pairs = json.load(open(SEAMS))['seams']
+    gb.parm('python').set("import json\nnode = hou.pwd()\ngeo = node.geometry()\ng = geo.findEdgeGroup('art_seams') or geo.createEdgeGroup('art_seams')\nfor a, b in json.load(open(%r))['seams']:\n    e = geo.findEdge(geo.point(a), geo.point(b))\n    if e is not None:\n        g.add(e)\n" % SEAMS)
+fl = node('flat_' + tag, 'uvflatten::3.0', gb)
+fl.parm('uvattrib').set('uv')
+fl.parm('method').set(METHOD)
+fl.parm('seamgroup').set('art_seams')
+fl.cook(force=True)
+g = fl.geometry()
+eg = g.findEdgeGroup('art_seams')
+uv = [[list(v.attribValue('uv')[:2]) for v in pr.vertices()] for pr in g.prims()]
+json.dump({'uv': uv, 'method': METHOD}, open(OUT, 'w'))
+result = {'faces': len(uv), 'seam_edges': len(eg.edges()) if eg is not None else None, 'out': OUT}

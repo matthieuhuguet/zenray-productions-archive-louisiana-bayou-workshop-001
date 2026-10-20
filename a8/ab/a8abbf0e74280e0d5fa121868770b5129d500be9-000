@@ -1,0 +1,99 @@
+# 20 October 2026 : why the artist chose THIS loop and not its neighbour. For every artist seam segment of a quad mesh, the parallel chains one to four quads
+# over on each side are built (a ladder across the quads of the segment), and a few measures are taken on each : sharpness (mean unsigned dihedral), how much
+# the surface faces each world axis along the chain (mean |n . axis|, 0 = the chain is a contour seen along that axis), distance to the symmetry plane, height.
+# A measure for which the artist's chain (offset 0) is the extreme of its neighbours is a candidate rule. Usage : python -I WhyLoop.py <asset> [min length m]
+# FR : pourquoi l'artiste a choisi cette boucle et pas sa voisine.
+import sys, os, math
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, OrigStudy as O, SeamSegments as SS, LoopTools as LT
+
+
+def offset_chain(Q, m, edges, side_faces):
+    """Edges one quad over across side_faces[i] (the face of edge i on the chosen side), and the faces beyond them (for the next step)."""
+    nxt, beyond = [], []
+    for e, f in zip(edges, side_faces):
+        if f is None or len(m.polys[f]) != 4:
+            nxt.append(None); beyond.append(None)
+            continue
+        p = m.polys[f]
+        e2 = None
+        for k in range(4):
+            if Q.key(p[k], p[(k + 1) % 4]) == e:
+                e2 = Q.key(p[(k + 2) % 4], p[(k + 3) % 4])
+        nxt.append(e2)
+        if e2 is None:
+            beyond.append(None)
+            continue
+        fs = [g for g in m.edges[e2] if g != f]
+        beyond.append(fs[0] if fs else None)
+    return nxt, beyond
+
+
+def measures(m, edges):
+    edges = [e for e in edges if e is not None and len(m.edges[e]) == 2]
+    if not edges:
+        return None
+    L = np.array([m.edge_length(e) for e in edges])
+    dih, nx, ny, nz, xs, ys = [], [], [], [], [], []
+    for e in edges:
+        f0, f1 = m.edges[e]
+        n0, n1 = m.normal[f0], m.normal[f1]
+        dih.append(math.degrees(math.acos(max(-1.0, min(1.0, float(np.dot(n0, n1)))))))
+        n = n0 + n1
+        n = n / max(np.linalg.norm(n), 1e-20)
+        nx.append(abs(n[0])); ny.append(abs(n[1])); nz.append(abs(n[2]))
+        c = 0.5 * (m.P[e[0]] + m.P[e[1]])
+        xs.append(abs(c[0])); ys.append(c[1])
+    w = L / L.sum()
+    return {'dih': float(np.dot(w, dih)), 'nx': float(np.dot(w, nx)), 'ny': float(np.dot(w, ny)), 'nz': float(np.dot(w, nz)), 'xabs': float(np.dot(w, xs)), 'y': float(np.dot(w, ys)), 'len': float(L.sum())}
+
+
+def study(asset, min_len=0.05, K=4):
+    m, _ = O.load_pair(asset)
+    Q = LT.Quads(m)
+    lab, seams = Z.uv_islands(m, 'orig', O.UV_TOL)
+    seams = {e for e in seams if len(m.edges[e]) == 2}
+    segs = SS.segments(m, seams)
+    rows = []
+    for ch in segs:
+        edges = [Q.key(ch[i], ch[i + 1]) for i in range(len(ch) - 1)]
+        L0 = sum(m.edge_length(e) for e in edges)
+        if L0 < min_len:
+            continue
+        f0 = m.edges[edges[0]]
+        a, b = int(lab[f0[0]]), int(lab[f0[1]])
+        prof = {0: measures(m, edges)}
+        for sgn, isl in ((-1, a), (1, b)):
+            cur = edges
+            side = []
+            for e in cur:
+                fs = [g for g in m.edges[e] if lab[g] == isl] if a != b else [m.edges[e][0 if sgn < 0 else 1]]
+                side.append(fs[0] if fs else None)
+            for k in range(1, K + 1):
+                cur, side = offset_chain(Q, m, cur, side)
+                prof[sgn * k] = measures(m, cur)
+        rows.append((L0, a, b, prof))
+    rows.sort(key=lambda r: -r[0])
+    keys = ('dih', 'nx', 'ny', 'nz', 'xabs')
+    print('%s : %d segments longer than %.2f m ; for each measure the rank of the artist chain among offsets -%d..+%d (1 = smallest, %d = largest)' % (asset, len(rows), min_len, K, K, 2 * K + 1))
+    stats = {k: {'min': 0, 'max': 0} for k in keys}
+    for L0, a, b, prof in rows:
+        ok = [o for o in sorted(prof) if prof[o] is not None]
+        line = 'len %.3f %2d|%-2d ' % (L0, a, b)
+        for k in keys:
+            vals = [(prof[o][k], o) for o in ok]
+            srt = sorted(vals)
+            rank = [o for _, o in srt].index(0) + 1
+            if rank == 1:
+                stats[k]['min'] += 1
+            if rank == len(srt):
+                stats[k]['max'] += 1
+            line += ' %s %5.2f r%d/%d' % (k, prof[0][k], rank, len(srt))
+        print(line)
+    print('extremes over %d segments :' % len(rows), stats)
+
+
+if __name__ == '__main__':
+    study(sys.argv[1], float(sys.argv[2]) if len(sys.argv) > 2 else 0.05)
