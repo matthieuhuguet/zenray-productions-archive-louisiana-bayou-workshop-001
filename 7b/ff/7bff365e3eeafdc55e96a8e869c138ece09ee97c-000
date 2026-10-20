@@ -1,0 +1,51 @@
+[
+ {
+  "who": "Epic (artist)",
+  "islands": 45,
+  "seams_m": 15.25,
+  "within_10": 0.5616,
+  "within_20": 0.905,
+  "stretch_p50": 0.093,
+  "stretch_p95": 0.378
+ },
+ {
+  "who": "ZenRay tol 0.1",
+  "islands": 235,
+  "seams_m": 53.41,
+  "s": 150.0,
+  "within_10": 0.9991,
+  "within_20": 0.9999,
+  "stretch_p50": 0.022,
+  "stretch_p95": 0.083
+ },
+ {
+  "who": "ZenRay tol 0.15",
+  "islands": 105,
+  "seams_m": 41.04,
+  "s": 112.8,
+  "within_10": 0.9712,
+  "within_20": 0.9998,
+  "stretch_p50": 0.031,
+  "stretch_p95": 0.121
+ },
+ {
+  "who": "ZenRay tol 0.2",
+  "islands": 72,
+  "seams_m": 36.55,
+  "s": 79.6,
+  "within_10": 0.9663,
+  "within_20": 0.9995,
+  "stretch_p50": 0.034,
+  "stretch_p95": 0.148
+ },
+ {
+  "who": "ZenRay tol 0.3",
+  "islands": 46,
+  "seams_m": 31.08,
+  "s": 115.1,
+  "within_10": 0.9064,
+  "within_20": 0.9804,
+  "stretch_p50": 0.042,
+  "stretch_p95": 0.218
+ }
+]
