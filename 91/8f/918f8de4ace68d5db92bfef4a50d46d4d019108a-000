@@ -1,0 +1,55 @@
+{
+ "asset": "ZRUV_ShaderBall",
+ "learn_s": 3.9,
+ "apply_s": 1.3,
+ "summary": {
+  "seam_m": 5.4317,
+  "segments": 20,
+  "clicks": 64,
+  "islands": 76,
+  "collapsed": 57,
+  "concept_share": {
+   "grid_ring": 0.6311,
+   "hidden_side": 0.2716,
+   "contour_x": 0.1988,
+   "crease": 0.1964,
+   "free_choice": 0.1214,
+   "grid_meridian": 0.0997,
+   "contour_y": 0.0464,
+   "contour_z": 0.0242
+  },
+  "tool_share": {
+   "shortest": 0.2353,
+   "loop": 0.4604,
+   "loop_closed": 0.3043
+  },
+  "texture_sets": [
+   "Core",
+   "PreviewSurface",
+   "Stand",
+   "SubsurfaceBars"
+  ]
+ },
+ "seams": {
+  "orig_m": 5.4317,
+  "cand_m": 5.4317,
+  "identical_m": 5.4317,
+  "recall": 1.0,
+  "precision": 1.0,
+  "f1": 1.0,
+  "f1_1ring": 1.0,
+  "missing_m": 0.0,
+  "extra_m": 0.0
+ },
+ "islands": {
+  "orig": 76,
+  "cand": 76,
+  "iou_mean_area": 1.0,
+  "iou_min": 1.0,
+  "identical_partition": true,
+  "shape_mean": 0.00605,
+  "place_mean": 0.00759,
+  "turn_abs_mean": 0.182,
+  "scale_dev_mean": 0.0035
+ }
+}

@@ -1,0 +1,56 @@
+{
+ "asset": "ZRUV_Manny",
+ "learn_s": 10.1,
+ "apply_s": 3.4,
+ "summary": {
+  "seam_m": 15.2523,
+  "segments": 120,
+  "clicks": 407,
+  "islands": 45,
+  "collapsed": 0,
+  "concept_share": {
+   "symmetric": 0.9764,
+   "crease": 0.5415,
+   "hidden_side": 0.3688,
+   "set_edge": 0.2478,
+   "contour_z": 0.1558,
+   "contour_y": 0.1487,
+   "free_choice": 0.1351,
+   "contour_x": 0.0933,
+   "grid_meridian": 0.0685,
+   "grid_ring": 0.0528,
+   "midline": 0.0463,
+   "asymmetric": 0.0236
+  },
+  "tool_share": {
+   "shortest": 0.9756,
+   "loop": 0.0244
+  },
+  "texture_sets": [
+   "MI_Manny_01",
+   "MI_Manny_02"
+  ]
+ },
+ "seams": {
+  "orig_m": 15.2523,
+  "cand_m": 15.2523,
+  "identical_m": 15.2523,
+  "recall": 1.0,
+  "precision": 1.0,
+  "f1": 1.0,
+  "f1_1ring": 1.0,
+  "missing_m": 0.0,
+  "extra_m": 0.0
+ },
+ "islands": {
+  "orig": 45,
+  "cand": 45,
+  "iou_mean_area": 1.0,
+  "iou_min": 1.0,
+  "identical_partition": true,
+  "shape_mean": 0.01154,
+  "place_mean": 0.00813,
+  "turn_abs_mean": 0.603,
+  "scale_dev_mean": 0.0083
+ }
+}

@@ -1,0 +1,150 @@
+# 20 October 2026 : the boards of the artist study : (1) the seams coloured by the concept that explains them, six views ; (2) the artist's uv against the
+# replayed pattern, per texture set (artist islands filled, replay borders drawn over) ; (3) for a mirror symmetric mesh, the seams that break the symmetry.
+# Usage : python -I ArtistBoards.py <asset>   FR : planches de l'etude de l'artiste.
+import sys, os, json
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, OrigStudy as O, ZruvArtist as A, ZruvLoops as L
+
+ORDER = ['set_edge', 'grid_meridian', 'grid_ring', 'blade_rim', 'midline', 'buried_edge', 'crease', 'contour_x', 'contour_y', 'contour_z', 'hidden_side', 'free_choice']
+COLOR = {'set_edge': (235, 125, 20), 'grid_meridian': (40, 170, 230), 'grid_ring': (25, 80, 210), 'blade_rim': (150, 60, 205), 'midline': (225, 40, 145),
+         'buried_edge': (30, 165, 85), 'crease': (25, 25, 28), 'contour_x': (225, 190, 30), 'contour_y': (225, 190, 30), 'contour_z': (225, 190, 30),
+         'hidden_side': (130, 130, 136), 'free_choice': (230, 40, 40)}
+LABEL = {'set_edge': 'texture set boundary', 'grid_meridian': 'grid u = 0 line', 'grid_ring': 'grid ring', 'blade_rim': 'blade rim (symmetry plane)',
+         'midline': 'symmetry plane', 'buried_edge': 'buried boundary', 'crease': 'crease', 'contour_x': 'contour', 'contour_y': 'contour', 'contour_z': 'contour',
+         'hidden_side': 'hidden side (down or back)', 'free_choice': 'free artist choice'}
+
+
+def primary(tags):
+    for k in ORDER:
+        if k in tags:
+            return k
+    return 'free_choice'
+
+
+def concept_edges(m, pat):
+    T_ = L.Tools(m)
+    out = {}
+    for r in pat['segments']:
+        for p in r['pieces']:
+            if p['tool'] == 'loop_closed':
+                pts = None
+            else:
+                pts = T_.run(p['from'], p['to'], p['tool'])
+            k = primary(p['concepts'])
+            if pts is None:
+                clicks = [(int(a), t) for a, t in r['clicks']]
+                es = L.replay(T_, clicks)
+            else:
+                es = {L.key(pts[i], pts[i + 1]) for i in range(len(pts) - 1)}
+            for e in es:
+                out[e] = (k, 'asymmetric' in p['concepts'])
+    return out
+
+
+def board_concepts(m, ce, title, path):
+    ims = []
+    grey = np.tile(np.array([0.86, 0.86, 0.88]), (m.n, 1))
+    for nm, cam in O.views(m):
+        img, zb = R.render(m, cam, face_rgb=grey)
+        im = Image.fromarray(img)
+        for k in ORDER[::-1]:
+            ed = [e for e, (kk, _) in ce.items() if kk == k]
+            if ed:
+                im = R.draw_edges(np.asarray(im), zb, m, cam, ed, COLOR[k], 3)
+        ImageDraw.Draw(im).text((10, 8), nm, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 22))
+        ims.append(im)
+    w, h = ims[0].size
+    B = Image.new('RGB', (w * 3, h * 2 + 96), (246, 246, 248))
+    d = ImageDraw.Draw(B)
+    d.text((12, 10), title, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 26))
+    x = 12
+    used = []
+    for k in ORDER:
+        lab = LABEL[k]
+        if lab in used or not any(kk == k for kk, _ in ce.values()):
+            continue
+        used.append(lab)
+        d.rectangle([x, 52, x + 26, 70], fill=COLOR[k])
+        d.text((x + 32, 50), lab, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 20))
+        x += 44 + int(d.textlength(lab, font=ImageFont.truetype(O.FONT, 20)))
+    for i, im in enumerate(ims):
+        B.paste(im, ((i % 3) * w, 96 + (i // 3) * h))
+    B.save(path)
+
+
+def board_overlay(m, uv_rep, title, path, size=1100):
+    sets = A.texture_sets(m)
+    names = sorted(set(sets))
+    lab, seams = Z.uv_islands(m, 'orig', O.UV_TOL)
+    cols = O.palette(int(lab.max()) + 1)
+    m.uv['rep'] = [[tuple(c) for c in q] for q in uv_rep]
+    ims = []
+    for nm in names:
+        fs = [f for f in range(m.n) if sets[f] == nm]
+        im = Image.new('RGB', (size, size + 40), (252, 252, 252))
+        d = ImageDraw.Draw(im)
+        pad = 30
+        sc = size - 2 * pad
+        px = lambda u, v: (pad + u * sc, 40 + pad + (1 - v) * sc)
+        d.rectangle([px(0, 1), px(1, 0)], outline=(160, 160, 160), width=2)
+        for f in fs:
+            c = tuple(int(255 * (0.55 + 0.45 * x)) for x in cols[lab[f]])
+            d.polygon([px(*q) for q in m.uv['orig'][f]], fill=c)
+        # replay borders : edges of each face where the replay island border runs
+        rl, rs = Z.uv_islands(m, 'rep', 1e-6)
+        for e in rs:
+            for f in m.edges[e]:
+                if sets[f] != nm:
+                    continue
+                p = m.polys[f]
+                i = p.index(e[0])
+                j = p.index(e[1])
+                d.line([px(*m.uv['rep'][f][i]), px(*m.uv['rep'][f][j])], fill=(20, 20, 24), width=1)
+        d.text((10, 8), '%s %s : artist islands filled, replayed pattern borders in black' % (title, nm), fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 18))
+        ims.append(im)
+    W = sum(i.size[0] for i in ims)
+    B = Image.new('RGB', (W, ims[0].size[1]), (252, 252, 252))
+    x = 0
+    for im in ims:
+        B.paste(im, (x, 0))
+        x += im.size[0]
+    if B.size[0] > 2400:
+        B = B.resize((2400, int(B.size[1] * 2400 / B.size[0])))
+    B.save(path)
+
+
+def board_asym(m, ce, title, path):
+    sym = [e for e, (k, a) in ce.items() if not a]
+    asy = [e for e, (k, a) in ce.items() if a]
+    ims = []
+    grey = np.tile(np.array([0.86, 0.86, 0.88]), (m.n, 1))
+    for nm, cam in [v for v in O.views(m) if v[0] in ('left', 'right', 'top', 'bottom')]:
+        img, zb = R.render(m, cam, face_rgb=grey)
+        im = R.draw_edges(img, zb, m, cam, sym, (40, 40, 44), 2)
+        im = R.draw_edges(np.asarray(im), zb, m, cam, asy, (230, 40, 40), 4)
+        ImageDraw.Draw(im).text((10, 8), nm, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 22))
+        ims.append(im)
+    w, h = ims[0].size
+    B = Image.new('RGB', (w * 4, h + 50), (246, 246, 248))
+    ImageDraw.Draw(B).text((12, 12), title, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 24))
+    for i, im in enumerate(ims):
+        B.paste(im, (i * w, 50))
+    B.save(path)
+
+
+if __name__ == '__main__':
+    asset = sys.argv[1]
+    out = O.REF + '/study/' + asset
+    m, _ = O.load_pair(asset)
+    pat = json.load(open(O.REF + '/pattern/%s.pattern.json' % asset))
+    uv = json.load(open(O.REF + '/pattern/%s.replay_uv.json' % asset))['uv']
+    ce = concept_edges(m, pat)
+    sm = pat['summary']
+    board_concepts(m, ce, '%s : the reason of every artist seam (%.2f m, %d clicks)' % (asset, sm['seam_m'], sm['clicks']), out + '/concepts_3d.png')
+    board_overlay(m, uv, asset, out + '/replay_overlay_uv.png')
+    if pat['symmetry']['axis'] is not None:
+        board_asym(m, ce, '%s : seams cut on one side only (red), on a mirror symmetric mesh' % asset, out + '/asymmetry.png')
+    print(out)

@@ -1,0 +1,28 @@
+# 20 October 2026 : learn the artist's pattern of a bench asset, replay it and measure the identity with the original. Usage : python -I RunPattern.py <asset>
+# FR : apprend le patron de l'artiste, le rejoue et mesure l'identite avec l'original.
+import sys, os, json, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import OrigStudy as O, MatchUV as M, ZruvArtist as A
+asset = sys.argv[1]
+t0 = time.time()
+m, _ = O.load_pair(asset)
+given = {}
+for i, k in ((0, 'scp'), (1, 'abf')):
+    p = O.REF + '/flat/%s_m%d.json' % (asset, i)
+    if os.path.exists(p):
+        given[k] = json.load(open(p))['uv']
+pat = A.learn(m, 'orig', given=given)
+out = O.REF + '/pattern'
+json.dump(pat, open(out + '/%s.pattern.json' % asset, 'w'))
+t1 = time.time()
+given = {}
+for i, k in ((0, 'scp'), (1, 'abf')):
+    p = O.REF + '/flat/%s_m%d.json' % (asset, i)
+    if os.path.exists(p):
+        given[k] = json.load(open(p))['uv']
+uv = A.apply(m, pat, given=given)
+m.uv['cand'] = [[tuple(c) for c in q] for q in uv]
+r = M.compare(m, 'cand')
+json.dump({'uv': uv}, open(out + '/%s.replay_uv.json' % asset, 'w'))
+print(json.dumps({'asset': asset, 'learn_s': round(t1 - t0, 1), 'apply_s': round(time.time() - t1, 1), 'summary': pat['summary'], 'seams': r['seams'], 'islands': r['islands']}, indent=1))

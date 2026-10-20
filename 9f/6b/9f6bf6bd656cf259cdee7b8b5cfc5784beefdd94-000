@@ -1,0 +1,57 @@
+{
+ "asset": "ZRUV_RubberToy",
+ "learn_s": 8.2,
+ "apply_s": 1.2,
+ "summary": {
+  "seam_m": 9.2156,
+  "segments": 73,
+  "clicks": 165,
+  "islands": 33,
+  "collapsed": 0,
+  "concept_share": {
+   "symmetric": 0.715,
+   "crease": 0.3837,
+   "asymmetric": 0.285,
+   "free_choice": 0.2607,
+   "hidden_side": 0.1962,
+   "contour_y": 0.1887,
+   "contour_x": 0.1555,
+   "midline": 0.136,
+   "blade_rim": 0.1,
+   "buried_edge": 0.0852,
+   "contour_z": 0.0454,
+   "grid_meridian": 0.0046,
+   "grid_ring": 0.0041
+  },
+  "tool_share": {
+   "loop": 0.8865,
+   "shortest": 0.0619,
+   "loop_closed": 0.0516
+  },
+  "texture_sets": [
+   ""
+  ]
+ },
+ "seams": {
+  "orig_m": 9.2156,
+  "cand_m": 9.2156,
+  "identical_m": 9.2156,
+  "recall": 1.0,
+  "precision": 1.0,
+  "f1": 1.0,
+  "f1_1ring": 1.0,
+  "missing_m": 0.0,
+  "extra_m": 0.0
+ },
+ "islands": {
+  "orig": 33,
+  "cand": 33,
+  "iou_mean_area": 1.0,
+  "iou_min": 1.0,
+  "identical_partition": true,
+  "shape_mean": 0.01492,
+  "place_mean": 0.00675,
+  "turn_abs_mean": 1.014,
+  "scale_dev_mean": 0.0122
+ }
+}
