@@ -1,5 +1,5 @@
 {
- "score": 0.999996,
+ "score": 0.999999,
  "weakest": "bake:coverage",
  "components": {
   "uv:present": 1.0,
@@ -13,7 +13,7 @@
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999996,
+  "bake:coverage": 0.999999,
   "bake:id_match": 1.0
  },
  "reports": {
@@ -24,39 +24,40 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9540777769639989,
-    "low_frac": 0.025465007958486212,
-    "high_frac": 0.020457215077515085,
-    "px_per_m_min": 358.0086348297291,
-    "px_per_m_median": 1029.927350929213,
-    "px_per_m_max": 1502.5535750239906,
-    "stretch_max": 0.9938277085921057,
+    "exact_frac": 0.9721196051397573,
+    "low_frac": 0.016818754122889797,
+    "high_frac": 0.01106164073735312,
+    "px_per_m_min": 381.69573494945337,
+    "px_per_m_median": 1030.8649019647296,
+    "px_per_m_max": 1493.8549976323884,
+    "stretch_max": 0.8945252290660302,
     "faces": 30418
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 12,
-    "passing": 12,
+    "islands": 16,
+    "passing": 16,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.0742,
-    "worst_island_p95": 0.2928
+    "worst_island_p50": 0.08,
+    "worst_island_p95": 0.2171,
+    "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9367,
-   "islands": 12,
+   "stretch_over_2pc_area": 0.9149,
+   "islands": 16,
    "overlap_px": 0,
-   "covered_px": 2127971,
-   "fill": 0.2537,
+   "covered_px": 8261930,
+   "fill": 0.4924,
    "padding_overlap_px": 0,
-   "padding_check_radius_px": 7,
+   "padding_check_radius_px": 15,
    "u_range": [
-    0.0039,
-    0.9958
+    0.0078,
+    0.9637
    ],
    "v_range": [
     0.0078,
-    0.6051
+    0.948
    ]
   }
  },
@@ -68,8 +69,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 13.8,
-  "seams_on_smooth_m": 4.709,
+  "seams_m": 13.959,
+  "seams_on_smooth_m": 5.655,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -85,7 +86,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 4096, \"H\": 2048, \"pad\": 16.0, \"islands\": 12, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2613, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2318994, \"lower_bound_unique_px2\": 2318994, \"next_smaller\": [2048, 2048], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 3}], \"rows\": 0}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 16, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5225, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2326213, \"lower_bound_unique_px2\": 2326213, \"next_smaller\": [2048, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -93,7 +94,7 @@
  "contracts": [
   {
    "set": "uv",
-   "W": 4096,
+   "W": 2048,
    "H": 2048,
    "space": "sheet",
    "unique": true,
@@ -114,28 +115,28 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 24.85,
- "score_s": 94.54,
+ "cook_s": 28.12,
+ "score_s": 107.67,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_custom_4096x2048.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_occlusion_4096x2048.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_curvature_4096x2048.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_edge_4096x2048.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_alpha_4096x2048.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_custom_2048x2048.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_occlusion_2048x2048.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_curvature_2048x2048.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_edge_2048x2048.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_alpha_2048x2048.png"
   },
   "seconds": {
-   "custom": 77.13,
-   "occlusion": 1.9,
-   "curvature": 1.56,
-   "edge": 1.53,
-   "alpha": 0.83
+   "custom": 91.71,
+   "occlusion": 3.21,
+   "curvature": 3.83,
+   "edge": 1.19,
+   "alpha": 0.53
   },
   "size": [
-   4096,
+   2048,
    2048
   ],
-  "coverage": 0.999996,
+  "coverage": 0.999999,
   "id_match": 1.0
  },
  "asset": "/obj/ZRUV_Assets/manny_fbx",
@@ -145,7 +146,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 07:35",
+ "date": "20 October 2026 09:10",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,
