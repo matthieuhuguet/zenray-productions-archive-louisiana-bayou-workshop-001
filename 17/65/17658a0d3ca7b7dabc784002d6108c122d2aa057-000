@@ -16,30 +16,32 @@
  },
  "reports": {
   "uv": {
+   "organic_area": 0.0,
    "texel": {
     "set": "uv",
     "target_px_per_m": 1024.0,
     "tol": 0.01,
+    "tol_max": 0.01,
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9856858291099,
+    "px_per_m_min": 1023.9765935822124,
     "px_per_m_median": 1024.0,
-    "px_per_m_max": 1024.0143131704938,
-    "stretch_max": 0.07316409542358526,
+    "px_per_m_max": 1024.0218560412357,
+    "stretch_max": 0.05599952485331561,
     "faces": 995
    },
-   "straight_area": 0.6002,
-   "straight_stretch_max": 0.0732,
-   "stretch_over_2pc_area": 0.1049,
-   "islands": 661,
+   "straight_area": 0.5921,
+   "straight_stretch_max": 0.056,
+   "stretch_over_2pc_area": 0.0984,
+   "islands": 525,
    "u_range": [
-    0.001,
-    1.3181
+    0.002,
+    1.3191
    ],
    "v_range": [
-    0.001,
-    0.999
+    0.002,
+    0.998
    ]
   }
  },
@@ -51,20 +53,29 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 287.936,
-  "seams_on_smooth_m": 13.007,
+  "seams_m": 273.827,
+  "seams_on_smooth_m": 0,
   "sharp_kept_m": 0,
   "sharp_m": 273.827,
   "border_m": 0,
   "pass": true
  },
+ "hard_edges": {
+  "source": "angle",
+  "hard_edges": 1538,
+  "hard_m": 273.8269,
+  "demoted_edges": 0,
+  "demoted_m": 0,
+  "narrow_parts": 0,
+  "narrowest_px": 16.0
+ },
  "layout": {
-  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 260, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.0732, \"kink_faces\": 368, \"kept_native\": 246, \"cut_at_kinks\": 6, \"straight_area\": 0.6002}",
+  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}",
   "zruv_sheet_m3": 4096,
-  "zruv_bands": "[{\"h\": 2.63, \"px\": 11, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.997314453125, \"kind\": \"band\"}, {\"h\": 11.76, \"px\": 20, \"top\": 11.0, \"v1\": 0.997314453125, \"v0\": 0.992431640625, \"kind\": \"band\"}, {\"h\": 19.96, \"px\": 28, \"top\": 31.0, \"v1\": 0.992431640625, \"v0\": 0.985595703125, \"kind\": \"band\"}, {\"h\": 31.87, \"px\": 40, \"top\": 59.0, \"v1\": 0.985595703125, \"v0\": 0.975830078125, \"kind\": \"band\"}, {\"h\": 50.38, \"px\": 59, \"top\": 99.0, \"v1\": 0.975830078125, \"v0\": 0.96142578125, \"kind\": \"band\"}, {\"h\": 58.86, \"px\": 67, \"top\": 158.0, \"v1\": 0.96142578125, \"v0\": 0.945068359375, \"kind\": \"band\"}, {\"h\": 68.07, \"px\": 77, \"top\": 225.0, \"v1\": 0.945068359375, \"v0\": 0.92626953125, \"kind\": \"band\"}, {\"h\": 80.07, \"px\": 89, \"top\": 302.0, \"v1\": 0.92626953125, \"v0\": 0.904541015625, \"kind\": \"band\"}, {\"h\": 97.4, \"px\": 106, \"top\": 391.0, \"v1\": 0.904541015625, \"v0\": 0.878662109375, \"kind\": \"band\"}, {\"h\": 110.0, \"px\": 118, \"top\": 497.0, \"v1\": 0.878662109375, \"v0\": 0.849853515625, \"kind\": \"band\"}, {\"h\": 124.27, \"px\": 133, \"top\": 615.0, \"v1\": 0.849853515625, \"v0\": 0.8173828125, \"kind\": \"band\"}, {\"h\": 137.71, \"px\": 146, \"top\": 748.0, \"v1\": 0.8173828125, \"v0\": 0.78173828125, \"kind\": \"band\"}, {\"h\": 147.78, \"px\": 156, \"top\": 894.0, \"v1\": 0.78173828125, \"v0\": 0.74365234375, \"kind\": \"band\"}, {\"h\": 161.15, \"px\": 170, \"top\": 1050.0, \"v1\": 0.74365234375, \"v0\": 0.7021484375, \"kind\": \"band\"}, {\"h\": 172.97, \"px\": 181, \"top\": 1220.0, \"v1\": 0.7021484375, \"v0\": 0.657958984375, \"kind\": \"band\"}, {\"h\": 201.52, \"px\": 210, \"top\": 1401.0, \"v1\": 0.657958984375, \"v0\": 0.606689453125, \"kind\": \"band\"}, {\"h\": 1178.1295166015625, \"px\": 2485.0, \"top\": 1611.0, \"v0\": 0.0, \"v1\": 0.606689453125, \"kind\": \"plain\"}]"
+  "zruv_bands": "[{\"h\": 35.24, \"px\": 52, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.9873046875, \"kind\": \"band\"}, {\"h\": 68.07, \"px\": 85, \"top\": 52.0, \"v1\": 0.9873046875, \"v0\": 0.966552734375, \"kind\": \"band\"}, {\"h\": 104.12, \"px\": 121, \"top\": 137.0, \"v1\": 0.966552734375, \"v0\": 0.93701171875, \"kind\": \"band\"}, {\"h\": 139.89, \"px\": 156, \"top\": 258.0, \"v1\": 0.93701171875, \"v0\": 0.89892578125, \"kind\": \"band\"}, {\"h\": 172.97, \"px\": 189, \"top\": 414.0, \"v1\": 0.89892578125, \"v0\": 0.852783203125, \"kind\": \"band\"}, {\"h\": 224.27, \"px\": 241, \"top\": 603.0, \"v1\": 0.852783203125, \"v0\": 0.7939453125, \"kind\": \"band\"}, {\"h\": 289.79, \"px\": 306, \"top\": 844.0, \"v1\": 0.7939453125, \"v0\": 0.71923828125, \"kind\": \"band\"}, {\"h\": 323.65, \"px\": 340, \"top\": 1150.0, \"v1\": 0.71923828125, \"v0\": 0.63623046875, \"kind\": \"band\"}, {\"h\": 1273.2957763671875, \"px\": 2606.0, \"top\": 1490.0, \"v0\": 0.0, \"v1\": 0.63623046875, \"kind\": \"plain\"}]"
  },
  "method": "M3",
- "title": "Trim sheet et hotspot",
+ "title": "Trim sheet inverse (depuis la g\u00e9om\u00e9trie)",
  "contracts": [
   {
    "set": "uv",
@@ -74,17 +85,19 @@
    "unique": false,
    "region": "band",
    "sizes": "per_face",
-   "padding_px": 8,
+   "padding_px": 16,
    "grain": "u",
-   "min_straight_band": 0.98,
-   "straight_tol": 0.08
+   "min_straight_band": 0.6,
+   "straight_tol": 0.08,
+   "organic_tol": 0.1,
+   "subtexel_px": 1.0
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.38,
- "score_s": 0.05,
+ "cook_s": 0.31,
+ "score_s": 0.07,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -95,10 +108,11 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 21:52",
+ "date": "20 October 2026 02:30",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
+  "asset_area_m2": 0.0,
   "texel_density": 1024.0,
   "families": "arch:iron cross:iron wire:iron rivet:iron pendant:iron pillar_L:pillar pillar_R:pillar sign:sign",
   "density_tol": 0.01,
@@ -107,18 +121,18 @@
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
-  "m2_grain": "pillar:up sign:h",
-  "m2_padding_px": 8,
+  "m2_grain": "pillar:h sign:h",
+  "m2_stitch": 1,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1,
-  "m3_sheet_px": 2048,
-  "m3_max_band_px": 256,
-  "m3_merge_px": 8,
-  "m3_padding_px": 8,
-  "m3_grain": "pillar:up sign:h",
-  "m3_min_straight": 0.98,
+  "m3_sheet_px": 4096,
+  "m3_max_band_px": 512,
+  "m3_merge_px": 32,
+  "m3_grain": "pillar:h sign:h",
+  "m3_min_straight": 0.6,
   "m3_hotspot": 0,
-  "m3_flatten": 1
+  "m3_flatten": 1,
+  "m3_library_px": "16 32 48 64 96 128 192 256"
  }
 }

@@ -1,6 +1,6 @@
 {
- "score": 1.0,
- "weakest": "uv:present",
+ "score": 0.967759,
+ "weakest": "uv:horizontal",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
@@ -9,7 +9,7 @@
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
-  "uv:horizontal": 1.0,
+  "uv:horizontal": 0.967759,
   "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
@@ -18,33 +18,35 @@
  },
  "reports": {
   "uv": {
+   "organic_area": 0.0,
    "texel": {
     "set": "uv",
     "target_px_per_m": 1024.0,
     "tol": 0.01,
+    "tol_max": 0.01,
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9874914665908,
-    "px_per_m_median": 1024.0000572920324,
-    "px_per_m_max": 1024.014601233526,
-    "stretch_max": 0.07316417936975328,
+    "px_per_m_min": 1023.9741469527917,
+    "px_per_m_median": 1023.9999391132644,
+    "px_per_m_max": 1024.0352640178944,
+    "stretch_max": 0.05599952485331561,
     "faces": 995
    },
-   "straight_area": 0.6002,
-   "straight_stretch_max": 0.0732,
-   "stretch_over_2pc_area": 0.1049,
-   "islands": 661,
-   "stacked_faces": 575,
+   "straight_area": 0.5921,
+   "straight_stretch_max": 0.056,
+   "stretch_over_2pc_area": 0.0984,
+   "islands": 186,
+   "stacked_faces": 309,
    "groups": 3,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
     0.002,
-    2.6362
+    1.8004
    ],
    "v_range": [
-    0.1084,
+    0.4343,
     2.998
    ]
   }
@@ -57,16 +59,27 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 287.936,
-  "seams_on_smooth_m": 13.007,
-  "sharp_kept_m": 0,
+  "seams_m": 165.734,
+  "seams_on_smooth_m": 0,
+  "sharp_kept_m": 108.093,
   "sharp_m": 273.827,
   "border_m": 0,
-  "pass": true
+  "pass": true,
+  "texture_continuity": 0.4661,
+  "texture_continuous_m": 144.699
+ },
+ "hard_edges": {
+  "source": "angle",
+  "hard_edges": 1538,
+  "hard_m": 273.8269,
+  "demoted_edges": 0,
+  "demoted_m": 0,
+  "narrow_parts": 0,
+  "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 2048, \"islands\": 329, \"stacked\": 244, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 2048, \"islands\": 280, \"stacked\": 220, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 2048, \"islands\": 52, \"stacked\": 31, \"past_u1\": 4}]",
-  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 260, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.0732, \"kink_faces\": 368, \"kept_native\": 246, \"cut_at_kinks\": 6, \"straight_area\": 0.6002}"
+  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 154, \"stacked\": 114, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 29, \"stacked\": 8, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
+  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
  },
  "method": "M2",
  "title": "Texture tileable",
@@ -81,15 +94,18 @@
    "sizes": "per_face",
    "grain": "u",
    "overflow_u": true,
-   "padding_px": 8,
-   "straight_tol": 0.08
+   "seam_rule": "tileable",
+   "padding_px": 16,
+   "straight_tol": 0.08,
+   "organic_tol": 0.1,
+   "subtexel_px": 1.0
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.45,
- "score_s": 0.36,
+ "cook_s": 0.01,
+ "score_s": 0.77,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -100,10 +116,11 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 21:52",
+ "date": "20 October 2026 02:30",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
+  "asset_area_m2": 0.0,
   "texel_density": 1024.0,
   "families": "arch:iron cross:iron wire:iron rivet:iron pendant:iron pillar_L:pillar pillar_R:pillar sign:sign",
   "density_tol": 0.01,
@@ -112,8 +129,8 @@
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
-  "m2_grain": "pillar:up sign:h",
-  "m2_padding_px": 8,
+  "m2_grain": "pillar:h sign:h",
+  "m2_stitch": 1,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1
