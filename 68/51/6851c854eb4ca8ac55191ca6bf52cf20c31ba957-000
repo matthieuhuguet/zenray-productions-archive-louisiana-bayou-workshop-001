@@ -1,0 +1,167 @@
+surf 7126 7000 14000 organic faces 7000 must 268 0.1s
+mirror axis None charts 72 0.2s
+neck loop 0.077 m charts 73
+neck loop 0.055 m charts 74
+neck loop 0.055 m charts 75
+neck loop 0.071 m charts 76
+neck loop 0.055 m charts 77
+neck loop 0.055 m charts 78
+neck loop 0.071 m charts 79
+neck loop 0.278 m charts 80
+necks 8 charts 80 2.9s
+flattened {'charts': 80, 'seams_m': 7.601, 'seam_cost': 1.7041, 'stretch_p50': 0.4362, 'stretch_p95': 1.1225, 'within_10': 0.2388, 'within_20': 0.3143, 'failing_charts': 63, 'mirror_axis': None, 'moves': {'neck': 8, 'open slit': 58}, 'stuck': 0, 'economy_removed': 0} 6.5s
+move pole dart gain 0.18802 charts 80 fail 0.58907
+move pole dart gain 0.11050 charts 80 fail 0.46252
+move pole dart gain 0.02838 charts 80 fail 0.40514
+move pole dart gain 0.03842 charts 80 fail 0.34438
+move pole dart gain 0.00920 charts 80 fail 0.30359
+move pole dart gain 0.02520 charts 80 fail 0.25238
+move pole dart gain 0.00933 charts 80 fail 0.21386
+move dart gain 0.00074 charts 80 fail 0.20968
+move dart gain 0.00067 charts 80 fail 0.20866
+move dart gain 0.00092 charts 80 fail 0.20379
+move pole dart gain 0.00411 charts 80 fail 0.17857
+move dart gain 0.00108 charts 80 fail 0.17469
+move dart gain 0.00103 charts 80 fail 0.17169
+move dart gain 0.00095 charts 80 fail 0.16837
+move dart gain 0.00075 charts 80 fail 0.16765
+move dart gain 0.00053 charts 80 fail 0.16671
+move pole dart gain 0.00363 charts 80 fail 0.11864
+move pole dart gain 0.00636 charts 80 fail 0.07508
+move neck gain 0.00519 charts 81 fail 0.03761
+move pole dart gain 0.00806 charts 81 fail 0.02796
+move pole dart gain 0.00806 charts 81 fail 0.01831
+move dart gain 0.00018 charts 81 fail 0.01610
+move pole dart gain 0.00333 charts 81 fail 0.01424
+move pole dart gain 0.00064 charts 81 fail 0.01261
+move pole dart gain 0.00064 charts 81 fail 0.01098
+move pole dart gain 0.00017 charts 81 fail 0.01081
+move pole dart gain 0.00017 charts 81 fail 0.01064
+move pole dart gain 0.00016 charts 81 fail 0.01048
+move pole dart gain 0.00017 charts 81 fail 0.01031
+move pole dart gain 0.00017 charts 81 fail 0.01014
+move pole dart gain 0.00017 charts 81 fail 0.00997
+move pole dart gain 0.00017 charts 81 fail 0.00980
+move pole dart gain 0.00017 charts 81 fail 0.00963
+move pole dart gain 0.00017 charts 81 fail 0.00946
+move pole dart gain 0.00013 charts 81 fail 0.00934
+move pole dart gain 0.00010 charts 81 fail 0.00924
+move pole dart gain 0.00010 charts 81 fail 0.00914
+move pole dart gain 0.00017 charts 81 fail 0.00897
+move pole dart gain 0.00013 charts 81 fail 0.00885
+move pole dart gain 0.00017 charts 81 fail 0.00868
+move pole dart gain 0.00010 charts 81 fail 0.00858
+move pole dart gain 0.00010 charts 81 fail 0.00848
+move pole dart gain 0.00017 charts 81 fail 0.00832
+move pole dart gain 0.00017 charts 81 fail 0.00815
+move pole dart gain 0.00017 charts 81 fail 0.00798
+move pole dart gain 0.00010 charts 81 fail 0.00788
+move pole dart gain 0.00017 charts 81 fail 0.00772
+move pole dart gain 0.00017 charts 81 fail 0.00755
+move pole dart gain 0.00010 charts 81 fail 0.00745
+move pole dart gain 0.00015 charts 81 fail 0.00730
+move pole dart gain 0.00015 charts 81 fail 0.00716
+move pole dart gain 0.00015 charts 81 fail 0.00701
+move pole dart gain 0.00015 charts 81 fail 0.00686
+move pole dart gain 0.00010 charts 81 fail 0.00676
+move pole dart gain 0.00015 charts 81 fail 0.00661
+move pole dart gain 0.00010 charts 81 fail 0.00651
+move pole dart gain 0.00016 charts 81 fail 0.00635
+move pole dart gain 0.00010 charts 81 fail 0.00625
+move pole dart gain 0.00010 charts 81 fail 0.00615
+move pole dart gain 0.00010 charts 81 fail 0.00605
+move pole dart gain 0.00010 charts 81 fail 0.00594
+move pole dart gain 0.00015 charts 81 fail 0.00580
+move pole dart gain 0.00015 charts 81 fail 0.00565
+move pole dart gain 0.00014 charts 81 fail 0.00551
+move pole dart gain 0.00013 charts 81 fail 0.00538
+move pole dart gain 0.00014 charts 81 fail 0.00525
+move pole dart gain 0.00014 charts 81 fail 0.00511
+move pole dart gain 0.00013 charts 81 fail 0.00498
+move pole dart gain 0.00013 charts 81 fail 0.00485
+move pole dart gain 0.00013 charts 81 fail 0.00472
+move pole dart gain 0.00011 charts 81 fail 0.00461
+move pole dart gain 0.00011 charts 81 fail 0.00450
+move pole dart gain 0.00011 charts 81 fail 0.00439
+move pole dart gain 0.00011 charts 81 fail 0.00427
+move pole dart gain 0.00011 charts 81 fail 0.00416
+move pole dart gain 0.00011 charts 81 fail 0.00405
+move pole dart gain 0.00011 charts 81 fail 0.00394
+move pole dart gain 0.00011 charts 81 fail 0.00382
+move pole dart gain 0.00011 charts 81 fail 0.00371
+move pole dart gain 0.00011 charts 81 fail 0.00360
+move pole dart gain 0.00011 charts 81 fail 0.00349
+move pole dart gain 0.00011 charts 81 fail 0.00337
+move dart gain 0.00011 charts 81 fail 0.00326
+move dart gain 0.00011 charts 81 fail 0.00315
+move dart gain 0.00005 charts 81 fail 0.00309
+move dart gain 0.00005 charts 81 fail 0.00304
+move dart gain 0.00005 charts 81 fail 0.00299
+move dart gain 0.00005 charts 81 fail 0.00293
+move dart gain 0.00005 charts 81 fail 0.00288
+move pole dart gain 0.00005 charts 81 fail 0.00283
+move pole dart gain 0.00005 charts 81 fail 0.00277
+move pole dart gain 0.00005 charts 81 fail 0.00272
+move pole dart gain 0.00005 charts 81 fail 0.00267
+move pole dart gain 0.00005 charts 81 fail 0.00261
+move pole dart gain 0.00005 charts 81 fail 0.00256
+move pole dart gain 0.00005 charts 81 fail 0.00251
+move pole dart gain 0.00004 charts 81 fail 0.00247
+move pole dart gain 0.00004 charts 81 fail 0.00243
+move dart gain 0.00002 charts 81 fail 0.00241
+move dart gain 0.00002 charts 81 fail 0.00240
+move dart gain 0.00002 charts 81 fail 0.00238
+move dart gain 0.00002 charts 81 fail 0.00236
+move pole dart gain 0.00001 charts 81 fail 0.00235
+move pole dart gain 0.00001 charts 81 fail 0.00234
+move pole dart gain 0.00001 charts 81 fail 0.00232
+move pole dart gain 0.00001 charts 81 fail 0.00231
+move pole dart gain 0.00001 charts 81 fail 0.00230
+move dart gain 0.00001 charts 81 fail 0.00229
+move dart gain 0.00001 charts 81 fail 0.00228
+move dart gain 0.00001 charts 81 fail 0.00227
+move dart gain 0.00001 charts 81 fail 0.00226
+move pole dart gain 0.00001 charts 81 fail 0.00225
+move dart gain 0.00001 charts 81 fail 0.00224
+move dart gain 0.00001 charts 81 fail 0.00223
+move dart gain 0.00001 charts 81 fail 0.00222
+move dart gain 0.00001 charts 81 fail 0.00221
+move dart gain 0.00001 charts 81 fail 0.00220
+move dart gain 0.00001 charts 81 fail 0.00219
+move dart gain 0.00001 charts 81 fail 0.00218
+move dart gain 0.00001 charts 81 fail 0.00217
+move dart gain 0.00001 charts 81 fail 0.00216
+move dart gain 0.00001 charts 81 fail 0.00215
+move dart gain 0.00001 charts 81 fail 0.00214
+move pole dart gain 0.00001 charts 81 fail 0.00213
+move dart gain 0.00001 charts 81 fail 0.00212
+move dart gain 0.00001 charts 81 fail 0.00211
+move dart gain 0.00001 charts 81 fail 0.00210
+move dart gain 0.00001 charts 81 fail 0.00209
+move dart gain 0.00001 charts 81 fail 0.00208
+move dart gain 0.00001 charts 81 fail 0.00207
+improved {'charts': 81, 'seams_m': 11.691, 'seam_cost': 2.2939, 'stretch_p50': 0.0719, 'stretch_p95': 0.2487, 'within_10': 0.6675, 'within_20': 0.9216, 'failing_charts': 1, 'mirror_axis': None, 'moves': {'neck': 9, 'open slit': 58, 'pole dart': 88, 'dart': 41}, 'stuck': 1, 'economy_removed': 0} 75.9s
+economy dart saved 0.0036 charts 81
+economy dart saved 0.0025 charts 81
+economy pole dart saved 0.0092 charts 81
+economy dart saved 0.0006 charts 81
+economy dart saved 0.0018 charts 81
+economy dart saved 0.0018 charts 81
+economy neck saved 0.0250 charts 80
+economy neck saved 0.0063 charts 79
+economy neck saved 0.0063 charts 78
+economy dart saved 0.0003 charts 78
+economy dart saved 0.0031 charts 78
+economy dart saved 0.0031 charts 78
+economy dart saved 0.0028 charts 78
+economy dart saved 0.0028 charts 78
+economy dart saved 0.0022 charts 78
+economy pole dart saved 0.0000 charts 78
+economy open slit saved 0.0012 charts 78
+economy pole dart saved 0.0000 charts 78
+economy open slit saved 0.0012 charts 78
+economy dart saved 0.0005 charts 78
+economy dart saved 0.0005 charts 78
+economy {'charts': 78, 'seams_m': 11.164, 'seam_cost': 2.2188, 'stretch_p50': 0.0759, 'stretch_p95': 0.2518, 'within_10': 0.6475, 'within_20': 0.9173, 'failing_charts': 0, 'mirror_axis': None, 'moves': {'neck': 9, 'open slit': 58, 'pole dart': 88, 'dart': 41}, 'stuck': 1, 'economy_removed': 21} 86.0s
+done 86.1s
+runs/tailor/ball6/all.png

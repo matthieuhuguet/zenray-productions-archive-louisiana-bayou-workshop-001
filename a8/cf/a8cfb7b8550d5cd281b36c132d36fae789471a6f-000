@@ -1,12 +1,12 @@
 {
- "score": 0.999654,
- "weakest": "uv:stretch",
+ "score": 0.999739,
+ "weakest": "uv:density",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 1.0,
-  "uv:stretch": 0.999654,
-  "uv:no_flip": 1.0,
-  "uv:not_mirrored": 1.0,
+  "uv:density": 0.999739,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 0.999996,
+  "uv:not_mirrored": 0.999996,
   "uv:region": 1.0,
   "uv:horizontal": 1.0,
   "seams:consistency": 1.0,
@@ -20,27 +20,34 @@
     "target_px_per_m": 1024.0,
     "tol": 0.4143,
     "tol_max": 0.4143,
-    "exact_frac": 1.0,
-    "low_frac": 0.0,
-    "high_frac": 0.0,
-    "px_per_m_min": 761.9919185596665,
-    "px_per_m_median": 1025.093748606379,
-    "px_per_m_max": 1406.4212344137543,
-    "stretch_max": 0.19024896661598234,
+    "exact_frac": 0.9997388920135742,
+    "low_frac": 0.00015065052075190688,
+    "high_frac": 0.0001104574656739226,
+    "px_per_m_min": 412.72871849965907,
+    "px_per_m_median": 970.8983281948426,
+    "px_per_m_max": 1518.0499697986343,
+    "stretch_max": 221.06197959826707,
     "faces": 12854
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 0.0,
-   "stretch_over_2pc_area": 0.5109,
-   "islands": 41,
+   "organic_artist": {
+    "islands": 11,
+    "passing": 11,
+    "p50": 0.09,
+    "p95": 0.35,
+    "worst_island_p50": 0.1052,
+    "worst_island_p95": 0.3348
+   },
+   "stretch_over_2pc_area": 0.8392,
+   "islands": 11,
    "u_range": [
     0.0039,
     0.9648
    ],
    "v_range": [
-    0.4648,
-    0.9961
+    0.0039,
+    0.9418
    ]
   }
  },
@@ -52,8 +59,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 12.556,
-  "seams_on_smooth_m": 1.868,
+  "seams_m": 6.431,
+  "seams_on_smooth_m": 2.306,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -87,14 +94,20 @@
    "stretch_relative": true,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0,
+    "tiny_px": 48.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 1.71,
- "score_s": 0.26,
+ "cook_s": 6.95,
+ "score_s": 1.13,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
@@ -103,7 +116,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 03:12",
+ "date": "20 October 2026 05:29",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,
