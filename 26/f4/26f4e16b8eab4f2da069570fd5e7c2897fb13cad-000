@@ -1,7 +1,7 @@
-ZRUV_ShaderBall 111.0 {'M1': (0.598856, 'uv:no_flip', '')}
-ZRUV_ShaderBall done 12:27:47
-ZRUV_RubberToy 26.2 {'M1': (0.999999, 'bake:coverage', '')}
-ZRUV_RubberToy done 12:28:13
-ZRUV_Manny 47.6 {'M1': (0.905614, 'uv:density', '')}
-ZRUV_Manny done 12:29:01
-all done 12:29:01
+ZRUV_ShaderBall 126.2 {'M1': (1.0, 'uv:present', '')}
+ZRUV_ShaderBall done 12:48:18
+ZRUV_RubberToy 27.9 {'M1': (0.999999, 'bake:coverage', '')}
+ZRUV_RubberToy done 12:48:46
+ZRUV_Manny 53.6 {'M1': (1.0, 'uv:present', '')}
+ZRUV_Manny done 12:49:40
+all done 12:49:40

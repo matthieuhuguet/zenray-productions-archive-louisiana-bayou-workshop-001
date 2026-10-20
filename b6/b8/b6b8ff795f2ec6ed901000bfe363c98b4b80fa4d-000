@@ -2,7 +2,7 @@
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
  "texel_density": 1024.0,
- "date": "20 October 2026 12:28",
+ "date": "20 October 2026 12:49",
  "families": [
   {
    "name": "body",
@@ -18,12 +18,12 @@
    "id": "M1",
    "title": "UV unique et bake",
    "idea": "Chaque point de l'objet a ses propres pixels dans une texture unique de 4096 px au plus ; les îles jumelles (les deux piliers, les deux faces de l'arche, les rivets) partagent la même place, et les cartes du maillage sont cuites dedans.",
-   "score": 0.905614,
-   "weakest": "uv:density",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
-    "uv:density": 0.905614,
-    "uv:stretch": 0.905614,
+    "uv:density": 1.0,
+    "uv:stretch": 1.0,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
@@ -120,9 +120,9 @@
     0.0078,
     0.8441
    ],
-   "cook_s": 14.64,
-   "bake_s": 9.01,
-   "date": "20 October 2026 12:28",
+   "cook_s": 16.33,
+   "bake_s": 11.2,
+   "date": "20 October 2026 12:49",
    "report": "M1/report.json",
    "example": {
     "texture": "M1/texture_unique.png",

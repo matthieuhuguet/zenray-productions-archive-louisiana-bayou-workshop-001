@@ -1,10 +1,10 @@
 {
- "score": 0.905614,
- "weakest": "uv:density",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.905614,
-  "uv:stretch": 0.905614,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -37,7 +37,7 @@
    "straight_stretch_max": 0.0,
    "organic_artist": {
     "islands": 45,
-    "passing": 43,
+    "passing": 45,
     "p50": 0.09,
     "p95": 0.35,
     "worst_island_p50": 0.1037,
@@ -115,8 +115,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 14.64,
- "score_s": 11.42,
+ "cook_s": 16.33,
+ "score_s": 13.83,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_custom_2048x2048.png",
@@ -126,11 +126,11 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_alpha_2048x2048.png"
   },
   "seconds": {
-   "custom": 7.94,
-   "occlusion": 0.28,
-   "curvature": 0.29,
-   "edge": 0.26,
-   "alpha": 0.24
+   "custom": 9.84,
+   "occlusion": 0.41,
+   "curvature": 0.35,
+   "edge": 0.31,
+   "alpha": 0.29
   },
   "size": [
    2048,
@@ -146,7 +146,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 12:28",
+ "date": "20 October 2026 12:49",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,

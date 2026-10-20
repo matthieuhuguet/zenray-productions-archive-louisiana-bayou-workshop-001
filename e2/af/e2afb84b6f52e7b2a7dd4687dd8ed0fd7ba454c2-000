@@ -2,11 +2,11 @@
  "ok": true,
  "result": {
   "ZRUV_Manny": {
-   "s": 47.6,
+   "s": 53.6,
    "res": {
     "M1": {
-     "score": 0.905614,
-     "weakest": "uv:density",
+     "score": 1.0,
+     "weakest": "uv:present",
      "errors": null
     }
    }

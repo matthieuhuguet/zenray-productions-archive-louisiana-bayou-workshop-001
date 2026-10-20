@@ -2,11 +2,11 @@
  "ok": true,
  "result": {
   "ZRUV_ShaderBall": {
-   "s": 111.0,
+   "s": 126.2,
    "res": {
     "M1": {
-     "score": 0.598856,
-     "weakest": "uv:no_flip",
+     "score": 1.0,
+     "weakest": "uv:present",
      "errors": null
     }
    }
