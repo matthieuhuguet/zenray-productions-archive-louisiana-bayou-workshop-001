@@ -1,1 +1,5 @@
 setup 06:52:00
+ZRUV_Arch 524.1 {'M1': (1.0, 'uv:present', ''), 'M2': (1.0, 'uv:present', ''), 'M3': (1.0, 'uv:present', ''), 'M3B': (1.0, 'uv:present', ''), 'M3C': (1.0, 'uv:present', ''), 'M4': (1.0, 'uv:present', ''), 'M5': (0.989679, 'uv:density', '')}
+ZRUV_Arch done 07:00:44
+ZRUV_ArchLibrary 20.0 {'M3B': (0.999989, 'uv:stretch', '')}
+ZRUV_ArchLibrary done 07:01:04

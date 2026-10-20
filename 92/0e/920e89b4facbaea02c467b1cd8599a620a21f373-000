@@ -10,6 +10,7 @@
   "uv:region": 1.0,
   "uv:horizontal": 1.0,
   "uv:stack": 1.0,
+  "uv:twin_bake": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
@@ -28,29 +29,30 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9789199214039,
-    "px_per_m_median": 1023.9999408675247,
-    "px_per_m_max": 1024.0308829900703,
-    "stretch_max": 0.05599937250270792,
+    "px_per_m_min": 1023.9742674068202,
+    "px_per_m_median": 1024.0,
+    "px_per_m_max": 1024.024949451331,
+    "stretch_max": 0.05599952485331561,
     "faces": 995
    },
    "straight_area": 0.5921,
    "straight_stretch_max": 0.056,
    "stretch_over_2pc_area": 0.0984,
-   "islands": 533,
-   "stacked_faces": 501,
+   "islands": 377,
+   "stacked_faces": 492,
+   "twin_bake_bad_faces": 0,
    "overlap_px": 0,
-   "covered_px": 10500225,
-   "fill": 0.6259,
+   "covered_px": 10703194,
+   "fill": 0.638,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 7,
    "u_range": [
     0.0039,
-    0.981
+    0.9889
    ],
    "v_range": [
     0.0039,
-    0.9945
+    0.9948
    ]
   }
  },
@@ -62,10 +64,10 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 274.496,
+  "seams_m": 229.16,
   "seams_on_smooth_m": 0.669,
   "sharp_kept_m": 0,
-  "sharp_m": 273.827,
+  "sharp_m": 228.49,
   "border_m": 0,
   "pass": true
  },
@@ -79,7 +81,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 533, \"stacked_possible\": 342, \"stacked\": 324, \"fill\": 0.6338, \"unique_share\": 0.5243, \"mode\": \"stacked\", \"lower_bound_px2\": 10268012, \"lower_bound_unique_px2\": 23807361, \"next_smaller\": [4096, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 4096, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 29}",
+  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 377, \"stacked_possible\": 235, \"stacked\": 222, \"fill\": 0.6447, \"unique_share\": 0.5334, \"mode\": \"stacked\", \"lower_bound_px2\": 10412834, \"lower_bound_unique_px2\": 23379965, \"next_smaller\": [4096, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 4096, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 26}",
   "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 8, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
  },
  "method": "M1",
@@ -94,15 +96,22 @@
    "region": "sheet",
    "padding_px": 16,
    "straight_tol": 0.08,
+   "twin_bake": true,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0,
+    "tiny_px": 48.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.36,
- "score_s": 39.73,
+ "cook_s": 10.34,
+ "score_s": 323.07,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_4096x4096.png",
@@ -112,11 +121,11 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_4096x4096.png"
   },
   "seconds": {
-   "custom": 35.91,
-   "occlusion": 0.45,
-   "curvature": 0.36,
-   "edge": 0.32,
-   "alpha": 0.27
+   "custom": 307.69,
+   "occlusion": 2.03,
+   "curvature": 1.46,
+   "edge": 1.28,
+   "alpha": 1.05
   },
   "size": [
    4096,
@@ -134,7 +143,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 02:30",
+ "date": "20 October 2026 06:58",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

@@ -1,0 +1,15 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_ArchLibrary": {
+   "s": 20.0,
+   "res": {
+    "M3B": {
+     "score": 0.999989,
+     "weakest": "uv:stretch",
+     "errors": null
+    }
+   }
+  }
+ }
+}

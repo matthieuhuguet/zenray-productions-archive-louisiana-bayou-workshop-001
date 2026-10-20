@@ -1,9 +1,9 @@
 {
- "score": 0.542076,
- "weakest": "uv:density",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.542076,
+  "uv:density": 1.0,
   "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
@@ -20,13 +20,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.4143,
     "tol_max": 0.4143,
-    "exact_frac": 0.5420760570432639,
-    "low_frac": 0.45792394295673594,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 388.7220180760802,
-    "px_per_m_median": 933.937923309624,
+    "px_per_m_min": 736.3090804204413,
+    "px_per_m_median": 1023.9986469457361,
     "px_per_m_max": 1443.3429078270804,
-    "stretch_max": 0.03816771135080055,
+    "stretch_max": 0.03816740060551238,
     "faces": 995
    },
    "straight_area": 0.5921,
@@ -35,11 +35,11 @@
    "islands": 525,
    "u_range": [
     0.002,
-    0.9512
+    1.3191
    ],
    "v_range": [
-    0.7324,
-    0.998
+    0.002,
+    0.9911
    ]
   }
  },
@@ -86,14 +86,20 @@
    "stretch_relative": true,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0,
+    "tiny_px": 48.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.32,
- "score_s": 0.03,
+ "cook_s": 0.89,
+ "score_s": 0.08,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -104,7 +110,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 02:34",
+ "date": "20 October 2026 06:58",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

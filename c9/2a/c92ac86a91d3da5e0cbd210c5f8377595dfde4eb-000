@@ -1,15 +1,15 @@
 {
- "score": 0.34929,
- "weakest": "uv:density",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.34929,
-  "uv:stretch": 0.442819,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
-  "uv:horizontal": 0.997384,
+  "uv:horizontal": 1.0,
   "uv:band_straight": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0
@@ -22,18 +22,18 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.3492900568377505,
-    "low_frac": 0.3886298831787586,
-    "high_frac": 0.26208005998349077,
-    "px_per_m_min": 874.8940414837662,
-    "px_per_m_median": 1023.9962848059215,
-    "px_per_m_max": 1728.32834546794,
-    "stretch_max": 1.8487410482395439,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1023.9765937415543,
+    "px_per_m_median": 1024.0,
+    "px_per_m_max": 1026.013737105104,
+    "stretch_max": 0.055999391546444954,
     "faces": 995
    },
    "straight_area": 0.5921,
-   "straight_stretch_max": 0.9,
-   "stretch_over_2pc_area": 0.6507,
+   "straight_stretch_max": 0.056,
+   "stretch_over_2pc_area": 0.0984,
    "islands": 525,
    "u_range": [
     0.002,
@@ -41,7 +41,7 @@
    ],
    "v_range": [
     0.002,
-    0.998
+    0.9902
    ]
   }
  },
@@ -102,8 +102,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.98,
- "score_s": 0.22,
+ "cook_s": 0.9,
+ "score_s": 0.1,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -114,7 +114,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 06:01",
+ "date": "20 October 2026 06:58",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
