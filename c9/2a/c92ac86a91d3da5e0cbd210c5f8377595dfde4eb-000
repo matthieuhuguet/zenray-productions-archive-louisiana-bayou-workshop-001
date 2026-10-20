@@ -25,7 +25,7 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9765937415543,
+    "px_per_m_min": 1023.9811177476616,
     "px_per_m_median": 1024.0,
     "px_per_m_max": 1026.013737105104,
     "stretch_max": 0.055999391546444954,
@@ -102,7 +102,7 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.9,
+ "cook_s": 1.05,
  "score_s": 0.1,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
@@ -114,7 +114,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 06:58",
+ "date": "20 October 2026 07:47",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

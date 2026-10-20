@@ -1,0 +1,45 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_Manny": {
+   "s": 1441.1,
+   "res": {
+    "M1": {
+     "score": 0.999996,
+     "weakest": "bake:coverage",
+     "errors": null
+    },
+    "M2": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M3": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M3B": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M3C": {
+     "score": 0.928413,
+     "weakest": "uv:region",
+     "errors": null
+    },
+    "M4": {
+     "score": 0.999964,
+     "weakest": "bake:coverage",
+     "errors": null
+    },
+    "M5": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    }
+   }
+  }
+ }
+}

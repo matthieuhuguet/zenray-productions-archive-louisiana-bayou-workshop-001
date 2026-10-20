@@ -1,0 +1,50 @@
+# 20 October 2026 : why a self test break does not turn its component red : the island it breaks, the attributes the check reads, the score before and after.
+# Usage : python -I DiagSelfCase.py <method dir> <case : band|square|padding>
+import sys, os, json, copy
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Score as S, SelfTest as T
+d, case = sys.argv[1], sys.argv[2]
+r = json.load(open(os.path.join(d, 'report.json')))
+C, Tg = r['contracts'], r['targets']
+base = Z.from_json(os.path.join(d, 'mesh.json'))
+name = C[0]['set']
+isl, order = T.islands_by_area(base, name)
+out = {'contract': {k: v for k, v in C[0].items() if k not in ('band',)}}
+if case == 'band':
+    kinds = [b.get('kind') for b in json.loads(base.detail.get('zruv_bands', '[]'))]
+    out['kinds'] = kinds
+    bnd = base.prim['zruv_band']
+    bfs = [f for f in range(base.n) if 0 <= bnd[f] < len(kinds) and kinds[int(bnd[f])] == 'band']
+    bisl = sorted(set(int(isl[f]) for f in bfs), key=lambda i: -sum(base.area[f] for f in range(base.n) if isl[f] == i))
+    bb = [f for f in range(base.n) if isl[f] == bisl[0]]
+    out['island_faces'] = len(bb)
+    m = copy.deepcopy(base)
+    T.xform_island(m, name, bb, lambda uv, c: np.c_[uv[:, 0], uv[:, 1] + 0.02 * ((uv[:, 0] - c[0]) / max(np.ptp(uv[:, 0]), 1e-9)) ** 2])
+    q = np.array([qq for f in bb for qq in m.uv[name][f]])
+    out['bent_box'] = [float(np.ptp(q[:, 0])), float(np.ptp(q[:, 1]))]
+    out['has_band_attr'] = 'zruv_band' in m.prim
+    out['detail_type'] = str(type(m.detail.get('zruv_bands')))
+elif case == 'square':
+    sq = base.prim.get('zruv_square_' + name)
+    out['has_square_attr'] = sq is not None
+    out['region_codes'] = sorted(set(base.prim.get('zruv_region_' + name, [])))[:6]
+    big = [f for f in range(base.n) if isl[f] == order[0]]
+    m = copy.deepcopy(base)
+    T.xform_island(m, name, big, lambda uv, c: uv + np.array([0.0, 0.6]))
+elif case == 'padding':
+    big = [f for f in range(base.n) if isl[f] == order[0]]
+    second = [f for f in range(base.n) if isl[f] == order[1]]
+    m = copy.deepcopy(base)
+    bu = np.array([q for f in big for q in m.uv[name][f]]); su = np.array([q for f in second for q in m.uv[name][f]])
+    Wd = float(C[0]['W'])
+    gap = C[0]['padding_px'] / 4.0 / Wd
+    dx = bu[:, 0].max() + gap - su[:, 0].min(); dy = bu[:, 1].min() - su[:, 1].min()
+    T.xform_island(m, name, second, lambda uv, c: uv + np.array([dx, dy]))
+    out['padding_px'] = C[0].get('padding_px'); out['unique'] = C[0].get('unique')
+r0 = S.score(base, C, Tg)
+r1 = S.score(m, C, Tg)
+out['before'] = {k: round(v, 5) for k, v in r0['components'].items() if v < 0.99999}
+out['after'] = {k: round(v, 5) for k, v in r1['components'].items() if v < 0.99999}
+out['after_all'] = sorted(r1['components'].keys())
+print(json.dumps(out, indent=1, default=str)[:3000])

@@ -1,10 +1,10 @@
 {
- "score": 0.989679,
- "weakest": "uv:density",
+ "score": 0.999446,
+ "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.989679,
-  "uv:stretch": 0.989679,
+  "uv:density": 1.0,
+  "uv:stretch": 0.999446,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -25,19 +25,19 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.9896786670581922,
-    "low_frac": 0.007825545898356791,
-    "high_frac": 0.0024957870434508898,
-    "px_per_m_min": 832.7523245207044,
-    "px_per_m_median": 1024.0003814700192,
-    "px_per_m_max": 1037.433112628916,
-    "stretch_max": 0.3402014867586879,
-    "faces": 2467
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1023.671384554021,
+    "px_per_m_median": 1023.9999999999906,
+    "px_per_m_max": 1024.2028352904763,
+    "stretch_max": 0.05599952485331561,
+    "faces": 2468
    },
-   "straight_area": 0.5485,
+   "straight_area": 0.5501,
    "straight_stretch_max": 0.056,
-   "stretch_over_2pc_area": 0.1015,
-   "islands": 565,
+   "stretch_over_2pc_area": 0.092,
+   "islands": 566,
    "stacked_faces": 325,
    "overlap_px": 0,
    "covered_px": 0,
@@ -49,7 +49,7 @@
    "group_padding_faces": 0,
    "u_range": [
     -0.0003,
-    13.6182
+    12.935
    ],
    "v_range": [
     0.4343,
@@ -65,14 +65,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 291.379,
+  "seams_m": 290.471,
   "seams_on_smooth_m": 0,
   "sharp_kept_m": 107.753,
   "sharp_m": 273.827,
-  "border_m": 125.305,
+  "border_m": 124.397,
   "pass": true,
   "texture_continuity": 0.6288,
-  "texture_continuous_m": 281.345
+  "texture_continuous_m": 281.304
  },
  "hard_edges": {
   "source": "angle",
@@ -86,7 +86,7 @@
  "layout": {
   "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 153, \"stacked\": 112, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 30, \"stacked\": 12, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
   "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}",
-  "zruv_decal_band": "{\"W\": 512, \"H\": 256, \"pad\": 16.0, \"atlas_px\": 512, \"rows\": [{\"kind\": \"bevel\", \"v0\": 0.76953125, \"v1\": 1.0}, {\"kind\": \"groove\", \"v0\": 0.640625, \"v1\": 0.76953125}, {\"kind\": \"rivet\", \"v0\": 0.5234375, \"v1\": 0.640625}], \"strip_half_m\": 0.020822086048896273, \"groove_m\": 0.012, \"rivet_m\": 0.009, \"rivet_cell_m\": 0.01290625, \"bevel\": {\"depth_m\": 0.004, \"chip_m\": 0.0015, \"chips_per_m\": 40.0, \"sample_m\": 0.04}, \"strips\": 1414, \"grooves\": 23, \"rivets\": 38, \"panels\": 1, \"strips_dropped_too_close\": 124, \"strips_trimmed\": 64, \"parting_segments\": 0, \"strips_dropped_why\": [{\"piece\": \"pillar_L\", \"edge\": [165, 173], \"length_m\": 0.011}, {\"piece\": \"pillar_L\", \"edge\": [164, 172], \"length_m\": 0.011}, {\"piece\": \"pillar_L\", \"edge\": [166, 176], \"length_m\": 0.011}, {\"piece\": \"pillar_L\", \"edge\": [167, 178], \"length_m\": 0.011}, {\"piece\": \"pillar_R\", \"edge\": [245, 253], \"length_m\": 0.011}, {\"piece\": \"pillar_R\", \"edge\": [244, 252], \"length_m\": 0.011}, {\"piece\": \"pillar_R\", \"edge\": [246, 256], \"length_m\": 0.011}, {\"piece\": \"pillar_R\", \"edge\": [247, 258], \"length_m\": 0.011}, {\"piece\": \"rivet\", \"edge\": [375, 382], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [381, 382], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [380, 381], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [379, 380], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [378, 379], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [377, 378], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [376, 377], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [375, 376], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [391, 398], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [397, 398], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [396, 397], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [395, 396], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [394, 395], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [393, 394], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [392, 393], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [391, 392], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [407, 414], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [413, 414], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [412, 413], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [411, 412], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [410, 411], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [409, 410], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [408, 409], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [407, 408], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [423, 430], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [429, 430], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [428, 429], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [427, 428], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [426, 427], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [425, 426], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [424, 425], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [423, 424], \"length_m\": 0.019}], \"grooves_rivets_dropped\": 3, \"need_h_px\": 122, \"v0\": 0.76953125, \"v1\": 1.0, \"v0_content\": 0.80078125, \"v1_content\": 0.96875}"
+  "zruv_decal_band": "{\"W\": 512, \"H\": 256, \"pad\": 16.0, \"atlas_px\": 512, \"rows\": [{\"kind\": \"bevel\", \"v0\": 0.76953125, \"v1\": 1.0}, {\"kind\": \"groove\", \"v0\": 0.640625, \"v1\": 0.76953125}, {\"kind\": \"rivet\", \"v0\": 0.5234375, \"v1\": 0.640625}], \"strip_half_m\": 0.020811835967053268, \"groove_m\": 0.012, \"rivet_m\": 0.009, \"rivet_cell_m\": 0.01290625, \"bevel\": {\"depth_m\": 0.004, \"chip_m\": 0.0015, \"chips_per_m\": 40.0, \"sample_m\": 0.04}, \"strips\": 1414, \"grooves\": 23, \"rivets\": 36, \"panels\": 1, \"strips_dropped_too_close\": 124, \"strips_trimmed\": 64, \"parting_segments\": 0, \"strips_dropped_why\": [{\"piece\": \"pillar_L\", \"edge\": [165, 173], \"length_m\": 0.011}, {\"piece\": \"pillar_L\", \"edge\": [164, 172], \"length_m\": 0.011}, {\"piece\": \"pillar_L\", \"edge\": [166, 176], \"length_m\": 0.011}, {\"piece\": \"pillar_L\", \"edge\": [167, 178], \"length_m\": 0.011}, {\"piece\": \"pillar_R\", \"edge\": [245, 253], \"length_m\": 0.011}, {\"piece\": \"pillar_R\", \"edge\": [244, 252], \"length_m\": 0.011}, {\"piece\": \"pillar_R\", \"edge\": [246, 256], \"length_m\": 0.011}, {\"piece\": \"pillar_R\", \"edge\": [247, 258], \"length_m\": 0.011}, {\"piece\": \"rivet\", \"edge\": [375, 382], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [381, 382], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [380, 381], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [379, 380], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [378, 379], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [377, 378], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [376, 377], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [375, 376], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [391, 398], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [397, 398], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [396, 397], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [395, 396], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [394, 395], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [393, 394], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [392, 393], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [391, 392], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [407, 414], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [413, 414], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [412, 413], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [411, 412], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [410, 411], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [409, 410], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [408, 409], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [407, 408], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [423, 430], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [429, 430], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [428, 429], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [427, 428], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [426, 427], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [425, 426], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [424, 425], \"length_m\": 0.019}, {\"piece\": \"rivet\", \"edge\": [423, 424], \"length_m\": 0.019}], \"grooves_rivets_dropped\": 0, \"need_h_px\": 122, \"v0\": 0.76953125, \"v1\": 1.0, \"v0_content\": 0.80078125, \"v1_content\": 0.96875}"
  },
  "method": "M5",
  "title": "Mesh decals de normale",
@@ -117,8 +117,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.84,
- "score_s": 5.48,
+ "cook_s": 2.3,
+ "score_s": 5.75,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -129,7 +129,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 06:59",
+ "date": "20 October 2026 07:47",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

@@ -1,0 +1,37 @@
+# 20 October 2026 : the both ways self test (SelfTest.py) on every method of every asset of the bench, in parallel processes ; one line per method, then the total.
+# Usage : python -I SelfTestAll.py <runs folder> [asset objects to keep, e.g. ZRUV_Arch]
+import sys, os, json, glob, subprocess
+from concurrent.futures import ThreadPoolExecutor
+runs = sys.argv[1]
+ST = '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/SelfTest.py'
+PY = '/Users/zenray/.venvs/shorts/bin/python'
+jobs = []
+for rep in sorted(glob.glob(os.path.join(runs, 'ZRUV_*', 'M*', 'report.json'))):
+    d = os.path.dirname(rep)
+    mesh = os.path.join(d, 'mesh.json')
+    if not os.path.exists(mesh):
+        continue
+    r = json.load(open(rep))
+    if not r.get('contracts'):
+        continue
+    if len(sys.argv) > 2 and os.path.basename(os.path.dirname(d)) not in sys.argv[2:]:
+        continue
+    jobs.append((os.path.relpath(d, runs), mesh, json.dumps(r['contracts']), json.dumps(r['targets'])))
+
+
+def one(j):
+    name, mesh, c, t = j
+    p = subprocess.run([PY, '-I', ST, mesh, c, t], capture_output=True, text=True)
+    lines = [x for x in p.stdout.splitlines() if x.startswith(('PASS', 'FAIL'))]
+    fails = [x for x in lines if x.startswith('FAIL')]
+    return name, p.returncode, len(lines), fails, p.stderr[-400:] if p.returncode not in (0, 1) else ''
+
+
+with ThreadPoolExecutor(max_workers=12) as ex:
+    res = list(ex.map(one, jobs))
+bad = 0
+for name, rc, n, fails, err in res:
+    print(('PASS ' if rc == 0 else 'FAIL ') + f'{name:28s} {n} cases' + ('' if rc == 0 else ' : ' + ' | '.join(f.strip()[:120] for f in fails) + (' ' + err if err else '')))
+    bad += rc != 0
+print(f'{len(res) - bad} of {len(res)} methods pass their self test both ways')
+sys.exit(1 if bad else 0)

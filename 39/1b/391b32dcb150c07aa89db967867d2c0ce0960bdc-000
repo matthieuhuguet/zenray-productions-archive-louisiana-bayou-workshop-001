@@ -50,9 +50,10 @@ PARAMS = {
     'td': 1024.0,           # the texel density (px/m) : sets how many texels a chart spans
     'small_px': 128.0,      # a chart narrower than this many texels gets a looser tolerance, x sqrt(small_px / its width) : the eye reads no distortion on a pebble
     'tiny_px': 48.0,        # a chart narrower than this passes whatever its stretch, unless a triangle folds (a 2.4 cm pebble is 25 texels wide)
-    'min_fill_share': 0.1,  # 20 October 2026 : and only for an island whose box would cover more than this share of the surface (a curved spike of the toy does not move
-                            # the sheet, Manny's torso does : the rule cost the toy 3 islands and 0.8 m of seams for nothing)
-    'min_fill': 0.5,        # 20 October 2026 : a merge of the economy is kept only when the merged island fills this share of its oriented box (Manny's torso, front
+    'min_fill_share': 0.25, # 20 October 2026 : a chart sprawls when its oriented box covers more than this share of the surface and it fills less than min_fill of
+                            # it : Manny's torso with both arms filled 38 % of a 1900 x 1223 px box and no 2048 sheet could hold it (an artist cuts the sleeves at the
+                            # armhole) ; a sprawling chart fails, so the improve phase cuts it, and a merge that would make one is refused
+    'min_fill': 0.45,       # 20 October 2026 : a merge of the economy is kept only when the merged island fills this share of its oriented box (Manny's torso, front
                             # and back merged, filled 46 % and pushed the unique sheet from 2048 x 2048 to 4096 x 2048 : an artist weighs seams against space)
     'gain_power': 1.0,      # the moves are ranked by gain^gain_power / seam cost : 1 = the most distortion per metre (cheap darts), 2 = an artist's patience (one
                             # structural cut, a loop round the back of a ball, before many small darts)
@@ -482,9 +483,10 @@ class Chart:
         self.uv = uv * sc
         self.s, self.a = s, a
         self.k = chart_scale(X3, prm)
-        self.fail = fail_value(s, a, prm, self.k)
-        self.excess = excess(s, a, prm, self.k)
         self.ok = True
+        self.sprawl = self.sprawl_value()
+        self.fail = fail_value(s, a, prm, self.k) + self.sprawl
+        self.excess = excess(s, a, prm, self.k) + self.sprawl
 
     def corner_uv(self):
         return {c: tuple(self.uv[lv]) for c, lv in self.loc.corner.items()}
@@ -494,6 +496,19 @@ class Chart:
         d = dict(self.__dict__)
         d['S'] = None
         return d
+
+    def sprawl_value(self):
+        """20 October 2026 : the area by which a large chart misses min_fill of its oriented box (0 for a chart whose box covers less than min_fill_share of the
+        surface) : counted in its failure and its excess, like distortion."""
+        prm = self.S.prm
+        tot = float(prm.get('total_area') or 0.0)
+        if tot <= 0 or float(prm.get('min_fill', 0.0)) <= 0:
+            return 0.0
+        A = float(self.a.sum())
+        fl = self.fill()
+        if A / max(fl, 1e-9) <= float(prm.get('min_fill_share', 0.25)) * tot or fl >= float(prm['min_fill']):
+            return 0.0
+        return (float(prm['min_fill']) - fl) * A
 
     def fill(self):
         """20 October 2026 : the share of its box an island fills, the box along the island's own principal axes (the way the layout lays it, longest along u)."""
@@ -514,9 +529,12 @@ class Chart:
         f = fail_value(s, a, self.S.prm, self.k)
         q = quantiles(s, a)
         q0 = quantiles(self.s, self.a)
+        f += self.sprawl
         if f < self.fail - 1e-15 or (f <= self.fail + 1e-15 and q[1] < q0[1]):
-            self.uv, self.s, self.a, self.fail = uv * sc, s, a, f
-            self.excess = excess(s, a, self.S.prm, self.k)
+            self.uv, self.s, self.a = uv * sc, s, a
+            self.sprawl = self.sprawl_value()
+            self.fail = fail_value(s, a, self.S.prm, self.k) + self.sprawl
+            self.excess = excess(s, a, self.S.prm, self.k) + self.sprawl
 
 
 # ---------------------------------------------------------------- paths
@@ -981,6 +999,7 @@ class Tailor:
             b = (S.EF1 >= 0) & (self.active[S.EF0] != self.active[np.maximum(S.EF1, 0)])
             self.cut |= b
             self.must |= b
+        self.prm['total_area'] = float(S.FA[self.active].sum())     # 20 October 2026 : what a chart's box is compared with (sprawl)
         self.pieces = []          # [{'kind', 'edges' (np array), 'cost', 'length'}]
         self._neck_cache = {}
         self.stats = {'moves': {}, 'rejected': 0}
@@ -1754,8 +1773,7 @@ class Tailor:
             if not ok:
                 continue
             after_fail = sum(ch.fail for _, ch in new)
-            tot_a = float(S.FA[self.active].sum())
-            if len(ks) > 1 and any(ch.fill() < self.prm['min_fill'] and float(ch.a.sum()) / max(ch.fill(), 1e-9) > self.prm['min_fill_share'] * tot_a for _, ch in new):
+            if len(ks) > 1 and any(ch.sprawl > 0 for _, ch in new):
                 continue                       # 20 October 2026 : a merge that leaves a sprawling island (it would not pack) is refused
             freed = float(S.cost[edges].sum()) + sum(float(S.cost[qe].sum()) for _, qe in reopened)
             saved = freed - (float(S.cost[np.unique(added)].sum()) if added else 0.0)

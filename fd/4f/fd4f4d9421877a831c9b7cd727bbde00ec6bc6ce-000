@@ -2,7 +2,7 @@
  "asset": "/obj/ZRUV_ArchLibrarySrc/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "20 October 2026 07:00",
+ "date": "20 October 2026 07:48",
  "families": [
   {
    "name": "iron",
@@ -121,9 +121,9 @@
     0.002,
     0.998
    ],
-   "cook_s": 3.33,
+   "cook_s": 1.64,
    "bake_s": null,
-   "date": "20 October 2026 07:00",
+   "date": "20 October 2026 07:48",
    "report": "M3B/report.json",
    "example": {
     "texture": "M3B/texture_trim.png",

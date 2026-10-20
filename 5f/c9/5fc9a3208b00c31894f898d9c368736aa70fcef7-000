@@ -1,0 +1,14 @@
+#!/bin/zsh
+# 20 October 2026 (fifth pass) : the arch methods touched by the trim band rule and the decal fixes, then the library copy.
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+B="/opt/homebrew/bin/python3 /Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py hom"
+for spec in "ZRUV_Arch:M3,M3B,M5" "ZRUV_ArchLibrary:M3B"; do
+  obj=${spec%%:*}; meths=${spec#*:}; py_meths="('${meths//,/','}',)"
+  ZR_BRIDGE_TIMEOUT=3600 $=B "OBJS=('$obj',); METHS=$py_meths; BAKE=True; RUNS='$W/runs'; exec(open('$W/Scripts/RunSheets.py').read())" > $W/Scripts/RunArchFix_$obj.out 2>&1
+  /opt/homebrew/bin/python3 -c "
+import json
+r = json.load(open('$W/Scripts/RunArchFix_$obj.out'))['result']['$obj']
+print('$obj', r['s'], {k: (v['score'], v['weakest'], (v['errors'] or [''])[0][:160] if v['errors'] else '') for k, v in r['res'].items()})
+" >> $W/Scripts/RunArchFix.sum 2>&1
+done
+echo "fix done" >> $W/Scripts/RunArchFix.sum
