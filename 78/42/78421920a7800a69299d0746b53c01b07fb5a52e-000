@@ -1,0 +1,14 @@
+# 20 October 2026 : solve the library copy of the arch so its strips land on the trim library (ZruvSnap), then run M3 variant B on it.
+import sys, json, time, importlib
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZruvSnap
+importlib.reload(ZruvSnap)
+exec(open('/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZenRayUV.py').read(), globals())
+_reload()
+t = time.time()
+geo = ensure('ZRUV_ArchLibrary', None, ('M3B',))
+rep = ZruvSnap.snap('/obj/ZRUV_ArchLibrarySrc', '/obj/ZRUV_ArchLibrary')
+rep['snap_s'] = round(time.time() - t, 1)
+json.dump(rep, open(RUNS + '/ZRUV_ArchLibrary/snap_report.json', 'w'), indent=1)
+r = run(('M3B',), obj_name='ZRUV_ArchLibrary', do_bake=False)
+result = {'snap': rep, 'M3B': r}
