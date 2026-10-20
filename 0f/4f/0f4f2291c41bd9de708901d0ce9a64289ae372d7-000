@@ -1,6 +1,6 @@
 {
- "score": 0.970441,
- "weakest": "uv:horizontal",
+ "score": 0.994878,
+ "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
@@ -9,7 +9,7 @@
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
-  "uv:horizontal": 0.970441,
+  "uv:horizontal": 1.0,
   "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
@@ -28,17 +28,17 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9741469527917,
-    "px_per_m_median": 1024.0000512190343,
-    "px_per_m_max": 1024.0352640178944,
+    "px_per_m_min": 1023.9594731181321,
+    "px_per_m_median": 1024.0000663358976,
+    "px_per_m_max": 1024.0546168012281,
     "stretch_max": 0.6391633715774854,
     "faces": 1940
    },
    "straight_area": 0.5428,
    "straight_stretch_max": 0.056,
    "stretch_over_2pc_area": 0.0954,
-   "islands": 667,
-   "stacked_faces": 309,
+   "islands": 671,
+   "stacked_faces": 318,
    "overlap_px": 0,
    "covered_px": 0,
    "fill": 0.0,
@@ -65,14 +65,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 312.926,
+  "seams_m": 316.083,
   "seams_on_smooth_m": 0,
-  "sharp_kept_m": 108.093,
+  "sharp_kept_m": 104.936,
   "sharp_m": 273.827,
   "border_m": 147.192,
   "pass": true,
-  "texture_continuity": 0.5404,
-  "texture_continuous_m": 194.853
+  "texture_continuity": 0.5316,
+  "texture_continuous_m": 191.696
  },
  "hard_edges": {
   "source": "angle",
@@ -84,7 +84,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 154, \"stacked\": 114, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 29, \"stacked\": 8, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
+  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 154, \"stacked\": 114, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 33, \"stacked\": 12, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
   "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}",
   "zruv_decal_band": "{\"W\": 4096, \"H\": 2048, \"pad\": 16.0, \"atlas_px\": 4096, \"rows\": [{\"kind\": \"bevel\", \"v0\": 0.97021484375, \"v1\": 1.0}, {\"kind\": \"groove\", \"v0\": 0.9541015625, \"v1\": 0.97021484375}, {\"kind\": \"rivet\", \"v0\": 0.939453125, \"v1\": 0.9541015625}], \"strip_half_m\": 0.021563493511398513, \"groove_m\": 0.012, \"rivet_m\": 0.009, \"rivet_cell_m\": 0.01290625, \"bevel\": {\"depth_m\": 0.004, \"chip_m\": 0.0015, \"chips_per_m\": 40.0}, \"strips\": 884, \"grooves\": 23, \"rivets\": 38, \"panels\": 1, \"strips_dropped_too_close\": 8, \"need_h_px\": 124, \"v0\": 0.97021484375, \"v1\": 1.0, \"v0_content\": 0.97412109375, \"v1_content\": 0.99609375}"
  },
@@ -111,8 +111,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.14,
- "score_s": 0.85,
+ "cook_s": 0.13,
+ "score_s": 0.8,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -123,7 +123,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 02:30",
+ "date": "20 October 2026 02:33",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
