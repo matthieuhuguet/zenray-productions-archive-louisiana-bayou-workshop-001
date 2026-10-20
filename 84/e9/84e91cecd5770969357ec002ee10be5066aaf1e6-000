@@ -3,3 +3,53 @@ mirror axis 0 charts 10 0.4s
 neck loop 0.345 m charts 12
 necks 1 charts 12 6.6s
 flattened {'charts': 12, 'seams_m': 2.328, 'seam_cost': 0.517, 'stretch_p50': 0.277, 'stretch_p95': 0.9701, 'within_10': 0.0259, 'within_20': 0.149, 'failing_charts': 10, 'mirror_axis': 0, 'moves': {'neck': 1, 'open slit': 6}, 'stuck': 0, 'economy_removed': 0} 50.8s
+move silhouette gain 0.09602 charts 13 fail 0.63693
+move silhouette gain 0.04129 charts 14 fail 0.43281
+move pole dart gain 0.11800 charts 14 fail 0.27777
+move dart gain 0.00636 charts 14 fail 0.23058
+move pole dart gain 0.01657 charts 14 fail 0.17172
+move pole dart gain 0.00844 charts 14 fail 0.13562
+move pole dart gain 0.00389 charts 14 fail 0.11967
+move dart gain 0.00094 charts 14 fail 0.11657
+move dart gain 0.00060 charts 14 fail 0.11412
+move dart gain 0.00033 charts 14 fail 0.11306
+move dart gain 0.00089 charts 14 fail 0.10675
+move dart gain 0.00032 charts 14 fail 0.10568
+move pole dart gain 0.00300 charts 14 fail 0.08026
+move dart gain 0.00059 charts 14 fail 0.07490
+move dart gain 0.00059 charts 14 fail 0.07295
+move dart gain 0.00044 charts 14 fail 0.07103
+move pole dart gain 0.00082 charts 14 fail 0.07014
+move dart gain 0.00074 charts 14 fail 0.06549
+move pole dart gain 0.00316 charts 14 fail 0.05848
+move pole dart gain 0.00096 charts 14 fail 0.05703
+move pole dart gain 0.00115 charts 14 fail 0.05548
+move dart gain 0.00028 charts 14 fail 0.05482
+move dart gain 0.00026 charts 14 fail 0.05396
+move dart gain 0.00031 charts 14 fail 0.05104
+move pole dart gain 0.00279 charts 14 fail 0.04292
+move pole dart gain 0.00178 charts 14 fail 0.03845
+move dart gain 0.00089 charts 14 fail 0.03079
+move dart gain 0.00030 charts 14 fail 0.02707
+move pole dart gain 0.00165 charts 14 fail 0.02102
+move pole dart gain 0.00073 charts 14 fail 0.01758
+move dart gain 0.00014 charts 14 fail 0.01660
+move dart gain 0.00021 charts 14 fail 0.01468
+move pole dart gain 0.00076 charts 14 fail 0.01147
+move pole dart gain 0.00087 charts 14 fail 0.00708
+move pole dart gain 0.00049 charts 14 fail 0.00497
+move dart gain 0.00015 charts 14 fail 0.00347
+move dart gain 0.00002 charts 14 fail 0.00341
+move dart gain 0.00006 charts 14 fail 0.00304
+move dart gain 0.00020 charts 14 fail 0.00189
+move dart gain 0.00002 charts 14 fail 0.00183
+move dart gain 0.00033 charts 14 fail 0.00102
+move pole dart gain 0.00097 charts 14 fail 0.00043
+move pole dart gain 0.00940 charts 14 fail 0.00018
+move dart gain 0.00004 charts 14 fail 0.00004
+move pole dart gain 0.00207 charts 14 fail 0.00004
+move dart gain 0.00006 charts 14 fail 0.00002
+move dart gain 0.00272 charts 14 fail 0.00006
+move dart gain 0.00035 charts 14 fail 0.00006
+move dart gain 0.00049 charts 14 fail 0.00006
+move dart gain 0.00032 charts 14 fail 0.00009

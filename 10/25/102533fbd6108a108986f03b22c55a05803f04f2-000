@@ -1,0 +1,44 @@
+# 20 October 2026 : arch M1, twins before and after stitch_soft (does the soft chamfer stitch break the stacking of twin pieces ?). EN only.
+import sys, json, math, importlib
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZruvLayout as L
+importlib.reload(L)
+out = {}
+td = 1024.0
+for tag, path in (('before', '/obj/ZRUV_Arch/M1_unique/orient'), ('after', '/obj/ZRUV_Arch/M1_unique/stitch_soft')):
+    n = hou.node(path)
+    geo = n.geometry()
+    m, isls = L.islands(geo, 'uv')
+    tw = L.twins(isls, same_family=True)
+    byid = {d['id']: d for d in isls}
+    area = {d['id']: sum(abs(L._signed_uv(m.uv['uv'][f])) for f in d['faces']) * td * td for d in isls}
+    st = sum(area[i] for i in area if i not in tw)
+    # pieces whose islands are all stacked on another piece
+    pieces = {}
+    for d in isls:
+        pieces.setdefault(d['piece'], []).append(d['id'])
+    full_copy = [p for p, ids in pieces.items() if all(i in tw for i in ids)]
+    out[tag] = {'islands': len(isls), 'twins': len(tw), 'stacked_area_px2': round(st), 'side': round(st ** 0.5), 'pieces': len(pieces),
+                'pieces_fully_stacked': len(full_copy)}
+    if tag == 'after':
+        info = geo.attribValue('zruv_stitch_m1') if geo.findGlobalAttrib('zruv_stitch_m1') else ''
+        out['stitch'] = info
+        # per piece : islands before and after, stacked or not
+        out['_after_pieces'] = {p: len(ids) for p, ids in pieces.items()}
+        out['_after_stacked'] = {p: sum(1 for i in ids if i in tw) for p, ids in pieces.items()}
+    else:
+        out['_before_pieces'] = {p: len(ids) for p, ids in pieces.items()}
+        out['_before_stacked'] = {p: sum(1 for i in ids if i in tw) for p, ids in pieces.items()}
+# pieces whose stacking changed
+ch = {}
+for p in out['_before_pieces']:
+    b = (out['_before_pieces'][p], out['_before_stacked'][p]); a = (out['_after_pieces'].get(p), out['_after_stacked'].get(p))
+    if b != a:
+        ch[p] = {'before': b, 'after': a}
+out['changed'] = ch
+for k in ('_before_pieces', '_before_stacked', '_after_pieces', '_after_stacked'):
+    out.pop(k)
+json.dump(out, open('/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/diagnostics/arch_stitch.json', 'w'), indent=1)
+result = {k: v for k, v in out.items() if k != 'changed'}
+result['changed_n'] = len(ch)
+result['changed_sample'] = dict(list(ch.items())[:30])

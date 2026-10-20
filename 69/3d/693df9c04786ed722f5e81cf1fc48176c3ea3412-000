@@ -1,0 +1,71 @@
+{
+ "before": {
+  "islands": 533,
+  "twins": 342,
+  "stacked_area_px2": 8895472,
+  "side": 2983,
+  "pieces": 8,
+  "pieces_fully_stacked": 1
+ },
+ "after": {
+  "islands": 347,
+  "twins": 195,
+  "stacked_area_px2": 11158553,
+  "side": 3340,
+  "pieces": 8,
+  "pieces_fully_stacked": 0
+ },
+ "stitch": "{\"joins\": 189, \"soft_deg\": 50.0, \"demoted_edges\": 191, \"demoted_m\": 76.705}",
+ "changed": {
+  "arch": {
+   "before": [
+    18,
+    7
+   ],
+   "after": [
+    10,
+    1
+   ]
+  },
+  "pillar_L": {
+   "before": [
+    113,
+    61
+   ],
+   "after": [
+    49,
+    24
+   ]
+  },
+  "pillar_R": {
+   "before": [
+    113,
+    113
+   ],
+   "after": [
+    51,
+    48
+   ]
+  },
+  "cross": {
+   "before": [
+    58,
+    37
+   ],
+   "after": [
+    38,
+    22
+   ]
+  },
+  "pendant": {
+   "before": [
+    105,
+    68
+   ],
+   "after": [
+    73,
+    44
+   ]
+  }
+ }
+}

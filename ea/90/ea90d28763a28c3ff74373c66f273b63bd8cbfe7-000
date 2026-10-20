@@ -1,0 +1,59 @@
+# 20 October 2026 : do stacked twins lie on their 3D corresponding faces ? For every stacked copy island, its faces are matched to the master faces under them (uv
+# centres), then one proper rigid motion (Kabsch, det +1) is fitted per island and per piece pair ; a residual near 0 means the bake of the master is right on the copy.
+# EN only. Usage in Houdini : NODE = '<sop path>' ; exec(open(<this>).read()).
+import sys, json, importlib
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z
+
+
+def kabsch(A, B, proper=True):
+    """Best rigid motion B ~ R A + t ; returns the rms residual and det(R)."""
+    ca, cb = A.mean(0), B.mean(0)
+    H = (A - ca).T @ (B - cb)
+    U, S, Vt = np.linalg.svd(H)
+    d = np.sign(np.linalg.det(Vt.T @ U.T))
+    D = np.diag([1.0, 1.0, d if proper else 1.0])
+    R = Vt.T @ D @ U.T
+    res = (A - ca) @ R.T + cb - B
+    return float(np.sqrt((res ** 2).sum(1).mean())), float(np.linalg.det(R))
+
+
+geo = hou.node(NODE).geometry()
+m = Z.from_geo(geo, ('uv',), ['name', 'zruv_stack_uv', 'zruv_twin_uv'])
+isl, _ = Z.uv_islands(m, 'uv')
+P = np.array([p.position() for p in geo.points()])
+cen3 = np.array([P[list(m.polys[f])].mean(0) for f in range(m.n)])
+cenuv = np.array([np.mean(m.uv['uv'][f], 0)[:2] for f in range(m.n)])
+stk = np.array(m.prim['zruv_stack_uv'])
+tw = np.array(m.prim['zruv_twin_uv'])
+by = {}
+for f in range(m.n):
+    if stk[f] == 1:
+        by.setdefault(int(isl[f]), []).append(f)
+rows, pair = [], {}
+for i, fs in by.items():
+    mi = int(isl[int(tw[fs[0]])])
+    mf = [g for g in range(m.n) if isl[g] == mi]
+    cu, mu = cenuv[fs], cenuv[mf]
+    d = np.sqrt(((cu[:, None] - mu[None]) ** 2).sum(2))
+    j = d.argmin(1)
+    corr = [mf[k] for k in j]
+    A, B = cen3[fs], cen3[corr]
+    size = float(np.ptp(B, 0).max()) + 1e-9
+    r_island, _ = kabsch(A, B) if len(fs) >= 3 else (0.0, 1.0)
+    pc, pm = m.prim['name'][fs[0]], m.prim['name'][corr[0]]
+    pair.setdefault((pc, pm), [[], []])
+    pair[(pc, pm)][0] += list(fs)
+    pair[(pc, pm)][1] += corr
+    rows.append({'island': i, 'faces': len(fs), 'piece': pc, 'master_piece': pm, 'rel_res_island': round(r_island / size, 4)})
+pieces = []
+for (pc, pm), (fa, fb) in pair.items():
+    A, B = cen3[fa], cen3[fb]
+    size = float(np.ptp(cen3[[f for f in range(m.n) if m.prim['name'][f] == pm]], 0).max()) + 1e-9
+    r, det = kabsch(A, B) if len(fa) >= 3 else (0.0, 1.0)
+    rm, _ = kabsch(A, B, proper=False) if len(fa) >= 3 else (0.0, 1.0)
+    pieces.append({'copy': pc, 'master': pm, 'faces': len(fa), 'rel_res_rotation': round(r / size, 4), 'rel_res_any_motion': round(rm / size, 4)})
+bad_isl = [r for r in rows if r['rel_res_island'] > 0.01]
+result = {'stacked_islands': len(rows), 'islands_not_rigid': len(bad_isl), 'faces_not_rigid': sum(r['faces'] for r in bad_isl),
+          'pieces': pieces, 'sample_bad': bad_isl[:12]}

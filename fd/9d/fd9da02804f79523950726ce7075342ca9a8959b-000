@@ -1,0 +1,41 @@
+# 20 October 2026 : which pieces of the arch are self symmetric (reflection across their own box centre planes), and is pillar_R a proper rotated copy of pillar_L ?
+# EN only. NODE = '<sop path>'.
+import numpy as np
+from collections import defaultdict
+geo = hou.node(NODE).geometry()
+P = np.array([p.position() for p in geo.points()])
+pcs = defaultdict(list)
+for pr in geo.prims():
+    pcs[pr.attribValue('name')].append(np.array([P[v.point().number()] for v in pr.vertices()]).mean(0))
+pcs = {k: np.array(v) for k, v in pcs.items()}
+
+
+def nn(A, B):
+    d = np.sqrt(((A[:, None] - B[None]) ** 2).sum(2))
+    return float(d.min(1).max())
+
+
+out = {}
+for k, C in pcs.items():
+    c = (C.min(0) + C.max(0)) / 2
+    s = float(np.ptp(C, 0).max())
+    r = {}
+    for ax, nm in ((0, 'x'), (1, 'y'), (2, 'z')):
+        Q = C.copy(); Q[:, ax] = 2 * c[ax] - Q[:, ax]
+        r['mirror_' + nm] = round(nn(Q, C) / s, 4)
+    for ax, nm in ((0, 'x'), (1, 'y'), (2, 'z')):
+        Q = C.copy(); o = [i for i in range(3) if i != ax]
+        Q[:, o] = 2 * c[o] - Q[:, o]
+        r['rot180_' + nm] = round(nn(Q, C) / s, 4)
+    out[k] = {'faces': len(C), 'size': round(s, 3), 'self': r}
+L, R = pcs['pillar_L'], pcs['pillar_R']
+cL, cR = (L.min(0) + L.max(0)) / 2, (R.min(0) + R.max(0)) / 2
+s = float(np.ptp(L, 0).max())
+pair = {}
+for ax, nm in ((0, 'x'), (1, 'y'), (2, 'z')):
+    Q = R - cR + cL; Q[:, ax] = 2 * cL[ax] - Q[:, ax]
+    pair['mirror_' + nm] = round(nn(Q, L) / s, 4)
+    Q = R - cR + cL; o = [i for i in range(3) if i != ax]; Q[:, o] = 2 * cL[o] - Q[:, o]
+    pair['rot180_' + nm] = round(nn(Q, L) / s, 4)
+pair['translate'] = round(nn(R - cR + cL, L) / s, 4)
+result = {'pieces': out, 'pillar_R_to_pillar_L': pair}

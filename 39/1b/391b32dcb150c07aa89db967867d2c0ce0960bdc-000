@@ -50,6 +50,8 @@ PARAMS = {
     'td': 1024.0,           # the texel density (px/m) : sets how many texels a chart spans
     'small_px': 128.0,      # a chart narrower than this many texels gets a looser tolerance, x sqrt(small_px / its width) : the eye reads no distortion on a pebble
     'tiny_px': 48.0,        # a chart narrower than this passes whatever its stretch, unless a triangle folds (a 2.4 cm pebble is 25 texels wide)
+    'min_fill': 0.5,        # 20 October 2026 : a merge of the economy is kept only when the merged island fills this share of its oriented box (Manny's torso, front
+                            # and back merged, filled 46 % and pushed the unique sheet from 2048 x 2048 to 4096 x 2048 : an artist weighs seams against space)
     'gain_power': 1.0,      # the moves are ranked by gain^gain_power / seam cost : 1 = the most distortion per metre (cheap darts), 2 = an artist's patience (one
                             # structural cut, a loop round the back of a ball, before many small darts)
 }
@@ -484,6 +486,16 @@ class Chart:
 
     def corner_uv(self):
         return {c: tuple(self.uv[lv]) for c, lv in self.loc.corner.items()}
+
+    def fill(self):
+        """20 October 2026 : the share of its box an island fills, the box along the island's own principal axes (the way the layout lays it, longest along u)."""
+        U = self.uv - self.uv.mean(0)
+        w, v = np.linalg.eigh(U.T @ U)
+        R = U @ v
+        box = float(np.ptp(R[:, 0]) * np.ptp(R[:, 1]))
+        C = self.uv[self.loc.tris]
+        au = 0.5 * np.abs((C[:, 1, 0] - C[:, 0, 0]) * (C[:, 2, 1] - C[:, 0, 1]) - (C[:, 2, 0] - C[:, 0, 0]) * (C[:, 1, 1] - C[:, 0, 1])).sum()
+        return float(au / max(box, 1e-30))
 
     def polish(self, iters):
         import ZruvOrganic as O
@@ -1711,6 +1723,8 @@ class Tailor:
             if not ok:
                 continue
             after_fail = sum(ch.fail for _, ch in new)
+            if len(ks) > 1 and any(ch.fill() < self.prm['min_fill'] for _, ch in new):
+                continue                       # 20 October 2026 : a merge that leaves a sprawling island (it would not pack) is refused
             freed = float(S.cost[edges].sum()) + sum(float(S.cost[qe].sum()) for _, qe in reopened)
             saved = freed - (float(S.cost[np.unique(added)].sum()) if added else 0.0)
             if saved <= 1e-9 or after_fail > before_fail + 1e-12:
