@@ -1,15 +1,16 @@
 {
- "score": 0.940035,
- "weakest": "uv:density",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.940035,
+  "uv:density": 1.0,
   "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
+  "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
@@ -23,36 +24,37 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.940035356222445,
-    "low_frac": 0.03649794573649097,
-    "high_frac": 0.023466698041063994,
-    "px_per_m_min": 467.17298246157674,
-    "px_per_m_median": 1025.3949892911367,
-    "px_per_m_max": 1408.2672411188505,
-    "stretch_max": 1.3117354359601352,
+    "exact_frac": 0.9712921612487782,
+    "low_frac": 0.010626029717130168,
+    "high_frac": 0.018081809034091584,
+    "px_per_m_min": 712.6610762951979,
+    "px_per_m_median": 1031.1724364975564,
+    "px_per_m_max": 1387.6018347892057,
+    "stretch_max": 0.9943898165185805,
     "faces": 12854
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 11,
-    "passing": 11,
+    "islands": 17,
+    "passing": 17,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.1053,
-    "worst_island_p95": 0.3348
+    "worst_island_p50": 0.0836,
+    "worst_island_p95": 0.2784
    },
-   "stretch_over_2pc_area": 0.9862,
-   "islands": 11,
+   "stretch_over_2pc_area": 0.9418,
+   "islands": 17,
+   "stacked_faces": 16,
    "groups": 1,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
     0.0039,
-    0.9873
+    0.9919
    ],
    "v_range": [
-    0.3956,
+    0.443,
     0.9961
    ]
   }
@@ -65,14 +67,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 6.431,
-  "seams_on_smooth_m": 2.306,
+  "seams_m": 7.62,
+  "seams_on_smooth_m": 2.942,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
   "pass": true,
-  "texture_continuity": 0.9706,
-  "texture_continuous_m": 211.958
+  "texture_continuity": 0.9652,
+  "texture_continuous_m": 210.783
  },
  "hard_edges": {
   "source": "normals",
@@ -84,7 +86,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 11, \"stacked\": 0, \"past_u1\": 0}]",
+  "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 17, \"stacked\": 1, \"past_u1\": 0}]",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M2",
@@ -117,7 +119,7 @@
   "uv": 1024.0
  },
  "cook_s": 0.02,
- "score_s": 7.03,
+ "score_s": 3.18,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
@@ -126,7 +128,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 05:28",
+ "date": "20 October 2026 07:16",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,
