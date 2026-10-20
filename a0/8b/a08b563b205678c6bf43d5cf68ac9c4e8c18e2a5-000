@@ -1,13 +1,13 @@
 {
- "score": 0.999704,
- "weakest": "uv:density",
+ "score": 0.981919,
+ "weakest": "uv:region",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.999704,
-  "uv:stretch": 0.999847,
-  "uv:no_flip": 1.0,
-  "uv:not_mirrored": 1.0,
-  "uv:region": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 0.984977,
+  "uv:not_mirrored": 0.984977,
+  "uv:region": 0.981919,
   "uv:horizontal": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0
@@ -20,27 +20,34 @@
     "target_px_per_m": 1024.0,
     "tol": 0.4143,
     "tol_max": 0.4143,
-    "exact_frac": 0.9997036572544766,
-    "low_frac": 0.0,
-    "high_frac": 0.0002963427455233631,
-    "px_per_m_min": 678.840844099431,
-    "px_per_m_median": 1055.11659286128,
-    "px_per_m_max": 5818.24172718815,
-    "stretch_max": 1.959777868449692,
+    "exact_frac": 0.9998666943141237,
+    "low_frac": 7.048904570753995e-05,
+    "high_frac": 6.281664016890134e-05,
+    "px_per_m_min": 152.14429428165224,
+    "px_per_m_median": 995.3762795259572,
+    "px_per_m_max": 1733.1557663219862,
+    "stretch_max": 5.935164581544621,
     "faces": 30418
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 1.5e-05,
-   "stretch_over_2pc_area": 0.2324,
-   "islands": 262,
+   "organic_artist": {
+    "islands": 24,
+    "passing": 24,
+    "p50": 0.09,
+    "p95": 0.35,
+    "worst_island_p50": 0.2281,
+    "worst_island_p95": 0.5662
+   },
+   "stretch_over_2pc_area": 0.7353,
+   "islands": 24,
    "u_range": [
     0.0039,
-    0.9648
+    0.8945
    ],
    "v_range": [
-    0.4648,
-    0.9665
+    0.0039,
+    0.9961
    ]
   }
  },
@@ -52,10 +59,10 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 52.038,
-  "seams_on_smooth_m": 6.565,
-  "sharp_kept_m": 0.009,
-  "sharp_m": 5.838,
+  "seams_m": 14.079,
+  "seams_on_smooth_m": 5.344,
+  "sharp_kept_m": 0,
+  "sharp_m": 0,
   "border_m": 0,
   "pass": true
  },
@@ -69,7 +76,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_straight_uv": "{\"charts\": 8, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
+  "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
   "zruv_sheet_m3": 2048
  },
  "method": "M3C",
@@ -87,14 +94,20 @@
    "stretch_relative": true,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0,
+    "tiny_px": 48.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 3.46,
- "score_s": 0.41,
+ "cook_s": 13.92,
+ "score_s": 1.83,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
@@ -103,7 +116,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 02:48",
+ "date": "20 October 2026 05:52",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,
