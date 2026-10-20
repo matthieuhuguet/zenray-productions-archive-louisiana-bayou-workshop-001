@@ -2,7 +2,7 @@
  "asset": "/obj/ZRUV_Assets/shaderball",
  "asset_scale": 1.0,
  "texel_density": 1024.0,
- "date": "20 October 2026 07:04",
+ "date": "20 October 2026 08:36",
  "families": [
   {
    "name": "surface",
@@ -102,13 +102,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.3130621867516866,
-    "low_frac": 0.3679025307499852,
-    "high_frac": 0.31903528249832813,
-    "px_per_m_min": 793.7920774650275,
-    "px_per_m_median": 1024.0009035476126,
+    "exact_frac": 0.2740454144456353,
+    "low_frac": 0.381890200011713,
+    "high_frac": 0.3440643855426517,
+    "px_per_m_min": 793.7927316625684,
+    "px_per_m_median": 1024.0021564448225,
     "px_per_m_max": 1250.7721299267562,
-    "stretch_max": 0.9953295490271552,
+    "stretch_max": 0.9953291052566458,
     "faces": 7000
    },
    "seams": {
@@ -119,26 +119,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 11.906,
-    "seams_on_smooth_m": 1.538,
+    "seams_m": 11.28,
+    "seams_on_smooth_m": 1.023,
     "sharp_kept_m": 0,
     "sharp_m": 5.364,
     "border_m": 0,
     "pass": true
    },
-   "islands": 75,
-   "fill": 0.494,
+   "islands": 74,
+   "fill": 0.4944,
    "u_range": [
     0.0078,
-    0.9914
+    0.9919
    ],
    "v_range": [
     0.0156,
-    0.9554
+    0.9223
    ],
-   "cook_s": 14.88,
-   "bake_s": 66.01,
-   "date": "20 October 2026 07:04",
+   "cook_s": 14.0,
+   "bake_s": 72.27,
+   "date": "20 October 2026 08:35",
    "report": "M1/report.json",
    "example": {
     "texture": "M1/texture_unique.png",
@@ -241,13 +241,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.3130875054514053,
-    "low_frac": 0.36790006200152264,
-    "high_frac": 0.31901243254707196,
-    "px_per_m_min": 793.7905195364871,
-    "px_per_m_median": 1024.0023083179851,
-    "px_per_m_max": 1250.7755091116776,
-    "stretch_max": 0.9953187021179677,
+    "exact_frac": 0.27407073314535385,
+    "low_frac": 0.38188773126325043,
+    "high_frac": 0.34404153559139566,
+    "px_per_m_min": 793.7957950657322,
+    "px_per_m_median": 1024.0028968154734,
+    "px_per_m_max": 1250.768319559665,
+    "stretch_max": 0.9953151518617243,
     "faces": 7000
    },
    "seams": {
@@ -258,26 +258,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 11.906,
-    "seams_on_smooth_m": 1.538,
+    "seams_m": 11.28,
+    "seams_on_smooth_m": 1.023,
     "sharp_kept_m": 0,
     "sharp_m": 5.364,
     "border_m": 0,
     "pass": true
    },
-   "islands": 75,
+   "islands": 74,
    "fill": null,
    "u_range": [
     0.0039,
-    0.8128
+    0.9241
    ],
    "v_range": [
-    0.5512,
+    0.6203,
     2.9961
    ],
    "cook_s": 0.02,
    "bake_s": null,
-   "date": "20 October 2026 07:04",
+   "date": "20 October 2026 08:35",
    "report": "M2/report.json",
    "example": {
     "textured_3d": "M2/view_textured_3d.png",
@@ -360,11 +360,11 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.3130621867516866,
-    "low_frac": 0.3679025307499852,
-    "high_frac": 0.31903528249832813,
+    "exact_frac": 0.2740454144456353,
+    "low_frac": 0.381890200011713,
+    "high_frac": 0.3440643855426517,
     "px_per_m_min": 793.7918298655679,
-    "px_per_m_median": 1024.0009263200084,
+    "px_per_m_median": 1024.00118245492,
     "px_per_m_max": 1250.7715750231669,
     "stretch_max": 0.9953414832730123,
     "faces": 7000
@@ -377,26 +377,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 11.906,
-    "seams_on_smooth_m": 1.538,
+    "seams_m": 11.28,
+    "seams_on_smooth_m": 1.023,
     "sharp_kept_m": 0,
     "sharp_m": 5.364,
     "border_m": 0,
     "pass": true
    },
-   "islands": 75,
+   "islands": 74,
    "fill": null,
    "u_range": [
     0.0039,
-    0.4583
+    0.4311
    ],
    "v_range": [
     0.0039,
     0.9961
    ],
-   "cook_s": 4.3,
+   "cook_s": 4.27,
    "bake_s": null,
-   "date": "20 October 2026 07:04",
+   "date": "20 October 2026 08:35",
    "report": "M3/report.json",
    "example": {
     "texture": "M3/texture_trim.png",
@@ -471,11 +471,11 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.3130621867516866,
-    "low_frac": 0.3679025307499852,
-    "high_frac": 0.31903528249832813,
+    "exact_frac": 0.2740454144456353,
+    "low_frac": 0.381890200011713,
+    "high_frac": 0.3440643855426517,
     "px_per_m_min": 793.7918298655679,
-    "px_per_m_median": 1024.0009263200084,
+    "px_per_m_median": 1024.00118245492,
     "px_per_m_max": 1250.7715750231669,
     "stretch_max": 0.9953414832730123,
     "faces": 7000
@@ -488,26 +488,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 11.906,
-    "seams_on_smooth_m": 1.538,
+    "seams_m": 11.28,
+    "seams_on_smooth_m": 1.023,
     "sharp_kept_m": 0,
     "sharp_m": 5.364,
     "border_m": 0,
     "pass": true
    },
-   "islands": 75,
+   "islands": 74,
    "fill": null,
    "u_range": [
     0.0039,
-    0.4583
+    0.4311
    ],
    "v_range": [
     0.0039,
-    0.255
+    0.3586
    ],
-   "cook_s": 4.21,
+   "cook_s": 3.12,
    "bake_s": null,
-   "date": "20 October 2026 07:04",
+   "date": "20 October 2026 08:35",
    "report": "M3B/report.json",
    "example": {
     "texture": "M3B/texture_trim.png",
@@ -578,9 +578,9 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.0660869984243693,
-    "low_frac": 0.3456752941327709,
-    "high_frac": 0.5882377074428597,
+    "exact_frac": 0.09349615832605568,
+    "low_frac": 0.3566730844570128,
+    "high_frac": 0.5498307572169315,
     "px_per_m_min": 640.3465277269039,
     "px_per_m_median": 840.261129509167,
     "px_per_m_max": 1424.6745326818502,
@@ -595,26 +595,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 11.906,
-    "seams_on_smooth_m": 1.538,
+    "seams_m": 11.28,
+    "seams_on_smooth_m": 1.023,
     "sharp_kept_m": 0,
     "sharp_m": 5.364,
     "border_m": 0,
     "pass": true
    },
-   "islands": 75,
+   "islands": 74,
    "fill": null,
    "u_range": [
     0.0039,
     0.9648
    ],
    "v_range": [
-    0.4805,
+    0.0039,
     0.9961
    ],
-   "cook_s": 3.87,
+   "cook_s": 4.17,
    "bake_s": null,
-   "date": "20 October 2026 07:04",
+   "date": "20 October 2026 08:36",
    "report": "M3C/report.json",
    "example": {
     "texture": "M3C/texture_hotspot.png",
@@ -771,13 +771,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.3130875054514053,
-    "low_frac": 0.36790006200152264,
-    "high_frac": 0.31901243254707196,
-    "px_per_m_min": 793.7905195364871,
-    "px_per_m_median": 1024.0023083179851,
-    "px_per_m_max": 1250.7755091116776,
-    "stretch_max": 0.9953187021179677,
+    "exact_frac": 0.27407073314535385,
+    "low_frac": 0.38188773126325043,
+    "high_frac": 0.34404153559139566,
+    "px_per_m_min": 793.7957950657322,
+    "px_per_m_median": 1024.0028968154734,
+    "px_per_m_max": 1250.768319559665,
+    "stretch_max": 0.9953151518617243,
     "faces": 7000
    },
    "seams": {
@@ -788,26 +788,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 11.906,
-    "seams_on_smooth_m": 1.538,
+    "seams_m": 11.28,
+    "seams_on_smooth_m": 1.023,
     "sharp_kept_m": 0,
     "sharp_m": 5.364,
     "border_m": 0,
     "pass": true
    },
-   "islands": 75,
+   "islands": 74,
    "fill": null,
    "u_range": [
     0.0039,
-    0.8128
+    0.9241
    ],
    "v_range": [
-    0.5512,
+    0.6203,
     2.9961
    ],
    "cook_s": 0.02,
-   "bake_s": 10.71,
-   "date": "20 October 2026 07:04",
+   "bake_s": 10.63,
+   "date": "20 October 2026 08:36",
    "report": "M4/report.json",
    "example": {
     "texture": "M4/ZRUV_ShaderBall_M4_layered_256x256.png",
@@ -825,27 +825,27 @@
     "check": "Le masque RVB empaqueté et ses trois canaux, chacun dans sa couleur, puis la base, le mélange et la vue texturée : la saleté sur le dessus, le laiton sur les arêtes."
    },
    "uv2": {
-    "islands": 75,
-    "fill": 0.247,
+    "islands": 74,
+    "fill": 0.2472,
     "texel": {
      "set": "uv2",
      "target_px_per_m": 128.0,
      "tol": 0.1,
      "tol_max": 0.1,
-     "exact_frac": 0.9669698717696079,
-     "low_frac": 0.009605642733910116,
-     "high_frac": 0.023424485496481837,
-     "px_per_m_min": 99.22400968312844,
-     "px_per_m_median": 128.00011294345157,
+     "exact_frac": 0.954251526773513,
+     "low_frac": 0.014589074332839909,
+     "high_frac": 0.031159398893647078,
+     "px_per_m_min": 99.22409145782105,
+     "px_per_m_median": 128.0002695556028,
      "px_per_m_max": 156.34651624084452,
-     "stretch_max": 0.9953295490271552,
+     "stretch_max": 0.9953291052566458,
      "faces": 7000
     }
    },
    "mask_std": [
-    0.0904,
-    0.2852,
-    0.1711
+    0.0902,
+    0.2857,
+    0.1693
    ]
   },
   {
@@ -944,13 +944,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.3169883134665075,
-    "low_frac": 0.3658108475498984,
-    "high_frac": 0.3172008389835939,
-    "px_per_m_min": 793.7905195364871,
-    "px_per_m_median": 1024.0018461555408,
-    "px_per_m_max": 1250.7755091116776,
-    "stretch_max": 0.9953187021179677,
+    "exact_frac": 0.27819310786559354,
+    "low_frac": 0.37971908425973383,
+    "high_frac": 0.3420878078746725,
+    "px_per_m_min": 793.7957950657322,
+    "px_per_m_median": 1024.002138261867,
+    "px_per_m_max": 1250.768319559665,
+    "stretch_max": 0.9953151518617243,
     "faces": 7032
    },
    "seams": {
@@ -961,26 +961,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 13.645,
-    "seams_on_smooth_m": 1.538,
+    "seams_m": 13.019,
+    "seams_on_smooth_m": 1.023,
     "sharp_kept_m": 0,
     "sharp_m": 5.364,
     "border_m": 1.739,
     "pass": true
    },
-   "islands": 107,
+   "islands": 106,
    "fill": 0.0,
    "u_range": [
     0.0039,
-    0.8128
+    0.9241
    ],
    "v_range": [
-    0.5512,
+    0.5625,
     2.9961
    ],
-   "cook_s": 0.59,
+   "cook_s": 0.66,
    "bake_s": null,
-   "date": "20 October 2026 07:04",
+   "date": "20 October 2026 08:36",
    "report": "M5/report.json",
    "example": {
     "texture": "M5/texture_decal_relief.png",
