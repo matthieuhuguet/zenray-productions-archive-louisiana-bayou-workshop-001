@@ -1,0 +1,99 @@
+# 20 October 2026 : where exactly does the artist put the border of a buried zone ? For every piece sunk into another (guest c in host o), the faces of c are
+# ranked by rings from the intersection : ring 0 = faces with points on both sides of the host's surface, ring +k = k faces out (visible), ring -k = k faces in
+# (buried). Every artist seam edge of c near the zone is reported by the rings of its two faces, and whether it lies on a closed edge loop.
+# Usage : python -I BuriedDiag.py <asset>   FR : ou l'artiste pose exactement le bord d'une zone enfouie.
+import sys, os, json
+from collections import Counter, deque
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, OrigStudy as O, ZruvArtist as A, ZruvLoops as L
+
+
+def rings(m, comp, c, o, fe):
+    fs_c = np.where(comp == c)[0]
+    of = np.where(comp == o)[0]
+    pts_o = m.P[[p for f in of for p in m.polys[f]]]
+    lo, hi = pts_o.min(0), pts_o.max(0)
+    pts_c = sorted({p for f in fs_c for p in m.polys[f]})
+    P = m.P[pts_c]
+    inb = ((P >= lo) & (P <= hi)).all(1)
+    vin = np.zeros(len(m.P), dtype=bool)
+    ids = np.array(pts_c)[inb]
+    if len(ids):
+        vin[ids] = A._inside(m, m.P[ids], of)
+    st = {}
+    for f in fs_c:
+        v = [vin[p] for p in m.polys[f]]
+        st[int(f)] = 'in' if all(v) else ('out' if not any(v) else 'x')
+    ring = {f: 0 for f, s in st.items() if s == 'x'}
+    dq = deque(ring)
+    while dq:
+        f = dq.popleft()
+        for e in fe[f]:
+            fl = m.edges[e]
+            if len(fl) != 2:
+                continue
+            g = int(fl[0] if fl[1] == f else fl[1])
+            if g not in ring:
+                ring[g] = ring[f] + 1
+                dq.append(g)
+    sign = {f: (0 if st[f] == 'x' else (1 if st[f] == 'out' else -1)) for f in st}
+    return {f: sign[f] * r for f, r in ring.items()}, st, vin
+
+
+def run(asset):
+    m, _ = O.load_pair(asset)
+    comp = A.components(m)
+    by = A.buried_by(m, comp)
+    so = A.inner_seams(m, 'orig', 1e-5)
+    lab, _ = Z.uv_islands(m, 'orig', 1e-5)
+    fe = {}
+    for e, fs in m.edges.items():
+        for f in fs:
+            fe.setdefault(int(f), []).append(e)
+    Q = L.Quads(m)
+    out = []
+    pairs = sorted({(int(comp[f]), int(by[f])) for f in range(m.n) if by[f] >= 0})
+    for c, o in pairs:
+        rk, st, vin = rings(m, comp, c, o, fe)
+        nb = sum(1 for f in rk if st[f] == 'in')
+        hist = Counter()
+        loop_ok = 0
+        n_e = 0
+        seam_edges = []
+        for e in so:
+            f0, f1 = (int(x) for x in m.edges[e])
+            if f0 not in rk or f1 not in rk:
+                continue
+            r0, r1 = rk[f0], rk[f1]
+            if min(abs(r0), abs(r1)) > 6:
+                continue
+            hist[tuple(sorted((r0, r1)))] += 1
+            seam_edges.append(e)
+        # closed loops among those seams
+        seen = set()
+        loops = []
+        for e in seam_edges:
+            if e in seen:
+                continue
+            ed, closed = Q.loop(e)
+            if closed and set(ed) <= so:
+                loops.append(len(ed))
+                seen |= set(ed)
+        isl = Counter(int(lab[f]) for f in rk if st[f] == 'in')
+        isl_info = []
+        for k, cnt in isl.most_common(6):
+            fk = np.where(lab == k)[0]
+            rr = Counter(rk.get(int(f), 99) for f in fk)
+            isl_info.append({'island': k, 'faces': int(len(fk)), 'buried_faces_in_it': cnt, 'ring_hist': dict(sorted(rr.items()))})
+        out.append({'guest': c, 'host': o, 'guest_faces': int((comp == c).sum()), 'buried_by_centroid': int((by[comp == c] == o).sum()),
+                    'faces_all_points_in': nb, 'ring_count': dict(sorted(Counter(rk.values()).items())),
+                    'artist_seam_ring_pairs': {'%d|%d' % k: v for k, v in sorted(hist.items())},
+                    'artist_closed_loops_near': loops, 'islands': isl_info})
+    print(json.dumps(out, indent=1))
+    json.dump(out, open(O.REF + '/study/%s/buried_diag.json' % asset, 'w'), indent=1)
+
+
+if __name__ == '__main__':
+    run(sys.argv[1])
