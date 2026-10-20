@@ -1,0 +1,236 @@
+{
+ "ok": true,
+ "result": {
+  "snap": {
+   "parms": 67,
+   "strips": 248,
+   "exact_before": 0.2813,
+   "rounds": [
+    {
+     "live_parms": 41,
+     "exact": 0.4096
+    },
+    {
+     "live_parms": 49,
+     "exact": 0.4196
+    },
+    {
+     "live_parms": 52,
+     "exact": 0.4321
+    }
+   ],
+   "exact_after": 0.4321,
+   "changed": {
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_arch/arch_r": [
+     0.9727,
+     0.97232
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_arch/arch_cy": [
+     1.92271,
+     1.92232
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_arch/arch_t": [
+     0.09759,
+     0.0975
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_arch/arch_w": [
+     0.11664,
+     0.1301
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_arch/arch_bevel": [
+     0.02021,
+     0.0202
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_arch/crown_top": [
+     2.9442,
+     2.9434
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/span": [
+     1.9454,
+     1.94464
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/plinth_top": [
+     0.1092,
+     0.11055
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/shaft_low_y1": [
+     0.6258,
+     0.58422
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/collar_lo_y1": [
+     0.7384,
+     0.69126
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/shaft_mid_y1": [
+     1.8145,
+     1.80475
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/collar_up_y1": [
+     1.9635,
+     1.97299
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/shaft_low_t": [
+     0.1788,
+     0.18855
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/shaft_mid_t": [
+     0.139,
+     0.15033
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/frame_margin": [
+     0.027,
+     0.02326
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/frame_bar": [
+     0.015,
+     0.01385
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_post/frame_raise": [
+     0.007,
+     0.00953
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/base_y0": [
+     2.92959,
+     2.87137
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/base_y1": [
+     2.97098,
+     2.92148
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/base_y2": [
+     2.99996,
+     2.96959
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/base_w1": [
+     0.22185,
+     0.20932
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/base_w2": [
+     0.16887,
+     0.16884
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/mast_w": [
+     0.0944,
+     0.11433
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/mast_d": [
+     0.082,
+     0.12025
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/mast_top": [
+     3.6325,
+     3.63191
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/arm_y0": [
+     3.3775,
+     3.39639
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/arm_y1": [
+     3.4768,
+     3.46413
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/arm_w": [
+     0.4636,
+     0.46349
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/arm_d": [
+     0.074,
+     0.10026
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/cross_bevel": [
+     0.018,
+     0.01535
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_cross/arm_chamfer": [
+     0.008,
+     0.00529
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sign/sign_half": [
+     0.78,
+     0.77894
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sign/sign_bottom": [
+     1.8179,
+     1.81937
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sign/sign_e": [
+     0.046,
+     0.07064
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sign/sign_inset": [
+     0.026,
+     0.026
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sign/sign_recess": [
+     0.011,
+     0.00953
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sign/rivet_r": [
+     0.015,
+     0.015
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sign/rivet_in": [
+     0.05,
+     0.05
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sign/rivet_taper": [
+     0.7,
+     0.69995
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_pendant/die_w": [
+     0.15563,
+     0.16056
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_pendant/die_d": [
+     0.098,
+     0.08859
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_pendant/die_bevel": [
+     0.005,
+     0.00171
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_pendant/web_d": [
+     0.062,
+     0.08939
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_pendant/web_top_inset": [
+     0.004,
+     0.00405
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_pendant/rib_proud": [
+     0.027,
+     0.0256
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_pendant/rib_sink": [
+     0.003,
+     0.00298
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_wire/wire_w": [
+     0.01,
+     0.02082
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_wire/wire_up": [
+     0.114,
+     0.11362
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_wire/wire_low": [
+     0.125,
+     0.12514
+    ],
+    "/obj/ZRUV_ArchLibrarySrc/CTRL_sym/seam_z": [
+     0.0,
+     0.0009
+    ]
+   },
+   "snap_s": 136.6
+  },
+  "M3B": {
+   "M3B": {
+    "score": 0.665057,
+    "weakest": "uv:density",
+    "errors": null
+   }
+  }
+ }
+}
+done
