@@ -1,0 +1,54 @@
+# 20 October 2026 : close views of the parts Matthieu checks (the pig's snout and ears), the ZRUV cut and the SideFX cut side by side, islands in colour, seams in
+# black. Usage : python -I ZoomParts.py <zruv mesh.json> <sidefx mesh.json> <out png>   FR : gros plans du groin et des oreilles, ZRUV et SideFX.
+import sys, os
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, M1Boards as B
+
+
+def cam(target, d, half, size=520):
+    d = np.array(d, float)
+    return {'ortho': True, 'eye': target + 10.0 * d / np.linalg.norm(d), 'target': target, 'half': half, 'size': (size, size), 'c': target}
+
+
+def parts(m):
+    lo, hi = m.P.min(0), m.P.max(0)
+    ext = hi - lo
+    snout = np.array([0.5 * (lo[0] + hi[0]), lo[1] + 0.62 * ext[1], hi[2] - 0.12 * ext[2]])
+    ear = np.array([lo[0] + 0.12 * ext[0], hi[1] - 0.12 * ext[1], lo[2] + 0.45 * ext[2]])
+    return [('snout front', snout, (0, 0, 1), 0.2 * ext[0]), ('snout side', snout, (-1, 0, 0), 0.25 * ext[0]), ('snout below', snout, (0, -1, 0.3), 0.25 * ext[0]),
+            ('ear front', ear, (0, 0, 1), 0.22 * ext[0]), ('ear back', ear, (0, 0, -1), 0.22 * ext[0]), ('ear above', ear, (0, 1, 0.01), 0.22 * ext[0])]
+
+
+def row(m, name, tol, title):
+    lab, seams = Z.uv_islands(m, name, tol)
+    cols = B.palette(int(lab.max()) + 1)
+    ed = [e for e in seams if len(m.edges[e]) == 2]
+    ims = []
+    for nm, t, d, h in parts(m):
+        img, zb = R.render(m, cam(t, d, h), face_rgb=cols[lab])
+        im = R.draw_edges(img, zb, m, cam(t, d, h), ed, (18, 18, 22), 2)
+        ImageDraw.Draw(im).text((8, 6), nm, fill=(20, 20, 22), font=B.font(20))
+        ims.append(im)
+    w, hgt = ims[0].size
+    out = Image.new('RGB', (w * len(ims), hgt + 44), (246, 246, 248))
+    ImageDraw.Draw(out).text((10, 8), title, fill=(20, 20, 22), font=B.font(24))
+    for i, im in enumerate(ims):
+        out.paste(im, (i * w, 44))
+    return out
+
+
+if __name__ == '__main__':
+    a = Z.from_json(sys.argv[1])
+    b = Z.from_json(sys.argv[2])
+    r1 = row(a, 'uv', 1e-6, 'ZRUV, M1 artist cut')
+    r2 = row(b, 'orig', 1e-5, 'SideFX (for comparison, never read by M1)')
+    W = max(r1.size[0], r2.size[0])
+    out = Image.new('RGB', (W, r1.size[1] + r2.size[1]), (246, 246, 248))
+    out.paste(r1, (0, 0))
+    out.paste(r2, (0, r1.size[1]))
+    if out.size[0] > 2600:
+        out = out.resize((2600, int(out.size[1] * 2600 / out.size[0])))
+    out.save(sys.argv[3])
+    print(sys.argv[3])

@@ -1,0 +1,58 @@
+# 20 October 2026 : what makes SideFX cut the pig's snout plate and its ears where it does : the fold (dihedral) along the snout plate border against the faces
+# around it, and the thickness of the ears (distance to the opposite side along the inward normal). Usage : python -I PigPartsDiag.py <sidefx mesh.json>
+import sys, json
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z
+
+
+def thickness(m, faces=None, max_rel=0.3):
+    """Per face : distance along -normal from its centre to the nearest face whose normal looks the other way (the back of a thin sheet), inf when none."""
+    faces = range(m.n) if faces is None else faces
+    A, B, C = m.P[m.tri[:, 0]], m.P[m.tri[:, 1]], m.P[m.tri[:, 2]]
+    e1, e2 = B - A, C - A
+    diag = float(np.linalg.norm(m.P.max(0) - m.P.min(0)))
+    out = np.full(m.n, np.inf)
+    nt = m.normal[m.tf]
+    for f in faces:
+        o = m.centroid[f] - 1e-6 * diag * m.normal[f]
+        d = -m.normal[f]
+        h = np.cross(d, e2)
+        a = (e1 * h).sum(1)
+        ok = np.abs(a) > 1e-14
+        fa = np.where(ok, 1.0 / np.where(ok, a, 1.0), 0.0)
+        s = o - A
+        u = fa * (s * h).sum(1)
+        q = np.cross(s, e1)
+        v = fa * (q @ d)
+        t = fa * (q * e2).sum(1)
+        hit = ok & (u >= 0) & (v >= 0) & (u + v <= 1) & (t > 1e-9 * diag) & (m.tf != f) & ((nt @ m.normal[f]) < -0.3)
+        if hit.any():
+            out[f] = float(t[hit].min())
+    return out
+
+
+m = Z.from_json(sys.argv[1])
+lab, seams = Z.uv_islands(m, 'orig', 1e-5)
+dih = m.dihedral()
+med = float(np.median(list(dih.values())))
+print('median dihedral %.2f deg' % med)
+cz = np.array([m.centroid[lab == k][:, 2].mean() for k in range(int(lab.max()) + 1)])
+nose = int(np.argmax(cz))
+fn = set(np.where(lab == nose)[0].tolist())
+bnd = [e for e, fs in m.edges.items() if len(fs) == 2 and ((fs[0] in fn) != (fs[1] in fn))]
+inn = [e for e, fs in m.edges.items() if len(fs) == 2 and fs[0] in fn and fs[1] in fn]
+ring_pts = {p for e in bnd for p in e}
+near = [e for e, fs in m.edges.items() if len(fs) == 2 and not (fs[0] in fn or fs[1] in fn) and (e[0] in ring_pts or e[1] in ring_pts)]
+q = lambda E: np.percentile([dih.get(e, 0.0) for e in E], [0, 10, 50, 90, 100]).round(1).tolist()
+print('nose island', nose, 'faces', len(fn), 'border edges', len(bnd), 'dihedral border p0 p10 p50 p90 p100', q(bnd))
+print('  inside the plate', q(inn), ' ; the ring of edges just outside', q(near))
+th = thickness(m)
+diag = float(np.linalg.norm(m.P.max(0) - m.P.min(0)))
+for k in range(int(lab.max()) + 1):
+    fs = np.where(lab == k)[0]
+    t = th[fs]
+    fin = np.isfinite(t)
+    c = m.centroid[fs].mean(0)
+    print('island %2d faces %4d centre %s thin share %.2f median thickness/diag %s' % (k, len(fs), np.round(c, 2), float((t < 0.05 * diag).mean()),
+          ('%.4f' % float(np.median(t[fin]) / diag)) if fin.any() else 'inf'))
