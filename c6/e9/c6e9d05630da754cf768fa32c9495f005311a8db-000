@@ -1,0 +1,4 @@
+== orig : {"islands": 76, "seams_inner_m": 5.4317, "border_m": 0.0, "facing_m": {"down": 1.8918, "up": 0.9432, "back": 0.7218, "front": 1.0338, "side": 0.8411}, "concave_m": 0.7768, "convex_m": 3.8732, "flat_m": 0.7817}
+#16  faces   688  share  41.5%  dens 0.78  +u +Z 25 deg  +v +X 38 deg  mir 0.00  box [0.000 0.000 1.000 0.764]  twin z:16  stack []  zero False  slit 0.546  pieces PreviewSurface  centre [0.009, 0.1896, 0.0]  nb {'18': 0.527, '17': 0.5306}
+#13  faces   600  share  18.8%  dens 0.58  +u +Z 0 deg   +v +Y 1 deg   mir 0.00  box [0.000 0.656 0.750 1.000]  twin z:13  stack []  zero False  slit 0.501  pieces PreviewSurface  centre [-0.0395, 0.053, -0.0]  nb {'15': 0.2689, '14': 0.2689}
+{'orig_m': 5.4317, 'zr_m': 11.2799, 'identical_m': 1.0692, 'recall': 0.1968, 'precision': 0.0948, 'f1': 0.128, 'recall_1ring': 0.272, 'precision_1ring': 0.1461}

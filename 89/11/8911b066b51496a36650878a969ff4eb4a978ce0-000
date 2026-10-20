@@ -1,0 +1,4659 @@
+{
+ "asset": "ZRUV_ShaderBall",
+ "method": "M1",
+ "load": {
+  "scale": 0.6872528780257003,
+  "source_points": 7126,
+  "bench_points": 7126,
+  "faces": 7000
+ },
+ "orig": {
+  "summary": {
+   "islands": 76,
+   "seams_inner_m": 5.4317,
+   "border_m": 0.0,
+   "facing_m": {
+    "down": 1.8918,
+    "up": 0.9432,
+    "back": 0.7218,
+    "front": 1.0338,
+    "side": 0.8411
+   },
+   "concave_m": 0.7768,
+   "convex_m": 3.8732,
+   "flat_m": 0.7817
+  },
+  "islands": [
+   {
+    "id": 0,
+    "faces": 216,
+    "share": 0.12099700832882795,
+    "uv_area": 0.25771101951533115,
+    "density": 2.129427065677239,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.9999957084655762,
+     0.25771212577819824
+    ],
+    "u_dir": "+X 47 deg",
+    "v_dir": "+X 38 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0106,
+     0.1904,
+     0.0
+    ],
+    "pieces": [
+     "Core"
+    ],
+    "density_rel": 0.902,
+    "slit_m": 0.1761,
+    "neighbours": {
+     "3": 0.5306,
+     "1": 0.5951
+    },
+    "mirror_of": "z:0",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 1,
+    "faces": 96,
+    "share": 0.03321527722846938,
+    "uv_area": 0.017677816704544824,
+    "density": 0.532102326928489,
+    "uv_box": [
+     0.7599999904632568,
+     0.7893945574760437,
+     0.927135169506073,
+     0.9487404823303223
+    ],
+    "u_dir": "-Y 38 deg",
+    "v_dir": "+Z 6 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0702,
+     0.1273,
+     -0.0
+    ],
+    "pieces": [
+     "Core"
+    ],
+    "density_rel": 0.225,
+    "slit_m": 0.0881,
+    "neighbours": {
+     "2": 0.1313,
+     "0": 0.5951
+    },
+    "mirror_of": "z:1",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 2,
+    "faces": 12,
+    "share": 0.0013679132816450934,
+    "uv_area": 0.0029206969330335397,
+    "density": 2.134677838921514,
+    "uv_box": [
+     0.6025390625,
+     0.2587890625,
+     0.663345992565155,
+     0.31959599256515503
+    ],
+    "u_dir": "-Y 43 deg",
+    "v_dir": "+Z 23 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.088,
+     0.1134,
+     0.0
+    ],
+    "pieces": [
+     "Core"
+    ],
+    "density_rel": 0.904,
+    "slit_m": 0.0,
+    "neighbours": {
+     "1": 0.1313
+    },
+    "mirror_of": "z:2",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 3,
+    "faces": 36,
+    "share": 0.025813041019123288,
+    "uv_area": 0.43710446434847333,
+    "density": 16.92974761644621,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.7499691247940063,
+     0.749984622001648
+    ],
+    "u_dir": "-Z 0 deg",
+    "v_dir": "+Y 38 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0867,
+     0.2499,
+     -0.0
+    ],
+    "pieces": [
+     "Core"
+    ],
+    "density_rel": 7.171,
+    "slit_m": 0.0,
+    "neighbours": {
+     "0": 0.5306
+    },
+    "mirror_of": "z:3",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 4,
+    "faces": 600,
+    "share": 0.08550080376998033,
+    "uv_area": 0.18739931892243433,
+    "density": 2.191301943614298,
+    "uv_box": [
+     0.00020143389701843262,
+     0.7500671148300171,
+     0.75,
+     1.0
+    ],
+    "u_dir": "+Z 0 deg",
+    "v_dir": "+Y 0 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0061,
+     0.0221,
+     -0.0
+    ],
+    "pieces": [
+     "Stand"
+    ],
+    "density_rel": 0.928,
+    "slit_m": 0.1652,
+    "neighbours": {
+     "5": 0.1294,
+     "6": 0.4999
+    },
+    "mirror_of": "z:4",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 5,
+    "faces": 56,
+    "share": 0.0013281299386219269,
+    "uv_area": 0.0012937666423571414,
+    "density": 0.9739121770055936,
+    "uv_box": [
+     0.9172265529632568,
+     0.8274804949760437,
+     0.9577388763427734,
+     0.8682159781455994
+    ],
+    "u_dir": "+X 36 deg",
+    "v_dir": "-Z 36 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0061,
+     0.0396,
+     -0.0
+    ],
+    "pieces": [
+     "Stand"
+    ],
+    "density_rel": 0.413,
+    "slit_m": 0.0,
+    "neighbours": {
+     "4": 0.1294
+    },
+    "mirror_of": "z:5",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 6,
+    "faces": 56,
+    "share": 0.019811608265368635,
+    "uv_area": 0.01929900383864691,
+    "density": 0.9739116784341297,
+    "uv_box": [
+     0.7599999904632568,
+     0.8274804949760437,
+     0.9164683818817139,
+     0.9848107695579529
+    ],
+    "u_dir": "+Z 18 deg",
+    "v_dir": "-X 18 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0061,
+     0.0,
+     -0.0
+    ],
+    "pieces": [
+     "Stand"
+    ],
+    "density_rel": 0.413,
+    "slit_m": 0.0,
+    "neighbours": {
+     "4": 0.4999
+    },
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 7,
+    "faces": 48,
+    "share": 0.00011772516360151275,
+    "uv_area": 0.002663779754396245,
+    "density": 22.622126384830562,
+    "uv_box": [
+     0.8534578084945679,
+     0.642578125,
+     0.9434707760810852,
+     0.672171413898468
+    ],
+    "u_dir": "-X 38 deg",
+    "v_dir": "+Z 45 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0358,
+     0.3051,
+     0.0869
+    ],
+    "pieces": [
+     "SubsurfaceBars"
+    ],
+    "density_rel": 9.582,
+    "slit_m": 0.0,
+    "neighbours": {
+     "9": 0.0471
+    },
+    "mirror_of": null,
+    "stacked_with": [
+     10
+    ],
+    "zero_uv": false
+   },
+   {
+    "id": 8,
+    "faces": 48,
+    "share": 0.00011772487179918337,
+    "uv_area": 0.002663779754396245,
+    "density": 22.622182457851274,
+    "uv_box": [
+     0.7616609334945679,
+     0.642578125,
+     0.8516739010810852,
+     0.672171413898468
+    ],
+    "u_dir": "+Y 38 deg",
+    "v_dir": "+Z 45 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.129,
+     0.1888,
+     0.0851
+    ],
+    "pieces": [
+     "SubsurfaceBars"
+    ],
+    "density_rel": 9.582,
+    "slit_m": 0.0,
+    "neighbours": {
+     "9": 0.0471
+    },
+    "mirror_of": null,
+    "stacked_with": [
+     11
+    ],
+    "zero_uv": false
+   },
+   {
+    "id": 9,
+    "faces": 1408,
+    "share": 0.00893492953853741,
+    "uv_area": 0.15338025350114967,
+    "density": 17.162586236474677,
+    "uv_box": [
+     0.7616609334945679,
+     0.0,
+     1.0008735656738281,
+     0.6411883234977722
+    ],
+    "u_dir": "-Z 45 deg",
+    "v_dir": "-Y 39 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0745,
+     0.2405,
+     0.0962
+    ],
+    "pieces": [
+     "SubsurfaceBars"
+    ],
+    "density_rel": 7.269,
+    "slit_m": 0.1427,
+    "neighbours": {
+     "7": 0.0471,
+     "8": 0.0471
+    },
+    "mirror_of": null,
+    "stacked_with": [
+     12
+    ],
+    "zero_uv": false
+   },
+   {
+    "id": 10,
+    "faces": 48,
+    "share": 0.00011772488188483748,
+    "uv_area": 0.002663779754396245,
+    "density": 22.622180519777487,
+    "uv_box": [
+     0.8534578084945679,
+     0.642578125,
+     0.9434707760810852,
+     0.672171413898468
+    ],
+    "u_dir": "-Y 40 deg",
+    "v_dir": "-Z 45 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.128,
+     0.1871,
+     -0.0869
+    ],
+    "pieces": [
+     "SubsurfaceBars"
+    ],
+    "density_rel": 9.582,
+    "slit_m": 0.0,
+    "neighbours": {
+     "12": 0.0471
+    },
+    "mirror_of": null,
+    "stacked_with": [
+     7
+    ],
+    "zero_uv": false
+   },
+   {
+    "id": 11,
+    "faces": 48,
+    "share": 0.00011772514208323496,
+    "uv_area": 0.002663779754396245,
+    "density": 22.622130519794354,
+    "uv_box": [
+     0.7616609334945679,
+     0.642578125,
+     0.8516739010810852,
+     0.672171413898468
+    ],
+    "u_dir": "+X 37 deg",
+    "v_dir": "-Z 45 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0377,
+     0.3057,
+     -0.0851
+    ],
+    "pieces": [
+     "SubsurfaceBars"
+    ],
+    "density_rel": 9.582,
+    "slit_m": 0.0,
+    "neighbours": {
+     "12": 0.0471
+    },
+    "mirror_of": null,
+    "stacked_with": [
+     8
+    ],
+    "zero_uv": false
+   },
+   {
+    "id": 12,
+    "faces": 1408,
+    "share": 0.008934929653395183,
+    "uv_area": 0.15338025350114967,
+    "density": 17.162586015851065,
+    "uv_box": [
+     0.7616609334945679,
+     0.0,
+     1.0008735656738281,
+     0.6411883234977722
+    ],
+    "u_dir": "+Z 45 deg",
+    "v_dir": "+Y 37 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0747,
+     0.2403,
+     -0.0962
+    ],
+    "pieces": [
+     "SubsurfaceBars"
+    ],
+    "density_rel": 7.269,
+    "slit_m": 0.1427,
+    "neighbours": {
+     "10": 0.0471,
+     "11": 0.0471
+    },
+    "mirror_of": null,
+    "stacked_with": [
+     9
+    ],
+    "zero_uv": false
+   },
+   {
+    "id": 13,
+    "faces": 600,
+    "share": 0.18832763327129787,
+    "uv_area": 0.25798645560263367,
+    "density": 1.3695795746618062,
+    "uv_box": [
+     0.0,
+     0.6562480926513672,
+     0.7499403953552246,
+     1.0002573728561401
+    ],
+    "u_dir": "+Z 0 deg",
+    "v_dir": "+Y 1 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0395,
+     0.053,
+     -0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.58,
+    "slit_m": 0.5008,
+    "neighbours": {
+     "15": 0.2689,
+     "14": 0.2689
+    },
+    "mirror_of": "z:13",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 14,
+    "faces": 48,
+    "share": 0.002923696254989373,
+    "uv_area": 0.0038857268564722602,
+    "density": 1.3287535283921614,
+    "uv_box": [
+     0.8553760647773743,
+     0.7941799759864807,
+     0.9390321373939514,
+     0.8903359174728394
+    ],
+    "u_dir": "+X 45 deg",
+    "v_dir": "+Y 1 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1118,
+     0.0493,
+     -0.1058
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.563,
+    "slit_m": 0.0,
+    "neighbours": {
+     "13": 0.2689
+    },
+    "mirror_of": "z:15",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 15,
+    "faces": 48,
+    "share": 0.0029236962549894054,
+    "uv_area": 0.003885729891440093,
+    "density": 1.328754566222227,
+    "uv_box": [
+     0.7705516219139099,
+     0.7941799759864807,
+     0.8540852665901184,
+     0.8906042575836182
+    ],
+    "u_dir": "-X 45 deg",
+    "v_dir": "+Y 1 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1118,
+     0.0493,
+     0.1058
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.563,
+    "slit_m": 0.0,
+    "neighbours": {
+     "13": 0.2689
+    },
+    "mirror_of": "z:14",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 16,
+    "faces": 688,
+    "share": 0.41496750346544353,
+    "uv_area": 0.764166661462917,
+    "density": 1.841104382869596,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.9999974370002747,
+     0.7641686201095581
+    ],
+    "u_dir": "+Z 25 deg",
+    "v_dir": "+X 38 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.009,
+     0.1896,
+     0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.78,
+    "slit_m": 0.546,
+    "neighbours": {
+     "18": 0.527,
+     "17": 0.5306
+    },
+    "mirror_of": "z:16",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 17,
+    "faces": 84,
+    "share": 0.025725019755876728,
+    "uv_area": 0.04704212940930097,
+    "density": 1.8282503638703205,
+    "uv_box": [
+     0.2373046875,
+     0.0,
+     0.4834461510181427,
+     0.2461414486169815
+    ],
+    "u_dir": "+Y 38 deg",
+    "v_dir": "+Z 0 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0778,
+     0.1214,
+     0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.774,
+    "slit_m": 0.0,
+    "neighbours": {
+     "16": 0.5306
+    },
+    "mirror_of": "z:17",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 18,
+    "faces": 84,
+    "share": 0.022470741015544693,
+    "uv_area": 0.04369727017902214,
+    "density": 1.9442017323931466,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.2372293770313263,
+     0.2372293770313263
+    ],
+    "u_dir": "-Z 0 deg",
+    "v_dir": "-Y 38 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.104,
+     0.1013,
+     -0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.823,
+    "slit_m": 0.0,
+    "neighbours": {
+     "16": 0.527
+    },
+    "mirror_of": "z:18",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 19,
+    "faces": 24,
+    "share": 0.0006366169004488405,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1372,
+     0.1825,
+     0.047
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 20,
+    "faces": 24,
+    "share": 0.0006366171986008527,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1436,
+     0.1702,
+     -0.0154
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 21,
+    "faces": 24,
+    "share": 0.0006366172159951354,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0261,
+     0.3187,
+     -0.0406
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 22,
+    "faces": 24,
+    "share": 0.0006366167881046533,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0262,
+     0.3228,
+     0.0233
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 23,
+    "faces": 24,
+    "share": 0.0006366168896533772,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1096,
+     0.1682,
+     0.0914
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 24,
+    "faces": 24,
+    "share": 0.0006366172616047272,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1328,
+     0.1339,
+     0.0234
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 25,
+    "faces": 24,
+    "share": 0.0006366175330574039,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1246,
+     0.1391,
+     -0.0557
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 26,
+    "faces": 24,
+    "share": 0.0006366170198692548,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0883,
+     0.1817,
+     -0.1124
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 27,
+    "faces": 24,
+    "share": 0.0006366164019991186,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0393,
+     0.2436,
+     -0.1229
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 28,
+    "faces": 24,
+    "share": 0.0006366172122696819,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0017,
+     0.2988,
+     -0.0827
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 29,
+    "faces": 24,
+    "share": 0.0006366170776868897,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0175,
+     0.3239,
+     -0.0088
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 30,
+    "faces": 24,
+    "share": 0.0006366165355416738,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0014,
+     0.3085,
+     0.0677
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 31,
+    "faces": 24,
+    "share": 0.0006366174890033204,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1025,
+     0.1141,
+     0.0696
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 32,
+    "faces": 24,
+    "share": 0.0006366171308121601,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1113,
+     0.0971,
+     -0.0169
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 33,
+    "faces": 24,
+    "share": 0.0006366166506479969,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0851,
+     0.1252,
+     -0.0968
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 34,
+    "faces": 24,
+    "share": 0.0006366166653844675,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.035,
+     0.1866,
+     -0.1363
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 35,
+    "faces": 24,
+    "share": 0.0006366163484241294,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.018,
+     0.2555,
+     -0.1189
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 36,
+    "faces": 24,
+    "share": 0.000636616266468795,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0515,
+     0.3028,
+     -0.0518
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 37,
+    "faces": 24,
+    "share": 0.0006366173430909306,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0513,
+     0.3085,
+     0.0367
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 38,
+    "faces": 24,
+    "share": 0.0006366171978967896,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0176,
+     0.2702,
+     0.1092
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 39,
+    "faces": 24,
+    "share": 0.0006366174213438835,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0355,
+     0.2041,
+     0.1351
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 40,
+    "faces": 24,
+    "share": 0.0006366169683193051,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0548,
+     0.1121,
+     0.1071
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 41,
+    "faces": 24,
+    "share": 0.0006366172954842956,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0811,
+     0.0733,
+     0.0301
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 42,
+    "faces": 24,
+    "share": 0.0006366168986814366,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0717,
+     0.0793,
+     -0.0594
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 43,
+    "faces": 24,
+    "share": 0.0006366170637091369,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0307,
+     0.1274,
+     -0.1236
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 44,
+    "faces": 24,
+    "share": 0.0006366173590870751,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0248,
+     0.1975,
+     -0.1355
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 45,
+    "faces": 24,
+    "share": 0.0006366168159698592,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0712,
+     0.26,
+     -0.09
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 46,
+    "faces": 24,
+    "share": 0.0006366174486666726,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0891,
+     0.2884,
+     -0.0064
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 47,
+    "faces": 24,
+    "share": 0.0006366161334867009,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0709,
+     0.2709,
+     0.0802
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 48,
+    "faces": 24,
+    "share": 0.0006366176368465975,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0242,
+     0.2148,
+     0.1331
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 49,
+    "faces": 24,
+    "share": 0.0006366173219531969,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.036,
+     0.0697,
+     0.0693
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 50,
+    "faces": 24,
+    "share": 0.000636616789518101,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0444,
+     0.0535,
+     -0.0128
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 51,
+    "faces": 24,
+    "share": 0.0006366178715063181,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0195,
+     0.0802,
+     -0.0886
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 52,
+    "faces": 24,
+    "share": 0.0006366170758473461,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.028,
+     0.1385,
+     -0.1261
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 53,
+    "faces": 24,
+    "share": 0.0006366170383655734,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0783,
+     0.2039,
+     -0.1096
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 54,
+    "faces": 24,
+    "share": 0.000636616507298155,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1101,
+     0.2487,
+     -0.0459
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 55,
+    "faces": 24,
+    "share": 0.0006366169962487121,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1099,
+     0.2541,
+     0.038
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 56,
+    "faces": 24,
+    "share": 0.0006366165245502301,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0779,
+     0.2178,
+     0.1068
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 57,
+    "faces": 24,
+    "share": 0.0006366173045226522,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0275,
+     0.1551,
+     0.1315
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 58,
+    "faces": 24,
+    "share": 0.0006366170810781033,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0161,
+     0.0807,
+     0.0875
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 59,
+    "faces": 24,
+    "share": 0.0006366166672272057,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0046,
+     0.0501,
+     0.0269
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 60,
+    "faces": 24,
+    "share": 0.000636616844374865,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0027,
+     0.0548,
+     -0.0436
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 61,
+    "faces": 24,
+    "share": 0.0006366164949843558,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.035,
+     0.0927,
+     -0.0942
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 62,
+    "faces": 24,
+    "share": 0.0006366173756672993,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0787,
+     0.1479,
+     -0.1035
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 63,
+    "faces": 24,
+    "share": 0.0006366168661530654,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1153,
+     0.1971,
+     -0.0677
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 64,
+    "faces": 24,
+    "share": 0.000636616788289117,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1294,
+     0.2195,
+     -0.0018
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 65,
+    "faces": 24,
+    "share": 0.0006366168099250712,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.115,
+     0.2057,
+     0.0663
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 66,
+    "faces": 24,
+    "share": 0.0006366169127037162,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0783,
+     0.1616,
+     0.108
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 67,
+    "faces": 24,
+    "share": 0.000636617520020727,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0403,
+     0.0638,
+     0.0461
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 68,
+    "faces": 24,
+    "share": 0.0006366171348755806,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0351,
+     0.0538,
+     -0.0045
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 69,
+    "faces": 24,
+    "share": 0.0006366171966778232,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0504,
+     0.0703,
+     -0.0513
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 70,
+    "faces": 24,
+    "share": 0.0006366169411767946,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0798,
+     0.1063,
+     -0.0745
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 71,
+    "faces": 24,
+    "share": 0.0006366171063436626,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1108,
+     0.1466,
+     -0.0642
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 72,
+    "faces": 24,
+    "share": 0.0006366166893150389,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1304,
+     0.1743,
+     -0.0249
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 73,
+    "faces": 24,
+    "share": 0.000636616701732431,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1303,
+     0.1776,
+     0.0269
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 74,
+    "faces": 24,
+    "share": 0.0006366171022283122,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1106,
+     0.1552,
+     0.0693
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   },
+   {
+    "id": 75,
+    "faces": 24,
+    "share": 0.0006366170677817214,
+    "uv_area": 0.0,
+    "density": 0.0,
+    "uv_box": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "u_dir": "+X 90 deg",
+    "v_dir": "+X 90 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0795,
+     0.1165,
+     0.0845
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 0.0,
+    "slit_m": 0.0,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": true
+   }
+  ]
+ },
+ "zr": {
+  "summary": {
+   "islands": 74,
+   "seams_inner_m": 11.2799,
+   "border_m": 0.0,
+   "facing_m": {
+    "down": 2.8609,
+    "up": 5.0525,
+    "back": 0.9964,
+    "front": 1.2577,
+    "side": 1.1124
+   },
+   "concave_m": 3.6499,
+   "convex_m": 6.9964,
+   "flat_m": 0.6336
+  },
+  "islands": [
+   {
+    "id": 0,
+    "faces": 360,
+    "share": 0.18139323985806574,
+    "uv_area": 0.09071658306277725,
+    "density": 0.49999999397190387,
+    "uv_box": [
+     0.44287109375,
+     0.015625,
+     0.8155490756034851,
+     0.44183024764060974
+    ],
+    "u_dir": "+Y 35 deg",
+    "v_dir": "+Y 20 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0059,
+     0.1867,
+     -0.0
+    ],
+    "pieces": [
+     "Core"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.9436,
+    "neighbours": {},
+    "mirror_of": "z:0",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 1,
+    "faces": 236,
+    "share": 0.03480773222818258,
+    "uv_area": 0.01740769378409368,
+    "density": 0.49999990562250035,
+    "uv_box": [
+     0.633056640625,
+     0.7109375,
+     0.7381353974342346,
+     0.9222526550292969
+    ],
+    "u_dir": "-X 0 deg",
+    "v_dir": "+Z 0 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0061,
+     0.0396,
+     -0.0
+    ],
+    "pieces": [
+     "Stand"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0,
+    "neighbours": {
+     "2": 0.662
+    },
+    "mirror_of": "z:1",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 2,
+    "faces": 120,
+    "share": 0.018342191292324696,
+    "uv_area": 0.009173130930543838,
+    "density": 0.5000009012186651,
+    "uv_box": [
+     0.273681640625,
+     0.48388671875,
+     0.607201337814331,
+     0.5278993844985962
+    ],
+    "u_dir": "-Z 19 deg",
+    "v_dir": "+Y 2 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0061,
+     0.0254,
+     0.0
+    ],
+    "pieces": [
+     "Stand"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0276,
+    "neighbours": {
+     "1": 0.662,
+     "3": 0.669
+    },
+    "mirror_of": "z:2",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 3,
+    "faces": 90,
+    "share": 0.005361734069634246,
+    "uv_area": 0.0026814755191537643,
+    "density": 0.5000034252457991,
+    "uv_box": [
+     0.53173828125,
+     0.54296875,
+     0.6493465900421143,
+     0.77763831615448
+    ],
+    "u_dir": "-Z 6 deg",
+    "v_dir": "-X 6 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0061,
+     0.0111,
+     -0.0
+    ],
+    "pieces": [
+     "Stand"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0078,
+    "neighbours": {
+     "4": 0.7164,
+     "2": 0.669
+    },
+    "mirror_of": "z:3",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 4,
+    "faces": 90,
+    "share": 0.00736705517963847,
+    "uv_area": 0.0036843252429767936,
+    "density": 0.49999821291013385,
+    "uv_box": [
+     0.287109375,
+     0.45751953125,
+     0.6467851400375366,
+     0.4679451882839203
+    ],
+    "u_dir": "-Y 0 deg",
+    "v_dir": "+Y 0 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0061,
+     0.0056,
+     -0.0
+    ],
+    "pieces": [
+     "Stand"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0102,
+    "neighbours": {
+     "3": 0.7164,
+     "5": 0.7164
+    },
+    "mirror_of": "z:4",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 5,
+    "faces": 176,
+    "share": 0.04076182920419091,
+    "uv_area": 0.020385403405537517,
+    "density": 0.5000000622226117,
+    "uv_box": [
+     0.7666015625,
+     0.67919921875,
+     0.8803131580352783,
+     0.9078747034072876
+    ],
+    "u_dir": "-X 36 deg",
+    "v_dir": "-Z 36 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0061,
+     0.0,
+     -0.0
+    ],
+    "pieces": [
+     "Stand"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0,
+    "neighbours": {
+     "4": 0.7164
+    },
+    "mirror_of": "z:5",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 6,
+    "faces": 1504,
+    "share": 0.009170379573938106,
+    "uv_area": 0.004586198779623629,
+    "density": 0.4999999668851049,
+    "uv_box": [
+     0.371337890625,
+     0.27734375,
+     0.45714399218559265,
+     0.3577365279197693
+    ],
+    "u_dir": "+Y 43 deg",
+    "v_dir": "-X 39 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0747,
+     0.2406,
+     0.0959
+    ],
+    "pieces": [
+     "SubsurfaceBars"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.2229,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 7,
+    "faces": 1504,
+    "share": 0.009170379677363253,
+    "uv_area": 0.004586199409658764,
+    "density": 0.500000029934175,
+    "uv_box": [
+     0.311767578125,
+     0.35595703125,
+     0.3971368670463562,
+     0.43688711524009705
+    ],
+    "u_dir": "-Y 40 deg",
+    "v_dir": "-X 42 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0749,
+     0.2405,
+     -0.0959
+    ],
+    "pieces": [
+     "SubsurfaceBars"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.2067,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 8,
+    "faces": 80,
+    "share": 0.013153937632642063,
+    "uv_area": 0.006578422804469297,
+    "density": 0.5000004757550662,
+    "uv_box": [
+     0.528076171875,
+     0.015625,
+     0.7773269414901733,
+     0.0422142818570137
+    ],
+    "u_dir": "-Z 0 deg",
+    "v_dir": "+Y 0 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0258,
+     0.0261,
+     -0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0,
+    "neighbours": {
+     "11": 0.3891,
+     "10": 0.2233,
+     "9": 0.3891,
+     "13": 0.0257,
+     "12": 0.0257
+    },
+    "mirror_of": "z:8",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 9,
+    "faces": 208,
+    "share": 0.06809072307216475,
+    "uv_area": 0.03405285244683931,
+    "density": 0.4999999532042826,
+    "uv_box": [
+     0.371826171875,
+     0.52978515625,
+     0.5237525105476379,
+     0.791976273059845
+    ],
+    "u_dir": "-X 8 deg",
+    "v_dir": "+Y 3 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0116,
+     0.055,
+     -0.1326
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0,
+    "neighbours": {
+     "10": 0.2462,
+     "8": 0.3891,
+     "12": 0.2433
+    },
+    "mirror_of": "z:11",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 10,
+    "faces": 104,
+    "share": 0.0389922494943263,
+    "uv_area": 0.019500419407147862,
+    "density": 0.5000000808753124,
+    "uv_box": [
+     0.008056640625,
+     0.7041015625,
+     0.13538812100887299,
+     0.8857619762420654
+    ],
+    "u_dir": "-Y 1 deg",
+    "v_dir": "+Z 0 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1413,
+     0.055,
+     0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0,
+    "neighbours": {
+     "9": 0.2462,
+     "11": 0.2462,
+     "8": 0.2233
+    },
+    "mirror_of": "z:10",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 11,
+    "faces": 208,
+    "share": 0.06809072307216474,
+    "uv_area": 0.034052851204270596,
+    "density": 0.4999999349595762,
+    "uv_box": [
+     0.213134765625,
+     0.5927734375,
+     0.36501091718673706,
+     0.8548774123191833
+    ],
+    "u_dir": "+X 8 deg",
+    "v_dir": "+Y 1 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0116,
+     0.055,
+     0.1326
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0,
+    "neighbours": {
+     "8": 0.3891,
+     "10": 0.2462,
+     "13": 0.2433
+    },
+    "mirror_of": "z:9",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 12,
+    "faces": 48,
+    "share": 0.002923696254989373,
+    "uv_area": 0.0014621697320045257,
+    "density": 0.4999999388204822,
+    "uv_box": [
+     0.853759765625,
+     0.080078125,
+     0.9073227047920227,
+     0.1311969757080078
+    ],
+    "u_dir": "+Y 37 deg",
+    "v_dir": "+Y 53 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1118,
+     0.0493,
+     -0.1058
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0,
+    "neighbours": {
+     "9": 0.2433,
+     "8": 0.0257
+    },
+    "mirror_of": "z:13",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 13,
+    "faces": 48,
+    "share": 0.0029236962549894054,
+    "uv_area": 0.0014621712739402715,
+    "density": 0.5000004660970039,
+    "uv_box": [
+     0.853759765625,
+     0.015625,
+     0.9073241353034973,
+     0.06673632562160492
+    ],
+    "u_dir": "-Y 37 deg",
+    "v_dir": "+Y 53 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1118,
+     0.0493,
+     0.1058
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0,
+    "neighbours": {
+     "11": 0.2433,
+     "8": 0.0257
+    },
+    "mirror_of": "z:12",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 14,
+    "faces": 348,
+    "share": 0.17059175561596912,
+    "uv_area": 0.08531466018364053,
+    "density": 0.5000000408181864,
+    "uv_box": [
+     0.66650390625,
+     0.2685546875,
+     0.99189293384552,
+     0.7358624935150146
+    ],
+    "u_dir": "+Y 48 deg",
+    "v_dir": "-X 45 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0034,
+     0.1794,
+     0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.7612,
+    "neighbours": {
+     "16": 0.4658
+    },
+    "mirror_of": "z:14",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 15,
+    "faces": 412,
+    "share": 0.27630256230687067,
+    "uv_area": 0.1381816982085206,
+    "density": 0.500000025552782,
+    "uv_box": [
+     0.0078125,
+     0.015625,
+     0.4350413680076599,
+     0.7250100374221802
+    ],
+    "u_dir": "+X 35 deg",
+    "v_dir": "+X 40 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0057,
+     0.1784,
+     0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 1.134,
+    "neighbours": {
+     "16": 0.5951
+    },
+    "mirror_of": "z:15",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 16,
+    "faces": 96,
+    "share": 0.016268946314025135,
+    "uv_area": 0.008136262613289258,
+    "density": 0.4999999316763168,
+    "uv_box": [
+     0.823486328125,
+     0.015625,
+     0.9681690335273743,
+     0.2306884378194809
+    ],
+    "u_dir": "-Z 24 deg",
+    "v_dir": "+Y 27 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0945,
+     0.2559,
+     0.0
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0311,
+    "neighbours": {
+     "14": 0.4658,
+     "15": 0.5951
+    },
+    "mirror_of": "z:16",
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 17,
+    "faces": 24,
+    "share": 0.0006366169004488405,
+    "uv_area": 0.0003183781522135831,
+    "density": 0.4999994277662619,
+    "uv_box": [
+     0.284423828125,
+     0.5419921875,
+     0.3032210171222687,
+     0.5669922828674316
+    ],
+    "u_dir": "-Z 33 deg",
+    "v_dir": "+Y 37 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1372,
+     0.1825,
+     0.047
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 18,
+    "faces": 24,
+    "share": 0.0006366171986008527,
+    "uv_area": 0.00031837960639746754,
+    "density": 0.5000014773307817,
+    "uv_box": [
+     0.457763671875,
+     0.3955078125,
+     0.4762236177921295,
+     0.4206499755382538
+    ],
+    "u_dir": "+Y 41 deg",
+    "v_dir": "+X 30 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1436,
+     0.1702,
+     -0.0154
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.037,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 19,
+    "faces": 24,
+    "share": 0.0006366172159951354,
+    "uv_area": 0.0003183784281313162,
+    "density": 0.4999996132529897,
+    "uv_box": [
+     0.03369140625,
+     0.59375,
+     0.05222860351204872,
+     0.6190307140350342
+    ],
+    "u_dir": "-X 35 deg",
+    "v_dir": "+Y 41 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0261,
+     0.3187,
+     -0.0406
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 20,
+    "faces": 24,
+    "share": 0.0006366167881046533,
+    "uv_area": 0.0003183793841889937,
+    "density": 0.5000014507671314,
+    "uv_box": [
+     0.873046875,
+     0.13427734375,
+     0.8918535709381104,
+     0.15915748476982117
+    ],
+    "u_dir": "-X 25 deg",
+    "v_dir": "+Y 35 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0262,
+     0.3228,
+     0.0233
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 21,
+    "faces": 24,
+    "share": 0.0006366168896533772,
+    "uv_area": 0.00031837901663500645,
+    "density": 0.5000007937823502,
+    "uv_box": [
+     0.603759765625,
+     0.66748046875,
+     0.6225470900535583,
+     0.6927034258842468
+    ],
+    "u_dir": "-Z 24 deg",
+    "v_dir": "+Y 43 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1096,
+     0.1682,
+     0.0914
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 22,
+    "faces": 24,
+    "share": 0.0006366172616047272,
+    "uv_area": 0.00031837936769463226,
+    "density": 0.5000010529748148,
+    "uv_box": [
+     0.558837890625,
+     0.591796875,
+     0.5776252746582031,
+     0.6170198321342468
+    ],
+    "u_dir": "+Z 25 deg",
+    "v_dir": "+Y 38 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1328,
+     0.1339,
+     0.0234
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 23,
+    "faces": 24,
+    "share": 0.0006366175330574039,
+    "uv_area": 0.0003183789731044939,
+    "density": 0.500000220088668,
+    "uv_box": [
+     0.627685546875,
+     0.37255859375,
+     0.6465744972229004,
+     0.3969748616218567
+    ],
+    "u_dir": "-Z 39 deg",
+    "v_dir": "+Y 9 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1246,
+     0.1391,
+     -0.0557
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 24,
+    "faces": 24,
+    "share": 0.0006366170198692548,
+    "uv_area": 0.0003183783306965893,
+    "density": 0.4999996142733523,
+    "uv_box": [
+     0.44287109375,
+     0.3564453125,
+     0.4617522358894348,
+     0.38092440366744995
+    ],
+    "u_dir": "+X 20 deg",
+    "v_dir": "+Z 47 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0883,
+     0.1817,
+     -0.1124
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 25,
+    "faces": 24,
+    "share": 0.0006366164019991186,
+    "uv_area": 0.0003183787469556165,
+    "density": 0.500000753267333,
+    "uv_box": [
+     0.603515625,
+     0.59130859375,
+     0.6223029494285583,
+     0.6165316104888916
+    ],
+    "u_dir": "-Z 27 deg",
+    "v_dir": "+Y 17 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0393,
+     0.2436,
+     -0.1229
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 26,
+    "faces": 24,
+    "share": 0.0006366172122696819,
+    "uv_area": 0.000318378666388508,
+    "density": 0.499999990351627,
+    "uv_box": [
+     0.434814453125,
+     0.2177734375,
+     0.4538625180721283,
+     0.2428094893693924
+    ],
+    "u_dir": "-Y 17 deg",
+    "v_dir": "+Z 21 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0017,
+     0.2988,
+     -0.0827
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 27,
+    "faces": 24,
+    "share": 0.0006366170776868897,
+    "uv_area": 0.0003183775764027952,
+    "density": 0.4999983842771469,
+    "uv_box": [
+     0.01171875,
+     0.322265625,
+     0.03128045052289963,
+     0.3456018567085266
+    ],
+    "u_dir": "+X 46 deg",
+    "v_dir": "+Z 17 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0175,
+     0.3239,
+     -0.0088
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 28,
+    "faces": 24,
+    "share": 0.0006366165355416738,
+    "uv_area": 0.0003183770594161195,
+    "density": 0.4999979981716101,
+    "uv_box": [
+     0.915283203125,
+     0.015625,
+     0.9340803027153015,
+     0.04062506929039955
+    ],
+    "u_dir": "-X 18 deg",
+    "v_dir": "-Z 39 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0014,
+     0.3085,
+     0.0677
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 29,
+    "faces": 24,
+    "share": 0.0006366174890033204,
+    "uv_area": 0.0003183786455668719,
+    "density": 0.4999997403052912,
+    "uv_box": [
+     0.008056640625,
+     0.4609375,
+     0.02761842869222164,
+     0.48427343368530273
+    ],
+    "u_dir": "-X 41 deg",
+    "v_dir": "-X 25 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1025,
+     0.1141,
+     0.0696
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 30,
+    "faces": 24,
+    "share": 0.0006366171308121601,
+    "uv_area": 0.00031837763009967546,
+    "density": 0.49999842688126855,
+    "uv_box": [
+     0.552734375,
+     0.66845703125,
+     0.5715085864067078,
+     0.6936556100845337
+    ],
+    "u_dir": "-Z 36 deg",
+    "v_dir": "-X 32 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.1113,
+     0.0971,
+     -0.0169
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 31,
+    "faces": 24,
+    "share": 0.0006366166506479969,
+    "uv_area": 0.0003183788811274013,
+    "density": 0.5000007686889071,
+    "uv_box": [
+     0.547607421875,
+     0.6298828125,
+     0.5663816332817078,
+     0.6550814509391785
+    ],
+    "u_dir": "+Y 38 deg",
+    "v_dir": "+Z 29 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0851,
+     0.1252,
+     -0.0968
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 32,
+    "faces": 24,
+    "share": 0.0006366166653844675,
+    "uv_area": 0.0003183778181070629,
+    "density": 0.49999908768571993,
+    "uv_box": [
+     0.403564453125,
+     0.4140625,
+     0.4221019446849823,
+     0.43878158926963806
+    ],
+    "u_dir": "-Y 30 deg",
+    "v_dir": "+Y 29 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.035,
+     0.1866,
+     -0.1363
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 33,
+    "faces": 24,
+    "share": 0.0006366163484241294,
+    "uv_area": 0.0003183789328256026,
+    "density": 0.5000010872465289,
+    "uv_box": [
+     0.250732421875,
+     0.53857421875,
+     0.26952967047691345,
+     0.5635743141174316
+    ],
+    "u_dir": "-X 33 deg",
+    "v_dir": "+Y 16 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.018,
+     0.2555,
+     -0.1189
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 34,
+    "faces": 24,
+    "share": 0.000636616266468795,
+    "uv_area": 0.0003183789609055854,
+    "density": 0.5000011957130621,
+    "uv_box": [
+     0.62451171875,
+     0.05810546875,
+     0.6431525349617004,
+     0.08126968145370483
+    ],
+    "u_dir": "-Z 39 deg",
+    "v_dir": "+Y 37 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0515,
+     0.3028,
+     -0.0518
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 35,
+    "faces": 24,
+    "share": 0.0006366173430909306,
+    "uv_area": 0.0003183791966080429,
+    "density": 0.5000007202912526,
+    "uv_box": [
+     0.032958984375,
+     0.5458984375,
+     0.051503561437129974,
+     0.5712469816207886
+    ],
+    "u_dir": "+Y 21 deg",
+    "v_dir": "-Z 45 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0513,
+     0.3085,
+     0.0367
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 36,
+    "faces": 24,
+    "share": 0.0006366171978967896,
+    "uv_area": 0.00031837887379887464,
+    "density": 0.5000003273691755,
+    "uv_box": [
+     0.053466796875,
+     0.35205078125,
+     0.07302844524383545,
+     0.3753870129585266
+    ],
+    "u_dir": "-Z 18 deg",
+    "v_dir": "+Y 19 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0176,
+     0.2702,
+     0.1092
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 37,
+    "faces": 24,
+    "share": 0.0006366174213438835,
+    "uv_area": 0.0003183778647546376,
+    "density": 0.49999856721345765,
+    "uv_box": [
+     0.3134765625,
+     0.537109375,
+     0.33223751187324524,
+     0.5622870922088623
+    ],
+    "u_dir": "-Z 38 deg",
+    "v_dir": "+Y 44 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0355,
+     0.2041,
+     0.1351
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 38,
+    "faces": 24,
+    "share": 0.0006366169683193051,
+    "uv_area": 0.00031837841879747697,
+    "density": 0.49999979311943993,
+    "uv_box": [
+     0.44287109375,
+     0.015625,
+     0.46169209480285645,
+     0.03871922940015793
+    ],
+    "u_dir": "-X 36 deg",
+    "v_dir": "-Z 34 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0548,
+     0.1121,
+     0.1071
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 39,
+    "faces": 24,
+    "share": 0.0006366172954842956,
+    "uv_area": 0.00031837957287905727,
+    "density": 0.5000013485989692,
+    "uv_box": [
+     0.597900390625,
+     0.05810546875,
+     0.6165412068367004,
+     0.08126969635486603
+    ],
+    "u_dir": "-Z 41 deg",
+    "v_dir": "-Z 35 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0811,
+     0.0733,
+     0.0301
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 40,
+    "faces": 24,
+    "share": 0.0006366168986814366,
+    "uv_area": 0.000318378151824561,
+    "density": 0.4999994285434395,
+    "uv_box": [
+     0.061279296875,
+     0.65869140625,
+     0.0801335945725441,
+     0.6832423806190491
+    ],
+    "u_dir": "+X 42 deg",
+    "v_dir": "+X 31 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0717,
+     0.0793,
+     -0.0594
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 41,
+    "faces": 24,
+    "share": 0.0006366170637091369,
+    "uv_area": 0.0003183783816278485,
+    "density": 0.4999996598268383,
+    "uv_box": [
+     0.918701171875,
+     0.056640625,
+     0.9374983310699463,
+     0.08164064586162567
+    ],
+    "u_dir": "-Z 34 deg",
+    "v_dir": "+Y 31 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0307,
+     0.1274,
+     -0.1236
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 42,
+    "faces": 24,
+    "share": 0.0006366173590870751,
+    "uv_area": 0.0003183789802972681,
+    "density": 0.5000003680211624,
+    "uv_box": [
+     0.009033203125,
+     0.28369140625,
+     0.028594812378287315,
+     0.30702775716781616
+    ],
+    "u_dir": "-Z 45 deg",
+    "v_dir": "+Y 40 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0248,
+     0.1975,
+     -0.1355
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 43,
+    "faces": 24,
+    "share": 0.0006366168159698592,
+    "uv_area": 0.00031837846815929716,
+    "density": 0.4999999902955831,
+    "uv_box": [
+     0.919921875,
+     0.09765625,
+     0.9387285709381104,
+     0.12253625690937042
+    ],
+    "u_dir": "-Z 7 deg",
+    "v_dir": "-X 15 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0712,
+     0.26,
+     -0.09
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 44,
+    "faces": 24,
+    "share": 0.0006366174486666726,
+    "uv_area": 0.000318378366845673,
+    "density": 0.4999993342662372,
+    "uv_box": [
+     0.06005859375,
+     0.61669921875,
+     0.07891290634870529,
+     0.6412503719329834
+    ],
+    "u_dir": "+Z 43 deg",
+    "v_dir": "+Z 39 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0891,
+     0.2884,
+     -0.0064
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 45,
+    "faces": 24,
+    "share": 0.0006366161334867009,
+    "uv_area": 0.00031837833029180196,
+    "density": 0.5000003098043223,
+    "uv_box": [
+     0.034912109375,
+     0.63623046875,
+     0.05376642569899559,
+     0.6607816219329834
+    ],
+    "u_dir": "+Y 16 deg",
+    "v_dir": "+X 17 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0709,
+     0.2709,
+     0.0802
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 46,
+    "faces": 24,
+    "share": 0.0006366176368465975,
+    "uv_area": 0.000318377739086273,
+    "density": 0.4999982006013138,
+    "uv_box": [
+     0.65673828125,
+     0.6728515625,
+     0.675093412399292,
+     0.6960802674293518
+    ],
+    "u_dir": "+Y 14 deg",
+    "v_dir": "+Z 44 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0242,
+     0.2148,
+     0.1331
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 47,
+    "faces": 24,
+    "share": 0.0006366173219531969,
+    "uv_area": 0.00031837877402685066,
+    "density": 0.5000000732474204,
+    "uv_box": [
+     0.409912109375,
+     0.37353515625,
+     0.4286969304084778,
+     0.3981320858001709
+    ],
+    "u_dir": "+Y 16 deg",
+    "v_dir": "-Z 46 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.036,
+     0.0697,
+     0.0693
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 48,
+    "faces": 24,
+    "share": 0.000636616789518101,
+    "uv_area": 0.0003183782577348415,
+    "density": 0.4999996806080735,
+    "uv_box": [
+     0.03271484375,
+     0.4892578125,
+     0.05227656289935112,
+     0.5125937461853027
+    ],
+    "u_dir": "-X 27 deg",
+    "v_dir": "-X 44 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0444,
+     0.0535,
+     -0.0128
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 49,
+    "faces": 24,
+    "share": 0.0006366178715063181,
+    "uv_area": 0.0003183801315027601,
+    "density": 0.5000017734833294,
+    "uv_box": [
+     0.055908203125,
+     0.45751953125,
+     0.07547002285718918,
+     0.4808555245399475
+    ],
+    "u_dir": "+X 44 deg",
+    "v_dir": "+Z 33 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0195,
+     0.0802,
+     -0.0886
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 50,
+    "faces": 24,
+    "share": 0.0006366170758473461,
+    "uv_area": 0.00031837878113932794,
+    "density": 0.5000002777091924,
+    "uv_box": [
+     0.009033203125,
+     0.65283203125,
+     0.027887502685189247,
+     0.6773831248283386
+    ],
+    "u_dir": "+Y 15 deg",
+    "v_dir": "-Z 22 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.028,
+     0.1385,
+     -0.1261
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 51,
+    "faces": 24,
+    "share": 0.0006366170383655734,
+    "uv_area": 0.00031837840438594944,
+    "density": 0.49999971547232613,
+    "uv_box": [
+     0.008056640625,
+     0.5654296875,
+     0.026601199060678482,
+     0.5907781720161438
+    ],
+    "u_dir": "+X 25 deg",
+    "v_dir": "+Z 22 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0783,
+     0.2039,
+     -0.1096
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 52,
+    "faces": 24,
+    "share": 0.000636616507298155,
+    "uv_area": 0.00031837887477215165,
+    "density": 0.500000871295703,
+    "uv_box": [
+     0.055908203125,
+     0.5185546875,
+     0.0754702091217041,
+     0.5418898463249207
+    ],
+    "u_dir": "+Z 42 deg",
+    "v_dir": "-X 11 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1101,
+     0.2487,
+     -0.0459
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 53,
+    "faces": 24,
+    "share": 0.0006366169962487121,
+    "uv_area": 0.00031837953492241944,
+    "density": 0.5000015240104195,
+    "uv_box": [
+     0.544677734375,
+     0.05810546875,
+     0.5633185505867004,
+     0.08126965910196304
+    ],
+    "u_dir": "-X 50 deg",
+    "v_dir": "-Z 43 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1099,
+     0.2541,
+     0.038
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 54,
+    "faces": 24,
+    "share": 0.0006366165245502301,
+    "uv_area": 0.00031837818080593383,
+    "density": 0.4999997679006129,
+    "uv_box": [
+     0.793701171875,
+     0.05419921875,
+     0.8123741149902344,
+     0.07735440135002136
+    ],
+    "u_dir": "-X 42 deg",
+    "v_dir": "+Z 30 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0779,
+     0.2178,
+     0.1068
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 55,
+    "faces": 24,
+    "share": 0.0006366173045226522,
+    "uv_area": 0.00031837832377590303,
+    "density": 0.4999993798377644,
+    "uv_box": [
+     0.008056640625,
+     0.51611328125,
+     0.027618493884801865,
+     0.5394490957260132
+    ],
+    "u_dir": "-X 47 deg",
+    "v_dir": "-Z 19 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0275,
+     0.1551,
+     0.1315
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 56,
+    "faces": 24,
+    "share": 0.0006366170810781033,
+    "uv_area": 0.00031837861997674466,
+    "density": 0.500000020501994,
+    "uv_box": [
+     0.43115234375,
+     0.40185546875,
+     0.4498811662197113,
+     0.426411509513855
+    ],
+    "u_dir": "-X 22 deg",
+    "v_dir": "+Y 43 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0161,
+     0.0807,
+     0.0875
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 57,
+    "faces": 24,
+    "share": 0.0006366166672272057,
+    "uv_area": 0.00031837954025781823,
+    "density": 0.5000017908043759,
+    "uv_box": [
+     0.008056640625,
+     0.6123046875,
+     0.02691102772951126,
+     0.6368558406829834
+    ],
+    "u_dir": "+Y 20 deg",
+    "v_dir": "+Y 39 deg",
+    "mirrored": 0.0,
+    "centre": [
+     0.0046,
+     0.0501,
+     0.0269
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 58,
+    "faces": 24,
+    "share": 0.000636616844374865,
+    "uv_area": 0.0003183790297195399,
+    "density": 0.500000849892939,
+    "uv_box": [
+     0.057861328125,
+     0.5693359375,
+     0.0763985887169838,
+     0.5946166515350342
+    ],
+    "u_dir": "-Z 31 deg",
+    "v_dir": "-X 14 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0027,
+     0.0548,
+     -0.0436
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 59,
+    "faces": 24,
+    "share": 0.0006366164949843558,
+    "uv_area": 0.00031837813503199364,
+    "density": 0.49999971923562136,
+    "uv_box": [
+     0.78515625,
+     0.015625,
+     0.8039772510528564,
+     0.03871922194957733
+    ],
+    "u_dir": "+Z 36 deg",
+    "v_dir": "-X 13 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.035,
+     0.0927,
+     -0.0942
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 60,
+    "faces": 24,
+    "share": 0.0006366173756672993,
+    "uv_area": 0.0003183794527931716,
+    "density": 0.5000010970333127,
+    "uv_box": [
+     0.031982421875,
+     0.427734375,
+     0.05154412239789963,
+     0.45107048749923706
+    ],
+    "u_dir": "+Y 36 deg",
+    "v_dir": "+Y 34 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0787,
+     0.1479,
+     -0.1035
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 61,
+    "faces": 24,
+    "share": 0.0006366168661530654,
+    "uv_area": 0.0003183798816418504,
+    "density": 0.5000021706963166,
+    "uv_box": [
+     0.0087890625,
+     0.3974609375,
+     0.028350751847028732,
+     0.42079707980155945
+    ],
+    "u_dir": "+Y 28 deg",
+    "v_dir": "+Y 39 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1153,
+     0.1971,
+     -0.0677
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 62,
+    "faces": 24,
+    "share": 0.000636616788289117,
+    "uv_area": 0.0003183782327838003,
+    "density": 0.4999996423887568,
+    "uv_box": [
+     0.627197265625,
+     0.52294921875,
+     0.6462992429733276,
+     0.5477231740951538
+    ],
+    "u_dir": "-X 44 deg",
+    "v_dir": "+Y 39 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1294,
+     0.2195,
+     -0.0018
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 63,
+    "faces": 24,
+    "share": 0.0006366168099250712,
+    "uv_area": 0.00031837836234638317,
+    "density": 0.4999998288684389,
+    "uv_box": [
+     0.343994140625,
+     0.3125,
+     0.36347904801368713,
+     0.3373582065105438
+    ],
+    "u_dir": "-Z 29 deg",
+    "v_dir": "+Y 34 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.115,
+     0.2057,
+     0.0663
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 64,
+    "faces": 24,
+    "share": 0.0006366169127037162,
+    "uv_area": 0.0003183779795894459,
+    "density": 0.49999914704236864,
+    "uv_box": [
+     0.651123046875,
+     0.05810546875,
+     0.669478178024292,
+     0.0813341811299324
+    ],
+    "u_dir": "+Y 30 deg",
+    "v_dir": "-Z 31 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0783,
+     0.1616,
+     0.108
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 65,
+    "faces": 24,
+    "share": 0.000636617520020727,
+    "uv_area": 0.0003183789507978929,
+    "density": 0.500000195296151,
+    "uv_box": [
+     0.615234375,
+     0.48388671875,
+     0.6342822313308716,
+     0.508922815322876
+    ],
+    "u_dir": "-Y 34 deg",
+    "v_dir": "+Z 43 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0403,
+     0.0638,
+     0.0461
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 66,
+    "faces": 24,
+    "share": 0.0006366171348755806,
+    "uv_area": 0.0003183784216806984,
+    "density": 0.499999666833935,
+    "uv_box": [
+     0.606201171875,
+     0.40087890625,
+     0.6249300241470337,
+     0.42543497681617737
+    ],
+    "u_dir": "+Y 21 deg",
+    "v_dir": "+X 29 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0351,
+     0.0538,
+     -0.0045
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 67,
+    "faces": 24,
+    "share": 0.0006366171966778232,
+    "uv_area": 0.0003183787024951812,
+    "density": 0.5000000593014708,
+    "uv_box": [
+     0.61474609375,
+     0.62939453125,
+     0.6335334181785583,
+     0.6546174883842468
+    ],
+    "u_dir": "-Z 15 deg",
+    "v_dir": "+Y 18 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0504,
+     0.0703,
+     -0.0513
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 68,
+    "faces": 24,
+    "share": 0.0006366169411767946,
+    "uv_area": 0.00031837751841362616,
+    "density": 0.4999984004225227,
+    "uv_box": [
+     0.04443359375,
+     0.390625,
+     0.06399521976709366,
+     0.41396117210388184
+    ],
+    "u_dir": "+Y 37 deg",
+    "v_dir": "+Y 30 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0798,
+     0.1063,
+     -0.0745
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 69,
+    "faces": 24,
+    "share": 0.0006366171063436626,
+    "uv_area": 0.0003183779102480244,
+    "density": 0.49999888605979725,
+    "uv_box": [
+     0.021240234375,
+     0.3603515625,
+     0.04080186039209366,
+     0.3836877644062042
+    ],
+    "u_dir": "+Y 11 deg",
+    "v_dir": "-X 20 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1108,
+     0.1466,
+     -0.0642
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 70,
+    "faces": 24,
+    "share": 0.0006366166893150389,
+    "uv_area": 0.0003183783856233191,
+    "density": 0.4999999601512191,
+    "uv_box": [
+     0.34130859375,
+     0.53271484375,
+     0.36008280515670776,
+     0.5579134225845337
+    ],
+    "u_dir": "+Z 32 deg",
+    "v_dir": "+X 30 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1304,
+     0.1743,
+     -0.0249
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0368,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 71,
+    "faces": 24,
+    "share": 0.000636616701732431,
+    "uv_area": 0.00031837833208836486,
+    "density": 0.4999998663241673,
+    "uv_box": [
+     0.89990234375,
+     0.1416015625,
+     0.9194639921188354,
+     0.16493763029575348
+    ],
+    "u_dir": "+X 41 deg",
+    "v_dir": "+X 29 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1303,
+     0.1776,
+     0.0269
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 72,
+    "faces": 24,
+    "share": 0.0006366171022283122,
+    "uv_area": 0.0003183786268570188,
+    "density": 0.5000000146957646,
+    "uv_box": [
+     0.5712890625,
+     0.05810546875,
+     0.5899298191070557,
+     0.08126965165138245
+    ],
+    "u_dir": "+Y 40 deg",
+    "v_dir": "+X 39 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.1106,
+     0.1552,
+     0.0693
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0346,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   },
+   {
+    "id": 73,
+    "faces": 24,
+    "share": 0.0006366170677817214,
+    "uv_area": 0.00031837861849132176,
+    "density": 0.5000000286121995,
+    "uv_box": [
+     0.043701171875,
+     0.3134765625,
+     0.06326282024383545,
+     0.3368128538131714
+    ],
+    "u_dir": "+Y 12 deg",
+    "v_dir": "+X 38 deg",
+    "mirrored": 0.0,
+    "centre": [
+     -0.0795,
+     0.1165,
+     0.0845
+    ],
+    "pieces": [
+     "PreviewSurface"
+    ],
+    "density_rel": 1.0,
+    "slit_m": 0.0392,
+    "neighbours": {},
+    "mirror_of": null,
+    "stacked_with": [],
+    "zero_uv": false
+   }
+  ]
+ },
+ "match": {
+  "orig_m": 5.4317,
+  "zr_m": 11.2799,
+  "identical_m": 1.0692,
+  "recall": 0.1968,
+  "precision": 0.0948,
+  "f1": 0.128,
+  "recall_1ring": 0.272,
+  "precision_1ring": 0.1461
+ }
+}

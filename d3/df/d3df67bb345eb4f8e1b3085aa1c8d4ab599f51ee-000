@@ -1,0 +1,388 @@
+# 20 October 2026 : the artist's original uv of a bench asset laid on the bench mesh (same points, same faces) as the uv set 'orig', beside the ZenRay result
+# 'zr', for a one to one study : islands, seams, orientation (3D direction of +u and +v), layout, neighbours across seams, hidden seams, mirror twins.
+# Usage : python -I OrigStudy.py <asset> [method]   (asset : ZRUV_RubberToy | ZRUV_ShaderBall | ZRUV_Manny ; method M1 by default)
+# Writes runs/reference/study/<asset>/ : orig_3d.png, orig_uv.png, zr_3d.png, zr_uv.png, catalog.json, catalog.txt, match.json.
+# FR : etude un pour un des UV d'origine de l'artiste, posees sur le maillage du banc, a cote du resultat ZenRay.
+import sys, os, json, math, colorsys
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R
+
+W = '/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026'
+REF = W + '/runs/reference'
+SOURCES = {'ZRUV_RubberToy': REF + '/original/rubbertoy.json', 'ZRUV_ShaderBall': REF + '/original/shaderball.json', 'ZRUV_Manny': REF + '/epic_manny.json'}
+UV_TOL = 1e-5          # 20 October 2026 : the sources hold float32 uv ; a seam is a uv jump above this
+FONT = '/System/Library/Fonts/Supplemental/Arial.ttf'
+
+
+def _raw(asset):
+    d = json.load(open(SOURCES[asset]))
+    if asset == 'ZRUV_Manny':
+        P = np.array(d['P'], float).reshape(-1, 3)
+        UV = np.array(d['uv'], float).reshape(-1, 3)[:, :2]
+        polys = [list(p) for p in d['polys']]
+        mat = json.load(open(REF + '/epic_manny_material.json'))['material']     # 20 October 2026 : MI_Manny_01 and MI_Manny_02, one uv square each
+        return P, polys, [[(float(UV[p, 0]), float(UV[p, 1])) for p in poly] for poly in polys], mat
+    return np.array(d['P'], float), [list(p) for p in d['polys']], [[tuple(x) for x in q] for q in d['uv']['uv']], d['prim'].get('name')
+
+
+def _area(P, polys):
+    a = 0.0
+    for poly in polys:
+        p0 = P[poly[0]]
+        for i in range(1, len(poly) - 1):
+            a += 0.5 * np.linalg.norm(np.cross(P[poly[i]] - p0, P[poly[i + 1]] - p0))
+    return a
+
+
+def _match_points(Ps, Pd, tol):
+    """20 October 2026 : for every source point the destination point at the same place (grid of cell tol, 27 neighbour cells), -1 if none within tol."""
+    key = np.floor(Pd / tol).astype(np.int64)
+    grid = {}
+    for i, k in enumerate(map(tuple, key)):
+        grid.setdefault(k, []).append(i)
+    out = np.full(len(Ps), -1, dtype=np.int64)
+    ks = np.floor(Ps / tol).astype(np.int64)
+    for i, k in enumerate(ks):
+        best, bd = -1, tol
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                for dz in (-1, 0, 1):
+                    for j in grid.get((k[0] + dx, k[1] + dy, k[2] + dz), ()):
+                        dd = float(np.linalg.norm(Ps[i] - Pd[j]))
+                        if dd <= bd:
+                            best, bd = j, dd
+        out[i] = best
+    return out
+
+
+def load_pair(asset, method='M1'):
+    """20 October 2026 : the bench mesh of a run with the uv sets 'orig' (the artist's) and 'zr' (the run's), plus the piece names of the source."""
+    bench = Z.from_json(W + '/runs/%s/%s/mesh.json' % (asset, method))
+    P, polys, uv, names = _raw(asset)
+    s = math.sqrt(float(bench.area.sum()) / _area(P, polys))
+    Q = (P - 0.5 * (P.min(0) + P.max(0))) * s + 0.5 * (bench.P.min(0) + bench.P.max(0))
+    diag = float(np.linalg.norm(bench.P.max(0) - bench.P.min(0)))
+    pm = _match_points(Q, bench.P, 2e-5 * diag)
+    fkey = {tuple(sorted(p)): f for f, p in enumerate(bench.polys)}
+    orig, nm = [None] * bench.n, [''] * bench.n
+    miss = 0
+    for g, poly in enumerate(polys):
+        if (pm[poly] < 0).any():
+            miss += 1
+            continue
+        f = fkey.get(tuple(sorted(int(pm[p]) for p in poly)))
+        if f is None:
+            miss += 1
+            continue
+        cmap = {int(pm[p]): uv[g][j] for j, p in enumerate(poly)}
+        orig[f] = [cmap[p] for p in bench.polys[f]]
+        if names is not None:
+            nm[f] = names[g]
+    if any(o is None for o in orig) or miss:
+        raise SystemExit('%s : %d source faces unmatched, %d bench faces without original uv' % (asset, miss, sum(o is None for o in orig)))
+    prim = dict(bench.prim)
+    for k in ('island', 'chart'):
+        if 'zruv_%s_uv' % k in prim:
+            prim['zruv_%s_zr' % k] = prim['zruv_%s_uv' % k]
+    prim['piece'] = nm
+    m = Z.Mesh(bench.P, bench.polys, prim=prim, uv={'orig': orig, 'zr': bench.uv['uv']}, detail=bench.detail)
+    return m, {'scale': s, 'source_points': len(P), 'bench_points': len(bench.P), 'faces': bench.n}
+
+
+def tangent_dirs(m, name, faces):
+    """Area weighted 3D directions of +u and +v over the faces (dP/du and dP/dv of each triangle, normalised), and the share of the area mirrored in uv."""
+    tu, tv, mir, tot = np.zeros(3), np.zeros(3), 0.0, 0.0
+    fs = set(faces)
+    for t in np.where(np.isin(m.tf, list(fs)))[0]:
+        f = int(m.tf[t])
+        a, b, c = m.tri[t]
+        ia, ib, ic = m.tcorner[t]
+        uvf = m.uv[name][f]
+        (u0, v0), (u1, v1), (u2, v2) = uvf[ia], uvf[ib], uvf[ic]
+        e1, e2 = m.P[b] - m.P[a], m.P[c] - m.P[a]
+        du1, dv1, du2, dv2 = u1 - u0, v1 - v0, u2 - u0, v2 - v0
+        det = du1 * dv2 - du2 * dv1
+        if abs(det) < 1e-14:
+            continue
+        T = (e1 * dv2 - e2 * dv1) / det
+        B = (e2 * du1 - e1 * du2) / det
+        w = float(m.tarea[t])
+        tu += w * T / max(np.linalg.norm(T), 1e-20)
+        tv += w * B / max(np.linalg.norm(B), 1e-20)
+        # 20 October 2026 : a right handed frame has (dP/du x dP/dv) along the front normal ; against it the uv triangle is mirrored
+        if np.dot(np.cross(T, B), m.normal[f]) < 0:
+            mir += w
+        tot += w
+    return tu / max(np.linalg.norm(tu), 1e-20), tv / max(np.linalg.norm(tv), 1e-20), mir / max(tot, 1e-20)
+
+
+AXES = {'+X': (1, 0, 0), '-X': (-1, 0, 0), '+Y': (0, 1, 0), '-Y': (0, -1, 0), '+Z': (0, 0, 1), '-Z': (0, 0, -1)}
+
+
+def axis_name(d):
+    best = max(AXES.items(), key=lambda kv: float(np.dot(d, kv[1])))
+    ang = math.degrees(math.acos(max(-1.0, min(1.0, float(np.dot(d, best[1]))))))
+    return '%s %d deg' % (best[0], round(ang))
+
+
+def signed_dihedral(m, e, fs):
+    """Degrees, positive for a convex edge (a ridge), negative for a concave one (a crease, where a seam hides)."""
+    f0, f1 = fs
+    n0, n1 = m.normal[f0], m.normal[f1]
+    ang = math.degrees(math.acos(max(-1.0, min(1.0, float(np.dot(n0, n1))))))
+    convex = float(np.dot(m.centroid[f1] - m.centroid[f0], n0)) < 0
+    return ang if convex else -ang
+
+
+def catalog(m, name):
+    lab, seams = Z.uv_islands(m, name, UV_TOL)
+    n = int(lab.max()) + 1
+    tot3 = float(m.area.sum())
+    lo, hi = m.P.min(0), m.P.max(0)
+    ctr = 0.5 * (lo + hi)
+    # uv area per face (shoelace)
+    uva = np.zeros(m.n)
+    for f in range(m.n):
+        q = m.uv[name][f]
+        s = 0.0
+        for i in range(len(q)):
+            s += q[i][0] * q[(i + 1) % len(q)][1] - q[(i + 1) % len(q)][0] * q[i][1]
+        uva[f] = abs(0.5 * s)
+    isl = []
+    for k in range(n):
+        fs = [int(f) for f in np.where(lab == k)[0]]
+        a3 = float(m.area[fs].sum())
+        au = float(uva[fs].sum())
+        U = np.array([c for f in fs for c in m.uv[name][f]])
+        tu, tv, mir = tangent_dirs(m, name, fs)
+        C = (m.centroid[fs] * m.area[fs, None]).sum(0) / max(a3, 1e-20)
+        pieces = sorted(set(m.prim['piece'][f] for f in fs)) if m.prim.get('piece') else []
+        isl.append({'id': k, 'faces': len(fs), 'share': a3 / tot3, 'uv_area': au, 'density': au / max(a3, 1e-20), 'uv_box': [float(U[:, 0].min()), float(U[:, 1].min()), float(U[:, 0].max()), float(U[:, 1].max())],
+                    'u_dir': axis_name(tu), 'v_dir': axis_name(tv), 'mirrored': round(mir, 3), 'centre': [round(float(x), 4) for x in C], 'pieces': pieces})
+    med = sum(i['uv_area'] for i in isl) / max(sum(i['share'] for i in isl) * tot3, 1e-20)   # 20 October 2026 : the mean density (uv area over 3D area)
+    for i in isl:
+        i['density_rel'] = round(i['density'] / max(med, 1e-20), 3)
+    # neighbours across seams, slits, borders, seam facing and convexity
+    nb, slit, border = {}, np.zeros(n), 0.0
+    facing = {'down': 0.0, 'up': 0.0, 'back': 0.0, 'front': 0.0, 'side': 0.0}
+    concave, convex, flat = 0.0, 0.0, 0.0
+    for e in seams:
+        fs = m.edges[e]
+        L = m.edge_length(e)
+        if len(fs) != 2:
+            border += L
+            continue
+        a, b = int(lab[fs[0]]), int(lab[fs[1]])
+        if a == b:
+            slit[a] += L
+        else:
+            key = (min(a, b), max(a, b))
+            nb[key] = nb.get(key, 0.0) + L
+        nn = m.normal[fs[0]] + m.normal[fs[1]]
+        nn = nn / max(np.linalg.norm(nn), 1e-20)
+        if nn[1] < -0.5:
+            facing['down'] += L
+        elif nn[1] > 0.5:
+            facing['up'] += L
+        elif nn[2] < -0.5:
+            facing['back'] += L
+        elif nn[2] > 0.5:
+            facing['front'] += L
+        else:
+            facing['side'] += L
+        d = signed_dihedral(m, e, fs)
+        if d < -5:
+            concave += L
+        elif d > 5:
+            convex += L
+        else:
+            flat += L
+    for i in isl:
+        i['slit_m'] = round(float(slit[i['id']]), 4)
+        i['neighbours'] = {str(b if a == i['id'] else a): round(L, 4) for (a, b), L in nb.items() if i['id'] in (a, b)}
+    inner = sum(nb.values()) + float(slit.sum())
+    # 20 October 2026 : mirror twins across the planes x, y or z = centre : an island whose faces mirror onto another island's (or its own) faces
+    cen = m.centroid
+    diag = float(np.linalg.norm(hi - lo))
+    q = 2e-4 * diag
+    key = {}
+    for f, c in enumerate(cen):
+        key.setdefault(tuple(np.round((c - ctr) / q).astype(int)), []).append(f)
+    def look(c):
+        k = np.round(c / q).astype(int)
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                for dz in (-1, 0, 1):
+                    for g in key.get((k[0] + dx, k[1] + dy, k[2] + dz), ()):
+                        if np.linalg.norm(cen[g] - ctr - c) <= 1.5 * q:
+                            return g
+        return None
+    for i in isl:
+        fs = np.where(lab == i['id'])[0]
+        smp = fs[:: max(1, len(fs) // 60)]
+        i['mirror_of'] = None
+        for ax, nmx in ((0, 'x'), (2, 'z'), (1, 'y')):
+            hits = {}
+            for f in smp:
+                c = (cen[f] - ctr).copy()
+                c[ax] = -c[ax]
+                g = look(c)
+                if g is not None:
+                    hits[int(lab[g])] = hits.get(int(lab[g]), 0) + 1
+            if hits:
+                j, cnt = max(hits.items(), key=lambda kv: kv[1])
+                if cnt >= 0.6 * len(smp):
+                    i['mirror_of'] = '%s:%d' % (nmx, j)
+                    break
+    # 20 October 2026 : islands laid on the same uv place (stacked twins) : uv boxes overlapping by more than 80 % of the smaller one, same piece
+    for i in isl:
+        i['stacked_with'] = []
+        i['zero_uv'] = i['uv_area'] < 1e-9
+    for a in isl:
+        for b in isl:
+            if b['id'] <= a['id'] or a['zero_uv'] or b['zero_uv'] or a['pieces'] != b['pieces']:
+                continue
+            ba, bb = a['uv_box'], b['uv_box']
+            w = min(ba[2], bb[2]) - max(ba[0], bb[0])
+            h = min(ba[3], bb[3]) - max(ba[1], bb[1])
+            if w <= 0 or h <= 0:
+                continue
+            sa = (ba[2] - ba[0]) * (ba[3] - ba[1])
+            sb = (bb[2] - bb[0]) * (bb[3] - bb[1])
+            if w * h >= 0.8 * min(sa, sb) and abs(a['uv_area'] - b['uv_area']) <= 0.1 * max(a['uv_area'], b['uv_area']):
+                a['stacked_with'].append(b['id'])
+                b['stacked_with'].append(a['id'])
+    return lab, seams, isl, {'islands': n, 'seams_inner_m': round(inner, 4), 'border_m': round(border, 4), 'facing_m': {k: round(v, 4) for k, v in facing.items()},
+                             'concave_m': round(concave, 4), 'convex_m': round(convex, 4), 'flat_m': round(flat, 4)}
+
+
+def palette(n, seed=0.137):
+    out = []
+    for k in range(n):
+        h = (seed + k * 0.61803398875) % 1.0
+        r, g, b = colorsys.hls_to_rgb(h, 0.62 if k % 2 else 0.5, 0.62)
+        out.append((r, g, b))
+    return np.array(out)
+
+
+def views(m):
+    lo, hi = m.P.min(0), m.P.max(0)
+    c = 0.5 * (lo + hi)
+    half = 0.55 * float(max(hi - lo))
+    out = []
+    for nm, d in (('front', (0, 0, 1)), ('back', (0, 0, -1)), ('left', (1, 0, 0)), ('right', (-1, 0, 0)), ('top', (0, 1, 0.002)), ('bottom', (0, -1, 0.002))):
+        d = np.array(d, float)
+        out.append((nm, {'ortho': True, 'eye': c + 10.0 * d / np.linalg.norm(d), 'target': c, 'half': half, 'size': (620, 620), 'c': c}))
+    return out
+
+
+def board_3d(m, lab, seams, cols, title, path, isl=None):
+    rgb = cols[lab]
+    ed = [e for e in seams if len(m.edges[e]) == 2]
+    ims = []
+    fnt = ImageFont.truetype(FONT, 17)
+    for nm, cam in views(m):
+        img, zb = R.render(m, cam, face_rgb=rgb)
+        im = R.draw_edges(img, zb, m, cam, ed, (20, 20, 24), 2)
+        d = ImageDraw.Draw(im)
+        d.text((10, 8), nm, fill=(20, 20, 20), font=ImageFont.truetype(FONT, 22))
+        if isl is not None:
+            # 20 October 2026 : the island number at its visible face nearest to its centre
+            S = R.project(cam, m.centroid)
+            H_, W_ = zb.shape
+            tol = 0.004 * float(np.linalg.norm(m.P.max(0) - m.P.min(0))) + 1e-5
+            for i in isl:
+                if i['share'] < 0.002:
+                    continue
+                fs = np.where(lab == i['id'])[0]
+                C = np.array(i['centre'])
+                order = fs[np.argsort(np.linalg.norm(m.centroid[fs] - C, axis=1))]
+                for f in order[:400]:
+                    x, y, z = S[f]
+                    xi, yi = int(x), int(y)
+                    if 0 <= xi < W_ and 0 <= yi < H_ and z <= zb[max(0, yi - 1):yi + 2, max(0, xi - 1):xi + 2].min() + tol:
+                        d.text((x - 7, y - 9), str(i['id']), fill=(255, 255, 255), font=fnt, stroke_width=2, stroke_fill=(0, 0, 0))
+                        break
+        ims.append(im)
+    w, h = ims[0].size
+    B = Image.new('RGB', (w * 3, h * 2 + 50), (238, 238, 240))
+    ImageDraw.Draw(B).text((12, 12), title, fill=(20, 20, 20), font=ImageFont.truetype(FONT, 26))
+    for i, im in enumerate(ims):
+        B.paste(im, ((i % 3) * w, 50 + (i // 3) * h))
+    B.save(path)
+
+
+def board_uv(m, name, lab, isl, cols, title, path, size=1500, faces=None):
+    faces = list(range(m.n)) if faces is None else list(faces)
+    U = np.array([c for f in faces for c in m.uv[name][f]])
+    u0, v0 = min(0.0, float(U[:, 0].min())), min(0.0, float(U[:, 1].min()))
+    u1, v1 = max(1.0, float(U[:, 0].max())), max(1.0, float(U[:, 1].max()))
+    span = max(u1 - u0, v1 - v0)
+    pad = 40
+    sc = (size - 2 * pad) / span
+    im = Image.new('RGB', (size, size + 50), (250, 250, 250))
+    d = ImageDraw.Draw(im)
+    def px(u, v):
+        return (pad + (u - u0) * sc, 50 + pad + (v1 - v) * sc)
+    d.rectangle([px(0, 1), px(1, 0)], outline=(150, 150, 150), width=2)
+    fset = set(faces)
+    for f in faces:
+        c = tuple(int(255 * x) for x in cols[lab[f]])
+        d.polygon([px(*q) for q in m.uv[name][f]], fill=c, outline=tuple(max(0, x - 40) for x in c))
+    fnt = ImageFont.truetype(FONT, 20)
+    for i in isl:
+        fs = [f for f in np.where(lab == i['id'])[0] if f in fset]
+        if not fs or i.get('zero_uv'):
+            continue
+        Uc = np.array([c for f in fs for c in m.uv[name][f]]).mean(0)
+        x, y = px(*Uc)
+        d.text((x - 8, y - 10), str(i['id']), fill=(0, 0, 0), font=fnt)
+    d.text((12, 12), title, fill=(20, 20, 20), font=ImageFont.truetype(FONT, 26))
+    im.save(path)
+
+
+def seam_match(m):
+    """Exact seam identity between 'orig' and 'zr' (inner edges only), and within one ring (an edge that shares a point with a seam of the other)."""
+    so = {e for e in Z.seam_edges(m, 'orig', UV_TOL) if len(m.edges[e]) == 2}
+    sz = {e for e in Z.seam_edges(m, 'zr', 1e-6) if len(m.edges[e]) == 2}
+    L = lambda S: sum(m.edge_length(e) for e in S)
+    both = so & sz
+    po = {p for e in so for p in e}
+    pz = {p for e in sz for p in e}
+    near_o = {e for e in so if e[0] in pz or e[1] in pz}
+    near_z = {e for e in sz if e[0] in po or e[1] in po}
+    lo, lz, lb = L(so), L(sz), L(both)
+    return {'orig_m': round(lo, 4), 'zr_m': round(lz, 4), 'identical_m': round(lb, 4), 'recall': round(lb / max(lo, 1e-12), 4), 'precision': round(lb / max(lz, 1e-12), 4),
+            'f1': round(2 * lb / max(lo + lz, 1e-12), 4), 'recall_1ring': round(L(near_o) / max(lo, 1e-12), 4), 'precision_1ring': round(L(near_z) / max(lz, 1e-12), 4)}
+
+
+if __name__ == '__main__':
+    asset = sys.argv[1]
+    method = sys.argv[2] if len(sys.argv) > 2 else 'M1'
+    out = REF + '/study/' + asset
+    os.makedirs(out, exist_ok=True)
+    m, info = load_pair(asset, method)
+    res = {'asset': asset, 'method': method, 'load': info}
+    txt = []
+    for name in ('orig', 'zr'):
+        lab, seams, isl, summ = catalog(m, name)
+        cols = palette(len(isl))
+        board_3d(m, lab, seams, cols, '%s %s : %d islands, %.2f m of inner seams' % (asset, 'artist original' if name == 'orig' else 'ZenRay ' + method, summ['islands'], summ['seams_inner_m']), out + '/%s_3d.png' % name, isl)
+        tag = 'artist original' if name == 'orig' else 'ZenRay ' + method
+        pcs = sorted(set(m.prim['piece'])) if name == 'orig' else ['']
+        for pc in pcs:
+            fs = [f for f in range(m.n) if not pc or m.prim['piece'][f] == pc]
+            board_uv(m, name, lab, isl, cols, '%s %s uv %s' % (asset, tag, pc), out + '/%s_uv%s.png' % (name, ('_' + pc.replace('/', '_')) if pc else ''), faces=fs)
+        res[name] = {'summary': summ, 'islands': isl}
+        txt.append('== %s : %s' % (name, json.dumps(summ)))
+        for i in sorted(isl, key=lambda x: -x['share']):
+            txt.append('#%-3d faces %5d  share %5.1f%%  dens %.2f  +u %-10s +v %-10s mir %.2f  box [%.3f %.3f %.3f %.3f]  twin %s  stack %s  zero %s  slit %.3f  pieces %s  centre %s  nb %s' % (
+                i['id'], i['faces'], 100 * i['share'], i['density_rel'], i['u_dir'], i['v_dir'], i['mirrored'], *i['uv_box'], i['mirror_of'], i['stacked_with'], i['zero_uv'], i['slit_m'], ','.join(i['pieces']), i['centre'], i['neighbours']))
+    res['match'] = seam_match(m)
+    txt.append('== match ' + json.dumps(res['match']))
+    json.dump(res, open(out + '/catalog.json', 'w'), indent=1)
+    open(out + '/catalog.txt', 'w').write('\n'.join(txt) + '\n')
+    print('\n'.join(txt[:3]))
+    print(res['match'])
