@@ -1,10 +1,10 @@
 {
- "score": 0.121589,
- "weakest": "uv:stretch",
+ "score": 0.542076,
+ "weakest": "uv:density",
  "components": {
   "uv:present": 1.0,
   "uv:density": 0.542076,
-  "uv:stretch": 0.121589,
+  "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -26,12 +26,12 @@
     "px_per_m_min": 388.7220180760802,
     "px_per_m_median": 933.937923309624,
     "px_per_m_max": 1443.3429078270804,
-    "stretch_max": 0.6275655068466612,
+    "stretch_max": 0.03816771135080055,
     "faces": 995
    },
    "straight_area": 0.5921,
-   "straight_stretch_max": 0.6276,
-   "stretch_over_2pc_area": 0.9607,
+   "straight_stretch_max": 0.0382,
+   "stretch_over_2pc_area": 0.0984,
    "islands": 525,
    "u_range": [
     0.002,
@@ -83,6 +83,7 @@
    "region": "sheet",
    "padding_px": 16,
    "density_tol": 0.4143,
+   "stretch_relative": true,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
    "subtexel_px": 1.0
@@ -103,7 +104,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 02:30",
+ "date": "20 October 2026 02:32",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

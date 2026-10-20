@@ -1,6 +1,6 @@
 {
- "score": 0.967759,
- "weakest": "uv:horizontal",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
@@ -9,7 +9,7 @@
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
-  "uv:horizontal": 0.967759,
+  "uv:horizontal": 1.0,
   "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
@@ -27,17 +27,17 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9741469527917,
-    "px_per_m_median": 1023.9999391132644,
-    "px_per_m_max": 1024.0352640178944,
+    "px_per_m_min": 1023.9594731181321,
+    "px_per_m_median": 1023.9999719543437,
+    "px_per_m_max": 1024.0546168012281,
     "stretch_max": 0.05599952485331561,
     "faces": 995
    },
    "straight_area": 0.5921,
    "straight_stretch_max": 0.056,
    "stretch_over_2pc_area": 0.0984,
-   "islands": 186,
-   "stacked_faces": 309,
+   "islands": 190,
+   "stacked_faces": 318,
    "groups": 3,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
@@ -59,14 +59,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 165.734,
+  "seams_m": 168.891,
   "seams_on_smooth_m": 0,
-  "sharp_kept_m": 108.093,
+  "sharp_kept_m": 104.936,
   "sharp_m": 273.827,
   "border_m": 0,
   "pass": true,
-  "texture_continuity": 0.4661,
-  "texture_continuous_m": 144.699
+  "texture_continuity": 0.456,
+  "texture_continuous_m": 141.542
  },
  "hard_edges": {
   "source": "angle",
@@ -78,7 +78,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 154, \"stacked\": 114, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 29, \"stacked\": 8, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
+  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 154, \"stacked\": 114, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 33, \"stacked\": 12, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
   "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
  },
  "method": "M2",
@@ -105,7 +105,7 @@
   "uv": 1024.0
  },
  "cook_s": 0.01,
- "score_s": 0.77,
+ "score_s": 0.71,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -116,7 +116,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 02:30",
+ "date": "20 October 2026 02:32",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
