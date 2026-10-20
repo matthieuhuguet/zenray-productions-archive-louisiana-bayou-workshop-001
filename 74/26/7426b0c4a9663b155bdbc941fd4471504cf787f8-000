@@ -1,0 +1,137 @@
+{
+ "score": 0.999503,
+ "weakest": "uv:stretch",
+ "components": {
+  "uv:present": 1.0,
+  "uv:density": 0.999958,
+  "uv:stretch": 0.999503,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
+  "uv:region": 1.0,
+  "uv:grain": 1.0,
+  "uv:horizontal": 1.0,
+  "uv:stack": 1.0,
+  "uv:no_overlap": 1.0,
+  "uv:padding": 1.0,
+  "seams:consistency": 1.0,
+  "seams:robust_crease": 1.0
+ },
+ "reports": {
+  "uv": {
+   "organic_area": 1.0,
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.1,
+    "tol_max": 0.1,
+    "exact_frac": 0.999958403177198,
+    "low_frac": 4.0206984744597986e-05,
+    "high_frac": 1.38983805748444e-06,
+    "px_per_m_min": 760.0803714212951,
+    "px_per_m_median": 1023.9945841769461,
+    "px_per_m_max": 1482.6207731974214,
+    "stretch_max": 3.2855448357765997,
+    "faces": 30418
+   },
+   "straight_area": 0.0,
+   "straight_stretch_max": 0.0,
+   "subtexel_area": 4.7e-05,
+   "stretch_over_2pc_area": 0.4298,
+   "islands": 262,
+   "stacked_faces": 4684,
+   "groups": 1,
+   "group_overlap_faces": 0,
+   "group_padding_faces": 0,
+   "u_range": [
+    0.002,
+    0.9958
+   ],
+   "v_range": [
+    0.7054,
+    0.998
+   ]
+  }
+ },
+ "seams": {
+  "crease_requested": 30.0,
+  "crease_effective": 132.363,
+  "edges_near_requested": 755,
+  "ambiguous_edges": 0,
+  "chains_mixed": 0,
+  "mixed_detail": [],
+  "consistency": 1.0,
+  "seams_m": 52.038,
+  "seams_on_smooth_m": 6.565,
+  "sharp_kept_m": 0.009,
+  "sharp_m": 5.838,
+  "border_m": 0,
+  "pass": true,
+  "texture_continuity": 0.9205,
+  "texture_continuous_m": 596.055
+ },
+ "hard_edges": {
+  "source": "normals",
+  "hard_edges": 649,
+  "hard_m": 5.8382,
+  "demoted_edges": 61,
+  "demoted_m": 0.2312,
+  "narrow_parts": 0,
+  "narrowest_px": 16.0
+ },
+ "layout": {
+  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 262, \"stacked\": 67, \"past_u1\": 0}]",
+  "zruv_straight_uv": "{\"charts\": 8, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
+ },
+ "method": "M2",
+ "title": "Texture tileable",
+ "contracts": [
+  {
+   "set": "uv",
+   "W": 2048,
+   "H": 2048,
+   "space": "tile",
+   "unique": "per_group",
+   "region": "square",
+   "sizes": "per_face",
+   "grain": "u",
+   "overflow_u": true,
+   "seam_rule": "tileable",
+   "padding_px": 16,
+   "straight_tol": 0.08,
+   "organic_tol": 0.1,
+   "subtexel_px": 1.0
+  }
+ ],
+ "targets": {
+  "uv": 1024.0
+ },
+ "cook_s": 0.0,
+ "score_s": 1.4,
+ "bake": null,
+ "asset": "/obj/ZRUV_Assets/manny_fbx",
+ "asset_scale": 0.01,
+ "texel_density": 1024.0,
+ "families": [
+  "body"
+ ],
+ "crease_effective": 132.36300659179688,
+ "date": "20 October 2026 02:48",
+ "params": {
+  "asset_path": "/obj/ZRUV_Assets/manny_fbx",
+  "asset_scale": 0.01,
+  "asset_area_m2": 0.0,
+  "texel_density": 1024.0,
+  "families": "*:body",
+  "density_tol": 0.01,
+  "stretch_tol": 0.02,
+  "crease_deg": 30.0,
+  "crease_margin": 1.0,
+  "smooth_deg": 10.0,
+  "m2_tile_px": 2048,
+  "m2_grain": "pillar:up sign:h",
+  "m2_stitch": 1,
+  "m2_seed": 7,
+  "m2_breakup_size_m": 0.8,
+  "m2_flatten": 1
+ }
+}
