@@ -1,0 +1,173 @@
+# 20 October 2026 : the artist's seams of a bench asset cut into segments (chains of seam edges between two junctions, a junction being a point where the seam
+# branches or ends, or closed loops), each described by what it follows : the islands on its two sides, its length, its plane (normal and flatness), its distance
+# to the symmetry plane, the facing of its surface, crease or ridge, and whether it walks straight through the quad edge flow (an edge loop).
+# Usage : python -I SeamSegments.py <asset> [uvset orig|zr]  ->  runs/reference/study/<asset>/segments_<uvset>.txt and segments_<uvset>.png
+# FR : les coutures de l'artiste decoupees en segments, chacun decrit par ce qu'il suit.
+import sys, os, json, math
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, OrigStudy as O
+
+
+def point_faces(m):
+    pf = [[] for _ in range(len(m.P))]
+    for f, p in enumerate(m.polys):
+        for q in p:
+            pf[q].append(f)
+    return pf
+
+
+def segments(m, seams):
+    """Chains of inner seam edges between junctions (seam degree != 2), and closed loops."""
+    adj = {}
+    for e in seams:
+        a, b = e
+        adj.setdefault(a, []).append(b)
+        adj.setdefault(b, []).append(a)
+    used = set()
+    segs = []
+    junction = {p for p, nb in adj.items() if len(nb) != 2}
+    for s in sorted(junction):
+        for nb in adj[s]:
+            e = (min(s, nb), max(s, nb))
+            if e in used:
+                continue
+            chain = [s, nb]
+            used.add(e)
+            while chain[-1] not in junction:
+                cur, prev = chain[-1], chain[-2]
+                nxt = [q for q in adj[cur] if q != prev]
+                if not nxt:
+                    break
+                e2 = (min(cur, nxt[0]), max(cur, nxt[0]))
+                if e2 in used:
+                    break
+                used.add(e2)
+                chain.append(nxt[0])
+            segs.append(chain)
+    for e in seams:                     # closed loops without a junction
+        if e in used:
+            continue
+        a, b = e
+        chain = [a, b]
+        used.add(e)
+        while True:
+            cur, prev = chain[-1], chain[-2]
+            nxt = [q for q in adj[cur] if q != prev]
+            e2 = (min(cur, nxt[0]), max(cur, nxt[0]))
+            if e2 in used:
+                break
+            used.add(e2)
+            chain.append(nxt[0])
+        segs.append(chain)
+    return segs
+
+
+def straight_through(m, pf, chain):
+    """Share of the inner points of the chain where it leaves by the edge opposite to the one it came in, around a 4 valent point of a quad mesh."""
+    ok, tot = 0, 0
+    for i in range(1, len(chain) - 1):
+        p, a, b = chain[i], chain[i - 1], chain[i + 1]
+        fs = pf[p]
+        if len(fs) != 4 or any(len(m.polys[f]) != 4 for f in fs):
+            continue
+        tot += 1
+        # the edge opposite (a, p) around p is the one sharing no face with it
+        fa = {f for f in fs if a in m.polys[f]}
+        fb = {f for f in fs if b in m.polys[f]}
+        if not (fa & fb):
+            ok += 1
+    return ok / tot if tot else None
+
+
+def describe(m, lab, chain, ctr, scale):
+    pts = m.P[chain]
+    L = float(np.linalg.norm(np.diff(pts, axis=0), axis=1).sum())
+    sides = {}
+    nrm = np.zeros(3)
+    dih = []
+    for i in range(len(chain) - 1):
+        e = (min(chain[i], chain[i + 1]), max(chain[i], chain[i + 1]))
+        fs = m.edges[e]
+        if len(fs) == 2:
+            k = tuple(sorted((int(lab[fs[0]]), int(lab[fs[1]]))))
+            sides[k] = sides.get(k, 0.0) + m.edge_length(e)
+            nrm += m.normal[fs[0]] + m.normal[fs[1]]
+            dih.append(O.signed_dihedral(m, e, fs))
+    c = pts.mean(0)
+    q = pts - c
+    w, v = np.linalg.eigh(q.T @ q)
+    pn = v[:, 0]
+    flat = float(math.sqrt(max(w[0], 0) / len(pts))) / scale
+    nrm = nrm / max(np.linalg.norm(nrm), 1e-20)
+    closed = chain[0] == chain[-1]
+    return {'n': len(chain) - 1, 'len': L, 'closed': closed, 'sides': sides, 'plane_n': pn, 'flat': flat, 'centre': c, 'x_abs': float(np.abs(pts[:, 0] - ctr[0]).mean()) / scale,
+            'facing': nrm, 'dihedral_mean': float(np.mean(dih)) if dih else 0.0}
+
+
+def run(asset, uvset='orig'):
+    m, _ = O.load_pair(asset)
+    lab, seams_all = Z.uv_islands(m, uvset, O.UV_TOL if uvset == 'orig' else 1e-6)
+    seams = {e for e in seams_all if len(m.edges[e]) == 2}
+    pf = point_faces(m)
+    lo, hi = m.P.min(0), m.P.max(0)
+    ctr = 0.5 * (lo + hi)
+    scale = float(np.linalg.norm(hi - lo))
+    segs = segments(m, seams)
+    rows = []
+    for k, ch in enumerate(segs):
+        d = describe(m, lab, ch, ctr, scale)
+        d['straight'] = straight_through(m, pf, ch)
+        d['id'] = k
+        d['chain'] = ch
+        rows.append(d)
+    rows.sort(key=lambda r: -r['len'])
+    out = O.REF + '/study/' + asset
+    lines = ['%s %s : %d segments, %.3f m' % (asset, uvset, len(rows), sum(r['len'] for r in rows))]
+    for r in rows:
+        pn = r['plane_n']
+        ax = max(range(3), key=lambda i: abs(pn[i]))
+        lines.append('S%-3d %s len %.4f m  edges %4d  sides %s  plane %s%.2f flat %.4f  |x| %.4f  facing %s  dih %+.1f  straight %s  centre %s' % (
+            r['id'], 'loop' if r['closed'] else 'path', r['len'], r['n'], {'%d|%d' % k: round(v, 4) for k, v in r['sides'].items()}, 'xyz'[ax], abs(pn[ax]), r['flat'], r['x_abs'],
+            O.axis_name(r['facing']), r['dihedral_mean'], None if r['straight'] is None else round(r['straight'], 2), np.round(r['centre'], 4).tolist()))
+    open(out + '/segments_%s.txt' % uvset, 'w').write('\n'.join(lines) + '\n')
+    # board : segments coloured and numbered, six views
+    cols = O.palette(len(rows), 0.31)
+    ims = []
+    fnt = ImageFont.truetype(O.FONT, 15)
+    grey = np.tile(np.array([0.82, 0.82, 0.84]), (m.n, 1))
+    for nm, cam in O.views(m):
+        img, zb = R.render(m, cam, face_rgb=grey)
+        im = Image.fromarray(img)
+        for j, r in enumerate(rows):
+            ed = [(r['chain'][i], r['chain'][i + 1]) for i in range(len(r['chain']) - 1)]
+            im = R.draw_edges(np.asarray(im), zb, m, cam, ed, tuple(int(255 * x) for x in cols[j]), 3)
+        d = ImageDraw.Draw(im)
+        S = R.project(cam, m.P)
+        H_, W_ = zb.shape
+        tol = 0.004 * scale + 1e-5
+        for j, r in enumerate(rows):
+            if r['len'] < 0.01 * sum(x['len'] for x in rows) / max(1, len(rows)) and len(rows) > 60:
+                continue
+            p = r['chain'][len(r['chain']) // 2]
+            x, y, z = S[p]
+            xi, yi = int(x), int(y)
+            if 0 <= xi < W_ and 0 <= yi < H_ and z <= zb[max(0, yi - 1):yi + 2, max(0, xi - 1):xi + 2].min() + tol:
+                d.text((x + 3, y - 8), 'S%d' % r['id'], fill=tuple(int(255 * c * 0.7) for c in cols[j]), font=fnt, stroke_width=2, stroke_fill=(255, 255, 255))
+        d.text((10, 8), nm, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 22))
+        ims.append(im)
+    w, h = ims[0].size
+    B = Image.new('RGB', (w * 3, h * 2 + 50), (238, 238, 240))
+    ImageDraw.Draw(B).text((12, 12), lines[0], fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 26))
+    for i, im in enumerate(ims):
+        B.paste(im, ((i % 3) * w, 50 + (i // 3) * h))
+    B.save(out + '/segments_%s.png' % uvset)
+    json.dump([{k: (v.tolist() if isinstance(v, np.ndarray) else ({'%d|%d' % kk: vv for kk, vv in v.items()} if k == 'sides' else v)) for k, v in r.items()} for r in rows],
+              open(out + '/segments_%s.json' % uvset, 'w'))
+    print('\n'.join(lines[:60]))
+
+
+if __name__ == '__main__':
+    run(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else 'orig')

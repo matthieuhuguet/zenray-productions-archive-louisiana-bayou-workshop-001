@@ -1,0 +1,105 @@
+# 20 October 2026 : how identical a uv layout is to the artist's original on the same mesh. Levels, from the cut to the final uv :
+#   seams    : inner seam edges identical (exact), and within one ring (an edge touching a seam point of the other) ; recall, precision, F1 by length
+#   islands  : each original island matched to the candidate island sharing most of its area ; IoU of their faces
+#   shape    : per matched island, the candidate uv laid on the original by the best similarity (rotation, uniform scale, translation, mirror allowed),
+#              rms residual over the island's uv diagonal (0 = the same unfold)
+#   place    : the same residual without any fit, in uv units of the square (0 = the same position, size and turn)
+#   turn     : the rotation of that best fit, degrees (0 = the same orientation), and its scale (1 = the same size)
+# Usage : python -I MatchUV.py <asset> <candidate : zr | path.json with {'uv': [[[u, v], ...] per face]}> [out json]
+# FR : a quel point une mise en page UV est identique a celle de l'artiste, de la coupe aux UV finales.
+import sys, os, json, math
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, OrigStudy as O
+
+
+def inner_seams(m, name, tol):
+    return {e for e in Z.seam_edges(m, name, tol) if len(m.edges[e]) == 2}
+
+
+def seam_scores(m, so, sc):
+    L = lambda S: sum(m.edge_length(e) for e in S)
+    both = so & sc
+    po = {p for e in so for p in e}
+    pc = {p for e in sc for p in e}
+    near_o = {e for e in so if e[0] in pc or e[1] in pc}
+    near_c = {e for e in sc if e[0] in po or e[1] in po}
+    lo, lc, lb = L(so), L(sc), L(both)
+    return {'orig_m': round(lo, 4), 'cand_m': round(lc, 4), 'identical_m': round(lb, 4), 'recall': round(lb / max(lo, 1e-12), 4), 'precision': round(lb / max(lc, 1e-12), 4),
+            'f1': round(2 * lb / max(lo + lc, 1e-12), 4), 'f1_1ring': round((L(near_o) + L(near_c)) / max(lo + lc, 1e-12), 4),
+            'missing_m': round(lo - lb, 4), 'extra_m': round(lc - lb, 4)}
+
+
+def similarity(A, B, allow_mirror=True):
+    """Best B ~ s R A + t (least squares). Returns s, R, t, rms, mirrored."""
+    ca, cb = A.mean(0), B.mean(0)
+    a, b = A - ca, B - cb
+    best = None
+    for mir in ((False, True) if allow_mirror else (False,)):
+        aa = a * np.array([-1.0, 1.0]) if mir else a
+        H = aa.T @ b
+        U, S, Vt = np.linalg.svd(H)
+        D = np.diag([1.0, np.sign(np.linalg.det(Vt.T @ U.T))])
+        R = Vt.T @ D @ U.T
+        s = float(np.trace(np.diag(S) @ D)) / max(float((aa ** 2).sum()), 1e-30)
+        res = b - s * (aa @ R.T)
+        rms = float(np.sqrt((res ** 2).sum(1).mean()))
+        if best is None or rms < best[3]:
+            best = (s, R, cb - s * (ca * (np.array([-1.0, 1.0]) if mir else 1.0)) @ R.T, rms, mir)
+    return best
+
+
+def compare(m, cand, cand_tol=1e-6):
+    so = inner_seams(m, 'orig', O.UV_TOL)
+    sc = inner_seams(m, cand, cand_tol)
+    out = {'seams': seam_scores(m, so, sc)}
+    lo_, _ = Z.uv_islands(m, 'orig', O.UV_TOL)
+    lc_, _ = Z.uv_islands(m, cand, cand_tol)
+    no, nc = int(lo_.max()) + 1, int(lc_.max()) + 1
+    A = np.zeros((no, nc))
+    np.add.at(A, (lo_, lc_), m.area)
+    ao = np.bincount(lo_, weights=m.area, minlength=no)
+    ac = np.bincount(lc_, weights=m.area, minlength=nc)
+    isl = []
+    for i in range(no):
+        j = int(np.argmax(A[i]))
+        iou = A[i, j] / max(ao[i] + ac[j] - A[i, j], 1e-20)
+        fs = np.where(lo_ == i)[0]
+        P0 = np.array([c for f in fs for c in m.uv['orig'][f]])
+        P1 = np.array([c for f in fs for c in m.uv[cand][f]])
+        diag = float(np.linalg.norm(P0.max(0) - P0.min(0)))
+        rec = {'orig': i, 'cand': j, 'iou': round(float(iou), 4), 'area_share': round(float(ao[i] / ao.sum()), 5)}
+        if diag > 1e-9:
+            s, R, t, rms, mir = similarity(P1, P0)
+            rec.update({'shape': round(rms / diag, 5), 'scale': round(s, 4), 'turn': round(math.degrees(math.atan2(R[1, 0], R[0, 0])), 2), 'mirror': mir,
+                        'place': round(float(np.sqrt(((P1 - P0) ** 2).sum(1).mean())), 5)})
+        isl.append(rec)
+    w = ao / ao.sum()
+    good = [r for r in isl if 'shape' in r]
+    wsum = sum(r['area_share'] for r in good) or 1.0
+    out['islands'] = {'orig': no, 'cand': nc, 'iou_mean_area': round(float(sum(w[r['orig']] * r['iou'] for r in isl)), 4),
+                      'iou_min': round(min(r['iou'] for r in isl), 4), 'identical_partition': bool(no == nc and all(r['iou'] > 0.999999 for r in isl)),
+                      'shape_mean': round(sum(r['area_share'] * r['shape'] for r in good) / wsum, 5), 'place_mean': round(sum(r['area_share'] * r['place'] for r in good) / wsum, 5),
+                      'turn_abs_mean': round(sum(r['area_share'] * abs(r['turn']) for r in good) / wsum, 3), 'scale_dev_mean': round(sum(r['area_share'] * abs(r['scale'] - 1) for r in good) / wsum, 4)}
+    out['per_island'] = isl
+    return out
+
+
+def load_candidate(m, src):
+    if src == 'zr':
+        return 'zr'
+    d = json.load(open(src))
+    uv = d['uv']
+    assert len(uv) == m.n, 'candidate has %d faces, mesh %d' % (len(uv), m.n)
+    m.uv['cand'] = [[tuple(c) for c in q] for q in uv]
+    return 'cand'
+
+
+if __name__ == '__main__':
+    m, _ = O.load_pair(sys.argv[1])
+    name = load_candidate(m, sys.argv[2])
+    r = compare(m, name)
+    print(json.dumps({'seams': r['seams'], 'islands': r['islands']}, indent=1))
+    if len(sys.argv) > 3:
+        json.dump(r, open(sys.argv[3], 'w'), indent=1)

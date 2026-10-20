@@ -1,0 +1,74 @@
+# 20 October 2026 : close views for the manual study of a uv set : faces coloured by island (the selected islands in colour, the rest grey), the wireframe thin,
+# the seams thick, island numbers ; one camera per view given as direction and framing. Usage :
+#   python -I Inspect.py <asset> <uvset> <out png> <islands comma list | all> <view spec> [view spec ...]
+#   view spec = name:dx,dy,dz:cx,cy,cz:half   (centre in metres, half the framed height in metres ; cx = c for the centre of the asset)
+# FR : gros plans de l'etude manuelle.
+import sys, os
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, OrigStudy as O
+
+_CACHE = {}
+
+
+def get(asset):
+    if asset not in _CACHE:
+        _CACHE[asset] = O.load_pair(asset)[0]
+    return _CACHE[asset]
+
+
+def board(asset, uvset, out, isl_sel, specs, size=760, wire=True):
+    m = get(asset)
+    lab, seams = Z.uv_islands(m, uvset, O.UV_TOL if uvset == 'orig' else 1e-6)
+    n = int(lab.max()) + 1
+    cols = O.palette(n)
+    rgb = np.tile(np.array([0.80, 0.80, 0.82]), (m.n, 1))
+    sel = set(range(n)) if isl_sel == 'all' else {int(x) for x in isl_sel.split(',')}
+    for f in range(m.n):
+        if lab[f] in sel:
+            rgb[f] = cols[lab[f]]
+    ed_seam = [e for e in seams if len(m.edges[e]) == 2]
+    lo, hi = m.P.min(0), m.P.max(0)
+    c0 = 0.5 * (lo + hi)
+    ims = []
+    for sp in specs:
+        nm, d, c, half = sp.split(':')
+        d = np.array([float(x) for x in d.split(',')])
+        c = c0 if c == 'c' else np.array([float(x) for x in c.split(',')])
+        cam = {'ortho': True, 'eye': c + 10.0 * d / np.linalg.norm(d), 'target': c, 'half': float(half), 'size': (size, size), 'c': c}
+        img, zb = R.render(m, cam, face_rgb=rgb)
+        im = Image.fromarray(img)
+        if wire:
+            S = R.project(cam, m.P)
+            inside = [e for e in m.edges if (0 <= S[e[0], 0] < size and 0 <= S[e[0], 1] < size) or (0 <= S[e[1], 0] < size and 0 <= S[e[1], 1] < size)]
+            im = R.draw_edges(np.asarray(im), zb, m, cam, inside, (110, 110, 118), 1)
+        im = R.draw_edges(np.asarray(im), zb, m, cam, ed_seam, (10, 10, 12), 3)
+        dr = ImageDraw.Draw(im)
+        S = R.project(cam, m.centroid)
+        fnt = ImageFont.truetype(O.FONT, 18)
+        tol = 0.004 * float(np.linalg.norm(hi - lo)) + 1e-5
+        done = set()
+        for f in np.argsort(-m.area):
+            k = int(lab[f])
+            if k in done or k not in sel:
+                continue
+            x, y, z = S[f]
+            xi, yi = int(x), int(y)
+            if 20 <= xi < size - 20 and 20 <= yi < size - 20 and z <= zb[max(0, yi - 1):yi + 2, max(0, xi - 1):xi + 2].min() + tol:
+                dr.text((x - 8, y - 10), str(k), fill=(255, 255, 255), font=fnt, stroke_width=2, stroke_fill=(0, 0, 0))
+                done.add(k)
+        dr.text((8, 6), nm, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 20))
+        ims.append(im)
+    cols_n = min(3, len(ims))
+    rows = (len(ims) + cols_n - 1) // cols_n
+    B = Image.new('RGB', (size * cols_n, size * rows), (238, 238, 240))
+    for i, im in enumerate(ims):
+        B.paste(im, ((i % cols_n) * size, (i // cols_n) * size))
+    B.save(out)
+    return out
+
+
+if __name__ == '__main__':
+    print(board(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5:]))
