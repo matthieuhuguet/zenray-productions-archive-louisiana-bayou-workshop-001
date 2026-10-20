@@ -1,0 +1,703 @@
+{
+ "summary": {
+  "asset": "ZRUV_ShaderBall",
+  "segments": 20,
+  "seam_m": 5.4317,
+  "junction_points": 13,
+  "inner_anchors": 30,
+  "share_one_click_between_junctions": 0.3243,
+  "length_by_tool_m": {
+   "loop": 5.3004,
+   "shortest": 1.7485
+  },
+  "replay_identical": true
+ },
+ "segments": [
+  {
+   "seg": 0,
+   "len": 0.5306,
+   "closed": true,
+   "sides": [
+    "0|3"
+   ],
+   "clicks": [
+    [
+     [
+      0,
+      "start"
+     ],
+     [
+      15,
+      "shortest"
+     ],
+     [
+      12,
+      "loop"
+     ]
+    ],
+    [
+     [
+      12,
+      "start"
+     ],
+     [
+      3,
+      "shortest"
+     ],
+     [
+      0,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 3,
+   "tools": [
+    "loop",
+    "shortest"
+   ]
+  },
+  {
+   "seg": 1,
+   "len": 0.1761,
+   "closed": false,
+   "sides": [
+    "0|0"
+   ],
+   "clicks": [
+    [
+     [
+      0,
+      "start"
+     ],
+     [
+      168,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 0,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 2,
+   "len": 0.0881,
+   "closed": false,
+   "sides": [
+    "1|1"
+   ],
+   "clicks": [
+    [
+     [
+      168,
+      "start"
+     ],
+     [
+      264,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 0,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 3,
+   "len": 0.5951,
+   "closed": true,
+   "sides": [
+    "0|1"
+   ],
+   "clicks": [
+    [
+     [
+      168,
+      "start"
+     ],
+     [
+      180,
+      "loop"
+     ]
+    ],
+    [
+     [
+      180,
+      "start"
+     ],
+     [
+      191,
+      "loop"
+     ],
+     [
+      168,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 4,
+   "len": 0.1313,
+   "closed": true,
+   "sides": [
+    "1|2"
+   ],
+   "clicks": [
+    [
+     [
+      264,
+      "start"
+     ],
+     [
+      280,
+      "shortest"
+     ],
+     [
+      276,
+      "shortest"
+     ]
+    ],
+    [
+     [
+      276,
+      "start"
+     ],
+     [
+      268,
+      "shortest"
+     ],
+     [
+      264,
+      "shortest"
+     ]
+    ]
+   ],
+   "inner_anchors": 3,
+   "tools": [
+    "shortest"
+   ]
+  },
+  {
+   "seg": 5,
+   "len": 0.1652,
+   "closed": false,
+   "sides": [
+    "4|4"
+   ],
+   "clicks": [
+    [
+     [
+      362,
+      "start"
+     ],
+     [
+      722,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 0,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 6,
+   "len": 0.1294,
+   "closed": true,
+   "sides": [
+    "4|5"
+   ],
+   "clicks": [
+    [
+     [
+      362,
+      "start"
+     ],
+     [
+      381,
+      "shortest"
+     ],
+     [
+      377,
+      "loop"
+     ]
+    ],
+    [
+     [
+      377,
+      "start"
+     ],
+     [
+      366,
+      "shortest"
+     ],
+     [
+      362,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 3,
+   "tools": [
+    "loop",
+    "shortest"
+   ]
+  },
+  {
+   "seg": 7,
+   "len": 0.4999,
+   "closed": true,
+   "sides": [
+    "4|6"
+   ],
+   "clicks": [
+    [
+     [
+      722,
+      "start"
+     ],
+     [
+      736,
+      "shortest"
+     ],
+     [
+      737,
+      "loop"
+     ]
+    ],
+    [
+     [
+      737,
+      "start"
+     ],
+     [
+      751,
+      "shortest"
+     ],
+     [
+      722,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 3,
+   "tools": [
+    "loop",
+    "shortest"
+   ]
+  },
+  {
+   "seg": 8,
+   "len": 0.1427,
+   "closed": false,
+   "sides": [
+    "9|9"
+   ],
+   "clicks": [
+    [
+     [
+      1077,
+      "start"
+     ],
+     [
+      1080,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 0,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 9,
+   "len": 0.0471,
+   "closed": true,
+   "sides": [
+    "7|9"
+   ],
+   "clicks": [
+    [
+     [
+      1077,
+      "start"
+     ],
+     [
+      1079,
+      "loop"
+     ],
+     [
+      2487,
+      "shortest"
+     ]
+    ],
+    [
+     [
+      2487,
+      "start"
+     ],
+     [
+      1077,
+      "shortest"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop",
+    "shortest"
+   ]
+  },
+  {
+   "seg": 10,
+   "len": 0.0471,
+   "closed": true,
+   "sides": [
+    "8|9"
+   ],
+   "clicks": [
+    [
+     [
+      1080,
+      "start"
+     ],
+     [
+      2514,
+      "shortest"
+     ]
+    ],
+    [
+     [
+      2514,
+      "start"
+     ],
+     [
+      1082,
+      "shortest"
+     ],
+     [
+      1080,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop",
+    "shortest"
+   ]
+  },
+  {
+   "seg": 11,
+   "len": 0.1427,
+   "closed": false,
+   "sides": [
+    "12|12"
+   ],
+   "clicks": [
+    [
+     [
+      2583,
+      "start"
+     ],
+     [
+      2586,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 0,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 12,
+   "len": 0.0471,
+   "closed": true,
+   "sides": [
+    "10|12"
+   ],
+   "clicks": [
+    [
+     [
+      2583,
+      "start"
+     ],
+     [
+      3993,
+      "shortest"
+     ]
+    ],
+    [
+     [
+      3993,
+      "start"
+     ],
+     [
+      2585,
+      "shortest"
+     ],
+     [
+      2583,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop",
+    "shortest"
+   ]
+  },
+  {
+   "seg": 13,
+   "len": 0.0471,
+   "closed": true,
+   "sides": [
+    "11|12"
+   ],
+   "clicks": [
+    [
+     [
+      2586,
+      "start"
+     ],
+     [
+      4020,
+      "shortest"
+     ]
+    ],
+    [
+     [
+      4020,
+      "start"
+     ],
+     [
+      2588,
+      "shortest"
+     ],
+     [
+      2586,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop",
+    "shortest"
+   ]
+  },
+  {
+   "seg": 14,
+   "len": 0.2689,
+   "closed": true,
+   "sides": [
+    "13|14"
+   ],
+   "clicks": [
+    [
+     [
+      4088,
+      "start"
+     ],
+     [
+      4335,
+      "loop"
+     ]
+    ],
+    [
+     [
+      4335,
+      "start"
+     ],
+     [
+      4126,
+      "loop"
+     ],
+     [
+      4088,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 15,
+   "len": 0.5008,
+   "closed": false,
+   "sides": [
+    "13|13"
+   ],
+   "clicks": [
+    [
+     [
+      4088,
+      "start"
+     ],
+     [
+      4106,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 0,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 16,
+   "len": 0.2689,
+   "closed": true,
+   "sides": [
+    "13|15"
+   ],
+   "clicks": [
+    [
+     [
+      4106,
+      "start"
+     ],
+     [
+      4784,
+      "shortest"
+     ],
+     [
+      4353,
+      "loop"
+     ]
+    ],
+    [
+     [
+      4353,
+      "start"
+     ],
+     [
+      4106,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop",
+    "shortest"
+   ]
+  },
+  {
+   "seg": 17,
+   "len": 0.5306,
+   "closed": true,
+   "sides": [
+    "16|17"
+   ],
+   "clicks": [
+    [
+     [
+      5002,
+      "start"
+     ],
+     [
+      5015,
+      "loop"
+     ],
+     [
+      5014,
+      "loop"
+     ]
+    ],
+    [
+     [
+      5014,
+      "start"
+     ],
+     [
+      5002,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 18,
+   "len": 0.546,
+   "closed": false,
+   "sides": [
+    "16|16"
+   ],
+   "clicks": [
+    [
+     [
+      5002,
+      "start"
+     ],
+     [
+      5339,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 0,
+   "tools": [
+    "loop"
+   ]
+  },
+  {
+   "seg": 19,
+   "len": 0.527,
+   "closed": true,
+   "sides": [
+    "16|18"
+   ],
+   "clicks": [
+    [
+     [
+      5339,
+      "start"
+     ],
+     [
+      5350,
+      "loop"
+     ]
+    ],
+    [
+     [
+      5350,
+      "start"
+     ],
+     [
+      5338,
+      "loop"
+     ],
+     [
+      5339,
+      "loop"
+     ]
+    ]
+   ],
+   "inner_anchors": 2,
+   "tools": [
+    "loop"
+   ]
+  }
+ ]
+}

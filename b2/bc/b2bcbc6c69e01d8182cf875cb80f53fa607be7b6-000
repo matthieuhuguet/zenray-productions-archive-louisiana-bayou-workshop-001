@@ -1,0 +1,65 @@
+# 20 October 2026 : on the artist's own seams, which unfold gives back the artist's island shapes ? Each original island is flattened by LSCM, then by ARAP with
+# more and more iterations, and laid on the artist's island by the best similarity ; the rms residual over the island diagonal is averaged by area.
+# Usage : python -I FlattenCompare.py <asset>   FR : quel depliage redonne les formes d'iles de l'artiste sur ses propres coutures.
+import sys, os, json
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, OrigStudy as O, MatchUV as M, ZruvTailor as T, ZruvOrganic as OR
+
+
+def islands_local(m):
+    S = T.Surf(m.P, m.polys)
+    lab, seams = Z.uv_islands(m, 'orig', O.UV_TOL)
+    cut = np.zeros(S.ne, dtype=bool)
+    for e, fl in enumerate(S.ef):
+        a, b = S.E[e]
+        key = (min(a, b), max(a, b))
+        cut[e] = (len(fl) != 2) or key in seams
+    out = []
+    for k in range(int(lab.max()) + 1):
+        fs = [int(f) for f in np.where(lab == k)[0]]
+        loc = T.Local(S, fs, cut)
+        U = np.zeros((loc.n, 2))
+        for (f, j), lv in loc.corner.items():
+            U[lv] = m.uv['orig'][f][j]
+        out.append((fs, loc, U, S.P[loc.gv]))
+    return out
+
+
+def shape_err(U, V):
+    diag = float(np.linalg.norm(V.max(0) - V.min(0)))
+    if diag < 1e-9:
+        return None
+    s, R, t, rms, mir = M.similarity(U, V)
+    return rms / diag
+
+
+def run(asset, variants=(('lscm', 0), ('arap', 2), ('arap', 6), ('arap', 20), ('arap', 60))):
+    m, _ = O.load_pair(asset)
+    isl = islands_local(m)
+    res = {}
+    for kind, its in variants:
+        num, den = 0.0, 0.0
+        for fs, loc, U0, X3 in isl:
+            a = float(m.area[fs].sum())
+            if len(loc.tris) < 1 or float(np.abs(U0).sum()) < 1e-12:
+                continue
+            try:
+                uv = T.lscm(X3, loc.tris)
+                if kind == 'arap' and its > 0:
+                    uv = OR.arap(X3, loc.tris, uv, iters=its, tol=10.0, bd_iters=0)
+            except Exception as ex:
+                continue
+            e = shape_err(uv, U0)
+            if e is None:
+                continue
+            num += a * e
+            den += a
+        res['%s%d' % (kind, its)] = round(num / max(den, 1e-20), 5)
+        print(asset, kind, its, res['%s%d' % (kind, its)], flush=True)
+    return res
+
+
+if __name__ == '__main__':
+    print(json.dumps(run(sys.argv[1])))

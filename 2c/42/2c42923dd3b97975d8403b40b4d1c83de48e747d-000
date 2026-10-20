@@ -1,0 +1,36 @@
+# 20 October 2026 : per island, which unfold is closest to the artist's (Houdini SCP, Houdini ABF, LSCM, ARAP 20), and the area weighted floor when each island
+# takes its best. Usage : python -I FlattenBest.py <asset>  FR : le meilleur depliage ile par ile, et le plancher atteint.
+import sys, os, json
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, OrigStudy as O, MatchUV as M, ZruvTailor as T, ZruvOrganic as OR, FlattenCompare as FC
+asset = sys.argv[1]
+m, _ = O.load_pair(asset)
+hou = {k: json.load(open(O.REF + '/flat/%s_m%d.json' % (asset, i)))['uv'] for i, k in ((0, 'scp'), (1, 'abf'))}
+isl = FC.islands_local(m)
+tot, best_sum, per = 0.0, 0.0, {}
+choice = []
+for fs, loc, U0, X3 in isl:
+    a = float(m.area[fs].sum())
+    if float(np.abs(U0).sum()) < 1e-12 or len(loc.tris) < 1:
+        continue
+    errs = {}
+    for k, uv in hou.items():
+        V = np.zeros((loc.n, 2))
+        for (f, j), lv in loc.corner.items():
+            V[lv] = uv[f][j]
+        errs[k] = FC.shape_err(V, U0)
+    l = T.lscm(X3, loc.tris)
+    errs['lscm'] = FC.shape_err(l, U0)
+    errs['arap20'] = FC.shape_err(OR.arap(X3, loc.tris, l, iters=20, tol=10.0, bd_iters=0), U0)
+    errs = {k: v for k, v in errs.items() if v is not None}
+    if not errs:
+        continue
+    b = min(errs, key=errs.get)
+    choice.append(b)
+    tot += a
+    best_sum += a * errs[b]
+    for k, v in errs.items():
+        per[k] = per.get(k, 0.0) + a * v
+print(asset, {k: round(v / tot, 5) for k, v in per.items()}, 'best per island', round(best_sum / tot, 5), {k: choice.count(k) for k in set(choice)})

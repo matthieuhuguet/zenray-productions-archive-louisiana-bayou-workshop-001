@@ -1,0 +1,158 @@
+# 20 October 2026 : the artist's clicks. An artist cuts in Maya with two selection tools : double click an edge and the whole edge LOOP is taken (it goes
+# straight through every point with four edges), or click two points and the SHORTEST EDGE PATH between them is taken. This script finds, for every seam
+# segment of an artist's uv, the fewest clicked points (anchors) such that loops and shortest paths between consecutive anchors give back exactly the
+# artist's edges, and replays the clicks to prove it. Usage : python -I PathFit.py <asset>  ->  runs/reference/study/<asset>/clicks.json
+# FR : les clics de l'artiste, la plus petite suite de boucles et de plus courts chemins qui redonne exactement sa decoupe.
+import sys, os, json, heapq
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, OrigStudy as O, SeamSegments as SS, LoopTools as LT
+
+
+class Tools:
+    """The two selection tools, on one mesh."""
+
+    def __init__(self, m):
+        self.m = m
+        self.Q = LT.Quads(m)
+        self.adj = [[] for _ in range(len(m.P))]
+        for (a, b) in m.edges:
+            L = m.edge_length((a, b))
+            self.adj[a].append((b, L))
+            self.adj[b].append((a, L))
+
+    def shortest(self, s, t, limit=None):
+        """Dijkstra by edge length (Maya's shortest edge path) ; None if t is farther than limit."""
+        dist = {s: 0.0}
+        prev = {}
+        h = [(0.0, s)]
+        while h:
+            d, u = heapq.heappop(h)
+            if u == t:
+                break
+            if d > dist[u]:
+                continue
+            if limit is not None and d > limit:
+                return None
+            for v, L in self.adj[u]:
+                nd = d + L
+                if nd < dist.get(v, 1e30) - 1e-15:
+                    dist[v] = nd
+                    prev[v] = u
+                    heapq.heappush(h, (nd, v))
+        if t not in dist:
+            return None
+        path = [t]
+        while path[-1] != s:
+            path.append(prev[path[-1]])
+        return path[::-1]
+
+    def loop_path(self, s, t, maxn):
+        """The points from s to t along one edge loop (straight through four edge points), or None."""
+        Q = self.Q
+        for e in Q.pe[s]:
+            pts = [s, Q.other(e, s)]
+            cur = e
+            while len(pts) <= maxn + 1:
+                if pts[-1] == t:
+                    return pts
+                nx = Q.opposite_at(cur, pts[-1])
+                if nx is None:
+                    break
+                pts.append(Q.other(nx, pts[-1]))
+                cur = nx
+        return None
+
+
+def fit_chain(T, ch):
+    """Greedy : from each anchor, the farthest point of the chain reachable by one tool reproducing the chain exactly (binary search : a part of a loop or
+    of a shortest path is itself one). Returns [(anchor index, tool)] ; tool of the piece that ends at that anchor."""
+    out = [(0, 'start')]
+    i = 0
+    n = len(ch) - 1
+    m = T.m
+    def ok(i, j):
+        sub = ch[i:j + 1]
+        lp = T.loop_path(ch[i], ch[j], j - i)
+        if lp == sub:
+            return 'loop'
+        L = sum(m.edge_length((min(sub[k], sub[k + 1]), max(sub[k], sub[k + 1]))) for k in range(len(sub) - 1))
+        sp = T.shortest(ch[i], ch[j], limit=L * 1.0001)
+        if sp == sub:
+            return 'shortest'
+        return None
+    while i < n:
+        lo, hi = i + 1, n
+        best = (i + 1, ok(i, i + 1) or 'shortest')
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            t = ok(i, mid)
+            if t:
+                best = (mid, t)
+                lo = mid + 1
+            else:
+                hi = mid - 1
+        out.append(best)
+        i = best[0]
+    return out
+
+
+def replay(T, ch, fit):
+    pts = [ch[fit[0][0]]]
+    for (a, _), (b, tool) in zip(fit[:-1], fit[1:]):
+        s, t = ch[a], ch[b]
+        p = T.loop_path(s, t, b - a) if tool == 'loop' else T.shortest(s, t)
+        if p is None:
+            return None
+        pts += p[1:]
+    return pts
+
+
+def run(asset):
+    m, _ = O.load_pair(asset)
+    T = Tools(m)
+    lab, seams = Z.uv_islands(m, 'orig', O.UV_TOL)
+    seams = {e for e in seams if len(m.edges[e]) == 2}
+    segs = SS.segments(m, seams)
+    rows = []
+    rebuilt = set()
+    for k, ch in enumerate(segs):
+        closed = ch[0] == ch[-1]
+        if closed:
+            # a loop without junction : one double click if it is an edge loop, else open it at its farthest point
+            lp = T.loop_path(ch[0], ch[0], len(ch)) if False else None
+            far = int(np.argmax(np.linalg.norm(m.P[ch] - m.P[ch[0]], axis=1)))
+            parts = [ch[:far + 1], ch[far:]]
+        else:
+            parts = [ch]
+        fits = []
+        for part in parts:
+            f = fit_chain(T, part)
+            rp = replay(T, part, f)
+            assert rp == part, 'replay differs on segment %d' % k
+            fits.append([(int(part[i]), t) for i, t in f])
+            for i in range(len(rp) - 1):
+                rebuilt.add((min(rp[i], rp[i + 1]), max(rp[i], rp[i + 1])))
+        L = float(np.linalg.norm(np.diff(m.P[ch], axis=0), axis=1).sum())
+        sides = sorted({tuple(sorted((int(lab[m.edges[(min(ch[i], ch[i + 1]), max(ch[i], ch[i + 1]))][0]]), int(lab[m.edges[(min(ch[i], ch[i + 1]), max(ch[i], ch[i + 1]))][1]])))) for i in range(len(ch) - 1)})
+        n_inner = sum(len(f) - 2 for f in fits) + (1 if closed else 0)
+        rows.append({'seg': k, 'len': round(L, 4), 'closed': closed, 'sides': ['%d|%d' % s for s in sides], 'clicks': fits, 'inner_anchors': n_inner,
+                     'tools': sorted({t for f in fits for _, t in f if t != 'start'})})
+    assert rebuilt == seams, 'replayed seams differ from the artist seams'
+    tot = sum(r['len'] for r in rows)
+    pure = sum(r['len'] for r in rows if r['inner_anchors'] == 0)
+    nanch = sum(r['inner_anchors'] for r in rows)
+    junctions = len({r['clicks'][0][0][0] for r in rows} | {r['clicks'][-1][-1][0] for r in rows})
+    by_tool = {}
+    for r in rows:
+        for t in r['tools']:
+            by_tool[t] = by_tool.get(t, 0.0) + r['len']
+    summ = {'asset': asset, 'segments': len(rows), 'seam_m': round(tot, 4), 'junction_points': junctions, 'inner_anchors': nanch,
+            'share_one_click_between_junctions': round(pure / tot, 4), 'length_by_tool_m': {k: round(v, 4) for k, v in by_tool.items()}, 'replay_identical': True}
+    json.dump({'summary': summ, 'segments': rows}, open(O.REF + '/study/%s/clicks.json' % asset, 'w'), indent=1)
+    print(json.dumps(summ))
+
+
+if __name__ == '__main__':
+    run(sys.argv[1])

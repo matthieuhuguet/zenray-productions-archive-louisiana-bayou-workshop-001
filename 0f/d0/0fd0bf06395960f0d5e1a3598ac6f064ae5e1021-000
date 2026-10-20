@@ -1,0 +1,6 @@
+ZRUV_RubberToy lscm 0 0.02228
+ZRUV_RubberToy arap 2 0.02223
+ZRUV_RubberToy arap 6 0.02278
+ZRUV_RubberToy arap 20 0.02299
+ZRUV_RubberToy arap 60 0.02326
+{"lscm0": 0.02228, "arap2": 0.02223, "arap6": 0.02278, "arap20": 0.02299, "arap60": 0.02326}

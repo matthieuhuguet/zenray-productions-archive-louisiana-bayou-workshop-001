@@ -1,0 +1,53 @@
+# 20 October 2026 : which faces of a component lie inside another closed component (buried, never seen) : ray parity from each face centre against the other
+# component's triangles. Shared by the toy study and the artist rules. FR : faces enfouies dans un autre composant ferme.
+import numpy as np
+import ZrMesh as Z
+
+
+def components(m):
+    find, union = Z.uf(m.n)
+    for e, fs in m.edges.items():
+        if len(fs) == 2:
+            union(fs[0], fs[1])
+    comp = np.array([find(f) for f in range(m.n)])
+    ids = {r: i for i, r in enumerate(sorted(set(comp.tolist()), key=lambda r: -(comp == r).sum()))}
+    return np.array([ids[r] for r in comp])
+
+
+def inside(m, points, faces, d=(0.5773, 0.5774, 0.5773)):
+    """Parity of the crossings of a ray from each point with the triangles of the given faces (a closed shell) : True inside."""
+    d = np.asarray(d, float)
+    t = np.isin(m.tf, faces)
+    A, B, C = m.P[m.tri[t, 0]], m.P[m.tri[t, 1]], m.P[m.tri[t, 2]]
+    e1, e2 = B - A, C - A
+    h = np.cross(d, e2)
+    a = (e1 * h).sum(1)
+    f = 1.0 / np.where(np.abs(a) < 1e-14, np.inf, a)
+    cnt = np.zeros(len(points), dtype=int)
+    for i0 in range(0, len(points), 64):
+        P = points[i0:i0 + 64, None, :]
+        s = P - A[None]
+        u = f[None] * (s * h[None]).sum(2)
+        q = np.cross(s, e1[None])
+        v = f[None] * (q * d).sum(2)
+        tt = f[None] * (q * e2[None]).sum(2)
+        cnt[i0:i0 + 64] = ((u >= 0) & (v >= 0) & (u + v <= 1) & (tt > 1e-9)).sum(1)
+    return cnt % 2 == 1
+
+
+def buried(m, comp=None):
+    """Per face : True when its centre lies inside another closed component."""
+    comp = components(m) if comp is None else comp
+    out = np.zeros(m.n, dtype=bool)
+    n = int(comp.max()) + 1
+    for c in range(n):
+        fs = np.where(comp == c)[0]
+        for o in range(n):
+            if o == c:
+                continue
+            of = np.where(comp == o)[0]
+            lo, hi = m.P[[p for f in of for p in m.polys[f]]].min(0), m.P[[p for f in of for p in m.polys[f]]].max(0)
+            cand = fs[((m.centroid[fs] >= lo) & (m.centroid[fs] <= hi)).all(1)]
+            if len(cand):
+                out[cand] |= inside(m, m.centroid[cand], of)
+    return out
