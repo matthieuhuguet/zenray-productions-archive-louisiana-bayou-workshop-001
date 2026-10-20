@@ -1,0 +1,15 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_ShaderBall": {
+   "s": 136.0,
+   "res": {
+    "M1": {
+     "score": 0.999999,
+     "weakest": "bake:coverage",
+     "errors": null
+    }
+   }
+  }
+ }
+}

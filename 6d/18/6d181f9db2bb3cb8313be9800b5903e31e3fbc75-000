@@ -1,0 +1,4 @@
+{
+ "ok": false,
+ "error": "Traceback (most recent call last):\n  File \"<string>\", line 132, in _poll\n  File \"<string>\", line 103, in _handle\n  File \"<zrbridge>\", line 1, in <module>\n  File \"<string>\", line 8, in <module>\nAssertionError: {'Asset': 8, 'Rules': 8, 'Seams': 8, 'Tailor': 9, 'M1 Unique': 8, 'M2 Tileable': 6, 'M3 Trim': 8, 'M4 Layered': 5, 'M5 Decals': 8}\n"
+}

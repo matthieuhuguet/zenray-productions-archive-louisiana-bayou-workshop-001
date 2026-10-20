@@ -1,0 +1,19 @@
+#!/bin/zsh
+# 20 October 2026 : M1 on the three organic references with the learned artist rules imposed on the tailor (tailor_rules), one asset per bridge call, a summary
+# line per asset in RunM1Rules.sum. FR : M1 sur les trois references avec les regles apprises.
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+B="/opt/homebrew/bin/python3 /Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py hom"
+: > $W/Scripts/RunM1Rules.sum
+for obj in ZRUV_ShaderBall ZRUV_RubberToy ZRUV_Manny; do
+  ZR_BRIDGE_TIMEOUT=5400 $=B "OBJS=('$obj',); METHS=('M1',); BAKE=True; RUNS='$W/runs'; exec(open('$W/Scripts/RunSheets.py').read())" > $W/Scripts/RunM1Rules_$obj.out 2>&1
+  /opt/homebrew/bin/python3 -c "
+import json
+try:
+    r = json.load(open('$W/Scripts/RunM1Rules_$obj.out'))['result']['$obj']
+    print('$obj', {k: (v['score'], v['weakest'], (v['errors'] or [''])[0][:200] if v['errors'] else '') for k, v in r['res'].items()})
+except Exception as e:
+    print('$obj', 'unreadable', e, open('$W/Scripts/RunM1Rules_$obj.out').read()[-800:])
+" >> $W/Scripts/RunM1Rules.sum
+  echo "$obj done $(date +%H:%M:%S)" >> $W/Scripts/RunM1Rules.sum
+done
+echo "all done $(date +%H:%M:%S)" >> $W/Scripts/RunM1Rules.sum

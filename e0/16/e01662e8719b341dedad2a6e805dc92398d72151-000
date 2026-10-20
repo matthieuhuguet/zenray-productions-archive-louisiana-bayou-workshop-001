@@ -1,7 +1,7 @@
 {
  "asset": "ZRUV_Manny",
- "learn_s": 10.1,
- "apply_s": 3.4,
+ "learn_s": 10.2,
+ "apply_s": 3.3,
  "summary": {
   "seam_m": 15.2523,
   "segments": 120,
@@ -15,10 +15,8 @@
    "set_edge": 0.2478,
    "contour_z": 0.1558,
    "contour_y": 0.1487,
-   "free_choice": 0.1351,
+   "free_choice": 0.1416,
    "contour_x": 0.0933,
-   "grid_meridian": 0.0685,
-   "grid_ring": 0.0528,
    "midline": 0.0463,
    "asymmetric": 0.0236
   },

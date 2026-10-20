@@ -1,0 +1,35 @@
+# 20 October 2026 : one summary of the artist study for the overview page : per asset, the identity of the current cut (tailor M1) and of the replayed pattern
+# with the artist's original, the concepts, the unfold floor per method, the symmetry, and the boards. Writes runs/reference/artist/summary.json.
+# Usage : python -I ArtistSummary.py   FR : resume de l'etude de l'artiste pour la page.
+import os, sys, json
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import OrigStudy as O
+
+ASSETS = ('ZRUV_RubberToy', 'ZRUV_ShaderBall', 'ZRUV_Manny')
+out = {'date': '20 October 2026', 'assets': {}}
+for a in ASSETS:
+    d = json.load(open(O.REF + '/pattern/%s.log' % a))
+    pat = json.load(open(O.REF + '/pattern/%s.pattern.json' % a))
+    base = json.load(open(O.REF + '/study/%s/match_zr_M1.json' % a))
+    isl = [i for i in pat['islands'] if 'collapse' not in i]
+    tot = sum(i['area_3d'] for i in isl) or 1.0
+    floor = {}
+    for meth in ('lscm', 'arap20', 'scp', 'abf'):
+        num = sum(i['area_3d'] * i['shape_err'].get(meth, max(i['shape_err'].values())) for i in isl)
+        floor[meth] = round(num / tot, 5)
+    floor['best_per_island'] = round(sum(i['area_3d'] * min(i['shape_err'].values()) for i in isl) / tot, 5)
+    meths = {}
+    for i in isl:
+        meths[i['flatten']] = meths.get(i['flatten'], 0) + 1
+    st = O.REF + '/study/' + a
+    imgs = {k: st + '/' + f for k, f in (('orig_3d', 'orig_3d.png'), ('concepts_3d', 'concepts_3d.png'), ('overlay', 'replay_overlay_uv.png'), ('asymmetry', 'asymmetry.png'),
+                                         ('orig_uv', 'orig_uv.png')) if os.path.exists(st + '/' + f)}
+    for f in sorted(os.listdir(st)):
+        if f.startswith('orig_uv_') and f.endswith('.png') and f != 'orig_uv_pieces.png':
+            imgs['orig_uv_' + f[8:-4]] = st + '/' + f
+    out['assets'][a] = {'summary': pat['summary'], 'symmetry': pat['symmetry'], 'components': pat['components'], 'replay': {'seams': d['seams'], 'islands': d['islands']},
+                        'baseline': {'seams': base['seams'], 'islands': base['islands']}, 'unfold_floor': floor, 'unfold_choice': meths, 'images': imgs,
+                        'learn_s': d['learn_s'], 'apply_s': d['apply_s']}
+os.makedirs(O.REF + '/artist', exist_ok=True)
+json.dump(out, open(O.REF + '/artist/summary.json', 'w'), indent=1)
+print(json.dumps({a: {'f1': v['replay']['seams']['f1'], 'shape': v['replay']['islands']['shape_mean'], 'floor': v['unfold_floor']} for a, v in out['assets'].items()}, indent=1))

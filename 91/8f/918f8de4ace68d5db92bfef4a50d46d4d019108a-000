@@ -1,7 +1,7 @@
 {
  "asset": "ZRUV_ShaderBall",
- "learn_s": 3.9,
- "apply_s": 1.3,
+ "learn_s": 4.3,
+ "apply_s": 1.4,
  "summary": {
   "seam_m": 5.4317,
   "segments": 20,

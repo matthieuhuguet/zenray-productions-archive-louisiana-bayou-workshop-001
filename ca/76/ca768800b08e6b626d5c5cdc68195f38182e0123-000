@@ -1,0 +1,330 @@
+{
+ "date": "20 October 2026",
+ "assets": {
+  "ZRUV_RubberToy": {
+   "summary": {
+    "seam_m": 9.2156,
+    "segments": 73,
+    "clicks": 165,
+    "islands": 33,
+    "collapsed": 0,
+    "concept_share": {
+     "symmetric": 0.715,
+     "crease": 0.3837,
+     "asymmetric": 0.285,
+     "free_choice": 0.2607,
+     "hidden_side": 0.1962,
+     "contour_y": 0.1887,
+     "contour_x": 0.1555,
+     "midline": 0.136,
+     "blade_rim": 0.1,
+     "buried_edge": 0.0852,
+     "contour_z": 0.0454,
+     "grid_meridian": 0.0046,
+     "grid_ring": 0.0041
+    },
+    "tool_share": {
+     "loop": 0.8865,
+     "shortest": 0.0619,
+     "loop_closed": 0.0516
+    },
+    "texture_sets": [
+     ""
+    ]
+   },
+   "symmetry": {
+    "axis": 0,
+    "share": 0.9998
+   },
+   "components": 10,
+   "replay": {
+    "seams": {
+     "orig_m": 9.2156,
+     "cand_m": 9.2156,
+     "identical_m": 9.2156,
+     "recall": 1.0,
+     "precision": 1.0,
+     "f1": 1.0,
+     "f1_1ring": 1.0,
+     "missing_m": 0.0,
+     "extra_m": 0.0
+    },
+    "islands": {
+     "orig": 33,
+     "cand": 33,
+     "iou_mean_area": 1.0,
+     "iou_min": 1.0,
+     "identical_partition": true,
+     "shape_mean": 0.01492,
+     "place_mean": 0.00675,
+     "turn_abs_mean": 1.014,
+     "scale_dev_mean": 0.0122
+    }
+   },
+   "baseline": {
+    "seams": {
+     "orig_m": 9.2156,
+     "cand_m": 7.7353,
+     "identical_m": 1.1291,
+     "recall": 0.1225,
+     "precision": 0.146,
+     "f1": 0.1332,
+     "f1_1ring": 0.198,
+     "missing_m": 8.0866,
+     "extra_m": 6.6062
+    },
+    "islands": {
+     "orig": 33,
+     "cand": 15,
+     "iou_mean_area": 0.3116,
+     "iou_min": 0.0094,
+     "identical_partition": false,
+     "shape_mean": 0.14476,
+     "place_mean": 0.48021,
+     "turn_abs_mean": 125.936,
+     "scale_dev_mean": 0.3836
+    }
+   },
+   "unfold_floor": {
+    "lscm": 0.02228,
+    "arap20": 0.02299,
+    "scp": 0.01746,
+    "abf": 0.02015,
+    "best_per_island": 0.01576
+   },
+   "unfold_choice": {
+    "scp": 8,
+    "abf": 21,
+    "lscm": 1,
+    "arap20": 3
+   },
+   "images": {
+    "orig_3d": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/orig_3d.png",
+    "concepts_3d": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/concepts_3d.png",
+    "overlay": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/replay_overlay_uv.png",
+    "asymmetry": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/asymmetry.png",
+    "orig_uv": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/orig_uv.png"
+   },
+   "learn_s": 8.2,
+   "apply_s": 1.2
+  },
+  "ZRUV_ShaderBall": {
+   "summary": {
+    "seam_m": 5.4317,
+    "segments": 20,
+    "clicks": 64,
+    "islands": 76,
+    "collapsed": 57,
+    "concept_share": {
+     "grid_ring": 0.6311,
+     "hidden_side": 0.2716,
+     "contour_x": 0.1988,
+     "crease": 0.1964,
+     "free_choice": 0.1214,
+     "grid_meridian": 0.0997,
+     "contour_y": 0.0464,
+     "contour_z": 0.0242
+    },
+    "tool_share": {
+     "shortest": 0.2353,
+     "loop": 0.4604,
+     "loop_closed": 0.3043
+    },
+    "texture_sets": [
+     "Core",
+     "PreviewSurface",
+     "Stand",
+     "SubsurfaceBars"
+    ]
+   },
+   "symmetry": {
+    "axis": null,
+    "share": 0.3623
+   },
+   "components": 63,
+   "replay": {
+    "seams": {
+     "orig_m": 5.4317,
+     "cand_m": 5.4317,
+     "identical_m": 5.4317,
+     "recall": 1.0,
+     "precision": 1.0,
+     "f1": 1.0,
+     "f1_1ring": 1.0,
+     "missing_m": 0.0,
+     "extra_m": 0.0
+    },
+    "islands": {
+     "orig": 76,
+     "cand": 76,
+     "iou_mean_area": 1.0,
+     "iou_min": 1.0,
+     "identical_partition": true,
+     "shape_mean": 0.00605,
+     "place_mean": 0.00759,
+     "turn_abs_mean": 0.182,
+     "scale_dev_mean": 0.0035
+    }
+   },
+   "baseline": {
+    "seams": {
+     "orig_m": 5.4317,
+     "cand_m": 11.2799,
+     "identical_m": 1.0692,
+     "recall": 0.1968,
+     "precision": 0.0948,
+     "f1": 0.128,
+     "f1_1ring": 0.187,
+     "missing_m": 4.3625,
+     "extra_m": 10.2107
+    },
+    "islands": {
+     "orig": 76,
+     "cand": 74,
+     "iou_mean_area": 0.5073,
+     "iou_min": 0.0075,
+     "identical_partition": false,
+     "shape_mean": 0.24049,
+     "place_mean": 0.45235,
+     "turn_abs_mean": 90.31,
+     "scale_dev_mean": 0.7694
+    }
+   },
+   "unfold_floor": {
+    "lscm": 0.05402,
+    "arap20": 0.03207,
+    "scp": 0.02153,
+    "abf": 0.0296,
+    "best_per_island": 0.00646
+   },
+   "unfold_choice": {
+    "grid_ua": 5,
+    "scp": 3,
+    "planar": 6,
+    "grid_aa": 2,
+    "arap20": 2,
+    "abf": 1
+   },
+   "images": {
+    "orig_3d": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/orig_3d.png",
+    "concepts_3d": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/concepts_3d.png",
+    "overlay": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/replay_overlay_uv.png",
+    "orig_uv": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/orig_uv.png",
+    "orig_uv_Core": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/orig_uv_Core.png",
+    "orig_uv_PreviewSurface": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/orig_uv_PreviewSurface.png",
+    "orig_uv_Stand": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/orig_uv_Stand.png",
+    "orig_uv_SubsurfaceBars": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/orig_uv_SubsurfaceBars.png"
+   },
+   "learn_s": 3.9,
+   "apply_s": 1.3
+  },
+  "ZRUV_Manny": {
+   "summary": {
+    "seam_m": 15.2523,
+    "segments": 120,
+    "clicks": 407,
+    "islands": 45,
+    "collapsed": 0,
+    "concept_share": {
+     "symmetric": 0.9764,
+     "crease": 0.5415,
+     "hidden_side": 0.3688,
+     "set_edge": 0.2478,
+     "contour_z": 0.1558,
+     "contour_y": 0.1487,
+     "free_choice": 0.1351,
+     "contour_x": 0.0933,
+     "grid_meridian": 0.0685,
+     "grid_ring": 0.0528,
+     "midline": 0.0463,
+     "asymmetric": 0.0236
+    },
+    "tool_share": {
+     "shortest": 0.9756,
+     "loop": 0.0244
+    },
+    "texture_sets": [
+     "MI_Manny_01",
+     "MI_Manny_02"
+    ]
+   },
+   "symmetry": {
+    "axis": 0,
+    "share": 0.9848
+   },
+   "components": 1,
+   "replay": {
+    "seams": {
+     "orig_m": 15.2523,
+     "cand_m": 15.2523,
+     "identical_m": 15.2523,
+     "recall": 1.0,
+     "precision": 1.0,
+     "f1": 1.0,
+     "f1_1ring": 1.0,
+     "missing_m": 0.0,
+     "extra_m": 0.0
+    },
+    "islands": {
+     "orig": 45,
+     "cand": 45,
+     "iou_mean_area": 1.0,
+     "iou_min": 1.0,
+     "identical_partition": true,
+     "shape_mean": 0.01154,
+     "place_mean": 0.00813,
+     "turn_abs_mean": 0.603,
+     "scale_dev_mean": 0.0083
+    }
+   },
+   "baseline": {
+    "seams": {
+     "orig_m": 15.2523,
+     "cand_m": 13.9592,
+     "identical_m": 1.6726,
+     "recall": 0.1097,
+     "precision": 0.1198,
+     "f1": 0.1145,
+     "f1_1ring": 0.2205,
+     "missing_m": 13.5797,
+     "extra_m": 12.2866
+    },
+    "islands": {
+     "orig": 45,
+     "cand": 16,
+     "iou_mean_area": 0.3272,
+     "iou_min": 0.0072,
+     "identical_partition": false,
+     "shape_mean": 0.19672,
+     "place_mean": 0.46677,
+     "turn_abs_mean": 70.649,
+     "scale_dev_mean": 0.5128
+    }
+   },
+   "unfold_floor": {
+    "lscm": 0.02674,
+    "arap20": 0.01486,
+    "scp": 0.02283,
+    "abf": 0.02059,
+    "best_per_island": 0.01225
+   },
+   "unfold_choice": {
+    "arap20": 36,
+    "abf": 4,
+    "scp": 1,
+    "lscm": 4
+   },
+   "images": {
+    "orig_3d": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/orig_3d.png",
+    "concepts_3d": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/concepts_3d.png",
+    "overlay": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/replay_overlay_uv.png",
+    "asymmetry": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/asymmetry.png",
+    "orig_uv": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/orig_uv.png",
+    "orig_uv_MI_Manny_01": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/orig_uv_MI_Manny_01.png",
+    "orig_uv_MI_Manny_02": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/orig_uv_MI_Manny_02.png"
+   },
+   "learn_s": 10.1,
+   "apply_s": 3.4
+  }
+ }
+}
