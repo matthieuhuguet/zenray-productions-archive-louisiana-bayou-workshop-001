@@ -1,0 +1,58 @@
+surf 15211 30418 45627 organic faces 30418 must 0 0.4s
+mirror axis 0 charts 1 0.7s
+neck loop 0.426 m charts 3
+neck loop 0.747 m charts 5
+neck loop 0.529 m charts 7
+neck loop 0.735 m charts 8
+neck loop 0.527 m charts 9
+neck loop 0.672 m charts 11
+neck loop 0.741 m charts 13
+neck loop 0.840 m charts 15
+neck loop 0.920 m charts 16
+neck loop 1.639 m charts 17
+neck loop 1.573 m charts 18
+neck loop 1.045 m charts 20
+neck loop 0.979 m charts 21
+necks 13 charts 21 11.8s
+flattened {'charts': 21, 'seams_m': 14.502, 'seam_cost': 3.7405, 'stretch_p50': 0.2064, 'stretch_p95': 0.9494, 'within_10': 0.4391, 'within_20': 0.497, 'failing_charts': 7, 'mirror_axis': 0, 'moves': {'neck': 13}, 'stuck': 0, 'economy_removed': 0} 17.2s
+move silhouette gain 0.20491 charts 23 fail 0.78327
+move silhouette gain 0.07230 charts 24 fail 0.50820
+move pole dart gain 0.03210 charts 24 fail 0.45078
+move pole dart gain 0.12668 charts 24 fail 0.37655
+move pole dart gain 0.02814 charts 24 fail 0.28520
+move pole dart gain 0.02792 charts 24 fail 0.27542
+move silhouette gain 0.05631 charts 30 fail 0.20635
+move pole dart gain 0.00564 charts 30 fail 0.19136
+move dart gain 0.00586 charts 30 fail 0.15059
+move pole dart gain 0.00984 charts 30 fail 0.11814
+move pole dart gain 0.01146 charts 30 fail 0.07854
+move dart gain 0.00089 charts 30 fail 0.07290
+move pole dart gain 0.00163 charts 30 fail 0.06336
+move dart gain 0.00022 charts 30 fail 0.06359
+move pole dart gain 0.00200 charts 30 fail 0.05035
+move silhouette gain 0.01181 charts 34 fail 0.03132
+move dart gain 0.00060 charts 34 fail 0.02306
+move dart gain 0.00055 charts 34 fail 0.01840
+move dart gain 0.00037 charts 34 fail 0.01547
+move pole dart gain 0.00270 charts 34 fail 0.01243
+move pole dart gain 0.00024 charts 34 fail 0.01103
+move pole dart gain 0.00266 charts 34 fail 0.00766
+move pole dart gain 0.00153 charts 34 fail 0.00548
+move pole dart gain 0.00086 charts 34 fail 0.00428
+move pole dart gain 0.00112 charts 34 fail 0.00313
+move pole dart gain 0.00021 charts 34 fail 0.00241
+move pole dart gain 0.00022 charts 34 fail 0.00151
+move pole dart gain 0.00025 charts 34 fail 0.00066
+move pole dart gain 0.00194 charts 34 fail 0.00027
+move dart gain 0.00002 charts 34 fail 0.00007
+move pole dart gain 0.00005 charts 34 fail 0.00000
+improved {'charts': 34, 'seams_m': 19.366, 'seam_cost': 4.7261, 'stretch_p50': 0.04, 'stretch_p95': 0.1483, 'within_10': 0.8663, 'within_20': 0.979, 'failing_charts': 0, 'mirror_axis': 0, 'moves': {'neck': 13, 'silhouette': 4, 'pole dart': 20, 'dart': 7}, 'stuck': 0, 'economy_removed': 0} 200.2s
+economy neck saved 0.6775 charts 32
+economy neck saved 0.1586 charts 30
+economy pole dart saved 0.0341 charts 30
+economy neck saved 0.1842 charts 28
+economy dart saved 0.0007 charts 28
+economy dart saved 0.0030 charts 28
+economy dart saved 0.0008 charts 28
+economy neck saved 0.2801 charts 26
+economy neck saved 0.1424 charts 24

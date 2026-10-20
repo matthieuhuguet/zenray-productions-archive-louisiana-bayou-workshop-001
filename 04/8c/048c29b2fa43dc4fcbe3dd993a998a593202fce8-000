@@ -1,0 +1,20 @@
+{
+ "epic": {
+  "islands": 45,
+  "seams_m": 15.252,
+  "stretch_p50": 0.0899,
+  "stretch_p95": 0.2592,
+  "within_10": 0.5615,
+  "within_20": 0.905,
+  "area_m2": 2.0902
+ },
+ "zenray": {
+  "islands": 20,
+  "seams_m": 15.589,
+  "stretch_p50": 0.0484,
+  "stretch_p95": 0.1666,
+  "within_10": 0.8307,
+  "within_20": 0.9697,
+  "area_m2": 2.0902
+ }
+}

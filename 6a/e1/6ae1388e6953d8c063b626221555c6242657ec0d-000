@@ -1,0 +1,73 @@
+# 20 October 2026 : the reference boards of the overview page, from the final runs : Manny cut by Epic's artist against ZenRay (four orthographic views), and for every
+# organic asset the 19 October cut (runs/reference/before) against today's ; plus runs/reference/compare.json, every layout measured by one code (CompareUV).
+# Usage : python -I Boards.py <runs folder>
+import sys, os, json
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, RefViews as RV, CompareUV as CU
+
+FONT = '/Users/zenray/Library/Fonts/InterTight-Italic-VariableFont_wght.ttf'   # 20 October 2026 : a Medium cut (the Light cuts are banned)
+
+def font(sz):
+    for p in (FONT, '/System/Library/Fonts/Supplemental/Arial.ttf'):
+        try:
+            return ImageFont.truetype(p, sz)
+        except Exception:
+            pass
+    return ImageFont.load_default()
+
+def rows_board(rows, out, size=(420, 720)):
+    """rows : [(title, mesh)] ; four views per row, the title above."""
+    panels = []
+    for title, m in rows:
+        e = RV.seams(m)
+        L = sum(m.edge_length(x) for x in e if len(m.edges[x]) == 2)
+        lo, hi = m.P.min(0), m.P.max(0)
+        c = 0.5 * (lo + hi)
+        ext = hi - lo
+        half = 0.5 * max(ext[1], max(ext[0], ext[2]) * size[1] / size[0]) * 1.06
+        ims = []
+        for d in ((0, 0, 1), (0, 0, -1), (1, 0, 0), (-1, 0, 0)):
+            cam = {'ortho': True, 'eye': c + 10.0 * np.array(d, float), 'target': c, 'half': half, 'size': size, 'c': c}
+            ims.append(RV.panel(m, e, cam))
+        panels.append(('%s, %.2f m de coutures' % (title, L), ims))
+    W, H = size[0] * 4, (size[1] + 44) * len(panels)
+    B = Image.new('RGB', (W, H), (255, 255, 255))
+    d = ImageDraw.Draw(B)
+    f = font(22)
+    for i, (t, ims) in enumerate(panels):
+        d.text((14, i * (size[1] + 44) + 10), t, fill=(28, 28, 30), font=f)
+        for j, im in enumerate(ims):
+            B.paste(im, (j * size[0], i * (size[1] + 44) + 44))
+    B.save(out)
+    return out
+
+def uvc_of(m):
+    return m.uv['uv']
+
+if __name__ == '__main__':
+    runs = sys.argv[1]
+    ref = os.path.join(runs, 'reference')
+    out = {}
+    ep = RV.epic_mesh(os.path.join(ref, 'epic_manny.json'))
+    for a, short in (('ZRUV_Manny', 'Manny'), ('ZRUV_RubberToy', 'Rubber toy'), ('ZRUV_ShaderBall', 'Shader ball')):
+        now = Z.from_json(os.path.join(runs, a, 'M1', 'mesh.json'))
+        bp = os.path.join(ref, 'before', a, 'mesh.json')
+        before = Z.from_json(bp) if os.path.exists(bp) else None
+        rec = {'after': CU.measure_layout(now.P, now.polys, uvc_of(now))}
+        rows = []
+        if a == 'ZRUV_Manny':
+            rec['epic'] = CU.measure_layout(ep.P, ep.polys, ep.uv['uv'])
+            rows.append(("Epic, l'artiste", ep))
+        if before is not None:
+            rec['before'] = CU.measure_layout(before.P, before.polys, uvc_of(before))
+            rows.append(('ZenRay, 19 octobre (réparation à 10 %)', before))
+        rows.append(('ZenRay, le tailleur', now))
+        rec['board'] = os.path.relpath(rows_board(rows, os.path.join(ref, a + '_seams_board.png')), runs)
+        out[a] = rec
+        print(a, json.dumps({k: v for k, v in rec.items() if k != 'board'}))
+    json.dump(out, open(os.path.join(ref, 'compare.json'), 'w'), indent=1)
+    print('written', os.path.join(ref, 'compare.json'))

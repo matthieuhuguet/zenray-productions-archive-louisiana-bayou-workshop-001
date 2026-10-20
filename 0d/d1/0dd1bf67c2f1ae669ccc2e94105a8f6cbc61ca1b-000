@@ -1,0 +1,38 @@
+surf 15211 30418 45627 organic faces 30418 must 0 0.4s
+mirror axis 0 charts 1 0.7s
+neck loop 0.426 m charts 3
+neck loop 0.747 m charts 5
+neck loop 0.525 m charts 7
+neck loop 0.725 m charts 8
+neck loop 0.528 m charts 9
+neck loop 0.741 m charts 11
+neck loop 0.840 m charts 13
+neck loop 0.920 m charts 14
+neck loop 1.659 m charts 15
+neck loop 1.584 m charts 16
+neck loop 0.813 m charts 17
+neck loop 1.045 m charts 19
+necks 12 charts 19 11.8s
+flattened {'charts': 19, 'seams_m': 13.612, 'seam_cost': 4.081, 'stretch_p50': 0.2479, 'stretch_p95': 0.9518, 'within_10': 0.3966, 'within_20': 0.469, 'failing_charts': 6, 'mirror_axis': 0, 'moves': {'neck': 12}, 'stuck': 0, 'economy_removed': 0} 17.8s
+move silhouette gain 0.29963 charts 21 fail 0.52645
+move pole dart gain 0.02681 charts 21 fail 0.47581
+move pole dart gain 0.15161 charts 21 fail 0.32186
+move pole dart gain 0.01171 charts 21 fail 0.30021
+move pole dart gain 0.02885 charts 21 fail 0.29135
+move pole dart gain 0.00503 charts 21 fail 0.29032
+move pole dart gain 0.00955 charts 21 fail 0.28817
+move pole dart gain 0.01170 charts 21 fail 0.28294
+move silhouette gain 0.02658 charts 23 fail 0.22706
+move dart gain 0.00085 charts 23 fail 0.21875
+move pole dart gain 0.01100 charts 23 fail 0.18105
+move panel gain 0.01150 charts 25 fail 0.15193
+move pole dart gain 0.02094 charts 25 fail 0.10607
+move silhouette gain 0.01269 charts 26 fail 0.08526
+move dart gain 0.00201 charts 26 fail 0.07774
+move dart gain 0.00392 charts 26 fail 0.05729
+move dart gain 0.00114 charts 26 fail 0.04473
+improved {'charts': 26, 'seams_m': 18.167, 'seam_cost': 5.1105, 'stretch_p50': 0.0444, 'stretch_p95': 0.1792, 'within_10': 0.8234, 'within_20': 0.9652, 'failing_charts': 1, 'mirror_axis': 0, 'moves': {'neck': 12, 'silhouette': 3, 'pole dart': 9, 'dart': 4, 'panel': 1}, 'stuck': 1, 'economy_removed': 0} 194.6s
+economy neck saved 0.7448 charts 24
+economy neck saved 0.1591 charts 22
+economy neck saved 0.1661 charts 20
+economy opening saved 0.0164 charts 19

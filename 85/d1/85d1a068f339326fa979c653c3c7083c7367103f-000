@@ -1,0 +1,54 @@
+# 20 October 2026 : one measure for every uv layout of the same welded mesh, the artist's (Epic) and ZenRay's : islands (faces joined where the uv agree), seam length
+# (edges where they do not), and the stretch of every triangle with every island scaled to its own true area (its inner distortion only : an island's overall density
+# is a packing choice), p50 / p95 and the area shares under 10 % and 20 %. Usage : python -I CompareUV.py <epic json> <zenray mesh.json> <tailor.json | mesh> [out json]
+import sys, json
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/Scripts')
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvTailor as T, RefViews as RV
+
+def measure_layout(P, polys, uvc):
+    """uvc[f][j] = (u, v) of corner j of face f. Returns the report."""
+    S = T.Surf(P, polys)
+    cut = np.zeros(S.ne, dtype=bool)
+    for e, fl in enumerate(S.ef):
+        if len(fl) != 2:
+            cut[e] = True
+            continue
+        a, b = S.E[e]
+        f0, f1 = fl
+        p0, p1 = S.polys[f0], S.polys[f1]
+        ua0, ub0 = uvc[f0][p0.index(a)], uvc[f0][p0.index(b)]
+        ua1, ub1 = uvc[f1][p1.index(a)], uvc[f1][p1.index(b)]
+        if max(abs(ua0[0] - ua1[0]), abs(ua0[1] - ua1[1]), abs(ub0[0] - ub1[0]), abs(ub0[1] - ub1[1])) > 1e-6:
+            cut[e] = True
+    lab, n = T.labels(S, cut)
+    sA, aA, nisl = [], [], 0
+    for k in range(n):
+        fs = [int(f) for f in np.where(lab == k)[0]]
+        loc = T.Local(S, fs, cut)
+        U = np.zeros((loc.n, 2))
+        for (f, j), lv in loc.corner.items():
+            U[lv] = uvc[f][j]
+        s, a, sc = T.measure(S.P[loc.gv], loc.tris, U)
+        sA.append(s); aA.append(a); nisl += 1
+    s = np.concatenate(sA); a = np.concatenate(aA)
+    w = a / a.sum()
+    q50, q95 = T.quantiles(s, a)
+    inner = cut & (S.EF1 >= 0)
+    return {'islands': nisl, 'seams_m': round(float(S.EL[inner].sum()), 3), 'stretch_p50': round(q50, 4), 'stretch_p95': round(q95, 4),
+            'within_10': round(float(w[s <= 0.1].sum()), 4), 'within_20': round(float(w[s <= 0.2].sum()), 4), 'area_m2': round(float(a.sum()), 4)}
+
+if __name__ == '__main__':
+    ep = RV.epic_mesh(sys.argv[1])
+    out = {'epic': measure_layout(ep.P, ep.polys, ep.uv['uv'])}
+    zr = Z.from_json(sys.argv[2])
+    if sys.argv[3] in ('-', 'mesh'):
+        uvc = zr.uv['uv']                      # 20 October 2026 : the final uv of a ZenRay run, as exported with its mesh (after the layout)
+    else:
+        t = json.load(open(sys.argv[3]))
+        uvc = [[tuple(t['uv']['%d_%d' % (f, j)]) for j in range(len(zr.polys[f]))] for f in range(zr.n)]
+    out['zenray'] = measure_layout(zr.P, zr.polys, uvc)
+    print(json.dumps(out, indent=1))
+    if len(sys.argv) > 4:
+        json.dump(out, open(sys.argv[4], 'w'), indent=1)

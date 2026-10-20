@@ -54,7 +54,7 @@ if __name__ == '__main__':
         print('flattened', tl.report(), '%.1fs' % (time.time() - t0), flush=True)
         tl.improve()
         print('improved', tl.report(), '%.1fs' % (time.time() - t0), flush=True)
-        tl.economy()
+        tl.economy_all()
         print('economy', tl.report(), '%.1fs' % (time.time() - t0), flush=True)
     seams = [[int(a), int(b)] for a, b in S.E[tl.cut & (S.EF1 >= 0)]]
     kinds = tl.edge_kinds()
