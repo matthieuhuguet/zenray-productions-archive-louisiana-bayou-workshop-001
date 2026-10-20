@@ -1,10 +1,10 @@
 {
- "score": 0.358318,
- "weakest": "uv:density",
+ "score": 0.985454,
+ "weakest": "uv:smooth_border",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.358318,
-  "uv:stretch": 0.358318,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -13,6 +13,7 @@
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "uv:no_self_overlap": 1.0,
+  "uv:smooth_border": 0.985454,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
   "bake:coverage": 1.0,
@@ -26,43 +27,52 @@
     "target_px_per_m": 2048.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.7549914557649017,
-    "low_frac": 0.1378634797352474,
-    "high_frac": 0.10714506449985074,
-    "px_per_m_min": 351.4711445209816,
-    "px_per_m_median": 1487.6080850831997,
-    "px_per_m_max": 4097.343614267369,
-    "stretch_max": 3.8587722637198807,
+    "exact_frac": 0.9935019505760976,
+    "low_frac": 0.004764845340739534,
+    "high_frac": 0.0017332040831629367,
+    "px_per_m_min": 646.4185741370684,
+    "px_per_m_median": 2745.260673750696,
+    "px_per_m_max": 3860.2830112663523,
+    "stretch_max": 0.8987614623745035,
     "faces": 2889
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
     "islands": 11,
-    "passing": 10,
+    "passing": 11,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.2109,
-    "worst_island_p95": 0.4758,
+    "worst_island_p50": 0.0873,
+    "worst_island_p95": 0.3468,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.7784,
+   "stretch_over_2pc_area": 0.7613,
    "islands": 11,
    "upright_islands": 11,
-   "upright_worst_deg": 0.0,
+   "upright_worst_deg": 0.001,
    "overlap_px": 0,
-   "covered_px": 7111798,
-   "fill": 0.4239,
+   "covered_px": 6008373,
+   "fill": 0.3581,
    "padding_overlap_px": 0,
-   "padding_check_radius_px": 31,
+   "padding_check_radius_px": 15,
    "self_overlap_faces": 0,
+   "staircases": {
+    "runs": 4,
+    "m": 0.0891,
+    "islands": {
+     "1": 0.0444,
+     "2": 0.0261,
+     "7": 0.0186
+    }
+   },
    "u_range": [
-    0.0156,
-    0.9827
+    0.0078,
+    0.9921
    ],
    "v_range": [
-    0.0156,
-    0.7636
+    0.0078,
+    0.6023
    ]
   }
  },
@@ -74,8 +84,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 5.74,
-  "seams_on_smooth_m": 1.013,
+  "seams_m": 6.125,
+  "seams_on_smooth_m": 0.853,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -91,7 +101,7 @@
   "narrowest_px": 32.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 11, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4255, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3592417, \"lower_bound_unique_px2\": 3592417, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"td\": 1490.5, \"fit\": true, \"tiles_n\": 1, \"tile_rule\": \"one tile, 4 minor islands at 0.25 of the density\", \"tile_splits\": 0, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 11, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4255, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3592417, \"lower_bound_unique_px2\": 3592417, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 1490.5, \"fit\": true, \"tile\": 0, \"label\": \"Pig\", \"area_m2\": 1.0026}], \"texels_total\": 4194304}",
+  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 32.0, \"islands\": 11, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3598, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3610999, \"lower_bound_unique_px2\": 3610999, \"next_smaller\": [2048, 2048], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"td\": 2741.3, \"fit\": true, \"tiles_n\": 1, \"tile_rule\": \"one tile, 4 minor islands at 0.25 of the density\", \"tile_splits\": 0, \"tiles\": [{\"W\": 4096, \"H\": 4096, \"pad\": 32.0, \"islands\": 11, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3598, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3610999, \"lower_bound_unique_px2\": 3610999, \"next_smaller\": [2048, 2048], \"minimal_proven\": false, \"rows\": 0, \"td\": 2741.3, \"fit\": true, \"tile\": 0, \"label\": \"Pig\", \"area_m2\": 1.0026}], \"texels_total\": 16777216}",
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -99,14 +109,15 @@
  "contracts": [
   {
    "set": "uv",
-   "W": 2048,
-   "H": 2048,
+   "W": 4096,
+   "H": 4096,
    "space": "sheet",
    "unique": true,
    "region": "sheet",
    "padding_px": 32,
    "straight_tol": 0.08,
    "twin_bake": true,
+   "smooth_border": true,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -120,26 +131,26 @@
  "targets": {
   "uv": 2048.0
  },
- "cook_s": 113.98,
- "score_s": 10.17,
+ "cook_s": 7.16,
+ "score_s": 29.29,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_2048x2048.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_occlusion_2048x2048.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_curvature_2048x2048.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_edge_2048x2048.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_2048x2048.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_4096x4096.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_occlusion_4096x4096.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_curvature_4096x4096.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_edge_4096x4096.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_4096x4096.png"
   },
   "seconds": {
-   "custom": 8.53,
-   "occlusion": 0.07,
-   "curvature": 0.07,
-   "edge": 0.02,
-   "alpha": 0.02
+   "custom": 25.72,
+   "occlusion": 0.25,
+   "curvature": 0.26,
+   "edge": 0.09,
+   "alpha": 0.07
   },
   "size": [
-   2048,
-   2048
+   4096,
+   4096
   ],
   "coverage": 1.0,
   "id_match": 1.0
@@ -151,7 +162,7 @@
   "skin"
  ],
  "crease_effective": 89.10903930664062,
- "date": "20 October 2026 15:32",
+ "date": "20 October 2026 18:12",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/pighead_src",
   "asset_scale": 1.0,

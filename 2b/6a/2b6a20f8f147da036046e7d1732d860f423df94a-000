@@ -12,6 +12,7 @@
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "uv:no_self_overlap": 1.0,
+  "uv:smooth_border": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
   "bake:coverage": 0.999993,
@@ -53,6 +54,11 @@
    "padding_overlap_px": 0,
    "padding_check_radius_px": 15,
    "self_overlap_faces": 0,
+   "staircases": {
+    "runs": 0,
+    "m": 0.0,
+    "islands": {}
+   },
    "u_range": [
     0.0078,
     0.9915
@@ -88,7 +94,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 33, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2503, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1192335, \"lower_bound_unique_px2\": 1192335, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0, \"tiles_n\": 1, \"tile_rule\": \"one tile\", \"tile_splits\": 0, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 33, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2503, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1192335, \"lower_bound_unique_px2\": 1192335, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"tile\": 0, \"label\": \"\", \"area_m2\": 1.00119}], \"texels_total\": 4194304}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 33, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2503, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1192335, \"lower_bound_unique_px2\": 1192335, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0, \"td\": 1024.0, \"fit\": false, \"tiles_n\": 1, \"tile_rule\": \"one tile\", \"tile_splits\": 0, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 33, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2503, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1192335, \"lower_bound_unique_px2\": 1192335, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 1024.0, \"fit\": false, \"tile\": 0, \"label\": \"ToyShader\", \"area_m2\": 1.00119}], \"texels_total\": 4194304}",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -104,6 +110,7 @@
    "padding_px": 16,
    "straight_tol": 0.08,
    "twin_bake": true,
+   "smooth_border": true,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -117,8 +124,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 8.16,
- "score_s": 7.02,
+ "cook_s": 9.64,
+ "score_s": 6.58,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_2048x2048.png",
@@ -128,10 +135,10 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_2048x2048.png"
   },
   "seconds": {
-   "custom": 4.87,
+   "custom": 4.59,
    "occlusion": 0.03,
-   "curvature": 0.07,
-   "edge": 0.04,
+   "curvature": 0.09,
+   "edge": 0.06,
    "alpha": 0.02
   },
   "size": [
@@ -148,7 +155,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 14:57",
+ "date": "20 October 2026 18:13",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy_src",
   "asset_scale": 1.0,
@@ -163,6 +170,9 @@
   "m1_tiles": 0,
   "m1_tile_groups": "",
   "asset_kind": 0,
+  "m1_fit": 0,
+  "m1_minor_density": 1.0,
+  "m1_no_texture": "*no_uv* *nouv*",
   "m1_sheet_px": 0,
   "m1_stack": 1,
   "m1_unstack": 1,
