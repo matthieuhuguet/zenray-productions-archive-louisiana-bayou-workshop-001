@@ -1,0 +1,38 @@
+# 20 October 2026 : the artist's seams on the source mesh against the same pattern carried onto a remesh (other triangles), four views each, with the measured
+# distances in the title. Usage : python -I TransferBoard.py <tag RubberToy|Manny>   FR : planche du transfert du patron sur un maillage refait.
+import sys, os, json
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, OrigStudy as O, ZruvArtist as A
+tag = sys.argv[1]
+T = O.REF + '/transfer/'
+src = Z.from_json(O.REF + '/pattern/ZRUV_%s.orig_mesh.json' % tag)
+d = json.load(open(T + '%s_remesh.json' % tag))
+dst = Z.Mesh(d['P'], d['polys'])
+tr = json.load(open(T + '%s_transfer.json' % tag))
+so = sorted(A.inner_seams(src, 'orig', 1e-5))
+sd = [tuple(e) for e in tr['seams']]
+res = tr['result']
+rows = []
+for title, m, ed, col in (("artist's seams, original mesh (%d faces)" % src.n, src, so, (236, 72, 170)), ('the same pattern carried onto a remesh (%d triangles)' % dst.n, dst, sd, (20, 170, 90))):
+    ims = []
+    for nm, cam in [v for v in O.views(m) if v[0] in ('front', 'back', 'left', 'right')]:
+        img, zb = R.render(m, cam, face_rgb=np.tile(np.array([0.72, 0.74, 0.80]), (m.n, 1)))
+        im = R.draw_edges(img, zb, m, cam, ed, col, 2)
+        ImageDraw.Draw(im).text((10, 8), nm, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 22))
+        ims.append(im)
+    rows.append((title, ims))
+w, h = rows[0][1][0].size
+B = Image.new('RGB', (w * 4, (h + 44) * 2 + 56), (246, 246, 248))
+dr = ImageDraw.Draw(B)
+dr.text((12, 12), 'ZRUV_%s : artist pattern carried onto other triangles ; distance artist to carried seams mean %.1f mm, p95 %.1f mm, max %.1f mm ; islands %d / %d' % (
+    tag, res['artist_to_carried_mm']['mean'], res['artist_to_carried_mm']['p95'], res['artist_to_carried_mm']['max'], res['islands_carried'], res['islands_artist']), fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 24))
+for i, (t, ims) in enumerate(rows):
+    y = 56 + i * (h + 44)
+    dr.text((12, y + 8), t, fill=(20, 20, 20), font=ImageFont.truetype(O.FONT, 22))
+    for j, im in enumerate(ims):
+        B.paste(im, (j * w, y + 44))
+B.save(T + '%s_transfer_board.png' % tag)
+print(T + '%s_transfer_board.png' % tag)

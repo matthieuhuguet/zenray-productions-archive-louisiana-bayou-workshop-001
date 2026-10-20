@@ -72,7 +72,37 @@ class SegNear:
 def carry(src, pat, dst):
     Ts, Td = L.Tools(src), L.Tools(dst)
     h = float(np.median([dst.edge_length(e) for e in list(dst.edges)[:5000]]))
-    near = Near(dst.P, h)
+    # 20 October 2026 : a point is carried onto the SAME piece only : where a fin or a flipper sinks into the body, the nearest point of the new mesh may lie on
+    # the other piece, and the seam path broke there (the remeshed toy : 19 islands instead of 33). Pieces are matched by the majority of their nearest points.
+    cs, cd = A.components(src), A.components(dst)
+    pts_of_d = {}
+    for f in range(dst.n):
+        for q in dst.polys[f]:
+            pts_of_d.setdefault(int(cd[f]), set()).add(q)
+    near_all = Near(dst.P, h)
+    comp_pt_s = {}
+    for f in range(src.n):
+        for q in src.polys[f]:
+            comp_pt_s.setdefault(q, int(cs[f]))
+    pd_comp = {}
+    for f in range(dst.n):
+        for q in dst.polys[f]:
+            pd_comp.setdefault(q, int(cd[f]))
+    vote = {}
+    for q, k in comp_pt_s.items():
+        j, _ = near_all(src.P[q])
+        vote.setdefault(k, {}).setdefault(pd_comp.get(j, -1), 0)
+        vote[k][pd_comp.get(j, -1)] += 1
+    match = {k: max(v.items(), key=lambda kv: kv[1])[0] for k, v in vote.items()}
+    nears = {}
+    for k, j in match.items():
+        ids = sorted(pts_of_d.get(j, ()))
+        nears[k] = (Near(dst.P[ids], h), ids)
+
+    def near(q_index):
+        nr, ids = nears[comp_pt_s[q_index]]
+        i, d = nr(src.P[q_index])
+        return ids[i], d
     seams = set()
     for r in pat['segments']:
         clicks = [(int(p), t) for p, t in r['clicks']]
@@ -99,7 +129,7 @@ def carry(src, pat, dst):
                 pts += p if not pts else p[1:]
         mp = []
         for p in pts:
-            i, _ = near(src.P[p])
+            i, _ = near(p)
             if not mp or mp[-1] != i:
                 mp.append(i)
         for a, b in zip(mp[:-1], mp[1:]):

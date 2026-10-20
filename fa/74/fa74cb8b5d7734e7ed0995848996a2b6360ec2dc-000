@@ -30,6 +30,24 @@ for a in ASSETS:
     out['assets'][a] = {'summary': pat['summary'], 'symmetry': pat['symmetry'], 'components': pat['components'], 'replay': {'seams': d['seams'], 'islands': d['islands']},
                         'baseline': {'seams': base['seams'], 'islands': base['islands']}, 'unfold_floor': floor, 'unfold_choice': meths, 'images': imgs,
                         'learn_s': d['learn_s'], 'apply_s': d['apply_s']}
+# 20 October 2026 : M1 of the bench cut by the artist pattern, the tailor with the learned rules, and the pattern carried onto a remesh
+for a, tag in (('ZRUV_RubberToy', 'RubberToy'), ('ZRUV_ShaderBall', 'ShaderBall'), ('ZRUV_Manny', 'Manny')):
+    r = out['assets'][a]
+    p = O.REF + '/study/%s/match_zr_M1_artist.json' % a
+    rep = json.load(open(O.W + '/runs/%s/M1/report.json' % a)) if os.path.exists(O.W + '/runs/%s/M1/report.json' % a) else None
+    if os.path.exists(p) and rep:
+        mm = json.load(open(p))
+        lay = json.loads((rep.get('layout') or {}).get('zruv_layout_uv') or '{}')
+        r['m1_artist'] = {'score': rep['score'], 'weakest': rep['weakest'], 'seams': mm['seams'], 'islands': mm['islands'], 'sheet': [lay.get('W'), lay.get('H')]}
+    p = O.REF + '/study/%s/match_zr_M1_rules.json' % a
+    if os.path.exists(p):
+        mm = json.load(open(p))
+        r['m1_rules'] = {'seams': mm['seams'], 'islands': mm['islands']}
+    p = O.REF + '/transfer/%s_transfer.json' % tag
+    if os.path.exists(p):
+        r['transfer'] = json.load(open(p))['result']
+        if os.path.exists(O.REF + '/transfer/%s_transfer_board.png' % tag):
+            r['images']['transfer'] = O.REF + '/transfer/%s_transfer_board.png' % tag
 os.makedirs(O.REF + '/artist', exist_ok=True)
 json.dump(out, open(O.REF + '/artist/summary.json', 'w'), indent=1)
 print(json.dumps({a: {'f1': v['replay']['seams']['f1'], 'shape': v['replay']['islands']['shape_mean'], 'floor': v['unfold_floor']} for a, v in out['assets'].items()}, indent=1))

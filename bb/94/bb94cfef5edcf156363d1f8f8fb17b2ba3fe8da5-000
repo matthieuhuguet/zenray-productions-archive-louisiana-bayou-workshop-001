@@ -1,0 +1,20 @@
+{
+ "source_faces": 30418,
+ "target_faces": 107478,
+ "target_points": 53741,
+ "edge_mm_median": 6.72,
+ "artist_seam_m": 15.252,
+ "carried_seam_m": 15.818,
+ "artist_to_carried_mm": {
+  "mean": 1.14,
+  "p95": 2.62,
+  "max": 7.12
+ },
+ "carried_to_artist_mm": {
+  "mean": 1.0,
+  "p95": 2.84,
+  "max": 7.66
+ },
+ "islands_artist": 45,
+ "islands_carried": 45
+}

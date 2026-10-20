@@ -103,10 +103,85 @@
     "concepts_3d": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/concepts_3d.png",
     "overlay": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/replay_overlay_uv.png",
     "asymmetry": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/asymmetry.png",
-    "orig_uv": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/orig_uv.png"
+    "orig_uv": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_RubberToy/orig_uv.png",
+    "transfer": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/transfer/RubberToy_transfer_board.png"
    },
-   "learn_s": 8.2,
-   "apply_s": 1.2
+   "learn_s": 5.7,
+   "apply_s": 0.9,
+   "m1_artist": {
+    "score": 0.999999,
+    "weakest": "bake:coverage",
+    "seams": {
+     "orig_m": 9.2156,
+     "cand_m": 9.2156,
+     "identical_m": 9.2156,
+     "recall": 1.0,
+     "precision": 1.0,
+     "f1": 1.0,
+     "f1_1ring": 1.0,
+     "missing_m": 0.0,
+     "extra_m": 0.0
+    },
+    "islands": {
+     "orig": 33,
+     "cand": 33,
+     "iou_mean_area": 1.0,
+     "iou_min": 1.0,
+     "identical_partition": true,
+     "shape_mean": 0.08702,
+     "place_mean": 0.52324,
+     "turn_abs_mean": 118.775,
+     "scale_dev_mean": 0.1093
+    },
+    "sheet": [
+     2048,
+     1024
+    ]
+   },
+   "m1_rules": {
+    "seams": {
+     "orig_m": 9.2156,
+     "cand_m": 7.893,
+     "identical_m": 1.3722,
+     "recall": 0.1489,
+     "precision": 0.1738,
+     "f1": 0.1604,
+     "f1_1ring": 0.2188,
+     "missing_m": 7.8435,
+     "extra_m": 6.5208
+    },
+    "islands": {
+     "orig": 33,
+     "cand": 19,
+     "iou_mean_area": 0.3259,
+     "iou_min": 0.0094,
+     "identical_partition": false,
+     "shape_mean": 0.14493,
+     "place_mean": 0.48066,
+     "turn_abs_mean": 126.571,
+     "scale_dev_mean": 0.3815
+    }
+   },
+   "transfer": {
+    "source_faces": 12854,
+    "target_faces": 20044,
+    "target_points": 10042,
+    "edge_mm_median": 10.82,
+    "artist_seam_m": 9.216,
+    "carried_seam_m": 9.929,
+    "artist_to_carried_mm": {
+     "mean": 1.5,
+     "p95": 3.74,
+     "max": 6.2
+    },
+    "carried_to_artist_mm": {
+     "mean": 1.44,
+     "p95": 3.63,
+     "max": 5.59
+    },
+    "islands_artist": 33,
+    "islands_carried": 33
+   }
   },
   "ZRUV_ShaderBall": {
    "summary": {
@@ -215,8 +290,62 @@
     "orig_uv_Stand": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/orig_uv_Stand.png",
     "orig_uv_SubsurfaceBars": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_ShaderBall/orig_uv_SubsurfaceBars.png"
    },
-   "learn_s": 3.9,
-   "apply_s": 1.3
+   "learn_s": 2.7,
+   "apply_s": 0.9,
+   "m1_artist": {
+    "score": 1.0,
+    "weakest": "uv:present",
+    "seams": {
+     "orig_m": 5.4317,
+     "cand_m": 7.7467,
+     "identical_m": 5.4317,
+     "recall": 1.0,
+     "precision": 0.7012,
+     "f1": 0.8243,
+     "f1_1ring": 0.8243,
+     "missing_m": 0.0,
+     "extra_m": 2.315
+    },
+    "islands": {
+     "orig": 76,
+     "cand": 76,
+     "iou_mean_area": 1.0,
+     "iou_min": 1.0,
+     "identical_partition": true,
+     "shape_mean": 0.09615,
+     "place_mean": 0.47654,
+     "turn_abs_mean": 20.542,
+     "scale_dev_mean": 1.0538
+    },
+    "sheet": [
+     2048,
+     1024
+    ]
+   },
+   "m1_rules": {
+    "seams": {
+     "orig_m": 5.4317,
+     "cand_m": 11.4255,
+     "identical_m": 1.6107,
+     "recall": 0.2965,
+     "precision": 0.141,
+     "f1": 0.1911,
+     "f1_1ring": 0.255,
+     "missing_m": 3.821,
+     "extra_m": 9.8148
+    },
+    "islands": {
+     "orig": 76,
+     "cand": 75,
+     "iou_mean_area": 0.5438,
+     "iou_min": 0.0088,
+     "identical_partition": false,
+     "shape_mean": 0.23984,
+     "place_mean": 0.5291,
+     "turn_abs_mean": 80.875,
+     "scale_dev_mean": 0.7801
+    }
+   }
   },
   "ZRUV_Manny": {
    "summary": {
@@ -232,10 +361,8 @@
      "set_edge": 0.2478,
      "contour_z": 0.1558,
      "contour_y": 0.1487,
-     "free_choice": 0.1351,
+     "free_choice": 0.1416,
      "contour_x": 0.0933,
-     "grid_meridian": 0.0685,
-     "grid_ring": 0.0528,
      "midline": 0.0463,
      "asymmetric": 0.0236
     },
@@ -321,10 +448,85 @@
     "asymmetry": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/asymmetry.png",
     "orig_uv": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/orig_uv.png",
     "orig_uv_MI_Manny_01": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/orig_uv_MI_Manny_01.png",
-    "orig_uv_MI_Manny_02": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/orig_uv_MI_Manny_02.png"
+    "orig_uv_MI_Manny_02": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/study/ZRUV_Manny/orig_uv_MI_Manny_02.png",
+    "transfer": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/reference/transfer/Manny_transfer_board.png"
    },
-   "learn_s": 10.1,
-   "apply_s": 3.4
+   "learn_s": 7.0,
+   "apply_s": 2.4,
+   "m1_artist": {
+    "score": 1.0,
+    "weakest": "uv:present",
+    "seams": {
+     "orig_m": 15.2523,
+     "cand_m": 15.2523,
+     "identical_m": 15.2523,
+     "recall": 1.0,
+     "precision": 1.0,
+     "f1": 1.0,
+     "f1_1ring": 1.0,
+     "missing_m": 0.0,
+     "extra_m": 0.0
+    },
+    "islands": {
+     "orig": 45,
+     "cand": 45,
+     "iou_mean_area": 1.0,
+     "iou_min": 1.0,
+     "identical_partition": true,
+     "shape_mean": 0.01269,
+     "place_mean": 0.57433,
+     "turn_abs_mean": 78.133,
+     "scale_dev_mean": 0.8444
+    },
+    "sheet": [
+     2048,
+     2048
+    ]
+   },
+   "m1_rules": {
+    "seams": {
+     "orig_m": 15.2523,
+     "cand_m": 12.2414,
+     "identical_m": 5.3171,
+     "recall": 0.3486,
+     "precision": 0.4344,
+     "f1": 0.3868,
+     "f1_1ring": 0.4723,
+     "missing_m": 9.9352,
+     "extra_m": 6.9243
+    },
+    "islands": {
+     "orig": 45,
+     "cand": 19,
+     "iou_mean_area": 0.5268,
+     "iou_min": 0.0115,
+     "identical_partition": false,
+     "shape_mean": 0.13873,
+     "place_mean": 0.53629,
+     "turn_abs_mean": 59.822,
+     "scale_dev_mean": 0.5007
+    }
+   },
+   "transfer": {
+    "source_faces": 30418,
+    "target_faces": 107478,
+    "target_points": 53741,
+    "edge_mm_median": 6.72,
+    "artist_seam_m": 15.252,
+    "carried_seam_m": 15.818,
+    "artist_to_carried_mm": {
+     "mean": 1.14,
+     "p95": 2.62,
+     "max": 7.12
+    },
+    "carried_to_artist_mm": {
+     "mean": 1.0,
+     "p95": 2.84,
+     "max": 7.66
+    },
+    "islands_artist": 45,
+    "islands_carried": 45
+   }
   }
  }
 }
