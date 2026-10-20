@@ -1,0 +1,25 @@
+# 20 October 2026 : the final numbers of the bench in one table : score and weakest component per method and asset, the M1 sheet, its islands and fill, the tailor
+# report (islands, seams, stretch) of the organic assets. Usage : python -I Collect.py <runs folder>
+import sys, os, json
+runs = sys.argv[1]
+ASSETS = ['ZRUV_Arch', 'ZRUV_ArchLibrary', 'ZRUV_RubberToy', 'ZRUV_ShaderBall', 'ZRUV_Manny']
+METH = ['M1', 'M2', 'M3', 'M3B', 'M3C', 'M4', 'M5']
+out = {}
+for a in ASSETS:
+    row = {}
+    for m in METH:
+        p = os.path.join(runs, a, m, 'report.json')
+        if os.path.exists(p):
+            r = json.load(open(p))
+            row[m] = (round(r['score'], 6), r.get('weakest'))
+    p = os.path.join(runs, a, 'M1', 'report.json')
+    if os.path.exists(p):
+        r = json.load(open(p))
+        L = json.loads(r['layout'].get('zruv_layout_uv') or '{}')
+        row['sheet'] = (L.get('W'), L.get('H'), L.get('islands'), L.get('fill'), L.get('stacked'), L.get('minimal_proven'))
+        o = r['layout'].get('zruv_organic_report')
+        if o:
+            o = json.loads(o)
+            row['tailor'] = {k: o.get(k) for k in ('charts', 'seams_m', 'stretch_p50', 'stretch_p95', 'within_20', 'failing_charts', 'seconds')}
+    out[a] = row
+print(json.dumps(out, indent=1, default=str))
