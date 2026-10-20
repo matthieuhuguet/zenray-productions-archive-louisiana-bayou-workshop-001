@@ -1,12 +1,12 @@
 {
- "score": 0.999863,
- "weakest": "uv:stretch",
+ "score": 0.996817,
+ "weakest": "uv:no_flip",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.999942,
-  "uv:stretch": 0.999863,
-  "uv:no_flip": 1.0,
-  "uv:not_mirrored": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 0.996817,
+  "uv:not_mirrored": 0.996817,
   "uv:region": 1.0,
   "uv:horizontal": 1.0,
   "seams:consistency": 1.0,
@@ -20,27 +20,34 @@
     "target_px_per_m": 1024.0,
     "tol": 0.4143,
     "tol_max": 0.4143,
-    "exact_frac": 0.9999416949532665,
+    "exact_frac": 0.9979203078596395,
     "low_frac": 0.0,
-    "high_frac": 5.830504673342961e-05,
-    "px_per_m_min": 607.9278254202669,
-    "px_per_m_median": 1065.6465306161272,
-    "px_per_m_max": 1883.7160782744322,
-    "stretch_max": 25.62845706913472,
+    "high_frac": 0.002079692140360522,
+    "px_per_m_min": 640.3465277269039,
+    "px_per_m_median": 930.2520700193508,
+    "px_per_m_max": 1934.9124559175066,
+    "stretch_max": 2861.29503702447,
     "faces": 7000
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 4e-06,
-   "stretch_over_2pc_area": 0.6034,
-   "islands": 313,
+   "organic_artist": {
+    "islands": 75,
+    "passing": 75,
+    "p50": 0.09,
+    "p95": 0.35,
+    "worst_island_p50": 0.3742,
+    "worst_island_p95": 0.8054
+   },
+   "stretch_over_2pc_area": 0.8222,
+   "islands": 75,
    "u_range": [
     0.0039,
     0.9648
    ],
    "v_range": [
-    0.4648,
-    0.8703
+    0.4805,
+    0.9961
    ]
   }
  },
@@ -52,10 +59,10 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 23.38,
-  "seams_on_smooth_m": 1.02,
+  "seams_m": 11.601,
+  "seams_on_smooth_m": 1.246,
   "sharp_kept_m": 0,
-  "sharp_m": 6.916,
+  "sharp_m": 5.364,
   "border_m": 0,
   "pass": true
  },
@@ -69,7 +76,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_straight_uv": "{\"charts\": 72, \"grids\": 3, \"tubes\": 3, \"cut_long\": 0, \"worst_dev\": 0.0676, \"kink_faces\": 4, \"cut_at_kinks\": 1, \"kept_native\": 1, \"straight_area\": 0.0311}",
+  "zruv_straight_uv": "{\"charts\": 72, \"grids\": 3, \"tubes\": 3, \"cut_long\": 0, \"worst_dev\": 0.0676, \"kink_faces\": 4, \"cut_at_kinks\": 1, \"kept_native\": 2, \"straight_area\": 0.0311}",
   "zruv_sheet_m3": 2048
  },
  "method": "M3C",
@@ -87,14 +94,20 @@
    "stretch_relative": true,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0,
+    "tiny_px": 48.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.93,
- "score_s": 0.14,
+ "cook_s": 3.93,
+ "score_s": 0.66,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/shaderball",
  "asset_scale": 1.0,
@@ -105,7 +118,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 03:14",
+ "date": "20 October 2026 05:36",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball",
   "asset_scale": 1.0,
