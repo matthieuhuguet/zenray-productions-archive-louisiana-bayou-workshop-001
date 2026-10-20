@@ -1,5 +1,5 @@
 {
- "score": 0.9996,
+ "score": 0.999679,
  "weakest": "bake:coverage",
  "components": {
   "uv:present": 1.0,
@@ -10,7 +10,6 @@
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
-  "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "uv2:present": 1.0,
@@ -24,7 +23,7 @@
   "uv2:padding": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.9996,
+  "bake:coverage": 0.999679,
   "bake:id_match": 1.0,
   "mask:channels": 1.0
  },
@@ -36,37 +35,37 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9712921612487782,
+    "exact_frac": 0.9719439314339473,
     "low_frac": 0.010626029717130168,
-    "high_frac": 0.018081809034091584,
+    "high_frac": 0.017430038848922535,
     "px_per_m_min": 712.6610762951979,
-    "px_per_m_median": 1031.1724364975564,
+    "px_per_m_median": 1031.108432871902,
     "px_per_m_max": 1387.6018347892057,
-    "stretch_max": 0.9943898165185805,
+    "stretch_max": 0.9414481922189266,
     "faces": 12854
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 17,
-    "passing": 17,
+    "islands": 15,
+    "passing": 15,
     "p50": 0.09,
     "p95": 0.35,
     "worst_island_p50": 0.0836,
-    "worst_island_p95": 0.2784
+    "worst_island_p95": 0.2784,
+    "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9418,
-   "islands": 17,
-   "stacked_faces": 16,
+   "stretch_over_2pc_area": 0.9382,
+   "islands": 15,
    "groups": 1,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
     0.0039,
-    0.9919
+    0.8724
    ],
    "v_range": [
-    0.443,
+    0.3283,
     0.9961
    ]
   },
@@ -77,35 +76,36 @@
     "target_px_per_m": 128.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9712921612487782,
+    "exact_frac": 0.9719439314339473,
     "low_frac": 0.010626029717130168,
-    "high_frac": 0.018081809034091584,
+    "high_frac": 0.017430038848922535,
     "px_per_m_min": 89.08263453689973,
-    "px_per_m_median": 128.89658010749037,
+    "px_per_m_median": 128.88852681517972,
     "px_per_m_max": 173.45020007402016,
-    "stretch_max": 0.9943845458230045,
+    "stretch_max": 0.9414510468659949,
     "faces": 12854
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 17,
-    "passing": 17,
+    "islands": 15,
+    "passing": 15,
     "p50": 0.09,
     "p95": 0.35,
     "worst_island_p50": 0.0836,
-    "worst_island_p95": 0.2784
+    "worst_island_p95": 0.2784,
+    "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9418,
-   "islands": 17,
+   "stretch_over_2pc_area": 0.9382,
+   "islands": 15,
    "overlap_px": 0,
-   "covered_px": 4053838,
+   "covered_px": 4053448,
    "fill": 0.2416,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 15,
    "u_range": [
     0.0078,
-    0.9922
+    0.9783
    ],
    "v_range": [
     0.0078,
@@ -121,14 +121,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 7.62,
-  "seams_on_smooth_m": 2.942,
+  "seams_m": 7.735,
+  "seams_on_smooth_m": 3.042,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
   "pass": true,
-  "texture_continuity": 0.9652,
-  "texture_continuous_m": 210.783
+  "texture_continuity": 0.9646,
+  "texture_continuous_m": 210.654
  },
  "hard_edges": {
   "source": "normals",
@@ -140,8 +140,8 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 17, \"stacked\": 1, \"past_u1\": 0}]",
-  "zruv_layout_uv2": "{\"W\": 256, \"H\": 256, \"pad\": 2.0, \"islands\": 17, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2503, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 17755, \"lower_bound_unique_px2\": 17755, \"next_smaller\": null, \"minimal_proven\": true, \"tried\": [], \"rows\": 0}",
+  "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 15, \"stacked\": 0, \"past_u1\": 0}]",
+  "zruv_layout_uv2": "{\"W\": 256, \"H\": 256, \"pad\": 2.0, \"islands\": 15, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2503, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 17711, \"lower_bound_unique_px2\": 17711, \"next_smaller\": null, \"minimal_proven\": true, \"tried\": [], \"rows\": 0}",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
   "zruv_straight_uv2": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
@@ -196,7 +196,7 @@
   "uv2": 128.0
  },
  "cook_s": 0.01,
- "score_s": 17.02,
+ "score_s": 21.13,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_custom_256x256.png",
@@ -213,29 +213,29 @@
    "base": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_base_256x256.png"
   },
   "seconds": {
-   "custom": 1.72,
-   "edge": 0.72,
-   "worldnormal": 0.72,
-   "position": 0.84,
-   "occlusion": 0.67,
-   "alpha": 0.71,
-   "layered": 1.22,
+   "custom": 1.33,
+   "edge": 0.64,
+   "worldnormal": 0.63,
+   "position": 0.67,
+   "occlusion": 0.66,
+   "alpha": 0.54,
+   "layered": 1.45,
    "mask_rgb": 0.69,
-   "mask_R": 0.72,
-   "mask_G": 0.72,
-   "mask_B": 0.73,
-   "base": 0.79
+   "mask_R": 0.66,
+   "mask_G": 0.62,
+   "mask_B": 0.63,
+   "base": 1.1
   },
   "size": [
    256,
    256
   ],
-  "coverage": 0.9996,
+  "coverage": 0.999679,
   "id_match": 1.0,
   "mask_std": [
-   0.0843,
-   0.3003,
-   0.1845
+   0.0832,
+   0.3005,
+   0.1826
   ],
   "mask_channels": 1.0
  },
@@ -246,7 +246,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 07:17",
+ "date": "20 October 2026 08:49",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,

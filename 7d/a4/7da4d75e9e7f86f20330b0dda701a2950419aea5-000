@@ -10,7 +10,6 @@
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
-  "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
@@ -25,29 +24,28 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.1,
-    "exact_frac": 0.9714350886908536,
+    "exact_frac": 0.9720668767752576,
     "low_frac": 0.01103745799484115,
-    "high_frac": 0.01752745331430505,
+    "high_frac": 0.016895665229901113,
     "px_per_m_min": 712.6610762951979,
-    "px_per_m_median": 1030.0542169057699,
+    "px_per_m_median": 1030.0690173364464,
     "px_per_m_max": 1387.6018347892057,
-    "stretch_max": 0.9943898165185805,
+    "stretch_max": 0.9414481922189266,
     "faces": 13202
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 17,
-    "passing": 17,
+    "islands": 15,
+    "passing": 15,
     "p50": 0.09,
     "p95": 0.35,
     "worst_island_p50": 0.0836,
     "worst_island_p95": 0.2784,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9138,
-   "islands": 361,
-   "stacked_faces": 16,
+   "stretch_over_2pc_area": 0.9103,
+   "islands": 359,
    "overlap_px": 0,
    "covered_px": 0,
    "fill": 0.0,
@@ -58,10 +56,10 @@
    "group_padding_faces": 0,
    "u_range": [
     0.0039,
-    0.9919
+    0.8724
    ],
    "v_range": [
-    0.443,
+    0.3283,
     0.9961
    ]
   }
@@ -74,14 +72,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 17.577,
-  "seams_on_smooth_m": 5.552,
+  "seams_m": 17.692,
+  "seams_on_smooth_m": 5.653,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 6.533,
   "pass": true,
-  "texture_continuity": 0.9583,
-  "texture_continuous_m": 212.611
+  "texture_continuity": 0.9577,
+  "texture_continuous_m": 212.482
  },
  "hard_edges": {
   "source": "normals",
@@ -93,7 +91,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 17, \"stacked\": 1, \"past_u1\": 0}]",
+  "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 15, \"stacked\": 0, \"past_u1\": 0}]",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
   "zruv_decal_band": "{\"W\": 512, \"H\": 256, \"pad\": 16.0, \"atlas_px\": 512, \"rows\": [{\"kind\": \"bevel\", \"v0\": 0.77734375, \"v1\": 1.0}, {\"kind\": \"groove\", \"v0\": 0.6484375, \"v1\": 0.77734375}, {\"kind\": \"rivet\", \"v0\": 0.53125, \"v1\": 0.6484375}], \"strip_half_m\": 0.02, \"groove_m\": 0.012, \"rivet_m\": 0.009, \"rivet_cell_m\": 0.01290625, \"bevel\": {\"depth_m\": 0.004, \"chip_m\": 0.0015, \"chips_per_m\": 40.0, \"sample_m\": 0.04}, \"strips\": 0, \"grooves\": 348, \"rivets\": 0, \"panels\": 0, \"strips_dropped_too_close\": 2, \"strips_trimmed\": 0, \"parting_segments\": 376, \"strips_dropped_why\": [{\"piece\": \"rubbertoy_00\", \"edge\": [3883, 3884], \"length_m\": 0.005}, {\"piece\": \"rubbertoy_00\", \"edge\": [8106, 8109], \"length_m\": 0.005}], \"grooves_rivets_dropped\": 28, \"need_h_px\": 120, \"v0\": 0.77734375, \"v1\": 1.0, \"v0_content\": 0.80859375, \"v1_content\": 0.96875}"
  },
@@ -126,8 +124,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 14.65,
- "score_s": 9.15,
+ "cook_s": 1.32,
+ "score_s": 3.99,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
@@ -136,7 +134,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 08:12",
+ "date": "20 October 2026 08:49",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,
