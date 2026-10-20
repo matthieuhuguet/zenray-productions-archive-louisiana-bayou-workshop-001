@@ -53,3 +53,44 @@ move dart gain 0.00272 charts 14 fail 0.00006
 move dart gain 0.00035 charts 14 fail 0.00006
 move dart gain 0.00049 charts 14 fail 0.00006
 move dart gain 0.00032 charts 14 fail 0.00009
+move dart gain 0.00040 charts 14 fail 0.00007
+move dart gain 0.00048 charts 14 fail 0.00008
+move dart gain 0.00038 charts 14 fail 0.00005
+move panel gain 0.00194 charts 16 fail 0.00003
+move dart gain 0.00038 charts 16 fail 0.00003
+move silhouette gain 0.00011 charts 17 fail 0.00003
+move dart gain 0.00014 charts 17 fail 0.00003
+move dart gain 0.00001 charts 17 fail 0.00003
+move dart gain 0.00003 charts 17 fail 0.00003
+move dart gain 0.00002 charts 17 fail 0.00004
+move dart gain 0.00007 charts 17 fail 0.00003
+move dart gain 0.00001 charts 17 fail 0.00002
+improved {'charts': 17, 'seams_m': 9.843, 'seam_cost': 2.2538, 'stretch_p50': 0.0428, 'stretch_p95': 0.1599, 'within_10': 0.8433, 'within_20': 0.9715, 'failing_charts': 1, 'mirror_axis': 0, 'moves': {'neck': 1, 'open slit': 6, 'silhouette': 3, 'pole dart': 19, 'dart': 39, 'panel': 1}, 'stuck': 1, 'economy_removed': 0} 1848.4s
+economy silhouette saved 0.1862 charts 16
+economy dart saved 0.0007 charts 16
+economy dart saved 0.0006 charts 16
+economy dart saved 0.0005 charts 16
+economy dart saved 0.0005 charts 16
+economy dart saved 0.0009 charts 16
+economy pole dart saved 0.0213 charts 16
+economy dart saved 0.0008 charts 16
+economy dart saved 0.0006 charts 16
+economy dart saved 0.0011 charts 16
+economy dart saved 0.0017 charts 16
+economy dart saved 0.0007 charts 16
+economy dart saved 0.0034 charts 16
+economy dart saved 0.0023 charts 16
+economy dart saved 0.0027 charts 16
+economy dart saved 0.0025 charts 16
+economy dart saved 0.0434 charts 16
+economy open slit saved 0.0029 charts 16
+economy open slit saved 0.0026 charts 16
+economy pole dart saved 0.0018 charts 16
+economy pole dart saved 0.0008 charts 16
+economy open slit saved 0.0012 charts 16
+economy dart saved 0.0004 charts 16
+economy dart saved 0.0041 charts 16
+economy panel saved 0.4875 charts 14
+economy {'charts': 14, 'seams_m': 6.797, 'seam_cost': 1.4827, 'stretch_p50': 0.0579, 'stretch_p95': 0.2276, 'within_10': 0.7497, 'within_20': 0.9347, 'failing_charts': 0, 'mirror_axis': 0, 'moves': {'neck': 1, 'open slit': 6, 'silhouette': 3, 'pole dart': 19, 'dart': 39, 'panel': 1}, 'stuck': 1, 'economy_removed': 25} 1959.0s
+done 1959.1s
+runs/tailor/toy9/all.png
