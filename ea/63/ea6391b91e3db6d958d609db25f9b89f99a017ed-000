@@ -1,0 +1,38 @@
+# 20 October 2026 : close views of the head of a character with the seams of a tailor run coloured by kind (front, back, side, three quarters, top).
+# Usage : python -I HeadViews.py <mesh.json> <tailor.json> <out png> [head share of the height, default 0.13]
+import sys, json
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R
+m = Z.from_json(sys.argv[1])
+t = json.load(open(sys.argv[2]))
+share = float(sys.argv[4]) if len(sys.argv) > 4 else 0.13
+edges = [tuple(e) for e in t['seams']]
+kinds = t.get('seam_kind') or ['other'] * len(edges)
+KC = {'neck': (220, 30, 30), 'opening': (240, 140, 0), 'open slit': (200, 200, 0), 'open equator': (0, 160, 60), 'open neck': (220, 30, 30),
+      'pole dart': (20, 80, 230), 'dart': (150, 40, 200), 'required': (90, 90, 90), 'panel': (0, 150, 150), 'silhouette': (120, 80, 0)}
+lo, hi = m.P.min(0), m.P.max(0)
+H = hi[1] - lo[1]
+c = np.array([0.5 * (lo[0] + hi[0]), hi[1] - 0.5 * share * H, 0.5 * (lo[2] + hi[2])])
+half = 0.62 * share * H
+ims, labels = [], []
+for nm, d in (('front', (0, 0, 1)), ('back', (0, 0, -1)), ('left', (1, 0, 0)), ('three quarters', (0.6, 0.15, 0.78)), ('top', (0.0, 1.0, 0.02))):
+    d = np.array(d, float); d /= np.linalg.norm(d)
+    cam = {'ortho': True, 'eye': c + 10 * d, 'target': c, 'half': half, 'size': (620, 620), 'c': c}
+    img, zb = R.render(m, cam, face_rgb=np.tile(np.array([0.78, 0.78, 0.80]), (m.n, 1)))
+    arr = img
+    for kname, col in list(KC.items()) + [('other', (0, 0, 0))]:
+        sel = [e for e, kk in zip(edges, kinds) if kk == kname]
+        if sel:
+            arr = np.asarray(R.draw_edges(np.asarray(arr), zb, m, cam, sel, col, 3))
+    ims.append(Image.fromarray(np.asarray(arr)) if not isinstance(arr, Image.Image) else arr)
+    labels.append(nm)
+B = Image.new('RGB', (620 * len(ims), 650), (255, 255, 255))
+dr = ImageDraw.Draw(B)
+for i, (im, lb) in enumerate(zip(ims, labels)):
+    B.paste(im, (i * 620, 30))
+    dr.text((i * 620 + 10, 8), lb, fill=(60, 60, 60))
+dr.text((10 * 0 + 200, 8), '  red neck, orange opening, yellow slit, blue pole dart, purple dart, teal panel', fill=(60, 60, 60))
+B.save(sys.argv[3])
+print(sys.argv[3])
