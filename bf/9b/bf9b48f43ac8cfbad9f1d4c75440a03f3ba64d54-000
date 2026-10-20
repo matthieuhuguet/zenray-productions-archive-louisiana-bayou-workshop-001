@@ -1,0 +1,8 @@
+# 20 October 2026 : exports Epic's Manny LowLOD (the artist reference) to JSON : positions in metres, polygons, the artist's point uv. Run inside Houdini.
+import json
+g = hou.node('/obj/ZRUV_Assets/manny_fbx').geometry()
+P = [round(x * 0.01, 6) for x in g.pointFloatAttribValues('P')]
+UV = [round(x, 6) for x in g.pointFloatAttribValues('uv')]
+polys = [[v.point().number() for v in pr.vertices()] for pr in g.prims()]
+json.dump({'P': P, 'uv': UV, 'polys': polys}, open(OUT, 'w'))
+result = {'points': len(P) // 3, 'prims': len(polys)}

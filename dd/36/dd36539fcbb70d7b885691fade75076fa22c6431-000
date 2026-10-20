@@ -1,0 +1,32 @@
+# 20 October 2026 : close views of the artist reference seams (Epic's Manny) : upper body front and back, side, a hand, a foot. Usage : python -I RefCloseViews.py <epic json> <out dir>
+import sys, os
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import RefViews as RV, Render as R
+m = RV.epic_mesh(sys.argv[1]) if sys.argv[1].endswith('epic_manny.json') else __import__('ZrMesh').from_json(sys.argv[1])
+e = RV.seams(m)
+lo, hi = m.P.min(0), m.P.max(0)
+H = hi[1] - lo[1]
+out = sys.argv[2]
+os.makedirs(out, exist_ok=True)
+def cam(c, d, half, size=(900, 900)):
+    c = np.array(c, float)
+    return {'ortho': True, 'eye': c + 10.0 * np.array(d, float), 'target': c, 'half': half, 'size': size, 'c': c}
+cx = 0.5 * (lo + hi)
+views = {
+    'upper_front': cam([cx[0], lo[1] + 0.72 * H, cx[2]], (0, 0, 1), 0.30 * H),
+    'upper_back': cam([cx[0], lo[1] + 0.72 * H, cx[2]], (0, 0, -1), 0.30 * H),
+    'lower_front': cam([cx[0], lo[1] + 0.27 * H, cx[2]], (0, 0, 1), 0.28 * H),
+    'lower_back': cam([cx[0], lo[1] + 0.27 * H, cx[2]], (0, 0, -1), 0.28 * H),
+    'side_left': cam([cx[0], lo[1] + 0.5 * H, cx[2]], (1, 0, 0), 0.52 * H, (600, 1100)),
+    'head_front': cam([cx[0], lo[1] + 0.92 * H, cx[2]], (0, 0, 1), 0.08 * H),
+    'head_back': cam([cx[0], lo[1] + 0.92 * H, cx[2]], (0, 0, -1), 0.08 * H),
+    'head_side': cam([cx[0], lo[1] + 0.92 * H, cx[2]], (1, 0, 0), 0.08 * H),
+    'head_top': {'ortho': True, 'eye': np.array([cx[0], hi[1] + 10, cx[2]]), 'target': np.array([cx[0], hi[1] - 0.1, cx[2] + 1e-4]), 'half': 0.1 * H, 'size': (900, 900), 'c': cx},
+}
+for k, c in views.items():
+    if k == 'head_top':
+        c = {'ortho': True, 'eye': np.array([cx[0], hi[1] + 10.0, cx[2] + 0.001]), 'target': np.array([cx[0], hi[1] - 0.1, cx[2]]), 'half': 0.1 * H, 'size': (900, 900), 'c': cx}
+    RV.panel(m, e, c).save(os.path.join(out, k + '.png'))
+print(sorted(os.listdir(out)))

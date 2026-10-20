@@ -1,0 +1,66 @@
+# 20 October 2026 : side by side seams, the artist reference (Epic's Manny uv) against a ZenRay run, from the front, the back, the left and the right
+# (orthographic, the same framing), so the seam placement of the artist is read before cutting. Usage : python -I RefViews.py <epic json> <zenray mesh.json> <out png>
+import sys, json, math
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R
+
+def epic_mesh(path):
+    d = json.load(open(path))
+    P = np.array(d['P']).reshape(-1, 3)
+    UV = np.array(d['uv']).reshape(-1, 3)[:, :2]
+    key = np.round(P / 1e-5).astype(np.int64)
+    _, inv = np.unique(key, axis=0, return_inverse=True)
+    inv = inv.reshape(-1)
+    Pw = np.zeros((inv.max() + 1, 3))
+    Pw[inv] = P
+    polys = [[int(inv[p]) for p in poly] for poly in d['polys']]
+    uv = [[(float(UV[p, 0]), float(UV[p, 1])) for p in poly] for poly in d['polys']]
+    return Z.Mesh(Pw, polys, uv={'uv': uv})
+
+def seams(m):
+    out = []
+    for e, fl in m.edges.items():
+        if len(fl) == 1:
+            out.append(e)
+            continue
+        a, b = e
+        if len(fl) == 2:
+            f0, f1 = fl
+            ua0, ub0 = m.uv_of_point('uv', f0, a), m.uv_of_point('uv', f0, b)
+            ua1, ub1 = m.uv_of_point('uv', f1, a), m.uv_of_point('uv', f1, b)
+            if max(abs(ua0[0] - ua1[0]), abs(ua0[1] - ua1[1]), abs(ub0[0] - ub1[0]), abs(ub0[1] - ub1[1])) > 1e-5:
+                out.append(e)
+    return out
+
+def cams(m, size=(520, 900)):
+    lo, hi = m.P.min(0), m.P.max(0)
+    c = 0.5 * (lo + hi)
+    half = 0.5 * max(hi[1] - lo[1], 1e-6) * 1.04
+    out = []
+    for name, d in (('front', (0, 0, 1)), ('back', (0, 0, -1)), ('left', (1, 0, 0)), ('right', (-1, 0, 0))):
+        out.append((name, {'ortho': True, 'eye': c + 10.0 * np.array(d, float), 'target': c, 'half': half, 'size': size, 'c': c}))
+    return out
+
+def panel(m, edges, cam):
+    img, zb = R.render(m, cam, face_rgb=np.tile(np.array([0.16, 0.30, 0.86]), (m.n, 1)))
+    return R.draw_edges(img, zb, m, cam, edges, (236, 72, 170), 2)
+
+if __name__ == '__main__':
+    ep = epic_mesh(sys.argv[1])
+    zr = Z.from_json(sys.argv[2])
+    rows = []
+    for title, m in (('Epic (artist)', ep), ('ZenRay', zr)):
+        e = seams(m)
+        L = sum(m.edge_length(x) for x in e if len(m.edges[x]) == 2) + 0.5 * sum(m.edge_length(x) for x in e if len(m.edges[x]) == 1)
+        rows.append((title + '  seams %.2f m' % L, [panel(m, e, c) for _, c in cams(m)]))
+    Wp, Hp = rows[0][1][0].size
+    board = Image.new('RGB', (Wp * 4, (Hp + 40) * len(rows)), (238, 238, 240))
+    d = ImageDraw.Draw(board)
+    for i, (t, ims) in enumerate(rows):
+        d.text((10, i * (Hp + 40) + 12), t, fill=(30, 30, 30))
+        for j, im in enumerate(ims):
+            board.paste(im, (j * Wp, i * (Hp + 40) + 40))
+    board.save(sys.argv[3])
+    print(sys.argv[3])

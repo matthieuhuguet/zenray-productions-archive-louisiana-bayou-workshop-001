@@ -1,0 +1,10 @@
+{
+ "ok": true,
+ "result": [
+  "/obj/ZRUV_Arch",
+  "/obj/ZRUV_RubberToy",
+  "/obj/ZRUV_ShaderBall",
+  "/obj/ZRUV_Manny",
+  "/obj/ZRUV_ArchLibrary"
+ ]
+}

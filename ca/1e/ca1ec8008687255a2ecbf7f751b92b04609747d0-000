@@ -1,5 +1,76 @@
 {
- "ok": false,
- "error": "Traceback (most recent call last):\n  File \"<string>\", line 132, in _poll\n  File \"<string>\", line 103, in _handle\n  File \"<zrbridge>\", line 1, in <module>\n  File \"<string>\", line 10, in <module>\nKeyError: 'rubber'\n"
+ "ok": true,
+ "result": {
+  "ZRUV_RubberToy": {
+   "s": 110.9,
+   "res": {
+    "M2": {
+     "score": 0.999502,
+     "weakest": "uv:stretch",
+     "errors": null
+    },
+    "M3": {
+     "score": 0.999502,
+     "weakest": "uv:stretch",
+     "errors": null
+    },
+    "M3B": {
+     "score": 0.999502,
+     "weakest": "uv:stretch",
+     "errors": null
+    },
+    "M3C": {
+     "score": 0.999654,
+     "weakest": "uv:stretch",
+     "errors": null
+    },
+    "M4": {
+     "score": 0.999292,
+     "weakest": "bake:coverage",
+     "errors": null
+    },
+    "M5": {
+     "score": 0.75,
+     "weakest": "decals:lift",
+     "errors": null
+    }
+   }
+  },
+  "ZRUV_ShaderBall": {
+   "s": 85.6,
+   "res": {
+    "M2": {
+     "score": 0.999581,
+     "weakest": "uv:stretch",
+     "errors": null
+    },
+    "M3": {
+     "score": 0.999581,
+     "weakest": "uv:stretch",
+     "errors": null
+    },
+    "M3B": {
+     "score": 0.999523,
+     "weakest": "uv:stretch",
+     "errors": null
+    },
+    "M3C": {
+     "score": 0.999863,
+     "weakest": "uv:stretch",
+     "errors": null
+    },
+    "M4": {
+     "score": 0.999249,
+     "weakest": "bake:coverage",
+     "errors": null
+    },
+    "M5": {
+     "score": 0.0,
+     "weakest": "decals:lift",
+     "errors": null
+    }
+   }
+  }
+ }
 }
 done

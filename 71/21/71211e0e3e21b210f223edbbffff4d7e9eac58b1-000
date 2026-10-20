@@ -27,9 +27,9 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 925.6476405226783,
-    "px_per_m_median": 1024.551426508946,
-    "px_per_m_max": 1084.4341085373728,
+    "px_per_m_min": 925.6463887208408,
+    "px_per_m_median": 1024.5517620824587,
+    "px_per_m_max": 1084.4333434024807,
     "stretch_max": 0.19655373839317125,
     "faces": 12854
    },
@@ -106,7 +106,7 @@
   "uv": 1024.0
  },
  "cook_s": 0.0,
- "score_s": 0.86,
+ "score_s": 0.81,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
@@ -115,7 +115,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 02:41",
+ "date": "20 October 2026 03:12",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,
