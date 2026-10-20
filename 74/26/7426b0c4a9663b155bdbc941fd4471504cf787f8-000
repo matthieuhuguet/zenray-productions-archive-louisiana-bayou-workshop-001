@@ -1,12 +1,12 @@
 {
- "score": 0.984977,
- "weakest": "uv:no_flip",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
   "uv:stretch": 1.0,
-  "uv:no_flip": 0.984977,
-  "uv:not_mirrored": 0.984977,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
@@ -24,37 +24,37 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.969166987701662,
-    "low_frac": 0.0177369634093089,
-    "high_frac": 0.013096048889029028,
-    "px_per_m_min": 142.8778446162427,
-    "px_per_m_median": 1031.0095662307285,
-    "px_per_m_max": 1679.10850995911,
-    "stretch_max": 1.3740717825838038,
+    "exact_frac": 0.9540777769639989,
+    "low_frac": 0.025465007958486212,
+    "high_frac": 0.020457215077515085,
+    "px_per_m_min": 357.99810713385546,
+    "px_per_m_median": 1029.9197114016338,
+    "px_per_m_max": 1502.5535750239906,
+    "stretch_max": 0.9939159262418815,
     "faces": 30418
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 24,
-    "passing": 24,
+    "islands": 12,
+    "passing": 12,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.2281,
-    "worst_island_p95": 0.5661
+    "worst_island_p50": 0.0742,
+    "worst_island_p95": 0.2928
    },
-   "stretch_over_2pc_area": 0.9189,
-   "islands": 24,
-   "stacked_faces": 3777,
+   "stretch_over_2pc_area": 0.9367,
+   "islands": 12,
+   "stacked_faces": 6860,
    "groups": 1,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
     0.002,
-    0.9256
+    0.9699
    ],
    "v_range": [
-    0.6143,
+    0.6994,
     0.998
    ]
   }
@@ -67,14 +67,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 14.079,
-  "seams_on_smooth_m": 5.344,
+  "seams_m": 13.8,
+  "seams_on_smooth_m": 4.709,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
   "pass": true,
-  "texture_continuity": 0.9783,
-  "texture_continuous_m": 633.453
+  "texture_continuity": 0.9787,
+  "texture_continuous_m": 633.728
  },
  "hard_edges": {
   "source": "normals",
@@ -86,7 +86,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 24, \"stacked\": 8, \"past_u1\": 0}]",
+  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 12, \"stacked\": 4, \"past_u1\": 0}]",
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M2",
@@ -119,7 +119,7 @@
   "uv": 1024.0
  },
  "cook_s": 0.02,
- "score_s": 5.15,
+ "score_s": 4.94,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
@@ -128,7 +128,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 05:51",
+ "date": "20 October 2026 07:35",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,
