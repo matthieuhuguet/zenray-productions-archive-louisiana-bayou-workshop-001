@@ -1,0 +1,194 @@
+<title>Banc ZenRay UV</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>@font-face { font-family: 'InterVariable'; src: url('fonts/InterVariable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'AnthropicSerif'; src: url('fonts/AnthropicSerif-Romans.woff2') format('woff2'); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: 'AnthropicMono'; src: url('fonts/AnthropicMono.woff2') format('woff2'); font-weight: 300 800; font-display: swap; }
+
+/* 20 October 2026 : ZenRay UV overview. Layout : one reading column of sections, each method a grid of the four assets. White ground, the ZenRay accent, greys only. */
+:root {
+  --zr-police-sans: 'InterVariable', 'Hiragino Sans W4', 'Hiragino Sans', system-ui, sans-serif;
+  --zr-police-serif: 'AnthropicSerif', 'Hiragino Mincho ProN W3', Georgia, serif;
+  --zr-police-mono: 'AnthropicMono', ui-monospace, monospace;
+  --w: 500;
+  --bg: #ffffff; --panel: #f5f5f6; --ink: #1c1c1e; --ink2: #5d5d64; --line: #e4e4e7; --accent: #cc7c5e; --ok: #2f7d4a; --warn: #b8432f; --img: #efeff1;
+  --gap: 18px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #141416; --panel: #1d1d20; --ink: #ececef; --ink2: #a4a4ab; --line: #303036; --accent: #e09576; --ok: #67c486; --warn: #ff8670; --img: #232327; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #141416; --panel: #1d1d20; --ink: #ececef; --ink2: #a4a4ab; --line: #303036; --accent: #e09576; --ok: #67c486; --warn: #ff8670; --img: #232327; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--zr-police-sans); font-weight: var(--w); font-size: 15px; line-height: 1.6; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { border-bottom: 1px solid var(--line); padding-block: 40px 28px; }
+.eyebrow { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+h1, h2, h3, h4 { font-family: var(--zr-police-serif); font-weight: var(--w); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.15; }
+h2 { font-size: 1.55rem; margin-top: 8px; }
+h3 { font-size: 1.15rem; margin-top: 26px; }
+h4 { font-size: 1rem; }
+.lead { font-size: 1.05rem; max-width: 70ch; color: var(--ink); margin: 16px 0 0; }
+main.wrap { padding-block: 10px 90px; }
+section { padding-top: 34px; margin-top: 10px; border-top: 1px solid var(--line); }
+section:first-child { border-top: none; }
+p { max-width: 75ch; }
+.lab { color: var(--accent); }
+.muted { color: var(--ink2); }
+.num { font-family: var(--zr-police-serif); font-variant-numeric: tabular-nums; }
+code, pre { font-family: var(--zr-police-mono); font-size: .86em; }
+pre { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow-x: auto; white-space: pre; }
+.scroll { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; white-space: nowrap; }
+thead th { color: var(--ink2); font-weight: var(--w); }
+th a { color: var(--ink); }
+.badge { display: inline-block; padding: 1px 10px; border-radius: 99px; font-size: .95rem; }
+.badge.pass { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.badge.fail { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+.badge.none { background: var(--panel); color: var(--ink2); }
+.cells { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 16px; }
+.cell { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.cellhead { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+figure { margin: 0; min-width: 0; }
+figure img { width: 100%; height: auto; display: block; border-radius: 8px; background: var(--img); border: 1px solid var(--line); }
+figcaption { font-size: .82rem; color: var(--ink2); margin-top: 5px; }
+.weak { font-size: .82rem; color: var(--ink2); margin: 0; }
+.figs { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 14px; }
+.figs.one { grid-template-columns: 1fr; }
+.chartbox { margin-top: 14px; max-width: 760px; }
+svg.chart { width: 100%; height: auto; display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+svg.chart .grid { stroke: var(--line); stroke-width: 1; fill: none; }
+svg.chart .tick, svg.chart .axis, svg.chart .lab { fill: var(--ink2); font-family: var(--zr-police-sans); font-size: 12px; }
+svg.chart .lab { fill: var(--ink); }
+svg.chart .front { fill: none; stroke: var(--accent); stroke-width: 2; }
+svg.chart .zr { fill: var(--accent); }
+svg.chart .epic { fill: var(--ink); }
+ul.src { padding-left: 18px; } ul.src li { margin: 6px 0; } ul.src a { color: var(--ink); }
+details { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin-top: 12px; background: var(--panel); }
+details summary { cursor: pointer; font-family: var(--zr-police-serif); }
+.theme { position: fixed; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); right: calc(14px + env(safe-area-inset-right, 0px)); border: 1px solid var(--line);
+  background: var(--panel); color: var(--ink); border-radius: 99px; padding: 5px 14px; font: inherit; cursor: pointer; }
+.theme:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 640px) { th, td { white-space: normal; } }
+
+ul.facts { padding-left: 18px; margin: 10px 0 0; } ul.facts li { margin: 3px 0; }
+td.wrap { white-space: normal; min-width: 260px; }
+ol.steps { padding-left: 20px; max-width: 80ch; } ol.steps li { margin: 6px 0; }
+nav.toc { margin-top: 18px; font-size: .92rem; } nav.toc a { color: var(--ink); }
+</style>
+<header class="top"><div class="wrap">
+<p class="eyebrow">ZenRay UV, 20 October 2026</p>
+<h1>M1, le découpage d'artiste</h1>
+<p class="lead">M1 donne à un prop ou à un personnage des UV uniques comme les poserait un artiste : la découpe suit les règles apprises chez Epic, chez SideFX et chez les artistes des assets de Houdini, puis le tailleur ne coupe que là où la distorsion l'exige ; chaque île organique est posée debout, chaque jeu de textures a sa propre tuile carrée, jamais en UDIM, et la densité reste exacte, 2048 px/m pour un personnage ou une créature, 1024 px/m pour un prop ou une structure.</p>
+<nav class="toc"><a href="#ZRUV_PigHead">Tête de cochon</a> · <a href="#ZRUV_Arch">Arche</a> · <a href="#ZRUV_RubberToy">Rubber toy</a> · <a href="#ZRUV_ShaderBall">Shader ball</a> · <a href="#ZRUV_Manny">Manny</a> · <a href="#appel">Appeler la méthode</a> · <a href="#reglages">Réglages</a> · <a href="#limites">Limites</a></nav>
+</div></header>
+<main class="wrap">
+<section id="methode">
+<h2>La méthode, dans l'ordre</h2>
+<ol class="steps">
+<li>L'asset entre sans ses anciennes UV, à son échelle ou ramené à une surface donnée, chaque pièce nommée.</li>
+<li>Les règles apprises posent les coutures que tout artiste aurait faites : frontières de matériaux et de groupes, tranche des lames, capuchon d'une saillie dans son creux, racine et tranche d'une feuille mince, rebord d'une cavité comme l'intérieur d'une bouche ; chacune suit une boucle d'arêtes, jamais un escalier.</li>
+<li>Le tailleur ouvre le reste là où la distorsion le demande (boucles aux rétrécissements, panneaux, silhouettes, pinces), cache ses coutures loin du regard, puis retire toutes celles qui ne servent plus ; chaque virage d'une coupe se paie, aucune fente ne fait moins de trois arêtes, une petite pièce fermée s'ouvre en deux calottes, aucune île ne dépasse 30 % de la surface, une île trop petite ou en lanière rejoint sa voisine et une île ne se recouvre jamais elle-même.</li>
+<li>Chaque île organique est tournée debout, le haut du monde vers le haut de la texture ; une île coupée par le patron d'un artiste garde la rotation de l'artiste.</li>
+<li>Les îles se rangent par tuile, une tuile par jeu de textures (les matériaux de l'asset, ceux de l'artiste quand il y a un patron), dans la plus petite feuille carrée qui les tient à la densité, 4096 px au plus ; une tuile trop grande se partage en deux groupes de voisines.</li>
+<li>Chaque tuile se cuit à part dans Copernicus, puis le score vérifie la densité, l'étirement, l'absence de retournement, de miroir, de chevauchement entre îles et de recouvrement d'une île sur elle-même, la position debout et l'absence d'escalier sur le bord des îles ; 0,999 veut dire terminé.</li>
+</ol>
+</section>
+<section id="regles">
+<h2>Les règles apprises des artistes</h2>
+<p>Chaque règle vient d'une référence réelle et se mesure contre elle arête pour arête ; une règle qui contredit une autre référence reçoit un garde-fou mesuré (les mains et les pieds de Manny ne sont pas des feuilles minces, ses pointes de pied ne sont pas des capuchons), et celle qui n'est pas encore assez exacte reste éteinte.</p>
+<div class="scroll"><table><thead><tr><th>Règle</th><th>Apprise sur</th><th>Mesure</th><th>Ce qu'elle fait</th></tr></thead><tbody><tr><td>Frontière de jeu de textures</td><td>Manny (Epic)</td><td class="num">précision 1,000</td><td class="wrap">toute frontière entre deux matériaux couvrant chacun un dixième de leur pièce est une couture, et chaque matériau a sa tuile</td></tr><tr><td>Frontière de groupe de construction</td><td>shader ball</td><td class="num">précision 1,000</td><td class="wrap">la frontière d&#x27;un groupe de primitives nommé par le modeleur est une couture (les yeux, la gorge du cochon)</td></tr><tr><td>Tranche de lame</td><td>rubber toy</td><td class="num">précision 1,000</td><td class="wrap">une pièce mince qui traverse le plan de symétrie s&#x27;ouvre sur ce plan, en deux faces (les nageoires)</td></tr><tr><td>Capuchon de saillie</td><td>tête de cochon (SideFX)</td><td class="num">précision 1,000, 122 faces sur 122</td><td class="wrap">le bout plat d&#x27;une saillie se coupe dans le creux derrière son rebord, seulement s&#x27;il y a un vrai creux (médiane au moins 10 degrés concaves)</td></tr><tr><td>Feuille mince</td><td>tête de cochon (SideFX)</td><td class="num">tranche 0,663, racine 0,301</td><td class="wrap">une feuille mince tenue largement (une oreille) se coupe à sa racine, dans le pli, puis en deux îles, la face cachée serrée le long de sa tranche</td></tr><tr><td>Petits trous gardés</td><td>tête de cochon (SideFX)</td><td class="num">yeux dans le visage, sans fente</td><td class="wrap">un trou dont le périmètre reste sous 0,3 fois la racine de l&#x27;aire de son île reste dedans ; un grand trou rejoint le bord par une couture cachée</td></tr><tr><td>Zone enfouie</td><td>rubber toy</td><td class="num">précision 0,43, éteinte</td><td class="wrap">la partie enfoncée dans une autre pièce s&#x27;isole ; pas encore assez exacte, elle reste éteinte par défaut</td></tr><tr><td>Cavité</td><td>tête de cochon (SideFX)</td><td class="num">rebord 58 arêtes sur 58, aucun virage</td><td class="wrap">l&#x27;intérieur d&#x27;une bouche (faces vues moins de 0,5, un creux d&#x27;au moins 16 faces) se détache le long de la boucle de son rebord, tracée sur la transition de visibilité en payant chaque virage</td></tr><tr><td>Bord sans escalier</td><td>Matthieu, vérifié sur les quatre références</td><td class="num">0 escalier chez les artistes</td><td class="wrap">un bord d&#x27;île en marches carrées sur la feuille est une erreur de découpe : chaque coupe paie ses virages, aucune fente de moins de 3 arêtes, une petite pièce fermée s&#x27;ouvre en deux calottes</td></tr></tbody></table></div>
+</section>
+<section id="ZRUV_PigHead">
+<div class="cellhead"><h2>Tête de cochon</h2><span class="badge pass num">1,0000</span></div>
+<p class="muted">la tête de cochon de Houdini, coupée sans ses UV d&#x27;origine, une créature à 2048 px/m.</p>
+<ul class="facts">
+<li><span class="num">16</span> îles, <span class="num">8,59</span> m de coutures, <span class="num">2048</span> px/m, 1 tuile (one tile, 4 minor islands at 0.25 of the density).</li>
+<li>Îles organiques : <span class='num'>16</span> sur <span class='num'>16</span> passent le critère d'artiste (médiane la plus haute <span class='num'>0,065</span>, 95e centile <span class='num'>0,187</span>).</li>
+<li>Composantes sous 1 : bake:coverage <span class='num'>0,999999</span>.</li>
+</ul>
+<div class="scroll"><table><thead><tr><th>Tuile</th><th>Taille (px)</th><th>Îles</th><th>Remplissage</th></tr></thead><tbody><tr><td>Pig</td><td class='num'>2048 × 2048</td><td class='num'>16</td><td class='num'>47 %</td></tr></tbody></table></div>
+<div class="figs one"><figure><img src="ZRUV_PigHead/M1/boards/ZRUV_PigHead_M1_vs_reference_3d.png" alt="la découpe ZRUV en haut, SideFX en dessous, îles aux couleurs assorties" loading="lazy"><figcaption>la découpe ZRUV en haut, SideFX en dessous, îles aux couleurs assorties</figcaption></figure><figure><img src="ZRUV_PigHead/M1/boards/ZRUV_PigHead_M1_vs_reference_uv.png" alt="les tuiles ZRUV, puis la feuille de SideFX" loading="lazy"><figcaption>les tuiles ZRUV, puis la feuille de SideFX</figcaption></figure><figure><img src="../bench/PigHead_mouth_final.png" alt="la bouche en gros plan" loading="lazy"><figcaption>la lèvre en gros plan, ZRUV puis SideFX, escaliers en rouge (aucun) : l'intérieur de la bouche est un ruban en U détaché le long du rebord de la lèvre, le même que celui de SideFX</figcaption></figure><figure><img src="../bench/PigHead_zoom_final.png" alt="groin et oreilles en gros plan" loading="lazy"><figcaption>le groin et les oreilles en gros plan, ZRUV puis SideFX : le capuchon du groin a le même bord que celui de SideFX, chaque oreille est en deux îles</figcaption></figure></div>
+<div class="figs"><figure><img src="ZRUV_PigHead/M1/boards/ZRUV_PigHead_M1_seams_3d.png" alt="la découpe, coutures en noir" loading="lazy"><figcaption>la découpe, coutures en noir</figcaption></figure><figure><img src="ZRUV_PigHead/M1/boards/ZRUV_PigHead_M1_tiles_uv.png" alt="les tuiles, chacune sa propre texture carrée" loading="lazy"><figcaption>les tuiles, chacune sa propre texture carrée</figcaption></figure><figure><img src="ZRUV_PigHead/M1/boards/ZRUV_PigHead_M1_checker_3d.png" alt="damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout" loading="lazy"><figcaption>damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout</figcaption></figure></div>
+</section><section id="ZRUV_Arch">
+<div class="cellhead"><h2>Arche</h2><span class="badge pass num">1,0000</span></div>
+<p class="muted">l&#x27;arche Louisiana Bayou, une structure à 1024 px/m.</p>
+<ul class="facts">
+<li><span class="num">377</span> îles, <span class="num">229,16</span> m de coutures, <span class="num">1024</span> px/m, 1 tuile (one tile).</li>
+
+<li>Composantes sous 1 : toutes à 1.</li>
+</ul>
+<div class="scroll"><table><thead><tr><th>Tuile</th><th>Taille (px)</th><th>Îles</th><th>Remplissage</th></tr></thead><tbody><tr><td>tuile unique</td><td class='num'>4096 × 4096</td><td class='num'>377</td><td class='num'>64 %</td></tr></tbody></table></div>
+<div class="figs one"><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_seams_3d.png" alt="la découpe, coutures en noir" loading="lazy"><figcaption>la découpe, coutures en noir</figcaption></figure><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_tiles_uv.png" alt="les tuiles, chacune sa propre texture carrée" loading="lazy"><figcaption>les tuiles, chacune sa propre texture carrée</figcaption></figure></div>
+<div class="figs"><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_checker_3d.png" alt="damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout" loading="lazy"><figcaption>damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout</figcaption></figure></div>
+</section><section id="ZRUV_RubberToy">
+<div class="cellhead"><h2>Rubber toy</h2><span class="badge pass num">1,0000</span></div>
+<p class="muted">le rubber toy de Houdini, coupé comme son artiste (patron appris), un prop à 1024 px/m.</p>
+<ul class="facts">
+<li><span class="num">33</span> îles, <span class="num">9,22</span> m de coutures, <span class="num">1024</span> px/m, 1 tuile (one tile).</li>
+<li>Îles organiques : <span class='num'>33</span> sur <span class='num'>33</span> passent le critère d'artiste (médiane la plus haute <span class='num'>0,220</span>, 95e centile <span class='num'>0,500</span>).</li>
+<li>Composantes sous 1 : bake:coverage <span class='num'>0,999993</span>.</li>
+</ul>
+<div class="scroll"><table><thead><tr><th>Tuile</th><th>Taille (px)</th><th>Îles</th><th>Remplissage</th></tr></thead><tbody><tr><td>ToyShader</td><td class='num'>2048 × 2048</td><td class='num'>33</td><td class='num'>25 %</td></tr></tbody></table></div>
+<div class="figs one"><figure><img src="ZRUV_RubberToy/M1/boards/ZRUV_RubberToy_M1_vs_reference_3d.png" alt="la découpe ZRUV en haut, l&#x27;artiste en dessous, îles aux couleurs assorties" loading="lazy"><figcaption>la découpe ZRUV en haut, l&#x27;artiste en dessous, îles aux couleurs assorties</figcaption></figure><figure><img src="ZRUV_RubberToy/M1/boards/ZRUV_RubberToy_M1_vs_reference_uv.png" alt="les tuiles ZRUV, puis la feuille de l&#x27;artiste" loading="lazy"><figcaption>les tuiles ZRUV, puis la feuille de l&#x27;artiste</figcaption></figure><figure><img src="reference/study/ZRUV_RubberToy/replay_overlay_uv.png" alt="décalcomanie" loading="lazy"><figcaption>la décalcomanie, tuile par tuile : les îles de l&#x27;artiste en couleur, les bords rejoués en noir</figcaption></figure></div>
+<div class="figs"><figure><img src="ZRUV_RubberToy/M1/boards/ZRUV_RubberToy_M1_seams_3d.png" alt="la découpe, coutures en noir" loading="lazy"><figcaption>la découpe, coutures en noir</figcaption></figure><figure><img src="ZRUV_RubberToy/M1/boards/ZRUV_RubberToy_M1_tiles_uv.png" alt="les tuiles, chacune sa propre texture carrée" loading="lazy"><figcaption>les tuiles, chacune sa propre texture carrée</figcaption></figure><figure><img src="ZRUV_RubberToy/M1/boards/ZRUV_RubberToy_M1_checker_3d.png" alt="damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout" loading="lazy"><figcaption>damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout</figcaption></figure></div>
+</section><section id="ZRUV_ShaderBall">
+<div class="cellhead"><h2>Shader ball</h2><span class="badge pass num">1,0000</span></div>
+<p class="muted">le shader ball de Houdini, coupé comme son artiste, un prop à 1024 px/m.</p>
+<ul class="facts">
+<li><span class="num">133</span> îles, <span class="num">8,08</span> m de coutures, <span class="num">1024</span> px/m, 4 tuiles (artist texture sets (pattern)).</li>
+<li>Îles organiques : <span class='num'>133</span> sur <span class='num'>133</span> passent le critère d'artiste (médiane la plus haute <span class='num'>0,131</span>, 95e centile <span class='num'>0,305</span>).</li>
+<li>Composantes sous 1 : toutes à 1.</li>
+</ul>
+<div class="scroll"><table><thead><tr><th>Tuile</th><th>Taille (px)</th><th>Îles</th><th>Remplissage</th></tr></thead><tbody><tr><td>Core</td><td class='num'>1024 × 1024</td><td class='num'>4</td><td class='num'>18 %</td></tr><tr><td>PreviewSurface</td><td class='num'>1024 × 1024</td><td class='num'>120</td><td class='num'>69 %</td></tr><tr><td>Stand</td><td class='num'>1024 × 1024</td><td class='num'>3</td><td class='num'>11 %</td></tr><tr><td>SubsurfaceBars</td><td class='num'>256 × 256</td><td class='num'>6</td><td class='num'>29 %</td></tr></tbody></table></div>
+<div class="figs one"><figure><img src="ZRUV_ShaderBall/M1/boards/ZRUV_ShaderBall_M1_vs_reference_3d.png" alt="la découpe ZRUV en haut, l&#x27;artiste en dessous, îles aux couleurs assorties" loading="lazy"><figcaption>la découpe ZRUV en haut, l&#x27;artiste en dessous, îles aux couleurs assorties</figcaption></figure><figure><img src="ZRUV_ShaderBall/M1/boards/ZRUV_ShaderBall_M1_vs_reference_uv.png" alt="les tuiles ZRUV, puis la feuille de l&#x27;artiste" loading="lazy"><figcaption>les tuiles ZRUV, puis la feuille de l&#x27;artiste</figcaption></figure><figure><img src="reference/study/ZRUV_ShaderBall/replay_overlay_uv.png" alt="décalcomanie" loading="lazy"><figcaption>la décalcomanie, tuile par tuile : les îles de l&#x27;artiste en couleur, les bords rejoués en noir</figcaption></figure></div>
+<div class="figs"><figure><img src="ZRUV_ShaderBall/M1/boards/ZRUV_ShaderBall_M1_seams_3d.png" alt="la découpe, coutures en noir" loading="lazy"><figcaption>la découpe, coutures en noir</figcaption></figure><figure><img src="ZRUV_ShaderBall/M1/boards/ZRUV_ShaderBall_M1_tiles_uv.png" alt="les tuiles, chacune sa propre texture carrée" loading="lazy"><figcaption>les tuiles, chacune sa propre texture carrée</figcaption></figure><figure><img src="ZRUV_ShaderBall/M1/boards/ZRUV_ShaderBall_M1_checker_3d.png" alt="damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout" loading="lazy"><figcaption>damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout</figcaption></figure></div>
+</section><section id="ZRUV_Manny">
+<div class="cellhead"><h2>Manny</h2><span class="badge pass num">0,9995</span></div>
+<p class="muted">Manny LowLOD d&#x27;Epic, coupé comme Epic, un personnage à 2048 px/m.</p>
+<ul class="facts">
+<li><span class="num">45</span> îles, <span class="num">15,25</span> m de coutures, <span class="num">2048</span> px/m, 2 tuiles (artist texture sets (pattern)).</li>
+<li>Îles organiques : <span class='num'>45</span> sur <span class='num'>45</span> passent le critère d'artiste (médiane la plus haute <span class='num'>0,104</span>, 95e centile <span class='num'>0,328</span>).</li>
+<li>Composantes sous 1 : uv:smooth_border <span class='num'>0,999471</span>.</li>
+</ul>
+<div class="scroll"><table><thead><tr><th>Tuile</th><th>Taille (px)</th><th>Îles</th><th>Remplissage</th></tr></thead><tbody><tr><td>MI_Manny_01</td><td class='num'>4096 × 4096</td><td class='num'>15</td><td class='num'>60 %</td></tr><tr><td>MI_Manny_02</td><td class='num'>2048 × 2048</td><td class='num'>30</td><td class='num'>56 %</td></tr></tbody></table></div>
+<div class="figs one"><figure><img src="ZRUV_Manny/M1/boards/ZRUV_Manny_M1_vs_reference_3d.png" alt="la découpe ZRUV en haut, Epic en dessous, îles aux couleurs assorties" loading="lazy"><figcaption>la découpe ZRUV en haut, Epic en dessous, îles aux couleurs assorties</figcaption></figure><figure><img src="ZRUV_Manny/M1/boards/ZRUV_Manny_M1_vs_reference_uv.png" alt="les tuiles ZRUV, puis la feuille de Epic" loading="lazy"><figcaption>les tuiles ZRUV, puis la feuille de Epic</figcaption></figure><figure><img src="reference/study/ZRUV_Manny/replay_overlay_uv.png" alt="décalcomanie" loading="lazy"><figcaption>la décalcomanie, tuile par tuile : les îles de Epic en couleur, les bords rejoués en noir</figcaption></figure></div>
+<div class="figs"><figure><img src="ZRUV_Manny/M1/boards/ZRUV_Manny_M1_seams_3d.png" alt="la découpe, coutures en noir" loading="lazy"><figcaption>la découpe, coutures en noir</figcaption></figure><figure><img src="ZRUV_Manny/M1/boards/ZRUV_Manny_M1_tiles_uv.png" alt="les tuiles, chacune sa propre texture carrée" loading="lazy"><figcaption>les tuiles, chacune sa propre texture carrée</figcaption></figure><figure><img src="ZRUV_Manny/M1/boards/ZRUV_Manny_M1_checker_3d.png" alt="damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout" loading="lazy"><figcaption>damier de 64 texels et ligne rouge tous les 256 texels de v : la densité égale, les îles debout</figcaption></figure></div>
+</section>
+<section id="appel">
+<h2>Appeler la méthode sur un nouveau prop</h2>
+<p>Dans Houdini, depuis le Python Shell ou par le MCP (houdini_hom), sur le SOP de sortie de l'asset ; le réseau /obj/ZRUV_&lt;Nom&gt; se construit avec son panneau CTRL_zruv, et tout réglage se change ensuite sur ce panneau.</p>
+<pre>exec(open('/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZenRayUV.py').read())
+geo = ensure('ZRUV_Crag', '/obj/crag/OUT', ('M1',))
+c = geo.node('CTRL_zruv')
+c.parm('asset_kind').set(1); c.parm('texel_density').set(2048)   # une créature : 2048 px/m
+c.parm('artist_pattern').set('')                                  # pas de patron : le découpage d'artiste
+run(('M1',), obj_name='ZRUV_Crag')                                # coupe, range, cuit, note</pre>
+<p>Sans ouvrir Houdini, en une commande (hython), sur un type de SOP ou un fichier de géométrie ; la session est enregistrée dans le dossier bench pour être ouverte ensuite.</p>
+<pre>/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/bin/hython /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/HeadlessM1.py --name ZRUV_Crag --sop testgeometry_crag --area 1.0 --kind character --back 1.0</pre>
+<p>Les planches, la découpe en 3D, les tuiles et le damier, avec la référence à côté quand elle existe :</p>
+<pre>/Users/zenray/.venvs/shorts/bin/python -I /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/M1Boards.py &lt;dossier runs&gt; ZRUV_Crag [--ref &lt;mesh json avec uv orig&gt; --ref-name SideFX]</pre>
+</section>
+<section id="reglages">
+<h2>Les réglages à la main</h2>
+<p>Le dossier Artist du panneau CTRL_zruv porte la main de l'artiste ; chaque réglage a sa valeur par défaut, celle qui a donné les résultats ci-dessus.</p>
+<div class="scroll"><table><thead><tr><th>Réglage</th><th>Défaut</th><th>Effet</th></tr></thead><tbody>
+<tr><td>asset_kind</td><td>prop</td><td class="wrap">prop ou structure à 1024 px/m, personnage ou créature à 2048 px/m (le choix pose la densité)</td></tr>
+<tr><td>organic_orient</td><td>upright</td><td class="wrap">les îles organiques debout ; horizontal reprend la règle des surfaces dures</td></tr>
+<tr><td>m1_tiles</td><td>0</td><td class="wrap">0 : une tuile par jeu de textures ; N : N groupes de voisines</td></tr>
+<tr><td>m1_tile_groups</td><td>vide</td><td class="wrap">les tuiles à la main, une par partie séparée par une barre verticale, chacune une liste de groupes, de pièces ou de matériaux</td></tr>
+<tr><td>manual_seams</td><td>vide</td><td class="wrap">des groupes d'arêtes toujours coupés</td></tr>
+<tr><td>manual_no_seams</td><td>vide</td><td class="wrap">des groupes d'arêtes où le tailleur ne coupe pas</td></tr>
+<tr><td>artist_pattern</td><td>vide</td><td class="wrap">le patron d'un artiste sur ce même maillage : M1 le rejoue clic pour clic</td></tr>
+<tr><td>cut_td (dossier Cut)</td><td>0</td><td class="wrap">la densité à laquelle la découpe est jugée : refaire la feuille à une autre densité sans recouper</td></tr>
+<tr><td>m1_allow_rect</td><td>éteint</td><td class="wrap">les feuilles sont carrées ; allumé, une feuille peut être deux fois plus large que haute</td></tr>
+<tr><td>m1_fit (dossier Sheet)</td><td>personnage</td><td class="wrap">chaque tuile remplit son carré, à la densité la plus proche de celle demandée</td></tr>
+<tr><td>m1_minor_density</td><td>0,25 (personnage)</td><td class="wrap">les îles d'un matériau secondaire (les yeux, le cou, la gorge) rangées dans le carré du matériau principal à ce quart de sa densité, comme SideFX</td></tr>
+<tr><td>m1_no_texture</td><td>*no_uv* *nouv*</td><td class="wrap">les matériaux qui ne lisent pas d'UV ne reçoivent jamais leur propre tuile</td></tr>
+</tbody></table></div>
+</section>
+<section id="limites">
+<h2>Limites connues</h2>
+<p>Aucun escalier ne reste sur M1, sauf deux dents de 4 mm chez Manny, sur des coutures d'Epic lui-même, que notre dépliage dessine. Le cochon garde en revanche des crans de deux ou trois arêtes, surtout sur la bande du cou, là où les panneaux du dessus s'arrêtent à des boucles différentes : 1,45 m contre 0,19 m chez SideFX ; les artistes en ont un peu aussi, si bien que ce n'est pas encore une composante du score, et c'est le prochain chantier. La tranche et la racine des oreilles tombent au bon endroit sans reprendre exactement les arêtes de SideFX, la règle des zones enfouies reste éteinte, et les méthodes M2 à M5 gardent des escaliers que leur score ne mesure pas encore. Crag reste à couper, par Matthieu, avec la commande ci-dessus.</p>
+<p class="muted">Statut : non validé par Matthieu. Page écrite le 20 October 2026 à 18:53.</p>
+</section>
+</main>
+<button class="theme" type="button" onclick="(function(){var r=document.documentElement;var d=r.getAttribute('data-theme');var dark=d?d==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.setAttribute('data-theme',dark?'light':'dark');})()">Thème</button>

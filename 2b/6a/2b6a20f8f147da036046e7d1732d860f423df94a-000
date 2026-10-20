@@ -124,8 +124,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 9.64,
- "score_s": 6.58,
+ "cook_s": 10.94,
+ "score_s": 7.37,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_2048x2048.png",
@@ -135,10 +135,10 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_2048x2048.png"
   },
   "seconds": {
-   "custom": 4.59,
-   "occlusion": 0.03,
-   "curvature": 0.09,
-   "edge": 0.06,
+   "custom": 5.24,
+   "occlusion": 0.04,
+   "curvature": 0.08,
+   "edge": 0.04,
    "alpha": 0.02
   },
   "size": [
@@ -155,7 +155,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 18:13",
+ "date": "20 October 2026 18:50",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy_src",
   "asset_scale": 1.0,
