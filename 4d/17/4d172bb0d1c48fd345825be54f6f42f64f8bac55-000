@@ -1,10 +1,10 @@
 {
- "score": 0.999567,
+ "score": 0.999569,
  "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.999981,
-  "uv:stretch": 0.999567,
+  "uv:density": 1.0,
+  "uv:stretch": 0.999569,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -13,7 +13,7 @@
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999962,
+  "bake:coverage": 0.999979,
   "bake:id_match": 1.0
  },
  "reports": {
@@ -24,32 +24,32 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9999806639625693,
-    "low_frac": 1.2211899986205522e-05,
-    "high_frac": 7.124137444361452e-06,
-    "px_per_m_min": 663.287285318602,
-    "px_per_m_median": 1024.0005706076863,
-    "px_per_m_max": 1211.6633684947412,
-    "stretch_max": 0.9914371231321164,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 940.5200950735602,
+    "px_per_m_median": 1023.9999546948258,
+    "px_per_m_max": 1093.3185479698764,
+    "stretch_max": 0.2788540852079773,
     "faces": 7000
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "subtexel_area": 1e-05,
-   "stretch_over_2pc_area": 0.7654,
-   "islands": 313,
+   "stretch_over_2pc_area": 0.7924,
+   "islands": 311,
    "overlap_px": 0,
-   "covered_px": 4081584,
-   "fill": 0.4866,
+   "covered_px": 4046178,
+   "fill": 0.4823,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 15,
    "u_range": [
     0.0078,
-    0.9921
+    0.992
    ],
    "v_range": [
     0.0156,
-    0.9746
+    0.9355
    ]
   }
  },
@@ -61,8 +61,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 23.566,
-  "seams_on_smooth_m": 0.56,
+  "seams_m": 23.326,
+  "seams_on_smooth_m": 1.02,
   "sharp_kept_m": 0,
   "sharp_m": 6.916,
   "border_m": 0,
@@ -78,7 +78,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 313, \"stacked_possible\": 139, \"stacked\": 0, \"fill\": 0.4978, \"unique_share\": 1.0, \"mode\": \"stacked\", \"lower_bound_px2\": 1256973, \"lower_bound_unique_px2\": 1358904, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 1}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 311, \"stacked_possible\": 137, \"stacked\": 0, \"fill\": 0.4958, \"unique_share\": 1.0, \"mode\": \"stacked\", \"lower_bound_px2\": 1259819, \"lower_bound_unique_px2\": 1352074, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 1}",
   "zruv_straight_uv": "{\"charts\": 72, \"grids\": 3, \"tubes\": 3, \"cut_long\": 0, \"worst_dev\": 0.0676, \"kink_faces\": 4, \"cut_at_kinks\": 1, \"kept_native\": 1, \"straight_area\": 0.0311}"
  },
  "method": "M1",
@@ -100,8 +100,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 75.17,
- "score_s": 54.17,
+ "cook_s": 51.65,
+ "score_s": 9.79,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_2048x1024.png",
@@ -111,17 +111,17 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_2048x1024.png"
   },
   "seconds": {
-   "custom": 51.23,
-   "occlusion": 0.78,
-   "curvature": 0.25,
-   "edge": 0.21,
-   "alpha": 0.2
+   "custom": 7.43,
+   "occlusion": 0.26,
+   "curvature": 0.27,
+   "edge": 0.23,
+   "alpha": 0.22
   },
   "size": [
    2048,
    1024
   ],
-  "coverage": 0.999962,
+  "coverage": 0.999979,
   "id_match": 1.0
  },
  "asset": "/obj/ZRUV_Assets/shaderball",
@@ -133,7 +133,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 01:42",
+ "date": "20 October 2026 02:21",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball",
   "asset_scale": 1.0,

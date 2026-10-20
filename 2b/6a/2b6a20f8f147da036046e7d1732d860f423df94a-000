@@ -1,10 +1,10 @@
 {
- "score": 0.999598,
+ "score": 0.999502,
  "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
-  "uv:stretch": 0.999598,
+  "uv:stretch": 0.999502,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -13,7 +13,7 @@
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999975,
+  "bake:coverage": 0.999972,
   "bake:id_match": 1.0
  },
  "reports": {
@@ -27,25 +27,25 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 942.0419912442824,
-    "px_per_m_median": 1024.5849317210884,
-    "px_per_m_max": 1110.8310893048408,
-    "stretch_max": 0.1615898466750434,
+    "px_per_m_min": 925.6503446030137,
+    "px_per_m_median": 1024.550937852614,
+    "px_per_m_max": 1084.4252599934678,
+    "stretch_max": 0.196564226760243,
     "faces": 12854
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 0.0,
-   "stretch_over_2pc_area": 0.8026,
-   "islands": 40,
+   "subtexel_area": 3.5e-05,
+   "stretch_over_2pc_area": 0.806,
+   "islands": 41,
    "overlap_px": 0,
-   "covered_px": 4121100,
-   "fill": 0.4913,
+   "covered_px": 4120259,
+   "fill": 0.4912,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 15,
    "u_range": [
     0.0078,
-    0.9918
+    0.9919
    ],
    "v_range": [
     0.0156,
@@ -61,8 +61,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 12.563,
-  "seams_on_smooth_m": 1.803,
+  "seams_m": 12.556,
+  "seams_on_smooth_m": 1.868,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -78,7 +78,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 40, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4975, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1187008, \"lower_bound_unique_px2\": 1187008, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 41, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4974, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1187911, \"lower_bound_unique_px2\": 1187911, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -100,8 +100,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 18.14,
- "score_s": 7.04,
+ "cook_s": 23.7,
+ "score_s": 7.6,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_2048x1024.png",
@@ -111,17 +111,17 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_2048x1024.png"
   },
   "seconds": {
-   "custom": 4.63,
+   "custom": 5.06,
    "occlusion": 0.23,
    "curvature": 0.26,
-   "edge": 0.22,
-   "alpha": 0.2
+   "edge": 0.24,
+   "alpha": 0.21
   },
   "size": [
    2048,
    1024
   ],
-  "coverage": 0.999975,
+  "coverage": 0.999972,
   "id_match": 1.0
  },
  "asset": "/obj/ZRUV_Assets/rubbertoy",
@@ -131,7 +131,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 01:43",
+ "date": "20 October 2026 02:22",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,

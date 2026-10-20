@@ -2,7 +2,7 @@
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "20 October 2026 01:44",
+ "date": "20 October 2026 02:23",
  "families": [
   {
    "name": "iron",
@@ -130,9 +130,9 @@
     0.0039,
     0.9945
    ],
-   "cook_s": 3.37,
-   "bake_s": 36.09,
-   "date": "20 October 2026 01:44",
+   "cook_s": 2.8,
+   "bake_s": 35.98,
+   "date": "20 October 2026 02:23",
    "report": "M1/report.json",
    "example": {
     "texture": "M1/texture_unique.png",
