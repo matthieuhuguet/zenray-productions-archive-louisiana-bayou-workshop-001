@@ -1,0 +1,20 @@
+#!/bin/zsh
+# 20 October 2026 (fifth pass) : the organic assets after the tailor change (sprawl rule, multi path band split), every method with its bake, one asset per bridge
+# call ; a summary line per asset in RunOrganicFinal.sum.
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+B="/opt/homebrew/bin/python3 /Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py hom"
+: > $W/Scripts/RunOrganicFinal.sum
+for spec in "ZRUV_ShaderBall:M1,M2,M3,M3B,M3C,M4,M5" "ZRUV_RubberToy:M1,M2,M3,M3B,M3C,M4,M5" "ZRUV_Manny:M1,M2,M3,M3B,M3C,M4,M5"; do
+  obj=${spec%%:*}; meths=${spec#*:}; py_meths="('${meths//,/','}',)"
+  ZR_BRIDGE_TIMEOUT=5400 $=B "OBJS=('$obj',); METHS=$py_meths; BAKE=True; RUNS='$W/runs'; exec(open('$W/Scripts/RunSheets.py').read())" > $W/Scripts/RunOrganicFinal_$obj.out 2>&1
+  /opt/homebrew/bin/python3 -c "
+import json
+try:
+    r = json.load(open('$W/Scripts/RunOrganicFinal_$obj.out'))['result']['$obj']
+    print('$obj', r['s'], {k: (v['score'], v['weakest'], (v['errors'] or [''])[0][:160] if v['errors'] else '') for k, v in r['res'].items()})
+except Exception as e:
+    print('$obj', 'unreadable', e, open('$W/Scripts/RunOrganicFinal_$obj.out').read()[-600:])
+" >> $W/Scripts/RunOrganicFinal.sum
+  echo "finished $obj $(date +%H:%M:%S)" >> $W/Scripts/RunOrganicFinal.sum
+done
+echo "ORGANIC FINAL COMPLETE $(date +%H:%M:%S)" >> $W/Scripts/RunOrganicFinal.sum

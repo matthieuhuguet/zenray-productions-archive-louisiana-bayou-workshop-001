@@ -1,0 +1,15 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_RubberToy": {
+   "s": 51.9,
+   "res": {
+    "M5": {
+     "score": 0.999169,
+     "weakest": "uv:stretch",
+     "errors": null
+    }
+   }
+  }
+ }
+}

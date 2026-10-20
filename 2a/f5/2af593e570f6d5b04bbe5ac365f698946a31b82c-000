@@ -1,0 +1,56 @@
+# 20 October 2026 : rebuild the final state of a tailor solve from its seams and evaluate every move the improve phase would try on its worst chart : why it is stuck.
+# Usage : TAILOR_NEXT=1 python -I DebugStuck.py <mesh.json> <solve out.json> ['{prm}']
+import sys, os, json, math
+import numpy as np
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+if os.environ.get('TAILOR_NEXT'):
+    sys.path.insert(0, os.path.join(HERE, 'next'))
+sys.path.insert(0, HERE)
+import ZrMesh as Z, ZruvTailor as T, PoolCheck as PC
+prm = dict(T.PARAMS)
+if len(sys.argv) > 3:
+    prm.update(json.loads(sys.argv[3]))
+d = PC.data_of(sys.argv[1], prm)
+res = json.load(open(sys.argv[2]))
+S = T.Surf(d['P'], d['polys'], face_open=d['face_open'], prm=prm)
+flag = np.asarray(d['organic']) == 1
+sharp = [S.emap[(min(a, b), max(a, b))] for a, b in d['sharp'] if (min(a, b), max(a, b)) in S.emap]
+req, dem = T.required_seams(S, sharp, flag, d['crease_rad'])
+tl = T.Tailor(S, must_cut=req, faces=np.where(flag)[0], log=print)
+for a, b in res['seams']:
+    e = S.emap.get((min(a, b), max(a, b)))
+    if e is not None:
+        tl.cut[e] = True
+tl.relabel_all()
+tl.flatten_all()
+worst = max(((c.fail, k) for k, c in tl.charts.items() if c is not None), default=None)
+print('charts', len(tl.charts), 'worst', worst)
+fv, k = worst
+ch = tl.charts[k]
+print('worst chart', k, 'faces', len(tl.faces_of(k)), 'fail %.5f excess %.5f sprawl %.5f fill %.3f' % (ch.fail, ch.excess, getattr(ch, 'sprawl', 0.0), ch.fill()), 'q', T.quantiles(ch.s, ch.a))
+cands = []
+for v in tl.poles(k, prm['darts_per_round']):
+    p = tl.dart_path(k, v)
+    if p: cands.append(('pole dart', p))
+for v in tl.cones(k, prm['darts_per_round']):
+    p = tl.dart_path(k, v)
+    if p: cands.append(('dart', p))
+for ce, cap, cost, length in T.neck_candidates_band(S, tl.lab, k, tl.cut, nsamp=8)[:4]:
+    cands.append(('neck', ce))
+for p in tl.splits(k):
+    cands.append(('panel', p))
+for p in tl.silhouettes(k):
+    cands.append(('silhouette', p))
+print('candidates', [c[0] for c in cands])
+for kind, edges in cands:
+    edges = tl._mirror(edges)
+    ks = tl.chart_of_edges(edges)
+    before = sum(tl.charts[kk].excess for kk in ks)
+    r = tl.evaluate(ks, edges, warm=(kind == 'dart'))
+    if r is None:
+        print(kind, 'refused (sliver, not a disc or no chart)', 'edges', len(edges))
+        continue
+    after = sum(c.excess for _, c in r[0])
+    print(kind, 'edges', len(edges), 'gain %.5f of %.5f (%.1f %%) cost %.4f' % (before - after, before, 100 * (before - after) / max(before, 1e-12), r[2]),
+          'pieces', [(len(fs), round(float(c.fill()), 3), [round(x, 3) for x in T.quantiles(c.s, c.a)]) for fs, c in r[0]])

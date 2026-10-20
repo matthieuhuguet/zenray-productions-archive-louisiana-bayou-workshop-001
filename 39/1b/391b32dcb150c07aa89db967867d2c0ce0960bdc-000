@@ -815,8 +815,8 @@ def band_loop(S, faces, allowed, gf_of, t0, t1):
 
 
 def band_split(S, faces, allowed, val, t0, t1, oncut):
-    """20 October 2026 : the cheapest cut separating the faces whose value is under t0 from those over t1 (a minimum cut on the faces of the band) : a closed loop, or a
-    single path whose two ends lie on the chart's border (a disc cut in two panels). Returns the cut edges or None."""
+    """20 October 2026 : the cheapest cut separating the faces whose value is under t0 from those over t1 (a minimum cut on the faces of the band) : closed loops, or
+    paths whose two ends lie on the chart's border (a disc cut in two panels, a torso in its front and its back). Returns the cut edges or None."""
     node = {}
     nn = 2
     for f in faces:
@@ -854,9 +854,8 @@ def band_split(S, faces, allowed, val, t0, t1, oncut):
         if d == 1 and oncut[v]:
             continue
         return None
-    ends = [v for v, d in deg.items() if d == 1]
-    if len(ends) not in (0, 2):
-        return None
+    # 20 October 2026 : any number of pieces, each a closed loop or a path between two points of the border : the front and the back of a torso are parted by
+    # its two flanks and its two shoulders, four paths from border to border (a single piece only was accepted, and the torso of Manny stayed one vest)
     return ce
 
 
