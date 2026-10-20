@@ -1,10 +1,42 @@
 {
  "ok": true,
- "result": [
-  "/obj/ZRUV_Arch",
-  "/obj/ZRUV_RubberToy",
-  "/obj/ZRUV_ShaderBall",
-  "/obj/ZRUV_Manny",
-  "/obj/ZRUV_ArchLibrary"
- ]
+ "result": {
+  "objects": [
+   "/obj/ZRUV_Arch",
+   "/obj/ZRUV_RubberToy",
+   "/obj/ZRUV_ShaderBall",
+   "/obj/ZRUV_Manny",
+   "/obj/ZRUV_ArchLibrary"
+  ],
+  "arch_library": {
+   "parms": {
+    "arch_bevel": [
+     0.018,
+     0.02021
+    ],
+    "arch_w": [
+     0.124,
+     0.11664
+    ],
+    "arch_t": [
+     0.101,
+     0.09759
+    ]
+   },
+   "strips_px": {
+    "chamfer": [
+     42.7,
+     48
+    ],
+    "front": [
+     147.8,
+     128
+    ],
+    "sides": [
+     109.2,
+     96
+    ]
+   }
+  }
+ }
 }

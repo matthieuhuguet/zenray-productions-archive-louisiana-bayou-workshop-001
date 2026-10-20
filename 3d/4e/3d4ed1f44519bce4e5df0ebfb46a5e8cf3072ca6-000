@@ -10,3 +10,57 @@ necks 6 charts 22 6.2s
 flattened {'charts': 22, 'seams_m': 3.679, 'seam_cost': 0.6707, 'stretch_p50': 0.7288, 'stretch_p95': 1.5855, 'within_10': 0.0947, 'within_20': 0.161, 'failing_charts': 10, 'mirror_axis': 0, 'moves': {'neck': 6, 'open slit': 5}, 'stuck': 0, 'economy_removed': 0} 14.8s
 move pole dart gain 0.42719 charts 23 fail 0.80190
 move neck gain 0.10642 charts 25 fail 0.52508
+move silhouette gain 0.05896 charts 28 fail 0.26593
+move pole dart gain 0.06533 charts 28 fail 0.10907
+move dart gain 0.00150 charts 28 fail 0.10502
+move pole dart gain 0.00345 charts 28 fail 0.09790
+move dart gain 0.00086 charts 28 fail 0.09456
+move pole dart gain 0.00361 charts 28 fail 0.08297
+move dart gain 0.00066 charts 28 fail 0.08092
+move pole dart gain 0.00160 charts 28 fail 0.06647
+move dart gain 0.00104 charts 28 fail 0.06184
+move pole dart gain 0.00316 charts 28 fail 0.05537
+move pole dart gain 0.00288 charts 28 fail 0.04995
+move pole dart gain 0.00261 charts 28 fail 0.04456
+move dart gain 0.00068 charts 28 fail 0.04084
+move pole dart gain 0.00108 charts 28 fail 0.03469
+move dart gain 0.00070 charts 28 fail 0.03101
+move dart gain 0.00038 charts 28 fail 0.02754
+move dart gain 0.00614 charts 28 fail 0.02351
+move pole dart gain 0.00066 charts 28 fail 0.02166
+move pole dart gain 0.00071 charts 28 fail 0.01847
+move pole dart gain 0.00049 charts 28 fail 0.01622
+move dart gain 0.00021 charts 28 fail 0.01430
+move pole dart gain 0.00063 charts 28 fail 0.01114
+move dart gain 0.00115 charts 28 fail 0.00583
+move pole dart gain 0.00037 charts 28 fail 0.00373
+move pole dart gain 0.00038 charts 28 fail 0.00243
+move dart gain 0.00040 charts 28 fail 0.00116
+move dart gain 0.00009 charts 28 fail 0.00021
+move dart gain 0.00007 charts 28 fail 0.00001
+move dart gain 0.00032 charts 28 fail 0.00000
+improved {'charts': 28, 'seams_m': 8.661, 'seam_cost': 1.3839, 'stretch_p50': 0.0722, 'stretch_p95': 0.2026, 'within_10': 0.6796, 'within_20': 0.9477, 'failing_charts': 0, 'mirror_axis': 0, 'moves': {'neck': 7, 'open slit': 5, 'pole dart': 15, 'silhouette': 1, 'dart': 14}, 'stuck': 0, 'economy_removed': 0} 450.7s
+economy opening saved 0.0100 charts 27
+economy pole dart saved 0.0066 charts 27
+economy dart saved 0.0015 charts 27
+economy dart saved 0.0014 charts 27
+economy dart saved 0.0008 charts 27
+economy pole dart saved 0.0009 charts 27
+economy dart saved 0.0004 charts 27
+economy opening saved 0.0013 charts 27
+economy dart saved 0.0005 charts 27
+economy dart saved 0.0008 charts 27
+economy dart saved 0.0007 charts 27
+economy neck saved 0.0168 charts 25
+economy dart saved 0.0004 charts 25
+economy dart saved 0.0004 charts 25
+economy dart saved 0.0005 charts 25
+economy dart saved 0.0002 charts 25
+economy opening saved 0.0003 charts 25
+economy opening saved 0.0003 charts 25
+economy pole dart saved 0.0008 charts 25
+economy open slit saved 0.0008 charts 25
+economy pole dart saved 0.0007 charts 25
+economy {'charts': 25, 'seams_m': 8.005, 'seam_cost': 1.3377, 'stretch_p50': 0.0736, 'stretch_p95': 0.2201, 'within_10': 0.6711, 'within_20': 0.935, 'failing_charts': 0, 'mirror_axis': 0, 'moves': {'neck': 7, 'open slit': 5, 'pole dart': 15, 'silhouette': 1, 'dart': 14}, 'stuck': 0, 'economy_removed': 21} 479.0s
+done 479.1s
+runs/tailor/toy2/all.png

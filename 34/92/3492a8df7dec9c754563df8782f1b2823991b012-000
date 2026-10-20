@@ -13,3 +13,48 @@ neck loop 1.098 m charts 16
 neck loop 1.045 m charts 18
 necks 11 charts 18 11.9s
 flattened {'charts': 18, 'seams_m': 13.851, 'seam_cost': 2.9029, 'stretch_p50': 0.2694, 'stretch_p95': 0.9444, 'within_10': 0.3699, 'within_20': 0.462, 'failing_charts': 7, 'mirror_axis': 0, 'moves': {'neck': 11}, 'stuck': 0, 'economy_removed': 0} 18.7s
+move panel gain 0.21738 charts 19 fail 1.04071
+move dart gain 0.10962 charts 19 fail 0.61234
+move pole dart gain 0.02817 charts 19 fail 0.55820
+move pole dart gain 0.12709 charts 19 fail 0.39944
+move dart gain 0.02317 charts 19 fail 0.29502
+move neck gain 0.01682 charts 20 fail 0.23227
+move silhouette gain 0.07813 charts 26 fail 0.13622
+move pole dart gain 0.00851 charts 26 fail 0.10828
+move silhouette gain 0.01938 charts 30 fail 0.08349
+move dart gain 0.00114 charts 30 fail 0.07772
+move panel gain 0.00270 charts 32 fail 0.06670
+move pole dart gain 0.00102 charts 32 fail 0.06843
+move dart gain 0.00093 charts 32 fail 0.05485
+move dart gain 0.00166 charts 32 fail 0.04218
+move silhouette gain 0.00936 charts 34 fail 0.03194
+move pole dart gain 0.00793 charts 34 fail 0.01909
+move dart gain 0.00043 charts 34 fail 0.01390
+move dart gain 0.00055 charts 34 fail 0.01263
+move panel gain 0.00152 charts 36 fail 0.01005
+move dart gain 0.00021 charts 36 fail 0.00839
+move pole dart gain 0.00098 charts 36 fail 0.00542
+move panel gain 0.00201 charts 37 fail 0.01056
+move neck gain 0.00215 charts 39 fail 0.00354
+move dart gain 0.00031 charts 39 fail 0.00122
+move dart gain 0.00013 charts 39 fail 0.00000
+improved {'charts': 39, 'seams_m': 21.396, 'seam_cost': 4.2769, 'stretch_p50': 0.0362, 'stretch_p95': 0.1419, 'within_10': 0.8779, 'within_20': 0.981, 'failing_charts': 0, 'mirror_axis': 0, 'moves': {'neck': 13, 'panel': 4, 'dart': 10, 'pole dart': 6, 'silhouette': 3}, 'stuck': 0, 'economy_removed': 0} 262.9s
+economy neck saved 0.1851 charts 37
+economy panel saved 0.0884 charts 36
+economy opening saved 0.0042 charts 36
+economy opening saved 0.0042 charts 36
+economy pole dart saved 0.0515 charts 36
+economy dart saved 0.0005 charts 36
+economy dart saved 0.0008 charts 36
+economy dart saved 0.0004 charts 36
+economy dart saved 0.0008 charts 36
+economy dart saved 0.0008 charts 34
+economy dart saved 0.0020 charts 34
+economy pole dart saved 0.0011 charts 34
+economy dart saved 0.0013 charts 34
+economy dart saved 0.0005 charts 34
+economy dart saved 0.0004 charts 34
+economy silhouette saved 0.0005 charts 32
+economy {'charts': 32, 'seams_m': 19.977, 'seam_cost': 3.9346, 'stretch_p50': 0.0398, 'stretch_p95': 0.1481, 'within_10': 0.8691, 'within_20': 0.9767, 'failing_charts': 0, 'mirror_axis': 0, 'moves': {'neck': 13, 'panel': 4, 'dart': 10, 'pole dart': 6, 'silhouette': 3}, 'stuck': 0, 'economy_removed': 16} 293.3s
+done 293.5s
+runs/tailor/manny_g2/all.png
