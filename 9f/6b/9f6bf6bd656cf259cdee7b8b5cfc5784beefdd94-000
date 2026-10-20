@@ -1,7 +1,7 @@
 {
  "asset": "ZRUV_RubberToy",
- "learn_s": 9.1,
- "apply_s": 1.2,
+ "learn_s": 5.7,
+ "apply_s": 0.9,
  "summary": {
   "seam_m": 9.2156,
   "segments": 73,

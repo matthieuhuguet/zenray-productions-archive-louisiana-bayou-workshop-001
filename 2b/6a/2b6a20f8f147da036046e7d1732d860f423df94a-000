@@ -1,5 +1,5 @@
 {
- "score": 0.999997,
+ "score": 0.999999,
  "weakest": "bake:coverage",
  "components": {
   "uv:present": 1.0,
@@ -13,7 +13,7 @@
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999997,
+  "bake:coverage": 0.999999,
   "bake:id_match": 1.0
  },
  "reports": {
@@ -24,40 +24,40 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9719439314339473,
-    "low_frac": 0.010626029717130168,
-    "high_frac": 0.017430038848922535,
-    "px_per_m_min": 712.6610762951979,
-    "px_per_m_median": 1031.1082145214377,
-    "px_per_m_max": 1387.6016005921613,
-    "stretch_max": 0.9414510468659949,
+    "exact_frac": 0.9518405101925224,
+    "low_frac": 0.025894445497330356,
+    "high_frac": 0.022265044310147242,
+    "px_per_m_min": 801.713934959411,
+    "px_per_m_median": 1024.8019812468656,
+    "px_per_m_max": 1553.4542343844478,
+    "stretch_max": 1.7793022079268215,
     "faces": 12854
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 15,
-    "passing": 15,
+    "islands": 33,
+    "passing": 33,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.0836,
-    "worst_island_p95": 0.2784,
+    "worst_island_p50": 0.2201,
+    "worst_island_p95": 0.5002,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9382,
-   "islands": 15,
+   "stretch_over_2pc_area": 0.7128,
+   "islands": 33,
    "overlap_px": 0,
-   "covered_px": 4053448,
-   "fill": 0.4832,
+   "covered_px": 4159266,
+   "fill": 0.4958,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 15,
    "u_range": [
     0.0078,
-    0.9783
+    0.9921
    ],
    "v_range": [
     0.0156,
-    0.9019
+    0.8253
    ]
   }
  },
@@ -69,8 +69,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 7.735,
-  "seams_on_smooth_m": 3.042,
+  "seams_m": 9.216,
+  "seams_on_smooth_m": 3.592,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -86,7 +86,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 15, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5006, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1133521, \"lower_bound_unique_px2\": 1133521, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 33, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5006, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1192335, \"lower_bound_unique_px2\": 1192335, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -115,8 +115,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 10.83,
- "score_s": 45.41,
+ "cook_s": 7.9,
+ "score_s": 8.56,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_2048x1024.png",
@@ -126,17 +126,17 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_2048x1024.png"
   },
   "seconds": {
-   "custom": 36.5,
-   "occlusion": 0.77,
-   "curvature": 0.94,
-   "edge": 0.76,
-   "alpha": 0.67
+   "custom": 5.66,
+   "occlusion": 0.3,
+   "curvature": 0.33,
+   "edge": 0.3,
+   "alpha": 0.27
   },
   "size": [
    2048,
    1024
   ],
-  "coverage": 0.999997,
+  "coverage": 0.999999,
   "id_match": 1.0
  },
  "asset": "/obj/ZRUV_Assets/rubbertoy",
@@ -146,7 +146,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 08:48",
+ "date": "20 October 2026 12:28",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,

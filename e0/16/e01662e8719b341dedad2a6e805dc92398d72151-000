@@ -1,7 +1,7 @@
 {
  "asset": "ZRUV_Manny",
- "learn_s": 10.2,
- "apply_s": 3.3,
+ "learn_s": 7.0,
+ "apply_s": 2.4,
  "summary": {
   "seam_m": 15.2523,
   "segments": 120,
