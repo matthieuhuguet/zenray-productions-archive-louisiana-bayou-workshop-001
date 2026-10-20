@@ -1,0 +1,10 @@
+#!/bin/zsh
+# 20 October 2026 : the two characters laid out again at 2048 px/m, every tile fitted to its square (m1_fit), the pig's cut kept as judged at 1024 px/m (cut_td)
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+H=/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/bin/hython
+: > $W/Scripts/RelayoutCharacters.sum
+for obj in ZRUV_PigHead ZRUV_Manny; do
+  (cd $W/bench && perl -e 'alarm 3600; exec @ARGV' $H /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/HeadlessM1.py --preset $obj > $W/bench/${obj}_M1_fit.log 2>&1)
+  echo "$obj $(grep -o '"result": {[^}]*}[^}]*}' $W/bench/${obj}_M1_fit.log | head -1)" >> $W/Scripts/RelayoutCharacters.sum
+done
+echo "all done $(date +%H:%M:%S)" >> $W/Scripts/RelayoutCharacters.sum

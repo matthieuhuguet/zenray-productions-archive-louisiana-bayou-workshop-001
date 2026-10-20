@@ -1,0 +1,6 @@
+#!/bin/zsh
+# 20 October 2026 : after the bench runs, the pig head laid out again at 2048 px/m in square sheets, its cut kept as judged at 1024 px/m (TestBench preset : cut_td)
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+while ps -p $(cat $W/Scripts/RunM1Headless.pid) > /dev/null 2>&1; do sleep 5; done
+cd $W/bench && perl -e 'alarm 3600; exec @ARGV' /Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/bin/hython /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/HeadlessM1.py --preset ZRUV_PigHead > $W/bench/ZRUV_PigHead_M1_2048.log 2>&1
+echo "ZRUV_PigHead 2048 $(grep -o '"result": {[^}]*}[^}]*}' $W/bench/ZRUV_PigHead_M1_2048.log | head -1)" > $W/Scripts/PigRelayout.sum
