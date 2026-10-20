@@ -23,3 +23,13 @@
   cand = cand[(m.tf[cand] != f) & (ct[cand] == c) & ((nt[cand] @ m.normal[f]) < -0.3)]
 /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:297: RuntimeWarning: invalid value encountered in matmul
   cand = cand[(m.tf[cand] != f) & (ct[cand] == c) & ((nt[cand] @ m.normal[f]) < -0.3)]
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: divide by zero encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: overflow encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: invalid value encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+{"result": {"M1": {"score": 0.999997, "weakest": "bake:coverage", "errors": null}}, "seconds": 223.5, "hip": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/bench/ZRUV_PigHead.hiplc", "ctrl": {"m5_strip_families": "*", "m5_panels": "", "asset_area_m2": 1.0, "asset_scale": 1.0, "families": "*:skin", "m4_materials": "skin:concrete001_basecolor.png", "tailor_front": "0 0 1", "tailor_back_weight": 0.25, "artist_pattern": ""}}
+[Octane] 14:41:50 INFOR: [render] ------------   - Cleaning the scene. Full clean state 1
+[Octane] 14:41:50 INFOR: [render] ------------   - Scene including 0 items cleaned. 0 items deleted. 0 remaing items.
+[Octane] 14:41:50 INFOR: [api] ---------------  Closing the Octane API

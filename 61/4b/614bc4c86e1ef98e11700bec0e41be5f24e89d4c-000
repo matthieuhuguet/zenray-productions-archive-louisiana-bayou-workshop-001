@@ -1,0 +1,14 @@
+#!/bin/zsh
+# 20 October 2026 : M1 (the artist cut) of the bench assets, one headless hython session each, one after the other (each solve uses every core) ; Matthieu's
+# Houdini is never touched. Usage : RunM1Headless.sh ZRUV_Arch ZRUV_RubberToy ...  -> RunM1Headless.sum (one line per asset)
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+H=/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/bin/hython
+: > $W/Scripts/RunM1Headless.sum
+for obj in "$@"; do
+  t0=$(date +%s)
+  (cd $W/bench && perl -e 'alarm 5400; exec @ARGV' $H /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/HeadlessM1.py --preset $obj > $W/bench/${obj}_M1.log 2>&1)
+  res=$(grep -o '"result": {[^}]*}[^}]*}' $W/bench/${obj}_M1.log | head -1)
+  [ -z "$res" ] && res="FAILED $(grep -i 'error\|traceback' $W/bench/${obj}_M1.log | tail -2 | tr '\n' ' ')"
+  echo "$obj $(( $(date +%s) - t0 )) s $res" >> $W/Scripts/RunM1Headless.sum
+done
+echo "all done $(date +%H:%M:%S)" >> $W/Scripts/RunM1Headless.sum
