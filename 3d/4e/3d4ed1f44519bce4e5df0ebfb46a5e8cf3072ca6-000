@@ -1,0 +1,12 @@
+surf 12874 12854 25708 organic faces 12854 must 0 0.2s
+mirror axis 0 charts 10 0.4s
+neck loop 0.409 m charts 12
+neck loop 0.407 m charts 14
+neck loop 0.345 m charts 16
+neck loop 0.361 m charts 18
+neck loop 0.381 m charts 20
+neck loop 0.762 m charts 22
+necks 6 charts 22 6.2s
+flattened {'charts': 22, 'seams_m': 3.679, 'seam_cost': 0.6707, 'stretch_p50': 0.7288, 'stretch_p95': 1.5855, 'within_10': 0.0947, 'within_20': 0.161, 'failing_charts': 10, 'mirror_axis': 0, 'moves': {'neck': 6, 'open slit': 5}, 'stuck': 0, 'economy_removed': 0} 14.8s
+move pole dart gain 0.42719 charts 23 fail 0.80190
+move neck gain 0.10642 charts 25 fail 0.52508

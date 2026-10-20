@@ -1,0 +1,41 @@
+surf 15211 30418 45627 organic faces 30418 must 0 0.4s
+mirror axis 0 charts 1 0.7s
+neck loop 0.426 m charts 3
+neck loop 0.772 m charts 5
+neck loop 0.592 m charts 7
+neck loop 0.528 m charts 8
+neck loop 0.840 m charts 10
+neck loop 0.817 m charts 11
+neck loop 1.582 m charts 12
+neck loop 0.999 m charts 14
+neck loop 1.711 m charts 15
+neck loop 0.741 m charts 17
+neck loop 0.987 m charts 19
+neck loop 0.416 m charts 20
+neck loop 1.032 m charts 21
+necks 13 charts 21 11.7s
+flattened {'charts': 21, 'seams_m': 15.302, 'seam_cost': 6.415, 'stretch_p50': 0.1648, 'stretch_p95': 0.973, 'within_10': 0.4263, 'within_20': 0.5156, 'failing_charts': 5, 'mirror_axis': 0, 'moves': {'neck': 13}, 'stuck': 0, 'economy_removed': 0} 17.7s
+move pole dart gain 0.47434 charts 22 fail 0.37345
+move pole dart gain 0.12815 charts 22 fail 0.21168
+move silhouette gain 0.07778 charts 26 fail 0.11612
+move pole dart gain 0.00782 charts 26 fail 0.09235
+move silhouette gain 0.00323 charts 28 fail 0.09251
+move dart gain 0.00108 charts 28 fail 0.08702
+move pole dart gain 0.00113 charts 28 fail 0.08804
+move dart gain 0.00175 charts 28 fail 0.06637
+move silhouette gain 0.01250 charts 32 fail 0.05059
+move silhouette gain 0.01439 charts 34 fail 0.02666
+move silhouette gain 0.00567 charts 36 fail 0.01302
+move pole dart gain 0.00815 charts 36 fail 0.00061
+move pole dart gain 0.00028 charts 36 fail 0.00000
+improved {'charts': 36, 'seams_m': 20.246, 'seam_cost': 7.5703, 'stretch_p50': 0.0382, 'stretch_p95': 0.1549, 'within_10': 0.8463, 'within_20': 0.9797, 'failing_charts': 0, 'mirror_axis': 0, 'moves': {'neck': 13, 'pole dart': 6, 'silhouette': 5, 'dart': 2}, 'stuck': 0, 'economy_removed': 0} 92.5s
+economy neck saved 0.3554 charts 34
+economy opening saved 0.0370 charts 34
+economy opening saved 0.0370 charts 34
+economy pole dart saved 0.0165 charts 34
+economy dart saved 0.0003 charts 34
+economy pole dart saved 0.0077 charts 34
+economy dart saved 0.0008 charts 34
+economy {'charts': 34, 'seams_m': 19.372, 'seam_cost': 7.1156, 'stretch_p50': 0.0431, 'stretch_p95': 0.162, 'within_10': 0.8298, 'within_20': 0.9769, 'failing_charts': 0, 'mirror_axis': 0, 'moves': {'neck': 13, 'pole dart': 6, 'silhouette': 5, 'dart': 2}, 'stuck': 0, 'economy_removed': 7} 114.5s
+done 114.7s
+runs/tailor/manny2/all.png

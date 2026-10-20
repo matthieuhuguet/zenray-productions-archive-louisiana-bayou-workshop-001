@@ -16,14 +16,34 @@ def load(path, prm=None, sharp_deg=30.0):
     # 20 October 2026 : only the hard edges that are geometrically sharp stay required seams ; a split normal on a smooth surface (Manny : the trace of Epic's own
     # seams, 88 fragments) follows an old uv layout, and a new layout sets its hard edges on its own seams
     must = [e for e in must if abs(S.dih[e]) >= np.radians(sharp_deg)]
+    # 20 October 2026 : and a sharp crease is a required seam only when it closes a loop (it bounds a part : a sole, a window rim) ; a dangling crease (a design
+    # groove that ends in the surface) is not opened into a slit : an artist would not, and the new hard edges follow the new seams
+    par = {}
+    def find(x):
+        while par.setdefault(x, x) != x:
+            par[x] = par[par[x]]
+            x = par[x]
+        return x
+    for e in must:
+        a, b = int(S.E[e, 0]), int(S.E[e, 1])
+        par[find(a)] = find(b)
+    nv, ne = {}, {}
+    for e in must:
+        r = find(int(S.E[e, 0]))
+        ne[r] = ne.get(r, 0) + 1
+    for v in list(par):
+        r = find(v)
+        nv[r] = nv.get(r, 0) + 1
+    must = [e for e in must if ne[find(int(S.E[e, 0]))] >= nv[find(int(S.E[e, 0]))]]
     return m, S, np.where(org)[0], must
 
 if __name__ == '__main__':
     path, out = sys.argv[1], sys.argv[2]
     phase = sys.argv[3] if len(sys.argv) > 3 else 'all'
+    prm = json.loads(sys.argv[4]) if len(sys.argv) > 4 else None
     os.makedirs(out, exist_ok=True)
     t0 = time.time()
-    m, S, org, must = load(path)
+    m, S, org, must = load(path, prm=prm)
     print('surf', S.nv, S.nf, S.ne, 'organic faces', len(org), 'must', len(must), '%.1fs' % (time.time() - t0), flush=True)
     tl = T.Tailor(S, must_cut=must, faces=org, log=lambda *a: print(*a, flush=True))
     print('mirror axis', tl.mirror_axis, 'charts', len(tl.charts), '%.1fs' % (time.time() - t0), flush=True)
