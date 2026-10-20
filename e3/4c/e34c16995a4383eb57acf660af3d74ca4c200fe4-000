@@ -1,10 +1,10 @@
 {
- "score": 0.999998,
- "weakest": "bake:coverage",
+ "score": 0.358318,
+ "weakest": "uv:density",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 1.0,
-  "uv:stretch": 1.0,
+  "uv:density": 0.358318,
+  "uv:stretch": 0.358318,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -15,7 +15,7 @@
   "uv:no_self_overlap": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999998,
+  "bake:coverage": 1.0,
   "bake:id_match": 1.0
  },
  "reports": {
@@ -26,43 +26,43 @@
     "target_px_per_m": 2048.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9856681433054043,
-    "low_frac": 0.012094264441722008,
-    "high_frac": 0.0022375922528736574,
-    "px_per_m_min": 405.9776193112637,
-    "px_per_m_median": 1720.34216522874,
-    "px_per_m_max": 2103.727608112159,
-    "stretch_max": 0.815893415995513,
+    "exact_frac": 0.7549914557649017,
+    "low_frac": 0.1378634797352474,
+    "high_frac": 0.10714506449985074,
+    "px_per_m_min": 351.4711445209816,
+    "px_per_m_median": 1487.6080850831997,
+    "px_per_m_max": 4097.343614267369,
+    "stretch_max": 3.8587722637198807,
     "faces": 2889
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 16,
-    "passing": 16,
+    "islands": 11,
+    "passing": 10,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.0873,
-    "worst_island_p95": 0.3468,
+    "worst_island_p50": 0.2109,
+    "worst_island_p95": 0.4758,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.7243,
-   "islands": 16,
-   "upright_islands": 16,
-   "upright_worst_deg": 0.001,
+   "stretch_over_2pc_area": 0.7784,
+   "islands": 11,
+   "upright_islands": 11,
+   "upright_worst_deg": 0.0,
    "overlap_px": 0,
-   "covered_px": 9479782,
-   "fill": 0.565,
+   "covered_px": 7111798,
+   "fill": 0.4239,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 31,
    "self_overlap_faces": 0,
    "u_range": [
     0.0156,
-    0.9842
+    0.9827
    ],
    "v_range": [
     0.0156,
-    0.9787
+    0.7636
    ]
   }
  },
@@ -74,8 +74,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 7.63,
-  "seams_on_smooth_m": 1.709,
+  "seams_m": 5.74,
+  "seams_on_smooth_m": 1.013,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -91,7 +91,7 @@
   "narrowest_px": 32.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 16, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5677, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3723011, \"lower_bound_unique_px2\": 3723011, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"td\": 1721.6, \"fit\": true, \"tiles_n\": 1, \"tile_rule\": \"one tile, 4 minor islands at 0.25 of the density\", \"tile_splits\": 0, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 16, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5677, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3723011, \"lower_bound_unique_px2\": 3723011, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 1721.6, \"fit\": true, \"tile\": 0, \"label\": \"Pig\", \"area_m2\": 1.0026}], \"texels_total\": 4194304}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 11, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4255, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3592417, \"lower_bound_unique_px2\": 3592417, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"td\": 1490.5, \"fit\": true, \"tiles_n\": 1, \"tile_rule\": \"one tile, 4 minor islands at 0.25 of the density\", \"tile_splits\": 0, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 11, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4255, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3592417, \"lower_bound_unique_px2\": 3592417, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 1490.5, \"fit\": true, \"tile\": 0, \"label\": \"Pig\", \"area_m2\": 1.0026}], \"texels_total\": 4194304}",
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -120,8 +120,8 @@
  "targets": {
   "uv": 2048.0
  },
- "cook_s": 4.1,
- "score_s": 12.7,
+ "cook_s": 113.98,
+ "score_s": 10.17,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_2048x2048.png",
@@ -131,17 +131,17 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_2048x2048.png"
   },
   "seconds": {
-   "custom": 10.42,
-   "occlusion": 0.31,
-   "curvature": 0.12,
-   "edge": 0.03,
-   "alpha": 0.05
+   "custom": 8.53,
+   "occlusion": 0.07,
+   "curvature": 0.07,
+   "edge": 0.02,
+   "alpha": 0.02
   },
   "size": [
    2048,
    2048
   ],
-  "coverage": 0.999998,
+  "coverage": 1.0,
   "id_match": 1.0
  },
  "asset": "/obj/ZRUV_Assets/pighead_src",
@@ -151,7 +151,7 @@
   "skin"
  ],
  "crease_effective": 89.10903930664062,
- "date": "20 October 2026 15:14",
+ "date": "20 October 2026 15:32",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/pighead_src",
   "asset_scale": 1.0,

@@ -1,0 +1,49 @@
+# 20 October 2026 : which move of the tailor made every staircase seam : the tailor replayed on a kept input (ZRUV_KEEP_TAILOR_INPUT), with the prm overrides
+# given, its per edge kinds (Tailor.edge_kinds) crossed with the staircases of its own uv (StairSeams). Usage : python -I DebugTailorKinds.py <keep.in.json>
+# '<prm overrides json>' <out json>   FR : quel geste du tailleur a trace chaque escalier.
+import sys, os, json, math, collections
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ZruvTailor as T
+import ZrMesh as Z
+import StairSeams as SS
+
+
+def main():
+    data = json.load(open(sys.argv[1]))
+    over = json.loads(sys.argv[2]) if len(sys.argv) > 2 else {}
+    data['prm'] = dict(data.get('prm') or {}, **over)
+    holder = {}
+    orig_init = T.Tailor.__init__
+
+    def keep(self, *a, **k):
+        orig_init(self, *a, **k)
+        holder['tl'] = self
+    T.Tailor.__init__ = keep
+    res = T.solve(data, procs=T.default_procs())
+    tl = holder['tl']
+    kinds = tl.edge_kinds()
+    S = tl.S
+    # the uv of the result on a ZrMesh, then its staircases
+    m = Z.Mesh(data['P'], data['polys'])
+    uv = res['uv']
+    m.uv['uv'] = [[tuple(uv['%d_%d' % (f, j)]) for j in range(len(m.polys[f]))] for f in range(m.n)]
+    r = SS.stairs(m, 'uv', 1e-9)
+    st = set(SS.LAST_STAIR_EDGES)
+    by = collections.Counter()
+    for a, b in st:
+        e = S.emap.get((min(a, b), max(a, b)))
+        by[kinds.get(int(e), 'none') if e is not None else 'none'] += 1
+    out = {'report': {k: v for k, v in res['report'].items() if k != 'params'}, 'stair_runs': r['stair_runs'], 'stair_m': r['stair_m'],
+           'stair_edges_by_kind': dict(by), 'seam_kinds_m': {}}
+    km = collections.defaultdict(float)
+    for e, kd in kinds.items():
+        km[kd] += float(S.EL[e])
+    out['seam_kinds_m'] = {k: round(v, 3) for k, v in km.items()}
+    print(json.dumps(out))
+    json.dump(out, open(sys.argv[3], 'w'), indent=1)
+
+
+if __name__ == '__main__':
+    main()

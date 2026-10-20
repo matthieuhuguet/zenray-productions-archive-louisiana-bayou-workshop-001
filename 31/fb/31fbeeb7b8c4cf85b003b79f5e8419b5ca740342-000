@@ -1,0 +1,319 @@
+# 20 October 2026 : the cavity of an asset (the pig's mouth) found from the openness alone, its rim snapped to the quad strips that run along it, compared with
+# SideFX's cavity islands (upper and lower inner mouth, throat). Usage : python -I CavityTest.py <M1 mesh.json with prim zruv_open> <sidefx mesh.json> [threshold]
+# FR : la cavite trouvee par la visibilite, son rebord recale sur les rubans de quads.
+import sys, os, json, collections
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ZrMesh as Z
+import ZruvLoops as L
+
+
+def face_adj(m):
+    adj = [[] for _ in range(m.n)]
+    for e, fs in m.edges.items():
+        if len(fs) == 2:
+            a, b = int(fs[0]), int(fs[1])
+            adj[a].append((b, e))
+            adj[b].append((a, e))
+    return adj
+
+
+def strips(m, Q=None):
+    """Per quad face, its two strips (k = 0 : across its edges 0 and 2, k = 1 : across 1 and 3), in order along the strip. Returns ({(f, k) : (strip id, index)},
+    {strip id : [faces in order]}). A strip ends at a triangle, an n-gon, a border, or where it closes on itself."""
+    sid, members = {}, {}
+    nxt = 0
+
+    def walk(f, side):
+        out, g, sd = [], f, side
+        while True:
+            pg = m.polys[g]
+            a, b = pg[sd], pg[(sd + 1) % 4]
+            e = (a, b) if a < b else (b, a)
+            fs = [int(x) for x in m.edges[e] if int(x) != g]
+            if len(fs) != 1:
+                return out
+            h = fs[0]
+            ph = m.polys[h]
+            if len(ph) != 4:
+                return out
+            jj = next((i for i in range(4) if {ph[i], ph[(i + 1) % 4]} == {a, b}), None)
+            if jj is None or (h, jj % 2) in sid or h == f:
+                return out
+            out.append((h, jj % 2))
+            g, sd = h, (jj + 2) % 4
+
+    for f in range(m.n):
+        if len(m.polys[f]) != 4:
+            continue
+        for k in (0, 1):
+            if (f, k) in sid:
+                continue
+            sid[(f, k)] = (nxt, 0)
+            A = walk(f, k)
+            for x in A:
+                sid[x] = (nxt, 0)
+            B = walk(f, k + 2)
+            for x in B:
+                sid[x] = (nxt, 0)
+            order = [x for x in reversed(B)] + [(f, k)] + A
+            members[nxt] = [g for g, _ in order]
+            for idx, x in enumerate(order):
+                sid[x] = (nxt, idx)
+            nxt += 1
+    return sid, members
+
+
+def snap(m, C, zone_rings, op, t, sid, members, adj, passes):
+    hist = []
+    for _ in range(passes):
+        bnd = {f for f in C if any(y not in C for y, _ in adj[f])} | {y for f in C for y, _ in adj[f] if y not in C}
+        zone, front = set(bnd), set(bnd)
+        for _ in range(zone_rings):
+            nf = {y for f in front for y, _ in adj[f]} - zone
+            zone |= nf
+            front = nf
+        N = set(C)
+        for f in zone:
+            best = None
+            for k in (0, 1):
+                x = sid.get((f, k))
+                if x is None:
+                    continue
+                s_, idx = x
+                mem = members[s_]
+                lo = idx
+                while lo - 1 >= 0 and mem[lo - 1] in zone:
+                    lo -= 1
+                hi = idx
+                while hi + 1 < len(mem) and mem[hi + 1] in zone:
+                    hi += 1
+                seg = mem[lo:hi + 1]
+                vals = op[seg]
+                rng = float(vals.max() - vals.min())
+                if best is None or rng < best[0]:
+                    best = (rng, float(np.average(vals, weights=m.area[seg])))
+            if best is None:
+                continue
+            if best[1] < t:
+                N.add(f)
+            else:
+                N.discard(f)
+        hist.append(len(N ^ C))
+        if N == C:
+            break
+        C = N
+    return C, hist
+
+
+def main():
+    m = Z.from_json(sys.argv[1])
+    r = Z.from_json(sys.argv[2])
+    t = float(sys.argv[3]) if len(sys.argv) > 3 else 0.5
+    op = np.array(m.prim['zruv_open'], float)
+    lb, _ = Z.uv_islands(r, 'orig', 1e-5)
+    ref = set(int(f) for f in np.where(np.isin(lb, [9, 10, 15]))[0])
+    c0 = set(int(f) for f in np.where(op < t)[0])
+    adj = face_adj(m)
+    # the largest connected cavity
+    comp, seen = [], set()
+    for f in c0:
+        if f in seen:
+            continue
+        cc, todo = [], [f]
+        seen.add(f)
+        while todo:
+            x = todo.pop()
+            cc.append(x)
+            for y, _ in adj[x]:
+                if y in c0 and y not in seen:
+                    seen.add(y)
+                    todo.append(y)
+        comp.append(cc)
+    comp.sort(key=lambda c: -sum(m.area[f] for f in c))
+    tot = float(m.area.sum())
+    print('cavity components (area share) :', [round(sum(m.area[f] for f in c) / tot, 4) for c in comp[:6]])
+    C0 = set(comp[0])
+    jac = lambda A, B: len(A & B) / max(len(A | B), 1)
+    print('threshold %.2f : %d faces, Jaccard with SideFX cavity %.3f (SideFX %d faces)' % (t, len(C0), jac(C0, ref), len(ref)))
+    Q = L.Quads(m)
+    sid, members = strips(m)
+    passes = int(sys.argv[4]) if len(sys.argv) > 4 else 4
+    C1, hist = snap(m, C0, 3, op, t, sid, members, adj, passes)
+    print('passes, faces changed per pass :', hist)
+    print('snapped : %d faces, Jaccard with SideFX cavity %.3f' % (len(C1), jac(C1, ref)))
+    # the staircase of the rim : turns of the boundary at regular vertices
+    for name, C in (('threshold', C0), ('snapped', C1), ('SideFX', ref)):
+        be = [e for e, fs in m.edges.items() if len(fs) == 2 and ((int(fs[0]) in C) != (int(fs[1]) in C))]
+        at = collections.defaultdict(list)
+        for e in be:
+            for p in e:
+                at[p].append(e)
+        turns = sum(1 for p, es in at.items() if len(es) == 2 and Q.regular(p) and Q.opposite_at(es[0], p) != es[1])
+        straight = sum(1 for p, es in at.items() if len(es) == 2 and Q.regular(p) and Q.opposite_at(es[0], p) == es[1])
+        print('%-10s rim : %d edges, %.3f m, turns %d, straight %d' % (name, len(be), sum(m.edge_length(e) for e in be), turns, straight))
+
+
+if __name__ == '__main__' and os.environ.get('CAVITY_WAY', '1') == '1':
+    main()
+
+
+# 20 October 2026 : second way, the rim as a closed path of least cost near the openness transition, every sharp turn costed (it follows the edge loops)
+import heapq, math
+
+
+def turn_path(m, vadj, ecost, src, dst, allowed_v, blocked_v, tw, med):
+    """Dijkstra on directed edges : cost of an edge ecost[e], plus tw x med x (turn / 90 degrees)^2 at every vertex. Returns the edge list or None."""
+    hp, best, back = [], {}, {}
+    for u, e in vadj[src]:
+        if u not in allowed_v or u in blocked_v:
+            if u != dst:
+                continue
+        c = ecost[e]
+        best[(u, e)] = c
+        heapq.heappush(hp, (c, u, e, src, None))
+    while hp:
+        c, v, e, frm, pe = heapq.heappop(hp)
+        if (v, e) in back:
+            continue
+        back[(v, e)] = (frm, pe)
+        if v == dst:
+            out, k = [e], (frm, pe)
+            while k[1] is not None:
+                out.append(k[1])
+                k = back[k]
+            return out[::-1]
+        if v in blocked_v:
+            continue
+        d_in = m.P[v] - m.P[frm]
+        ni = np.linalg.norm(d_in)
+        for u, e2 in vadj[v]:
+            if e2 == e or (u not in allowed_v and u != dst) or (u in blocked_v and u != dst):
+                continue
+            d_out = m.P[u] - m.P[v]
+            no = np.linalg.norm(d_out)
+            ang = math.acos(max(-1.0, min(1.0, float(d_in @ d_out) / max(ni * no, 1e-30))))
+            nc = c + ecost[e2] + tw * med * (ang / (0.5 * math.pi)) ** 2
+            if nc < best.get((u, e2), float('inf')):
+                best[(u, e2)] = nc
+                heapq.heappush(hp, (nc, u, e2, v, e))
+    return None
+
+
+def rim_cycle(m, C0, op, t, rings=3, tw=3.0, alpha=4.0):
+    adj = face_adj(m)
+    vadj = collections.defaultdict(list)
+    for e in m.edges:
+        a, b = e
+        vadj[a].append((b, e))
+        vadj[b].append((a, e))
+    be = [e for e, fs in m.edges.items() if len(fs) == 2 and ((int(fs[0]) in C0) != (int(fs[1]) in C0))]
+    rimv = {p for e in be for p in e}
+    # corridor : vertices of the faces within rings of the rim
+    fz = {f for p in rimv for f in m.vfaces[p]} if hasattr(m, 'vfaces') else None
+    if fz is None:
+        vf = collections.defaultdict(list)
+        for f, pl in enumerate(m.polys):
+            for p in pl:
+                vf[p].append(f)
+        m.vfaces = vf
+        fz = {f for p in rimv for f in vf[p]}
+    front = set(fz)
+    for _ in range(rings):
+        nf = {y for f in front for y, _ in adj[f]} - fz
+        fz |= nf
+        front = nf
+    allowed_v = {p for f in fz for p in m.polys[f]}
+    ecost = {}
+    for e, fs in m.edges.items():
+        if len(fs) == 2:
+            o = 0.5 * (op[int(fs[0])] + op[int(fs[1])])
+            cross = (op[int(fs[0])] < t) != (op[int(fs[1])] < t)
+            ecost[e] = m.edge_length(e) * (1.0 + alpha * abs(o - t)) * (0.7 if cross else 1.0)
+        else:
+            ecost[e] = 1e9
+    med = float(np.median([m.edge_length(e) for e in m.edges]))
+    # order the threshold rim as one cycle (the largest)
+    nb = collections.defaultdict(list)
+    for e in be:
+        nb[e[0]].append(e[1])
+        nb[e[1]].append(e[0])
+    start = max(nb, key=lambda p: m.P[p][1])
+    cyc, prev, cur = [start], None, start
+    for _ in range(len(be) + 2):
+        nx = [q for q in nb[cur] if q != prev]
+        if not nx:
+            break
+        prev, cur = cur, nx[0]
+        if cur == start:
+            break
+        cyc.append(cur)
+    a, b = cyc[0], cyc[len(cyc) // 2]
+    p1 = turn_path(m, vadj, ecost, a, b, allowed_v, set(), tw, med)
+    if not p1:
+        return None, None
+    used_v = {p for e in p1 for p in e} - {a, b}
+    p2 = turn_path(m, vadj, ecost, b, a, allowed_v, used_v, tw, med)
+    if not p2:
+        return None, None
+    rim = set(p1) | set(p2)
+    # the cavity : flood from the deep faces of C0 without crossing the rim
+    seeds = [f for f in C0 if op[f] < t - 0.2]
+    C, todo = set(seeds), list(seeds)
+    while todo:
+        f = todo.pop()
+        for y, e in adj[f]:
+            if e in rim or y in C:
+                continue
+            C.add(y)
+            todo.append(y)
+    return C, rim
+
+
+def main2():
+    m = Z.from_json(sys.argv[1])
+    r = Z.from_json(sys.argv[2])
+    t = float(sys.argv[3]) if len(sys.argv) > 3 else 0.5
+    tw = float(sys.argv[4]) if len(sys.argv) > 4 else 3.0
+    op = np.array(m.prim['zruv_open'], float)
+    lb, _ = Z.uv_islands(r, 'orig', 1e-5)
+    ref = set(int(f) for f in np.where(np.isin(lb, [9, 10, 15]))[0])
+    adj = face_adj(m)
+    c0 = set(int(f) for f in np.where(op < t)[0])
+    comp, seen = [], set()
+    for f in c0:
+        if f in seen:
+            continue
+        cc, todo = [], [f]
+        seen.add(f)
+        while todo:
+            x = todo.pop()
+            cc.append(x)
+            for y, _ in adj[x]:
+                if y in c0 and y not in seen:
+                    seen.add(y)
+                    todo.append(y)
+        comp.append(cc)
+    comp.sort(key=lambda c: -sum(m.area[f] for f in c))
+    C0 = set(comp[0])
+    C, rim = rim_cycle(m, C0, op, t, tw=tw)
+    jac = lambda A, B: len(A & B) / max(len(A | B), 1)
+    Q = L.Quads(m)
+    if C is None:
+        print('no cycle')
+        return
+    print('t %.2f tw %.1f : cavity %d faces, Jaccard %.3f (threshold %.3f), leaks into the skin : %s' % (t, tw, len(C), jac(C, ref), jac(C0, ref), len(C) > 3 * len(C0)))
+    for name, CC in (('threshold', C0), ('rim path', C), ('SideFX', ref)):
+        be = [e for e, fs in m.edges.items() if len(fs) == 2 and ((int(fs[0]) in CC) != (int(fs[1]) in CC))]
+        at = collections.defaultdict(list)
+        for e in be:
+            for p in e:
+                at[p].append(e)
+        turns = sum(1 for p, es in at.items() if len(es) == 2 and Q.regular(p) and Q.opposite_at(es[0], p) != es[1])
+        straight = sum(1 for p, es in at.items() if len(es) == 2 and Q.regular(p) and Q.opposite_at(es[0], p) == es[1])
+        print('  %-10s rim : %d edges, %.3f m, turns %d, straight %d' % (name, len(be), sum(m.edge_length(e) for e in be), turns, straight))
+
+
+if __name__ == '__main__' and os.environ.get('CAVITY_WAY') == '2':
+    main2()

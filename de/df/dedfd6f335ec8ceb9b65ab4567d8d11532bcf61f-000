@@ -1,5 +1,6 @@
 # 20 October 2026 : close views of the parts Matthieu checks (the pig's snout and ears), the ZRUV cut and the SideFX cut side by side, islands in colour, seams in
-# black. Usage : python -I ZoomParts.py <zruv mesh.json> <sidefx mesh.json> <out png>   FR : gros plans du groin et des oreilles, ZRUV et SideFX.
+# black. Usage : python -I ZoomParts.py <zruv mesh.json> <sidefx mesh.json> <out png> [snout|mouth]   FR : gros plans du groin et des oreilles, ZRUV et SideFX.
+# 20 October 2026 : the staircases of the sheet in red (StairSeams), and the mouth views (mouth)
 import sys, os
 import numpy as np
 from PIL import Image, ImageDraw
@@ -12,23 +13,37 @@ def cam(target, d, half, size=520):
     return {'ortho': True, 'eye': target + 10.0 * d / np.linalg.norm(d), 'target': target, 'half': half, 'size': (size, size), 'c': target}
 
 
-def parts(m):
+def parts(m, which='snout'):
     lo, hi = m.P.min(0), m.P.max(0)
     ext = hi - lo
+    if which == 'mouth':
+        # 20 October 2026 : the mouth and the lips (Matthieu : « refais proprement la lèvre du cochon ») : the lip line runs under the snout plate
+        mouth = np.array([0.5 * (lo[0] + hi[0]), lo[1] + 0.47 * ext[1], hi[2] - 0.16 * ext[2]])
+        return [('mouth front', mouth, (0, -0.15, 1), 0.2 * ext[0]), ('mouth side', mouth, (-1, -0.1, 0.25), 0.22 * ext[0]),
+                ('mouth below', mouth, (0, -1, 0.45), 0.22 * ext[0]), ('mouth corner', mouth + np.array([0.09 * ext[0], 0, -0.05 * ext[2]]), (-0.7, -0.35, 0.6), 0.14 * ext[0])]
     snout = np.array([0.5 * (lo[0] + hi[0]), lo[1] + 0.62 * ext[1], hi[2] - 0.12 * ext[2]])
     ear = np.array([lo[0] + 0.12 * ext[0], hi[1] - 0.12 * ext[1], lo[2] + 0.45 * ext[2]])
     return [('snout front', snout, (0, 0, 1), 0.2 * ext[0]), ('snout side', snout, (-1, 0, 0), 0.25 * ext[0]), ('snout below', snout, (0, -1, 0.3), 0.25 * ext[0]),
             ('ear front', ear, (0, 0, 1), 0.22 * ext[0]), ('ear back', ear, (0, 0, -1), 0.22 * ext[0]), ('ear above', ear, (0, 1, 0.01), 0.22 * ext[0])]
 
 
-def row(m, name, tol, title):
+def row(m, name, tol, title, which='snout', stairs=False):
     lab, seams = Z.uv_islands(m, name, tol)
     cols = B.palette(int(lab.max()) + 1)
     ed = [e for e in seams if len(m.edges[e]) == 2]
+    red = []
+    if stairs:
+        # 20 October 2026 : the staircases of the sheet (StairSeams : two saw teeth or more in a row) drawn in red over the seams
+        import StairSeams as SS
+        r_ = SS.stairs(m, name, tol)
+        red = sorted(SS.LAST_STAIR_EDGES)
+        title += f"  (staircases in red : {r_['stair_runs']} runs, {r_['stair_m']:.3f} m)"
     ims = []
-    for nm, t, d, h in parts(m):
+    for nm, t, d, h in parts(m, which):
         img, zb = R.render(m, cam(t, d, h), face_rgb=cols[lab])
         im = R.draw_edges(img, zb, m, cam(t, d, h), ed, (18, 18, 22), 2)
+        if red:
+            im = R.draw_edges(np.asarray(im).copy(), zb, m, cam(t, d, h), red, (230, 30, 40), 4)
         ImageDraw.Draw(im).text((8, 6), nm, fill=(20, 20, 22), font=B.font(20))
         ims.append(im)
     w, hgt = ims[0].size
@@ -40,10 +55,12 @@ def row(m, name, tol, title):
 
 
 if __name__ == '__main__':
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    which = sys.argv[4] if len(sys.argv) > 4 else 'snout'
     a = Z.from_json(sys.argv[1])
     b = Z.from_json(sys.argv[2])
-    r1 = row(a, 'uv', 1e-6, 'ZRUV, M1 artist cut')
-    r2 = row(b, 'orig', 1e-5, 'SideFX (for comparison, never read by M1)')
+    r1 = row(a, 'uv', 1e-6, 'ZRUV, M1 artist cut', which, stairs=True)
+    r2 = row(b, 'orig', 1e-5, 'SideFX (for comparison, never read by M1)', which, stairs=True)
     W = max(r1.size[0], r2.size[0])
     out = Image.new('RGB', (W, r1.size[1] + r2.size[1]), (246, 246, 248))
     out.paste(r1, (0, 0))

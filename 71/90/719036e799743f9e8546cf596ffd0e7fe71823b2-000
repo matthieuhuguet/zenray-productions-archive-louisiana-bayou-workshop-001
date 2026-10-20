@@ -1,0 +1,32 @@
+# 20 October 2026 : the saw teeth (StairSeams) of every M1 cut of the bench and of every reference, in parallel processes, one line each.
+# Usage : python -I StairSeamsBench.py <workshop folder>   FR : les dents de scie de tout le banc, références comprises.
+import sys, os, json
+from concurrent.futures import ProcessPoolExecutor
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import StairSeams as SS
+import ZrMesh as Z
+
+
+def jobs(W):
+    R = W + '/runs/reference/pattern'
+    out = [(W + '/runs/ZRUV_PigHead/M1/mesh.json', 'uv'), (W + '/bench/PigHead_sidefx_mesh.json', 'orig')]
+    for a in ('ZRUV_ShaderBall', 'ZRUV_Manny', 'ZRUV_RubberToy'):
+        out += [(R + '/%s.orig_mesh.json' % a, 'orig'), (W + '/runs/%s/M1/mesh.json' % a, 'uv')]
+    out.append((W + '/runs/ZRUV_Arch/M1/mesh.json', 'uv'))
+    return [j for j in out if os.path.exists(j[0])]
+
+
+def one(j):
+    m = Z.from_json(j[0])
+    r = SS.stairs(m, j[1])
+    r['what'] = j[0].split('/')[-3] + '/' + j[0].split('/')[-1] + ':' + j[1]
+    return r
+
+
+if __name__ == '__main__':
+    W = sys.argv[1]
+    with ProcessPoolExecutor(9) as ex:
+        for r in ex.map(one, jobs(W)):
+            print(r['what'][-48:], '| tooth', r['tooth_share'], '| stair runs', r['stair_runs'], 'stair_m', r['stair_m'], '|',
+                  [(x['island'], x['teeth'], x['length'], x['centre']) for x in r['runs'][:4]])

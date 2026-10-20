@@ -100,6 +100,8 @@ def sheet_teeth(m, name, lab):
                     Lr = sum(m.edge_length(x) for x in es)
                     P = m.P[sorted({q for x in es for q in x})]
                     RUNS.append({'island': int(isl), 'teeth': nt, 'length': round(Lr, 4), 'centre': [round(float(c), 3) for c in P.mean(0)]})
+                    if nt >= 2:
+                        LAST_STAIR_EDGES.update(es)
                     for x in run:
                         if flag[x]:
                             teeth.add(es[run.index(x)])
@@ -109,6 +111,7 @@ def sheet_teeth(m, name, lab):
 
 
 RUNS = []
+LAST_STAIR_EDGES = set()      # 20 October 2026 : the edges of the staircases of the last call (ZoomParts draws them in red)
 
 
 def stairs(m, name, tol=1e-5):
@@ -117,6 +120,7 @@ def stairs(m, name, tol=1e-5):
     seams = {e for e in seams if len(m.edges[e]) == 2}
     step, nt, ns = loop_steps(m, name, lab, seams)
     RUNS.clear()
+    LAST_STAIR_EDGES.clear()
     teeth, border_m, per = sheet_teeth(m, name, lab)
     Lg = lambda S: float(sum(m.edge_length(x) for x in S))
     return {'seam_m': round(Lg(seams), 4), 'loop_step_m': round(Lg(step), 4), 'turn_vertices': nt, 'straight_vertices': ns,
