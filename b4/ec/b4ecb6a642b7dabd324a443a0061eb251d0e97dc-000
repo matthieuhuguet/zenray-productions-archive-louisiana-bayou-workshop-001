@@ -3,6 +3,8 @@
 import sys, os, json, time
 import numpy as np
 sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+if os.environ.get('TAILOR_NEXT'):
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'next'))     # 20 October 2026 : the development copy, the bench keeps the skill's
 import ZrMesh as Z, ZruvTailor as T
 
 def load(path, prm=None, sharp_deg=30.0):

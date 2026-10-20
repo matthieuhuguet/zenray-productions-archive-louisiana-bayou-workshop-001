@@ -1,0 +1,45 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_ShaderBall": {
+   "s": 417.0,
+   "res": {
+    "M1": {
+     "score": 0.996817,
+     "weakest": "uv:no_flip",
+     "errors": null
+    },
+    "M2": {
+     "score": 0.995544,
+     "weakest": "uv:stack",
+     "errors": null
+    },
+    "M3": {
+     "score": 0.996817,
+     "weakest": "uv:no_flip",
+     "errors": null
+    },
+    "M3B": {
+     "score": 0.992633,
+     "weakest": "uv:density",
+     "errors": null
+    },
+    "M3C": {
+     "score": 0.996817,
+     "weakest": "uv:no_flip",
+     "errors": null
+    },
+    "M4": {
+     "score": 0.995544,
+     "weakest": "uv:stack",
+     "errors": null
+    },
+    "M5": {
+     "score": 0.993664,
+     "weakest": "uv:horizontal",
+     "errors": null
+    }
+   }
+  }
+ }
+}

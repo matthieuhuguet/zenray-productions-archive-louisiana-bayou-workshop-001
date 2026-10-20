@@ -1,16 +1,16 @@
 {
- "score": 0.999581,
- "weakest": "uv:stretch",
+ "score": 0.995544,
+ "weakest": "uv:stack",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.999987,
-  "uv:stretch": 0.999581,
-  "uv:no_flip": 1.0,
-  "uv:not_mirrored": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 0.996817,
+  "uv:not_mirrored": 0.996817,
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
-  "uv:stack": 1.0,
+  "uv:stack": 0.995544,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
@@ -24,30 +24,37 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.999987194842563,
-    "low_frac": 7.5616878200724554e-06,
-    "high_frac": 5.243469616789683e-06,
-    "px_per_m_min": 593.5015952478099,
-    "px_per_m_median": 1023.9990157930238,
-    "px_per_m_max": 1214.5513222022282,
-    "stretch_max": 0.9984716740914906,
+    "exact_frac": 0.964224975884898,
+    "low_frac": 0.009570636975560317,
+    "high_frac": 0.026204387139541586,
+    "px_per_m_min": 793.7940924983247,
+    "px_per_m_median": 1024.0000747333247,
+    "px_per_m_max": 2096.842085091768,
+    "stretch_max": 20.347437286394737,
     "faces": 7000
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 1e-05,
-   "stretch_over_2pc_area": 0.7925,
-   "islands": 313,
-   "stacked_faces": 1349,
+   "organic_artist": {
+    "islands": 75,
+    "passing": 75,
+    "p50": 0.09,
+    "p95": 0.35,
+    "worst_island_p50": 0.3742,
+    "worst_island_p95": 0.8054
+   },
+   "stretch_over_2pc_area": 0.8639,
+   "islands": 75,
+   "stacked_faces": 1200,
    "groups": 3,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
     0.0039,
-    0.9951
+    0.894
    ],
    "v_range": [
-    0.6229,
+    0.4982,
     2.9961
    ]
   }
@@ -60,14 +67,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 23.38,
-  "seams_on_smooth_m": 1.02,
+  "seams_m": 11.601,
+  "seams_on_smooth_m": 1.246,
   "sharp_kept_m": 0,
-  "sharp_m": 6.916,
+  "sharp_m": 5.364,
   "border_m": 0,
   "pass": true,
-  "texture_continuity": 0.8283,
-  "texture_continuous_m": 112.77
+  "texture_continuity": 0.9148,
+  "texture_continuous_m": 124.544
  },
  "hard_edges": {
   "source": "angle",
@@ -79,8 +86,8 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"surface\", \"square\": 0, \"tile_px\": 2048, \"islands\": 286, \"stacked\": 252, \"past_u1\": 0}, {\"family\": \"neutral\", \"square\": 1, \"tile_px\": 2048, \"islands\": 18, \"stacked\": 1, \"past_u1\": 0}, {\"family\": \"bars\", \"square\": 2, \"tile_px\": 2048, \"islands\": 9, \"stacked\": 0, \"past_u1\": 0}]",
-  "zruv_straight_uv": "{\"charts\": 72, \"grids\": 3, \"tubes\": 3, \"cut_long\": 0, \"worst_dev\": 0.0676, \"kink_faces\": 4, \"cut_at_kinks\": 1, \"kept_native\": 1, \"straight_area\": 0.0311}"
+  "zruv_groups_uv": "[{\"family\": \"surface\", \"square\": 0, \"tile_px\": 2048, \"islands\": 66, \"stacked\": 50, \"past_u1\": 0}, {\"family\": \"neutral\", \"square\": 1, \"tile_px\": 2048, \"islands\": 6, \"stacked\": 0, \"past_u1\": 0}, {\"family\": \"bars\", \"square\": 2, \"tile_px\": 2048, \"islands\": 3, \"stacked\": 0, \"past_u1\": 0}]",
+  "zruv_straight_uv": "{\"charts\": 72, \"grids\": 3, \"tubes\": 3, \"cut_long\": 0, \"worst_dev\": 0.0676, \"kink_faces\": 4, \"cut_at_kinks\": 1, \"kept_native\": 2, \"straight_area\": 0.0311}"
  },
  "method": "M2",
  "title": "Texture tileable",
@@ -99,14 +106,20 @@
    "padding_px": 16,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0,
+    "tiny_px": 48.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
  "cook_s": 0.01,
- "score_s": 0.55,
+ "score_s": 1.83,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/shaderball",
  "asset_scale": 1.0,
@@ -117,7 +130,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 03:14",
+ "date": "20 October 2026 05:36",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball",
   "asset_scale": 1.0,
