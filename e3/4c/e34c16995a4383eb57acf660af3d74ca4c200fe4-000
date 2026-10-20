@@ -121,8 +121,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 232.87,
- "score_s": 6.81,
+ "cook_s": 213.19,
+ "score_s": 6.41,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_t0_2048x1024.png",
@@ -132,12 +132,12 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_t0_2048x1024.png"
   },
   "seconds": {
-   "custom_t0": 4.72,
-   "occlusion_t0": 0.07,
+   "custom_t0": 4.35,
+   "occlusion_t0": 0.08,
    "curvature_t0": 0.07,
    "edge_t0": 0.03,
    "alpha_t0": 0.02,
-   "custom_t1": 0.72,
+   "custom_t1": 0.69,
    "occlusion_t1": 0.02,
    "curvature_t1": 0.02,
    "edge_t1": 0.01,
@@ -193,7 +193,7 @@
   "skin"
  ],
  "crease_effective": 89.10903930664062,
- "date": "20 October 2026 14:47",
+ "date": "20 October 2026 14:55",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/pighead_src",
   "asset_scale": 1.0,

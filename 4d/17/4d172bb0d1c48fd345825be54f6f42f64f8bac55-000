@@ -42,8 +42,8 @@
     "passing": 76,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.3848,
-    "worst_island_p95": 1.6985,
+    "worst_island_p50": 0.1309,
+    "worst_island_p95": 0.305,
     "worst_island_density_dev": 0.0
    },
    "stretch_over_2pc_area": 0.9454,
@@ -89,7 +89,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 1024, \"H\": 512, \"pad\": 16.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3629, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 212187, \"lower_bound_unique_px2\": 212187, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"tiles_n\": 4, \"tile_rule\": \"artist texture sets (pattern)\", \"tile_splits\": 0, \"tiles\": [{\"W\": 1024, \"H\": 512, \"pad\": 16.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3629, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 212187, \"lower_bound_unique_px2\": 212187, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"rows\": 0, \"tile\": 0, \"label\": \"Core\", \"area_m2\": 0.18143}, {\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 63, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.6938, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 825381, \"lower_bound_unique_px2\": 825381, \"next_smaller\": [1024, 512], \"minimal_proven\": true, \"rows\": 0, \"tile\": 1, \"label\": \"PreviewSurface\", \"area_m2\": 0.69378}, {\"W\": 1024, \"H\": 512, \"pad\": 16.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2133, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 126087, \"lower_bound_unique_px2\": 126087, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"rows\": 0, \"tile\": 2, \"label\": \"Stand\", \"area_m2\": 0.10666}, {\"W\": 256, \"H\": 256, \"pad\": 16.0, \"islands\": 6, \"stacked_possible\": 1, \"stacked\": 0, \"fill\": 0.2935, \"unique_share\": 1.0, \"mode\": \"stacked\", \"lower_bound_px2\": 26628, \"lower_bound_unique_px2\": 27268, \"next_smaller\": null, \"minimal_proven\": true, \"rows\": 1, \"tile\": 3, \"label\": \"SubsurfaceBars\", \"area_m2\": 0.01834}], \"texels_total\": 2162688}",
+  "zruv_layout_uv": "{\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.1814, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 212187, \"lower_bound_unique_px2\": 212187, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"tiles_n\": 4, \"tile_rule\": \"artist texture sets (pattern)\", \"tile_splits\": 0, \"tiles\": [{\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.1814, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 212187, \"lower_bound_unique_px2\": 212187, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"rows\": 0, \"tile\": 0, \"label\": \"Core\", \"area_m2\": 0.18143}, {\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 63, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.6938, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 825381, \"lower_bound_unique_px2\": 825381, \"next_smaller\": [512, 512], \"minimal_proven\": true, \"rows\": 0, \"tile\": 1, \"label\": \"PreviewSurface\", \"area_m2\": 0.69378}, {\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.1067, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 126087, \"lower_bound_unique_px2\": 126087, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"rows\": 0, \"tile\": 2, \"label\": \"Stand\", \"area_m2\": 0.10666}, {\"W\": 256, \"H\": 256, \"pad\": 16.0, \"islands\": 6, \"stacked_possible\": 1, \"stacked\": 0, \"fill\": 0.2935, \"unique_share\": 1.0, \"mode\": \"stacked\", \"lower_bound_px2\": 26628, \"lower_bound_unique_px2\": 27268, \"next_smaller\": null, \"minimal_proven\": true, \"rows\": 1, \"tile\": 3, \"label\": \"SubsurfaceBars\", \"area_m2\": 0.01834}], \"texels_total\": 3211264}",
   "zruv_straight_uv": "{\"charts\": 65, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"kept_native\": 1, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -98,7 +98,7 @@
   {
    "set": "uv",
    "W": 1024,
-   "H": 512,
+   "H": 1024,
    "space": "sheet",
    "unique": "per_group",
    "region": "sheet",
@@ -121,33 +121,33 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 62.04,
- "score_s": 5.92,
+ "cook_s": 60.56,
+ "score_s": 6.01,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t0_1024x512.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t0_1024x512.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t0_1024x512.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t0_1024x512.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t0_1024x512.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t0_1024x1024.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t0_1024x1024.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t0_1024x1024.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t0_1024x1024.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t0_1024x1024.png"
   },
   "seconds": {
-   "custom_t0": 1.34,
+   "custom_t0": 1.29,
    "occlusion_t0": 0.01,
    "curvature_t0": 0.02,
    "edge_t0": 0.01,
    "alpha_t0": 0.01,
-   "custom_t1": 2.79,
+   "custom_t1": 2.9,
    "occlusion_t1": 0.02,
    "curvature_t1": 0.02,
    "edge_t1": 0.01,
    "alpha_t1": 0.01,
-   "custom_t2": 0.45,
+   "custom_t2": 0.43,
    "occlusion_t2": 0.01,
-   "curvature_t2": 0.01,
+   "curvature_t2": 0.02,
    "edge_t2": 0.01,
    "alpha_t2": 0.01,
-   "custom_t3": 0.22,
+   "custom_t3": 0.17,
    "occlusion_t3": 0.0,
    "curvature_t3": 0.0,
    "edge_t3": 0.0,
@@ -155,7 +155,7 @@
   },
   "size": [
    1024,
-   512
+   1024
   ],
   "coverage": 1.0,
   "id_match": 1.0,
@@ -165,14 +165,14 @@
     "label": "Core",
     "size": [
      1024,
-     512
+     1024
     ],
     "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t0_1024x512.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t0_1024x512.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t0_1024x512.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t0_1024x512.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t0_1024x512.png"
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t0_1024x1024.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t0_1024x1024.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t0_1024x1024.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t0_1024x1024.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t0_1024x1024.png"
     },
     "coverage": 1.0,
     "id_match": 1.0
@@ -199,14 +199,14 @@
     "label": "Stand",
     "size": [
      1024,
-     512
+     1024
     ],
     "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t2_1024x512.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t2_1024x512.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t2_1024x512.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t2_1024x512.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t2_1024x512.png"
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t2_1024x1024.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t2_1024x1024.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t2_1024x1024.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t2_1024x1024.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t2_1024x1024.png"
     },
     "coverage": 1.0,
     "id_match": 1.0
@@ -239,7 +239,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 14:50",
+ "date": "20 October 2026 14:58",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball_src",
   "asset_scale": 1.0,
@@ -253,13 +253,14 @@
   "smooth_deg": 10.0,
   "m1_tiles": 0,
   "m1_tile_groups": "",
+  "asset_kind": 0,
   "m1_sheet_px": 0,
   "m1_stack": 1,
   "m1_unstack": 1,
   "m1_unique_pieces": "",
   "m1_flatten": 1,
   "m1_bake": 1,
-  "m1_allow_rect": 1,
+  "m1_allow_rect": 0,
   "m1_bake_scale": 1.0,
   "m2_tile_px": 2048,
   "m2_grain": "pillar:up sign:h",
