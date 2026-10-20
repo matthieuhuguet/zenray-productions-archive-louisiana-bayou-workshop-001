@@ -1,10 +1,10 @@
 {
- "score": 0.999502,
+ "score": 0.471197,
  "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 1.0,
-  "uv:stretch": 0.999502,
+  "uv:density": 0.933907,
+  "uv:stretch": 0.471197,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -12,9 +12,7 @@
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
-  "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999972,
-  "bake:id_match": 1.0
+  "seams:robust_crease": 1.0
  },
  "reports": {
   "uv": {
@@ -24,32 +22,37 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 1.0,
-    "low_frac": 0.0,
-    "high_frac": 0.0,
-    "px_per_m_min": 925.6503446030137,
-    "px_per_m_median": 1024.550937852614,
-    "px_per_m_max": 1084.4252599934678,
-    "stretch_max": 0.196564226760243,
+    "exact_frac": 0.9339073337833577,
+    "low_frac": 0.03280898080666203,
+    "high_frac": 0.03328368540998029,
+    "px_per_m_min": 639.7584021526889,
+    "px_per_m_median": 1024.3314730105744,
+    "px_per_m_max": 2277.695958605037,
+    "stretch_max": 9.765296697563867,
     "faces": 12854
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 3.5e-05,
-   "stretch_over_2pc_area": 0.806,
-   "islands": 41,
+   "organic_artist": {
+    "islands": 25,
+    "passing": 17,
+    "p50": 0.09,
+    "p95": 0.35
+   },
+   "stretch_over_2pc_area": 0.9028,
+   "islands": 25,
    "overlap_px": 0,
-   "covered_px": 4120259,
-   "fill": 0.4912,
+   "covered_px": 4032912,
+   "fill": 0.4808,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 15,
    "u_range": [
     0.0078,
-    0.9919
+    0.992
    ],
    "v_range": [
     0.0156,
-    0.8197
+    0.8786
    ]
   }
  },
@@ -61,8 +64,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 12.556,
-  "seams_on_smooth_m": 1.868,
+  "seams_m": 8.363,
+  "seams_on_smooth_m": 3.727,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -78,7 +81,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 41, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4974, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1187911, \"lower_bound_unique_px2\": 1187911, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 25, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5006, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1159747, \"lower_bound_unique_px2\": 1159747, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -94,36 +97,20 @@
    "padding_px": 16,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 23.7,
- "score_s": 7.6,
- "bake": {
-  "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_2048x1024.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_occlusion_2048x1024.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_curvature_2048x1024.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_edge_2048x1024.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_2048x1024.png"
-  },
-  "seconds": {
-   "custom": 5.06,
-   "occlusion": 0.23,
-   "curvature": 0.26,
-   "edge": 0.24,
-   "alpha": 0.21
-  },
-  "size": [
-   2048,
-   1024
-  ],
-  "coverage": 0.999972,
-  "id_match": 1.0
- },
+ "cook_s": 8.69,
+ "score_s": 3.28,
+ "bake": null,
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
  "texel_density": 1024.0,
@@ -131,7 +118,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 02:22",
+ "date": "20 October 2026 05:09",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,

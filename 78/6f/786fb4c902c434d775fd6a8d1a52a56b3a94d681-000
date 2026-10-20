@@ -1,0 +1,39 @@
+# 20 October 2026 : the same tailor work timed inside Houdini and outside (venv) : LSCM + ARAP on a sphere cap, and Dijkstra on a grid graph.
+import sys, time, math, heapq
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import numpy as np
+import ZruvTailor as T, ZruvOrganic as O
+def cap(n_lat=60, n_lon=120, R=0.17, deg=75):
+    th = np.linspace(0, math.radians(deg), n_lat + 1)[1:]
+    ph = np.linspace(0, 2 * math.pi, n_lon, endpoint=False)
+    P = [[0, R, 0]] + [[R * math.sin(t) * math.cos(p), R * math.cos(t), R * math.sin(t) * math.sin(p)] for t in th for p in ph]
+    tr = [(0, 1 + j, 1 + (j + 1) % n_lon) for j in range(n_lon)]
+    for i in range(n_lat - 1):
+        for j in range(n_lon):
+            a = 1 + i * n_lon + j; b = 1 + i * n_lon + (j + 1) % n_lon
+            tr += [(a, a + n_lon, b + n_lon), (a, b + n_lon, b)]
+    return np.array(P), np.array(tr)
+P, tr = cap()
+t0 = time.time(); uv = T.lscm(P, tr); t1 = time.time()
+uv2 = O.arap(P, tr, uv, iters=10, tol=0.35, bd_iters=0); t2 = time.time()
+n = 120
+adj = [[] for _ in range(n * n)]
+for i in range(n):
+    for j in range(n):
+        v = i * n + j
+        if j + 1 < n: adj[v].append((v + 1, 1.0)); adj[v + 1].append((v, 1.0))
+        if i + 1 < n: adj[v].append((v + n, 1.0)); adj[v + n].append((v, 1.0))
+t3 = time.time()
+for rep in range(5):
+    dist = {0: 0.0}; hp = [(0.0, 0)]; done = set()
+    while hp:
+        c, v = heapq.heappop(hp)
+        if v in done: continue
+        done.add(v)
+        for u, w in adj[v]:
+            nc = c + w
+            if nc < dist.get(u, 1e18):
+                dist[u] = nc; heapq.heappush(hp, (nc, u))
+t4 = time.time()
+result = {'python': sys.version.split()[0], 'numpy': np.__version__, 'lscm_s': round(t1 - t0, 3), 'arap_s': round(t2 - t1, 3), 'dijkstra5_s': round(t4 - t3, 3), 'verts': len(P)}
+print(result)

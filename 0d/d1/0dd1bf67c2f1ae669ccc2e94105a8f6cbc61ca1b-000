@@ -36,3 +36,12 @@ economy neck saved 0.7448 charts 24
 economy neck saved 0.1591 charts 22
 economy neck saved 0.1661 charts 20
 economy opening saved 0.0164 charts 19
+economy neck saved 0.1233 charts 18
+economy dart saved 0.0015 charts 18
+economy pole dart saved 0.0234 charts 16
+economy neck saved 0.4244 charts 15
+economy neck saved 0.1368 charts 14
+economy silhouette saved 0.0376 charts 12
+economy {'charts': 12, 'seams_m': 13.552, 'seam_cost': 3.2771, 'stretch_p50': 0.0569, 'stretch_p95': 0.1848, 'within_10': 0.7943, 'within_20': 0.9625, 'failing_charts': 1, 'mirror_axis': 0, 'moves': {'neck': 12, 'silhouette': 3, 'pole dart': 9, 'dart': 4, 'panel': 1}, 'stuck': 1, 'economy_removed': 10} 327.2s
+done 327.4s
+runs/tailor/sweep/manny_b/all.png

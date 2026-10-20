@@ -9,12 +9,17 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
 import ZrMesh as Z, RefViews as RV, CompareUV as CU
 
-FONT = '/Users/zenray/Library/Fonts/InterTight-Italic-VariableFont_wght.ttf'   # 20 October 2026 : a Medium cut (the Light cuts are banned)
+FONT = '/Users/zenray/Library/Fonts/InterVariable.ttf'   # 20 October 2026 : InterVariable set to Medium 500 (the Light cuts are banned)
 
 def font(sz):
-    for p in (FONT, '/System/Library/Fonts/Supplemental/Arial.ttf'):
+    for p in (FONT, '/Users/zenray/Library/Fonts/AnthropicSans-Medium.ttf'):
         try:
-            return ImageFont.truetype(p, sz)
+            f = ImageFont.truetype(p, sz)
+            try:
+                f.set_variation_by_axes([500])
+            except Exception:
+                pass
+            return f
         except Exception:
             pass
     return ImageFont.load_default()
@@ -57,13 +62,13 @@ if __name__ == '__main__':
         now = Z.from_json(os.path.join(runs, a, 'M1', 'mesh.json'))
         bp = os.path.join(ref, 'before', a, 'mesh.json')
         before = Z.from_json(bp) if os.path.exists(bp) else None
-        rec = {'after': CU.measure_layout(now.P, now.polys, uvc_of(now))}
+        rec = {'after': CU.measure_layout(now.P, now.polys, CU.sheet_uv(now))}
         rows = []
         if a == 'ZRUV_Manny':
             rec['epic'] = CU.measure_layout(ep.P, ep.polys, ep.uv['uv'])
             rows.append(("Epic, l'artiste", ep))
         if before is not None:
-            rec['before'] = CU.measure_layout(before.P, before.polys, uvc_of(before))
+            rec['before'] = CU.measure_layout(before.P, before.polys, CU.sheet_uv(before))
             rows.append(('ZenRay, 19 octobre (réparation à 10 %)', before))
         rows.append(('ZenRay, le tailleur', now))
         rec['board'] = os.path.relpath(rows_board(rows, os.path.join(ref, a + '_seams_board.png')), runs)

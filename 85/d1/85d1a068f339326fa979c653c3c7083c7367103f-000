@@ -7,6 +7,15 @@ sys.path.insert(0, '/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bay
 sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
 import ZrMesh as Z, ZruvTailor as T, RefViews as RV
 
+def sheet_uv(m):
+    """20 October 2026 : uv in pixels of the sheet of each face (a 2048 x 1024 sheet stretches raw uv two to one ; the faces carry zruv_W_uv and zruv_H_uv)."""
+    Wp = m.prim.get('zruv_W_uv')
+    Hp = m.prim.get('zruv_H_uv')
+    if Wp is None or Hp is None:
+        return m.uv['uv']
+    return [[(u * float(Wp[f]), v * float(Hp[f])) for u, v in m.uv['uv'][f]] for f in range(m.n)]
+
+
 def measure_layout(P, polys, uvc):
     """uvc[f][j] = (u, v) of corner j of face f. Returns the report."""
     S = T.Surf(P, polys)
@@ -44,7 +53,7 @@ if __name__ == '__main__':
     out = {'epic': measure_layout(ep.P, ep.polys, ep.uv['uv'])}
     zr = Z.from_json(sys.argv[2])
     if sys.argv[3] in ('-', 'mesh'):
-        uvc = zr.uv['uv']                      # 20 October 2026 : the final uv of a ZenRay run, as exported with its mesh (after the layout)
+        uvc = sheet_uv(zr)                     # 20 October 2026 : the final uv of a ZenRay run, as exported with its mesh (after the layout), in pixels of its sheet
     else:
         t = json.load(open(sys.argv[3]))
         uvc = [[tuple(t['uv']['%d_%d' % (f, j)]) for j in range(len(zr.polys[f]))] for f in range(zr.n)]
