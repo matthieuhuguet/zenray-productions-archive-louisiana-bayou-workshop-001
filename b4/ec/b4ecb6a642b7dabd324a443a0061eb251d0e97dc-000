@@ -1,0 +1,49 @@
+# 20 October 2026 : development runner of the tailor (ZruvTailor) outside Houdini, on the welded mesh of a ZenRay UV run (mesh.json) : the organic faces, their
+# openness, the hard edges as required seams. Usage : python -I TailorDev.py <mesh.json> <out dir> [phase : necks|all]
+import sys, os, json, time
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvTailor as T
+
+def load(path, prm=None):
+    m = Z.from_json(path)
+    org = np.array(m.prim.get('zruv_organic', [1] * m.n)) == 1
+    opn = m.prim.get('zruv_open')
+    S = T.Surf(m.P, m.polys, face_open=opn, prm=prm)
+    hd = m.detail.get('zruv_hard_edges')
+    hd = json.loads(hd) if isinstance(hd, str) else (hd or [])
+    must = [S.emap[(min(a, b), max(a, b))] for a, b in hd if (min(a, b), max(a, b)) in S.emap]
+    return m, S, np.where(org)[0], must
+
+if __name__ == '__main__':
+    path, out = sys.argv[1], sys.argv[2]
+    phase = sys.argv[3] if len(sys.argv) > 3 else 'all'
+    os.makedirs(out, exist_ok=True)
+    t0 = time.time()
+    m, S, org, must = load(path)
+    print('surf', S.nv, S.nf, S.ne, 'organic faces', len(org), 'must', len(must), '%.1fs' % (time.time() - t0), flush=True)
+    tl = T.Tailor(S, must_cut=must, faces=org, log=lambda *a: print(*a, flush=True))
+    print('mirror axis', tl.mirror_axis, 'charts', len(tl.charts), '%.1fs' % (time.time() - t0), flush=True)
+    n = tl.cut_necks()
+    print('necks', n, 'charts', len(tl.charts), '%.1fs' % (time.time() - t0), flush=True)
+    if phase != 'necks':
+        tl.flatten_all()
+        print('flattened', tl.report(), '%.1fs' % (time.time() - t0), flush=True)
+        tl.improve()
+        print('improved', tl.report(), '%.1fs' % (time.time() - t0), flush=True)
+        tl.economy()
+        print('economy', tl.report(), '%.1fs' % (time.time() - t0), flush=True)
+    seams = [[int(a), int(b)] for a, b in S.E[tl.cut & (S.EF1 >= 0)]]
+    kinds = tl.edge_kinds()
+    seam_kind = [kinds.get(int(e), 'other') for e in np.where(tl.cut & (S.EF1 >= 0))[0]]
+    res = {'report': tl.report() if phase != 'necks' else {'charts': len(tl.charts)}, 'seams': seams, 'seam_kind': seam_kind, 'lab': [int(x) for x in tl.lab],
+           'pieces': [{'kind': p['kind'], 'length': p['length'], 'removed': bool(p.get('removed'))} for p in tl.pieces]}
+    if phase != 'necks':
+        uv = {}
+        for k, ch in tl.charts.items():
+            if ch is not None and ch.ok:
+                for (f, j), lv in ch.loc.corner.items():
+                    uv['%d_%d' % (f, j)] = [float(ch.uv[lv, 0]), float(ch.uv[lv, 1])]
+        res['uv'] = uv
+    json.dump(res, open(os.path.join(out, 'tailor.json'), 'w'))
+    print('done %.1fs' % (time.time() - t0))

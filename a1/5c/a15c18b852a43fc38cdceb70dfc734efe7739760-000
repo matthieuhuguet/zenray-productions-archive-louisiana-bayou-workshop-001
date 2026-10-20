@@ -1,0 +1,44 @@
+# 20 October 2026 : seams of a tailor run (tailor.json) on the mesh, from the front, the back, the left, the right and three quarters, plus the charts in colours.
+# Usage : python -I TailorViews.py <mesh.json> <tailor.json> <out png>
+import sys, json, colorsys
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R
+m = Z.from_json(sys.argv[1])
+t = json.load(open(sys.argv[2]))
+edges = [tuple(e) for e in t['seams']]
+lab = np.array(t['lab'])
+cols = np.zeros((m.n, 3))
+for k in np.unique(lab):
+    h = (k * 0.61803) % 1.0
+    cols[lab == k] = colorsys.hsv_to_rgb(h, 0.45, 0.85)
+cols[lab < 0] = (0.7, 0.7, 0.7)
+lo, hi = m.P.min(0), m.P.max(0)
+c = 0.5 * (lo + hi)
+half = 0.5 * float(max(hi - lo)) * 1.08
+ims = []
+for d in [(0, 0, 1), (0, 0, -1), (1, 0, 0), (-1, 0, 0), (0.55, 0.3, 0.8)]:
+    d = np.array(d, float); d /= np.linalg.norm(d)
+    cam = {'ortho': True, 'eye': c + 10 * d, 'target': c, 'half': half, 'size': (560, 560), 'c': c}
+    img, zb = R.render(m, cam, face_rgb=np.tile(np.array([0.16, 0.30, 0.86]), (m.n, 1)))
+    ims.append(R.draw_edges(img, zb, m, cam, edges, (236, 72, 170), 2))
+    img, zb = R.render(m, cam, face_rgb=cols * 0.6 + 0.4)
+    im = None
+    KC = {'neck': (220, 30, 30), 'opening': (240, 140, 0), 'open slit': (200, 200, 0), 'open equator': (0, 160, 60), 'open neck': (220, 30, 30),
+          'pole dart': (20, 80, 230), 'dart': (150, 40, 200), 'required': (90, 90, 90)}
+    kinds = t.get('seam_kind') or ['other'] * len(edges)
+    arr = img
+    for kname, col in list(KC.items()) + [('other', (0, 0, 0))]:
+        sel = [e for e, kk in zip(edges, kinds) if kk == kname]
+        if sel:
+            im = R.draw_edges(np.asarray(arr), zb, m, cam, sel, col, 2)
+            arr = np.asarray(im)
+    ims.append(im if im is not None else R.draw_edges(img, zb, m, cam, [], (0, 0, 0), 1))
+B = Image.new('RGB', (560 * 5, 560 * 2 + 30), (238, 238, 240))
+for i in range(5):
+    B.paste(ims[2 * i], (i * 560, 30))
+    B.paste(ims[2 * i + 1], (i * 560, 590))
+ImageDraw.Draw(B).text((10, 8), json.dumps(t.get('report', {}))[:330] + '   red neck, orange opening, yellow slit, green equator, blue pole dart, purple dart, grey required', fill=(20, 20, 20))
+B.save(sys.argv[3])
+print(sys.argv[3])
