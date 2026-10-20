@@ -1,0 +1,45 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_Arch": {
+   "s": 501.5,
+   "res": {
+    "M1": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M2": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M3": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M3B": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M3C": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M4": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M5": {
+     "score": 0.999446,
+     "weakest": "uv:stretch",
+     "errors": null
+    }
+   }
+  }
+ }
+}

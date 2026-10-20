@@ -1,0 +1,95 @@
+{
+ "ZRUV_Manny": {
+  "after": {
+   "islands": 16,
+   "seams_m": 13.959,
+   "stretch_p50": 0.0566,
+   "stretch_p95": 0.1704,
+   "within_10": 0.8084,
+   "within_20": 0.9743,
+   "area_m2": 2.0902
+  },
+  "epic": {
+   "islands": 45,
+   "seams_m": 15.252,
+   "stretch_p50": 0.0899,
+   "stretch_p95": 0.2592,
+   "within_10": 0.5615,
+   "within_20": 0.905,
+   "area_m2": 2.0902
+  },
+  "before": {
+   "islands": 256,
+   "seams_m": 52.303,
+   "stretch_p50": 0.0172,
+   "stretch_p95": 0.0727,
+   "within_10": 0.9992,
+   "within_20": 0.9999,
+   "area_m2": 2.0902
+  },
+  "board": "reference/ZRUV_Manny_seams_board.png"
+ },
+ "ZRUV_RubberToy": {
+  "after": {
+   "islands": 15,
+   "seams_m": 7.735,
+   "stretch_p50": 0.0728,
+   "stretch_p95": 0.1795,
+   "within_10": 0.7156,
+   "within_20": 0.9639,
+   "area_m2": 1.0012
+  },
+  "before": {
+   "islands": 41,
+   "seams_m": 12.556,
+   "stretch_p50": 0.0313,
+   "stretch_p95": 0.077,
+   "within_10": 0.9975,
+   "within_20": 1.0,
+   "area_m2": 1.0012
+  },
+  "board": "reference/ZRUV_RubberToy_seams_board.png"
+ },
+ "ZRUV_ShaderBall": {
+  "after": {
+   "islands": 74,
+   "seams_m": 11.28,
+   "stretch_p50": 0.073,
+   "stretch_p95": 0.2529,
+   "within_10": 0.6797,
+   "within_20": 0.923,
+   "area_m2": 1.0002
+  },
+  "before": {
+   "islands": 311,
+   "seams_m": 23.326,
+   "stretch_p50": 0.0372,
+   "stretch_p95": 0.0939,
+   "within_10": 0.9682,
+   "within_20": 1.0,
+   "area_m2": 1.0002
+  },
+  "board": "reference/ZRUV_ShaderBall_seams_board.png"
+ },
+ "ZRUV_Arch": {
+  "after": {
+   "islands": 377,
+   "seams_m": 229.16,
+   "stretch_p50": 0.0,
+   "stretch_p95": 0.0513,
+   "within_10": 1.0,
+   "within_20": 1.0,
+   "area_m2": 19.3404
+  },
+  "before": {
+   "islands": 533,
+   "seams_m": 274.496,
+   "stretch_p50": 0.0,
+   "stretch_p95": 0.0513,
+   "within_10": 1.0,
+   "within_20": 1.0,
+   "area_m2": 19.3404
+  },
+  "board": "reference/ZRUV_Arch_seams_board.png"
+ }
+}

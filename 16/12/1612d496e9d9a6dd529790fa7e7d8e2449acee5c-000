@@ -1,0 +1,160 @@
+{
+ "ZRUV_Arch": {
+  "M1": [
+   1.0,
+   "uv:present"
+  ],
+  "M2": [
+   1.0,
+   "uv:present"
+  ],
+  "M3": [
+   1.0,
+   "uv:present"
+  ],
+  "M3B": [
+   1.0,
+   "uv:present"
+  ],
+  "M3C": [
+   1.0,
+   "uv:present"
+  ],
+  "M4": [
+   1.0,
+   "uv:present"
+  ],
+  "M5": [
+   0.999446,
+   "uv:stretch"
+  ],
+  "sheet": [
+   4096,
+   4096,
+   377,
+   0.6447,
+   222,
+   true
+  ]
+ },
+ "ZRUV_ArchLibrary": {
+  "M3B": [
+   0.999989,
+   "uv:stretch"
+  ]
+ },
+ "ZRUV_RubberToy": {
+  "M1": [
+   0.999997,
+   "bake:coverage"
+  ],
+  "M2": [
+   1.0,
+   "uv:present"
+  ],
+  "M3": [
+   1.0,
+   "uv:present"
+  ],
+  "M3B": [
+   1.0,
+   "uv:present"
+  ],
+  "M3C": [
+   1.0,
+   "uv:present"
+  ],
+  "M4": [
+   0.999679,
+   "bake:coverage"
+  ],
+  "M5": [
+   0.999169,
+   "uv:stretch"
+  ],
+  "sheet": [
+   2048,
+   1024,
+   15,
+   0.5006,
+   0,
+   true
+  ]
+ },
+ "ZRUV_ShaderBall": {
+  "M1": [
+   0.999998,
+   "bake:coverage"
+  ],
+  "M2": [
+   1.0,
+   "uv:present"
+  ],
+  "M3": [
+   1.0,
+   "uv:present"
+  ],
+  "M3B": [
+   1.0,
+   "uv:present"
+  ],
+  "M3C": [
+   1.0,
+   "uv:present"
+  ],
+  "M4": [
+   1.0,
+   "uv:present"
+  ],
+  "M5": [
+   1.0,
+   "uv:present"
+  ],
+  "sheet": [
+   2048,
+   1024,
+   74,
+   0.5001,
+   0,
+   true
+  ]
+ },
+ "ZRUV_Manny": {
+  "M1": [
+   0.999999,
+   "bake:coverage"
+  ],
+  "M2": [
+   1.0,
+   "uv:present"
+  ],
+  "M3": [
+   1.0,
+   "uv:present"
+  ],
+  "M3B": [
+   1.0,
+   "uv:present"
+  ],
+  "M3C": [
+   1.0,
+   "uv:present"
+  ],
+  "M4": [
+   0.999962,
+   "bake:coverage"
+  ],
+  "M5": [
+   1.0,
+   "uv:present"
+  ],
+  "sheet": [
+   2048,
+   2048,
+   16,
+   0.5225,
+   0,
+   true
+  ]
+ }
+}
