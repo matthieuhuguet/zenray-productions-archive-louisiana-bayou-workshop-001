@@ -1,0 +1,20 @@
+# 20 October 2026 : exports an asset with the uv its author laid (the original uv of a test geometry or an FBX) to the ZrMesh JSON format : positions (metres,
+# scaled like the bench), polygons, per corner uv, the piece name. Run inside Houdini with SRC (SOP path), OUT (json path), SCALE (uniform scale) set.
+import json
+g = hou.node(SRC).geometry()
+P = [list(p.position() * SCALE) for p in g.points()]
+polys, uv, names = [], [], []
+va = g.findVertexAttrib('uv')
+pa = g.findPointAttrib('uv')
+na = g.findPrimAttrib('name')
+for pr in g.prims():
+    vs = pr.vertices()
+    polys.append([v.point().number() for v in vs])
+    if va is not None:
+        uv.append([list(v.attribValue('uv')[:2]) for v in vs])
+    else:
+        uv.append([list(v.point().attribValue('uv')[:2]) for v in vs])
+    names.append(pr.attribValue('name') if na is not None else '')
+json.dump({'P': P, 'polys': polys, 'prim': {'name': names}, 'uv': {'uv': uv}, 'detail': {}}, open(OUT, 'w'))
+result = {'points': len(P), 'prims': len(polys), 'uv_class': 'vertex' if va is not None else ('point' if pa is not None else None),
+          'pieces': sorted(set(names))[:20]}
