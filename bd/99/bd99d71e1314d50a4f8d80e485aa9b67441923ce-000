@@ -32,21 +32,22 @@
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 75,
-    "passing": 75,
+    "islands": 74,
+    "passing": 74,
     "p50": 0.09,
     "p95": 0.35,
     "worst_island_p50": 0.3742,
-    "worst_island_p95": 0.8054
+    "worst_island_p95": 0.8054,
+    "worst_island_density_dev": 0.39014
    },
-   "stretch_over_2pc_area": 0.8028,
-   "islands": 75,
+   "stretch_over_2pc_area": 0.8299,
+   "islands": 74,
    "u_range": [
     0.0039,
     0.9648
    ],
    "v_range": [
-    0.4805,
+    0.0039,
     0.9961
    ]
   }
@@ -59,8 +60,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 11.906,
-  "seams_on_smooth_m": 1.538,
+  "seams_m": 11.28,
+  "seams_on_smooth_m": 1.023,
   "sharp_kept_m": 0,
   "sharp_m": 5.364,
   "border_m": 0,
@@ -106,8 +107,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 3.87,
- "score_s": 0.9,
+ "cook_s": 4.17,
+ "score_s": 0.67,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/shaderball",
  "asset_scale": 1.0,
@@ -118,7 +119,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 07:04",
+ "date": "20 October 2026 08:36",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball",
   "asset_scale": 1.0,
