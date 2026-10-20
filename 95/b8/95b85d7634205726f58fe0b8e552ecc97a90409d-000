@@ -1,12 +1,12 @@
 {
- "score": 0.996817,
- "weakest": "uv:no_flip",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
   "uv:stretch": 1.0,
-  "uv:no_flip": 0.996817,
-  "uv:not_mirrored": 0.996817,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
@@ -22,13 +22,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.964225551470994,
-    "low_frac": 0.009570636975560317,
-    "high_frac": 0.026203811553445526,
+    "exact_frac": 0.9669698717696079,
+    "low_frac": 0.009605642733910116,
+    "high_frac": 0.023424485496481837,
     "px_per_m_min": 793.7918298655679,
-    "px_per_m_median": 1023.999444058609,
-    "px_per_m_max": 2096.842184898767,
-    "stretch_max": 20.347505785038912,
+    "px_per_m_median": 1024.0009263200084,
+    "px_per_m_max": 1250.7715750231669,
+    "stretch_max": 0.9953414832730123,
     "faces": 7000
    },
    "straight_area": 0.0,
@@ -41,11 +41,11 @@
     "worst_island_p50": 0.3742,
     "worst_island_p95": 0.8054
    },
-   "stretch_over_2pc_area": 0.8639,
+   "stretch_over_2pc_area": 0.8527,
    "islands": 75,
    "u_range": [
     0.0039,
-    0.4679
+    0.4583
    ],
    "v_range": [
     0.0039,
@@ -61,8 +61,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 11.601,
-  "seams_on_smooth_m": 1.246,
+  "seams_m": 11.906,
+  "seams_on_smooth_m": 1.538,
   "sharp_kept_m": 0,
   "sharp_m": 5.364,
   "border_m": 0,
@@ -80,7 +80,7 @@
  "layout": {
   "zruv_straight_uv": "{\"charts\": 72, \"grids\": 3, \"tubes\": 3, \"cut_long\": 0, \"worst_dev\": 0.0676, \"kink_faces\": 4, \"cut_at_kinks\": 1, \"kept_native\": 2, \"straight_area\": 0.0311}",
   "zruv_sheet_m3": 2048,
-  "zruv_bands": "[{\"h\": 10.68, \"px\": 27, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.98681640625, \"kind\": \"band\"}, {\"h\": 27.23, \"px\": 44, \"top\": 27.0, \"v1\": 0.98681640625, \"v0\": 0.96533203125, \"kind\": \"band\"}, {\"h\": 665.9762573242188, \"px\": 1977.0, \"top\": 71.0, \"v0\": 0.0, \"v1\": 0.96533203125, \"kind\": \"plain\"}]"
+  "zruv_bands": "[{\"h\": 10.68, \"px\": 27, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.98681640625, \"kind\": \"band\"}, {\"h\": 27.23, \"px\": 44, \"top\": 27.0, \"v1\": 0.98681640625, \"v0\": 0.96533203125, \"kind\": \"band\"}, {\"h\": 514.2335205078125, \"px\": 1977.0, \"top\": 71.0, \"v0\": 0.0, \"v1\": 0.96533203125, \"kind\": \"plain\"}]"
  },
  "method": "M3",
  "title": "Trim sheet inverse (depuis la g\u00e9om\u00e9trie)",
@@ -110,8 +110,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 4.12,
- "score_s": 0.7,
+ "cook_s": 4.3,
+ "score_s": 0.8,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/shaderball",
  "asset_scale": 1.0,
@@ -122,7 +122,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 05:36",
+ "date": "20 October 2026 07:04",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball",
   "asset_scale": 1.0,

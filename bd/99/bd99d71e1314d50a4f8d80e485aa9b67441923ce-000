@@ -1,12 +1,12 @@
 {
- "score": 0.996817,
- "weakest": "uv:no_flip",
+ "score": 1.0,
+ "weakest": "uv:present",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
   "uv:stretch": 1.0,
-  "uv:no_flip": 0.996817,
-  "uv:not_mirrored": 0.996817,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:horizontal": 1.0,
   "seams:consistency": 1.0,
@@ -20,13 +20,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.4143,
     "tol_max": 0.4143,
-    "exact_frac": 0.9979203078596395,
+    "exact_frac": 1.0,
     "low_frac": 0.0,
-    "high_frac": 0.002079692140360522,
+    "high_frac": 0.0,
     "px_per_m_min": 640.3465277269039,
-    "px_per_m_median": 930.2520700193508,
-    "px_per_m_max": 1934.9124559175066,
-    "stretch_max": 2861.29503702447,
+    "px_per_m_median": 840.261129509167,
+    "px_per_m_max": 1424.6745326818502,
+    "stretch_max": 0.8628458129252627,
     "faces": 7000
    },
    "straight_area": 0.0,
@@ -39,7 +39,7 @@
     "worst_island_p50": 0.3742,
     "worst_island_p95": 0.8054
    },
-   "stretch_over_2pc_area": 0.8222,
+   "stretch_over_2pc_area": 0.8028,
    "islands": 75,
    "u_range": [
     0.0039,
@@ -59,8 +59,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 11.601,
-  "seams_on_smooth_m": 1.246,
+  "seams_m": 11.906,
+  "seams_on_smooth_m": 1.538,
   "sharp_kept_m": 0,
   "sharp_m": 5.364,
   "border_m": 0,
@@ -106,8 +106,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 3.93,
- "score_s": 0.66,
+ "cook_s": 3.87,
+ "score_s": 0.9,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/shaderball",
  "asset_scale": 1.0,
@@ -118,7 +118,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 05:36",
+ "date": "20 October 2026 07:04",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball",
   "asset_scale": 1.0,

@@ -3,3 +3,5 @@ ZRUV_Arch 524.1 {'M1': (1.0, 'uv:present', ''), 'M2': (1.0, 'uv:present', ''), '
 ZRUV_Arch done 07:00:44
 ZRUV_ArchLibrary 20.0 {'M3B': (0.999989, 'uv:stretch', '')}
 ZRUV_ArchLibrary done 07:01:04
+ZRUV_ShaderBall 375.4 {'M1': (0.999998, 'bake:coverage', ''), 'M2': (1.0, 'uv:present', ''), 'M3': (1.0, 'uv:present', ''), 'M3B': (1.0, 'uv:present', ''), 'M3C': (1.0, 'uv:present', ''), 'M4': (1.0, 'uv:present', ''), 'M5': (1.0, 'uv:present', '')}
+ZRUV_ShaderBall done 07:07:20
