@@ -2,7 +2,7 @@
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
  "texel_density": 1024.0,
- "date": "20 October 2026 01:39",
+ "date": "20 October 2026 02:19",
  "families": [
   {
    "name": "body",
@@ -18,12 +18,12 @@
    "id": "M1",
    "title": "UV unique et bake",
    "idea": "Chaque point de l'objet a ses propres pixels dans une texture unique de 4096 px au plus ; les îles jumelles (les deux piliers, les deux faces de l'arche, les rivets) partagent la même place, et les cartes du maillage sont cuites dedans.",
-   "score": 0.999481,
+   "score": 0.999514,
    "weakest": "uv:stretch",
    "components": {
     "uv:present": 1.0,
-    "uv:density": 0.999934,
-    "uv:stretch": 0.999481,
+    "uv:density": 0.999957,
+    "uv:stretch": 0.999514,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
@@ -32,7 +32,7 @@
     "uv:padding": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0,
-    "bake:coverage": 0.999789,
+    "bake:coverage": 0.99981,
     "bake:id_match": 1.0
    },
    "contracts": [
@@ -79,13 +79,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.6713785288765475,
-    "low_frac": 0.18416163112036363,
-    "high_frac": 0.1444598400030889,
-    "px_per_m_min": 867.0943763065379,
-    "px_per_m_median": 1023.9970904550877,
-    "px_per_m_max": 2068.7523005369935,
-    "stretch_max": 3.3856209621788853,
+    "exact_frac": 0.6712112584418233,
+    "low_frac": 0.18217684872482054,
+    "high_frac": 0.14661189283335618,
+    "px_per_m_min": 867.0951488135443,
+    "px_per_m_median": 1023.995388965347,
+    "px_per_m_max": 1123.4033816793537,
+    "stretch_max": 0.30632737781129094,
     "faces": 30418
    },
    "seams": {
@@ -96,26 +96,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 53.431,
-    "seams_on_smooth_m": 6.209,
+    "seams_m": 52.296,
+    "seams_on_smooth_m": 6.732,
     "sharp_kept_m": 0.009,
     "sharp_m": 6.069,
     "border_m": 0,
     "pass": true
    },
-   "islands": 258,
-   "fill": 0.5092,
+   "islands": 256,
+   "fill": 0.5093,
    "u_range": [
     0.0078,
-    0.9915
+    0.992
    ],
    "v_range": [
     0.0078,
-    0.9727
+    0.9532
    ],
-   "cook_s": 668.42,
-   "bake_s": 73.8,
-   "date": "20 October 2026 01:39",
+   "cook_s": 818.33,
+   "bake_s": 76.72,
+   "date": "20 October 2026 02:19",
    "report": "M1/report.json",
    "example": {},
    "method_text": {

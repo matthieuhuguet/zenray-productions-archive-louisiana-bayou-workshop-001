@@ -1,10 +1,10 @@
 {
- "score": 0.999481,
+ "score": 0.999514,
  "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.999934,
-  "uv:stretch": 0.999481,
+  "uv:density": 0.999957,
+  "uv:stretch": 0.999514,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -13,7 +13,7 @@
   "uv:padding": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999789,
+  "bake:coverage": 0.99981,
   "bake:id_match": 1.0
  },
  "reports": {
@@ -24,32 +24,32 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9999339890082318,
-    "low_frac": 4.288174447108757e-05,
-    "high_frac": 2.312924729715883e-05,
-    "px_per_m_min": 867.0943763065379,
-    "px_per_m_median": 1023.9970904550877,
-    "px_per_m_max": 2068.7523005369935,
-    "stretch_max": 3.3856209621788853,
+    "exact_frac": 0.9999571493357224,
+    "low_frac": 4.2850664277722386e-05,
+    "high_frac": 0.0,
+    "px_per_m_min": 867.0951488135443,
+    "px_per_m_median": 1023.995388965347,
+    "px_per_m_max": 1123.4033816793537,
+    "stretch_max": 0.30632737781129094,
     "faces": 30418
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 4.9e-05,
-   "stretch_over_2pc_area": 0.4305,
-   "islands": 258,
+   "subtexel_area": 4.6e-05,
+   "stretch_over_2pc_area": 0.4282,
+   "islands": 256,
    "overlap_px": 0,
-   "covered_px": 8543780,
-   "fill": 0.5092,
+   "covered_px": 8544846,
+   "fill": 0.5093,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 15,
    "u_range": [
     0.0078,
-    0.9915
+    0.992
    ],
    "v_range": [
     0.0078,
-    0.9727
+    0.9532
    ]
   }
  },
@@ -61,8 +61,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 53.431,
-  "seams_on_smooth_m": 6.209,
+  "seams_m": 52.296,
+  "seams_on_smooth_m": 6.732,
   "sharp_kept_m": 0.009,
   "sharp_m": 6.069,
   "border_m": 0,
@@ -78,7 +78,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 258, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5213, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2639646, \"lower_bound_unique_px2\": 2639646, \"next_smaller\": [2048, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 256, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5213, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2637603, \"lower_bound_unique_px2\": 2637603, \"next_smaller\": [2048, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0}",
   "zruv_straight_uv": "{\"charts\": 8, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -100,8 +100,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 668.42,
- "score_s": 82.16,
+ "cook_s": 818.33,
+ "score_s": 84.68,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_custom_2048x2048.png",
@@ -111,17 +111,17 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_alpha_2048x2048.png"
   },
   "seconds": {
-   "custom": 71.08,
-   "occlusion": 0.81,
-   "curvature": 0.72,
-   "edge": 0.57,
-   "alpha": 0.62
+   "custom": 74.24,
+   "occlusion": 0.84,
+   "curvature": 0.6,
+   "edge": 0.63,
+   "alpha": 0.41
   },
   "size": [
    2048,
    2048
   ],
-  "coverage": 0.999789,
+  "coverage": 0.99981,
   "id_match": 1.0
  },
  "asset": "/obj/ZRUV_Assets/manny_fbx",
@@ -131,7 +131,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 01:39",
+ "date": "20 October 2026 02:19",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,
