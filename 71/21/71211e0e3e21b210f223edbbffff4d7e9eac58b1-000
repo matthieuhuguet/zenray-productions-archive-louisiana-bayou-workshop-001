@@ -1,0 +1,137 @@
+{
+ "score": 0.999502,
+ "weakest": "uv:stretch",
+ "components": {
+  "uv:present": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 0.999502,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
+  "uv:region": 1.0,
+  "uv:grain": 1.0,
+  "uv:horizontal": 1.0,
+  "uv:stack": 1.0,
+  "uv:no_overlap": 1.0,
+  "uv:padding": 1.0,
+  "seams:consistency": 1.0,
+  "seams:robust_crease": 1.0
+ },
+ "reports": {
+  "uv": {
+   "organic_area": 1.0,
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.1,
+    "tol_max": 0.1,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 925.6476405226783,
+    "px_per_m_median": 1024.551426508946,
+    "px_per_m_max": 1084.4341085373728,
+    "stretch_max": 0.19655373839317125,
+    "faces": 12854
+   },
+   "straight_area": 0.0,
+   "straight_stretch_max": 0.0,
+   "subtexel_area": 3.5e-05,
+   "stretch_over_2pc_area": 0.8058,
+   "islands": 41,
+   "stacked_faces": 107,
+   "groups": 1,
+   "group_overlap_faces": 0,
+   "group_padding_faces": 0,
+   "u_range": [
+    0.0039,
+    0.9842
+   ],
+   "v_range": [
+    0.4166,
+    0.9961
+   ]
+  }
+ },
+ "seams": {
+  "crease_requested": 30.0,
+  "crease_effective": 57.219,
+  "edges_near_requested": 181,
+  "ambiguous_edges": 0,
+  "chains_mixed": 0,
+  "mixed_detail": [],
+  "consistency": 1.0,
+  "seams_m": 12.556,
+  "seams_on_smooth_m": 1.868,
+  "sharp_kept_m": 0,
+  "sharp_m": 0,
+  "border_m": 0,
+  "pass": true,
+  "texture_continuity": 0.9425,
+  "texture_continuous_m": 205.836
+ },
+ "hard_edges": {
+  "source": "normals",
+  "hard_edges": 0,
+  "hard_m": 0,
+  "demoted_edges": 0,
+  "demoted_m": 0,
+  "narrow_parts": 0,
+  "narrowest_px": 16.0
+ },
+ "layout": {
+  "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 41, \"stacked\": 1, \"past_u1\": 0}]",
+  "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
+ },
+ "method": "M2",
+ "title": "Texture tileable",
+ "contracts": [
+  {
+   "set": "uv",
+   "W": 2048,
+   "H": 2048,
+   "space": "tile",
+   "unique": "per_group",
+   "region": "square",
+   "sizes": "per_face",
+   "grain": "u",
+   "overflow_u": true,
+   "seam_rule": "tileable",
+   "padding_px": 16,
+   "straight_tol": 0.08,
+   "organic_tol": 0.1,
+   "subtexel_px": 1.0
+  }
+ ],
+ "targets": {
+  "uv": 1024.0
+ },
+ "cook_s": 0.0,
+ "score_s": 0.86,
+ "bake": null,
+ "asset": "/obj/ZRUV_Assets/rubbertoy",
+ "asset_scale": 1.0,
+ "texel_density": 1024.0,
+ "families": [
+  "rubber"
+ ],
+ "crease_effective": 57.218997955322266,
+ "date": "20 October 2026 02:41",
+ "params": {
+  "asset_path": "/obj/ZRUV_Assets/rubbertoy",
+  "asset_scale": 1.0,
+  "asset_area_m2": 1.0,
+  "texel_density": 1024.0,
+  "families": "*:rubber",
+  "density_tol": 0.01,
+  "stretch_tol": 0.02,
+  "crease_deg": 30.0,
+  "crease_margin": 1.0,
+  "smooth_deg": 10.0,
+  "m2_tile_px": 2048,
+  "m2_grain": "pillar:up sign:h",
+  "m2_stitch": 1,
+  "m2_seed": 7,
+  "m2_breakup_size_m": 0.8,
+  "m2_flatten": 1
+ }
+}

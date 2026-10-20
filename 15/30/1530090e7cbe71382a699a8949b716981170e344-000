@@ -1,0 +1,137 @@
+{
+ "score": 0.999502,
+ "weakest": "uv:stretch",
+ "components": {
+  "uv:present": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 0.999502,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
+  "uv:region": 1.0,
+  "uv:grain": 1.0,
+  "uv:horizontal": 1.0,
+  "uv:band_straight": 1.0,
+  "seams:consistency": 1.0,
+  "seams:robust_crease": 1.0
+ },
+ "reports": {
+  "uv": {
+   "organic_area": 1.0,
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.1,
+    "tol_max": 0.1,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 925.6482220830102,
+    "px_per_m_median": 1024.5508377838419,
+    "px_per_m_max": 1084.4263256231943,
+    "stretch_max": 0.19656384711844233,
+    "faces": 12854
+   },
+   "straight_area": 0.0,
+   "straight_stretch_max": 0.0,
+   "subtexel_area": 3.5e-05,
+   "stretch_over_2pc_area": 0.806,
+   "islands": 41,
+   "u_range": [
+    0.0039,
+    0.3745
+   ],
+   "v_range": [
+    0.0039,
+    0.2542
+   ]
+  }
+ },
+ "seams": {
+  "crease_requested": 30.0,
+  "crease_effective": 57.219,
+  "edges_near_requested": 181,
+  "ambiguous_edges": 0,
+  "chains_mixed": 0,
+  "mixed_detail": [],
+  "consistency": 1.0,
+  "seams_m": 12.556,
+  "seams_on_smooth_m": 1.868,
+  "sharp_kept_m": 0,
+  "sharp_m": 0,
+  "border_m": 0,
+  "pass": true
+ },
+ "hard_edges": {
+  "source": "normals",
+  "hard_edges": 0,
+  "hard_m": 0,
+  "demoted_edges": 0,
+  "demoted_m": 0,
+  "narrow_parts": 0,
+  "narrowest_px": 16.0
+ },
+ "layout": {
+  "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
+  "zruv_sheet_m3": 2048,
+  "zruv_bands": "[{\"h\": 512.6660766601562, \"px\": 2048.0, \"top\": 0.0, \"v0\": 0.0, \"v1\": 1.0, \"kind\": \"plain\"}]"
+ },
+ "method": "M3",
+ "title": "Trim sheet inverse (depuis la g\u00e9om\u00e9trie)",
+ "contracts": [
+  {
+   "set": "uv",
+   "W": 2048,
+   "H": 2048,
+   "space": "sheet",
+   "unique": false,
+   "region": "band",
+   "sizes": "per_face",
+   "padding_px": 16,
+   "grain": "u",
+   "min_straight_band": 0.98,
+   "straight_tol": 0.08,
+   "organic_tol": 0.1,
+   "subtexel_px": 1.0
+  }
+ ],
+ "targets": {
+  "uv": 1024.0
+ },
+ "cook_s": 1.66,
+ "score_s": 0.28,
+ "bake": null,
+ "asset": "/obj/ZRUV_Assets/rubbertoy",
+ "asset_scale": 1.0,
+ "texel_density": 1024.0,
+ "families": [
+  "rubber"
+ ],
+ "crease_effective": 57.218997955322266,
+ "date": "20 October 2026 02:41",
+ "params": {
+  "asset_path": "/obj/ZRUV_Assets/rubbertoy",
+  "asset_scale": 1.0,
+  "asset_area_m2": 1.0,
+  "texel_density": 1024.0,
+  "families": "*:rubber",
+  "density_tol": 0.01,
+  "stretch_tol": 0.02,
+  "crease_deg": 30.0,
+  "crease_margin": 1.0,
+  "smooth_deg": 10.0,
+  "m2_tile_px": 2048,
+  "m2_grain": "pillar:up sign:h",
+  "m2_stitch": 1,
+  "m2_seed": 7,
+  "m2_breakup_size_m": 0.8,
+  "m2_flatten": 1,
+  "m3_sheet_px": 2048,
+  "m3_max_band_px": 256,
+  "m3_merge_px": 8,
+  "m3_grain": "pillar:up sign:h",
+  "m3_min_straight": 0.98,
+  "m3_hotspot": 0,
+  "m3_flatten": 1,
+  "m3_library_px": "16 32 48 64 96 128 192 256"
+ }
+}
