@@ -25,29 +25,29 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.1,
-    "exact_frac": 0.9540888297794297,
-    "low_frac": 0.025458878899082986,
-    "high_frac": 0.020452291321487244,
-    "px_per_m_min": 357.99810713385546,
-    "px_per_m_median": 1029.8412095250276,
-    "px_per_m_max": 1502.5535750239906,
-    "stretch_max": 0.9939159262418815,
+    "exact_frac": 0.9721196485444736,
+    "low_frac": 0.016821373095239334,
+    "high_frac": 0.011058978360287033,
+    "px_per_m_min": 381.6625198872331,
+    "px_per_m_median": 1030.7542075139652,
+    "px_per_m_max": 1493.858534907214,
+    "stretch_max": 0.8946533277459834,
     "faces": 30478
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 12,
-    "passing": 12,
+    "islands": 16,
+    "passing": 16,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.0742,
-    "worst_island_p95": 0.2928,
+    "worst_island_p50": 0.08,
+    "worst_island_p95": 0.2171,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9364,
-   "islands": 26,
-   "stacked_faces": 6860,
+   "stretch_over_2pc_area": 0.9147,
+   "islands": 30,
+   "stacked_faces": 287,
    "overlap_px": 0,
    "covered_px": 0,
    "fill": 0.0,
@@ -58,10 +58,10 @@
    "group_padding_faces": 0,
    "u_range": [
     0.002,
-    0.9699
+    0.9734
    ],
    "v_range": [
-    0.6994,
+    0.6904,
     0.998
    ]
   }
@@ -74,14 +74,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 14.232,
-  "seams_on_smooth_m": 4.709,
+  "seams_m": 14.391,
+  "seams_on_smooth_m": 5.655,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0.432,
   "pass": true,
-  "texture_continuity": 0.9787,
-  "texture_continuous_m": 634.307
+  "texture_continuity": 0.9785,
+  "texture_continuous_m": 634.148
  },
  "hard_edges": {
   "source": "normals",
@@ -93,7 +93,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 12, \"stacked\": 4, \"past_u1\": 0}]",
+  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 16, \"stacked\": 1, \"past_u1\": 0}]",
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
   "zruv_decal_band": "{\"W\": 512, \"H\": 256, \"pad\": 16.0, \"atlas_px\": 512, \"rows\": [{\"kind\": \"bevel\", \"v0\": 0.77734375, \"v1\": 1.0}, {\"kind\": \"groove\", \"v0\": 0.6484375, \"v1\": 0.77734375}, {\"kind\": \"rivet\", \"v0\": 0.53125, \"v1\": 0.6484375}], \"strip_half_m\": 0.02, \"groove_m\": 0.012, \"rivet_m\": 0.009, \"rivet_cell_m\": 0.01290625, \"bevel\": {\"depth_m\": 0.004, \"chip_m\": 0.0015, \"chips_per_m\": 40.0, \"sample_m\": 0.04}, \"strips\": 60, \"grooves\": 0, \"rivets\": 0, \"panels\": 0, \"strips_dropped_too_close\": 126, \"strips_trimmed\": 0, \"parting_segments\": 0, \"strips_dropped_why\": [{\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [82, 90], \"length_m\": 0.007}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [186, 205], \"length_m\": 0.009}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [525, 526], \"length_m\": 0.005}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [525, 527], \"length_m\": 0.009}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [609, 617], \"length_m\": 0.008}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [585, 672], \"length_m\": 0.014}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [701, 724], \"length_m\": 0.019}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [834, 843], \"length_m\": 0.007}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [870, 877], \"length_m\": 0.009}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [1285, 1291], \"length_m\": 0.008}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [1436, 1442], \"length_m\": 0.019}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [1458, 1463], \"length_m\": 0.014}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [1468, 1472], \"length_m\": 0.005}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [1471, 1472], \"length_m\": 0.009}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [2009, 2034], \"length_m\": 0.007}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [2190, 2200], \"length_m\": 0.02}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [2236, 2238], \"length_m\": 0.017}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [2270, 2315], \"length_m\": 0.021}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [2610, 2612], \"length_m\": 0.021}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [2635, 2642], \"length_m\": 0.017}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3451, 3461], \"length_m\": 0.017}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3451, 3462], \"length_m\": 0.028}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3441, 3462], \"length_m\": 0.027}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3506, 3509], \"length_m\": 0.027}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [2225, 3572], \"length_m\": 0.004}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3859, 3861], \"length_m\": 0.02}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3739, 3871], \"length_m\": 0.004}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3833, 4019], \"length_m\": 0.007}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3510, 4033], \"length_m\": 0.017}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [3506, 4033], \"length_m\": 0.028}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4111, 4114], \"length_m\": 0.009}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4147, 4148], \"length_m\": 0.009}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4330, 4333], \"length_m\": 0.027}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4333, 4335], \"length_m\": 0.035}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4368, 4369], \"length_m\": 0.024}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4438, 4442], \"length_m\": 0.036}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4567, 4570], \"length_m\": 0.024}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4659, 4660], \"length_m\": 0.035}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [4660, 4676], \"length_m\": 0.027}, {\"piece\": \"SKM_Manny_LowLOD\", \"edge\": [5019, 5025], \"length_m\": 0.017}], \"grooves_rivets_dropped\": 0, \"need_h_px\": 120, \"v0\": 0.77734375, \"v1\": 1.0, \"v0_content\": 0.80859375, \"v1_content\": 0.96875}"
  },
@@ -126,8 +126,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 1.41,
- "score_s": 4.98,
+ "cook_s": 1.97,
+ "score_s": 5.62,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
@@ -136,7 +136,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 07:37",
+ "date": "20 October 2026 09:12",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,
