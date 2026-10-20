@@ -1,12 +1,12 @@
 {
- "score": 0.999503,
- "weakest": "uv:stretch",
+ "score": 0.984977,
+ "weakest": "uv:no_flip",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.999958,
-  "uv:stretch": 0.999503,
-  "uv:no_flip": 1.0,
-  "uv:not_mirrored": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 1.0,
+  "uv:no_flip": 0.984977,
+  "uv:not_mirrored": 0.984977,
   "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
@@ -24,30 +24,37 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.999958403177198,
-    "low_frac": 4.0206984744597986e-05,
-    "high_frac": 1.38983805748444e-06,
-    "px_per_m_min": 760.0803714212951,
-    "px_per_m_median": 1023.9945841769461,
-    "px_per_m_max": 1482.6207731974214,
-    "stretch_max": 3.2855448357765997,
+    "exact_frac": 0.969166987701662,
+    "low_frac": 0.0177369634093089,
+    "high_frac": 0.013096048889029028,
+    "px_per_m_min": 142.8778446162427,
+    "px_per_m_median": 1031.0095662307285,
+    "px_per_m_max": 1679.10850995911,
+    "stretch_max": 1.3740717825838038,
     "faces": 30418
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
-   "subtexel_area": 4.7e-05,
-   "stretch_over_2pc_area": 0.4298,
-   "islands": 262,
-   "stacked_faces": 4684,
+   "organic_artist": {
+    "islands": 24,
+    "passing": 24,
+    "p50": 0.09,
+    "p95": 0.35,
+    "worst_island_p50": 0.2281,
+    "worst_island_p95": 0.5661
+   },
+   "stretch_over_2pc_area": 0.9189,
+   "islands": 24,
+   "stacked_faces": 3777,
    "groups": 1,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
     0.002,
-    0.9958
+    0.9256
    ],
    "v_range": [
-    0.7054,
+    0.6143,
     0.998
    ]
   }
@@ -60,14 +67,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 52.038,
-  "seams_on_smooth_m": 6.565,
-  "sharp_kept_m": 0.009,
-  "sharp_m": 5.838,
+  "seams_m": 14.079,
+  "seams_on_smooth_m": 5.344,
+  "sharp_kept_m": 0,
+  "sharp_m": 0,
   "border_m": 0,
   "pass": true,
-  "texture_continuity": 0.9205,
-  "texture_continuous_m": 596.055
+  "texture_continuity": 0.9783,
+  "texture_continuous_m": 633.453
  },
  "hard_edges": {
   "source": "normals",
@@ -79,8 +86,8 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 262, \"stacked\": 67, \"past_u1\": 0}]",
-  "zruv_straight_uv": "{\"charts\": 8, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
+  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 24, \"stacked\": 8, \"past_u1\": 0}]",
+  "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M2",
  "title": "Texture tileable",
@@ -99,14 +106,20 @@
    "padding_px": 16,
    "straight_tol": 0.08,
    "organic_tol": 0.1,
-   "subtexel_px": 1.0
+   "subtexel_px": 1.0,
+   "organic_artist": {
+    "p50": 0.09,
+    "p95": 0.35,
+    "small_px": 128.0,
+    "tiny_px": 48.0
+   }
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.0,
- "score_s": 1.4,
+ "cook_s": 0.02,
+ "score_s": 5.15,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
@@ -115,7 +128,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 02:48",
+ "date": "20 October 2026 05:51",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,
