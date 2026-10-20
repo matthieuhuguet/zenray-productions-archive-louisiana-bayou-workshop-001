@@ -28,9 +28,9 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 925.6476405226783,
-    "px_per_m_median": 1024.553765304249,
-    "px_per_m_max": 1084.4341085373728,
+    "px_per_m_min": 925.6463887208408,
+    "px_per_m_median": 1024.5528938058492,
+    "px_per_m_max": 1084.4333434024807,
     "stretch_max": 0.19655373839317125,
     "faces": 12858
    },
@@ -44,7 +44,7 @@
    "covered_px": 0,
    "fill": 0.0,
    "padding_overlap_px": 0,
-   "padding_check_radius_px": 15,
+   "padding_check_radius_px": 63,
    "groups": 1,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
@@ -87,15 +87,15 @@
  "layout": {
   "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 41, \"stacked\": 1, \"past_u1\": 0}]",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
-  "zruv_decal_band": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"atlas_px\": 2048, \"rows\": [{\"kind\": \"bevel\", \"v0\": 0.9443359375, \"v1\": 1.0}, {\"kind\": \"groove\", \"v0\": 0.912109375, \"v1\": 0.9443359375}, {\"kind\": \"rivet\", \"v0\": 0.8828125, \"v1\": 0.912109375}], \"strip_half_m\": 0.02, \"groove_m\": 0.012, \"rivet_m\": 0.009, \"rivet_cell_m\": 0.01290625, \"bevel\": {\"depth_m\": 0.004, \"chip_m\": 0.0015, \"chips_per_m\": 40.0}, \"strips\": 4, \"grooves\": 0, \"rivets\": 0, \"panels\": 0, \"strips_dropped_too_close\": 0, \"need_h_px\": 120, \"v0\": 0.9443359375, \"v1\": 1.0, \"v0_content\": 0.9521484375, \"v1_content\": 0.9921875}"
+  "zruv_decal_band": "{\"W\": 512, \"H\": 256, \"pad\": 16.0, \"atlas_px\": 512, \"rows\": [{\"kind\": \"bevel\", \"v0\": 0.77734375, \"v1\": 1.0}, {\"kind\": \"groove\", \"v0\": 0.6484375, \"v1\": 0.77734375}, {\"kind\": \"rivet\", \"v0\": 0.53125, \"v1\": 0.6484375}], \"strip_half_m\": 0.02, \"groove_m\": 0.012, \"rivet_m\": 0.009, \"rivet_cell_m\": 0.01290625, \"bevel\": {\"depth_m\": 0.004, \"chip_m\": 0.0015, \"chips_per_m\": 40.0}, \"strips\": 4, \"grooves\": 0, \"rivets\": 0, \"panels\": 0, \"strips_dropped_too_close\": 0, \"need_h_px\": 120, \"v0\": 0.77734375, \"v1\": 1.0, \"v0_content\": 0.80859375, \"v1_content\": 0.96875}"
  },
  "method": "M5",
  "title": "Mesh decals de normale",
  "contracts": [
   {
    "set": "uv",
-   "W": 2048,
-   "H": 1024,
+   "W": 512,
+   "H": 256,
    "space": "tile",
    "unique": "per_face",
    "region": "free",
@@ -112,8 +112,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.28,
- "score_s": 0.94,
+ "cook_s": 0.24,
+ "score_s": 0.8,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/rubbertoy",
  "asset_scale": 1.0,
@@ -122,7 +122,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 02:41",
+ "date": "20 October 2026 03:12",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,
@@ -140,7 +140,7 @@
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1,
-  "m5_atlas_px": 2048,
+  "m5_atlas_px": 512,
   "m5_strip_families": "*",
   "m5_strip_angle": 80.0,
   "m5_strip_max_angle": 120.0,

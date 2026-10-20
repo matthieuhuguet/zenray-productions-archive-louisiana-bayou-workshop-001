@@ -39,9 +39,9 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 925.6476405226783,
-    "px_per_m_median": 1024.551426508946,
-    "px_per_m_max": 1084.4341085373728,
+    "px_per_m_min": 925.6463887208408,
+    "px_per_m_median": 1024.5517620824587,
+    "px_per_m_max": 1084.4333434024807,
     "stretch_max": 0.19655373839317125,
     "faces": 12854
    },
@@ -74,8 +74,8 @@
     "low_frac": 0.0,
     "high_frac": 0.0,
     "px_per_m_min": 115.7062930753767,
-    "px_per_m_median": 128.06932060402477,
-    "px_per_m_max": 135.55315749918347,
+    "px_per_m_median": 128.06883732144408,
+    "px_per_m_max": 135.55210758021218,
     "stretch_max": 0.196564226760243,
     "faces": 12854
    },
@@ -169,7 +169,7 @@
   "uv2": 128.0
  },
  "cook_s": 0.0,
- "score_s": 4.97,
+ "score_s": 4.64,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_custom_256x256.png",
@@ -186,16 +186,16 @@
    "base": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_base_256x256.png"
   },
   "seconds": {
-   "custom": 0.43,
+   "custom": 0.4,
    "edge": 0.21,
    "worldnormal": 0.21,
-   "position": 0.22,
+   "position": 0.21,
    "occlusion": 0.21,
    "alpha": 0.21,
-   "layered": 0.58,
-   "mask_rgb": 0.22,
-   "mask_R": 0.22,
-   "mask_G": 0.22,
+   "layered": 0.48,
+   "mask_rgb": 0.21,
+   "mask_R": 0.21,
+   "mask_G": 0.21,
    "mask_B": 0.21,
    "base": 0.21
   },
@@ -219,7 +219,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 02:41",
+ "date": "20 October 2026 03:12",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy",
   "asset_scale": 1.0,
@@ -241,6 +241,6 @@
   "m4_sheet_px": 0,
   "m4_flatten": 1,
   "m4_allow_rect": 1,
-  "m4_materials": "iron:metal001_basecolor.png pillar:wood_color.jpg sign:wood_color.jpg"
+  "m4_materials": "rubber:concrete001_basecolor.png"
  }
 }
