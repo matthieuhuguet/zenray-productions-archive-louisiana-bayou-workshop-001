@@ -1,5 +1,5 @@
 {
- "score": 0.999984,
+ "score": 0.999998,
  "weakest": "bake:coverage",
  "components": {
   "uv:present": 1.0,
@@ -15,7 +15,7 @@
   "uv:no_self_overlap": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999984,
+  "bake:coverage": 0.999998,
   "bake:id_match": 1.0
  },
  "reports": {
@@ -23,16 +23,16 @@
    "organic_area": 1.0,
    "texel": {
     "set": "uv",
-    "target_px_per_m": 1024.0,
+    "target_px_per_m": 2048.0,
     "tol": 0.1,
     "tol_max": 0.1,
     "exact_frac": 0.9856681433054043,
     "low_frac": 0.012094264441722008,
     "high_frac": 0.0022375922528736574,
-    "px_per_m_min": 728.9076849422253,
-    "px_per_m_median": 1024.311310674389,
-    "px_per_m_max": 1251.2898923638704,
-    "stretch_max": 0.8158937354711596,
+    "px_per_m_min": 405.9776193112637,
+    "px_per_m_median": 1720.34216522874,
+    "px_per_m_max": 2103.727608112159,
+    "stretch_max": 0.815893415995513,
     "faces": 2889
    },
    "straight_area": 0.0,
@@ -49,18 +49,20 @@
    "stretch_over_2pc_area": 0.7243,
    "islands": 16,
    "upright_islands": 16,
-   "upright_worst_deg": 0.0,
-   "groups": 2,
-   "group_overlap_faces": 0,
-   "group_padding_faces": 0,
+   "upright_worst_deg": 0.001,
+   "overlap_px": 0,
+   "covered_px": 9479782,
+   "fill": 0.565,
+   "padding_overlap_px": 0,
+   "padding_check_radius_px": 31,
    "self_overlap_faces": 0,
    "u_range": [
-    0.0078,
-    0.9921
+    0.0156,
+    0.9842
    ],
    "v_range": [
     0.0156,
-    0.7159
+    0.9787
    ]
   }
  },
@@ -86,10 +88,10 @@
   "demoted_edges": 0,
   "demoted_m": 0,
   "narrow_parts": 0,
-  "narrowest_px": 16.0
+  "narrowest_px": 32.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 14, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3956, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 914639, \"lower_bound_unique_px2\": 914639, \"next_smaller\": [1024, 1024], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"tiles_n\": 2, \"tile_rule\": \"materials (texture sets)\", \"tile_splits\": 0, \"tiles\": [{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 14, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3956, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 914639, \"lower_bound_unique_px2\": 914639, \"next_smaller\": [1024, 1024], \"minimal_proven\": false, \"rows\": 0, \"tile\": 0, \"label\": \"Pig\", \"area_m2\": 0.7911}, {\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2115, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 237323, \"lower_bound_unique_px2\": 237323, \"next_smaller\": [1024, 512], \"minimal_proven\": false, \"rows\": 0, \"tile\": 1, \"label\": \"Pig_no_uv\", \"area_m2\": 0.2115}], \"texels_total\": 3145728}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 16, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5677, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3723011, \"lower_bound_unique_px2\": 3723011, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"td\": 1721.6, \"fit\": true, \"tiles_n\": 1, \"tile_rule\": \"one tile, 4 minor islands at 0.25 of the density\", \"tile_splits\": 0, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 16, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5677, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 3723011, \"lower_bound_unique_px2\": 3723011, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 1721.6, \"fit\": true, \"tile\": 0, \"label\": \"Pig\", \"area_m2\": 1.0026}], \"texels_total\": 4194304}",
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -98,16 +100,13 @@
   {
    "set": "uv",
    "W": 2048,
-   "H": 1024,
+   "H": 2048,
    "space": "sheet",
-   "unique": "per_group",
+   "unique": true,
    "region": "sheet",
-   "padding_px": 16,
+   "padding_px": 32,
    "straight_tol": 0.08,
    "twin_bake": true,
-   "sizes": "per_face",
-   "group_padding_px": 16,
-   "tiles": 2,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -119,86 +118,45 @@
   }
  ],
  "targets": {
-  "uv": 1024.0
+  "uv": 2048.0
  },
- "cook_s": 213.19,
- "score_s": 6.41,
+ "cook_s": 4.1,
+ "score_s": 12.7,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_t0_2048x1024.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_occlusion_t0_2048x1024.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_curvature_t0_2048x1024.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_edge_t0_2048x1024.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_t0_2048x1024.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_2048x2048.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_occlusion_2048x2048.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_curvature_2048x2048.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_edge_2048x2048.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_2048x2048.png"
   },
   "seconds": {
-   "custom_t0": 4.35,
-   "occlusion_t0": 0.08,
-   "curvature_t0": 0.07,
-   "edge_t0": 0.03,
-   "alpha_t0": 0.02,
-   "custom_t1": 0.69,
-   "occlusion_t1": 0.02,
-   "curvature_t1": 0.02,
-   "edge_t1": 0.01,
-   "alpha_t1": 0.01
+   "custom": 10.42,
+   "occlusion": 0.31,
+   "curvature": 0.12,
+   "edge": 0.03,
+   "alpha": 0.05
   },
   "size": [
    2048,
-   1024
+   2048
   ],
-  "coverage": 0.999984,
-  "id_match": 1.0,
-  "tiles": [
-   {
-    "tile": 0,
-    "label": "Pig",
-    "size": [
-     2048,
-     1024
-    ],
-    "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_t0_2048x1024.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_occlusion_t0_2048x1024.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_curvature_t0_2048x1024.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_edge_t0_2048x1024.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_t0_2048x1024.png"
-    },
-    "coverage": 0.99998,
-    "id_match": 1.0
-   },
-   {
-    "tile": 1,
-    "label": "Pig_no_uv",
-    "size": [
-     1024,
-     1024
-    ],
-    "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_t1_1024x1024.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_occlusion_t1_1024x1024.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_curvature_t1_1024x1024.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_edge_t1_1024x1024.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_t1_1024x1024.png"
-    },
-    "coverage": 1.0,
-    "id_match": 1.0
-   }
-  ]
+  "coverage": 0.999998,
+  "id_match": 1.0
  },
  "asset": "/obj/ZRUV_Assets/pighead_src",
  "asset_scale": 1.0,
- "texel_density": 1024.0,
+ "texel_density": 2048.0,
  "families": [
   "skin"
  ],
  "crease_effective": 89.10903930664062,
- "date": "20 October 2026 14:55",
+ "date": "20 October 2026 15:14",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/pighead_src",
   "asset_scale": 1.0,
   "asset_area_m2": 1.0,
-  "texel_density": 1024.0,
+  "texel_density": 2048.0,
   "families": "*:skin",
   "density_tol": 0.01,
   "stretch_tol": 0.02,
@@ -207,13 +165,17 @@
   "smooth_deg": 10.0,
   "m1_tiles": 0,
   "m1_tile_groups": "",
+  "asset_kind": 1,
+  "m1_fit": 1,
+  "m1_minor_density": 0.25,
+  "m1_no_texture": "*no_uv* *nouv*",
   "m1_sheet_px": 0,
   "m1_stack": 1,
   "m1_unstack": 1,
   "m1_unique_pieces": "",
   "m1_flatten": 1,
   "m1_bake": 1,
-  "m1_allow_rect": 1,
+  "m1_allow_rect": 0,
   "m1_bake_scale": 1.0,
   "m2_tile_px": 2048,
   "m2_grain": "pillar:up sign:h",

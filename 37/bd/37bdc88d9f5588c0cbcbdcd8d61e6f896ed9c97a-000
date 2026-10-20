@@ -25,13 +25,13 @@
     "target_px_per_m": 2048.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9187046360394829,
+    "exact_frac": 0.9186940290267468,
     "low_frac": 0.04669991617213581,
-    "high_frac": 0.03459544778838127,
-    "px_per_m_min": 903.23430351159,
-    "px_per_m_median": 2061.6863359693743,
-    "px_per_m_max": 3199.209425123803,
-    "stretch_max": 1.1657158232532372,
+    "high_frac": 0.03460605480111737,
+    "px_per_m_min": 721.5850057069763,
+    "px_per_m_median": 1714.7561348349682,
+    "px_per_m_max": 4492.60722234286,
+    "stretch_max": 1.1657271014628101,
     "faces": 30418
    },
    "straight_area": 0.0,
@@ -45,7 +45,7 @@
     "worst_island_p95": 0.3279,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.8651,
+   "stretch_over_2pc_area": 0.865,
    "islands": 45,
    "groups": 2,
    "group_overlap_faces": 0,
@@ -53,11 +53,11 @@
    "self_overlap_faces": 0,
    "u_range": [
     0.0078,
-    0.9922
+    0.992
    ],
    "v_range": [
     0.0078,
-    0.5152
+    0.991
    ]
   }
  },
@@ -86,7 +86,7 @@
   "narrowest_px": 32.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 32.0, \"islands\": 15, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3041, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 5562977, \"lower_bound_unique_px2\": 5562977, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0, \"tiles_n\": 2, \"tile_rule\": \"artist texture sets (pattern)\", \"tile_splits\": 0, \"tiles\": [{\"W\": 4096, \"H\": 4096, \"pad\": 32.0, \"islands\": 15, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3041, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 5562977, \"lower_bound_unique_px2\": 5562977, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"rows\": 0, \"tile\": 0, \"label\": \"MI_Manny_01\", \"area_m2\": 1.21653}, {\"W\": 4096, \"H\": 4096, \"pad\": 32.0, \"islands\": 30, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2184, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 4076500, \"lower_bound_unique_px2\": 4076500, \"next_smaller\": [2048, 2048], \"minimal_proven\": false, \"rows\": 0, \"tile\": 1, \"label\": \"MI_Manny_02\", \"area_m2\": 0.87366}], \"texels_total\": 33554432}",
+  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 32.0, \"islands\": 15, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5997, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 5562977, \"lower_bound_unique_px2\": 5562977, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0, \"td\": 2876.0, \"fit\": true, \"tiles_n\": 2, \"tile_rule\": \"artist texture sets (pattern)\", \"tile_splits\": 0, \"tiles\": [{\"W\": 4096, \"H\": 4096, \"pad\": 32.0, \"islands\": 15, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5997, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 5562977, \"lower_bound_unique_px2\": 5562977, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"rows\": 0, \"td\": 2876.0, \"fit\": true, \"tile\": 0, \"label\": \"MI_Manny_01\", \"area_m2\": 1.21653}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 30, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5576, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 4076500, \"lower_bound_unique_px2\": 4076500, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 1636.1, \"fit\": true, \"tile\": 1, \"label\": \"MI_Manny_02\", \"area_m2\": 0.87366}], \"texels_total\": 20971520}",
   "zruv_straight_uv": "{\"charts\": 8, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -118,8 +118,8 @@
  "targets": {
   "uv": 2048.0
  },
- "cook_s": 18.11,
- "score_s": 45.73,
+ "cook_s": 27.28,
+ "score_s": 53.78,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_custom_t0_4096x4096.png",
@@ -129,16 +129,16 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_alpha_t0_4096x4096.png"
   },
   "seconds": {
-   "custom_t0": 19.37,
-   "occlusion_t0": 0.26,
-   "curvature_t0": 0.27,
-   "edge_t0": 0.17,
-   "alpha_t0": 0.07,
-   "custom_t1": 16.64,
-   "occlusion_t1": 0.31,
-   "curvature_t1": 0.3,
-   "edge_t1": 0.22,
-   "alpha_t1": 0.07
+   "custom_t0": 37.61,
+   "occlusion_t0": 0.24,
+   "curvature_t0": 0.25,
+   "edge_t0": 0.12,
+   "alpha_t0": 0.06,
+   "custom_t1": 8.83,
+   "occlusion_t1": 0.06,
+   "curvature_t1": 0.07,
+   "edge_t1": 0.05,
+   "alpha_t1": 0.02
   },
   "size": [
    4096,
@@ -168,15 +168,15 @@
     "tile": 1,
     "label": "MI_Manny_02",
     "size": [
-     4096,
-     4096
+     2048,
+     2048
     ],
     "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_custom_t1_4096x4096.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_occlusion_t1_4096x4096.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_curvature_t1_4096x4096.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_edge_t1_4096x4096.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_alpha_t1_4096x4096.png"
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_custom_t1_2048x2048.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_occlusion_t1_2048x2048.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_curvature_t1_2048x2048.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_edge_t1_2048x2048.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_alpha_t1_2048x2048.png"
     },
     "coverage": 1.0,
     "id_match": 1.0
@@ -190,7 +190,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 14:59",
+ "date": "20 October 2026 15:16",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_src",
   "asset_scale": 0.01,
@@ -205,6 +205,9 @@
   "m1_tiles": 0,
   "m1_tile_groups": "",
   "asset_kind": 1,
+  "m1_fit": 1,
+  "m1_minor_density": 0.25,
+  "m1_no_texture": "*no_uv* *nouv*",
   "m1_sheet_px": 0,
   "m1_stack": 1,
   "m1_unstack": 1,
