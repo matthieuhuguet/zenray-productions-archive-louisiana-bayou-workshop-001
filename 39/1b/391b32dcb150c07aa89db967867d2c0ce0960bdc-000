@@ -50,6 +50,8 @@ PARAMS = {
     'td': 1024.0,           # the texel density (px/m) : sets how many texels a chart spans
     'small_px': 128.0,      # a chart narrower than this many texels gets a looser tolerance, x sqrt(small_px / its width) : the eye reads no distortion on a pebble
     'tiny_px': 48.0,        # a chart narrower than this passes whatever its stretch, unless a triangle folds (a 2.4 cm pebble is 25 texels wide)
+    'min_fill_share': 0.1,  # 20 October 2026 : and only for an island whose box would cover more than this share of the surface (a curved spike of the toy does not move
+                            # the sheet, Manny's torso does : the rule cost the toy 3 islands and 0.8 m of seams for nothing)
     'min_fill': 0.5,        # 20 October 2026 : a merge of the economy is kept only when the merged island fills this share of its oriented box (Manny's torso, front
                             # and back merged, filled 46 % and pushed the unique sheet from 2048 x 2048 to 4096 x 2048 : an artist weighs seams against space)
     'gain_power': 1.0,      # the moves are ranked by gain^gain_power / seam cost : 1 = the most distortion per metre (cheap darts), 2 = an artist's patience (one
@@ -486,6 +488,12 @@ class Chart:
 
     def corner_uv(self):
         return {c: tuple(self.uv[lv]) for c, lv in self.loc.corner.items()}
+
+    def __getstate__(self):
+        # 20 October 2026 : a chart travels to a worker process without its Surf (each process holds the Surf once, _pool_init)
+        d = dict(self.__dict__)
+        d['S'] = None
+        return d
 
     def fill(self):
         """20 October 2026 : the share of its box an island fills, the box along the island's own principal axes (the way the layout lays it, longest along u)."""
@@ -1603,7 +1611,7 @@ class Tailor:
                 cands.append(('silhouette', p))
             # 20 October 2026 : two stages : every candidate is ranked on a short flattening (quick_iters ARAP iterations), the best three are flattened in full and
             # the best of those is applied (about twenty candidates a round : a full flattening of each made a Manny run last half an hour)
-            quick = []
+            quick, jobs = [], []
             for kind, edges in cands:
                 edges = self._mirror(edges)
                 ks = self.chart_of_edges(edges)
@@ -1612,13 +1620,16 @@ class Tailor:
                 before = sum(self.charts[kk].excess for kk in ks)
                 # 20 October 2026 : a dart starts from the chart's own uv and settles in a few iterations ; a structural cut (a loop, panels) starts from a fresh LSCM
                 # and needs its full ARAP : ranked on 4 iterations it always looked worse than it is, and the ball was peeled by darts instead of cut in panels
-                res = self.evaluate(ks, edges, warm=(kind == 'dart'), iters=self.prm['quick_iters'] if kind == 'dart' else None)
-                if res is None:
+                jobs.append((kind, edges, ks, before, ('quick', kind == 'dart', self.prm['quick_iters'] if kind == 'dart' else None)))
+            # 20 October 2026 : the candidates of a round are flattened in parallel processes when the solve has a pool (_Pool), in candidate order, so the choice
+            # is the sequential one (the stable sort keeps that order between equal ratios)
+            for (kind, edges, ks, before, _), r in zip(jobs, self._run([(ks, edges, kind, op) for kind, edges, ks, before, op in jobs])):
+                if r is None:
                     continue
-                gain = before - sum(ch.excess for _, ch in res[0])
+                gain = before - r[0]
                 if gain <= 0:
                     continue
-                quick.append((gain ** self.prm['gain_power'] / max(res[2], 1e-9), kind, edges, ks, before))
+                quick.append((gain ** self.prm['gain_power'] / max(r[1], 1e-9), kind, edges, ks, before))
             quick.sort(key=lambda x: -x[0])
             # the top three, and the best structural cut (a loop, panels, a silhouette) when none of the three is one
             top = quick[:3]
@@ -1626,19 +1637,11 @@ class Tailor:
                 top += [q for q in quick if q[1] in ('neck', 'panel', 'silhouette')][:1]
             look = q0[0] > self.prm['look_ahead'] * self.prm['p50']
             best = None
-            for _r, kind, edges, ks, before in top:
-                res = self.evaluate(ks, edges, warm=(kind == 'dart'))
-                if res is None:
+            # 20 October 2026 : a badly distorted chart chooses by the cost to finish (rollout, in the job), not by the first step
+            for (_r, kind, edges, ks, before), r in zip(top, self._run([(ks, edges, kind, ('full', kind == 'dart', look, before)) for _r, kind, edges, ks, before in top])):
+                if r is None:
                     continue
-                after = sum(ch.excess for _, ch in res[0])
-                gain = before - after
-                if gain <= max(1e-12, self.prm['min_gain'] * before):
-                    continue
-                if look:
-                    # 20 October 2026 : a badly distorted chart chooses by the cost to finish (rollout), not by the first step
-                    score = -self.rollout(ks, res, kind)
-                else:
-                    score = gain ** self.prm['gain_power'] / max(res[2], 1e-9)
+                score, gain, res = r
                 if best is None or score > best[0]:
                     best = (score, kind, ks, res, gain)
             if best is None:
@@ -1649,6 +1652,34 @@ class Tailor:
             self.commit(ks, res, kind)
             self.log('move', kind, 'gain %.5f' % gain, 'charts', len(self.charts), 'fail %.5f' % self.total_fail())
         self.stats['stuck'] = len(stuck)
+
+    def job(self, ks, edges, kind, op):
+        """20 October 2026 : one candidate of a round : ('quick', warm, iters) gives (excess after, seam cost) of a short flattening ; ('full', warm, look, before)
+        gives (score, gain, result) of a full flattening, the score being the gain per seam cost, or minus the cost to finish (rollout) when look ; None when the
+        candidate is refused."""
+        if op[0] == 'quick':
+            res = self.evaluate(ks, edges, warm=op[1], iters=op[2])
+            return None if res is None else (sum(ch.excess for _, ch in res[0]), res[2])
+        _, warm, look, before = op
+        res = self.evaluate(ks, edges, warm=warm)
+        if res is None:
+            return None
+        gain = before - sum(ch.excess for _, ch in res[0])
+        if gain <= max(1e-12, self.prm['min_gain'] * before):
+            return None
+        score = -self.rollout(ks, res, kind) if look else gain ** self.prm['gain_power'] / max(res[2], 1e-9)
+        return score, gain, res
+
+    def _run(self, jobs):
+        pool = getattr(self, '_pool', None)
+        if pool is None or len(jobs) < 2:
+            return [self.job(*j) for j in jobs]
+        out = pool.map(self, jobs)
+        for r in out:
+            if r is not None and len(r) == 3:
+                for _, ch in r[2][0]:
+                    ch.S = self.S
+        return out
 
     # ------------------------------------------------------------ phase 3 : the economy
     def economy_all(self, rounds=4, max_tests=400):
@@ -1723,7 +1754,8 @@ class Tailor:
             if not ok:
                 continue
             after_fail = sum(ch.fail for _, ch in new)
-            if len(ks) > 1 and any(ch.fill() < self.prm['min_fill'] for _, ch in new):
+            tot_a = float(S.FA[self.active].sum())
+            if len(ks) > 1 and any(ch.fill() < self.prm['min_fill'] and float(ch.a.sum()) / max(ch.fill(), 1e-9) > self.prm['min_fill_share'] * tot_a for _, ch in new):
                 continue                       # 20 October 2026 : a merge that leaves a sprawling island (it would not pack) is refused
             freed = float(S.cost[edges].sum()) + sum(float(S.cost[qe].sum()) for _, qe in reopened)
             saved = freed - (float(S.cost[np.unique(added)].sum()) if added else 0.0)
@@ -1853,6 +1885,110 @@ CTRL_MAP = (('p95', 'tailor_p95'), ('p50', 'tailor_p50'), ('back_weight', 'tailo
             ('gain_power', 'tailor_gain_power'), ('concave_bonus', 'tailor_concave'))
 
 
+# ---------------------------------------------------------------- parallel rounds (20 October 2026)
+_STATIC = ('S', 'prm', 'must', 'active', 'mirror_v', 'mirror_e', 'mirror_axis', 'mirror_c')
+_DYNAMIC = ('cut', 'lab', 'charts', 'pieces', 'next_id', 'stats', '_neck_cache')
+_WORKER = {}
+
+
+def _pool_init(static_path):
+    import pickle
+    import sys as _s
+    with open(static_path, 'rb') as fh:
+        st = pickle.load(fh)
+    t = object.__new__(_s.modules[__name__].Tailor)
+    for k, v in st.items():
+        setattr(t, k, v)
+    t.log = lambda *a: None
+    t._pool = None
+    _WORKER['t'] = t
+    _WORKER['state'] = None
+
+
+def _pool_job(job):
+    import pickle
+    path, args = job
+    t = _WORKER['t']
+    if _WORKER['state'] != path:
+        with open(path, 'rb') as fh:
+            dyn = pickle.load(fh)
+        for k, v in dyn.items():
+            setattr(t, k, v)
+        for ch in t.charts.values():
+            if ch is not None:
+                ch.S = t.S
+        _WORKER['state'] = path
+    return t.job(*args)
+
+
+class _Pool:
+    """20 October 2026 : the candidate flattenings of a tailor round in parallel processes (spawn, one numpy thread each) : every process loads the static part of the
+    tailor once (the Surf and the seam costs), then the state of the round from a file written once per round ; results come back in candidate order, so a parallel
+    solve makes exactly the choices of a sequential one, about procs times faster on the improve phase (the 18 cores of this machine were idling at one)."""
+
+    def __init__(self, tl, procs):
+        import multiprocessing as mp
+        import os
+        import pickle
+        import tempfile
+        root = os.path.expanduser('~/.cache/zenray_uv')
+        os.makedirs(root, exist_ok=True)
+        self.dir = tempfile.mkdtemp(prefix='tailor_pool_', dir=root)
+        sp = os.path.join(self.dir, 'static.pkl')
+        with open(sp, 'wb') as fh:
+            pickle.dump({k: getattr(tl, k, None) for k in _STATIC}, fh, protocol=5)
+        old = {k: os.environ.get(k) for k in ('OMP_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS')}
+        for k in old:
+            os.environ[k] = '1'
+        try:
+            self.pool = mp.get_context('spawn').Pool(int(procs), initializer=_pool_init, initargs=(sp,))
+        finally:
+            for k, v in old.items():
+                if v is None:
+                    os.environ.pop(k, None)
+                else:
+                    os.environ[k] = v
+        self.ver = 0
+        self.path = None
+        self.key = None
+
+    def _state(self, tl):
+        import os
+        import pickle
+        key = (id(tl.cut), tl.next_id, len(tl.pieces), int(tl.cut.sum()))
+        if key != self.key:
+            self.ver += 1
+            p = os.path.join(self.dir, 'state_%d.pkl' % self.ver)
+            with open(p + '.part', 'wb') as fh:
+                pickle.dump({k: getattr(tl, k) for k in _DYNAMIC}, fh, protocol=5)
+            os.replace(p + '.part', p)
+            if self.path and os.path.exists(self.path):
+                os.remove(self.path)
+            self.path, self.key = p, key
+        return self.path
+
+    def map(self, tl, jobs):
+        path = self._state(tl)
+        return self.pool.map(_pool_job, [(path, j) for j in jobs], chunksize=1)
+
+    def close(self):
+        import shutil
+        try:
+            self.pool.terminate()
+            self.pool.join()
+        finally:
+            shutil.rmtree(self.dir, ignore_errors=True)
+
+
+def default_procs():
+    """20 October 2026 : the processes of a solve out of Houdini : ZRUV_TAILOR_PROCS, else the cores less two, at most 16."""
+    import os
+    v = os.environ.get('ZRUV_TAILOR_PROCS')
+    if v:
+        return max(1, int(v))
+    return max(1, min(16, (os.cpu_count() or 2) - 2))
+
+
 def params_from_ctrl(c):
     """The tailor parameters read from CTRL_zruv (the HDA interface) over the defaults of PARAMS."""
     prm = {}
@@ -1901,7 +2037,7 @@ def required_seams(S, sharp, active, crease_rad):
 FAST_PYTHON = '/Users/zenray/.venvs/shorts/bin/python'      # 20 October 2026 : the solver runs out of Houdini when this exists (measured 2 to 12 times faster)
 
 
-def solve(data, log=None):
+def solve(data, log=None, procs=1):
     """20 October 2026 : the whole tailor on plain data, with no Houdini : data = {P, polys, face_open, organic (0/1 per face), sharp (edge pairs), crease_rad, prm}.
     Returns {uv: {"f_j": [u, v]}, chart: [id per face], seams: [[a, b]], demoted: [[a, b]], required: n, report: {...}}."""
     import time as _time
@@ -1914,8 +2050,15 @@ def solve(data, log=None):
     tl = Tailor(S, must_cut=req, faces=np.where(flag)[0], log=log)
     tl.cut_necks()
     tl.flatten_all()
-    tl.improve()
-    tl.economy_all()
+    pool = _Pool(tl, procs) if procs and procs > 1 else None
+    tl._pool = pool
+    try:
+        tl.improve()
+        tl.economy_all()
+    finally:
+        tl._pool = None
+        if pool is not None:
+            pool.close()
     rep = tl.report()
     uv, chart = {}, [-1] * S.nf
     for kk, (k, ch) in enumerate(sorted(tl.charts.items())):
@@ -2014,4 +2157,4 @@ if __name__ == '__main__':
     import os as _os
     _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
     if len(_sys.argv) >= 4 and _sys.argv[1] == 'solve':
-        _json.dump(solve(_json.load(open(_sys.argv[2]))), open(_sys.argv[3], 'w'))
+        _json.dump(solve(_json.load(open(_sys.argv[2])), procs=default_procs()), open(_sys.argv[3], 'w'))

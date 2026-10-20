@@ -2,6 +2,8 @@
 # seams, uv) and timed. Usage : python -I PoolCheck.py <mesh.json> <procs> <out.json> ['{"front": [1, 0, 0]}']
 import sys, json, time, math
 sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+if __import__('os').environ.get('TAILOR_NEXT'):
+    sys.path.insert(0, __import__('os').path.join(__import__('os').path.dirname(__import__('os').path.abspath(__file__)), 'next'))     # the development copy
 import numpy as np
 import ZrMesh as Z, ZruvTailor as T
 

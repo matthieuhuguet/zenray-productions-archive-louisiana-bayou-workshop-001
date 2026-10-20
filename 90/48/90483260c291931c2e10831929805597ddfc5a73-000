@@ -1,0 +1,7 @@
+#!/bin/zsh
+# 20 October 2026 : the size aware fill rule (dev copy of the tailor) on the toy and on Manny, out of Houdini, to compare with the bench solves.
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+cd $W/Scripts
+TAILOR_NEXT=1 ZRUV_TAILOR_PROCS=14 /Users/zenray/.venvs/shorts/bin/python -I PoolCheck.py $W/runs/reference/before/ZRUV_RubberToy/mesh.json 14 $W/runs/tailor/fillshare_toy.json > $W/runs/tailor/fillshare_toy.log 2>&1
+TAILOR_NEXT=1 ZRUV_TAILOR_PROCS=14 /Users/zenray/.venvs/shorts/bin/python -I PoolCheck.py $W/runs/reference/before/ZRUV_Manny/mesh.json 14 $W/runs/tailor/fillshare_manny.json '{"back_weight": 0.25}' > $W/runs/tailor/fillshare_manny.log 2>&1
+echo done
