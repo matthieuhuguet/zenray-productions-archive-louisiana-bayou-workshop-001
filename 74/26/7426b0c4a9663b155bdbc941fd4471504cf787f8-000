@@ -24,37 +24,38 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9540777769639989,
-    "low_frac": 0.025465007958486212,
-    "high_frac": 0.020457215077515085,
-    "px_per_m_min": 357.99810713385546,
-    "px_per_m_median": 1029.9197114016338,
-    "px_per_m_max": 1502.5535750239906,
-    "stretch_max": 0.9939159262418815,
+    "exact_frac": 0.9721129365313119,
+    "low_frac": 0.016825422731334985,
+    "high_frac": 0.01106164073735312,
+    "px_per_m_min": 381.6625198872331,
+    "px_per_m_median": 1030.8638943868536,
+    "px_per_m_max": 1493.858534907214,
+    "stretch_max": 0.8946533277459834,
     "faces": 30418
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 12,
-    "passing": 12,
+    "islands": 16,
+    "passing": 16,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.0742,
-    "worst_island_p95": 0.2928
+    "worst_island_p50": 0.08,
+    "worst_island_p95": 0.2171,
+    "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9367,
-   "islands": 12,
-   "stacked_faces": 6860,
+   "stretch_over_2pc_area": 0.9149,
+   "islands": 16,
+   "stacked_faces": 287,
    "groups": 1,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "u_range": [
     0.002,
-    0.9699
+    0.9734
    ],
    "v_range": [
-    0.6994,
+    0.6904,
     0.998
    ]
   }
@@ -67,14 +68,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 13.8,
-  "seams_on_smooth_m": 4.709,
+  "seams_m": 13.959,
+  "seams_on_smooth_m": 5.655,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
   "pass": true,
-  "texture_continuity": 0.9787,
-  "texture_continuous_m": 633.728
+  "texture_continuity": 0.9785,
+  "texture_continuous_m": 633.569
  },
  "hard_edges": {
   "source": "normals",
@@ -86,7 +87,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 12, \"stacked\": 4, \"past_u1\": 0}]",
+  "zruv_groups_uv": "[{\"family\": \"body\", \"square\": 0, \"tile_px\": 4096, \"islands\": 16, \"stacked\": 1, \"past_u1\": 0}]",
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M2",
@@ -118,8 +119,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 0.02,
- "score_s": 4.94,
+ "cook_s": 0.01,
+ "score_s": 5.28,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
@@ -128,7 +129,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 07:35",
+ "date": "20 October 2026 09:10",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,

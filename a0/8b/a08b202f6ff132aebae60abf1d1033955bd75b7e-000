@@ -22,35 +22,35 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9540777769639989,
-    "low_frac": 0.025465007958486212,
-    "high_frac": 0.020457215077515085,
-    "px_per_m_min": 358.074130976633,
-    "px_per_m_median": 1029.9330132462053,
-    "px_per_m_max": 1502.5535750239906,
-    "stretch_max": 0.9938302095128635,
+    "exact_frac": 0.9721196051397573,
+    "low_frac": 0.016818754122889797,
+    "high_frac": 0.01106164073735312,
+    "px_per_m_min": 381.65490598219543,
+    "px_per_m_median": 1030.8636713064993,
+    "px_per_m_max": 1493.8539327123042,
+    "stretch_max": 0.8946110719752314,
     "faces": 30418
    },
    "straight_area": 0.0,
    "straight_stretch_max": 0.0,
    "organic_artist": {
-    "islands": 12,
-    "passing": 12,
+    "islands": 16,
+    "passing": 16,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.0742,
-    "worst_island_p95": 0.2928,
+    "worst_island_p50": 0.08,
+    "worst_island_p95": 0.2171,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9367,
-   "islands": 12,
+   "stretch_over_2pc_area": 0.9149,
+   "islands": 16,
    "u_range": [
     0.0039,
-    0.9318
+    0.5722
    ],
    "v_range": [
     0.0039,
-    0.6011
+    0.4073
    ]
   }
  },
@@ -62,8 +62,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 13.8,
-  "seams_on_smooth_m": 4.709,
+  "seams_m": 13.959,
+  "seams_on_smooth_m": 5.655,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -81,7 +81,7 @@
  "layout": {
   "zruv_straight_uv": "{\"charts\": 1, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
   "zruv_sheet_m3": 2048,
-  "zruv_bands": "[{\"h\": 1223.148193359375, \"px\": 2048.0, \"top\": 0.0, \"v0\": 0.0, \"v1\": 1.0, \"kind\": \"plain\"}]"
+  "zruv_bands": "[{\"h\": 826.2122802734375, \"px\": 2048.0, \"top\": 0.0, \"v0\": 0.0, \"v1\": 1.0, \"kind\": \"plain\"}]"
  },
  "method": "M3",
  "title": "Trim sheet inverse (depuis la g\u00e9om\u00e9trie)",
@@ -111,8 +111,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 12.93,
- "score_s": 1.87,
+ "cook_s": 13.49,
+ "score_s": 1.86,
  "bake": null,
  "asset": "/obj/ZRUV_Assets/manny_fbx",
  "asset_scale": 0.01,
@@ -121,7 +121,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 07:36",
+ "date": "20 October 2026 09:10",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_fbx",
   "asset_scale": 0.01,
