@@ -3,33 +3,33 @@
 [Octane] HDK API: 22.0.368
 [Octane] Houdini host version: 22.0.368
 [Octane] Initializing Octane API
-[Octane] Octane API ready. Initialization time: 0.648 seconds
+[Octane] Octane API ready. Initialization time: 0.668 seconds
 [Octane] OCIO configuration ready. Initialization time: 0.007 seconds
 [Octane] Octane network rendering enabled. Initialization time: 0.000 seconds
 [Octane] WARNING: preferences file not found: /Users/zenray/Library/Preferences/houdini/22.0/octane.pref
-[Octane] 18:13:23 INFOR: [nodes] -------------  Registering Octane VOP nodes
-[Octane] 18:13:23 INFOR: [nodes] -------------  Octane VOP nodes registered
-[Octane] 18:13:23 INFOR: [nodes] -------------  Registering the plugin custom VOP nodes
-[Octane] 18:13:23 INFOR: [nodes] -------------  Plugin custom VOP nodes registered
+[Octane] 18:50:12 INFOR: [nodes] -------------  Registering Octane VOP nodes
+[Octane] 18:50:12 INFOR: [nodes] -------------  Octane VOP nodes registered
+[Octane] 18:50:12 INFOR: [nodes] -------------  Registering the plugin custom VOP nodes
+[Octane] 18:50:12 INFOR: [nodes] -------------  Plugin custom VOP nodes registered
 /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:178: RuntimeWarning: divide by zero encountered in matmul
   facing = (N @ d) > 0.05
 /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:178: RuntimeWarning: overflow encountered in matmul
   facing = (N @ d) > 0.05
 /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:178: RuntimeWarning: invalid value encountered in matmul
   facing = (N @ d) > 0.05
-/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:313: RuntimeWarning: divide by zero encountered in matmul
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:321: RuntimeWarning: divide by zero encountered in matmul
   cand = cand[(m.tf[cand] != f) & (ct[cand] == c) & ((nt[cand] @ m.normal[f]) < -0.3)]
-/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:313: RuntimeWarning: overflow encountered in matmul
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:321: RuntimeWarning: overflow encountered in matmul
   cand = cand[(m.tf[cand] != f) & (ct[cand] == c) & ((nt[cand] @ m.normal[f]) < -0.3)]
-/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:313: RuntimeWarning: invalid value encountered in matmul
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:321: RuntimeWarning: invalid value encountered in matmul
   cand = cand[(m.tf[cand] != f) & (ct[cand] == c) & ((nt[cand] @ m.normal[f]) < -0.3)]
-/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:324: RuntimeWarning: divide by zero encountered in matmul
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:332: RuntimeWarning: divide by zero encountered in matmul
   v = fa * (q @ d)
-/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:324: RuntimeWarning: overflow encountered in matmul
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:332: RuntimeWarning: overflow encountered in matmul
   v = fa * (q @ d)
-/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:324: RuntimeWarning: invalid value encountered in matmul
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvArtist.py:332: RuntimeWarning: invalid value encountered in matmul
   v = fa * (q @ d)
-{"result": {"M1": {"score": 0.999993, "weakest": "bake:coverage", "errors": null}}, "seconds": 17.2, "hip": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/bench/ZRUV_RubberToy.hiplc", "ctrl": {"m5_strip_families": "*", "m5_panels": "parting:x", "asset_area_m2": 1.0, "asset_scale": 1.0, "families": "*:rubber", "m4_materials": "rubber:concrete001_basecolor.png", "artist_pattern": "/Users/zenray/.claude/skills/zenray-houdini/templates/zenray-uv-patterns/ZRUV_RubberToy.pattern.json"}}
-[Octane] 18:13:43 INFOR: [render] ------------   - Cleaning the scene. Full clean state 1
-[Octane] 18:13:43 INFOR: [render] ------------   - Scene including 0 items cleaned. 0 items deleted. 0 remaing items.
-[Octane] 18:13:43 INFOR: [api] ---------------  Closing the Octane API
+{"result": {"M1": {"score": 0.999993, "weakest": "bake:coverage", "errors": null}}, "seconds": 19.4, "hip": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/bench/ZRUV_RubberToy.hiplc", "ctrl": {"m5_strip_families": "*", "m5_panels": "parting:x", "asset_area_m2": 1.0, "asset_scale": 1.0, "families": "*:rubber", "m4_materials": "rubber:concrete001_basecolor.png", "artist_pattern": "/Users/zenray/.claude/skills/zenray-houdini/templates/zenray-uv-patterns/ZRUV_RubberToy.pattern.json"}}
+[Octane] 18:50:34 INFOR: [render] ------------   - Cleaning the scene. Full clean state 1
+[Octane] 18:50:34 INFOR: [render] ------------   - Scene including 0 items cleaned. 0 items deleted. 0 remaing items.
+[Octane] 18:50:34 INFOR: [api] ---------------  Closing the Octane API

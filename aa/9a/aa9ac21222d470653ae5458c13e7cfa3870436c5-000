@@ -1,0 +1,4 @@
+ZRUV_ShaderBall 25 s "result": {"M1": {"score": 1.0, "weakest": "uv:present", "errors": null}}
+ZRUV_PigHead 61 s "result": {"M1": {"score": 1.0, "weakest": "uv:present", "errors": null}}
+ZRUV_Manny 98 s "result": {"M1": {"score": 0.999471, "weakest": "uv:smooth_border", "errors": null}}
+all done 18:34:39

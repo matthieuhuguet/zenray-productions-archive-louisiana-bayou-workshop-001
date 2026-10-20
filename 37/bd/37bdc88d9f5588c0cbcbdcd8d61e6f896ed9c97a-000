@@ -128,8 +128,8 @@
  "targets": {
   "uv": 2048.0
  },
- "cook_s": 32.07,
- "score_s": 48.91,
+ "cook_s": 34.4,
+ "score_s": 53.0,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_custom_t0_4096x4096.png",
@@ -139,15 +139,15 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Manny/M1/ZRUV_Manny_M1_alpha_t0_4096x4096.png"
   },
   "seconds": {
-   "custom_t0": 33.01,
+   "custom_t0": 37.0,
    "occlusion_t0": 0.26,
-   "curvature_t0": 0.25,
-   "edge_t0": 0.14,
+   "curvature_t0": 0.29,
+   "edge_t0": 0.13,
    "alpha_t0": 0.06,
-   "custom_t1": 8.43,
-   "occlusion_t1": 0.06,
-   "curvature_t1": 0.07,
-   "edge_t1": 0.04,
+   "custom_t1": 8.49,
+   "occlusion_t1": 0.07,
+   "curvature_t1": 0.08,
+   "edge_t1": 0.05,
    "alpha_t1": 0.02
   },
   "size": [
@@ -200,7 +200,7 @@
   "body"
  ],
  "crease_effective": 132.36300659179688,
- "date": "20 October 2026 18:16",
+ "date": "20 October 2026 18:52",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/manny_src",
   "asset_scale": 0.01,

@@ -1,0 +1,63 @@
+# 20 October 2026 : why the tailor's final symmetry pass is refused : the tailor replayed on a kept input, then the mirrored cut of each master side checked
+# chart by chart (disc, criterion, sprawl), with the failing charts' size and stretch. Usage : python -I DebugSymmetrize.py <keep.in.json>
+# FR : pourquoi la passe de symetrie du tailleur est refusee.
+import sys, os, json
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZruvTailor as T
+
+
+def main():
+    data = json.load(open(sys.argv[1]))
+    holder = {}
+    oi = T.Tailor.__init__
+
+    def keep(self, *a, **k):
+        oi(self, *a, **k)
+        holder['tl'] = self
+    T.Tailor.__init__ = keep
+    res = T.solve(data, procs=T.default_procs())
+    tl = holder['tl']
+    S = tl.S
+    print('report', {k: res['report'].get(k) for k in ('charts', 'moves', 'symmetrized', 'failing_charts')})
+    me = tl.mirror_e
+    ax, c = tl.mirror_axis, tl.mirror_c
+    tol = 0.3 * S.median_edge
+    x = S.P[S.E, ax] - c
+    pos = (x >= -tol).all(1) & (x > tol).any(1)
+    neg = (x <= tol).all(1) & (x < -tol).any(1)
+    inner = (S.EF1 >= 0) & tl.active[S.EF0] & tl.active[np.maximum(S.EF1, 0)]
+    mirrorable = me >= 0
+    faces = [int(f) for f in np.where(tl.active)[0]]
+    cutm = tl.cut & inner
+    print('cut inner edges', int(cutm.sum()), '| on the positive side', int((cutm & pos).sum()), 'negative', int((cutm & neg).sum()),
+          '| positive with a cut mirror', int((cutm & pos & mirrorable & cutm[np.maximum(me, 0)]).sum()))
+    for name, master, slave in (('positive', pos, neg), ('negative', neg, pos)):
+        cut2 = tl.cut.copy()
+        cut2[slave & inner & mirrorable & ~tl.must] = False
+        src = np.where(master & inner & tl.cut & mirrorable)[0]
+        cut2[me[src]] = True
+        parts = tl._split_faces(faces, cut2)
+        print(name, 'master : parts', len(parts), 'sizes', sorted((len(p) for p in parts), reverse=True)[:12])
+        bad = []
+        for fs in parts:
+            ad = tl.make_disc(fs, cut2)
+            if ad is None:
+                bad.append(('no disc', len(fs)))
+                continue
+            if ad:
+                ad = np.asarray(ad, dtype=np.int64)
+                cut2[ad] = True
+                mad = me[ad]
+                cut2[mad[mad >= 0]] = True
+        parts = tl._split_faces(faces, cut2)
+        for fs in parts:
+            ch = T.Chart(S, fs, cut2)
+            if not ch.ok or ch.fail > 1e-12 or ch.sprawl > 0:
+                q = T.quantiles(ch.s, ch.a) if ch.ok else (None, None)
+                bad.append(('fails', len(fs), 'ok', ch.ok, 'fail %.5f' % ch.fail, 'sprawl %.5f' % ch.sprawl, 'p50/p95', q))
+        print('   refused by', bad[:8] if bad else 'nothing : it would pass')
+
+
+if __name__ == '__main__':
+    main()

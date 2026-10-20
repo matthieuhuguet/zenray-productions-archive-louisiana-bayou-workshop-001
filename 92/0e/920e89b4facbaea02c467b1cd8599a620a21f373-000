@@ -119,8 +119,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.42,
- "score_s": 36.92,
+ "cook_s": 2.57,
+ "score_s": 40.9,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_4096x4096.png",
@@ -130,11 +130,11 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_4096x4096.png"
   },
   "seconds": {
-   "custom": 33.4,
-   "occlusion": 0.22,
+   "custom": 37.46,
+   "occlusion": 0.23,
    "curvature": 0.15,
    "edge": 0.11,
-   "alpha": 0.06
+   "alpha": 0.07
   },
   "size": [
    4096,
@@ -152,7 +152,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 18:13",
+ "date": "20 October 2026 18:50",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/arch_src",
   "asset_scale": 1.64,
