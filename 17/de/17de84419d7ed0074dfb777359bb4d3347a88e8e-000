@@ -1,0 +1,61 @@
+# 20 October 2026 : why an island is not a bake twin of the islands of its key group : corner match, rigid residual and neighbourhood, per candidate. EN only.
+# Usage in Houdini : NODE = '<sop>' ; ISL = <island id> ; exec(open(<this>).read()).
+import sys, math
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import importlib, ZruvLayout as L
+importlib.reload(L)
+m, isls = L.islands(hou.node(NODE).geometry(), 'uv')
+by = {d['id']: d for d in isls}
+d = by[ISL]
+grp = [e for e in isls if e['key'] == d['key'] and e['family'] == d['family'] and e['id'] != d['id']]
+C, Nn, P, UV = L.face_centres(m), m.normal, m.P, m.uv['uv']
+names = m.prim['name']
+pieces = {}
+for f in range(m.n):
+    pieces.setdefault(names[f], []).append(f)
+
+
+def corners(x, turn):
+    out = []
+    for f in x['faces']:
+        for k, pt in enumerate(m.polys[f]):
+            qu, qv = UV[f][k][0] - x['u0'], UV[f][k][1] - x['v0']
+            if turn:
+                qu, qv = x['w'] - qu, x['h'] - qv
+            out.append((qu, qv, pt, f))
+    return out
+
+
+rows = []
+for mst in grp:
+    eps = 1e-3 * max(math.hypot(mst['w'], mst['h']), 1e-9)
+    mc = corners(mst, False)
+    ptol = L.TWIN_TOL * float(np.ptp(C[pieces[mst['piece']]], 0).max())
+    for turn in (False, True):
+        A, B, unmatched = [], [], 0
+        for qu, qv, pt, f in corners(d, turn):
+            best = min(mc, key=lambda c: abs(c[0] - qu) + abs(c[1] - qv))
+            if abs(best[0] - qu) > eps or abs(best[1] - qv) > eps:
+                unmatched += 1
+                continue
+            A.append(P[pt]); B.append(P[best[2]])
+        r = {'master': mst['id'], 'mpiece': mst['piece'], 'turn': turn, 'unmatched': unmatched}
+        if A and not unmatched:
+            R, t, res = L._kabsch(np.array(A), np.array(B))
+            r['res'] = round(res, 5); r['ptol'] = round(ptol, 5); r['t'] = [round(x, 3) for x in t]; r['Rdiag'] = [round(R[i][i], 3) for i in range(3)]
+            if res <= ptol:
+                fh = L._FaceHash(C, Nn, pieces[mst['piece']], ptol)
+                nh = L._FaceHash(C, Nn, pieces[d['piece']], max(L.TWIN_CONTEXT_M, ptol))
+                ctx = set(d['faces'])
+                for f in d['faces']:
+                    ctx.update(nh.near(C[f], L.TWIN_CONTEXT_M))
+                miss = [g for g in ctx if fh.find(R @ C[g] + t, R @ Nn[g]) is None]
+                r['ctx'] = len(ctx); r['ctx_miss'] = len(miss)
+                if miss:
+                    g = miss[0]
+                    q = R @ C[g] + t
+                    near = min(pieces[mst['piece']], key=lambda h: np.linalg.norm(C[h] - q))
+                    r['miss0'] = {'face': g, 'dist': round(float(np.linalg.norm(C[near] - q)), 5), 'ndot': round(float(np.dot(Nn[near], R @ Nn[g])), 4)}
+        rows.append(r)
+result = {'island': ISL, 'piece': d['piece'], 'faces': len(d['faces']), 'w': d['w'], 'h': d['h'], 'group': [(e['id'], e['piece']) for e in grp], 'tests': rows}

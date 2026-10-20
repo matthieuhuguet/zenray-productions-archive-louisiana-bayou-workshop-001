@@ -1,0 +1,1993 @@
+# 20 October 2026 : ZenRay UV, the tailor : the fewest seams a senior artist would cut on an organic surface, placed where an artist places them.
+# EN: the reference is Epic's own uv on Manny (45 islands, 15.25 m of seams, half of the surface under 9.3 % of stretch) : an artist accepts a bounded distortion to
+# cut little, and cuts like a tailor cuts a garment : a loop at every narrowing (wrist, ankle, neck, the base of a finger, of an ear, of a fin), the opening seam of a
+# tube on its hidden side (the inside of a limb, the back, the underside), a dart only where the cloth would wrinkle. The method :
+#   1. every edge gets a seam cost : its length x how visible it is (openness, the native Ray SOP, and the view : the front of the asset costs most) x a discount in a
+#      concave crease (the minima rule of Hoffman and Richards 1984 : the eye reads a concave crease as the border of two parts, a seam there is hidden in it) ;
+#   2. the narrowings are found from the tips : from every extremity the geodesic disc grows and its border length is followed ; where it stops shrinking and the body
+#      widens (a local minimum, or a jump of the border length), the loop is a neck ; it is then pulled tight like a rubber band, the cheapest loop of the band around
+#      it (a minimum cut, Ford and Fulkerson 1956, on the faces : capacity = seam cost) ;
+#   3. every chart is made a disc by the cheapest hidden paths between its border loops (a minimum spanning tree of Dijkstra paths), flattened (LSCM, Levy et al.
+#      2002, then ARAP, Liu et al. 2008), measured ; while a chart is more distorted than the artist level (p95 and p50 of the stretch), the move that removes the most
+#      distortion per unit of seam cost is applied : a neck loop, or a dart from its border to its worst cone (OptCuts' order, Li et al. 2018 : the fewest seams under a
+#      distortion bound) ;
+#   4. the economy : every seam that is not required is removed again, the most visible first, when the charts it separated still pass merged ;
+#   5. symmetric meshes are cut symmetrically (the mirror of every move is applied with it).
+# Pure numpy and heapq (no scipy in Houdini). FR : le tailleur, le moins de coutures, la ou un artiste les met.
+import heapq
+import math
+import numpy as np
+
+# 20 October 2026 : the interface of the tailor (the CTRL_zruv parameters of the same names override these defaults)
+PARAMS = {
+    'p95': 0.35,            # a chart passes when 95 % of its area stretches less than this ; Epic's Manny, over all its islands : 0.378
+    'p50': 0.09,            # and half of its area less than this ; Epic's Manny : 0.093 (every chart at the artist's average : the whole asset under it)
+    'front': (0.0, 0.0, 1.0),   # the front of the asset (the view that matters most) ; Houdini : the front view looks down -z, the asset faces +z
+    'up': (0.0, 1.0, 0.0),
+    'back_weight': 0.25,    # the camera prior : the weight of the views from behind the asset, against 1 for the views from the front
+    'elev_min': -10.0,      # the camera prior : the views come from this elevation (degrees, 0 = eye level) ...
+    'elev_max': 45.0,       # ... to this one : an asset is looked at from the front, a little from above, almost never from below
+    'eps': 0.15,            # the floor of the visibility cost : a fully hidden seam still costs its length (no endless detour, no zigzag between hidden edges) ;
+                            # 20 October 2026, measured on Manny : 0.04 gave 14.3 m and limbs opened at the back, 0.15 with open_power 2 gave 13.3 m and inseams
+    'open_power': 2.0,      # the openness (share of the hemisphere that sees nothing) enters the visibility to this power : the inside of a limb, half hidden by the
+                            # body, costs a quarter of an open flank, so a limb opens on its inner side (an inseam) rather than on its back
+    'vis_power': 2.0,       # the visibility enters the seam cost squared : a seam on the face of an asset costs about 25 times a hidden one (an artist would rather
+                            # keep a little distortion than cut where the eye goes)
+    'min_gain': 0.03,       # a move must remove at least this share of the distortion excess of the charts it cuts (no dart for a crumb)
+    'concave_bonus': 0.4,   # a seam in a concave crease costs (1 - bonus) of its visibility
+    'concave_rad': 0.5,     # the dihedral (radians) at which the bonus is full
+    'symmetry': True,       # cut a mirror symmetric mesh symmetrically
+    'max_moves': 600,
+    'arap_iters': 15,
+    'warm_iters': 6,
+    'quick_iters': 4,       # ARAP iterations of the quick ranking of the candidate moves
+    'look_ahead': 2.0,      # a chart whose median stretch is over this many times p50 chooses its next cut by the cost to finish it (rollout), not by its first gain
+    'polish_iters': 30,
+    'darts_per_round': 3,
+    'turn_weight': 0.6,     # the smoothing of an applied path : a turn of 90 degrees costs this many local edge lengths (straight seams, along the edge loops)
+    'td': 1024.0,           # the texel density (px/m) : sets how many texels a chart spans
+    'small_px': 128.0,      # a chart narrower than this many texels gets a looser tolerance, x sqrt(small_px / its width) : the eye reads no distortion on a pebble
+    'tiny_px': 48.0,        # a chart narrower than this passes whatever its stretch, unless a triangle folds (a 2.4 cm pebble is 25 texels wide)
+    'gain_power': 1.0,      # the moves are ranked by gain^gain_power / seam cost : 1 = the most distortion per metre (cheap darts), 2 = an artist's patience (one
+                            # structural cut, a loop round the back of a ball, before many small darts)
+}
+
+
+# ---------------------------------------------------------------- topology
+class Surf:
+    """20 October 2026 : a welded polygon mesh for the tailor : edges, their faces, lengths, signed dihedrals, vertex normals, the visibility and the seam cost."""
+
+    def __init__(self, P, polys, face_open=None, prm=None):
+        self.prm = dict(PARAMS, **(prm or {}))
+        self.P = np.asarray(P, dtype=np.float64)
+        self.polys = [[int(x) for x in p] for p in polys]
+        self.nf = len(self.polys)
+        self.nv = len(self.P)
+        emap, ef, fe = {}, [], []
+        for f, p in enumerate(self.polys):
+            ids = []
+            k = len(p)
+            for j in range(k):
+                a, b = p[j], p[(j + 1) % k]
+                key = (a, b) if a < b else (b, a)
+                e = emap.get(key)
+                if e is None:
+                    e = len(ef)
+                    emap[key] = e
+                    ef.append([])
+                ef[e].append(f)
+                ids.append(e)
+            fe.append(ids)
+        self.emap, self.ef, self.fe = emap, ef, fe
+        self.ne = len(ef)
+        self.E = np.array(list(emap.keys()), dtype=np.int64).reshape(-1, 2)
+        self.EF0 = np.array([fl[0] for fl in ef], dtype=np.int64)
+        self.EF1 = np.array([fl[1] if len(fl) == 2 else -1 for fl in ef], dtype=np.int64)
+        self.EL = np.linalg.norm(self.P[self.E[:, 0]] - self.P[self.E[:, 1]], axis=1)
+        tf, tri = [], []
+        for f, p in enumerate(self.polys):
+            for j in range(1, len(p) - 1):
+                tf.append(f)
+                tri.append((p[0], p[j], p[j + 1]))
+        self.tf = np.array(tf, dtype=np.int64)
+        self.tri = np.array(tri, dtype=np.int64)
+        cr = np.cross(self.P[self.tri[:, 1]] - self.P[self.tri[:, 0]], self.P[self.tri[:, 2]] - self.P[self.tri[:, 0]])
+        self.tarea = 0.5 * np.linalg.norm(cr, axis=1)
+        self.FA = np.bincount(self.tf, self.tarea, minlength=self.nf)
+        fn = np.zeros((self.nf, 3))
+        np.add.at(fn, self.tf, -cr)          # 20 October 2026 : Houdini polygons turn clockwise seen from outside : the outward normal is minus the cross product
+        self.FN = fn / np.maximum(np.linalg.norm(fn, axis=1, keepdims=True), 1e-20)
+        self.FC = np.array([self.P[p].mean(0) for p in self.polys])
+        vn = np.zeros_like(self.P)
+        for f, p in enumerate(self.polys):
+            vn[p] += fn[f]
+        self.VN = vn / np.maximum(np.linalg.norm(vn, axis=1, keepdims=True), 1e-20)
+        self.dih = np.zeros(self.ne)
+        two = self.EF1 >= 0
+        f0, f1 = self.EF0[two], self.EF1[two]
+        cth = np.clip((self.FN[f0] * self.FN[f1]).sum(1), -1.0, 1.0)
+        th = np.arccos(cth)
+        convex = ((self.FC[f1] - self.FC[f0]) * self.FN[f0]).sum(1) < 0
+        self.dih[two] = np.where(convex, th, -th)                    # > 0 convex, < 0 concave
+        self.vadj = [[] for _ in range(self.nv)]
+        for e, (a, b) in enumerate(self.E):
+            self.vadj[a].append((int(b), e))
+            self.vadj[b].append((int(a), e))
+        self.vfaces = [[] for _ in range(self.nv)]
+        for f, p in enumerate(self.polys):
+            for v in p:
+                self.vfaces[v].append(f)
+        self.median_edge = float(np.median(self.EL)) if self.ne else 1.0
+        self._visibility(face_open)
+
+    def _visibility(self, face_open):
+        """The seam cost of every edge : length x (eps + visibility) x (1 - concave bonus). Visibility : openness (share of the hemisphere that sees nothing, 1 when
+        it is not given) x the view weight (1 facing the front, back_weight facing away)."""
+        pr = self.prm
+        if face_open is None:
+            vo = np.ones(self.nv)
+        else:
+            fo = np.asarray(face_open, dtype=np.float64)
+            acc = np.zeros(self.nv)
+            cnt = np.zeros(self.nv)
+            for f, p in enumerate(self.polys):
+                acc[p] += fo[f] * self.FA[f]
+                cnt[p] += self.FA[f]
+            vo = acc / np.maximum(cnt, 1e-30)
+        # 20 October 2026 : the view weight of a vertex is how much a typical camera sees its normal : directions around the asset (azimuth every 15 degrees,
+        # elevation elev_min to elev_max), the front ones weighing 1 and the back ones back_weight ; the weight is the mean of max(0, n . (toward the camera)) :
+        # the front facing a camera is seen most, a flank less, the underside almost never (the underside an asset stands on, under a chin, under an arm)
+        F = np.asarray(pr['front'], dtype=np.float64)
+        F /= max(np.linalg.norm(F), 1e-20)
+        U = np.asarray(pr['up'], dtype=np.float64)
+        U -= F * (U @ F)
+        U /= max(np.linalg.norm(U), 1e-20)
+        R_ = np.cross(U, F)
+        dirs, wts = [], []
+        for el in np.linspace(math.radians(pr['elev_min']), math.radians(pr['elev_max']), 5):
+            for az in np.radians(np.arange(0, 360, 15)):
+                d = math.cos(el) * (math.cos(az) * F + math.sin(az) * R_) + math.sin(el) * U
+                dirs.append(d)
+                wts.append(pr['back_weight'] + (1.0 - pr['back_weight']) * 0.5 * (1.0 + math.cos(az)))
+        D = np.array(dirs)
+        Wd = np.array(wts)
+        view = (np.maximum(0.0, self.VN @ D.T) * Wd).sum(1) / Wd.sum()
+        view /= max(float(view.max()), 1e-20)
+        self.vview = view
+        self.vvis = np.clip(vo, 0.0, 1.0) ** pr['open_power'] * view
+        ev = 0.5 * (self.vvis[self.E[:, 0]] + self.vvis[self.E[:, 1]])
+        conc = np.clip(-self.dih / max(pr['concave_rad'], 1e-6), 0.0, 1.0)
+        self.cost = self.EL * (pr['eps'] + ev ** pr['vis_power']) * (1.0 - pr['concave_bonus'] * conc)
+        self.search_cost = self.cost
+
+
+# ---------------------------------------------------------------- charts
+def labels(S, cut):
+    """Chart label of every face : faces joined across the edges that are not cut. Returns (labels array, number of charts)."""
+    lab = -np.ones(S.nf, dtype=np.int64)
+    nxt = 0
+    for f0 in range(S.nf):
+        if lab[f0] >= 0:
+            continue
+        lab[f0] = nxt
+        st = [f0]
+        while st:
+            f = st.pop()
+            for e in S.fe[f]:
+                if cut[e] or S.EF1[e] < 0:
+                    continue
+                g = S.EF0[e] if S.EF1[e] == f else S.EF1[e]
+                if lab[g] < 0:
+                    lab[g] = nxt
+                    st.append(g)
+        nxt += 1
+    return lab, nxt
+
+
+class Local:
+    """20 October 2026 : the cut mesh of one chart : its uv vertices are the corners joined around a point across the edges that are not cut (a slit keeps two
+    vertices), its triangles, its border loops and its Euler characteristic."""
+
+    def __init__(self, S, faces, cut):
+        self.faces = [int(f) for f in faces]
+        fset = set(self.faces)
+        cid = {}
+        for f in self.faces:
+            for j in range(len(S.polys[f])):
+                cid[(f, j)] = len(cid)
+        par = list(range(len(cid)))
+
+        def find(i):
+            while par[i] != i:
+                par[i] = par[par[i]]
+                i = par[i]
+            return i
+        for f in self.faces:
+            p = S.polys[f]
+            k = len(p)
+            for j in range(k):
+                e = S.fe[f][j]
+                if cut[e] or S.EF1[e] < 0:
+                    continue
+                g = int(S.EF0[e] if S.EF1[e] == f else S.EF1[e])
+                if g not in fset or g < f:
+                    continue
+                a, b = p[j], p[(j + 1) % k]
+                q = S.polys[g]
+                for x, jj in ((a, j), (b, (j + 1) % k)):
+                    ra, rb = find(cid[(f, jj)]), find(cid[(g, q.index(x))])
+                    if ra != rb:
+                        par[rb] = ra
+        root_id = {}
+        self.corner = {}
+        gv = []
+        for (f, j), i in cid.items():
+            r = find(i)
+            if r not in root_id:
+                root_id[r] = len(gv)
+                gv.append(S.polys[f][j])
+            self.corner[(f, j)] = root_id[r]
+        self.gv = np.array(gv, dtype=np.int64)               # global vertex of every local vertex
+        self.n = len(gv)
+        self.lpolys = [[self.corner[(f, j)] for j in range(len(S.polys[f]))] for f in self.faces]
+        tris, tface = [], []
+        for i, lp in enumerate(self.lpolys):
+            for j in range(1, len(lp) - 1):
+                tris.append((lp[0], lp[j], lp[j + 1]))
+                tface.append(i)
+        self.tris = np.array(tris, dtype=np.int64).reshape(-1, 3)
+        self.tface = np.array(tface, dtype=np.int64)
+        cnt = {}
+        for lp in self.lpolys:
+            for j in range(len(lp)):
+                a, b = lp[j], lp[(j + 1) % len(lp)]
+                k2 = (a, b) if a < b else (b, a)
+                cnt[k2] = cnt.get(k2, 0) + 1
+        self.n_edges = len(cnt)
+        self.chi = self.n - self.n_edges + len(self.faces)
+        bnd = [k2 for k2, c in cnt.items() if c == 1]
+        nb = {}
+        for a, b in bnd:
+            nb.setdefault(a, []).append(b)
+            nb.setdefault(b, []).append(a)
+        self.loops = []
+        seen = set()
+        for a0 in nb:
+            if a0 in seen:
+                continue
+            loop = [a0]
+            seen.add(a0)
+            prev, cur = None, a0
+            while True:
+                nx = [w for w in nb[cur] if w != prev and (w not in seen or (w == a0 and len(loop) > 2))]
+                if not nx:
+                    break
+                w = nx[0]
+                if w == a0:
+                    break
+                loop.append(w)
+                seen.add(w)
+                prev, cur = cur, w
+            self.loops.append(loop)
+        self.bad_border = any(len(v) != 2 for v in nb.values())      # a border vertex touched by more than two border edges : a pinch
+
+    def is_disc(self):
+        return self.chi == 1 and len(self.loops) == 1 and not self.bad_border
+
+
+# ---------------------------------------------------------------- flattening
+def _frames(X3, tris):
+    a, b, c = X3[tris[:, 0]], X3[tris[:, 1]], X3[tris[:, 2]]
+    e1 = b - a
+    l1 = np.linalg.norm(e1, axis=1)
+    x = e1 / np.maximum(l1, 1e-20)[:, None]
+    e2 = c - a
+    cx = (e2 * x).sum(1)
+    cy = np.linalg.norm(e2 - cx[:, None] * x, axis=1)
+    F = np.zeros((len(tris), 3, 2))
+    F[:, 1, 0] = l1
+    F[:, 2, 0] = cx
+    F[:, 2, 1] = cy
+    return F
+
+
+def lscm(X3, tris, iters=4000):
+    """20 October 2026 : least squares conformal map (Levy, Petitjean, Ray, Maillot 2002) of a disc, two far border vertices pinned at their 3D distance, solved by
+    a Jacobi preconditioned conjugate gradient on the normal equations (pure numpy). Returns (n, 2) uv in metres (scale not yet normalised)."""
+    n = len(X3)
+    F = _frames(X3, tris)
+    A = 0.5 * np.abs(F[:, 1, 0] * F[:, 2, 1])
+    ok = A > 1e-24
+    gx = np.zeros((len(tris), 3))
+    gy = np.zeros((len(tris), 3))
+    for a in range(3):
+        b, c = (a + 1) % 3, (a + 2) % 3
+        d = F[:, c] - F[:, b]
+        gx[:, a] = -d[:, 1] / np.maximum(2 * A, 1e-30)
+        gy[:, a] = d[:, 0] / np.maximum(2 * A, 1e-30)
+    w = np.sqrt(np.where(ok, A, 0.0))
+    gx *= w[:, None]
+    gy *= w[:, None]
+    # two pins : the farthest pair found from vertex 0 twice
+    d0 = np.linalg.norm(X3 - X3[tris[0, 0]], axis=1)
+    p0 = int(np.argmax(d0))
+    p1 = int(np.argmax(np.linalg.norm(X3 - X3[p0], axis=1)))
+    L01 = float(np.linalg.norm(X3[p1] - X3[p0]))
+    pins = np.array([p0, p1])
+    zu = np.zeros(n)
+    zv = np.zeros(n)
+    zu[p1] = L01
+    free = np.ones(n, dtype=bool)
+    free[pins] = False
+    T = tris
+
+    def Mz(u, v):
+        r1 = (-gy * u[T] - gx * v[T]).sum(1)
+        r2 = (gx * u[T] - gy * v[T]).sum(1)
+        return r1, r2
+
+    def MTr(r1, r2):
+        cu = -gy * r1[:, None] + gx * r2[:, None]
+        cv = -gx * r1[:, None] - gy * r2[:, None]
+        return np.bincount(T.ravel(), cu.ravel(), minlength=n), np.bincount(T.ravel(), cv.ravel(), minlength=n)
+
+    def N(u, v):
+        return MTr(*Mz(u, v))
+    du = np.bincount(T.ravel(), (gx * gx + gy * gy).ravel(), minlength=n)
+    dg = np.maximum(du, 1e-30)
+    bu, bv = N(zu * (~free), zv * (~free))
+    bu, bv = -bu, -bv
+    bu[~free] = 0.0
+    bv[~free] = 0.0
+    xu, xv = np.zeros(n), np.zeros(n)
+    ru, rv = bu.copy(), bv.copy()
+    zu_, zv_ = ru / dg, rv / dg
+    zu_[~free] = 0.0
+    zv_[~free] = 0.0
+    pu, pv = zu_.copy(), zv_.copy()
+    rz = (ru * zu_).sum() + (rv * zv_).sum()
+    nb = math.sqrt((bu * bu).sum() + (bv * bv).sum()) + 1e-30
+    for _k in range(iters):
+        Au, Av = N(pu, pv)
+        Au[~free] = 0.0
+        Av[~free] = 0.0
+        al = rz / max((pu * Au).sum() + (pv * Av).sum(), 1e-300)
+        xu += al * pu
+        xv += al * pv
+        ru -= al * Au
+        rv -= al * Av
+        if math.sqrt((ru * ru).sum() + (rv * rv).sum()) < 1e-7 * nb:
+            break
+        zu_, zv_ = ru / dg, rv / dg
+        zu_[~free] = 0.0
+        zv_[~free] = 0.0
+        rz2 = (ru * zu_).sum() + (rv * zv_).sum()
+        be = rz2 / max(rz, 1e-300)
+        pu = zu_ + be * pu
+        pv = zv_ + be * pv
+        rz = rz2
+    xu[~free] = zu[~free]
+    xv[~free] = zv[~free]
+    # 20 October 2026 : the frames turn the triangles counter clockwise ; Houdini uv turn clockwise seen from outside (an unmirrored texture) : u is flipped
+    return np.stack([-xu, xv], 1)
+
+
+def measure(X3, tris, uv, amin=0.0):
+    """Per triangle (stretch, area) after the chart is scaled to its true area (the density of the island is the target ; only its inner distortion is measured).
+    The stretch is max(|s1 - 1|, |s2 - 1|) of the principal stretches ; a folded triangle counts 1."""
+    import ZruvOrganic as O
+    r, s, a3 = O.distortion(X3, tris, uv, amin)
+    sc = math.sqrt(a3.sum() / max(float((r ** 2 * a3).sum()), 1e-30))
+    r, s, a3 = O.distortion(X3, tris, uv * sc, amin)
+    return s, a3, sc
+
+
+def chart_scale(X3, prm):
+    """20 October 2026 : the tolerance factor of a chart : 1, or sqrt(small_px / its width in texels) when it is smaller (a 2.4 cm pebble at 1024 px/m spans 25
+    texels : x 2.3) ; a chart under tiny_px texels gets an unbounded factor (only a fold fails it)."""
+    ext = float(np.linalg.norm(X3.max(0) - X3.min(0))) * prm['td'] if len(X3) else 0.0
+    if ext < prm.get('tiny_px', 0.0):
+        return 1e6
+    return max(1.0, math.sqrt(prm['small_px'] / max(ext, 1e-9)))
+
+
+def fail_value(s, a, prm, k=1.0):
+    """The artist criterion of one chart, in square metres : the area beyond the p95 threshold above 5 %, plus the area beyond the p50 threshold above 50 % (both
+    thresholds times k, the small chart factor). 0 = passes. A folded triangle (stretch 1 from measure) fails a tiny chart too."""
+    A = float(a.sum())
+    if A <= 0:
+        return 0.0
+    if k >= 1e5:
+        return float(a[s >= 0.999].sum())
+    f95 = float(a[s > prm['p95'] * k].sum()) / A
+    f50 = float(a[s > prm['p50'] * k].sum()) / A
+    return A * (max(0.0, f95 - 0.05) + max(0.0, f50 - 0.5))
+
+
+def excess(s, a, prm, k=1.0):
+    """20 October 2026 : the continuous measure the moves are ranked by : the area weighted stretch above the p50 threshold (it falls with every improvement, where
+    the pass criterion only counts the area that crosses a threshold) ; on a tiny chart, the folded area (the only thing it can fail on), plus a thousandth of its
+    stretch to rank two cuts without a fold."""
+    if k >= 1e5:
+        return float(a[s >= 0.999].sum()) + 1e-3 * float((a * s).sum())
+    return float((a * np.maximum(0.0, s - prm['p50'] * k)).sum())
+
+
+def quantiles(s, a, qs=(0.5, 0.95)):
+    o = np.argsort(s)
+    cw = np.cumsum(a[o]) / max(a.sum(), 1e-30)
+    return [float(s[o][min(len(o) - 1, int(np.searchsorted(cw, q)))]) for q in qs]
+
+
+class Chart:
+    """20 October 2026 : one chart of the tailor : its faces, cut mesh, uv (metres, true area), per triangle stretch and the artist failure value."""
+
+    def __init__(self, S, faces, cut, warm=None, iters=None):
+        self.S = S
+        self.loc = Local(S, faces, cut)
+        self.uv = None
+        self.fail = float('inf')
+        self.excess = float('inf')
+        self.ok = False
+        if not self.loc.is_disc() or len(self.loc.tris) == 0:
+            return
+        X3 = S.P[self.loc.gv]
+        T = self.loc.tris
+        prm = S.prm
+        import ZruvOrganic as O
+        uv0 = None
+        if warm is not None:
+            uv0 = np.zeros((self.loc.n, 2))
+            seen = np.zeros(self.loc.n, dtype=bool)
+            for (f, j), lv in self.loc.corner.items():
+                q = warm.get((f, j))
+                if q is not None and not seen[lv]:
+                    uv0[lv] = q
+                    seen[lv] = True
+            if not seen.all():
+                uv0 = None
+        if uv0 is None:
+            uv0 = lscm(X3, T)
+            its = prm['arap_iters'] if iters is None else iters
+        else:
+            its = prm['warm_iters'] if iters is None else iters
+        s0, a0, sc = measure(X3, T, uv0)
+        uv0 = uv0 * sc
+        C = uv0[T]
+        sg = (C[:, 1, 0] - C[:, 0, 0]) * (C[:, 2, 1] - C[:, 0, 1]) - (C[:, 2, 0] - C[:, 0, 0]) * (C[:, 1, 1] - C[:, 0, 1])
+        if min(int((sg > 0).sum()), int((sg < 0).sum())) > 0 and its > 0:
+            tu = O.tutte(X3, T)
+            if tu is not None:
+                if sg.sum() < 0:
+                    tu[:, 0] *= -1.0
+                s1, a1, sc1 = measure(X3, T, tu)
+                uv0 = tu * sc1
+                its = max(its, 30)
+        uv = O.arap(X3, T, uv0, iters=its, tol=prm['p95'], bd_iters=0) if its > 0 else uv0
+        s, a, sc = measure(X3, T, uv)
+        self.uv = uv * sc
+        self.s, self.a = s, a
+        self.k = chart_scale(X3, prm)
+        self.fail = fail_value(s, a, prm, self.k)
+        self.excess = excess(s, a, prm, self.k)
+        self.ok = True
+
+    def corner_uv(self):
+        return {c: tuple(self.uv[lv]) for c, lv in self.loc.corner.items()}
+
+    def polish(self, iters):
+        import ZruvOrganic as O
+        X3 = self.S.P[self.loc.gv]
+        T = self.loc.tris
+        uv = O.arap(X3, T, self.uv, iters=2, tol=self.S.prm['p95'] * 0.9, bd_iters=iters)
+        s, a, sc = measure(X3, T, uv)
+        f = fail_value(s, a, self.S.prm, self.k)
+        q = quantiles(s, a)
+        q0 = quantiles(self.s, self.a)
+        if f < self.fail - 1e-15 or (f <= self.fail + 1e-15 and q[1] < q0[1]):
+            self.uv, self.s, self.a, self.fail = uv * sc, s, a, f
+            self.excess = excess(s, a, self.S.prm, self.k)
+
+
+# ---------------------------------------------------------------- paths
+def _inside_edges(S, lab, k, cut):
+    return (~cut) & (S.EF1 >= 0) & (lab[S.EF0] == k) & (lab[np.maximum(S.EF1, 0)] == k)
+
+
+def _on_cut(S, lab, k, cut):
+    """Vertices of chart k touching a cut edge or a border edge of the chart (they may end a new cut, never be crossed by it)."""
+    on = np.zeros(S.nv, dtype=bool)
+    sel = (lab[S.EF0] == k) | ((S.EF1 >= 0) & (lab[np.maximum(S.EF1, 0)] == k))
+    border = sel & (cut | (S.EF1 < 0) | (lab[S.EF0] != lab[np.maximum(S.EF1, 0)]))
+    on[S.E[border, 0]] = True
+    on[S.E[border, 1]] = True
+    return on
+
+
+def dijkstra(S, allowed, w, sources, targets=None, blocked=None):
+    """Multi source Dijkstra on the vertices over the allowed edges, edge weight w. sources : {vertex: start cost}. blocked vertices are never crossed (they can
+    still be reached). Stops when every target is settled. Returns (dist dict, pred dict vertex -> (prev vertex, edge))."""
+    dist = dict(sources)
+    pred = {}
+    hp = [(c, v) for v, c in sources.items()]
+    heapq.heapify(hp)
+    done = set()
+    left = set(targets) if targets is not None else None
+    while hp:
+        c, v = heapq.heappop(hp)
+        if v in done:
+            continue
+        done.add(v)
+        if left is not None:
+            left.discard(v)
+            if not left:
+                break
+        if blocked is not None and blocked[v] and v not in sources:
+            continue
+        for u, e in S.vadj[v]:
+            if not allowed[e]:
+                continue
+            nc = c + w[e]
+            if nc < dist.get(u, float('inf')):
+                dist[u] = nc
+                pred[u] = (v, e)
+                heapq.heappush(hp, (nc, u))
+    return dist, pred
+
+
+def _trace(pred, v):
+    edges, verts = [], [v]
+    while v in pred:
+        v, e = pred[v]
+        edges.append(e)
+        verts.append(v)
+    return edges[::-1], verts[::-1]
+
+
+def smooth_path(S, allowed, src, dst, blocked=None, corridor=None):
+    """20 October 2026 : the straightest cheap path from the vertex set src to the vertex set dst : Dijkstra on directed edges, a turn costs turn_weight x the local edge
+    length x (turn angle / 90 degrees)^2, the turn measured in the tangent plane (geodesic curvature : going round a limb along its loop is straight). Along a quad
+    mesh it follows the edge loops ; on triangles it keeps the line. corridor : the allowed vertices (None = all). Returns the edge list or None."""
+    tw = S.prm['turn_weight']
+    src, dst = set(src), set(dst)
+    hp, best = [], {}
+    for v in src:
+        for u, e in S.vadj[v]:
+            if not allowed[e] or (corridor is not None and u not in corridor):
+                continue
+            c = S.search_cost[e]
+            key = (u, e)
+            if c < best.get(key, float('inf')):
+                best[key] = c
+                heapq.heappush(hp, (c, u, e, v, -1))
+    back = {}
+    while hp:
+        c, v, e, frm, pe = heapq.heappop(hp)
+        key = (v, e)
+        if key in back:
+            continue
+        back[key] = (frm, pe)
+        if v in dst:
+            out = [e]
+            k2 = (frm, pe)
+            while k2[1] != -1:
+                out.append(k2[1])
+                k2 = back[k2]
+            return out[::-1]
+        if blocked is not None and blocked[v]:
+            continue
+        nv = S.VN[v]
+        d_in = S.P[v] - S.P[frm]
+        d_in = d_in - nv * (d_in @ nv)
+        ni = np.linalg.norm(d_in)
+        for u, e2 in S.vadj[v]:
+            if e2 == e or not allowed[e2] or (corridor is not None and u not in corridor):
+                continue
+            d_out = S.P[u] - S.P[v]
+            d_out = d_out - nv * (d_out @ nv)
+            no = np.linalg.norm(d_out)
+            ang = 0.0
+            if ni > 1e-20 and no > 1e-20:
+                ang = math.acos(max(-1.0, min(1.0, float(d_in @ d_out) / (ni * no))))
+            nc = c + S.search_cost[e2] + tw * S.median_edge * (S.search_cost[e2] / max(S.EL[e2], 1e-20)) * (ang / (0.5 * math.pi)) ** 2
+            k3 = (u, e2)
+            if nc < best.get(k3, float('inf')):
+                best[k3] = nc
+                heapq.heappush(hp, (nc, u, e2, v, e))
+    return None
+
+
+# ---------------------------------------------------------------- necks
+def _geodesic(S, allowed, src):
+    d, _ = dijkstra(S, allowed, S.EL, {src: 0.0})
+    return d
+
+
+def _fps(S, allowed, verts, count):
+    """Farthest point samples (geodesic) of a chart, the first one the vertex farthest from the chart's centroid."""
+    vs = list(verts)
+    if not vs:
+        return []
+    c = S.P[vs].mean(0)
+    first = vs[int(np.argmax(np.linalg.norm(S.P[vs] - c, axis=1)))]
+    out = [first]
+    dmin, _ = dijkstra(S, allowed, S.EL, {first: 0.0})
+    for _ in range(count - 1):
+        far = max(vs, key=lambda v: dmin.get(v, -1.0))
+        if dmin.get(far, 0.0) <= 0:
+            break
+        out.append(far)
+        dn, _ = dijkstra(S, allowed, S.EL, {far: 0.0})
+        for v, x in dn.items():
+            if x < dmin.get(v, float('inf')):
+                dmin[v] = x
+    return out
+
+
+def _profile(S, faces, allowed, g):
+    """The border length of the growing geodesic disc (faces taken in the order of their farthest vertex). Returns (t, front length, cap area) arrays per face added
+    and the order."""
+    gf = np.array([max(g.get(v, float('inf')) for v in S.polys[f]) for f in faces])
+    # 20 October 2026 : a face the disc never reaches (behind a slit) is left out of the profile, it does not void it
+    order = np.argsort(gf)
+    order = order[np.isfinite(gf[order])]
+    inreg = {}
+    front = 0.0
+    area = 0.0
+    T, L, A = [], [], []
+    for i in order:
+        f = faces[i]
+        inreg[f] = True
+        for e in S.fe[f]:
+            if not allowed[e]:
+                continue
+            o = int(S.EF0[e] if S.EF1[e] == f else S.EF1[e])
+            front += -S.EL[e] if inreg.get(o) else S.EL[e]
+        area += S.FA[f]
+        T.append(gf[i])
+        L.append(front)
+        A.append(area)
+    return np.array(T), np.array(L), np.array(A), order, gf
+
+
+def _maxflow_cut(nodes_n, arcs, s, t):
+    """Dinic max flow on an undirected capacity graph (arcs : list of (u, v, capacity)). Returns the set of nodes reachable from s in the residual graph."""
+    adj = [[] for _ in range(nodes_n)]
+    to, cap = [], []
+    for u, v, c in arcs:
+        adj[u].append(len(to)); to.append(v); cap.append(c)
+        adj[v].append(len(to)); to.append(u); cap.append(c)
+    from collections import deque
+    eps = 1e-15
+    while True:
+        level = [-1] * nodes_n
+        level[s] = 0
+        dq = deque([s])
+        while dq:
+            u = dq.popleft()
+            for a in adj[u]:
+                if cap[a] > eps and level[to[a]] < 0:
+                    level[to[a]] = level[u] + 1
+                    dq.append(to[a])
+        if level[t] < 0:
+            break
+        it = [0] * nodes_n
+
+        def dfs(u, f):
+            if u == t:
+                return f
+            while it[u] < len(adj[u]):
+                a = adj[u][it[u]]
+                v = to[a]
+                if cap[a] > eps and level[v] == level[u] + 1:
+                    d = dfs(v, min(f, cap[a]))
+                    if d > eps:
+                        cap[a] -= d
+                        cap[a ^ 1] += d
+                        return d
+                it[u] += 1
+            return 0.0
+        import sys
+        lim = sys.getrecursionlimit()
+        sys.setrecursionlimit(max(lim, nodes_n + 1000))
+        while True:
+            f = dfs(s, float('inf'))
+            if f <= eps:
+                break
+        sys.setrecursionlimit(lim)
+    seen = [False] * nodes_n
+    seen[s] = True
+    dq = deque([s])
+    while dq:
+        u = dq.popleft()
+        for a in adj[u]:
+            if cap[a] > eps and not seen[to[a]]:
+                seen[to[a]] = True
+                dq.append(to[a])
+    return seen
+
+
+def band_loop(S, faces, allowed, gf_of, t0, t1):
+    """The cheapest loop separating the faces under t0 from the faces over t1 (a minimum cut on the faces of the band, capacity = seam cost). Returns (cut edges, cap
+    faces) or None when the cut is not one closed loop."""
+    node = {}
+    S_, T_ = 0, 1
+    nn = 2
+    for f in faces:
+        g = gf_of[f]
+        if g < t0:
+            node[f] = S_
+        elif g > t1:
+            node[f] = T_
+        else:
+            node[f] = nn
+            nn += 1
+    arcs = []
+    seen_e = set()
+    for f in faces:
+        for e in S.fe[f]:
+            if not allowed[e] or e in seen_e:
+                continue
+            seen_e.add(e)
+            a, b = node[int(S.EF0[e])], node[int(S.EF1[e])]
+            if a == b:
+                continue
+            arcs.append((a, b, float(S.cost[e])))
+    if not any(node[f] == S_ for f in faces) or not any(node[f] == T_ for f in faces):
+        return None
+    reach = _maxflow_cut(nn, arcs, S_, T_)
+    cap = [f for f in faces if reach[node[f]]]
+    capset = set(cap)
+    cut_edges = [e for e in seen_e if (int(S.EF0[e]) in capset) != (int(S.EF1[e]) in capset)]
+    if not cut_edges:
+        return None
+    deg = {}
+    for e in cut_edges:
+        for v in S.E[e]:
+            deg[int(v)] = deg.get(int(v), 0) + 1
+    if any(d != 2 for d in deg.values()):
+        return None
+    # one loop only
+    nb = {}
+    for e in cut_edges:
+        a, b = int(S.E[e, 0]), int(S.E[e, 1])
+        nb.setdefault(a, []).append(b)
+        nb.setdefault(b, []).append(a)
+    start = next(iter(nb))
+    st, vis = [start], {start}
+    while st:
+        u = st.pop()
+        for w in nb[u]:
+            if w not in vis:
+                vis.add(w)
+                st.append(w)
+    if len(vis) != len(nb):
+        return None
+    return cut_edges, cap
+
+
+def band_split(S, faces, allowed, val, t0, t1, oncut):
+    """20 October 2026 : the cheapest cut separating the faces whose value is under t0 from those over t1 (a minimum cut on the faces of the band) : a closed loop, or a
+    single path whose two ends lie on the chart's border (a disc cut in two panels). Returns the cut edges or None."""
+    node = {}
+    nn = 2
+    for f in faces:
+        g = val[f]
+        if g < t0:
+            node[f] = 0
+        elif g > t1:
+            node[f] = 1
+        else:
+            node[f] = nn
+            nn += 1
+    if not any(v == 0 for v in node.values()) or not any(v == 1 for v in node.values()):
+        return None
+    arcs, seen_e = [], set()
+    for f in faces:
+        for e in S.fe[f]:
+            if not allowed[e] or e in seen_e:
+                continue
+            seen_e.add(e)
+            a, b = node[int(S.EF0[e])], node[int(S.EF1[e])]
+            if a != b:
+                arcs.append((a, b, float(S.cost[e])))
+    reach = _maxflow_cut(nn, arcs, 0, 1)
+    side = {f for f in faces if reach[node[f]]}
+    ce = [e for e in seen_e if (int(S.EF0[e]) in side) != (int(S.EF1[e]) in side)]
+    if not ce:
+        return None
+    deg = {}
+    for e in ce:
+        for v in S.E[e]:
+            deg[int(v)] = deg.get(int(v), 0) + 1
+    for v, d in deg.items():
+        if d == 2:
+            continue
+        if d == 1 and oncut[v]:
+            continue
+        return None
+    ends = [v for v, d in deg.items() if d == 1]
+    if len(ends) not in (0, 2):
+        return None
+    return ce
+
+
+def neck_candidates(S, lab, k, cut, nsamp=24):
+    """20 October 2026 : the narrowings of chart k. From every farthest point sample the geodesic disc grows ; its border length L(t) is followed : a neck is where L
+    reaches a local minimum and the body widens after it by 25 %, or where L, flat along a tube, jumps by 40 % within one radius (the base of a finger, the armpit).
+    Each neck is then pulled tight as the cheapest loop of its band (band_loop). Returns [(cut edges, cap faces, cost, length)] without duplicates."""
+    faces = [int(f) for f in np.where(lab == k)[0]]
+    if len(faces) < 8:
+        return []
+    allowed = _inside_edges(S, lab, k, cut)
+    verts = sorted({v for f in faces for v in S.polys[f]})
+    area = float(S.FA[faces].sum())
+    samples = _fps(S, allowed, verts, nsamp)
+    out = []
+    for smp in samples:
+        g = _geodesic(S, allowed, smp)
+        T, L, A, order, gf = _profile(S, faces, allowed, g)
+        if len(T) < 8:
+            continue
+        h = max(S.median_edge, (T[-1] - T[0]) / 400.0)
+        grid = np.arange(T[0], T[-1], h)
+        if len(grid) < 6:
+            continue
+        idx = np.searchsorted(T, grid, side='right') - 1
+        Lg = L[np.clip(idx, 0, len(L) - 1)]
+        Ag = A[np.clip(idx, 0, len(A) - 1)]
+        ker = np.ones(3) / 3.0
+        Ls = np.convolve(Lg, ker, mode='same')
+        gf_of = {f: gf[i] for i, f in enumerate(faces)}
+        found = []
+        for i in range(2, len(grid) - 2):
+            Li = Ls[i]
+            if Li <= 0:
+                continue
+            rho = Li / (2 * math.pi)
+            if grid[i] - grid[0] < 1.0 * rho or Ag[i] < 0.002 * area or Ag[i] > 0.6 * area:
+                continue
+            wi = max(1, int(round(rho / h)))
+            lo_, hi_ = max(0, i - wi), min(len(grid), i + wi + 1)
+            after = Ls[i:min(len(grid), i + 2 * wi + 1)]
+            before = Ls[max(0, i - 2 * wi):i + 1]
+            is_min = Li <= Ls[lo_:hi_].min() + 1e-12 and after.max() >= 1.25 * Li
+            is_knee = after.max() >= 1.4 * Li and (before.max() - before.min()) <= 0.25 * Li and after[:max(2, wi)].max() >= 1.2 * Li
+            if is_min or is_knee:
+                found.append((grid[i], rho))
+        # one candidate per narrowing of this sample : keep the first of a run
+        last = -1e9
+        for t, rho in found:
+            if t - last < 2 * rho:
+                continue
+            last = t
+            b = max(1.0 * rho, 2 * S.median_edge)
+            res = band_loop(S, faces, allowed, gf_of, t - b, t + b)
+            if res is None:
+                continue
+            ce, cap = res
+            out.append((ce, cap, float(S.cost[ce].sum()), float(S.EL[ce].sum())))
+    # duplicates : the same cap (Jaccard over 0.8) keeps the cheaper loop
+    out.sort(key=lambda x: x[2])
+    kept = []
+    for c in out:
+        cs = set(c[1])
+        dup = False
+        for d in kept:
+            ds = d[4]
+            inter = len(cs & ds)
+            if inter / max(1, len(cs | ds)) > 0.8:
+                dup = True
+                break
+        if not dup:
+            kept.append(c + (cs,))
+    return [c[:4] for c in kept]
+
+
+# ---------------------------------------------------------------- symmetry
+def mirror_map(S, tol_edges=0.3, share=0.9):
+    """20 October 2026 : the mirror symmetry of the mesh, tried on the three axis planes through the centre of its box : every vertex reflected, its nearest vertex
+    found on a hash grid ; the plane is kept when share of the vertices land within tol_edges x the median edge. Returns (vertex map array, edge map array, axis) or
+    (None, None, None)."""
+    P = S.P
+    c = 0.5 * (P.min(0) + P.max(0))
+    tol = tol_edges * S.median_edge
+    cell = max(tol, 1e-9)
+    keys = np.floor(P / cell).astype(np.int64)
+    grid = {}
+    for i, k in enumerate(map(tuple, keys)):
+        grid.setdefault(k, []).append(i)
+    best = (0.0, None, None)
+    for ax in range(3):
+        Q = P.copy()
+        Q[:, ax] = 2 * c[ax] - Q[:, ax]
+        qk = np.floor(Q / cell).astype(np.int64)
+        mp = -np.ones(len(P), dtype=np.int64)
+        for i in range(len(P)):
+            kx, ky, kz = qk[i]
+            bd, bj = tol, -1
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    for dz in (-1, 0, 1):
+                        for j in grid.get((kx + dx, ky + dy, kz + dz), ()):
+                            d = float(np.linalg.norm(P[j] - Q[i]))
+                            if d <= bd:
+                                bd, bj = d, j
+            mp[i] = bj
+        sh = float((mp >= 0).mean())
+        if sh > best[0]:
+            best = (sh, mp, ax)
+    if best[0] < share:
+        return None, None, None
+    mp = best[1]
+    em = -np.ones(S.ne, dtype=np.int64)
+    for e, (a, b) in enumerate(S.E):
+        ma, mb = mp[a], mp[b]
+        if ma >= 0 and mb >= 0:
+            k2 = (ma, mb) if ma < mb else (mb, ma)
+            em[e] = S.emap.get((int(k2[0]), int(k2[1])), -1)
+    return mp, em, best[2]
+
+
+# ---------------------------------------------------------------- the tailor
+class Tailor:
+    """20 October 2026 : the state of the cutting : the cut edges, the chart labels, the charts (flattened), the pieces of seam with the move that made each one."""
+
+    def __init__(self, S, must_cut=None, faces=None, log=None):
+        self.S = S
+        self.prm = S.prm
+        self.log = log or (lambda *a: None)
+        self.cut = np.zeros(S.ne, dtype=bool)
+        self.cut[S.EF1 < 0] = True
+        self.must = np.zeros(S.ne, dtype=bool)
+        if must_cut is not None:
+            self.must[np.asarray(list(must_cut), dtype=np.int64)] = True
+        self.must |= S.EF1 < 0
+        self.cut |= self.must
+        self.active = np.ones(S.nf, dtype=bool) if faces is None else np.zeros(S.nf, dtype=bool)
+        if faces is not None:
+            self.active[np.asarray(list(faces), dtype=np.int64)] = True
+            # the border with the faces the tailor does not cut is a seam already
+            b = (S.EF1 >= 0) & (self.active[S.EF0] != self.active[np.maximum(S.EF1, 0)])
+            self.cut |= b
+            self.must |= b
+        self.pieces = []          # [{'kind', 'edges' (np array), 'cost', 'length'}]
+        self._neck_cache = {}
+        self.stats = {'moves': {}, 'rejected': 0}
+        self.mirror_v, self.mirror_e, self.mirror_axis = (None, None, None)
+        if self.prm.get('symmetry'):
+            self.mirror_v, self.mirror_e, self.mirror_axis = mirror_map(S)
+        if self.mirror_e is not None:
+            # 20 October 2026 : the seam cost made symmetric (the dearer of an edge and its mirror) : the cheapest loop and path come out the same on both sides
+            m = self.mirror_e
+            ok = m >= 0
+            c2 = S.cost.copy()
+            c2[ok] = np.maximum(S.cost[ok], S.cost[m[ok]])
+            S.cost = c2
+            c = 0.5 * (S.P.min(0) + S.P.max(0))
+            self.mirror_c = float(c[self.mirror_axis])
+            # 20 October 2026 : a symmetric move cuts an edge and its mirror : an edge off the plane costs twice, an edge on it once ; the paths are searched with
+            # that cost, so a dart that starts on the plane (the tip of a snout) runs along it (one seam down the middle) instead of opening a V
+            selfm = m == np.arange(S.ne)
+            S.search_cost = np.where(selfm, S.cost, 2.0 * S.cost)
+        else:
+            S.search_cost = S.cost
+        self.relabel_all()
+
+    # ------------------------------------------------------------ labels and charts
+    def relabel_all(self):
+        S = self.S
+        cut = self.cut | ~self.active[S.EF0] | ~self.active[np.maximum(S.EF1, 0)]
+        lab, n = labels(S, cut)
+        lab[~self.active] = -1
+        self.lab = lab
+        self.charts = {}
+        for k in np.unique(lab[lab >= 0]):
+            self.charts[int(k)] = None
+        self.next_id = int(lab.max()) + 1 if (lab >= 0).any() else 0
+
+    def faces_of(self, k):
+        return [int(f) for f in np.where(self.lab == k)[0]]
+
+    def _split_faces(self, faces, cut):
+        """Components of a face set across the edges that are not cut."""
+        fset = set(faces)
+        comp = {}
+        out = []
+        for f0 in faces:
+            if f0 in comp:
+                continue
+            comp[f0] = len(out)
+            cur = [f0]
+            st = [f0]
+            while st:
+                f = st.pop()
+                for e in self.S.fe[f]:
+                    if cut[e] or self.S.EF1[e] < 0:
+                        continue
+                    g = int(self.S.EF0[e] if self.S.EF1[e] == f else self.S.EF1[e])
+                    if g in fset and g not in comp:
+                        comp[g] = len(out)
+                        cur.append(g)
+                        st.append(g)
+            out.append(cur)
+        return out
+
+    def _mirror(self, edges):
+        """20 October 2026 : a move made symmetric. A cut lying on one side gets its mirror added ; a cut crossing the plane (a loop round the neck, a seam down the
+        back) is rebuilt as its half on the positive side plus the mirror of that half, so the two sides are one seam and not two seams side by side (slivers)."""
+        e = np.asarray(edges, dtype=np.int64)
+        if self.mirror_e is None or not len(e):
+            return e
+        S = self.S
+        ax, c = self.mirror_axis, self.mirror_c
+        tol = 0.3 * S.median_edge
+        x = S.P[S.E[e], ax] - c                      # (k, 2)
+        crosses = (x.max(1) > tol).any() and (x.min(1) < -tol).any()
+        m = self.mirror_e[e]
+        if not crosses:
+            return np.unique(np.concatenate([e, m[m >= 0]]))
+        half = e[(x >= -tol).all(1)]
+        mh = self.mirror_e[half]
+        if (mh < 0).any():
+            return np.unique(np.concatenate([e, m[m >= 0]]))
+        return np.unique(np.concatenate([half, mh]))
+
+    # ------------------------------------------------------------ discs
+    def make_disc(self, faces, cut, smooth=True):
+        """The cheapest hidden paths that turn a chart into a disc : its border loops joined by a minimum spanning tree of Dijkstra paths (Prim : from the loops
+        already joined to the nearest other loop) ; a closed chart gets a slit between its two farthest points. Returns the added edges (list) or None when the
+        chart cannot be made a disc this way (a handle)."""
+        S = self.S
+        added = []
+        for _attempt in range(4096):
+            loc = Local(S, faces, cut)
+            if loc.is_disc():
+                return added
+            fset = set(faces)
+            inside = np.zeros(S.ne, dtype=bool)
+            for f in faces:
+                for e in S.fe[f]:
+                    if not cut[e] and S.EF1[e] >= 0:
+                        g = int(S.EF0[e] if S.EF1[e] == f else S.EF1[e])
+                        if g in fset:
+                            inside[e] = True
+            oncut = np.zeros(S.nv, dtype=bool)
+            for f in faces:
+                for e in S.fe[f]:
+                    if cut[e] or S.EF1[e] < 0 or not inside[e]:
+                        oncut[S.E[e]] = True
+            if len(loc.loops) >= 2:
+                lv = [set(int(loc.gv[x]) for x in lp) for lp in loc.loops]
+                tree = set(lv[0])
+                joined = {0}
+                path = None
+                srcs = {v: 0.0 for v in tree}
+                dist, pred = dijkstra(S, inside, S.search_cost, srcs, blocked=oncut)
+                bestv, bestd, bestk = None, float('inf'), None
+                for i in range(1, len(lv)):
+                    if i in joined:
+                        continue
+                    for v in lv[i]:
+                        d = dist.get(v, float('inf'))
+                        if d < bestd and v not in tree:
+                            bestv, bestd, bestk = v, d, i
+                if bestv is None:
+                    return None
+                if smooth and self.prm['turn_weight'] > 0:
+                    path = smooth_path(S, inside, tree, lv[bestk], blocked=oncut)
+                if path is None:
+                    path, _ = _trace(pred, bestv)
+                if not path:
+                    return None
+                cut = cut.copy()
+                cut[path] = True
+                added.extend(path)
+                continue
+            if len(loc.loops) == 0:
+                allowed_e = inside
+                verts = sorted({v for f in faces for v in S.polys[f]})
+                smp = _fps(S, allowed_e, verts, 2)
+                if len(smp) < 2:
+                    return None
+                dist, pred = dijkstra(S, allowed_e, S.search_cost, {smp[0]: 0.0}, targets=[smp[1]])
+                path = smooth_path(S, allowed_e, [smp[0]], [smp[1]]) if smooth and self.prm['turn_weight'] > 0 else None
+                if path is None:
+                    path, _ = _trace(pred, smp[1])
+                if not path:
+                    return None
+                cut = cut.copy()
+                cut[path] = True
+                added.extend(path)
+                continue
+            return None            # one loop and not a disc : a handle (genus) or a pinch
+        return None
+
+    # ------------------------------------------------------------ evaluation of a move
+    def evaluate(self, ks, edges, warm=True, smooth=False, iters=None):
+        """Applies edges to the charts ks (copies), makes every resulting chart a disc, flattens it. Returns (new charts [(faces, Chart)], added edges, cost) or None."""
+        S = self.S
+        cut = self.cut.copy()
+        e0 = np.asarray(edges, dtype=np.int64)
+        e0 = e0[~cut[e0]]
+        cut[e0] = True
+        faces = [f for k in ks for f in self.faces_of(k)]
+        parts = self._split_faces(faces, cut)
+        out, added = [], list(e0)
+        wuv = {}
+        if warm:
+            for k in ks:
+                ch = self.charts.get(k)
+                if ch is not None and ch.ok:
+                    wuv.update(ch.corner_uv())
+        tot_a = float(S.FA[faces].sum())
+        for fs in parts:
+            if len(fs) < 8 or float(S.FA[fs].sum()) < 0.002 * tot_a:
+                return None              # 20 October 2026 : a sliver (two cuts side by side) is never a seam an artist would make
+            ad = self.make_disc(fs, cut, smooth=smooth)
+            if ad is None:
+                return None
+            if ad:
+                cut[np.asarray(ad, dtype=np.int64)] = True
+                added.extend(ad)
+            ch = Chart(S, fs, cut, warm=wuv if warm and wuv else None, iters=iters)
+            if not ch.ok:
+                return None
+            out.append((fs, ch))
+        added = np.unique(np.asarray(added, dtype=np.int64))
+        return out, added, float(S.cost[added].sum()) if len(added) else 0.0, cut
+
+    def commit(self, ks, res, kind):
+        out, added, cost, cut = res
+        self.cut = cut
+        for k in ks:
+            self.charts.pop(k, None)
+        for fs, ch in out:
+            k = self.next_id
+            self.next_id += 1
+            self.lab[np.asarray(fs, dtype=np.int64)] = k
+            self.charts[k] = ch
+        if len(added):
+            self.pieces.append({'kind': kind, 'edges': added, 'cost': cost, 'length': float(self.S.EL[added].sum())})
+        self.stats['moves'][kind] = self.stats['moves'].get(kind, 0) + 1
+
+    def open_closed(self, k):
+        """20 October 2026 : a closed chart (a sphere : a leg, a horn, a spike made as its own piece) is opened by the best of : the hidden slit between two of its
+        poles, its neck loops, its equator (the cheapest loop half way between its two farthest poles) ; each is flattened and the one with the least distortion per
+        unit of seam cost is kept."""
+        S = self.S
+        fs = self.faces_of(k)
+        A = float(S.FA[fs].sum())
+        inside = _inside_edges(S, self.lab, k, self.cut)
+        verts = sorted({v for f in fs for v in S.polys[f]})
+        pl = _fps(S, inside, verts, 4)
+        cands = []
+        for i in range(len(pl)):
+            for j in range(i + 1, len(pl)):
+                sp = smooth_path(S, inside, [pl[i]], [pl[j]]) if self.prm['turn_weight'] > 0 else None
+                if sp:
+                    cands.append(('slit', sp))
+                    continue
+                d, pr = dijkstra(S, inside, S.search_cost, {pl[i]: 0.0}, targets=[pl[j]])
+                if pl[j] in pr:
+                    cands.append(('slit', _trace(pr, pl[j])[0]))
+        if len(pl) >= 2:
+            g = _geodesic(S, inside, pl[0])
+            gf = {f: max(g.get(v, 0.0) for v in S.polys[f]) for f in fs}
+            gm = g.get(pl[1], max(g.values()))
+            for t in (0.5,):
+                res = band_loop(S, fs, inside, gf, (t - 0.2) * gm, (t + 0.2) * gm)
+                if res is not None:
+                    cands.append(('equator', res[0]))
+        for ce, cap, cost, length in neck_candidates_band(S, self.lab, k, self.cut, nsamp=8)[:3]:
+            cands.append(('neck', ce))
+        best = None
+        for kind, edges in cands:
+            edges = self._mirror(edges)
+            ks = self.chart_of_edges(edges)
+            if ks != [k]:
+                continue
+            res = self.evaluate([k], edges, warm=False)
+            if res is None:
+                continue
+            after = sum(ch.excess for _, ch in res[0])
+            ratio = (A - after) / max(res[2], 1e-9)
+            if best is None or ratio > best[0]:
+                best = (ratio, kind, res)
+        if best is None:
+            return False
+        self.commit([k], best[2], 'open ' + best[1])
+        return True
+
+    def flatten_all(self):
+        for k in list(self.charts):
+            if k in self.charts and self.charts[k] is None:
+                fs = self.faces_of(k)
+                loc = Local(self.S, fs, self.cut)
+                if not loc.loops:
+                    if self.open_closed(k):
+                        continue
+                ad = self.make_disc(fs, self.cut)
+                if ad:
+                    self.cut[np.asarray(ad, dtype=np.int64)] = True
+                    self.pieces.append({'kind': 'opening', 'edges': np.asarray(ad, dtype=np.int64), 'cost': float(self.S.cost[ad].sum()),
+                                        'length': float(self.S.EL[ad].sum())})
+                self.charts[k] = Chart(self.S, fs, self.cut)
+
+    def total_fail(self):
+        return sum(c.fail for c in self.charts.values() if c is not None)
+
+    def chart_of_edges(self, edges):
+        ks = set()
+        for e in edges:
+            for f in (self.S.EF0[e], self.S.EF1[e]):
+                if f >= 0 and self.lab[f] >= 0:
+                    ks.add(int(self.lab[f]))
+        return sorted(ks)
+
+    # ------------------------------------------------------------ phase 1 : the necks
+    def cut_necks(self, nsamp=16, max_cap=0.35, max_loop=0.75):
+        """20 October 2026 : the artist's first gesture : every clear narrowing of every chart is found once (neck_candidates_band, on the whole piece), then cut by its
+        tight loop, the cheapest first : a loop must still cut its chart in two (no slit), its cap must stay a protrusion (under max_cap of the chart, its loop under
+        max_loop x the square root of the chart's area : a waist loop round the whole trunk is no neck), and a loop that would leave a thin ring with a loop already
+        cut (two loops at one wrist) is skipped. The economy pass removes later the necks the distortion does not need."""
+        S = self.S
+        done = 0
+        for k0 in list(self.charts):
+            fs0 = self.faces_of(k0)
+            A0 = float(S.FA[fs0].sum())
+            cands = neck_candidates_band(S, self.lab, k0, self.cut, nsamp=nsamp)
+            good = []
+            for ce, cap, cost, L in cands:
+                ca = float(S.FA[cap].sum())
+                if ca <= max_cap * A0 and L <= max_loop * math.sqrt(A0):
+                    good.append((cost, ce, ca))
+            good.sort(key=lambda x: x[0])
+            for cost, ce, ca in good:
+                edges = self._mirror(ce)
+                if self.cut[edges].any():
+                    continue
+                ks = self.chart_of_edges(edges)
+                if any(kk not in self.charts for kk in ks):
+                    continue
+                cut = self.cut.copy()
+                cut[edges] = True
+                faces = [f for kk in ks for f in self.faces_of(kk)]
+                parts = self._split_faces(faces, cut)
+                if len(parts) < len(ks) + 1:
+                    continue                    # the loop no longer separates : it would be a slit
+                tot = float(S.FA[faces].sum())
+                if min(float(S.FA[p].sum()) for p in parts) < 0.01 * tot or min(len(p) for p in parts) < 16:
+                    continue                    # a thin ring between two loops at one narrowing
+                self.cut_edges(ks, edges, 'neck')
+                done += 1
+                self.log('neck', 'loop %.3f m' % float(S.EL[edges].sum()), 'charts', len(self.charts))
+        return done
+
+    def cut_edges(self, ks, edges, kind):
+        """Applies edges without flattening (phase 1) : the charts are relabelled, flattened later."""
+        S = self.S
+        e0 = np.asarray(edges, dtype=np.int64)
+        e0 = e0[~self.cut[e0]]
+        if not len(e0):
+            return
+        self.cut[e0] = True
+        faces = [f for k in ks for f in self.faces_of(k)]
+        for k in ks:
+            self.charts.pop(k, None)
+        for fs in self._split_faces(faces, self.cut):
+            k = self.next_id
+            self.next_id += 1
+            self.lab[np.asarray(fs, dtype=np.int64)] = k
+            self.charts[k] = None
+        self.pieces.append({'kind': kind, 'edges': e0, 'cost': float(S.cost[e0].sum()), 'length': float(S.EL[e0].sum())})
+        self.stats['moves'][kind] = self.stats['moves'].get(kind, 0) + 1
+
+    # ------------------------------------------------------------ phase 2 : distortion moves
+    def cones(self, k, count=3):
+        """The worst cones of a flattened chart : vertices (not on its border) whose incident triangles stretch the most, far apart (one per region of radius ~ the
+        chart's size / 6)."""
+        ch = self.charts[k]
+        loc = ch.loc
+        S = self.S
+        n = loc.n
+        acc = np.zeros(n)
+        wa = np.zeros(n)
+        for c in range(3):
+            np.add.at(acc, loc.tris[:, c], ch.s * ch.a)
+            np.add.at(wa, loc.tris[:, c], ch.a)
+        sc = acc / np.maximum(wa, 1e-30)
+        bnd = np.zeros(n, dtype=bool)
+        for lp in loc.loops:
+            bnd[lp] = True
+        X = S.P[loc.gv]
+        ext = float(np.linalg.norm(X.max(0) - X.min(0)))
+        out = []
+        # 20 October 2026 : the worst cones first, then the worst cones of the hidden side (stretch over p95 and the least visible) : an artist starts a dart where the
+        # cloth wrinkles but on the side nobody looks at ; the evaluation keeps the best gain per seam cost
+        vis = S.vvis[loc.gv]
+        for order in (np.argsort(-sc), np.argsort(np.where(sc > self.prm['p95'], vis, np.inf))):
+            got = 0
+            for i in order:
+                if bnd[i] or sc[i] <= self.prm['p50'] or not np.isfinite(sc[i]):
+                    continue
+                if all(np.linalg.norm(X[i] - X[j]) > ext / 6.0 for j in out):
+                    out.append(int(i))
+                    got += 1
+                if got >= count:
+                    break
+        # global vertices, and which of them are on a slit (several local copies) : skipped
+        gv = [int(loc.gv[i]) for i in out]
+        return gv
+
+    def curvature(self, k):
+        """20 October 2026 : the angle defect of every vertex of chart k (2 pi minus the sum of its angles, the discrete Gauss curvature ; 0 on a plane, a cylinder,
+        a cone side), summed over a geodesic disc of a sixth of the chart's size : where a shape comes to a point (the tip of a tail, of a leg, the top of a head) it
+        is large. Returns {vertex: smoothed curvature}."""
+        S = self.S
+        fs = self.faces_of(k)
+        ang = {}
+        for f in fs:
+            p = S.polys[f]
+            n = len(p)
+            for i in range(n):
+                a = S.P[p[i - 1]] - S.P[p[i]]
+                b = S.P[p[(i + 1) % n]] - S.P[p[i]]
+                c = float(a @ b) / max(float(np.linalg.norm(a) * np.linalg.norm(b)), 1e-30)
+                ang[p[i]] = ang.get(p[i], 0.0) + math.acos(max(-1.0, min(1.0, c)))
+        oncut = _on_cut(S, self.lab, k, self.cut)
+        defect = {v: (2 * math.pi - x if not oncut[v] else 0.0) for v, x in ang.items()}
+        verts = list(defect)
+        X = S.P[verts]
+        ext = float(np.linalg.norm(X.max(0) - X.min(0)))
+        r = ext / 6.0
+        # a box average over a radius r (Euclidean, on a hash grid) : cheap and enough to tell a tip from a flank
+        cell = max(r, 1e-9)
+        keys = np.floor(X / cell).astype(np.int64)
+        grid = {}
+        for i, kk in enumerate(map(tuple, keys)):
+            grid.setdefault(kk, []).append(i)
+        D = np.array([defect[v] for v in verts])
+        out = {}
+        for i, v in enumerate(verts):
+            kx, ky, kz = keys[i]
+            acc = 0.0
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    for dz in (-1, 0, 1):
+                        for j in grid.get((kx + dx, ky + dy, kz + dz), ()):
+                            if float(np.linalg.norm(X[j] - X[i])) <= r:
+                                acc += D[j]
+            out[v] = acc
+        return out
+
+    def poles(self, k, count=3):
+        """20 October 2026 : the poles of a chart, the points an artist runs a seam to (the top of a head, the tip of a snout, of a horn) : the local maxima of the
+        geodesic distance to the chart's border, far apart (non maximum suppression at a quarter of the largest distance) ; a closed chart (no border) : its farthest
+        point samples."""
+        S = self.S
+        inside = _inside_edges(S, self.lab, k, self.cut)
+        oncut = _on_cut(S, self.lab, k, self.cut)
+        fs = self.faces_of(k)
+        verts = sorted({v for f in fs for v in S.polys[f]})
+        src = {v: 0.0 for v in verts if oncut[v]}
+        if not src:
+            return _fps(S, inside, verts, count + 1)
+        dist, _ = dijkstra(S, inside, S.EL, src)
+        dm = max(dist.values()) if dist else 0.0
+        if dm <= 0:
+            return []
+        # 20 October 2026 : a pole is a tip, not merely the far side of a seam : the score is the distance to the border times the curvature gathered around the
+        # vertex (positive part) ; a flank opposite a seam (a cylinder, no curvature) scores nothing
+        K = self.curvature(k)
+        km = max(max(K.values()), 1e-9)
+        # 20 October 2026 : and the tip must be where a seam may end : times (1 - visibility)^2 (a dart to the bulge of a chest would cross the chest)
+        score = {v: dist.get(v, 0.0) * max(0.0, K.get(v, 0.0)) / km * (1.0 - min(1.0, float(S.vvis[v]))) ** 2 for v in verts}
+        sm = max(score.values()) if score else 0.0
+        out = []
+        for v in sorted(verts, key=lambda v: -score[v]):
+            if score[v] < 0.2 * sm or len(out) >= count:
+                break
+            if dist.get(v, 0.0) < 0.15 * dm:
+                continue
+            if all(np.linalg.norm(S.P[v] - S.P[u]) > 0.25 * dm for u in out):
+                out.append(v)
+        return out
+
+    def dart_path(self, k, v):
+        S = self.S
+        inside = _inside_edges(S, self.lab, k, self.cut)
+        oncut = _on_cut(S, self.lab, k, self.cut)
+        if oncut[v]:
+            return None
+        if self.prm['turn_weight'] > 0:
+            dst = set(int(x) for x in np.where(oncut)[0])
+            sp = smooth_path(S, inside, [v], dst, blocked=oncut)
+            if sp:
+                return sp
+        dist, pred = dijkstra(S, inside, S.search_cost, {v: 0.0}, blocked=oncut)
+        best, bd = None, float('inf')
+        for u, d in dist.items():
+            if oncut[u] and d < bd:
+                best, bd = u, d
+        if best is None:
+            return None
+        # the path from v to the border, read back from the border vertex
+        path, verts = _trace(pred, best)
+        return path
+
+    def splits(self, k, count=3):
+        """20 October 2026 : panel cuts of chart k : the cheapest hidden path between two border points far apart along the border (a sphere is cut in panels like a
+        ball's leather, not peeled) ; the start points are spread along the border, each joined to the border point farthest from it in geodesic distance through the
+        chart. Returns [edge list]."""
+        S = self.S
+        ch = self.charts.get(k)
+        if ch is None or not ch.ok:
+            return []
+        inside = _inside_edges(S, self.lab, k, self.cut)
+        oncut = _on_cut(S, self.lab, k, self.cut)
+        loop = max(ch.loc.loops, key=len) if ch.loc.loops else []
+        gl = [int(ch.loc.gv[x]) for x in loop]
+        if len(gl) < 8:
+            return []
+        out, seen = [], set()
+        for i in range(count):
+            p = gl[(i * len(gl)) // count]
+            d, _ = dijkstra(S, inside, S.EL, {p: 0.0})
+            q = max(gl, key=lambda v: d.get(v, -1.0) if v != p else -1.0)
+            if d.get(q, 0.0) <= 0:
+                continue
+            path = smooth_path(S, inside, [p], [q], blocked=oncut) if self.prm['turn_weight'] > 0 else None
+            if path is None:
+                dist, pred = dijkstra(S, inside, S.search_cost, {p: 0.0}, targets=[q], blocked=oncut)
+                if q not in pred:
+                    continue
+                path = _trace(pred, q)[0]
+            key = tuple(sorted(path))
+            if path and key not in seen:
+                seen.add(key)
+                out.append(path)
+        return out
+
+    def silhouettes(self, k):
+        """20 October 2026 : the panel cuts of an artist on a rounded chart : the cheapest cut near the plane through the chart's centre across each of six axes (the
+        front, the up, the side of the asset, the three principal axes of the chart) : the two halves of a ball, the front and the back of a torso, the palm and the
+        back of a hand. Returns [edge list]."""
+        S = self.S
+        fs = self.faces_of(k)
+        if len(fs) < 32:
+            return []
+        inside = _inside_edges(S, self.lab, k, self.cut)
+        oncut = _on_cut(S, self.lab, k, self.cut)
+        C = S.FC[fs]
+        A = S.FA[fs]
+        cen = (C * A[:, None]).sum(0) / max(A.sum(), 1e-30)
+        X = C - cen
+        w, v = np.linalg.eigh((X * A[:, None]).T @ X)
+        F = np.asarray(self.prm['front'], float)
+        F /= max(np.linalg.norm(F), 1e-20)
+        U = np.asarray(self.prm['up'], float)
+        U -= F * (U @ F)
+        U /= max(np.linalg.norm(U), 1e-20)
+        axes = [(F, (-0.35, 0.0, 0.35)), (U, (-0.35, 0.0, 0.35)), (np.cross(U, F), (0.0,)), (v[:, 2], (0.0,))]
+        out, seen = [], set()
+        for ax, offs in axes:
+            val = {f: float((S.FC[f] - cen) @ ax) for f in fs}
+            ext = max(abs(x) for x in val.values())
+            if ext <= 0:
+                continue
+            # 20 October 2026 : planes through the centre and shifted along the front and the up axes : a panel of the right size (a cap of the front of a ball that
+            # stays under the tolerance, about 75 degrees) is found by a shifted plane, not by the plane through the centre (a half sphere fails : median 12.9 %)
+            for o in offs:
+                b = 0.2 * ext
+                ce = band_split(S, fs, inside, val, o * ext - b, o * ext + b, oncut)
+                if ce:
+                    key = tuple(sorted(ce))
+                    if key not in seen:
+                        seen.add(key)
+                        out.append(ce)
+        return out
+
+    def _snapshot(self):
+        return (self.cut.copy(), self.lab.copy(), dict(self.charts), list(self.pieces), self.next_id, dict(self.stats['moves']), dict(self._neck_cache))
+
+    def _restore(self, snap):
+        self.cut, self.lab, self.charts, self.pieces, self.next_id, mv, self._neck_cache = snap[0], snap[1], snap[2], snap[3], snap[4], snap[5], snap[6]
+        self.stats['moves'] = mv
+
+    def rollout(self, ks, res, kind, steps=6):
+        """20 October 2026 : the cost to finish after a move : the move is applied on a snapshot, then the charts it leaves failing get cheap darts (to their poles and
+        cones, quick warm flattenings), the best one at a time, until they pass or steps darts are spent ; the cost of the move plus those darts is returned, plus,
+        for a chart still failing, twice the mean cost of a dart for every one it would still need (its fail share). The state is restored. The greedy ratio alone
+        peeled the shader ball by darts (each one cheap, none of them finishing) where two panels finish it."""
+        snap = self._snapshot()
+        total = res[2]
+        try:
+            self.commit(ks, res, kind)
+            new_ks = [k for k in self.charts if k not in snap[2]]
+            dart_costs = []
+            for _ in range(steps):
+                failing = [(self.charts[k].excess, k) for k in new_ks if k in self.charts and self.charts[k] is not None and self.charts[k].fail > 0]
+                if not failing:
+                    break
+                _, k = max(failing)
+                best = None
+                vs = self.poles(k, 2) + self.cones(k, 2)
+                for v in vs:
+                    p = self.dart_path(k, v)
+                    if not p:
+                        continue
+                    e2 = self._mirror(p)
+                    k2 = self.chart_of_edges(e2)
+                    if any(kk not in self.charts or self.charts[kk] is None for kk in k2):
+                        continue
+                    before = sum(self.charts[kk].excess for kk in k2)
+                    r2 = self.evaluate(k2, e2, warm=True, iters=self.prm['quick_iters'])
+                    if r2 is None:
+                        continue
+                    g = before - sum(c.excess for _, c in r2[0])
+                    if g > 0 and (best is None or g / max(r2[2], 1e-9) > best[0]):
+                        best = (g / max(r2[2], 1e-9), k2, r2)
+                if best is None:
+                    break
+                _, k2, r2 = best
+                self.commit(k2, r2, 'rollout')
+                new_ks = [k for k in self.charts if k not in snap[2]]
+                total += r2[2]
+                dart_costs.append(r2[2])
+            mean = (sum(dart_costs) / len(dart_costs)) if dart_costs else res[2] * 0.5
+            for k in new_ks:
+                ch = self.charts.get(k)
+                if ch is not None and ch.fail > 0:
+                    A = float(ch.a.sum())
+                    total += 2.0 * mean * (1.0 + 4.0 * ch.fail / max(A, 1e-12))
+        finally:
+            self._restore(snap)
+        return total
+
+    def improve(self, max_moves=None, nsamp=16):
+        """Phase 2 : while a chart fails the artist criterion, the move (a dart to one of its worst cones, or a neck loop of the chart) with the most failure removed
+        per unit of seam cost is applied ; a chart no move improves is left (stuck)."""
+        max_moves = self.prm['max_moves'] if max_moves is None else max_moves
+        stuck = set()
+        for _m in range(max_moves):
+            failing = [(c.fail, k) for k, c in self.charts.items() if c is not None and c.fail > 0 and k not in stuck]
+            if not failing:
+                break
+            fv, k = max(failing)
+            cands = []
+            seen = set()
+            ch0 = self.charts[k]
+            q0 = quantiles(ch0.s, ch0.a) if ch0 is not None and ch0.ok else (1.0, 1.0)
+            if True:
+                for v in self.poles(k, self.prm['darts_per_round']):
+                    p = self.dart_path(k, v)
+                    if p and tuple(sorted(p)) not in seen:
+                        seen.add(tuple(sorted(p)))
+                        cands.append(('pole dart', p))
+            if ch0 is not None and ch0.ok and q0[0] < 0.5:
+                for v in self.cones(k, self.prm['darts_per_round']):
+                    p = self.dart_path(k, v)
+                    if p and tuple(sorted(p)) not in seen:
+                        seen.add(tuple(sorted(p)))
+                        cands.append(('dart', p))
+            if k not in self._neck_cache:
+                self._neck_cache[k] = neck_candidates_band(self.S, self.lab, k, self.cut, nsamp=8)[:4]
+            for ce, cap, cost, length in self._neck_cache[k]:
+                cands.append(('neck', ce))
+            for p in self.splits(k):
+                cands.append(('panel', p))
+            for p in self.silhouettes(k):
+                cands.append(('silhouette', p))
+            # 20 October 2026 : two stages : every candidate is ranked on a short flattening (quick_iters ARAP iterations), the best three are flattened in full and
+            # the best of those is applied (about twenty candidates a round : a full flattening of each made a Manny run last half an hour)
+            quick = []
+            for kind, edges in cands:
+                edges = self._mirror(edges)
+                ks = self.chart_of_edges(edges)
+                if any(kk not in self.charts or self.charts[kk] is None for kk in ks):
+                    continue
+                before = sum(self.charts[kk].excess for kk in ks)
+                # 20 October 2026 : a dart starts from the chart's own uv and settles in a few iterations ; a structural cut (a loop, panels) starts from a fresh LSCM
+                # and needs its full ARAP : ranked on 4 iterations it always looked worse than it is, and the ball was peeled by darts instead of cut in panels
+                res = self.evaluate(ks, edges, warm=(kind == 'dart'), iters=self.prm['quick_iters'] if kind == 'dart' else None)
+                if res is None:
+                    continue
+                gain = before - sum(ch.excess for _, ch in res[0])
+                if gain <= 0:
+                    continue
+                quick.append((gain ** self.prm['gain_power'] / max(res[2], 1e-9), kind, edges, ks, before))
+            quick.sort(key=lambda x: -x[0])
+            # the top three, and the best structural cut (a loop, panels, a silhouette) when none of the three is one
+            top = quick[:3]
+            if not any(q[1] in ('neck', 'panel', 'silhouette') for q in top):
+                top += [q for q in quick if q[1] in ('neck', 'panel', 'silhouette')][:1]
+            look = q0[0] > self.prm['look_ahead'] * self.prm['p50']
+            best = None
+            for _r, kind, edges, ks, before in top:
+                res = self.evaluate(ks, edges, warm=(kind == 'dart'))
+                if res is None:
+                    continue
+                after = sum(ch.excess for _, ch in res[0])
+                gain = before - after
+                if gain <= max(1e-12, self.prm['min_gain'] * before):
+                    continue
+                if look:
+                    # 20 October 2026 : a badly distorted chart chooses by the cost to finish (rollout), not by the first step
+                    score = -self.rollout(ks, res, kind)
+                else:
+                    score = gain ** self.prm['gain_power'] / max(res[2], 1e-9)
+                if best is None or score > best[0]:
+                    best = (score, kind, ks, res, gain)
+            if best is None:
+                stuck.add(k)
+                self.stats['rejected'] += 1
+                continue
+            _, kind, ks, res, gain = best
+            self.commit(ks, res, kind)
+            self.log('move', kind, 'gain %.5f' % gain, 'charts', len(self.charts), 'fail %.5f' % self.total_fail())
+        self.stats['stuck'] = len(stuck)
+
+    # ------------------------------------------------------------ phase 3 : the economy
+    def economy_all(self, rounds=4, max_tests=400):
+        """20 October 2026 : the economy repeated while a round still removes a seam (a merge can make another one possible)."""
+        tot = 0
+        for _ in range(rounds):
+            before = self.stats.get('economy_removed', 0)
+            self.economy(max_tests=max_tests)
+            n = self.stats.get('economy_removed', 0)
+            tot += n
+            if n == 0:
+                break
+        self.stats['economy_removed'] = tot
+
+    def economy(self, max_tests=400):
+        """Every piece of seam that is not required is removed again, the most visible first (its cost per metre), when the charts it separated still pass merged (the
+        fewest seams for the artist criterion ; a chart that already failed may not get worse)."""
+        S = self.S
+        order = sorted(range(len(self.pieces)), key=lambda i: -self.pieces[i]['cost'] / max(self.pieces[i]['length'], 1e-9))
+        removed = 0
+        tests = 0
+        for i in order:
+            pc = self.pieces[i]
+            if pc.get('removed'):
+                continue
+            edges = np.asarray([e for e in pc['edges'] if self.cut[e] and not self.must[e]], dtype=np.int64)
+            if not len(edges):
+                continue
+            tests += 1
+            if tests > max_tests:
+                break
+            ks = self.chart_of_edges(edges)
+            if any(self.charts.get(kk) is None for kk in ks):
+                continue
+            before_fail = sum(self.charts[kk].fail for kk in ks)
+            cut = self.cut.copy()
+            cut[edges] = False
+            faces = [f for kk in ks for f in self.faces_of(kk)]
+            reopened = []
+            if len(ks) > 1:
+                # 20 October 2026 : a merge across a loop (thigh and shin at the knee) also takes back the openings of the charts it joins : each kept its own seam
+                # to its own border, and after the merge those two half seams plus a new opening cost more than the loop removed (no merge was ever accepted). The
+                # merged chart gets one opening of its own (make_disc).
+                fset = set(faces)
+                for j, q in enumerate(self.pieces):
+                    if j == i or q.get('removed') or not q['kind'].startswith('open'):
+                        continue
+                    qe = np.asarray([e for e in q['edges'] if cut[e] and not self.must[e]], dtype=np.int64)
+                    if len(qe) and all(int(S.EF0[e]) in fset and int(S.EF1[e]) in fset for e in qe):
+                        cut[qe] = False
+                        reopened.append((j, qe))
+            parts = self._split_faces(faces, cut)
+            # 20 October 2026 : a merge of two charts starts from a fresh flattening : their two uv lie in two unrelated frames, a start mixed from both is a fold
+            # (it failed every merge, the thigh panels of Manny stayed) ; a dart closed inside one chart keeps its warm start
+            wuv = {}
+            if len(ks) == 1:
+                wuv.update(self.charts[ks[0]].corner_uv())
+            new, added, ok = [], [], True
+            for fs in parts:
+                ad = self.make_disc(fs, cut)
+                if ad is None:
+                    ok = False
+                    break
+                if ad:
+                    cut[np.asarray(ad, dtype=np.int64)] = True
+                    added.extend(ad)
+                ch = Chart(S, fs, cut, warm=wuv if wuv else None)
+                if not ch.ok:
+                    ok = False
+                    break
+                new.append((fs, ch))
+            if not ok:
+                continue
+            after_fail = sum(ch.fail for _, ch in new)
+            freed = float(S.cost[edges].sum()) + sum(float(S.cost[qe].sum()) for _, qe in reopened)
+            saved = freed - (float(S.cost[np.unique(added)].sum()) if added else 0.0)
+            if saved <= 1e-9 or after_fail > before_fail + 1e-12:
+                continue
+            self.cut = cut
+            for kk in ks:
+                self.charts.pop(kk, None)
+            for fs, ch in new:
+                k = self.next_id
+                self.next_id += 1
+                self.lab[np.asarray(fs, dtype=np.int64)] = k
+                self.charts[k] = ch
+            pc['removed'] = True
+            for j, qe in reopened:
+                self.pieces[j]['removed'] = True
+            if added:
+                self.pieces.append({'kind': 'opening', 'edges': np.unique(np.asarray(added, dtype=np.int64)), 'cost': float(S.cost[np.unique(added)].sum()),
+                                    'length': float(S.EL[np.unique(added)].sum())})
+            removed += 1
+            self.log('economy', pc['kind'], 'saved %.4f' % saved, 'charts', len(self.charts))
+        self.stats['economy_removed'] = removed
+
+    # ------------------------------------------------------------ report
+    def edge_kinds(self):
+        """The move that made every seam edge (the last piece that holds it) : {edge id: kind}."""
+        out = {}
+        for pc in self.pieces:
+            if pc.get('removed'):
+                continue
+            for e in pc['edges']:
+                if self.cut[e]:
+                    out[int(e)] = pc['kind']
+        for e in np.where(self.must & (self.S.EF1 >= 0))[0]:
+            out[int(e)] = 'required'
+        return out
+
+    def report(self):
+        S = self.S
+        s_all, a_all = [], []
+        for c in self.charts.values():
+            if c is not None and c.ok:
+                s_all.append(c.s)
+                a_all.append(c.a)
+        s_all = np.concatenate(s_all) if s_all else np.zeros(1)
+        a_all = np.concatenate(a_all) if a_all else np.ones(1)
+        inner = self.cut & (S.EF1 >= 0) & self.active[S.EF0] & self.active[np.maximum(S.EF1, 0)]
+        q50, q95 = quantiles(s_all, a_all)
+        w = a_all / a_all.sum()
+        return {'charts': len(self.charts), 'seams_m': round(float(S.EL[inner].sum()), 3), 'seam_cost': round(float(S.cost[inner].sum()), 4),
+                'stretch_p50': round(q50, 4), 'stretch_p95': round(q95, 4), 'within_10': round(float(w[s_all <= 0.1].sum()), 4),
+                'within_20': round(float(w[s_all <= 0.2].sum()), 4), 'failing_charts': sum(1 for c in self.charts.values() if c is not None and c.fail > 0),
+                'mirror_axis': self.mirror_axis, 'moves': dict(self.stats['moves']), 'stuck': self.stats.get('stuck', 0),
+                'economy_removed': self.stats.get('economy_removed', 0)}
+
+
+# ---------------------------------------------------------------- necks, the rubber band profile (20 October 2026, second version)
+def neck_candidates_band(S, lab, k, cut, nsamp=16, steps=40, max_cap=0.5):
+    """20 October 2026 : the narrowings of chart k measured by the tightest loop itself. From every farthest point sample (a tip), the geodesic distance g grows ;
+    at every step t the cheapest loop between the faces under t - b and the faces over t + b is cut (band_loop : a minimum cut, the rubber band pulled tight round
+    the limb at that place) and its length kept. Along a limb this length is its girth : a neck is a local minimum of the girth that the body widens after (by 25 %),
+    or the last girth before a jump of 40 % (the base of a finger, the armpit). The border of the growing front, measured first, broke on the fingers and the grooves
+    (several loops at once) ; the band loop is one loop by construction. Returns [(cut edges, cap faces, cost, length)] without duplicates."""
+    faces = [int(f) for f in np.where(lab == k)[0]]
+    if len(faces) < 16:
+        return []
+    allowed = _inside_edges(S, lab, k, cut)
+    verts = sorted({v for f in faces for v in S.polys[f]})
+    area = float(S.FA[faces].sum())
+    samples = _fps(S, allowed, verts, nsamp)
+    out = []
+    for smp in samples:
+        g = _geodesic(S, allowed, smp)
+        gf = {f: max(g.get(v, float('inf')) for v in S.polys[f]) for f in faces}
+        fin = sorted(x for x in gf.values() if np.isfinite(x))
+        if len(fin) < 16:
+            continue
+        # the band half width : a few edges, and the profile step
+        gmax = fin[int(0.98 * (len(fin) - 1))]
+        h = gmax / steps
+        b = max(0.6 * h, 2.0 * S.median_edge)
+        prof = []
+        t = 2 * b
+        acc_area = np.cumsum([S.FA[f] for f in sorted(faces, key=lambda f: gf[f]) if np.isfinite(gf[f])])
+        gsorted = sorted(gf[f] for f in faces if np.isfinite(gf[f]))
+        while t < gmax:
+            ia = np.searchsorted(gsorted, t)
+            capa = float(acc_area[min(ia, len(acc_area) - 1)])
+            if capa > max_cap * area:
+                break
+            res = band_loop(S, faces, allowed, gf, t - b, t + b)
+            if res is not None:
+                ce, cap = res
+                prof.append((t, float(S.EL[ce].sum()), float(S.cost[ce].sum()), ce, cap, capa))
+            t += h
+        # narrowings of the girth profile
+        for i in range(1, len(prof) - 1):
+            t_i, L_i = prof[i][0], prof[i][1]
+            rho = L_i / (2 * math.pi)
+            # 20 October 2026 : a neck closes a protrusion at least 0.3 times as long as its girth (a finger 1.2, a hand from its fingertip 0.86, a head 0.47, the
+            # rubber toy's head and neck about 0.35) ;
+            # a bump round a crumb (the lips of the shader ball's window, 0.16) is no part : cutting it would only pierce the chart and ask for an opening seam
+            if t_i < 0.3 * L_i or prof[i][5] < 0.0005 * area:
+                continue
+            win = [p for p in prof if abs(p[0] - t_i) <= max(rho, h)]
+            after = [p[1] for p in prof if t_i < p[0] <= t_i + 3 * max(rho, h)]
+            before = [p[1] for p in prof if t_i - 2 * max(rho, h) <= p[0] < t_i]
+            if not after:
+                continue
+            is_min = L_i <= min(p[1] for p in win) + 1e-12 and max(after) >= 1.25 * L_i
+            is_knee = before and max(after[:2]) >= 1.4 * L_i and (max(before) - min(before)) <= 0.3 * L_i
+            # a protrusion is at least as big as the disc its loop would close (area L^2 / 4 pi) : a long loop round a crumb of faces is a groove, not a neck
+            if (is_min or is_knee) and prof[i][5] >= 0.5 * L_i * L_i / (4 * math.pi):
+                out.append((prof[i][3], prof[i][4], prof[i][2], L_i))
+    out.sort(key=lambda x: x[2])
+    kept = []
+    for c in out:
+        cs = set(c[1])
+        if any(len(cs & d[4]) / max(1, len(cs | d[4])) > 0.8 for d in kept):
+            continue
+        kept.append(c + (cs,))
+    return [c[:4] for c in kept]
+
+
+# ---------------------------------------------------------------- inside Houdini (20 October 2026)
+CTRL_MAP = (('p95', 'tailor_p95'), ('p50', 'tailor_p50'), ('back_weight', 'tailor_back_weight'), ('vis_power', 'tailor_vis_power'),
+            ('gain_power', 'tailor_gain_power'), ('concave_bonus', 'tailor_concave'))
+
+
+def params_from_ctrl(c):
+    """The tailor parameters read from CTRL_zruv (the HDA interface) over the defaults of PARAMS."""
+    prm = {}
+    for key, pn in CTRL_MAP:
+        if c.parm(pn) is not None:
+            prm[key] = float(c.evalParm(pn))
+    if c.parm('tailor_symmetry') is not None:
+        prm['symmetry'] = bool(c.evalParm('tailor_symmetry'))
+    if c.parm('tailor_front') is not None:
+        try:
+            prm['front'] = tuple(float(x) for x in c.evalParm('tailor_front').split()[:3])
+        except ValueError:
+            pass
+    prm['td'] = float(c.evalParm('texel_density'))
+    return prm
+
+
+def required_seams(S, sharp, active, crease_rad):
+    """20 October 2026 : the hard edges an organic surface must keep as seams : geometrically sharp (dihedral over the crease) and closing a loop (they bound a part :
+    a sole, a window rim). A split normal on a smooth surface (the trace of an old uv layout : Manny's, 88 fragments of Epic's seams) and a dangling design groove are
+    demoted : the new hard edges follow the new seams. Returns (required edge ids, demoted edge ids)."""
+    act = active[S.EF0] & ((S.EF1 < 0) | active[np.maximum(S.EF1, 0)])
+    cand = [e for e in sharp if act[e]]
+    keep = [e for e in cand if abs(S.dih[e]) >= crease_rad]
+    par = {}
+
+    def find(x):
+        while par.setdefault(x, x) != x:
+            par[x] = par[par[x]]
+            x = par[x]
+        return x
+    for e in keep:
+        par[find(int(S.E[e, 0]))] = find(int(S.E[e, 1]))
+    nv, ne = {}, {}
+    for e in keep:
+        r = find(int(S.E[e, 0]))
+        ne[r] = ne.get(r, 0) + 1
+    for v in list(par):
+        r = find(v)
+        nv[r] = nv.get(r, 0) + 1
+    req = [e for e in keep if ne[find(int(S.E[e, 0]))] >= nv[find(int(S.E[e, 0]))]]
+    rs = set(req)
+    return req, [e for e in cand if e not in rs]
+
+
+FAST_PYTHON = '/Users/zenray/.venvs/shorts/bin/python'      # 20 October 2026 : the solver runs out of Houdini when this exists (measured 2 to 12 times faster)
+
+
+def solve(data, log=None):
+    """20 October 2026 : the whole tailor on plain data, with no Houdini : data = {P, polys, face_open, organic (0/1 per face), sharp (edge pairs), crease_rad, prm}.
+    Returns {uv: {"f_j": [u, v]}, chart: [id per face], seams: [[a, b]], demoted: [[a, b]], required: n, report: {...}}."""
+    import time as _time
+    t0 = _time.time()
+    prm = data.get('prm') or {}
+    S = Surf(data['P'], data['polys'], face_open=data.get('face_open'), prm=prm)
+    flag = np.asarray(data['organic'], dtype=np.int64) == 1
+    sharp = [S.emap[(min(a, b), max(a, b))] for a, b in data.get('sharp', []) if (min(a, b), max(a, b)) in S.emap]
+    req, dem = required_seams(S, sharp, flag, float(data.get('crease_rad', math.radians(30.0))))
+    tl = Tailor(S, must_cut=req, faces=np.where(flag)[0], log=log)
+    tl.cut_necks()
+    tl.flatten_all()
+    tl.improve()
+    tl.economy_all()
+    rep = tl.report()
+    uv, chart = {}, [-1] * S.nf
+    for kk, (k, ch) in enumerate(sorted(tl.charts.items())):
+        if ch is None or not ch.ok:
+            continue
+        for (f, j), lv in ch.loc.corner.items():
+            uv['%d_%d' % (f, j)] = [float(ch.uv[lv, 0]), float(ch.uv[lv, 1])]
+        for f in ch.loc.faces:
+            chart[f] = kk
+    inner = np.where(tl.cut & (S.EF1 >= 0) & flag[S.EF0] & flag[np.maximum(S.EF1, 0)])[0]
+    rep.update({'method': 'tailor', 'required_hard_edges': len(req), 'demoted_hard_edges': len(dem), 'demoted_m': round(float(S.EL[dem].sum()), 3) if dem else 0.0,
+                'params': {k: S.prm.get(k) for k in ('p95', 'p50', 'back_weight', 'vis_power', 'open_power', 'eps', 'gain_power', 'symmetry', 'front')},
+                'seconds': round(_time.time() - t0, 1)})
+    return {'uv': uv, 'chart': chart, 'seams': [[int(a), int(b)] for a, b in S.E[inner]], 'demoted': [[int(a), int(b)] for a, b in S.E[dem]],
+            'report': rep}
+
+
+def refine(node):
+    """20 October 2026 : the organic chain by the tailor (the artist's cut) : reads the asset with its organic faces (zruv_organic), their openness (zruv_open) and the
+    hard edges (edge group zruv_sharp) ; the solve (solve) runs in the fast Python of this machine (FAST_PYTHON, in a subprocess : Houdini's own interpreter measured
+    12 times slower on LSCM) and is cached by a fingerprint of its inputs, parameters and code (a cook of the same asset never cuts twice) ; writes vertex uv_org
+    (metres, every chart from its corner), prim zruv_ochart (chart id), edge group zruv_tailor_seams, the demoted hard edges out of zruv_sharp (into
+    zruv_sharp_demoted), and detail zruv_organic_report. FR : la coupe du tailleur, calculee hors de Houdini, gardee en cache."""
+    import hou
+    import os
+    import hashlib
+    import subprocess
+    import tempfile
+    import json as _json
+    import ZrMesh as Z
+    import ZruvSops as Sx
+    geo = node.geometry()
+    c = Sx.ctrl(node)
+    prm = params_from_ctrl(c)
+    Sx._add(geo, hou.attribType.Prim, 'zruv_ochart', -1)
+    if geo.findVertexAttrib('uv_org') is None:
+        geo.addAttrib(hou.attribType.Vertex, 'uv_org', (0.0, 0.0, 0.0))
+    Sx._add(geo, hou.attribType.Global, 'zruv_organic_report', '')
+    m = Z.from_geo(geo, (), ['zruv_organic', 'zruv_open'])
+    flag = [int(x) for x in m.prim.get('zruv_organic', [0] * m.n)]
+    if not any(flag):
+        geo.setGlobalAttribValue('zruv_organic_report', _json.dumps({'charts': 0, 'method': 'tailor'}))
+        return
+    sharp = []
+    eg = geo.findEdgeGroup('zruv_sharp')
+    if eg is not None:
+        for ed in eg.edges():
+            a, b = ed.points()[0].number(), ed.points()[1].number()
+            sharp.append([min(a, b), max(a, b)])
+    crease = math.radians(float(geo.attribValue('zruv_crease')) if geo.findGlobalAttrib('zruv_crease') else float(c.evalParm('crease_deg')))
+    data = {'P': np.asarray(m.P).round(7).tolist(), 'polys': m.polys, 'face_open': [round(float(x), 5) for x in m.prim.get('zruv_open', [1.0] * m.n)],
+            'organic': flag, 'sharp': sorted(sharp), 'crease_rad': crease, 'prm': prm}
+    blob = _json.dumps(data, sort_keys=True).encode()
+    code = open(os.path.abspath(__file__), 'rb').read() + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ZruvOrganic.py'), 'rb').read()
+    key = hashlib.sha1(blob + code).hexdigest()[:20]
+    cache = os.path.join(os.path.expanduser('~/.cache/zenray_uv/tailor'))
+    os.makedirs(cache, exist_ok=True)
+    out_p = os.path.join(cache, key + '.json')
+    if not os.path.exists(out_p):
+        if os.path.exists(FAST_PYTHON):
+            in_p = os.path.join(cache, key + '.in.json')
+            open(in_p, 'wb').write(blob)
+            r = subprocess.run([FAST_PYTHON, '-I', os.path.abspath(__file__), 'solve', in_p, out_p], capture_output=True, text=True)
+            if r.returncode != 0 or not os.path.exists(out_p):
+                raise hou.NodeError('the tailor solve failed : ' + (r.stderr or r.stdout)[-2000:])
+            os.remove(in_p)
+        else:
+            _json.dump(solve(data), open(out_p, 'w'))
+    res = _json.load(open(out_p))
+    uvc = res['uv']
+    flat = []
+    for f, pr in enumerate(geo.prims()):
+        for j in range(len(m.polys[f])):
+            q = uvc.get('%d_%d' % (f, j))
+            flat.extend((float(q[0]), float(q[1]), 0.0) if q is not None else (0.0, 0.0, 0.0))
+    geo.setVertexFloatAttribValues('uv_org', flat)
+    geo.setPrimIntAttribValues('zruv_ochart', [int(x) for x in res['chart']])
+    pts = geo.points()
+    sg = geo.findEdgeGroup('zruv_tailor_seams') or geo.createEdgeGroup('zruv_tailor_seams')
+    edges = [geo.findEdge(pts[a], pts[b]) for a, b in res['seams']]
+    sg.add([x for x in edges if x is not None])
+    if res['demoted'] and eg is not None:
+        dg = geo.findEdgeGroup('zruv_sharp_demoted') or geo.createEdgeGroup('zruv_sharp_demoted')
+        edges = [geo.findEdge(pts[a], pts[b]) for a, b in res['demoted']]
+        edges = [x for x in edges if x is not None]
+        dg.add(edges)
+        eg.remove(edges)
+    rep = dict(res['report'])
+    rep['cache'] = key
+    geo.setGlobalAttribValue('zruv_organic_report', _json.dumps(rep))
+
+
+if __name__ == '__main__':
+    import sys as _sys
+    import json as _json
+    import os as _os
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    if len(_sys.argv) >= 4 and _sys.argv[1] == 'solve':
+        _json.dump(solve(_json.load(open(_sys.argv[2]))), open(_sys.argv[3], 'w'))

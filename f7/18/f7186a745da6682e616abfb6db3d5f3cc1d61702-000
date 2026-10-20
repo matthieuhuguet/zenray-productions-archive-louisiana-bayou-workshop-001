@@ -1,0 +1,28 @@
+# 20 October 2026 : the parallel tailor makes the choices of the sequential one : the same solve on one mesh with procs 1 and procs N, outputs compared (charts,
+# seams, uv) and timed. Usage : python -I PoolCheck.py <mesh.json> <procs> <out.json> ['{"front": [1, 0, 0]}']
+import sys, json, time, math
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import numpy as np
+import ZrMesh as Z, ZruvTailor as T
+
+
+def data_of(path, prm):
+    m = Z.from_json(path)
+    hd = m.detail.get('zruv_hard_edges')
+    hd = json.loads(hd) if isinstance(hd, str) else (hd or [])
+    return {'P': np.asarray(m.P).round(7).tolist(), 'polys': m.polys, 'face_open': [round(float(x), 5) for x in m.prim.get('zruv_open', [1.0] * m.n)],
+            'organic': [int(x) for x in m.prim.get('zruv_organic', [1] * m.n)], 'sharp': sorted([min(a, b), max(a, b)] for a, b in hd),
+            'crease_rad': math.radians(30.0), 'prm': prm}
+
+
+if __name__ == '__main__':
+    path, procs, out = sys.argv[1], int(sys.argv[2]), sys.argv[3]
+    prm = dict(T.PARAMS)
+    if len(sys.argv) > 4:
+        prm.update(json.loads(sys.argv[4]))
+    d = data_of(path, prm)
+    t = time.time()
+    r = T.solve(d, procs=procs)
+    r['report']['wall_s'] = round(time.time() - t, 1)
+    json.dump(r, open(out, 'w'))
+    print(procs, r['report'])
