@@ -1,13 +1,13 @@
 {
- "score": 0.67241,
- "weakest": "uv:density",
+ "score": 0.999989,
+ "weakest": "uv:stretch",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.67241,
-  "uv:stretch": 0.801856,
+  "uv:density": 1.0,
+  "uv:stretch": 0.999989,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
-  "uv:region": 0.745032,
+  "uv:region": 1.0,
   "uv:grain": 1.0,
   "uv:horizontal": 1.0,
   "uv:band_straight": 1.0,
@@ -22,26 +22,26 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.6724098495740052,
-    "low_frac": 0.16550869270706856,
-    "high_frac": 0.16208145771892613,
-    "px_per_m_min": 915.00264327033,
-    "px_per_m_median": 1023.9999595913108,
-    "px_per_m_max": 2029.5842859943496,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1022.9023898224833,
+    "px_per_m_median": 1023.9999819429062,
+    "px_per_m_max": 1026.2338761416295,
     "stretch_max": 43.30072660297043,
     "faces": 995
    },
    "straight_area": 0.5983,
-   "straight_stretch_max": 0.8975,
-   "stretch_over_2pc_area": 0.4226,
+   "straight_stretch_max": 0.0528,
+   "stretch_over_2pc_area": 0.095,
    "islands": 524,
    "u_range": [
-    0.0039,
-    2.6328
+    0.002,
+    1.3164
    ],
    "v_range": [
-    0.0039,
-    0.9961
+    0.002,
+    0.998
    ]
   }
  },
@@ -71,16 +71,16 @@
  },
  "layout": {
   "zruv_straight_uv": "{\"charts\": 524, \"grids\": 240, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.0528, \"kept_native\": 251, \"straight_area\": 0.5983}",
-  "zruv_sheet_m3": 2048,
-  "zruv_bands": "[{\"h\": 16.0, \"px\": 32, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.984375, \"kind\": \"band\"}, {\"h\": 32.0, \"px\": 48, \"top\": 32.0, \"v1\": 0.984375, \"v0\": 0.9609375, \"kind\": \"band\"}, {\"h\": 48.0, \"px\": 64, \"top\": 80.0, \"v1\": 0.9609375, \"v0\": 0.9296875, \"kind\": \"band\"}, {\"h\": 64.0, \"px\": 80, \"top\": 144.0, \"v1\": 0.9296875, \"v0\": 0.890625, \"kind\": \"band\"}, {\"h\": 96.0, \"px\": 112, \"top\": 224.0, \"v1\": 0.890625, \"v0\": 0.8359375, \"kind\": \"band\"}, {\"h\": 128.0, \"px\": 144, \"top\": 336.0, \"v1\": 0.8359375, \"v0\": 0.765625, \"kind\": \"band\"}, {\"h\": 192.0, \"px\": 208, \"top\": 480.0, \"v1\": 0.765625, \"v0\": 0.6640625, \"kind\": \"band\"}, {\"h\": 256.0, \"px\": 272, \"top\": 688.0, \"v1\": 0.6640625, \"v0\": 0.53125, \"kind\": \"band\"}, {\"h\": 1072.0, \"px\": 1088.0, \"top\": 960.0, \"v0\": 0.0, \"v1\": 0.53125, \"kind\": \"plain\"}]"
+  "zruv_sheet_m3": 4096,
+  "zruv_bands": "[{\"h\": 16.0, \"px\": 32, \"top\": 0.0, \"v1\": 1.0, \"v0\": 0.9921875, \"kind\": \"band\"}, {\"h\": 32.0, \"px\": 48, \"top\": 32.0, \"v1\": 0.9921875, \"v0\": 0.98046875, \"kind\": \"band\"}, {\"h\": 48.0, \"px\": 64, \"top\": 80.0, \"v1\": 0.98046875, \"v0\": 0.96484375, \"kind\": \"band\"}, {\"h\": 64.0, \"px\": 80, \"top\": 144.0, \"v1\": 0.96484375, \"v0\": 0.9453125, \"kind\": \"band\"}, {\"h\": 96.0, \"px\": 112, \"top\": 224.0, \"v1\": 0.9453125, \"v0\": 0.91796875, \"kind\": \"band\"}, {\"h\": 128.0, \"px\": 144, \"top\": 336.0, \"v1\": 0.91796875, \"v0\": 0.8828125, \"kind\": \"band\"}, {\"h\": 192.0, \"px\": 208, \"top\": 480.0, \"v1\": 0.8828125, \"v0\": 0.83203125, \"kind\": \"band\"}, {\"h\": 256.0, \"px\": 272, \"top\": 688.0, \"v1\": 0.83203125, \"v0\": 0.765625, \"kind\": \"band\"}, {\"h\": 3120.0, \"px\": 3136.0, \"top\": 960.0, \"v0\": 0.0, \"v1\": 0.765625, \"kind\": \"plain\"}]"
  },
  "method": "M3B",
  "title": "Trim sheet d'abord, puis la g\u00e9om\u00e9trie",
  "contracts": [
   {
    "set": "uv",
-   "W": 2048,
-   "H": 2048,
+   "W": 4096,
+   "H": 4096,
    "space": "sheet",
    "unique": false,
    "region": "band",
@@ -102,8 +102,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 3.0,
- "score_s": 0.17,
+ "cook_s": 3.33,
+ "score_s": 0.14,
  "bake": null,
  "asset": "/obj/ZRUV_ArchLibrarySrc/OUT_clean",
  "asset_scale": 1.64,
@@ -114,7 +114,7 @@
   "sign"
  ],
  "crease_effective": 30.0,
- "date": "20 October 2026 06:03",
+ "date": "20 October 2026 07:00",
  "params": {
   "asset_path": "/obj/ZRUV_ArchLibrarySrc/OUT_clean",
   "asset_scale": 1.64,

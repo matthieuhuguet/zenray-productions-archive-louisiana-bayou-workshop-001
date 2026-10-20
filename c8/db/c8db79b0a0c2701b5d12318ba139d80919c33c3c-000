@@ -2,7 +2,7 @@
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "20 October 2026 06:02",
+ "date": "20 October 2026 06:59",
  "families": [
   {
    "name": "iron",
@@ -45,6 +45,7 @@
     "uv:region": 1.0,
     "uv:horizontal": 1.0,
     "uv:stack": 1.0,
+    "uv:twin_bake": 1.0,
     "uv:no_overlap": 1.0,
     "uv:padding": 1.0,
     "seams:consistency": 1.0,
@@ -62,8 +63,15 @@
      "region": "sheet",
      "padding_px": 16,
      "straight_tol": 0.08,
+     "twin_bake": true,
      "organic_tol": 0.1,
-     "subtexel_px": 1.0
+     "subtexel_px": 1.0,
+     "organic_artist": {
+      "p50": 0.09,
+      "p95": 0.35,
+      "small_px": 128.0,
+      "tiny_px": 48.0
+     }
     }
    ],
    "views": {
@@ -99,10 +107,10 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9789199214039,
-    "px_per_m_median": 1023.9999408675247,
-    "px_per_m_max": 1024.0308829900703,
-    "stretch_max": 0.05599937250270792,
+    "px_per_m_min": 1023.9742674068202,
+    "px_per_m_median": 1024.0,
+    "px_per_m_max": 1024.024949451331,
+    "stretch_max": 0.05599952485331561,
     "faces": 995
    },
    "seams": {
@@ -113,26 +121,26 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 274.496,
+    "seams_m": 229.16,
     "seams_on_smooth_m": 0.669,
     "sharp_kept_m": 0,
-    "sharp_m": 273.827,
+    "sharp_m": 228.49,
     "border_m": 0,
     "pass": true
    },
-   "islands": 533,
-   "fill": 0.6259,
+   "islands": 377,
+   "fill": 0.638,
    "u_range": [
     0.0039,
-    0.981
+    0.9889
    ],
    "v_range": [
     0.0039,
-    0.9945
+    0.9948
    ],
-   "cook_s": 2.36,
-   "bake_s": 37.309999999999995,
-   "date": "20 October 2026 02:30",
+   "cook_s": 10.34,
+   "bake_s": 313.51,
+   "date": "20 October 2026 06:58",
    "report": "M1/report.json",
    "example": {
     "texture": "M1/texture_unique.png",
@@ -239,7 +247,7 @@
     "low_frac": 0.0,
     "high_frac": 0.0,
     "px_per_m_min": 1023.9594731181321,
-    "px_per_m_median": 1023.9999814843749,
+    "px_per_m_median": 1023.9999971581134,
     "px_per_m_max": 1024.0546168012281,
     "stretch_max": 0.05599952485331561,
     "faces": 995
@@ -249,7 +257,7 @@
     "crease_effective": 29.185,
     "edges_near_requested": 0,
     "ambiguous_edges": 0,
-    "chains_mixed": 48,
+    "chains_mixed": 49,
     "mixed_detail": [
      {
       "angle": 45.0,
@@ -343,6 +351,12 @@
      },
      {
       "angle": 90.0,
+      "edges": 12,
+      "cut": 10,
+      "minority_m": 1.6944
+     },
+     {
+      "angle": 90.0,
       "edges": 8,
       "cut": 5,
       "minority_m": 0.2346
@@ -350,8 +364,8 @@
      {
       "angle": 90.0,
       "edges": 12,
-      "cut": 9,
-      "minority_m": 0.7816
+      "cut": 8,
+      "minority_m": 1.5403
      },
      {
       "angle": 90.0,
@@ -364,23 +378,17 @@
       "edges": 4,
       "cut": 3,
       "minority_m": 0.3442
-     },
-     {
-      "angle": 45.0,
-      "edges": 4,
-      "cut": 2,
-      "minority_m": 0.6185
      }
     ],
-    "consistency": 0.874107,
-    "seams_m": 168.891,
+    "consistency": 0.866079,
+    "seams_m": 166.074,
     "seams_on_smooth_m": 0,
-    "sharp_kept_m": 104.936,
+    "sharp_kept_m": 107.753,
     "sharp_m": 273.827,
     "border_m": 0,
     "pass": false
    },
-   "islands": 190,
+   "islands": 186,
    "fill": null,
    "u_range": [
     0.002,
@@ -390,9 +398,9 @@
     0.4343,
     2.998
    ],
-   "cook_s": 0.02,
+   "cook_s": 0.04,
    "bake_s": null,
-   "date": "20 October 2026 06:01",
+   "date": "20 October 2026 06:58",
    "report": "M2/report.json",
    "example": {
     "textured_3d": "M2/view_textured_3d.png",
@@ -509,9 +517,9 @@
     0.002,
     0.998
    ],
-   "cook_s": 1.1,
+   "cook_s": 1.17,
    "bake_s": null,
-   "date": "20 October 2026 06:01",
+   "date": "20 October 2026 06:58",
    "report": "M3/report.json",
    "example": {
     "texture": "M3/texture_trim.png",
@@ -533,17 +541,17 @@
    "id": "M3B",
    "title": "Trim sheet d'abord, puis la géométrie",
    "idea": "La trim sheet existe avant l'objet : une bibliothèque fixe de bandes (16 à 256 px) ; la géométrie est construite à ces largeurs, chaque bande droite remplit la sienne sans perte, et une seule feuille sert tout un kit.",
-   "score": 0.34929,
-   "weakest": "uv:density",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
-    "uv:density": 0.34929,
-    "uv:stretch": 0.442819,
+    "uv:density": 1.0,
+    "uv:stretch": 1.0,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
     "uv:grain": 1.0,
-    "uv:horizontal": 0.997384,
+    "uv:horizontal": 1.0,
     "uv:band_straight": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0
@@ -586,13 +594,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.3492900568377505,
-    "low_frac": 0.3886298831787586,
-    "high_frac": 0.26208005998349077,
-    "px_per_m_min": 874.8940414837662,
-    "px_per_m_median": 1023.9962848059215,
-    "px_per_m_max": 1728.32834546794,
-    "stretch_max": 1.8487410482395439,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1023.9765937415543,
+    "px_per_m_median": 1024.0,
+    "px_per_m_max": 1026.013737105104,
+    "stretch_max": 0.055999391546444954,
     "faces": 995
    },
    "seams": {
@@ -618,11 +626,11 @@
    ],
    "v_range": [
     0.002,
-    0.998
+    0.9902
    ],
-   "cook_s": 0.98,
+   "cook_s": 0.9,
    "bake_s": null,
-   "date": "20 October 2026 06:01",
+   "date": "20 October 2026 06:58",
    "report": "M3B/report.json",
    "example": {
     "texture": "M3B/texture_trim.png",
@@ -643,11 +651,11 @@
    "id": "M3C",
    "title": "Trim sheet hotspot",
    "idea": "Une feuille de rectangles fixes, à la manière du hotspot de Valve : chaque île prend, par une échelle uniforme, le rectangle qui change le moins sa densité ; l'erreur est bornée par le pas de la bibliothèque.",
-   "score": 0.542076,
-   "weakest": "uv:density",
+   "score": 1.0,
+   "weakest": "uv:present",
    "components": {
     "uv:present": 1.0,
-    "uv:density": 0.542076,
+    "uv:density": 1.0,
     "uv:stretch": 1.0,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
@@ -669,7 +677,13 @@
      "stretch_relative": true,
      "straight_tol": 0.08,
      "organic_tol": 0.1,
-     "subtexel_px": 1.0
+     "subtexel_px": 1.0,
+     "organic_artist": {
+      "p50": 0.09,
+      "p95": 0.35,
+      "small_px": 128.0,
+      "tiny_px": 48.0
+     }
     }
    ],
    "views": {
@@ -687,13 +701,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.030480434060552907,
-    "low_frac": 0.7141560297146422,
+    "exact_frac": 0.20366679043109145,
+    "low_frac": 0.5409696733441036,
     "high_frac": 0.2553635362248048,
-    "px_per_m_min": 388.7220180760802,
-    "px_per_m_median": 933.937923309624,
+    "px_per_m_min": 736.3090804204413,
+    "px_per_m_median": 1023.9986469457361,
     "px_per_m_max": 1443.3429078270804,
-    "stretch_max": 0.6275655068466612,
+    "stretch_max": 0.4095147024470607,
     "faces": 995
    },
    "seams": {
@@ -715,15 +729,15 @@
    "fill": null,
    "u_range": [
     0.002,
-    0.9512
+    1.3191
    ],
    "v_range": [
-    0.7324,
-    0.998
+    0.002,
+    0.9911
    ],
-   "cook_s": 0.32,
+   "cook_s": 0.89,
    "bake_s": null,
-   "date": "20 October 2026 02:34",
+   "date": "20 October 2026 06:58",
    "report": "M3C/report.json",
    "example": {
     "texture": "M3C/texture_hotspot.png",
@@ -806,6 +820,7 @@
      "target": 128.0,
      "padding_px": 2,
      "straight_tol": 0.08,
+     "twin_bake": true,
      "organic_tol": 0.1,
      "subtexel_px": 1.0,
      "organic_artist": {
@@ -883,7 +898,7 @@
     "low_frac": 0.0,
     "high_frac": 0.0,
     "px_per_m_min": 1023.9594731181321,
-    "px_per_m_median": 1023.9999814843749,
+    "px_per_m_median": 1023.9999971581134,
     "px_per_m_max": 1024.0546168012281,
     "stretch_max": 0.05599952485331561,
     "faces": 995
@@ -893,7 +908,7 @@
     "crease_effective": 29.185,
     "edges_near_requested": 0,
     "ambiguous_edges": 0,
-    "chains_mixed": 48,
+    "chains_mixed": 49,
     "mixed_detail": [
      {
       "angle": 45.0,
@@ -987,6 +1002,12 @@
      },
      {
       "angle": 90.0,
+      "edges": 12,
+      "cut": 10,
+      "minority_m": 1.6944
+     },
+     {
+      "angle": 90.0,
       "edges": 8,
       "cut": 5,
       "minority_m": 0.2346
@@ -994,8 +1015,8 @@
      {
       "angle": 90.0,
       "edges": 12,
-      "cut": 9,
-      "minority_m": 0.7816
+      "cut": 8,
+      "minority_m": 1.5403
      },
      {
       "angle": 90.0,
@@ -1008,23 +1029,17 @@
       "edges": 4,
       "cut": 3,
       "minority_m": 0.3442
-     },
-     {
-      "angle": 45.0,
-      "edges": 4,
-      "cut": 2,
-      "minority_m": 0.6185
      }
     ],
-    "consistency": 0.874107,
-    "seams_m": 168.891,
+    "consistency": 0.866079,
+    "seams_m": 166.074,
     "seams_on_smooth_m": 0,
-    "sharp_kept_m": 104.936,
+    "sharp_kept_m": 107.753,
     "sharp_m": 273.827,
     "border_m": 0,
     "pass": false
    },
-   "islands": 190,
+   "islands": 186,
    "fill": null,
    "u_range": [
     0.002,
@@ -1035,8 +1050,8 @@
     2.998
    ],
    "cook_s": 0.01,
-   "bake_s": 28.15,
-   "date": "20 October 2026 06:02",
+   "bake_s": 35.94,
+   "date": "20 October 2026 06:59",
    "report": "M4/report.json",
    "example": {
     "texture": "M4/ZRUV_Arch_M4_layered_2048x1024.png",
@@ -1081,12 +1096,12 @@
    "id": "M5",
    "title": "Mesh decals de normale",
    "idea": "La base répétée de M2, plus des decals de géométrie posés 1 mm au-dessus qui ne portent qu'une normale : biseaux d'usure sur les arêtes vives, rainure de panneau et rivets, tous en rangées répétées d'un petit atlas.",
-   "score": 0.67672,
-   "weakest": "decals:lift",
+   "score": 0.989679,
+   "weakest": "uv:density",
    "components": {
     "uv:present": 1.0,
-    "uv:density": 0.99225,
-    "uv:stretch": 0.99225,
+    "uv:density": 0.989679,
+    "uv:stretch": 0.989679,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
     "uv:region": 1.0,
@@ -1097,7 +1112,7 @@
     "uv:padding": 1.0,
     "seams:consistency": 1.0,
     "seams:robust_crease": 1.0,
-    "decals:lift": 0.67672
+    "decals:lift": 1.0
    },
    "contracts": [
     {
@@ -1173,21 +1188,21 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.9922498975492231,
-    "low_frac": 0.007750102450777025,
-    "high_frac": 0.0,
-    "px_per_m_min": 807.6124962525248,
-    "px_per_m_median": 1023.9998485327326,
-    "px_per_m_max": 1024.0546168012281,
-    "stretch_max": 0.548593321348692,
-    "faces": 1940
+    "exact_frac": 0.9896786670581922,
+    "low_frac": 0.007825545898356791,
+    "high_frac": 0.0024957870434508898,
+    "px_per_m_min": 832.7523245207044,
+    "px_per_m_median": 1024.0003814700192,
+    "px_per_m_max": 1037.433112628916,
+    "stretch_max": 0.3402014867586879,
+    "faces": 2467
    },
    "seams": {
     "crease_requested": 29.1846923828125,
-    "crease_effective": 29.185,
-    "edges_near_requested": 0,
+    "crease_effective": 26.846,
+    "edges_near_requested": 200,
     "ambiguous_edges": 0,
-    "chains_mixed": 48,
+    "chains_mixed": 49,
     "mixed_detail": [
      {
       "angle": 45.0,
@@ -1281,6 +1296,12 @@
      },
      {
       "angle": 90.0,
+      "edges": 12,
+      "cut": 10,
+      "minority_m": 1.6944
+     },
+     {
+      "angle": 90.0,
       "edges": 8,
       "cut": 5,
       "minority_m": 0.2346
@@ -1288,8 +1309,8 @@
      {
       "angle": 90.0,
       "edges": 12,
-      "cut": 9,
-      "minority_m": 0.7816
+      "cut": 8,
+      "minority_m": 1.5403
      },
      {
       "angle": 90.0,
@@ -1302,23 +1323,17 @@
       "edges": 4,
       "cut": 3,
       "minority_m": 0.3442
-     },
-     {
-      "angle": 45.0,
-      "edges": 4,
-      "cut": 2,
-      "minority_m": 0.6185
      }
     ],
-    "consistency": 0.874107,
-    "seams_m": 316.984,
+    "consistency": 0.866079,
+    "seams_m": 291.379,
     "seams_on_smooth_m": 0,
-    "sharp_kept_m": 104.936,
+    "sharp_kept_m": 107.753,
     "sharp_m": 273.827,
-    "border_m": 148.093,
+    "border_m": 125.305,
     "pass": false
    },
-   "islands": 688,
+   "islands": 565,
    "fill": 0.0,
    "u_range": [
     -0.0003,
@@ -1328,9 +1343,9 @@
     0.4343,
     2.998
    ],
-   "cook_s": 0.48,
+   "cook_s": 0.84,
    "bake_s": null,
-   "date": "20 October 2026 06:02",
+   "date": "20 October 2026 06:59",
    "report": "M5/report.json",
    "example": {
     "texture": "M5/texture_decal_relief.png",

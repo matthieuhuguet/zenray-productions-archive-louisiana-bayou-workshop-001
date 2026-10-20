@@ -40,7 +40,7 @@
     "low_frac": 0.0,
     "high_frac": 0.0,
     "px_per_m_min": 1023.9594731181321,
-    "px_per_m_median": 1023.9999814843749,
+    "px_per_m_median": 1023.9999971581134,
     "px_per_m_max": 1024.0546168012281,
     "stretch_max": 0.05599952485331561,
     "faces": 995
@@ -48,8 +48,8 @@
    "straight_area": 0.5921,
    "straight_stretch_max": 0.056,
    "stretch_over_2pc_area": 0.0984,
-   "islands": 190,
-   "stacked_faces": 316,
+   "islands": 186,
+   "stacked_faces": 325,
    "groups": 3,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
@@ -105,14 +105,14 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 168.891,
+  "seams_m": 166.074,
   "seams_on_smooth_m": 0,
-  "sharp_kept_m": 104.936,
+  "sharp_kept_m": 107.753,
   "sharp_m": 273.827,
   "border_m": 0,
   "pass": true,
-  "texture_continuity": 0.456,
-  "texture_continuous_m": 141.542
+  "texture_continuity": 0.465,
+  "texture_continuous_m": 144.359
  },
  "hard_edges": {
   "source": "angle",
@@ -124,7 +124,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 154, \"stacked\": 112, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 33, \"stacked\": 12, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
+  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 153, \"stacked\": 112, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 30, \"stacked\": 12, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
   "zruv_layout_uv2": "{\"W\": 2048, \"H\": 1024, \"pad\": 2.0, \"islands\": 525, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.1511, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 371794, \"lower_bound_unique_px2\": 371794, \"next_smaller\": [1024, 1024], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 3}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 3}], \"rows\": 17}",
   "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}",
   "zruv_straight_uv2": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
@@ -164,6 +164,7 @@
    "target": 128.0,
    "padding_px": 2,
    "straight_tol": 0.08,
+   "twin_bake": true,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -179,7 +180,7 @@
   "uv2": 128.0
  },
  "cook_s": 0.01,
- "score_s": 38.21,
+ "score_s": 48.23,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_custom_2048x1024.png",
@@ -196,18 +197,18 @@
    "base": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M4/ZRUV_Arch_M4_base_2048x1024.png"
   },
   "seconds": {
-   "custom": 8.51,
-   "edge": 0.74,
-   "worldnormal": 1.21,
-   "position": 1.13,
-   "occlusion": 0.79,
-   "alpha": 0.72,
-   "layered": 9.95,
-   "mask_rgb": 1.48,
-   "mask_R": 0.78,
-   "mask_G": 0.72,
-   "mask_B": 0.74,
-   "base": 1.38
+   "custom": 11.97,
+   "edge": 1.41,
+   "worldnormal": 1.57,
+   "position": 1.14,
+   "occlusion": 0.88,
+   "alpha": 0.69,
+   "layered": 10.97,
+   "mask_rgb": 1.82,
+   "mask_R": 0.83,
+   "mask_G": 1.35,
+   "mask_B": 1.17,
+   "base": 2.14
   },
   "size": [
    2048,
@@ -231,7 +232,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 06:02",
+ "date": "20 October 2026 06:59",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

@@ -2,7 +2,7 @@
  "asset": "/obj/ZRUV_ArchLibrarySrc/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "20 October 2026 06:03",
+ "date": "20 October 2026 07:00",
  "families": [
   {
    "name": "iron",
@@ -34,15 +34,15 @@
    "id": "M3B",
    "title": "Trim sheet d'abord, puis la géométrie",
    "idea": "La trim sheet existe avant l'objet : une bibliothèque fixe de bandes (16 à 256 px) ; la géométrie est construite à ces largeurs, chaque bande droite remplit la sienne sans perte, et une seule feuille sert tout un kit.",
-   "score": 0.67241,
-   "weakest": "uv:density",
+   "score": 0.999989,
+   "weakest": "uv:stretch",
    "components": {
     "uv:present": 1.0,
-    "uv:density": 0.67241,
-    "uv:stretch": 0.801856,
+    "uv:density": 1.0,
+    "uv:stretch": 0.999989,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
-    "uv:region": 0.745032,
+    "uv:region": 1.0,
     "uv:grain": 1.0,
     "uv:horizontal": 1.0,
     "uv:band_straight": 1.0,
@@ -52,8 +52,8 @@
    "contracts": [
     {
      "set": "uv",
-     "W": 2048,
-     "H": 2048,
+     "W": 4096,
+     "H": 4096,
      "space": "sheet",
      "unique": false,
      "region": "band",
@@ -87,12 +87,12 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.6724098495740052,
-    "low_frac": 0.16550869270706856,
-    "high_frac": 0.16208145771892613,
-    "px_per_m_min": 915.00264327033,
-    "px_per_m_median": 1023.9999595913108,
-    "px_per_m_max": 2029.5842859943496,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 1022.9023898224833,
+    "px_per_m_median": 1023.9999819429062,
+    "px_per_m_max": 1026.2338761416295,
     "stretch_max": 43.30072660297043,
     "faces": 995
    },
@@ -114,16 +114,16 @@
    "islands": 524,
    "fill": null,
    "u_range": [
-    0.0039,
-    2.6328
+    0.002,
+    1.3164
    ],
    "v_range": [
-    0.0039,
-    0.9961
+    0.002,
+    0.998
    ],
-   "cook_s": 3.0,
+   "cook_s": 3.33,
    "bake_s": null,
-   "date": "20 October 2026 06:03",
+   "date": "20 October 2026 07:00",
    "report": "M3B/report.json",
    "example": {
     "texture": "M3B/texture_trim.png",
