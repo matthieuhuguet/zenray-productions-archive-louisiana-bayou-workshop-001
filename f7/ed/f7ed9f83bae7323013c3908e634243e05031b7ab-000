@@ -1,6 +1,6 @@
-ZRUV_PigHead 225 s "result": {"M1": {"score": 0.999984, "weakest": "bake:coverage", "errors": null}}
-ZRUV_Arch 51 s "result": {"M1": {"score": 1.0, "weakest": "uv:present", "errors": null}}
+ZRUV_PigHead 43 s "result": {"M1": {"score": 0.985454, "weakest": "uv:smooth_border", "errors": null}}
+ZRUV_Arch 45 s "result": {"M1": {"score": 1.0, "weakest": "uv:present", "errors": null}}
 ZRUV_RubberToy 22 s "result": {"M1": {"score": 0.999993, "weakest": "bake:coverage", "errors": null}}
-ZRUV_ShaderBall 72 s "result": {"M1": {"score": 1.0, "weakest": "uv:present", "errors": null}}
-ZRUV_Manny 71 s "result": {"M1": {"score": 1.0, "weakest": "uv:present", "errors": null}}
-all done 14:59:27
+ZRUV_ShaderBall 68 s "result": {"M1": {"score": 0.975537, "weakest": "uv:smooth_border", "errors": null}}
+ZRUV_Manny 88 s "result": {"M1": {"score": 0.999471, "weakest": "uv:smooth_border", "errors": null}}
+all done 18:16:19

@@ -14,6 +14,7 @@
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "uv:no_self_overlap": 1.0,
+  "uv:smooth_border": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
   "bake:coverage": 1.0,
@@ -48,6 +49,11 @@
    "padding_overlap_px": 0,
    "padding_check_radius_px": 7,
    "self_overlap_faces": 0,
+   "staircases": {
+    "runs": 0,
+    "m": 0.0,
+    "islands": {}
+   },
    "u_range": [
     0.0039,
     0.9889
@@ -83,7 +89,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 377, \"stacked_possible\": 235, \"stacked\": 222, \"fill\": 0.6447, \"unique_share\": 0.5334, \"mode\": \"stacked\", \"lower_bound_px2\": 10412834, \"lower_bound_unique_px2\": 23379965, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 26, \"tiles_n\": 1, \"tile_rule\": \"one tile\", \"tile_splits\": 0, \"tiles\": [{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 377, \"stacked_possible\": 235, \"stacked\": 222, \"fill\": 0.6447, \"unique_share\": 0.5334, \"mode\": \"stacked\", \"lower_bound_px2\": 10412834, \"lower_bound_unique_px2\": 23379965, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"rows\": 26, \"tile\": 0, \"label\": \"\", \"area_m2\": 19.34037}], \"texels_total\": 16777216}",
+  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 377, \"stacked_possible\": 235, \"stacked\": 222, \"fill\": 0.6447, \"unique_share\": 0.5334, \"mode\": \"stacked\", \"lower_bound_px2\": 10412834, \"lower_bound_unique_px2\": 23379965, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 26, \"td\": 1024.0, \"fit\": false, \"tiles_n\": 1, \"tile_rule\": \"one tile\", \"tile_splits\": 0, \"tiles\": [{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 377, \"stacked_possible\": 235, \"stacked\": 222, \"fill\": 0.6447, \"unique_share\": 0.5334, \"mode\": \"stacked\", \"lower_bound_px2\": 10412834, \"lower_bound_unique_px2\": 23379965, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"rows\": 26, \"td\": 1024.0, \"fit\": false, \"tile\": 0, \"label\": \"\", \"area_m2\": 19.34037}], \"texels_total\": 16777216}",
   "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 8, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
  },
  "method": "M1",
@@ -99,6 +105,7 @@
    "padding_px": 16,
    "straight_tol": 0.08,
    "twin_bake": true,
+   "smooth_border": true,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -112,8 +119,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.69,
- "score_s": 41.46,
+ "cook_s": 2.42,
+ "score_s": 36.92,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_4096x4096.png",
@@ -123,11 +130,11 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_4096x4096.png"
   },
   "seconds": {
-   "custom": 37.92,
-   "occlusion": 0.23,
-   "curvature": 0.16,
+   "custom": 33.4,
+   "occlusion": 0.22,
+   "curvature": 0.15,
    "edge": 0.11,
-   "alpha": 0.07
+   "alpha": 0.06
   },
   "size": [
    4096,
@@ -145,7 +152,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 14:56",
+ "date": "20 October 2026 18:13",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/arch_src",
   "asset_scale": 1.64,
@@ -160,6 +167,9 @@
   "m1_tiles": 0,
   "m1_tile_groups": "",
   "asset_kind": 0,
+  "m1_fit": 0,
+  "m1_minor_density": 1.0,
+  "m1_no_texture": "*no_uv* *nouv*",
   "m1_sheet_px": 0,
   "m1_stack": 1,
   "m1_unstack": 1,
