@@ -5,7 +5,7 @@ import numpy as np
 sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
 import ZrMesh as Z, ZruvTailor as T
 
-def load(path, prm=None):
+def load(path, prm=None, sharp_deg=30.0):
     m = Z.from_json(path)
     org = np.array(m.prim.get('zruv_organic', [1] * m.n)) == 1
     opn = m.prim.get('zruv_open')
@@ -13,6 +13,9 @@ def load(path, prm=None):
     hd = m.detail.get('zruv_hard_edges')
     hd = json.loads(hd) if isinstance(hd, str) else (hd or [])
     must = [S.emap[(min(a, b), max(a, b))] for a, b in hd if (min(a, b), max(a, b)) in S.emap]
+    # 20 October 2026 : only the hard edges that are geometrically sharp stay required seams ; a split normal on a smooth surface (Manny : the trace of Epic's own
+    # seams, 88 fragments) follows an old uv layout, and a new layout sets its hard edges on its own seams
+    must = [e for e in must if abs(S.dih[e]) >= np.radians(sharp_deg)]
     return m, S, np.where(org)[0], must
 
 if __name__ == '__main__':

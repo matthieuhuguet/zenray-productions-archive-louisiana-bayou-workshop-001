@@ -1,0 +1,10 @@
+surf 15211 30418 45627 organic faces 30418 must 710 0.4s
+mirror axis 0 charts 8 0.6s
+necks 0 charts 8 2.5s
+flattened {'charts': 8, 'seams_m': 6.159, 'seam_cost': 1.0113, 'stretch_p50': 0.0447, 'stretch_p95': 0.1693, 'within_10': 0.8654, 'within_20': 0.9666, 'failing_charts': 3, 'mirror_axis': 0, 'moves': {}, 'stuck': 0, 'economy_removed': 0} 17.2s
+move dart gain 0.00024 charts 8 fail inf
+improved {'charts': 8, 'seams_m': 6.166, 'seam_cost': 1.0119, 'stretch_p50': 0.0438, 'stretch_p95': 0.149, 'within_10': 0.889, 'within_20': 0.9742, 'failing_charts': 1, 'mirror_axis': 0, 'moves': {'dart': 1}, 'stuck': 1, 'economy_removed': 0} 101.9s
+economy dart saved 0.0005 charts 8
+economy {'charts': 8, 'seams_m': 6.159, 'seam_cost': 1.0113, 'stretch_p50': 0.0436, 'stretch_p95': 0.1491, 'within_10': 0.8885, 'within_20': 0.974, 'failing_charts': 1, 'mirror_axis': 0, 'moves': {'dart': 1}, 'stuck': 1, 'economy_removed': 1} 102.3s
+done 102.3s
+runs/tailor/manny/all.png
