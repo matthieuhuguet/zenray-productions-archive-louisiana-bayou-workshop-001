@@ -1,0 +1,15 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_RubberToy": {
+   "s": 570.6,
+   "res": {
+    "M1": {
+     "score": 0.999997,
+     "weakest": "bake:coverage",
+     "errors": null
+    }
+   }
+  }
+ }
+}

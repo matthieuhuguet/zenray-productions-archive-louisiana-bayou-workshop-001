@@ -1,0 +1,31 @@
+#!/bin/zsh
+# 20 October 2026 : M1 on the three references with the artist pattern as the cut (CTRL_zruv artist_pattern = the skill's pattern library), one asset per bridge
+# call, a summary line per asset in RunM1Artist.sum. FR : M1 sur les trois references, la coupe etant le patron de l'artiste.
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+P=/Users/zenray/.claude/skills/zenray-houdini/templates/zenray-uv-patterns
+B="/opt/homebrew/bin/python3 /Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py hom"
+: > $W/Scripts/RunM1Artist.sum
+for obj in ZRUV_ShaderBall ZRUV_RubberToy ZRUV_Manny; do
+  ZR_BRIDGE_TIMEOUT=5400 $=B "
+import time
+exec(open('/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZenRayUV.py').read(), globals())
+_reload()
+t = time.time()
+geo = ensure('$obj', None, ('M1',))
+c = geo.node('CTRL_zruv')
+c.parm('out_dir').set('$W/runs')
+c.parm('artist_pattern').set('$P/$obj.pattern.json')
+r = run(('M1',), obj_name='$obj', do_bake=True)
+result = {'$obj': {'s': round(time.time() - t, 1), 'res': r}}
+" > $W/Scripts/RunM1Artist_$obj.out 2>&1
+  /opt/homebrew/bin/python3 -c "
+import json
+try:
+    r = json.load(open('$W/Scripts/RunM1Artist_$obj.out'))['result']['$obj']
+    print('$obj', r['s'], {k: (v['score'], v['weakest'], (v['errors'] or [''])[0][:300] if v['errors'] else '') for k, v in r['res'].items()})
+except Exception as e:
+    print('$obj', 'unreadable', e, open('$W/Scripts/RunM1Artist_$obj.out').read()[-1500:])
+" >> $W/Scripts/RunM1Artist.sum
+  echo "$obj done $(date +%H:%M:%S)" >> $W/Scripts/RunM1Artist.sum
+done
+echo "all done $(date +%H:%M:%S)" >> $W/Scripts/RunM1Artist.sum

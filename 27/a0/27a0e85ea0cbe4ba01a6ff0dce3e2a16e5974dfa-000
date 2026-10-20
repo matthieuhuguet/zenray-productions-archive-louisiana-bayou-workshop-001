@@ -1,2 +1,7 @@
 ZRUV_ShaderBall {'M1': (0.999999, 'bake:coverage', '')}
 ZRUV_ShaderBall done 12:09:19
+ZRUV_RubberToy {'M1': (0.999997, 'bake:coverage', '')}
+ZRUV_RubberToy done 12:18:49
+ZRUV_Manny {'M1': (1.0, 'uv:present', '')}
+ZRUV_Manny done 12:21:18
+all done 12:21:18

@@ -1,0 +1,15 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_ShaderBall": {
+   "s": 111.0,
+   "res": {
+    "M1": {
+     "score": 0.598856,
+     "weakest": "uv:no_flip",
+     "errors": null
+    }
+   }
+  }
+ }
+}

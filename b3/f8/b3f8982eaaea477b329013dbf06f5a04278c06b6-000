@@ -1,0 +1,21 @@
+# 20 October 2026 : the artist cut of M1 run offline on a bench mesh, with the orientation of every chart checked (Houdini clockwise : unmirrored = negative
+# signed uv area). Usage : python -I CutTest.py <asset>   FR : la coupe d'artiste de M1 hors de Houdini, et le sens de chaque carte.
+import sys, json, time
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvArtist as A
+if __name__ == '__main__':
+    a = sys.argv[1]
+    W = '/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026'
+    m = Z.from_json(W + '/runs/%s/M1/mesh.json' % a)
+    t = time.time()
+    r = A.cut({'P': m.P.tolist(), 'polys': m.polys, 'sharp': [], 'pattern': '/Users/zenray/.claude/skills/zenray-houdini/templates/zenray-uv-patterns/%s.pattern.json' % a})
+    neg = pos = 0.0
+    for f in range(m.n):
+        q = [r['uv']['%d_%d' % (f, j)] for j in range(len(m.polys[f]))]
+        s = 0.5 * sum(q[i][0] * q[(i + 1) % len(q)][1] - q[(i + 1) % len(q)][0] * q[i][1] for i in range(len(q)))
+        if s < 0:
+            neg += m.area[f]
+        else:
+            pos += m.area[f]
+    print(a, json.dumps(r['report']), 'unmirrored area share %.4f' % (neg / (neg + pos)), round(time.time() - t, 1), 's')

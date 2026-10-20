@@ -1,0 +1,148 @@
+# 20 October 2026 : is the learned pattern knowledge or a list of edge numbers ? The artist's cut of a source mesh is carried onto another mesh of the same shape
+# with other triangles (a remesh) : every point of every click path is mapped to the nearest point of the new mesh, and consecutive points are joined by the
+# shortest edge path there. Measured : the distance from every artist seam to the carried seams (mm), and the islands obtained against the artist's.
+# Usage : python -I TransferTest.py <source mesh json with uv orig> <pattern json> <target mesh json> <out json>
+# FR : le patron porte sur un autre maillage de la meme forme, et ou retombent ses coutures.
+import sys, os, json, math
+import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvLoops as L, ZruvArtist as A
+
+
+class Near:
+    """Nearest point of a point set by a grid of cell h (searched ring by ring)."""
+
+    def __init__(self, P, h):
+        self.P, self.h = np.asarray(P), float(h)
+        self.g = {}
+        for i, p in enumerate(self.P):
+            self.g.setdefault(tuple(np.floor(p / h).astype(int)), []).append(i)
+
+    def __call__(self, q):
+        k = np.floor(np.asarray(q) / self.h).astype(int)
+        best, bd = -1, 1e30
+        for r in range(0, 6):
+            for dx in range(-r, r + 1):
+                for dy in range(-r, r + 1):
+                    for dz in range(-r, r + 1):
+                        if max(abs(dx), abs(dy), abs(dz)) != r:
+                            continue
+                        for i in self.g.get((k[0] + dx, k[1] + dy, k[2] + dz), ()):
+                            d = float(np.linalg.norm(self.P[i] - q))
+                            if d < bd:
+                                best, bd = i, d
+            if best >= 0 and bd <= r * self.h:
+                return best, bd
+        return best, bd
+
+
+class SegNear:
+    """Distance from a point to the nearest segment of an edge set (grid of cell h over the segment points)."""
+
+    def __init__(self, m, edges, h):
+        self.A = np.array([m.P[a] for a, b in edges])
+        self.B = np.array([m.P[b] for a, b in edges])
+        self.h = float(h)
+        self.g = {}
+        for i in range(len(self.A)):
+            for t in (0.0, 0.5, 1.0):
+                q = self.A[i] + t * (self.B[i] - self.A[i])
+                self.g.setdefault(tuple(np.floor(q / h).astype(int)), set()).add(i)
+
+    def __call__(self, q):
+        k = np.floor(np.asarray(q) / self.h).astype(int)
+        for r in range(1, 8):
+            cand = set()
+            for dx in range(-r, r + 1):
+                for dy in range(-r, r + 1):
+                    for dz in range(-r, r + 1):
+                        cand |= self.g.get((k[0] + dx, k[1] + dy, k[2] + dz), set())
+            if cand:
+                ids = np.array(sorted(cand))
+                A, B = self.A[ids], self.B[ids]
+                ab = B - A
+                t = np.clip(((q - A) * ab).sum(1) / np.maximum((ab * ab).sum(1), 1e-30), 0, 1)
+                d = np.linalg.norm(A + t[:, None] * ab - q, axis=1)
+                if d.min() <= (r - 0.5) * self.h:
+                    return float(d.min())
+        return float('inf')
+
+
+def carry(src, pat, dst):
+    Ts, Td = L.Tools(src), L.Tools(dst)
+    h = float(np.median([dst.edge_length(e) for e in list(dst.edges)[:5000]]))
+    near = Near(dst.P, h)
+    seams = set()
+    for r in pat['segments']:
+        clicks = [(int(p), t) for p, t in r['clicks']]
+        pts = []
+        if len(clicks) == 2 and clicks[1][1] == 'loop_closed':
+            es = L.replay(Ts, clicks)
+            # order the closed loop
+            adj = {}
+            for a, b in es:
+                adj.setdefault(a, []).append(b)
+                adj.setdefault(b, []).append(a)
+            cur, prev = clicks[0][0], None
+            pts = [cur]
+            while True:
+                nx = [q for q in adj[cur] if q != prev]
+                if not nx or nx[0] == pts[0]:
+                    pts.append(pts[0])
+                    break
+                prev, cur = cur, nx[0]
+                pts.append(cur)
+        else:
+            for (a, _), (b, tool) in zip(clicks[:-1], clicks[1:]):
+                p = Ts.run(a, b, tool)
+                pts += p if not pts else p[1:]
+        mp = []
+        for p in pts:
+            i, _ = near(src.P[p])
+            if not mp or mp[-1] != i:
+                mp.append(i)
+        for a, b in zip(mp[:-1], mp[1:]):
+            path = Td.shortest(a, b)
+            if path is None:
+                continue
+            seams.update(L.key(path[i], path[i + 1]) for i in range(len(path) - 1))
+    return seams
+
+
+def islands_of(m, seams):
+    find, union = Z.uf(m.n)
+    for e, fs in m.edges.items():
+        if len(fs) == 2 and e not in seams:
+            union(fs[0], fs[1])
+    return np.array([find(f) for f in range(m.n)])
+
+
+def run(src_p, pat_p, dst_p, out_p):
+    src = Z.from_json(src_p)
+    pat = json.load(open(pat_p))
+    d = json.load(open(dst_p))
+    dst = Z.Mesh(d['P'], d['polys'])
+    so = A.inner_seams(src, 'orig', 1e-5)
+    sd = carry(src, pat, dst)
+    # distances : artist seam edge middles to the nearest carried seam point, and back
+    h = float(np.median([dst.edge_length(e) for e in list(dst.edges)[:5000]]))
+    so_l, sd_l = sorted(so), sorted(sd)
+    nd = SegNear(dst, sd_l, h)
+    d_a = np.array([nd(0.5 * (src.P[a] + src.P[b])) for a, b in so_l])
+    w_a = np.array([src.edge_length(e) for e in so_l])
+    ns = SegNear(src, so_l, h)
+    d_b = np.array([ns(0.5 * (dst.P[a] + dst.P[b])) for a, b in sd_l])
+    lab_s = islands_of(src, so)
+    lab_d = islands_of(dst, sd)
+    res = {'source_faces': src.n, 'target_faces': dst.n, 'target_points': len(dst.P), 'edge_mm_median': round(1000 * h, 2),
+           'artist_seam_m': round(float(w_a.sum()), 3), 'carried_seam_m': round(float(sum(dst.edge_length(e) for e in sd)), 3),
+           'artist_to_carried_mm': {'mean': round(1000 * float((w_a * d_a).sum() / w_a.sum()), 2), 'p95': round(1000 * float(np.percentile(d_a, 95)), 2), 'max': round(1000 * float(d_a.max()), 2)},
+           'carried_to_artist_mm': {'mean': round(1000 * float(d_b.mean()), 2), 'p95': round(1000 * float(np.percentile(d_b, 95)), 2), 'max': round(1000 * float(d_b.max()), 2)},
+           'islands_artist': int(len(set(lab_s.tolist()))), 'islands_carried': int(len(set(lab_d.tolist())))}
+    json.dump({'result': res, 'seams': [list(e) for e in sorted(sd)]}, open(out_p, 'w'))
+    print(json.dumps(res, indent=1))
+
+
+if __name__ == '__main__':
+    run(*sys.argv[1:5])
