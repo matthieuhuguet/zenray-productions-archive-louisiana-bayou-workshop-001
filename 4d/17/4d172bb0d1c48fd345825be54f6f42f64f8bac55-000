@@ -9,8 +9,10 @@
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:horizontal": 1.0,
+  "uv:upright": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
+  "uv:no_self_overlap": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
   "bake:coverage": 1.0,
@@ -24,13 +26,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.8888518841635217,
-    "low_frac": 0.02832100175757345,
-    "high_frac": 0.08282711407890485,
-    "px_per_m_min": 789.3814720813982,
-    "px_per_m_median": 1024.0003186181502,
-    "px_per_m_max": 1480.7966454259322,
-    "stretch_max": 1.6985169143585277,
+    "exact_frac": 0.8873929123539457,
+    "low_frac": 0.029435158050200624,
+    "high_frac": 0.08317192959585372,
+    "px_per_m_min": 696.2499904345934,
+    "px_per_m_median": 1023.9994207857214,
+    "px_per_m_max": 1480.791386138803,
+    "stretch_max": 1.698516512262616,
     "faces": 7000
    },
    "straight_area": 0.0,
@@ -40,24 +42,25 @@
     "passing": 76,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.3872,
+    "worst_island_p50": 0.3848,
     "worst_island_p95": 1.6985,
     "worst_island_density_dev": 0.0
    },
    "stretch_over_2pc_area": 0.9454,
    "islands": 76,
-   "overlap_px": 0,
-   "covered_px": 4160430,
-   "fill": 0.496,
-   "padding_overlap_px": 0,
-   "padding_check_radius_px": 15,
+   "upright_islands": 57,
+   "upright_worst_deg": 0.0,
+   "groups": 4,
+   "group_overlap_faces": 0,
+   "group_padding_faces": 0,
+   "self_overlap_faces": 0,
    "u_range": [
-    0.0078,
-    0.9921
+    0.0156,
+    0.9843
    ],
    "v_range": [
     0.0156,
-    0.739
+    0.9465
    ]
   }
  },
@@ -69,7 +72,7 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 7.747,
+  "seams_m": 7.594,
   "seams_on_smooth_m": 0.867,
   "sharp_kept_m": 0,
   "sharp_m": 1.039,
@@ -86,7 +89,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 76, \"stacked_possible\": 3, \"stacked\": 0, \"fill\": 0.5001, \"unique_share\": 1.0, \"mode\": \"stacked\", \"lower_bound_px2\": 1192929, \"lower_bound_unique_px2\": 1195071, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 4}",
+  "zruv_layout_uv": "{\"W\": 1024, \"H\": 512, \"pad\": 16.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3629, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 212187, \"lower_bound_unique_px2\": 212187, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"tiles_n\": 4, \"tile_rule\": \"artist texture sets (pattern)\", \"tile_splits\": 0, \"tiles\": [{\"W\": 1024, \"H\": 512, \"pad\": 16.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3629, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 212187, \"lower_bound_unique_px2\": 212187, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"rows\": 0, \"tile\": 0, \"label\": \"Core\", \"area_m2\": 0.18143}, {\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 63, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.6938, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 825381, \"lower_bound_unique_px2\": 825381, \"next_smaller\": [1024, 512], \"minimal_proven\": true, \"rows\": 0, \"tile\": 1, \"label\": \"PreviewSurface\", \"area_m2\": 0.69378}, {\"W\": 1024, \"H\": 512, \"pad\": 16.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2133, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 126087, \"lower_bound_unique_px2\": 126087, \"next_smaller\": [512, 512], \"minimal_proven\": false, \"rows\": 0, \"tile\": 2, \"label\": \"Stand\", \"area_m2\": 0.10666}, {\"W\": 256, \"H\": 256, \"pad\": 16.0, \"islands\": 6, \"stacked_possible\": 1, \"stacked\": 0, \"fill\": 0.2935, \"unique_share\": 1.0, \"mode\": \"stacked\", \"lower_bound_px2\": 26628, \"lower_bound_unique_px2\": 27268, \"next_smaller\": null, \"minimal_proven\": true, \"rows\": 1, \"tile\": 3, \"label\": \"SubsurfaceBars\", \"area_m2\": 0.01834}], \"texels_total\": 2162688}",
   "zruv_straight_uv": "{\"charts\": 65, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"kept_native\": 1, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -94,14 +97,17 @@
  "contracts": [
   {
    "set": "uv",
-   "W": 2048,
-   "H": 1024,
+   "W": 1024,
+   "H": 512,
    "space": "sheet",
-   "unique": true,
+   "unique": "per_group",
    "region": "sheet",
    "padding_px": 16,
    "straight_tol": 0.08,
    "twin_bake": true,
+   "sizes": "per_face",
+   "group_padding_px": 16,
+   "tiles": 4,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -115,31 +121,116 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 34.49,
- "score_s": 73.46,
+ "cook_s": 62.04,
+ "score_s": 5.92,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_2048x1024.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_2048x1024.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_2048x1024.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_2048x1024.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_2048x1024.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t0_1024x512.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t0_1024x512.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t0_1024x512.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t0_1024x512.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t0_1024x512.png"
   },
   "seconds": {
-   "custom": 66.7,
-   "occlusion": 0.97,
-   "curvature": 0.85,
-   "edge": 0.71,
-   "alpha": 0.67
+   "custom_t0": 1.34,
+   "occlusion_t0": 0.01,
+   "curvature_t0": 0.02,
+   "edge_t0": 0.01,
+   "alpha_t0": 0.01,
+   "custom_t1": 2.79,
+   "occlusion_t1": 0.02,
+   "curvature_t1": 0.02,
+   "edge_t1": 0.01,
+   "alpha_t1": 0.01,
+   "custom_t2": 0.45,
+   "occlusion_t2": 0.01,
+   "curvature_t2": 0.01,
+   "edge_t2": 0.01,
+   "alpha_t2": 0.01,
+   "custom_t3": 0.22,
+   "occlusion_t3": 0.0,
+   "curvature_t3": 0.0,
+   "edge_t3": 0.0,
+   "alpha_t3": 0.0
   },
   "size": [
-   2048,
-   1024
+   1024,
+   512
   ],
   "coverage": 1.0,
-  "id_match": 1.0
+  "id_match": 1.0,
+  "tiles": [
+   {
+    "tile": 0,
+    "label": "Core",
+    "size": [
+     1024,
+     512
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t0_1024x512.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t0_1024x512.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t0_1024x512.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t0_1024x512.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t0_1024x512.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 1,
+    "label": "PreviewSurface",
+    "size": [
+     1024,
+     1024
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t1_1024x1024.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t1_1024x1024.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t1_1024x1024.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t1_1024x1024.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t1_1024x1024.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 2,
+    "label": "Stand",
+    "size": [
+     1024,
+     512
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t2_1024x512.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t2_1024x512.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t2_1024x512.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t2_1024x512.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t2_1024x512.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 3,
+    "label": "SubsurfaceBars",
+    "size": [
+     256,
+     256
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t3_256x256.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_occlusion_t3_256x256.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_curvature_t3_256x256.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_edge_t3_256x256.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t3_256x256.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   }
+  ]
  },
- "asset": "/obj/ZRUV_Assets/shaderball",
+ "asset": "/obj/ZRUV_Assets/shaderball_src",
  "asset_scale": 1.0,
  "texel_density": 1024.0,
  "families": [
@@ -148,9 +239,9 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "20 October 2026 12:48",
+ "date": "20 October 2026 14:50",
  "params": {
-  "asset_path": "/obj/ZRUV_Assets/shaderball",
+  "asset_path": "/obj/ZRUV_Assets/shaderball_src",
   "asset_scale": 1.0,
   "asset_area_m2": 1.0,
   "texel_density": 1024.0,
@@ -160,6 +251,8 @@
   "crease_deg": 30.0,
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
+  "m1_tiles": 0,
+  "m1_tile_groups": "",
   "m1_sheet_px": 0,
   "m1_stack": 1,
   "m1_unstack": 1,
