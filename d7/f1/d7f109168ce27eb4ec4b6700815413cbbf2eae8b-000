@@ -1,0 +1,38 @@
+#!/bin/zsh
+# 20 October 2026 : M1 cut by the tailor with the learned rules only (artist_pattern emptied), written into runs_rules so the bench (artist cut) stays intact ;
+# the CTRL is given back its runs folder and its pattern afterwards. Usage : RunM1NoPattern.sh ZRUV_RubberToy [ZRUV_Arch ...]  -> RunM1NoPattern.sum
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+P=/Users/zenray/.claude/skills/zenray-houdini/templates/zenray-uv-patterns
+B="/opt/homebrew/bin/python3 /Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py hom"
+: > $W/Scripts/RunM1NoPattern.sum
+for obj in "$@"; do
+  ZR_BRIDGE_TIMEOUT=5400 $=B "
+import time, os
+exec(open('/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZenRayUV.py').read(), globals())
+_reload()
+t = time.time()
+geo = ensure('$obj', None, ('M1',))
+c = geo.node('CTRL_zruv')
+c.parm('out_dir').set('$W/runs_rules')
+if c.parm('artist_pattern') is not None:
+    c.parm('artist_pattern').set('')
+try:
+    r = run(('M1',), obj_name='$obj', do_bake=False)
+finally:
+    c.parm('out_dir').set('$W/runs')
+    pat = '$P/$obj.pattern.json'
+    if c.parm('artist_pattern') is not None and os.path.exists(pat):
+        c.parm('artist_pattern').set(pat)
+result = {'$obj': {'s': round(time.time() - t, 1), 'res': r}}
+" > $W/Scripts/RunM1NoPattern_$obj.out 2>&1
+  /opt/homebrew/bin/python3 -c "
+import json
+try:
+    r = json.load(open('$W/Scripts/RunM1NoPattern_$obj.out'))['result']['$obj']
+    print('$obj', r['s'], {k: (v['score'], v['weakest'], (v['errors'] or [''])[0][:300] if v['errors'] else '') for k, v in r['res'].items()})
+except Exception as e:
+    print('$obj', 'unreadable', e, open('$W/Scripts/RunM1NoPattern_$obj.out').read()[-1500:])
+" >> $W/Scripts/RunM1NoPattern.sum
+  echo "$obj done $(date +%H:%M:%S)" >> $W/Scripts/RunM1NoPattern.sum
+done
+echo "all done $(date +%H:%M:%S)" >> $W/Scripts/RunM1NoPattern.sum

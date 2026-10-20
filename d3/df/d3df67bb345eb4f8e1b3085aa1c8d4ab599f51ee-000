@@ -58,8 +58,9 @@ def _match_points(Ps, Pd, tol):
 
 
 def load_pair(asset, method='M1'):
-    """20 October 2026 : the bench mesh of a run with the uv sets 'orig' (the artist's) and 'zr' (the run's), plus the piece names of the source."""
-    bench = Z.from_json(W + '/runs/%s/%s/mesh.json' % (asset, method))
+    """20 October 2026 : the bench mesh of a run with the uv sets 'orig' (the artist's) and 'zr' (the run's), plus the piece names of the source. The runs
+    folder is W/runs, or the one named by the environment variable ZRUV_RUNS (the rules experiments write to runs_rules)."""
+    bench = Z.from_json(os.environ.get('ZRUV_RUNS', W + '/runs') + '/%s/%s/mesh.json' % (asset, method))
     P, polys, uv, names = _raw(asset)
     s = math.sqrt(float(bench.area.sum()) / _area(P, polys))
     Q = (P - 0.5 * (P.min(0) + P.max(0))) * s + 0.5 * (bench.P.min(0) + bench.P.max(0))
