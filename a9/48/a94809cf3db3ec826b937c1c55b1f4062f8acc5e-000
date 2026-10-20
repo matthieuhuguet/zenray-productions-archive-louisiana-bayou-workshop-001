@@ -1,0 +1,110 @@
+# 20 October 2026 : the seams of a cut read as an artist's strokes : every chain between junctions, its length, its turns at regular vertices (a loop never
+# turns), the fewest Maya clicks (edge loop, shortest path) that give it back, its mean fold (concave < 0), its openness, and the islands it parts ; then the
+# chains drawn in distinct colours with their number. Used to learn what SideFX's artist did on the pig (the jaw seam, the collar), never read by M1.
+# Usage : python -I SeamStudy.py <mesh.json> <uv name> <tol> <out png> [<mesh.json with prim zruv_open, same topology>]
+# FR : les coutures d'une decoupe lues comme les traits d'un artiste.
+import sys, os, json, math, collections
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, M1Boards as B, ZruvLoops as L
+
+
+def chains(m, name, tol):
+    lab, seams = Z.uv_islands(m, name, tol)
+    segs = L.segments(m, sorted(seams))
+    return lab, seams, segs
+
+
+def study(m, name, tol, opn=None):
+    lab, seams, segs = chains(m, name, tol)
+    Q = L.Quads(m)
+    T = L.Tools(m)
+    tot = float(m.area.sum())
+    rows = []
+    for i, ch in enumerate(segs):
+        es = [L.key(ch[k], ch[k + 1]) for k in range(len(ch) - 1)]
+        ln = sum(m.edge_length(e) for e in es)
+        turns = 0
+        for k in range(1, len(ch) - 1):
+            p = ch[k]
+            if Q.regular(p) and Q.opposite_at(es[k - 1], p) != es[k]:
+                turns += 1
+        if ch[0] == ch[-1] and len(ch) > 2 and Q.regular(ch[0]) and Q.opposite_at(es[-1], ch[0]) != es[0]:
+            turns += 1
+        try:
+            clicks = len(L.clicks_of(T, ch)) - 1
+        except Exception:
+            clicks = -1
+        dih = []
+        for e in es:
+            fs = m.edges[e]
+            if len(fs) == 2:
+                c = float(np.clip(np.dot(m.normal[fs[0]], m.normal[fs[1]]), -1, 1))
+                th = math.degrees(math.acos(c))
+                convex = float(np.dot(m.centroid[fs[1]] - m.centroid[fs[0]], m.normal[fs[0]])) < 0
+                dih.append(th if convex else -th)
+        sides = set()
+        for e in es:
+            for f in m.edges[e]:
+                sides.add(int(lab[f]))
+        o = None
+        if opn is not None:
+            o = float(np.mean([np.mean([opn[f] for f in m.edges[e]]) for e in es]))
+        mid = m.P[ch[len(ch) // 2]]
+        rows.append({'id': i, 'edges': len(es), 'm': round(ln, 3), 'closed': ch[0] == ch[-1], 'turns': turns, 'turns_per_m': round(turns / max(ln, 1e-9), 1),
+                     'clicks': clicks, 'fold_deg': round(float(np.mean(dih)) if dih else 0.0, 1), 'open': None if o is None else round(o, 2),
+                     'islands': sorted(sides), 'shares': [round(float(m.area[lab == k].sum()) / tot, 3) for k in sorted(sides)],
+                     'mid': [round(float(x), 3) for x in mid], 'chain': ch})
+    return lab, seams, rows
+
+
+def draw(m, lab, rows, out, title):
+    cols = B.palette(max(len(rows), 1), seed=0.61)
+    views = B.views(m, 620) if hasattr(B, 'views') else None
+    ims = []
+    for vname, cam in views:
+        img, zb = R.render(m, cam, face_rgb=np.full((m.n, 3), 0.84))
+        im = img
+        for r in rows:
+            ch = r['chain']
+            es = [L.key(ch[k], ch[k + 1]) for k in range(len(ch) - 1)]
+            im = R.draw_edges(np.asarray(im).copy(), zb, m, cam, es, tuple(int(255 * x) for x in cols[r['id']]), 4)
+        d = ImageDraw.Draw(im)
+        for r in rows:
+            p = np.array(r['mid'])[None]
+            xy = R.project(cam, p)
+            try:
+                x, y = float(xy[0][0]), float(xy[0][1])
+            except Exception:
+                continue
+            if 0 <= x < im.size[0] and 0 <= y < im.size[1]:
+                d.text((x + 3, y - 10), str(r['id']), fill=tuple(int(150 * c) for c in cols[r['id']]), font=B.font(18))
+        d.text((8, 6), vname, fill=(20, 20, 22), font=B.font(20))
+        ims.append(im)
+    w, h = ims[0].size
+    o = Image.new('RGB', (w * 3, h * 2 + 44), (246, 246, 248))
+    ImageDraw.Draw(o).text((10, 8), title, fill=(20, 20, 22), font=B.font(24))
+    for i, im in enumerate(ims):
+        o.paste(im, ((i % 3) * w, 44 + (i // 3) * h))
+    o.save(out)
+
+
+if __name__ == '__main__':
+    m = Z.from_json(sys.argv[1])
+    name, tol, out = sys.argv[2], float(sys.argv[3]), sys.argv[4]
+    opn = None
+    if len(sys.argv) > 5:
+        m2 = Z.from_json(sys.argv[5])
+        if m2.n == m.n and m2.prim.get('zruv_open') is not None:
+            opn = np.asarray(m2.prim['zruv_open'], dtype=float)
+    elif m.prim.get('zruv_open') is not None:
+        opn = np.asarray(m.prim['zruv_open'], dtype=float)
+    lab, seams, rows = study(m, name, tol, opn)
+    tm = sum(r['m'] for r in rows)
+    tt = sum(r['turns'] for r in rows)
+    print('chains', len(rows), 'seams %.2f m' % tm, 'turns', tt, 'turns per m %.1f' % (tt / max(tm, 1e-9)), 'clicks', sum(max(r['clicks'], 0) for r in rows))
+    for r in rows:
+        print({k: v for k, v in r.items() if k != 'chain'})
+    draw(m, lab, rows, out, os.path.basename(sys.argv[1]) + ' : seam chains')
+    print(out)

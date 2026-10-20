@@ -1,0 +1,42 @@
+  commit pole dart : 16 edges 0.126 m at (-0.001 0.080 -0.005), charts [0.611, 0.035] of [0.611, 0.035]
+move pole dart gain 0.21995 charts 9 fail 1.09651
+  commit pole dart : 14 edges 0.181 m at (-0.001 0.073 -0.043), charts [0.611, 0.035] of [0.611, 0.035]
+move pole dart gain 0.03615 charts 9 fail 1.00953
+  commit loop panel : 42 edges 1.295 m at (-0.001 -0.168 -0.001), charts [0.392, 0.219] of [0.611]
+move loop panel gain 0.28876 charts 10 fail 0.56712
+  commit loop panel : 34 edges 0.607 m at (-0.001 -0.150 0.160), charts [0.325, 0.068] of [0.392]
+move loop panel gain 0.04911 charts 11 fail 0.47123
+  commit pole dart : 6 edges 0.117 m at (-0.000 0.014 0.037), charts [0.325] of [0.325]
+move pole dart gain 0.00652 charts 11 fail 0.46045
+  commit loop panel : 10 edges 0.332 m at (-0.001 -0.149 -0.097), charts [0.03, 0.056, 0.133] of [0.219]
+move loop panel gain 0.02382 charts 13 fail 0.43669
+  commit dart : 6 edges 0.068 m at (-0.001 -0.089 0.321), charts [0.02] of [0.02]
+move dart gain 0.00028 charts 13 fail 0.43503
+  commit dart : 8 edges 0.071 m at (-0.002 -0.092 0.325), charts [0.02] of [0.02]
+move dart gain 0.00035 charts 13 fail 0.43183
+  commit loop panel : 10 edges 0.223 m at (-0.002 -0.048 0.198), charts [0.016, 0.049] of [0.065]
+move loop panel gain 0.00001 charts 14 fail 0.43089
+  commit silhouette : 19 edges 0.252 m at (0.021 -0.053 0.186), charts [0.004, 0.013, 0.032, 0.004, 0.013] of [0.016, 0.049]
+move silhouette gain 0.00001 charts 17 fail 0.42959
+  commit pole dart : 20 edges 0.156 m at (-0.002 -0.048 0.337), charts [0.02] of [0.02]
+move pole dart gain 0.00074 charts 17 fail 0.42894
+  still failing : chart 17, 1369 faces, share 0.325, centre (0.026 0.010 0.068), fail 0.42894, p50/p95 [0.41878232700777196, 1.8924153826155492], sprawl 0.0402
+economy dart saved 0.0160 charts 17
+economy loop panel saved 0.0268 charts 15
+economy opening saved 0.0016 charts 14
+absorb island of 0.00758 m2 into its neighbour charts 13
+  commit dart : 10 edges 0.085 m at (-0.002 0.027 -0.042), charts [0.236, 0.035] of [0.236, 0.035]
+move dart gain 0.09244 charts 13 fail 0.31637
+  commit loop panel : 44 edges 0.671 m at (-0.014 0.041 0.096), charts [0.101, 0.135] of [0.236]
+move loop panel gain 0.00670 charts 14 fail 0.25531
+  commit silhouette : 4 edges 0.045 m at (-0.001 -0.050 0.130), charts [0.044, 0.092] of [0.135]
+move silhouette gain 0.00787 charts 15 fail 0.13906
+  commit silhouette : 2 edges 0.040 m at (0.083 0.097 0.017), charts [0.035, 0.055, 0.036] of [0.035, 0.092]
+move silhouette gain 0.06414 charts 16 fail 0.07493
+  commit silhouette : 38 edges 0.389 m at (-0.001 0.094 -0.062), charts [0.011, 0.016, 0.008, 0.011, 0.017, 0.008] of [0.035, 0.036]
+move silhouette gain 0.07191 charts 20 fail 0.00314
+  commit pole dart : 8 edges 0.129 m at (-0.002 -0.107 0.217), charts [0.065] of [0.065]
+move pole dart gain 0.00001 charts 20 fail 0.00166
+  commit silhouette : 28 edges 0.341 m at (-0.002 -0.045 0.168), charts [0.011, 0.04, 0.014] of [0.065]
+move silhouette gain 0.00002 charts 22 fail 0.00000
+symmetrize charts 22

@@ -1,0 +1,36 @@
+# 20 October 2026 : the tailor's whole input of a bench asset, dumped once from its saved headless session (hython, Matthieu's Houdini never touched) : the mesh
+# with zruv_organic, zruv_open and shop_materialpath, the prim groups, the hard edges, the crease and the CTRL parameters, so that the rules (ZruvArtist.rule_seams)
+# and the tailor (ZruvTailor.solve) can be iterated offline on exactly what Houdini gives them.
+# Usage : hython DumpTailorContext.py <hip> <obj name> <out json>     FR : l'entree complete du tailleur, exportee une fois.
+import sys, os, json, math
+CODE = '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv'
+sys.path.insert(0, CODE)
+import hou
+hou.hipFile.load(sys.argv[1], suppress_save_prompt=True, ignore_load_warnings=True)
+obj = hou.node('/obj/' + sys.argv[2])
+node = None
+for n in obj.allSubChildren():
+    if n.name() == 'organic_refine':
+        node = n
+        break
+if node is None:
+    raise SystemExit('no organic_refine under ' + obj.path())
+src = node.inputs()[0]
+geo = src.geometry()
+import ZrMesh as Z, ZruvSops as Sx, ZruvTailor as T
+m = Z.from_geo(geo, (), ['zruv_organic', 'zruv_open', 'shop_materialpath'])
+c = Sx.ctrl(node)
+prm = T.params_from_ctrl(c)
+sharp = []
+eg = geo.findEdgeGroup('zruv_sharp')
+if eg is not None:
+    for ed in eg.edges():
+        a, b = ed.points()[0].number(), ed.points()[1].number()
+        sharp.append([min(a, b), max(a, b)])
+crease = math.radians(float(geo.attribValue('zruv_crease')) if geo.findGlobalAttrib('zruv_crease') else float(c.evalParm('crease_deg')))
+groups = {g.name(): [p.number() for p in g.prims()] for g in geo.primGroups() if not g.name().startswith('zruv')}
+fr_ = tuple(float(x) for x in c.evalParm('tailor_front').split()) if c.parm('tailor_front') is not None else (0.0, 0.0, 1.0)
+out = {'P': m.P.round(7).tolist(), 'polys': m.polys, 'prim': {k: list(v) for k, v in m.prim.items()}, 'groups': groups, 'sharp': sorted(sharp),
+       'crease_rad': crease, 'prm': prm, 'front': fr_}
+json.dump(out, open(sys.argv[3], 'w'), default=str)
+print('dumped', sys.argv[3], m.n, 'faces', len(groups), 'groups', len(sharp), 'hard edges', 'prm', {k: prm[k] for k in list(prm)[:12]})

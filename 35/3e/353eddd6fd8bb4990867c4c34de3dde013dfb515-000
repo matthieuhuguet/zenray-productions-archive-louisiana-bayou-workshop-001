@@ -1,0 +1,20 @@
+move pole dart gain 0.25370 charts 9 fail 1.02637
+move loop panel gain 0.23964 charts 10 fail 0.33570
+move dart gain 0.14444 charts 10 fail 0.43077
+move loop panel gain 0.01083 charts 11 fail 0.41017
+move dart gain 0.01408 charts 11 fail 0.39216
+move loop panel gain 0.01523 charts 12 fail 0.37728
+move dart gain 0.00028 charts 12 fail 0.37562
+move dart gain 0.00035 charts 12 fail 0.37242
+move silhouette gain 0.00078 charts 13 fail 0.37203
+move silhouette gain 0.00016 charts 14 fail 0.37178
+economy dart saved 0.0437 charts 14
+economy dart saved 0.0184 charts 14
+economy dart saved 0.0160 charts 14
+economy silhouette saved 0.1026 charts 12
+move pole dart gain 0.01274 charts 15 fail 0.26825
+move loop panel gain 0.03591 charts 16 fail 0.19283
+move silhouette gain 0.06923 charts 17 fail 0.04953
+move loop panel gain 0.03640 charts 19 fail 0.01311
+move dart gain 0.00953 charts 19 fail 0.00000
+symmetrize charts 19

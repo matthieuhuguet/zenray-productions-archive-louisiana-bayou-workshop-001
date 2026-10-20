@@ -1,0 +1,233 @@
+# 20 October 2026 : the organic cut of M1 (rules then tailor) run outside Houdini on the input Houdini gives it (DumpTailorContext.py), every core used, then
+# measured like the score measures it (symmetry, staircases, notches, turns at regular vertices, largest island) and drawn (six views, islands in colour, seams in
+# black, staircases and turns in red). Nothing here reads a reference uv : the reference is only drawn under it when given, for Matthieu's eye.
+# Usage : python -I OfflineM1.py <context json> <out prefix> [--rules-only] [--prm key=value ...] [--ref <reference mesh.json>]
+# FR : la decoupe organique de M1 hors de Houdini, mesuree et dessinee.
+import sys, os, json, math, time, collections
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ZrMesh as Z, Render as R, M1Boards as B, ZruvLoops as L, UVSeamChecker as SC
+import ZruvArtist as ZA, ZruvTailor as T
+
+
+def load(ctx_path):
+    ctx = json.load(open(ctx_path))
+    m = Z.Mesh(ctx['P'], ctx['polys'], prim=ctx['prim'])
+    return ctx, m
+
+
+def turns_regular(m, seams):
+    """Seam vertices of a regular quad star where the seam does not go straight on (a loop never turns), junctions left out."""
+    Q = L.Quads(m)
+    at = collections.defaultdict(list)
+    for e in seams:
+        at[e[0]].append(e)
+        at[e[1]].append(e)
+    out = []
+    for p, es in at.items():
+        if len(es) == 2 and Q.regular(p) and Q.opposite_at(es[0], p) != es[1]:
+            out.append(p)
+    return out
+
+
+def result_mesh(ctx, m, res):
+    n = m.n
+    chart = np.asarray(res['chart'], dtype=np.int64)
+    # faces the tailor does not cut (other families, other chains) : one chart per connected group of them
+    nxt = int(chart.max()) + 1
+    flag = np.asarray(ctx['prim'].get('zruv_organic', [1] * n), dtype=np.int64)
+    rest = [f for f in range(n) if chart[f] < 0]
+    if rest:
+        rs = set(rest)
+        seen = set()
+        for f0 in rest:
+            if f0 in seen:
+                continue
+            st = [f0]
+            seen.add(f0)
+            while st:
+                f = st.pop()
+                chart[f] = nxt
+                p = m.polys[f]
+                for i in range(len(p)):
+                    e = (min(p[i], p[(i + 1) % len(p)]), max(p[i], p[(i + 1) % len(p)]))
+                    for g in m.edges[e]:
+                        if g in rs and g not in seen:
+                            seen.add(g)
+                            st.append(g)
+            nxt += 1
+    uv = []
+    for f in range(n):
+        uv.append([tuple(res['uv'].get('%d_%d' % (f, j), [0.0, 0.0])) for j in range(len(m.polys[f]))])
+    prim = dict(ctx['prim'])
+    prim['zruv_chart_uv'] = chart.tolist()
+    return Z.Mesh(ctx['P'], ctx['polys'], prim=prim, uv={'uv': uv})
+
+
+def measure(mm):
+    lab, seams = Z.uv_islands(mm, 'uv')
+    mir, ax = SC.mirror_points(mm)
+    sym, bad = (SC.seam_symmetry(mm, 'uv', mir) if mir is not None else (None, []))
+    st = SC.stair_runs(mm, 'uv')
+    nr = SC.notch_runs(mm, 'uv')
+    inner = [e for e in seams if len(mm.edges[e]) == 2]
+    tr = turns_regular(mm, inner)
+    tot = float(mm.area.sum())
+    shares = sorted([round(float(mm.area[lab == k].sum()) / tot, 3) for k in range(int(lab.max()) + 1)], reverse=True)
+    return {'islands': int(lab.max()) + 1, 'seams_m': round(st['seam_m'], 3), 'symmetric': None if sym is None else round(sym, 3),
+            'asym_m': round(sum(mm.edge_length(e) for e in bad), 3), 'staircases': st['runs'], 'stair_m': round(st['stair_m'], 3),
+            'notches': nr['notches'], 'notch_share': round(nr['notch_m'] / max(st['seam_m'], 1e-9), 4), 'turns': len(tr), 'largest': shares[:4]}, lab, inner, tr
+
+
+def draw(mm, lab, inner, tr, path, title, ref=None):
+    import StairSeams as SS
+    try:
+        SS.stairs(mm, 'uv', 1e-6)
+        red = sorted(SS.LAST_STAIR_EDGES)
+    except Exception:
+        red = []
+    cols = B.palette(int(lab.max()) + 1)
+    trs = set(tr)
+    redv = []
+    for e in inner:
+        if e[0] in trs or e[1] in trs:
+            redv.append(e)
+    rows = []
+    sets = [(mm, lab, cols, inner, red + redv, title)]
+    if ref is not None:
+        rl, rs = Z.uv_islands(ref, 'orig', 1e-5)
+        rc = B.ref_colours(mm, lab, cols, rl)
+        sets.append((ref, rl, rc, [e for e in rs if len(ref.edges[e]) == 2], [], 'SideFX, for the eye only (never read)'))
+    for mesh, L_, C_, E_, RED, lbl in sets:
+        ims = []
+        for nm, cam in B.views(mesh, 520):
+            img, zb = R.render(mesh, cam, face_rgb=C_[L_])
+            im = R.draw_edges(img, zb, mesh, cam, E_, (18, 18, 22), 2)
+            if RED:
+                im = R.draw_edges(np.asarray(im).copy(), zb, mesh, cam, RED, (230, 30, 40), 4)
+            ImageDraw.Draw(im).text((8, 6), nm, fill=(20, 20, 22), font=B.font(20))
+            ims.append(im)
+        w, h = ims[0].size
+        row = Image.new('RGB', (w * 6, h + 40), (246, 246, 248))
+        ImageDraw.Draw(row).text((10, 8), lbl, fill=(20, 20, 22), font=B.font(22))
+        for i, im in enumerate(ims):
+            row.paste(im, (i * w, 40))
+        rows.append(row)
+    out = Image.new('RGB', (rows[0].size[0], sum(r.size[1] for r in rows)), (246, 246, 248))
+    y = 0
+    for r in rows:
+        out.paste(r, (0, y))
+        y += r.size[1]
+    if out.size[0] > 2800:
+        out = out.resize((2800, int(out.size[1] * 2800 / out.size[0])))
+    out.save(path)
+    return path
+
+
+def main():
+    args = sys.argv[1:]
+    ctx_path, prefix = args[0], args[1]
+    rules_only = '--rules-only' in args
+    extra = {}
+    ref = None
+    i = 2
+    while i < len(args):
+        if args[i] == '--prm':
+            k, v = args[i + 1].split('=', 1)
+            try:
+                v = json.loads(v)
+            except Exception:
+                pass
+            extra[k] = v
+            i += 2
+        elif args[i] == '--ref':
+            ref = Z.from_json(args[i + 1])
+            i += 2
+        else:
+            i += 1
+    ctx, m = load(ctx_path)
+    if '--redraw' in args:
+        # 20 October 2026 : measure and draw a result already solved (its _mesh.json), no new cut
+        mm = Z.from_json(prefix + '_mesh.json')
+        meas, lab, inner, tr = measure(mm)
+        print('RESULT', json.dumps(meas))
+        draw(mm, lab, inner, tr, prefix + '_board.png', 'ZRUV offline : %d islands, seams %.2f m, symmetric %s, staircases %d, notches %d, turns %d' % (
+            meas['islands'], meas['seams_m'], meas['symmetric'], meas['staircases'], meas['notches'], meas['turns']), ref)
+        print(prefix + '_board.png')
+        return
+    t0 = time.time()
+    aprm = {'front': tuple(ctx.get('front') or (0, 0, 1))}
+    aprm.update({k: v for k, v in extra.items() if k in ZA.PARAMS})
+    rs = ZA.rule_seams(m, ctx['groups'], prm=aprm)
+    print('rules', {k: (len(v), round(sum(m.edge_length(e) for e in v), 3)) for k, v in rs.items()}, '%.1f s' % (time.time() - t0))
+    if rules_only:
+        lab = np.zeros(m.n, dtype=np.int64)
+        allr = sorted({tuple(e) for v in rs.values() for e in v})
+        img_path = prefix + '_rules.png'
+        mm = m
+        ims = []
+        for nm, cam in B.views(mm, 520):
+            img, zb = R.render(mm, cam, face_rgb=np.full((mm.n, 3), 0.85))
+            im = R.draw_edges(img, zb, mm, cam, allr, (220, 40, 40), 3)
+            ImageDraw.Draw(im).text((8, 6), nm, fill=(20, 20, 22), font=B.font(20))
+            ims.append(im)
+        w, h = ims[0].size
+        o = Image.new('RGB', (w * 3, h * 2), (246, 246, 248))
+        for j, im in enumerate(ims):
+            o.paste(im, ((j % 3) * w, (j // 3) * h))
+        o.save(img_path)
+        print(img_path)
+        return
+    prm = dict(ctx['prm'])
+    prm.update({k: v for k, v in extra.items() if k in T.PARAMS})
+    data = {'P': ctx['P'], 'polys': ctx['polys'], 'face_open': [round(float(x), 5) for x in ctx['prim'].get('zruv_open', [1.0] * m.n)],
+            'organic': [int(x) for x in ctx['prim'].get('zruv_organic', [1] * m.n)], 'sharp': ctx['sharp'], 'crease_rad': ctx['crease_rad'], 'prm': prm,
+            'must': sorted({tuple(e) for v in rs.values() for e in v}),
+            'rule_report': {k: {'edges': len(v), 'm': round(float(sum(m.edge_length(e) for e in v)), 4)} for k, v in rs.items()}}
+    t1 = time.time()
+    logf = open(prefix + '_log.txt', 'w')
+    # 20 October 2026 : the diagnosis : every committed move with where it cuts, and the charts still failing after each improve phase
+    _commit, _improve = T.Tailor.commit, T.Tailor.improve
+
+    def commit(self, ks, res, kind):
+        out, added, cost, cut = res
+        S_ = self.S
+        tot_ = float(S_.FA[self.active].sum())
+        c_ = S_.P[S_.E[np.asarray(added, dtype=np.int64)].ravel()].mean(0) if len(added) else np.zeros(3)
+        logf.write('  commit %s : %d edges %.3f m at (%.3f %.3f %.3f), charts %s of %s\n' % (kind, len(added), float(S_.EL[np.asarray(added, dtype=np.int64)].sum()) if len(added) else 0,
+                   c_[0], c_[1], c_[2], [round(float(S_.FA[fs].sum()) / tot_, 3) for fs, _ch in out], [round(float(S_.FA[self.faces_of(k)].sum()) / tot_, 3) for k in ks]))
+        return _commit(self, ks, res, kind)
+
+    def improve(self, *a, **kw):
+        r = _improve(self, *a, **kw)
+        S_ = self.S
+        tot_ = float(S_.FA[self.active].sum())
+        for k, ch in sorted(self.charts.items()):
+            if ch is not None and ch.fail > 0:
+                fs = self.faces_of(k)
+                q = T.quantiles(ch.s, ch.a) if ch.ok else (None, None)
+                logf.write('  still failing : chart %d, %d faces, share %.3f, centre (%.3f %.3f %.3f), fail %.5f, p50/p95 %s, sprawl %.4f\n' % (k, len(fs), float(S_.FA[fs].sum()) / tot_,
+                           *S_.FC[fs].mean(0), ch.fail, q, ch.sprawl))
+        logf.flush()
+        return r
+    T.Tailor.commit, T.Tailor.improve = commit, improve
+    res = T.solve(data, log=lambda *a: (logf.write(' '.join(str(x) for x in a) + '\n'), logf.flush()), procs=T.default_procs())
+    logf.close()
+    rep = res['report']
+    mm = result_mesh(ctx, m, res)
+    Z.to_json(mm, prefix + '_mesh.json')
+    meas, lab, inner, tr = measure(mm)
+    meas['tailor_s'] = round(time.time() - t1, 1)
+    meas['moves'] = rep.get('moves')
+    meas['failing'] = rep.get('failing_charts')
+    meas['symmetrized'] = rep.get('symmetrized')
+    print('RESULT', json.dumps(meas))
+    draw(mm, lab, inner, tr, prefix + '_board.png', 'ZRUV offline : %d islands, seams %.2f m, symmetric %s, staircases %d, notches %d, turns %d' % (
+        meas['islands'], meas['seams_m'], meas['symmetric'], meas['staircases'], meas['notches'], meas['turns']), ref)
+    print(prefix + '_board.png')
+
+
+if __name__ == '__main__':
+    main()

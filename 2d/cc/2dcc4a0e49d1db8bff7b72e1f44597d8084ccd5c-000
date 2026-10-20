@@ -1,0 +1,95 @@
+# 20 October 2026 : the valleys of a mesh as an artist sees them : every edge coloured by its signed fold (concave red, convex blue), then the edge loop pieces
+# that stay concave beyond a threshold (valley strokes) drawn over it, with the reference seams in black for the comparison (never read by M1).
+# Usage : python -I ValleyStudy.py <mesh.json> <out png> [<reference mesh.json> <uv name> <tol>] [--deg 10] [--min 3]
+# FR : les vallees d'un maillage, vues comme un artiste les voit.
+import sys, os, math, collections
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, Render as R, M1Boards as B, ZruvLoops as L
+
+
+def folds(m):
+    out = {}
+    for e, fs in m.edges.items():
+        if len(fs) != 2:
+            continue
+        c = float(np.clip(np.dot(m.normal[fs[0]], m.normal[fs[1]]), -1, 1))
+        th = math.degrees(math.acos(c))
+        convex = float(np.dot(m.centroid[fs[1]] - m.centroid[fs[0]], m.normal[fs[0]])) < 0
+        out[e] = th if convex else -th
+    return out
+
+
+def strokes(m, fold, deg=10.0, min_edges=3):
+    """Maximal edge loop pieces whose every edge folds concave by deg or more (a valley stroke)."""
+    Q = L.Quads(m)
+    val = {e for e, d in fold.items() if d <= -deg}
+    seen, out = set(), []
+    for e in sorted(val):
+        if e in seen:
+            continue
+        piece = [e]
+        seen.add(e)
+        for start in (e[1], e[0]):
+            cur, at = e, start
+            side = []
+            while True:
+                nx = Q.opposite_at(cur, at)
+                if nx is None or nx not in val or nx in seen:
+                    break
+                side.append(nx)
+                seen.add(nx)
+                at = Q.other(nx, at)
+                cur = nx
+            piece = (piece + side) if start == e[1] else (side[::-1] + piece)
+        if len(piece) >= min_edges:
+            out.append(piece)
+    return out
+
+
+if __name__ == '__main__':
+    args = [a for a in sys.argv[1:]]
+    deg = 10.0
+    mn = 3
+    if '--deg' in args:
+        i = args.index('--deg'); deg = float(args[i + 1]); del args[i:i + 2]
+    if '--min' in args:
+        i = args.index('--min'); mn = int(args[i + 1]); del args[i:i + 2]
+    m = Z.from_json(args[0])
+    out = args[1]
+    ref = None
+    if len(args) >= 5:
+        r = Z.from_json(args[2])
+        _, rs = Z.uv_islands(r, args[3], float(args[4]))
+        ref = [e for e in rs if len(m.edges.get(e, [])) == 2]
+    fold = folds(m)
+    st = strokes(m, fold, deg, mn)
+    st.sort(key=lambda p: -sum(m.edge_length(e) for e in p))
+    print('valley strokes at %.0f deg : %d, %.2f m' % (deg, len(st), sum(sum(m.edge_length(e) for e in p) for p in st)))
+    if ref is not None:
+        rset = set(ref)
+        for i, p in enumerate(st[:40]):
+            on = sum(1 for e in p if e in rset)
+            print(i, len(p), 'edges', '%.3f m' % sum(m.edge_length(e) for e in p), 'mean fold %.1f' % np.mean([fold[e] for e in p]), 'on the reference seams %d' % on)
+        allv = set(e for p in st for e in p)
+        print('reference seam edges on a valley stroke : %d of %d' % (len(allv & rset), len(rset)))
+    cols = B.palette(max(len(st), 1), seed=0.21)
+    fc = np.full((m.n, 3), 0.86)
+    ims = []
+    for vname, cam in B.views(m, 620):
+        img, zb = R.render(m, cam, face_rgb=fc)
+        im = img
+        if ref is not None:
+            im = R.draw_edges(np.asarray(im).copy(), zb, m, cam, ref, (20, 20, 24), 2)
+        for i, p in enumerate(st):
+            im = R.draw_edges(np.asarray(im).copy(), zb, m, cam, p, (220, 40, 40) if i < 60 else (240, 150, 150), 4)
+        ImageDraw.Draw(im).text((8, 6), vname, fill=(20, 20, 22), font=B.font(20))
+        ims.append(im)
+    w, h = ims[0].size
+    o = Image.new('RGB', (w * 3, h * 2 + 44), (246, 246, 248))
+    ImageDraw.Draw(o).text((10, 8), 'valley strokes (red, fold %.0f deg or more, %d edges or more) over the reference seams (black)' % (deg, mn), fill=(20, 20, 22), font=B.font(22))
+    for i, im in enumerate(ims):
+        o.paste(im, ((i % 3) * w, 44 + (i // 3) * h))
+    o.save(out)
+    print(out)

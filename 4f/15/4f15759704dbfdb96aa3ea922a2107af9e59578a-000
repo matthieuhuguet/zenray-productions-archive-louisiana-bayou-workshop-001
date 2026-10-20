@@ -1,0 +1,47 @@
+# 20 October 2026 : would the tailor's criterion accept the artist's partition ? Every island of a reference cut (SideFX's pig) flattened by the tailor's own
+# Chart (LSCM then ARAP, the same artist criterion p50 / p95, sprawl, overlap) and also measured on the artist's own uv. Read only, for the diagnosis.
+# Usage : python -I SidefxCharts.py <tailor context json> <reference mesh.json> [--prm key=value]   FR : le critere du tailleur accepte-t-il le decoupage de l'artiste ?
+import sys, os, json, math
+import numpy as np
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, ZruvTailor as T
+
+ctx = json.load(open(sys.argv[1]))
+r = Z.from_json(sys.argv[2])
+extra = {}
+for a in sys.argv[3:]:
+    if '=' in a:
+        k, v = a.split('=', 1)
+        extra[k] = json.loads(v)
+prm = dict(ctx['prm'])
+prm.update(extra)
+S = T.Surf(ctx['P'], ctx['polys'], face_open=ctx['prim'].get('zruv_open'), prm=prm)
+S.prm['total_area'] = float(S.FA.sum())
+lab, seams = Z.uv_islands(r, 'orig', 1e-5)
+cut = S.EF1 < 0
+for (a, b) in seams:
+    e = S.emap.get((min(a, b), max(a, b)))
+    if e is not None:
+        cut[e] = True
+tot = float(S.FA.sum())
+org = np.asarray(ctx['prim'].get('zruv_organic', [1] * S.nf), dtype=np.int64)
+rows = []
+for k in range(int(lab.max()) + 1):
+    fs = [int(f) for f in np.where(lab == k)[0]]
+    if not org[fs].all():
+        rows.append((k, len(fs), round(float(S.FA[fs].sum()) / tot, 3), 'not organic'))
+        continue
+    ch = T.Chart(S, fs, cut)
+    q = T.quantiles(ch.s, ch.a) if ch.ok else (None, None)
+    # the artist's own uv : per triangle stretch of SideFX's layout
+    loc = ch.loc
+    X3 = S.P[loc.gv]
+    uvr = np.zeros((loc.n, 2))
+    for (f, j), lv in loc.corner.items():
+        uvr[lv] = r.uv['orig'][f][j]
+    s_r, a_r, _ = T.measure(X3, loc.tris, uvr)
+    qr = T.quantiles(s_r, a_r)
+    rows.append((k, len(fs), round(float(S.FA[fs].sum()) / tot, 3), 'ok' if ch.ok else 'NOT A DISC', 'fail %.4f' % ch.fail if ch.ok else '',
+                 'ours p50 %.3f p95 %.3f' % (q[0], q[1]) if ch.ok else '', 'sprawl %.3f' % ch.sprawl if ch.ok else '', 'SideFX uv p50 %.3f p95 %.3f' % (qr[0], qr[1])))
+for row in rows:
+    print(row)
