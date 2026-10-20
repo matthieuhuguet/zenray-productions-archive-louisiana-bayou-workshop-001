@@ -1,0 +1,246 @@
+{
+ "score": 0.999292,
+ "weakest": "bake:coverage",
+ "components": {
+  "uv:present": 1.0,
+  "uv:density": 1.0,
+  "uv:stretch": 0.999502,
+  "uv:no_flip": 1.0,
+  "uv:not_mirrored": 1.0,
+  "uv:region": 1.0,
+  "uv:grain": 1.0,
+  "uv:horizontal": 1.0,
+  "uv:stack": 1.0,
+  "uv:no_overlap": 1.0,
+  "uv:padding": 1.0,
+  "uv2:present": 1.0,
+  "uv2:density": 1.0,
+  "uv2:stretch": 1.0,
+  "uv2:no_flip": 1.0,
+  "uv2:not_mirrored": 1.0,
+  "uv2:region": 1.0,
+  "uv2:horizontal": 1.0,
+  "uv2:no_overlap": 1.0,
+  "uv2:padding": 1.0,
+  "seams:consistency": 1.0,
+  "seams:robust_crease": 1.0,
+  "bake:coverage": 0.999292,
+  "bake:id_match": 1.0,
+  "mask:channels": 1.0
+ },
+ "reports": {
+  "uv": {
+   "organic_area": 1.0,
+   "texel": {
+    "set": "uv",
+    "target_px_per_m": 1024.0,
+    "tol": 0.1,
+    "tol_max": 0.1,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 925.6476405226783,
+    "px_per_m_median": 1024.551426508946,
+    "px_per_m_max": 1084.4341085373728,
+    "stretch_max": 0.19655373839317125,
+    "faces": 12854
+   },
+   "straight_area": 0.0,
+   "straight_stretch_max": 0.0,
+   "subtexel_area": 3.5e-05,
+   "stretch_over_2pc_area": 0.8058,
+   "islands": 41,
+   "stacked_faces": 107,
+   "groups": 1,
+   "group_overlap_faces": 0,
+   "group_padding_faces": 0,
+   "u_range": [
+    0.0039,
+    0.9842
+   ],
+   "v_range": [
+    0.4166,
+    0.9961
+   ]
+  },
+  "uv2": {
+   "organic_area": 1.0,
+   "texel": {
+    "set": "uv2",
+    "target_px_per_m": 128.0,
+    "tol": 0.1,
+    "tol_max": 0.1,
+    "exact_frac": 1.0,
+    "low_frac": 0.0,
+    "high_frac": 0.0,
+    "px_per_m_min": 115.7062930753767,
+    "px_per_m_median": 128.06932060402477,
+    "px_per_m_max": 135.55315749918347,
+    "stretch_max": 0.196564226760243,
+    "faces": 12854
+   },
+   "straight_area": 0.0,
+   "straight_stretch_max": 0.0,
+   "subtexel_area": 0.000532,
+   "stretch_over_2pc_area": 0.806,
+   "islands": 41,
+   "overlap_px": 0,
+   "covered_px": 4120259,
+   "fill": 0.2456,
+   "padding_overlap_px": 0,
+   "padding_check_radius_px": 15,
+   "u_range": [
+    0.0078,
+    0.9919
+   ],
+   "v_range": [
+    0.0078,
+    0.4098
+   ]
+  }
+ },
+ "seams": {
+  "crease_requested": 30.0,
+  "crease_effective": 57.219,
+  "edges_near_requested": 181,
+  "ambiguous_edges": 0,
+  "chains_mixed": 0,
+  "mixed_detail": [],
+  "consistency": 1.0,
+  "seams_m": 12.556,
+  "seams_on_smooth_m": 1.868,
+  "sharp_kept_m": 0,
+  "sharp_m": 0,
+  "border_m": 0,
+  "pass": true,
+  "texture_continuity": 0.9425,
+  "texture_continuous_m": 205.836
+ },
+ "hard_edges": {
+  "source": "normals",
+  "hard_edges": 0,
+  "hard_m": 0,
+  "demoted_edges": 0,
+  "demoted_m": 0,
+  "narrow_parts": 0,
+  "narrowest_px": 16.0
+ },
+ "layout": {
+  "zruv_groups_uv": "[{\"family\": \"rubber\", \"square\": 0, \"tile_px\": 2048, \"islands\": 41, \"stacked\": 1, \"past_u1\": 0}]",
+  "zruv_layout_uv2": "{\"W\": 256, \"H\": 256, \"pad\": 2.0, \"islands\": 41, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2487, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 18561, \"lower_bound_unique_px2\": 18561, \"next_smaller\": null, \"minimal_proven\": true, \"tried\": [], \"rows\": 0}",
+  "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}",
+  "zruv_straight_uv2": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
+ },
+ "method": "M4",
+ "title": "Mat\u00e9riaux en couches et masque RGB",
+ "contracts": [
+  {
+   "set": "uv",
+   "W": 2048,
+   "H": 2048,
+   "space": "tile",
+   "unique": "per_group",
+   "region": "square",
+   "sizes": "per_face",
+   "grain": "u",
+   "overflow_u": true,
+   "seam_rule": "tileable",
+   "padding_px": 16,
+   "straight_tol": 0.08,
+   "organic_tol": 0.1,
+   "subtexel_px": 1.0
+  },
+  {
+   "set": "uv2",
+   "W": 256,
+   "H": 256,
+   "space": "sheet",
+   "unique": true,
+   "region": "sheet",
+   "target": 128.0,
+   "padding_px": 2,
+   "straight_tol": 0.08,
+   "organic_tol": 0.1,
+   "subtexel_px": 1.0
+  }
+ ],
+ "targets": {
+  "uv": 1024.0,
+  "uv2": 128.0
+ },
+ "cook_s": 0.0,
+ "score_s": 4.97,
+ "bake": {
+  "files": {
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_custom_256x256.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_edge_256x256.png",
+   "worldnormal": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_worldnormal_256x256.png",
+   "position": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_position_256x256.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_occlusion_256x256.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_alpha_256x256.png",
+   "layered": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_layered_256x256.png",
+   "mask_rgb": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_mask_rgb_256x256.png",
+   "mask_R": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_mask_R_channel_256x256.png",
+   "mask_G": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_mask_G_channel_256x256.png",
+   "mask_B": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_mask_B_channel_256x256.png",
+   "base": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M4/ZRUV_RubberToy_M4_base_256x256.png"
+  },
+  "seconds": {
+   "custom": 0.43,
+   "edge": 0.21,
+   "worldnormal": 0.21,
+   "position": 0.22,
+   "occlusion": 0.21,
+   "alpha": 0.21,
+   "layered": 0.58,
+   "mask_rgb": 0.22,
+   "mask_R": 0.22,
+   "mask_G": 0.22,
+   "mask_B": 0.21,
+   "base": 0.21
+  },
+  "size": [
+   256,
+   256
+  ],
+  "coverage": 0.999292,
+  "id_match": 1.0,
+  "mask_std": [
+   0.0654,
+   0.2947,
+   0.182
+  ],
+  "mask_channels": 1.0
+ },
+ "asset": "/obj/ZRUV_Assets/rubbertoy",
+ "asset_scale": 1.0,
+ "texel_density": 1024.0,
+ "families": [
+  "rubber"
+ ],
+ "crease_effective": 57.218997955322266,
+ "date": "20 October 2026 02:41",
+ "params": {
+  "asset_path": "/obj/ZRUV_Assets/rubbertoy",
+  "asset_scale": 1.0,
+  "asset_area_m2": 1.0,
+  "texel_density": 1024.0,
+  "families": "*:rubber",
+  "density_tol": 0.01,
+  "stretch_tol": 0.02,
+  "crease_deg": 30.0,
+  "crease_margin": 1.0,
+  "smooth_deg": 10.0,
+  "m2_tile_px": 2048,
+  "m2_grain": "pillar:up sign:h",
+  "m2_stitch": 1,
+  "m2_seed": 7,
+  "m2_breakup_size_m": 0.8,
+  "m2_flatten": 1,
+  "m4_mask_density": 128.0,
+  "m4_sheet_px": 0,
+  "m4_flatten": 1,
+  "m4_allow_rect": 1,
+  "m4_materials": "iron:metal001_basecolor.png pillar:wood_color.jpg sign:wood_color.jpg"
+ }
+}
