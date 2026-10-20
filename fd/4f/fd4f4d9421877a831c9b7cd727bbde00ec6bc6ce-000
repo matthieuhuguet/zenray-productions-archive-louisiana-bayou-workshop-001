@@ -2,7 +2,7 @@
  "asset": "/obj/ZRUV_ArchLibrarySrc/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "20 October 2026 02:40",
+ "date": "20 October 2026 06:03",
  "families": [
   {
    "name": "iron",
@@ -34,15 +34,15 @@
    "id": "M3B",
    "title": "Trim sheet d'abord, puis la géométrie",
    "idea": "La trim sheet existe avant l'objet : une bibliothèque fixe de bandes (16 à 256 px) ; la géométrie est construite à ces largeurs, chaque bande droite remplit la sienne sans perte, et une seule feuille sert tout un kit.",
-   "score": 0.665057,
+   "score": 0.67241,
    "weakest": "uv:density",
    "components": {
     "uv:present": 1.0,
-    "uv:density": 0.665057,
-    "uv:stretch": 0.731902,
+    "uv:density": 0.67241,
+    "uv:stretch": 0.801856,
     "uv:no_flip": 1.0,
     "uv:not_mirrored": 1.0,
-    "uv:region": 0.747929,
+    "uv:region": 0.745032,
     "uv:grain": 1.0,
     "uv:horizontal": 1.0,
     "uv:band_straight": 1.0,
@@ -63,7 +63,13 @@
      "min_straight_band": 0.98,
      "straight_tol": 0.08,
      "organic_tol": 0.1,
-     "subtexel_px": 1.0
+     "subtexel_px": 1.0,
+     "organic_artist": {
+      "p50": 0.09,
+      "p95": 0.35,
+      "small_px": 128.0,
+      "tiny_px": 48.0
+     }
     }
    ],
    "views": {
@@ -81,13 +87,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.01,
     "tol_max": 0.01,
-    "exact_frac": 0.66505723514976,
-    "low_frac": 0.2358340743838282,
-    "high_frac": 0.09910869046641181,
+    "exact_frac": 0.6724098495740052,
+    "low_frac": 0.16550869270706856,
+    "high_frac": 0.16208145771892613,
     "px_per_m_min": 915.00264327033,
-    "px_per_m_median": 1023.9998666748074,
-    "px_per_m_max": 2029.586954674254,
-    "stretch_max": 43.3017036111675,
+    "px_per_m_median": 1023.9999595913108,
+    "px_per_m_max": 2029.5842859943496,
+    "stretch_max": 43.30072660297043,
     "faces": 995
    },
    "seams": {
@@ -98,10 +104,10 @@
     "chains_mixed": 0,
     "mixed_detail": [],
     "consistency": 1.0,
-    "seams_m": 274.276,
+    "seams_m": 274.186,
     "seams_on_smooth_m": 0,
     "sharp_kept_m": 0,
-    "sharp_m": 274.276,
+    "sharp_m": 274.186,
     "border_m": 0,
     "pass": true
    },
@@ -109,15 +115,15 @@
    "fill": null,
    "u_range": [
     0.0039,
-    2.6327
+    2.6328
    ],
    "v_range": [
     0.0039,
     0.9961
    ],
-   "cook_s": 0.41,
+   "cook_s": 3.0,
    "bake_s": null,
-   "date": "20 October 2026 02:40",
+   "date": "20 October 2026 06:03",
    "report": "M3B/report.json",
    "example": {
     "texture": "M3B/texture_trim.png",

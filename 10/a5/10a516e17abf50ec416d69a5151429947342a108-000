@@ -1,0 +1,45 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_Manny": {
+   "s": 1278.3,
+   "res": {
+    "M1": {
+     "score": 0.984977,
+     "weakest": "uv:no_flip",
+     "errors": null
+    },
+    "M2": {
+     "score": 0.984977,
+     "weakest": "uv:no_flip",
+     "errors": null
+    },
+    "M3": {
+     "score": 0.984977,
+     "weakest": "uv:no_flip",
+     "errors": null
+    },
+    "M3B": {
+     "score": 0.984977,
+     "weakest": "uv:no_flip",
+     "errors": null
+    },
+    "M3C": {
+     "score": 0.981919,
+     "weakest": "uv:region",
+     "errors": null
+    },
+    "M4": {
+     "score": 0.984977,
+     "weakest": "uv:no_flip",
+     "errors": null
+    },
+    "M5": {
+     "score": 0.508523,
+     "weakest": "decals:lift",
+     "errors": null
+    }
+   }
+  }
+ }
+}

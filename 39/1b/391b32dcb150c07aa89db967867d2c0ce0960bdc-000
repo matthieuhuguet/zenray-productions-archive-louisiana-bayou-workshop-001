@@ -31,6 +31,8 @@ PARAMS = {
                             # 20 October 2026, measured on Manny : 0.04 gave 14.3 m and limbs opened at the back, 0.15 with open_power 2 gave 13.3 m and inseams
     'open_power': 2.0,      # the openness (share of the hemisphere that sees nothing) enters the visibility to this power : the inside of a limb, half hidden by the
                             # body, costs a quarter of an open flank, so a limb opens on its inner side (an inseam) rather than on its back
+    'hero_weight': 10.0,    # 20 October 2026 : the hero zone, what the eye goes to first (the face of a character, the front of a prop) : an edge more visible than
+    'hero_vis': 0.6,        # hero_vis costs up to (1 + hero_weight) times more, quadratically ; a cut on the mirror plane counts once and had split the rubber toy's face
     'vis_power': 2.0,       # the visibility enters the seam cost squared : a seam on the face of an asset costs about 25 times a hidden one (an artist would rather
                             # keep a little distortion than cut where the eye goes)
     'min_gain': 0.03,       # a move must remove at least this share of the distortion excess of the charts it cuts (no dart for a crumb)
@@ -157,7 +159,8 @@ class Surf:
         self.vvis = np.clip(vo, 0.0, 1.0) ** pr['open_power'] * view
         ev = 0.5 * (self.vvis[self.E[:, 0]] + self.vvis[self.E[:, 1]])
         conc = np.clip(-self.dih / max(pr['concave_rad'], 1e-6), 0.0, 1.0)
-        self.cost = self.EL * (pr['eps'] + ev ** pr['vis_power']) * (1.0 - pr['concave_bonus'] * conc)
+        hero = 1.0 + pr['hero_weight'] * (np.clip((ev - pr['hero_vis']) / max(1.0 - pr['hero_vis'], 1e-6), 0.0, 1.0) ** 2)
+        self.cost = self.EL * (pr['eps'] + ev ** pr['vis_power']) * (1.0 - pr['concave_bonus'] * conc) * hero
         self.search_cost = self.cost
 
 
