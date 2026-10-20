@@ -1,15 +1,15 @@
 {
- "score": 1.0,
- "weakest": "uv:present",
+ "score": 0.970441,
+ "weakest": "uv:horizontal",
  "components": {
   "uv:present": 1.0,
   "uv:density": 1.0,
-  "uv:stretch": 1.0,
+  "uv:stretch": 0.994878,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
   "uv:grain": 1.0,
-  "uv:horizontal": 1.0,
+  "uv:horizontal": 0.970441,
   "uv:stack": 1.0,
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
@@ -19,27 +19,29 @@
  },
  "reports": {
   "uv": {
+   "organic_area": 0.0,
    "texel": {
     "set": "uv",
     "target_px_per_m": 1024.0,
     "tol": 0.01,
+    "tol_max": 0.01,
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9874914665908,
-    "px_per_m_median": 1023.999797210933,
-    "px_per_m_max": 1024.017032573134,
-    "stretch_max": 0.07316417936975328,
-    "faces": 1903
+    "px_per_m_min": 1023.9741469527917,
+    "px_per_m_median": 1024.0000512190343,
+    "px_per_m_max": 1024.0352640178944,
+    "stretch_max": 0.6391633715774854,
+    "faces": 1940
    },
-   "straight_area": 0.4891,
-   "straight_stretch_max": 0.0732,
-   "stretch_over_2pc_area": 0.0855,
-   "islands": 1105,
-   "stacked_faces": 575,
+   "straight_area": 0.5428,
+   "straight_stretch_max": 0.056,
+   "stretch_over_2pc_area": 0.0954,
+   "islands": 667,
+   "stacked_faces": 309,
    "overlap_px": 0,
-   "covered_px": 3061785,
-   "fill": 0.1825,
+   "covered_px": 0,
+   "fill": 0.0,
    "padding_overlap_px": 0,
    "padding_check_radius_px": 7,
    "groups": 3,
@@ -47,10 +49,10 @@
    "group_padding_faces": 0,
    "u_range": [
     0.002,
-    2.6362
+    1.8004
    ],
    "v_range": [
-    0.1084,
+    0.4343,
     2.998
    ]
   }
@@ -63,25 +65,36 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 440.433,
-  "seams_on_smooth_m": 13.007,
-  "sharp_kept_m": 49.781,
-  "sharp_m": 323.608,
-  "border_m": 152.497,
-  "pass": true
+  "seams_m": 312.926,
+  "seams_on_smooth_m": 0,
+  "sharp_kept_m": 108.093,
+  "sharp_m": 273.827,
+  "border_m": 147.192,
+  "pass": true,
+  "texture_continuity": 0.5404,
+  "texture_continuous_m": 194.853
+ },
+ "hard_edges": {
+  "source": "angle",
+  "hard_edges": 1538,
+  "hard_m": 273.8269,
+  "demoted_edges": 0,
+  "demoted_m": 0,
+  "narrow_parts": 0,
+  "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 2048, \"islands\": 329, \"stacked\": 244, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 2048, \"islands\": 280, \"stacked\": 220, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 2048, \"islands\": 52, \"stacked\": 31, \"past_u1\": 4}]",
-  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 260, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.0732, \"kink_faces\": 368, \"kept_native\": 246, \"cut_at_kinks\": 6, \"straight_area\": 0.6002}",
-  "zruv_decal_band": "{\"v0\": 0.985107421875, \"v1\": 1.0, \"v0_content\": 0.987060546875, \"v1_content\": 0.998046875, \"px\": 61, \"strips\": 884, \"unique_faces\": 24, \"atlas_px\": 4096.0, \"strips_dropped_too_close\": 8}"
+  "zruv_groups_uv": "[{\"family\": \"iron\", \"square\": 0, \"tile_px\": 4096, \"islands\": 154, \"stacked\": 114, \"past_u1\": 8}, {\"family\": \"pillar\", \"square\": 1, \"tile_px\": 4096, \"islands\": 29, \"stacked\": 8, \"past_u1\": 0}, {\"family\": \"sign\", \"square\": 2, \"tile_px\": 4096, \"islands\": 3, \"stacked\": 1, \"past_u1\": 2}]",
+  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 0, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}",
+  "zruv_decal_band": "{\"W\": 4096, \"H\": 2048, \"pad\": 16.0, \"atlas_px\": 4096, \"rows\": [{\"kind\": \"bevel\", \"v0\": 0.97021484375, \"v1\": 1.0}, {\"kind\": \"groove\", \"v0\": 0.9541015625, \"v1\": 0.97021484375}, {\"kind\": \"rivet\", \"v0\": 0.939453125, \"v1\": 0.9541015625}], \"strip_half_m\": 0.021563493511398513, \"groove_m\": 0.012, \"rivet_m\": 0.009, \"rivet_cell_m\": 0.01290625, \"bevel\": {\"depth_m\": 0.004, \"chip_m\": 0.0015, \"chips_per_m\": 40.0}, \"strips\": 884, \"grooves\": 23, \"rivets\": 38, \"panels\": 1, \"strips_dropped_too_close\": 8, \"need_h_px\": 124, \"v0\": 0.97021484375, \"v1\": 1.0, \"v0_content\": 0.97412109375, \"v1_content\": 0.99609375}"
  },
  "method": "M5",
- "title": "Mesh decals",
+ "title": "Mesh decals de normale",
  "contracts": [
   {
    "set": "uv",
    "W": 4096,
-   "H": 4096,
+   "H": 2048,
    "space": "tile",
    "unique": "per_face",
    "region": "free",
@@ -89,18 +102,17 @@
    "overflow_u": true,
    "straight_tol": 0.08,
    "padding_px": 16,
-   "group_padding_px": 8,
-   "band": {
-    "v0": 0.987060546875,
-    "v1": 0.998046875
-   }
+   "group_padding_px": 16,
+   "seam_rule": "tileable",
+   "organic_tol": 0.1,
+   "subtexel_px": 1.0
   }
  ],
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.53,
- "score_s": 0.6,
+ "cook_s": 0.14,
+ "score_s": 0.85,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -111,10 +123,11 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "19 October 2026 21:52",
+ "date": "20 October 2026 02:30",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,
+  "asset_area_m2": 0.0,
   "texel_density": 1024.0,
   "families": "arch:iron cross:iron wire:iron rivet:iron pendant:iron pillar_L:pillar pillar_R:pillar sign:sign",
   "density_tol": 0.01,
@@ -123,18 +136,18 @@
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
   "m2_tile_px": 2048,
-  "m2_grain": "pillar:up sign:h",
-  "m2_padding_px": 8,
+  "m2_grain": "pillar:h sign:h",
+  "m2_stitch": 1,
   "m2_seed": 7,
   "m2_breakup_size_m": 0.8,
   "m2_flatten": 1,
-  "m5_atlas_px": 2048,
+  "m5_atlas_px": 4096,
   "m5_strip_families": "iron pillar",
   "m5_strip_angle": 80.0,
   "m5_strip_max_angle": 120.0,
   "m5_strip_m": 0.04,
   "m5_offset_m": 0.001,
-  "m5_unique": "sign:z",
-  "m5_padding_px": 16
+  "m5_panels": "sign:z",
+  "m5_panel_inset_m": 0.05
  }
 }
