@@ -1,0 +1,11 @@
+#!/bin/zsh
+# 20 October 2026 (fifth pass) : the arch, every method with its bake, on the final code (the files of the page all come from one version).
+W=/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026
+B="/opt/homebrew/bin/python3 /Users/zenray/.claude/Memory1/Houdini/MCP/zrhoudini.py hom"
+ZR_BRIDGE_TIMEOUT=3600 $=B "OBJS=('ZRUV_Arch',); METHS=('M1','M2','M3','M3B','M3C','M4','M5'); BAKE=True; RUNS='$W/runs'; exec(open('$W/Scripts/RunSheets.py').read())" > $W/Scripts/RunArchFinal.out 2>&1
+/opt/homebrew/bin/python3 -c "
+import json
+r = json.load(open('$W/Scripts/RunArchFinal.out'))['result']['ZRUV_Arch']
+print('ZRUV_Arch', r['s'], {k: (v['score'], v['weakest'], (v['errors'] or [''])[0][:160] if v['errors'] else '') for k, v in r['res'].items()})
+" > $W/Scripts/RunArchFinal.sum 2>&1
+echo "ARCH FINAL COMPLETE" >> $W/Scripts/RunArchFinal.sum

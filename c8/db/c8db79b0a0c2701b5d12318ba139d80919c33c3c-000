@@ -2,7 +2,7 @@
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "20 October 2026 07:47",
+ "date": "20 October 2026 09:20",
  "families": [
   {
    "name": "iron",
@@ -130,9 +130,9 @@
     0.002,
     0.998
    ],
-   "cook_s": 1.56,
+   "cook_s": 3.87,
    "bake_s": null,
-   "date": "20 October 2026 07:47",
+   "date": "20 October 2026 09:20",
    "report": "M3/report.json",
    "example": {
     "texture": "M3/texture_trim.png",
@@ -210,7 +210,7 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9811177476616,
+    "px_per_m_min": 1023.9765937415543,
     "px_per_m_median": 1024.0,
     "px_per_m_max": 1026.013737105104,
     "stretch_max": 0.055999391546444954,
@@ -241,9 +241,9 @@
     0.002,
     0.9902
    ],
-   "cook_s": 1.05,
+   "cook_s": 1.13,
    "bake_s": null,
-   "date": "20 October 2026 07:47",
+   "date": "20 October 2026 09:20",
    "report": "M3B/report.json",
    "example": {
     "texture": "M3B/texture_trim.png",
@@ -511,9 +511,9 @@
     0.4343,
     2.998
    ],
-   "cook_s": 2.3,
+   "cook_s": 2.11,
    "bake_s": null,
-   "date": "20 October 2026 07:47",
+   "date": "20 October 2026 09:20",
    "report": "M5/report.json",
    "example": {
     "texture": "M5/texture_decal_relief.png",
