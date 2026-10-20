@@ -105,7 +105,7 @@
   "uv": 1024.0
  },
  "cook_s": 0.01,
- "score_s": 0.71,
+ "score_s": 0.73,
  "bake": null,
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
@@ -116,7 +116,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 02:32",
+ "date": "20 October 2026 02:34",
  "params": {
   "asset_path": "/obj/Entrance_Arch_Clean/OUT_clean",
   "asset_scale": 1.64,

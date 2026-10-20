@@ -1,5 +1,36 @@
 {
- "ok": false,
- "error": "Traceback (most recent call last):\n  File \"<string>\", line 132, in _poll\n  File \"<string>\", line 103, in _handle\n  File \"<zrbridge>\", line 1, in <module>\n  File \"<string>\", line 8, in <module>\nAttributeError: 'NoneType' object has no attribute 'attribValue'\n"
+ "ok": true,
+ "result": {
+  "ZRUV_Arch": {
+   "s": 38.6,
+   "res": {
+    "M2": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M3B": {
+     "score": 0.34929,
+     "weakest": "uv:density",
+     "errors": null
+    },
+    "M3C": {
+     "score": 0.542076,
+     "weakest": "uv:density",
+     "errors": null
+    },
+    "M4": {
+     "score": 1.0,
+     "weakest": "uv:present",
+     "errors": null
+    },
+    "M5": {
+     "score": 0.994878,
+     "weakest": "uv:stretch",
+     "errors": null
+    }
+   }
+  }
+ }
 }
 done

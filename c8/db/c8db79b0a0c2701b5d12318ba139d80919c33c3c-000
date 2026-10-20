@@ -2,7 +2,7 @@
  "asset": "/obj/Entrance_Arch_Clean/OUT_clean",
  "asset_scale": 1.64,
  "texel_density": 1024.0,
- "date": "20 October 2026 02:33",
+ "date": "20 October 2026 02:34",
  "families": [
   {
    "name": "iron",
@@ -266,7 +266,7 @@
    ],
    "cook_s": 0.01,
    "bake_s": null,
-   "date": "20 October 2026 02:32",
+   "date": "20 October 2026 02:34",
    "report": "M2/report.json",
    "example": {
     "textured_3d": "M2/view_textured_3d.png",
@@ -368,9 +368,9 @@
     0.002,
     0.998
    ],
-   "cook_s": 0.34,
+   "cook_s": 0.3,
    "bake_s": null,
-   "date": "20 October 2026 02:32",
+   "date": "20 October 2026 02:34",
    "report": "M3B/report.json",
    "example": {
     "texture": "M3B/texture_trim.png",
@@ -469,9 +469,9 @@
     0.7324,
     0.998
    ],
-   "cook_s": 0.31,
+   "cook_s": 0.32,
    "bake_s": null,
-   "date": "20 October 2026 02:32",
+   "date": "20 October 2026 02:34",
    "report": "M3C/report.json",
    "example": {
     "texture": "M3C/texture_hotspot.png",
@@ -770,9 +770,9 @@
     0.4343,
     2.998
    ],
-   "cook_s": 0.0,
-   "bake_s": 8.4,
-   "date": "20 October 2026 02:33",
+   "cook_s": 0.01,
+   "bake_s": 8.44,
+   "date": "20 October 2026 02:34",
    "report": "M4/report.json",
    "example": {
     "texture": "M4/ZRUV_Arch_M4_layered_2048x1024.png",
@@ -1058,9 +1058,9 @@
     0.4343,
     2.998
    ],
-   "cook_s": 0.13,
+   "cook_s": 0.12,
    "bake_s": null,
-   "date": "20 October 2026 02:33",
+   "date": "20 October 2026 02:34",
    "report": "M5/report.json",
    "example": {
     "texture": "M5/texture_decal_relief.png",

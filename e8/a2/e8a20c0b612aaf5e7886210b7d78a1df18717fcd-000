@@ -1,0 +1,16 @@
+{
+ "ok": true,
+ "result": {
+  "ZRUV_ArchLibrary": {
+   "s": 6.1,
+   "res": {
+    "M3B": {
+     "score": 0.591296,
+     "weakest": "uv:density",
+     "errors": null
+    }
+   }
+  }
+ }
+}
+done
