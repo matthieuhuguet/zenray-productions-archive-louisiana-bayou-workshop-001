@@ -1,5 +1,5 @@
 {
- "score": 0.999993,
+ "score": 0.999989,
  "weakest": "bake:coverage",
  "components": {
   "uv:present": 1.0,
@@ -15,7 +15,7 @@
   "uv:smooth_border": 1.0,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
-  "bake:coverage": 0.999993,
+  "bake:coverage": 0.999989,
   "bake:id_match": 1.0
  },
  "reports": {
@@ -26,13 +26,13 @@
     "target_px_per_m": 1024.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9518405101925224,
-    "low_frac": 0.025894445497330356,
-    "high_frac": 0.022265044310147242,
-    "px_per_m_min": 801.7084113072921,
-    "px_per_m_median": 1024.8054956179917,
-    "px_per_m_max": 1553.4560186172685,
-    "stretch_max": 1.7793025582674709,
+    "exact_frac": 0.9992315587579119,
+    "low_frac": 0.0,
+    "high_frac": 0.0007684412420880085,
+    "px_per_m_min": 924.003863052609,
+    "px_per_m_median": 1024.776100342515,
+    "px_per_m_max": 1199.4763111064326,
+    "stretch_max": 1.0480731435957318,
     "faces": 12854
    },
    "straight_area": 0.0,
@@ -42,17 +42,15 @@
     "passing": 33,
     "p50": 0.09,
     "p95": 0.35,
-    "worst_island_p50": 0.2201,
-    "worst_island_p95": 0.5002,
+    "worst_island_p50": 0.2333,
+    "worst_island_p95": 0.5147,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.7128,
+   "stretch_over_2pc_area": 0.7229,
    "islands": 33,
-   "overlap_px": 0,
-   "covered_px": 4160193,
-   "fill": 0.248,
-   "padding_overlap_px": 0,
-   "padding_check_radius_px": 15,
+   "groups": 2,
+   "group_overlap_faces": 0,
+   "group_padding_faces": 0,
    "self_overlap_faces": 0,
    "staircases": {
     "runs": 0,
@@ -60,12 +58,12 @@
     "islands": {}
    },
    "u_range": [
-    0.0078,
-    0.9915
+    0.0156,
+    0.984
    ],
    "v_range": [
-    0.0078,
-    0.4377
+    0.0156,
+    0.8958
    ]
   }
  },
@@ -77,8 +75,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 9.216,
-  "seams_on_smooth_m": 3.592,
+  "seams_m": 9.166,
+  "seams_on_smooth_m": 3.595,
   "sharp_kept_m": 0,
   "sharp_m": 0,
   "border_m": 0,
@@ -94,7 +92,7 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 33, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2503, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1192335, \"lower_bound_unique_px2\": 1192335, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0, \"td\": 1024.0, \"fit\": false, \"tiles_n\": 1, \"tile_rule\": \"one tile\", \"tile_splits\": 0, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 33, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2503, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1192335, \"lower_bound_unique_px2\": 1192335, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 1024.0, \"fit\": false, \"tile\": 0, \"label\": \"ToyShader\", \"area_m2\": 1.00119}], \"texels_total\": 4194304}",
+  "zruv_layout_uv": "{\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 8, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4998, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 571085, \"lower_bound_unique_px2\": 571085, \"next_smaller\": [512, 512], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}], \"rows\": 0, \"td\": 1024.0, \"fit\": false, \"tiles_n\": 2, \"tile_rule\": \"one tile\", \"tile_splits\": 1, \"tiles\": [{\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 8, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4998, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 571085, \"lower_bound_unique_px2\": 571085, \"next_smaller\": [512, 512], \"minimal_proven\": true, \"rows\": 0, \"td\": 1024.0, \"fit\": false, \"tile\": 0, \"label\": \"ToyShader 01\", \"area_m2\": 0.49984}, {\"W\": 1024, \"H\": 1024, \"pad\": 16.0, \"islands\": 25, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5013, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 621250, \"lower_bound_unique_px2\": 621250, \"next_smaller\": [512, 512], \"minimal_proven\": true, \"rows\": 0, \"td\": 1024.0, \"fit\": false, \"tile\": 1, \"label\": \"ToyShader 02\", \"area_m2\": 0.50135}], \"oversize\": [], \"oversize_density\": [], \"texels_total\": 2097152}",
   "zruv_straight_uv": "{\"charts\": 10, \"grids\": 0, \"tubes\": 0, \"cut_long\": 0, \"straight_area\": 0.0}"
  },
  "method": "M1",
@@ -102,15 +100,18 @@
  "contracts": [
   {
    "set": "uv",
-   "W": 2048,
-   "H": 2048,
+   "W": 1024,
+   "H": 1024,
    "space": "sheet",
-   "unique": true,
+   "unique": "per_group",
    "region": "sheet",
    "padding_px": 16,
    "straight_tol": 0.08,
    "twin_bake": true,
    "smooth_border": true,
+   "sizes": "per_face",
+   "group_padding_px": 16,
+   "tiles": 2,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -124,29 +125,70 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 10.94,
- "score_s": 7.37,
+ "cook_s": 9.68,
+ "score_s": 5.16,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_2048x2048.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_occlusion_2048x2048.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_curvature_2048x2048.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_edge_2048x2048.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_2048x2048.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_t0_1024x1024.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_occlusion_t0_1024x1024.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_curvature_t0_1024x1024.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_edge_t0_1024x1024.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_t0_1024x1024.png"
   },
   "seconds": {
-   "custom": 5.24,
-   "occlusion": 0.04,
-   "curvature": 0.08,
-   "edge": 0.04,
-   "alpha": 0.02
+   "custom_t0": 1.92,
+   "occlusion_t0": 0.01,
+   "curvature_t0": 0.02,
+   "edge_t0": 0.01,
+   "alpha_t0": 0.01,
+   "custom_t1": 1.84,
+   "occlusion_t1": 0.01,
+   "curvature_t1": 0.02,
+   "edge_t1": 0.01,
+   "alpha_t1": 0.01
   },
   "size": [
-   2048,
-   2048
+   1024,
+   1024
   ],
-  "coverage": 0.999993,
-  "id_match": 1.0
+  "coverage": 0.999989,
+  "id_match": 1.0,
+  "tiles": [
+   {
+    "tile": 0,
+    "label": "ToyShader 01",
+    "size": [
+     1024,
+     1024
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_t0_1024x1024.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_occlusion_t0_1024x1024.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_curvature_t0_1024x1024.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_edge_t0_1024x1024.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_t0_1024x1024.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 1,
+    "label": "ToyShader 02",
+    "size": [
+     1024,
+     1024
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_custom_t1_1024x1024.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_occlusion_t1_1024x1024.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_curvature_t1_1024x1024.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_edge_t1_1024x1024.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_RubberToy/M1/ZRUV_RubberToy_M1_alpha_t1_1024x1024.png"
+    },
+    "coverage": 0.999978,
+    "id_match": 1.0
+   }
+  ]
  },
  "asset": "/obj/ZRUV_Assets/rubbertoy_src",
  "asset_scale": 1.0,
@@ -155,7 +197,7 @@
   "rubber"
  ],
  "crease_effective": 57.218997955322266,
- "date": "20 October 2026 18:50",
+ "date": "21 October 2026 06:31",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/rubbertoy_src",
   "asset_scale": 1.0,
@@ -167,10 +209,14 @@
   "crease_deg": 30.0,
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
+  "tailor_front": "0 0 1",
   "m1_tiles": 0,
   "m1_tile_groups": "",
   "asset_kind": 0,
   "m1_fit": 0,
+  "m1_oversize_px": 2048,
+  "m1_max_px": 2048,
+  "m1_min_fill": 0.5,
   "m1_minor_density": 1.0,
   "m1_no_texture": "*no_uv* *nouv*",
   "m1_sheet_px": 0,
