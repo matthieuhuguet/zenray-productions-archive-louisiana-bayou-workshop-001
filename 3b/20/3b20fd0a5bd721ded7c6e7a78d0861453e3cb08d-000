@@ -1,6 +1,6 @@
 {
  "report": {
-  "date": "21 October 2026 20:10",
+  "date": "21 October 2026 20:22",
   "height": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/heights/final_01_zenray-height.png",
   "sheet": "sheet",
   "size": [
@@ -33,10 +33,11 @@
   "checks": {
    "iou_after": true,
    "gain": true,
-   "remap_round_trip": false
+   "remap_round_trip": true,
+   "graph_matches": true
   },
-  "ok": false,
-  "seconds": 16.9,
+  "ok": true,
+  "seconds": 19.5,
   "info": {
    "evidence": {
     "b": 0.31689453125,
@@ -87,7 +88,7 @@
      }
     ]
    },
-   "seconds_solve": 15.4
+   "seconds_solve": 15.3
   },
   "params": {
    "ring_px": 4.0,
@@ -116,6 +117,7 @@
    "field_conf_drop": 0.1,
    "scale_dev_max": 0.02,
    "shear_dev_max": 0.01,
+   "debug_island": 0,
    "affine_area": 2000,
    "affine_ext": 40,
    "thin_px": 48,
@@ -152,8 +154,29 @@
    "ok_gain": 0.0,
    "ok_graph_mae": 0.002
   },
-  "graph": null,
-  "remap_round_trip_max": 0.00996488332748413,
+  "graph": {
+   "ok": true,
+   "result": {
+    "ok": true,
+    "source": "/obj/ZRH_ArchAI512/OUT_height",
+    "out": "/obj/ZRH_ArchAI512/ALIGN_OUT",
+    "nodes": [
+     "/obj/ZRH_ArchAI512/ALIGN_remap",
+     "/obj/ZRH_ArchAI512/ALIGN_uv",
+     "/obj/ZRH_ArchAI512/ALIGN_sample",
+     "/obj/ZRH_ArchAI512/ALIGN_OUT",
+     "/obj/ZRH_ArchAI512/ALIGN_export"
+    ],
+    "export": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/aligned_copernicus.png",
+    "errors": {}
+   },
+   "mae_islands": 4.718837772088591e-06,
+   "max_islands": 3.6716461181640625e-05,
+   "mae_all": 5.397550012276042e-06
+  },
+  "remap_round_trip_px": 0.015625234776280195,
+  "remap_bound_px": 0.01564086366063935,
+  "outside_px": 0,
   "files": {
    "aligned": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/aligned.png",
    "remap": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/remap.png",

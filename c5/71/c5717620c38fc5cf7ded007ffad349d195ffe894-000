@@ -8,5 +8,10 @@
   "file": "final_01_zenray-height.png",
   "date": "21 October 2026",
   "caption": "height refaite par ZenRay Height dans Copernicus depuis ai_01 (graphe /obj/ZRH_ArchAI512, plans L3 puis L5, --atlas) : 0,9951 de ressemblance en pleine résolution, SSIM 0,961, 8,6 min ; îles pas encore recalées sur la feuille"
+ },
+ {
+  "file": "final_01_zenray-height_aligned.png",
+  "date": "21 October 2026",
+  "caption": "final_01_zenray-height recalée île par île sur les UV d'origine (per-island 2D alignment) : IoU 0.737 avant, 0.955 après ; 134 îles recalées, 23 par leurs voisines"
  }
 ]
