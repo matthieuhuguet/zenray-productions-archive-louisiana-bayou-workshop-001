@@ -1,10 +1,10 @@
 {
- "score": 0.9652,
+ "score": 0.963475,
  "weakest": "uv:density",
  "components": {
   "uv:present": 1.0,
-  "uv:density": 0.9652,
-  "uv:stretch": 0.9652,
+  "uv:density": 0.963475,
+  "uv:stretch": 0.963475,
   "uv:no_flip": 1.0,
   "uv:not_mirrored": 1.0,
   "uv:region": 1.0,
@@ -13,7 +13,7 @@
   "uv:no_overlap": 1.0,
   "uv:padding": 1.0,
   "uv:no_self_overlap": 1.0,
-  "uv:smooth_border": 0.983273,
+  "uv:smooth_border": 0.985314,
   "seams:consistency": 1.0,
   "seams:robust_crease": 1.0,
   "bake:coverage": 0.999999,
@@ -27,11 +27,11 @@
     "target_px_per_m": 2048.0,
     "tol": 0.01,
     "tol_max": 0.1,
-    "exact_frac": 0.9405989003949039,
-    "low_frac": 0.03326554976832718,
-    "high_frac": 0.026135549836769037,
+    "exact_frac": 0.9411003590869192,
+    "low_frac": 0.033166279948959966,
+    "high_frac": 0.025733360964120884,
     "px_per_m_min": 1161.211628113431,
-    "px_per_m_median": 2048.0076191754224,
+    "px_per_m_median": 2048.608897151952,
     "px_per_m_max": 2999.766619410245,
     "stretch_max": 1.2546703696148107,
     "faces": 89942
@@ -40,33 +40,33 @@
    "straight_stretch_max": 0.0,
    "organic_artist": {
     "islands": 141,
-    "passing": 137,
+    "passing": 136,
     "p50": 0.09,
     "p95": 0.35,
     "worst_island_p50": 0.1091,
     "worst_island_p95": 0.3331,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.9345,
+   "stretch_over_2pc_area": 0.9319,
    "islands": 145,
    "upright_islands": 141,
    "upright_worst_deg": 0.0,
-   "groups": 26,
+   "groups": 25,
    "group_overlap_faces": 0,
    "group_padding_faces": 0,
    "self_overlap_faces": 0,
    "staircases": {
-    "runs": 65,
-    "m": 1.0482,
+    "runs": 57,
+    "m": 0.9182,
     "islands": {
-     "3": 0.0729,
      "133": 0.0717,
-     "4": 0.062,
      "137": 0.0589,
      "85": 0.0531,
      "53": 0.0514,
      "131": 0.0503,
-     "136": 0.0484
+     "136": 0.0484,
+     "72": 0.0433,
+     "47": 0.0395
     }
    },
    "u_range": [
@@ -75,7 +75,7 @@
    ],
    "v_range": [
     0.0156,
-    0.9844
+    0.9778
    ]
   }
  },
@@ -87,8 +87,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 62.663,
-  "seams_on_smooth_m": 36.717,
+  "seams_m": 62.52,
+  "seams_on_smooth_m": 36.452,
   "sharp_kept_m": 0,
   "sharp_m": 0.335,
   "border_m": 0,
@@ -104,7 +104,7 @@
   "narrowest_px": 32.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4418, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1930967, \"lower_bound_unique_px2\": 1930967, \"next_smaller\": [2048, 1024], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 0, \"td\": 2028.5, \"fit\": false, \"tiles_n\": 26, \"tile_rule\": \"one tile\", \"tile_splits\": 24, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4418, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1930967, \"lower_bound_unique_px2\": 1930967, \"next_smaller\": [2048, 1024], \"minimal_proven\": false, \"rows\": 0, \"td\": 2028.5, \"fit\": false, \"tile\": 0, \"label\": \"oversize Chest hammer 01\", \"area_m2\": 0.45033}, {\"W\": 2048, \"H\": 1024, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2753, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 648783, \"lower_bound_unique_px2\": 648783, \"next_smaller\": [1024, 1024], \"minimal_proven\": false, \"rows\": 1, \"td\": 1807.3, \"fit\": false, \"tile\": 1, \"label\": \"oversize Chest hammer 02\", \"area_m2\": 0.17674}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4448, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1943875, \"lower_bound_unique_px2\": 1943875, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 2, \"label\": \"Sheet 01\", \"area_m2\": 0.44479}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.42, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1869142, \"lower_bound_unique_px2\": 1869142, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 1, \"td\": 2048.0, \"fit\": false, \"tile\": 3, \"label\": \"Sheet 02\", \"area_m2\": 0.41997}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.42, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1871112, \"lower_bound_unique_px2\": 1871112, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 4, \"label\": \"Sheet 03\", \"area_m2\": 0.41999}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.42, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1873214, \"lower_bound_unique_px2\": 1873214, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 5, \"label\": \"Sheet 04\", \"area_m2\": 0.41998}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4198, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1873986, \"lower_bound_unique_px2\": 1873986, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 6, \"label\": \"Sheet 05\", \"area_m2\": 0.41978}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 6, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4199, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1882971, \"lower_bound_unique_px2\": 1882971, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 7, \"label\": \"Sheet 06\", \"area_m2\": 0.4199}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 5, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.52, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2323830, \"lower_bound_unique_px2\": 2323830, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 8, \"label\": \"Sheet 07\", \"area_m2\": 0.52}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 6, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4198, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1895799, \"lower_bound_unique_px2\": 1895799, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 9, \"label\": \"Sheet 08\", \"area_m2\": 0.41984}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 10, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.42, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1934787, \"lower_bound_unique_px2\": 1934787, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 10, \"label\": \"Sheet 09\", \"area_m2\": 0.41997}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 15, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4198, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1992448, \"lower_bound_unique_px2\": 1992448, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 11, \"label\": \"Sheet 10\", \"area_m2\": 0.41984}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 27, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5199, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2556079, \"lower_bound_unique_px2\": 2556079, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 12, \"label\": \"Sheet 11\", \"area_m2\": 0.51991}, {\"W\": 2048, \"H\": 1024, \"pad\": 32.0, \"islands\": 34, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3596, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1018726, \"lower_bound_unique_px2\": 1018726, \"next_smaller\": [2048, 512], \"minimal_proven\": false, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 13, \"label\": \"Sheet 12\", \"area_m2\": 0.17978}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3763, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1676989, \"lower_bound_unique_px2\": 1676989, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 14, \"label\": \"Sheet 13\", \"area_m2\": 0.37635}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5133, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2293705, \"lower_bound_unique_px2\": 2293705, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 15, \"label\": \"Sheet 14\", \"area_m2\": 0.51332}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2829, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1249255, \"lower_bound_unique_px2\": 1249255, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 16, \"label\": \"Sheet 15\", \"area_m2\": 0.28292}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4984, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2207898, \"lower_bound_unique_px2\": 2207898, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 17, \"label\": \"Sheet 16\", \"area_m2\": 0.49838}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.1514, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 681231, \"lower_bound_unique_px2\": 681231, \"next_smaller\": [1024, 1024], \"minimal_proven\": false, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 18, \"label\": \"Sheet 17\", \"area_m2\": 0.15145}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3857, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1734737, \"lower_bound_unique_px2\": 1734737, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 19, \"label\": \"Sheet 18\", \"area_m2\": 0.38573}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.263, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1208661, \"lower_bound_unique_px2\": 1208661, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 20, \"label\": \"Sheet 19\", \"area_m2\": 0.26301}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2368, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1074689, \"lower_bound_unique_px2\": 1074689, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 21, \"label\": \"Sheet 20\", \"area_m2\": 0.23678}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3799, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1693197, \"lower_bound_unique_px2\": 1693197, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 22, \"label\": \"Sheet 21\", \"area_m2\": 0.37987}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3084, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1358808, \"lower_bound_unique_px2\": 1358808, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 23, \"label\": \"Sheet 22\", \"area_m2\": 0.30839}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4188, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1863325, \"lower_bound_unique_px2\": 1863325, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 24, \"label\": \"Sheet 23\", \"area_m2\": 0.41881}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3167, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1422376, \"lower_bound_unique_px2\": 1422376, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 25, \"label\": \"Sheet 24\", \"area_m2\": 0.31674}], \"oversize\": [{\"island\": 5, \"piece\": \"Chest\", \"w_px\": 1905, \"h_px\": 2003}, {\"island\": 143, \"piece\": \"hammer\", \"w_px\": 2158, \"h_px\": 343}], \"oversize_density\": [{\"island\": 5, \"piece\": \"Chest\", \"density_px_m\": 2028.5, \"share\": 0.99}, {\"island\": 143, \"piece\": \"hammer\", \"density_px_m\": 1807.3, \"share\": 0.882}], \"texels_total\": 104857600}",
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 1024, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2753, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 648783, \"lower_bound_unique_px2\": 648783, \"next_smaller\": [1024, 1024], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"unique\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"unique\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 1, \"td\": 1807.3, \"fit\": false, \"tiles_n\": 25, \"tile_rule\": \"one tile\", \"tile_splits\": 23, \"tiles\": [{\"W\": 2048, \"H\": 1024, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2753, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 648783, \"lower_bound_unique_px2\": 648783, \"next_smaller\": [1024, 1024], \"minimal_proven\": false, \"rows\": 1, \"td\": 1807.3, \"fit\": false, \"tile\": 0, \"label\": \"oversize hammer\", \"area_m2\": 0.17674}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4448, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1943875, \"lower_bound_unique_px2\": 1943875, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 1, \"label\": \"Sheet 01\", \"area_m2\": 0.44479}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4231, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1850912, \"lower_bound_unique_px2\": 1850912, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 2, \"label\": \"Sheet 02\", \"area_m2\": 0.42309}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.42, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1869142, \"lower_bound_unique_px2\": 1869142, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 1, \"td\": 2048.0, \"fit\": false, \"tile\": 3, \"label\": \"Sheet 03\", \"area_m2\": 0.41997}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.42, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1871017, \"lower_bound_unique_px2\": 1871017, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 4, \"label\": \"Sheet 04\", \"area_m2\": 0.41998}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.42, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1873214, \"lower_bound_unique_px2\": 1873214, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 5, \"label\": \"Sheet 05\", \"area_m2\": 0.41998}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4198, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1876005, \"lower_bound_unique_px2\": 1876005, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 6, \"label\": \"Sheet 06\", \"area_m2\": 0.41984}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 6, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4199, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1882971, \"lower_bound_unique_px2\": 1882971, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 7, \"label\": \"Sheet 07\", \"area_m2\": 0.4199}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 5, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.52, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2323830, \"lower_bound_unique_px2\": 2323830, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 8, \"label\": \"Sheet 08\", \"area_m2\": 0.52}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 6, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4199, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1896972, \"lower_bound_unique_px2\": 1896972, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 9, \"label\": \"Sheet 09\", \"area_m2\": 0.41992}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 8, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4199, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1918855, \"lower_bound_unique_px2\": 1918855, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 10, \"label\": \"Sheet 10\", \"area_m2\": 0.41986}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 16, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5199, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2450675, \"lower_bound_unique_px2\": 2450675, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 11, \"label\": \"Sheet 11\", \"area_m2\": 0.51993}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 24, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4199, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2088604, \"lower_bound_unique_px2\": 2088604, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 12, \"label\": \"Sheet 12\", \"area_m2\": 0.41995}, {\"W\": 2048, \"H\": 1024, \"pad\": 32.0, \"islands\": 37, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3798, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1085120, \"lower_bound_unique_px2\": 1085120, \"next_smaller\": [2048, 512], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 13, \"label\": \"Sheet 13\", \"area_m2\": 0.18992}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.5178, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2299490, \"lower_bound_unique_px2\": 2299490, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 14, \"label\": \"Sheet 14\", \"area_m2\": 0.51785}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 3, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4954, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2216032, \"lower_bound_unique_px2\": 2216032, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 15, \"label\": \"Sheet 15\", \"area_m2\": 0.49542}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3712, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1654864, \"lower_bound_unique_px2\": 1654864, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 16, \"label\": \"Sheet 16\", \"area_m2\": 0.37121}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4984, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 2207898, \"lower_bound_unique_px2\": 2207898, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 17, \"label\": \"Sheet 17\", \"area_m2\": 0.49838}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4079, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1849625, \"lower_bound_unique_px2\": 1849625, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 18, \"label\": \"Sheet 18\", \"area_m2\": 0.4079}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 4, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3813, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1745563, \"lower_bound_unique_px2\": 1745563, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 19, \"label\": \"Sheet 19\", \"area_m2\": 0.3813}, {\"W\": 1024, \"H\": 1024, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2441, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 285441, \"lower_bound_unique_px2\": 285441, \"next_smaller\": [512, 512], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 20, \"label\": \"Sheet 20\", \"area_m2\": 0.06102}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.3084, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1358808, \"lower_bound_unique_px2\": 1358808, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 21, \"label\": \"Sheet 21\", \"area_m2\": 0.30839}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4178, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1858044, \"lower_bound_unique_px2\": 1858044, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 22, \"label\": \"Sheet 22\", \"area_m2\": 0.41777}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 1, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.2736, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1208993, \"lower_bound_unique_px2\": 1208993, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 23, \"label\": \"Sheet 23\", \"area_m2\": 0.27357}, {\"W\": 2048, \"H\": 2048, \"pad\": 32.0, \"islands\": 2, \"stacked_possible\": 0, \"stacked\": 0, \"fill\": 0.4159, \"unique_share\": 1.0, \"mode\": \"unique\", \"lower_bound_px2\": 1851678, \"lower_bound_unique_px2\": 1851678, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 0, \"td\": 2048.0, \"fit\": false, \"tile\": 24, \"label\": \"Sheet 24\", \"area_m2\": 0.4159}], \"oversize\": [{\"island\": 143, \"piece\": \"hammer\", \"w_px\": 2158, \"h_px\": 343}], \"oversize_density\": [{\"island\": 143, \"piece\": \"hammer\", \"density_px_m\": 1807.3, \"share\": 0.882}], \"texels_total\": 97517568}",
   "zruv_straight_uv": "{\"charts\": 70, \"grids\": 1, \"tubes\": 1, \"cut_long\": 1, \"worst_dev\": 0.0, \"straight_area\": 0.0183}"
  },
  "method": "M1",
@@ -113,7 +113,7 @@
   {
    "set": "uv",
    "W": 2048,
-   "H": 2048,
+   "H": 1024,
    "space": "sheet",
    "unique": "per_group",
    "region": "sheet",
@@ -123,7 +123,7 @@
    "smooth_border": true,
    "sizes": "per_face",
    "group_padding_px": 32,
-   "tiles": 26,
+   "tiles": 25,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -137,192 +137,187 @@
  "targets": {
   "uv": 2048.0
  },
- "cook_s": 365.11,
- "score_s": 169.37,
+ "cook_s": 365.99,
+ "score_s": 191.93,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t0_2048x2048.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t0_2048x2048.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t0_2048x2048.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t0_2048x2048.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t0_2048x2048.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t0_2048x1024.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t0_2048x1024.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t0_2048x1024.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t0_2048x1024.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t0_2048x1024.png"
   },
   "seconds": {
-   "custom_t0": 6.35,
-   "occlusion_t0": 0.06,
-   "curvature_t0": 0.08,
+   "custom_t0": 3.47,
+   "occlusion_t0": 0.02,
+   "curvature_t0": 0.03,
    "edge_t0": 0.02,
    "alpha_t0": 0.02,
-   "custom_t1": 2.29,
-   "occlusion_t1": 0.02,
-   "curvature_t1": 0.02,
-   "edge_t1": 0.03,
-   "alpha_t1": 0.02,
-   "custom_t2": 6.25,
-   "occlusion_t2": 0.05,
-   "curvature_t2": 0.07,
+   "custom_t1": 6.74,
+   "occlusion_t1": 0.06,
+   "curvature_t1": 0.09,
+   "edge_t1": 0.05,
+   "alpha_t1": 0.03,
+   "custom_t2": 6.55,
+   "occlusion_t2": 0.07,
+   "curvature_t2": 0.09,
    "edge_t2": 0.02,
    "alpha_t2": 0.02,
-   "custom_t3": 5.97,
-   "occlusion_t3": 0.05,
+   "custom_t3": 7.08,
+   "occlusion_t3": 0.06,
    "curvature_t3": 0.07,
-   "edge_t3": 0.03,
-   "alpha_t3": 0.02,
-   "custom_t4": 5.61,
-   "occlusion_t4": 0.04,
-   "curvature_t4": 0.07,
+   "edge_t3": 0.05,
+   "alpha_t3": 0.03,
+   "custom_t4": 6.54,
+   "occlusion_t4": 0.06,
+   "curvature_t4": 0.09,
    "edge_t4": 0.03,
    "alpha_t4": 0.02,
-   "custom_t5": 5.57,
-   "occlusion_t5": 0.06,
-   "curvature_t5": 0.07,
-   "edge_t5": 0.03,
-   "alpha_t5": 0.02,
-   "custom_t6": 5.48,
-   "occlusion_t6": 0.04,
-   "curvature_t6": 0.07,
-   "edge_t6": 0.03,
+   "custom_t5": 6.45,
+   "occlusion_t5": 0.07,
+   "curvature_t5": 0.08,
+   "edge_t5": 0.04,
+   "alpha_t5": 0.03,
+   "custom_t6": 7.03,
+   "occlusion_t6": 0.06,
+   "curvature_t6": 0.09,
+   "edge_t6": 0.04,
    "alpha_t6": 0.02,
-   "custom_t7": 5.82,
-   "occlusion_t7": 0.05,
-   "curvature_t7": 0.07,
-   "edge_t7": 0.03,
+   "custom_t7": 7.13,
+   "occlusion_t7": 0.06,
+   "curvature_t7": 0.09,
+   "edge_t7": 0.04,
    "alpha_t7": 0.02,
-   "custom_t8": 5.66,
+   "custom_t8": 6.81,
    "occlusion_t8": 0.04,
    "curvature_t8": 0.06,
-   "edge_t8": 0.04,
-   "alpha_t8": 0.03,
-   "custom_t9": 4.94,
-   "occlusion_t9": 0.03,
-   "curvature_t9": 0.07,
-   "edge_t9": 0.03,
-   "alpha_t9": 0.02,
-   "custom_t10": 6.32,
-   "occlusion_t10": 0.03,
-   "curvature_t10": 0.07,
+   "edge_t8": 0.03,
+   "alpha_t8": 0.02,
+   "custom_t9": 5.85,
+   "occlusion_t9": 0.04,
+   "curvature_t9": 0.1,
+   "edge_t9": 0.04,
+   "alpha_t9": 0.04,
+   "custom_t10": 10.64,
+   "occlusion_t10": 0.04,
+   "curvature_t10": 0.12,
    "edge_t10": 0.03,
    "alpha_t10": 0.02,
-   "custom_t11": 5.94,
-   "occlusion_t11": 0.02,
+   "custom_t11": 8.16,
+   "occlusion_t11": 0.03,
    "curvature_t11": 0.07,
-   "edge_t11": 0.03,
-   "alpha_t11": 0.02,
-   "custom_t12": 7.21,
-   "occlusion_t12": 0.02,
-   "curvature_t12": 0.07,
-   "edge_t12": 0.04,
-   "alpha_t12": 0.02,
-   "custom_t13": 3.58,
+   "edge_t11": 0.05,
+   "alpha_t11": 0.03,
+   "custom_t12": 7.45,
+   "occlusion_t12": 0.03,
+   "curvature_t12": 0.09,
+   "edge_t12": 0.05,
+   "alpha_t12": 0.03,
+   "custom_t13": 4.41,
    "occlusion_t13": 0.02,
    "curvature_t13": 0.07,
-   "edge_t13": 0.06,
+   "edge_t13": 0.05,
    "alpha_t13": 0.02,
-   "custom_t14": 5.09,
-   "occlusion_t14": 0.04,
-   "curvature_t14": 0.07,
-   "edge_t14": 0.02,
+   "custom_t14": 7.68,
+   "occlusion_t14": 0.06,
+   "curvature_t14": 0.06,
+   "edge_t14": 0.03,
    "alpha_t14": 0.02,
-   "custom_t15": 6.81,
-   "occlusion_t15": 0.05,
+   "custom_t15": 7.67,
+   "occlusion_t15": 0.07,
    "curvature_t15": 0.07,
    "edge_t15": 0.03,
    "alpha_t15": 0.02,
-   "custom_t16": 4.14,
-   "occlusion_t16": 0.07,
+   "custom_t16": 6.07,
+   "occlusion_t16": 0.04,
    "curvature_t16": 0.07,
-   "edge_t16": 0.04,
+   "edge_t16": 0.03,
    "alpha_t16": 0.02,
-   "custom_t17": 7.64,
+   "custom_t17": 8.88,
    "occlusion_t17": 0.06,
-   "curvature_t17": 0.07,
+   "curvature_t17": 0.08,
    "edge_t17": 0.03,
    "alpha_t17": 0.02,
-   "custom_t18": 2.48,
-   "occlusion_t18": 0.05,
-   "curvature_t18": 0.06,
+   "custom_t18": 6.33,
+   "occlusion_t18": 0.04,
+   "curvature_t18": 0.07,
    "edge_t18": 0.03,
    "alpha_t18": 0.02,
-   "custom_t19": 5.55,
+   "custom_t19": 6.48,
    "occlusion_t19": 0.05,
    "curvature_t19": 0.07,
-   "edge_t19": 0.04,
-   "alpha_t19": 0.02,
-   "custom_t20": 4.24,
-   "occlusion_t20": 0.04,
-   "curvature_t20": 0.08,
-   "edge_t20": 0.03,
-   "alpha_t20": 0.02,
-   "custom_t21": 4.21,
-   "occlusion_t21": 0.06,
-   "curvature_t21": 0.08,
-   "edge_t21": 0.05,
+   "edge_t19": 0.06,
+   "alpha_t19": 0.03,
+   "custom_t20": 1.53,
+   "occlusion_t20": 0.01,
+   "curvature_t20": 0.02,
+   "edge_t20": 0.01,
+   "alpha_t20": 0.01,
+   "custom_t21": 4.49,
+   "occlusion_t21": 0.07,
+   "curvature_t21": 0.07,
+   "edge_t21": 0.04,
    "alpha_t21": 0.02,
-   "custom_t22": 5.94,
+   "custom_t22": 5.82,
    "occlusion_t22": 0.06,
    "curvature_t22": 0.07,
    "edge_t22": 0.03,
    "alpha_t22": 0.02,
-   "custom_t23": 4.48,
-   "occlusion_t23": 0.08,
-   "curvature_t23": 0.08,
-   "edge_t23": 0.04,
+   "custom_t23": 3.88,
+   "occlusion_t23": 0.06,
+   "curvature_t23": 0.07,
+   "edge_t23": 0.03,
    "alpha_t23": 0.02,
-   "custom_t24": 6.47,
+   "custom_t24": 6.38,
    "occlusion_t24": 0.05,
    "curvature_t24": 0.07,
-   "edge_t24": 0.02,
-   "alpha_t24": 0.02,
-   "custom_t25": 4.86,
-   "occlusion_t25": 0.05,
-   "curvature_t25": 0.07,
-   "edge_t25": 0.03,
-   "alpha_t25": 0.02
+   "edge_t24": 0.04,
+   "alpha_t24": 0.02
   },
   "size": [
    2048,
-   2048
+   1024
   ],
   "coverage": 0.999999,
   "id_match": 1.0,
   "tiles": [
    {
     "tile": 0,
-    "label": "oversize Chest hammer 01",
+    "label": "oversize hammer",
     "size": [
      2048,
-     2048
+     1024
     ],
     "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t0_2048x2048.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t0_2048x2048.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t0_2048x2048.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t0_2048x2048.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t0_2048x2048.png"
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t0_2048x1024.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t0_2048x1024.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t0_2048x1024.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t0_2048x1024.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t0_2048x1024.png"
     },
     "coverage": 1.0,
     "id_match": 1.0
    },
    {
     "tile": 1,
-    "label": "oversize Chest hammer 02",
+    "label": "Sheet 01",
     "size": [
      2048,
-     1024
+     2048
     ],
     "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t1_2048x1024.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t1_2048x1024.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t1_2048x1024.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t1_2048x1024.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t1_2048x1024.png"
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t1_2048x2048.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t1_2048x2048.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t1_2048x2048.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t1_2048x2048.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t1_2048x2048.png"
     },
     "coverage": 1.0,
     "id_match": 1.0
    },
    {
     "tile": 2,
-    "label": "Sheet 01",
+    "label": "Sheet 02",
     "size": [
      2048,
      2048
@@ -339,7 +334,7 @@
    },
    {
     "tile": 3,
-    "label": "Sheet 02",
+    "label": "Sheet 03",
     "size": [
      2048,
      2048
@@ -356,7 +351,7 @@
    },
    {
     "tile": 4,
-    "label": "Sheet 03",
+    "label": "Sheet 04",
     "size": [
      2048,
      2048
@@ -373,7 +368,7 @@
    },
    {
     "tile": 5,
-    "label": "Sheet 04",
+    "label": "Sheet 05",
     "size": [
      2048,
      2048
@@ -390,7 +385,7 @@
    },
    {
     "tile": 6,
-    "label": "Sheet 05",
+    "label": "Sheet 06",
     "size": [
      2048,
      2048
@@ -407,7 +402,7 @@
    },
    {
     "tile": 7,
-    "label": "Sheet 06",
+    "label": "Sheet 07",
     "size": [
      2048,
      2048
@@ -424,7 +419,7 @@
    },
    {
     "tile": 8,
-    "label": "Sheet 07",
+    "label": "Sheet 08",
     "size": [
      2048,
      2048
@@ -441,7 +436,7 @@
    },
    {
     "tile": 9,
-    "label": "Sheet 08",
+    "label": "Sheet 09",
     "size": [
      2048,
      2048
@@ -458,7 +453,7 @@
    },
    {
     "tile": 10,
-    "label": "Sheet 09",
+    "label": "Sheet 10",
     "size": [
      2048,
      2048
@@ -475,7 +470,7 @@
    },
    {
     "tile": 11,
-    "label": "Sheet 10",
+    "label": "Sheet 11",
     "size": [
      2048,
      2048
@@ -492,7 +487,7 @@
    },
    {
     "tile": 12,
-    "label": "Sheet 11",
+    "label": "Sheet 12",
     "size": [
      2048,
      2048
@@ -504,12 +499,12 @@
      "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t12_2048x2048.png",
      "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t12_2048x2048.png"
     },
-    "coverage": 0.999997,
+    "coverage": 0.999996,
     "id_match": 1.0
    },
    {
     "tile": 13,
-    "label": "Sheet 12",
+    "label": "Sheet 13",
     "size": [
      2048,
      1024
@@ -521,12 +516,12 @@
      "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t13_2048x1024.png",
      "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t13_2048x1024.png"
     },
-    "coverage": 0.999989,
+    "coverage": 0.999987,
     "id_match": 1.0
    },
    {
     "tile": 14,
-    "label": "Sheet 13",
+    "label": "Sheet 14",
     "size": [
      2048,
      2048
@@ -538,12 +533,12 @@
      "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t14_2048x2048.png",
      "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t14_2048x2048.png"
     },
-    "coverage": 1.0,
+    "coverage": 0.999998,
     "id_match": 1.0
    },
    {
     "tile": 15,
-    "label": "Sheet 14",
+    "label": "Sheet 15",
     "size": [
      2048,
      2048
@@ -560,7 +555,7 @@
    },
    {
     "tile": 16,
-    "label": "Sheet 15",
+    "label": "Sheet 16",
     "size": [
      2048,
      2048
@@ -577,7 +572,7 @@
    },
    {
     "tile": 17,
-    "label": "Sheet 16",
+    "label": "Sheet 17",
     "size": [
      2048,
      2048
@@ -594,7 +589,7 @@
    },
    {
     "tile": 18,
-    "label": "Sheet 17",
+    "label": "Sheet 18",
     "size": [
      2048,
      2048
@@ -611,7 +606,7 @@
    },
    {
     "tile": 19,
-    "label": "Sheet 18",
+    "label": "Sheet 19",
     "size": [
      2048,
      2048
@@ -628,24 +623,24 @@
    },
    {
     "tile": 20,
-    "label": "Sheet 19",
+    "label": "Sheet 20",
     "size": [
-     2048,
-     2048
+     1024,
+     1024
     ],
     "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t20_2048x2048.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t20_2048x2048.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t20_2048x2048.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t20_2048x2048.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t20_2048x2048.png"
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t20_1024x1024.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t20_1024x1024.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t20_1024x1024.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t20_1024x1024.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t20_1024x1024.png"
     },
     "coverage": 1.0,
     "id_match": 1.0
    },
    {
     "tile": 21,
-    "label": "Sheet 20",
+    "label": "Sheet 21",
     "size": [
      2048,
      2048
@@ -662,7 +657,7 @@
    },
    {
     "tile": 22,
-    "label": "Sheet 21",
+    "label": "Sheet 22",
     "size": [
      2048,
      2048
@@ -674,12 +669,12 @@
      "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t22_2048x2048.png",
      "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t22_2048x2048.png"
     },
-    "coverage": 0.999998,
+    "coverage": 1.0,
     "id_match": 1.0
    },
    {
     "tile": 23,
-    "label": "Sheet 22",
+    "label": "Sheet 23",
     "size": [
      2048,
      2048
@@ -696,7 +691,7 @@
    },
    {
     "tile": 24,
-    "label": "Sheet 23",
+    "label": "Sheet 24",
     "size": [
      2048,
      2048
@@ -710,23 +705,6 @@
     },
     "coverage": 1.0,
     "id_match": 1.0
-   },
-   {
-    "tile": 25,
-    "label": "Sheet 24",
-    "size": [
-     2048,
-     2048
-    ],
-    "files": {
-     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_custom_t25_2048x2048.png",
-     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_occlusion_t25_2048x2048.png",
-     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_curvature_t25_2048x2048.png",
-     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_edge_t25_2048x2048.png",
-     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Crag/M1/ZRUV_Crag_M1_alpha_t25_2048x2048.png"
-    },
-    "coverage": 1.0,
-    "id_match": 1.0
    }
   ]
  },
@@ -737,7 +715,7 @@
   "body"
  ],
  "crease_effective": 86.69624328613281,
- "date": "21 October 2026 06:41",
+ "date": "21 October 2026 12:39",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/crag_src",
   "asset_scale": 1.0,
