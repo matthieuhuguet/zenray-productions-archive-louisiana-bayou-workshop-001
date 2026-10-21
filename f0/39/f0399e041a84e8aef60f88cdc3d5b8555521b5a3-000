@@ -11,7 +11,7 @@
   --zr-police-mono: 'AnthropicMono', ui-monospace, monospace;
   --w: 500;
   --bg: #ffffff; --panel: #f5f5f6; --ink: #1c1c1e; --ink2: #5d5d64; --line: #e4e4e7; --accent: #cc7c5e; --ok: #2f7d4a; --warn: #b8432f; --img: #efeff1;
-  --gap: 18px;
+  --gap: 18px; /* 21 October 2026 : at most two images side by side (Matthieu : « sinon on voit rien même en plein écran ») ; FR : deux images côte à côte au plus */ --fig-cols: 2; 
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #141416; --panel: #1d1d20; --ink: #ececef; --ink2: #a4a4ab; --line: #303036; --accent: #e09576; --ok: #67c486; --warn: #ff8670; --img: #232327; color-scheme: dark; } }
 :root[data-theme="dark"] { --bg: #141416; --panel: #1d1d20; --ink: #ececef; --ink2: #a4a4ab; --line: #303036; --accent: #e09576; --ok: #67c486; --warn: #ff8670; --img: #232327; color-scheme: dark; }
@@ -44,14 +44,14 @@ th a { color: var(--ink); }
 .badge.pass { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
 .badge.fail { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
 .badge.none { background: var(--panel); color: var(--ink2); }
-.cells { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 16px; }
+.cells { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(max(300px, calc((100% - (var(--fig-cols) - 1) * var(--gap)) / var(--fig-cols))), 1fr)); margin-top: 16px; }
 .cell { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
 .cellhead { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 figure { margin: 0; min-width: 0; }
 figure img { width: 100%; height: auto; display: block; border-radius: 8px; background: var(--img); border: 1px solid var(--line); }
 figcaption { font-size: .82rem; color: var(--ink2); margin-top: 5px; }
 .weak { font-size: .82rem; color: var(--ink2); margin: 0; }
-.figs { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 14px; }
+.figs { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(max(300px, calc((100% - (var(--fig-cols) - 1) * var(--gap)) / var(--fig-cols))), 1fr)); margin-top: 14px; }
 .figs.one { grid-template-columns: 1fr; }
 .chartbox { margin-top: 14px; max-width: 760px; }
 svg.chart { width: 100%; height: auto; display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
@@ -78,7 +78,7 @@ nav.toc { margin-top: 18px; font-size: .92rem; } nav.toc a { color: var(--ink); 
 <p class="eyebrow">ZenRay UV, 20 October 2026</p>
 <h1>M1, le découpage d'artiste</h1>
 <p class="lead">M1 donne à un prop ou à un personnage des UV uniques comme les poserait un artiste : la découpe suit les règles apprises chez Epic, chez SideFX et chez les artistes des assets de Houdini, puis le tailleur ne coupe que là où la distorsion l'exige ; chaque île organique est posée debout, chaque jeu de textures a sa propre tuile carrée, jamais en UDIM, et la densité reste exacte, 2048 px/m pour un personnage ou une créature, 1024 px/m pour un prop ou une structure.</p>
-<nav class="toc"><a href="#ZRUV_PigHead">Tête de cochon</a> · <a href="#ZRUV_Arch">Arche</a> · <a href="#ZRUV_RubberToy">Rubber toy</a> · <a href="#ZRUV_ShaderBall">Shader ball</a> · <a href="#ZRUV_Manny">Manny</a> · <a href="#ZRUV_Crag">Crag</a> · <a href="#appel">Appeler la méthode</a> · <a href="#reglages">Réglages</a> · <a href="#labs">Labs</a> · <a href="#limites">Limites</a></nav>
+<nav class="toc"><a href="#ZRUV_PigHead">Tête de cochon</a> · <a href="#ZRUV_Arch">Arche</a> · <a href="#ZRUV_Arch512">Arche à 512 px/m</a> · <a href="#ZRUV_RubberToy">Rubber toy</a> · <a href="#ZRUV_ShaderBall">Shader ball</a> · <a href="#ZRUV_Manny">Manny</a> · <a href="#ZRUV_Crag">Crag</a> · <a href="#appel">Appeler la méthode</a> · <a href="#reglages">Réglages</a> · <a href="#labs">Labs</a> · <a href="#limites">Limites</a></nav>
 </div></header>
 <main class="wrap">
 <section id="methode">
@@ -121,6 +121,18 @@ nav.toc { margin-top: 18px; font-size: .92rem; } nav.toc a { color: var(--ink); 
 <div class="scroll"><table><thead><tr><th>Tuile</th><th>Taille (px)</th><th>Îles</th><th>Remplissage</th></tr></thead><tbody><tr><td>oversize sign</td><td class='num'>2048 × 2048</td><td class='num'>7</td><td class='num'>44 %</td></tr><tr><td>Sheet 01</td><td class='num'>2048 × 2048</td><td class='num'>37</td><td class='num'>63 %</td></tr><tr><td>Sheet 02</td><td class='num'>2048 × 2048</td><td class='num'>37</td><td class='num'>63 %</td></tr><tr><td>Sheet 03</td><td class='num'>2048 × 2048</td><td class='num'>21</td><td class='num'>66 %</td></tr><tr><td>Sheet 04</td><td class='num'>2048 × 2048</td><td class='num'>91</td><td class='num'>67 %</td></tr><tr><td>Sheet 05</td><td class='num'>2048 × 1024</td><td class='num'>192</td><td class='num'>57 %</td></tr></tbody></table></div>
 <div class="figs one"><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_seams_3d.png" alt="la découpe, coutures en noir" loading="lazy"><figcaption>la découpe, coutures en noir</figcaption></figure><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_tiles_uv.png" alt="les tuiles, chacune sa propre texture carrée" loading="lazy"><figcaption>les tuiles, chacune sa propre texture carrée</figcaption></figure></div>
 <div class="figs"><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_checker_3d.png" alt="damier de 64 texels, coutures en noir comme dans les six vues : la densité égale, les îles debout" loading="lazy"><figcaption>damier de 64 texels, coutures en noir comme dans les six vues : la densité égale, les îles debout</figcaption></figure><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_islands_3d.png" alt="les îles numérotées dans les six vues : le même numéro et la même couleur que sur les tuiles" loading="lazy"><figcaption>les îles numérotées dans les six vues : le même numéro et la même couleur que sur les tuiles</figcaption></figure><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_islands_uv.png" alt="les tuiles, îles numérotées comme dans les six vues (une flèche quand le numéro ne tient pas dans son île)" loading="lazy"><figcaption>les tuiles, îles numérotées comme dans les six vues (une flèche quand le numéro ne tient pas dans son île)</figcaption></figure><figure><img src="ZRUV_Arch/M1/boards/ZRUV_Arch_M1_density.png" alt="la densité des UV écrites contre la densité demandée : vert juste, rouge pas assez, bleu trop, îles numérotées" loading="lazy"><figcaption>la densité des UV écrites contre la densité demandée : vert juste, rouge pas assez, bleu trop, îles numérotées</figcaption></figure></div>
+</section><section id="ZRUV_Arch512">
+<div class="cellhead"><h2>Arche à 512 px/m</h2><span class="badge pass num">1,0000</span></div>
+<p class="muted">la même arche, même découpe, refaite à 512 px/m pour un décor vu de plus loin ; la version à 1024 px/m reste juste au-dessus.</p>
+<ul class="facts">
+<li class="dims">Dimensions, face avant déclarée : longueur L <span class="num">3,55</span> m × largeur l <span class="num">0,32</span> m × hauteur h <span class="num">5,96</span> m, soit une boîte de <span class="num">6,683</span> m³ ; surface <span class="num">19,34</span> m².</li>
+<li><span class="num">377</span> îles, <span class="num">229,16</span> m de coutures, <span class="num">512</span> px/m, 1 tuile (one tile).</li>
+
+<li>Composantes sous 1 : toutes à 1.</li>
+</ul>
+<div class="scroll"><table><thead><tr><th>Tuile</th><th>Taille (px)</th><th>Îles</th><th>Remplissage</th></tr></thead><tbody><tr><td>Sheet</td><td class='num'>2048 × 2048</td><td class='num'>377</td><td class='num'>64 %</td></tr></tbody></table></div>
+<div class="figs one"><figure><img src="ZRUV_Arch512/M1/boards/ZRUV_Arch512_M1_seams_3d.png" alt="la découpe, coutures en noir" loading="lazy"><figcaption>la découpe, coutures en noir</figcaption></figure><figure><img src="ZRUV_Arch512/M1/boards/ZRUV_Arch512_M1_tiles_uv.png" alt="les tuiles, chacune sa propre texture carrée" loading="lazy"><figcaption>les tuiles, chacune sa propre texture carrée</figcaption></figure></div>
+<div class="figs"><figure><img src="ZRUV_Arch512/M1/boards/ZRUV_Arch512_M1_checker_3d.png" alt="damier de 64 texels, coutures en noir comme dans les six vues : la densité égale, les îles debout" loading="lazy"><figcaption>damier de 64 texels, coutures en noir comme dans les six vues : la densité égale, les îles debout</figcaption></figure><figure><img src="ZRUV_Arch512/M1/boards/ZRUV_Arch512_M1_islands_3d.png" alt="les îles numérotées dans les six vues : le même numéro et la même couleur que sur les tuiles" loading="lazy"><figcaption>les îles numérotées dans les six vues : le même numéro et la même couleur que sur les tuiles</figcaption></figure><figure><img src="ZRUV_Arch512/M1/boards/ZRUV_Arch512_M1_islands_uv.png" alt="les tuiles, îles numérotées comme dans les six vues (une flèche quand le numéro ne tient pas dans son île)" loading="lazy"><figcaption>les tuiles, îles numérotées comme dans les six vues (une flèche quand le numéro ne tient pas dans son île)</figcaption></figure><figure><img src="ZRUV_Arch512/M1/boards/ZRUV_Arch512_M1_density.png" alt="la densité des UV écrites contre la densité demandée : vert juste, rouge pas assez, bleu trop, îles numérotées" loading="lazy"><figcaption>la densité des UV écrites contre la densité demandée : vert juste, rouge pas assez, bleu trop, îles numérotées</figcaption></figure></div>
 </section><section id="ZRUV_RubberToy">
 <div class="cellhead"><h2>Rubber toy</h2><span class="badge pass num">1,0000</span></div>
 <p class="muted">le rubber toy de Houdini, coupé comme son artiste (patron appris), un prop à 2048 px/m (doublé le 21 October 2026).</p>
@@ -212,7 +224,7 @@ run(('M1',), obj_name='ZRUV_Crag')                                # coupe, range
 <section id="limites">
 <h2>Limites connues</h2>
 <p>M1 est désormais la seule méthode courante de ZenRay UV ; M2 à M5 (tuilable, trim sheet, couches et masque, decals) passent en Labs, gardés pour le hard surface. Depuis la nuit du 21 October 2026, la densité est posée exactement à la valeur demandée (2048 px/m pour un personnage et pour le rubber toy, doublé à la demande de Matthieu, 1024 px/m pour un prop), en plusieurs feuilles de 2048 au plus : vert sur 99,9 % du jouet, 100 % de la boule, 99,5 % du cochon, 99,1 % de Manny, 100 % de l'arche. L'enseigne de l'arche, une seule face de 2,53 m, ne tient pas dans 2048 à 1024 px/m : sa feuille est posée à 77 % de la densité, ce qui se règle par m1_oversize_px ou en coupant la face dans la géométrie. Crag passe à 0,987 : ses 139 îles respectent le critère d'artiste ; il garde 50 escaliers (0,82 m de coutures), sa dernière composante sous 1. Chaque asset donne désormais ses dimensions L × l × h, mesurées sur sa face avant déclarée, et le volume de sa boîte en m³. La règle des zones enfouies reste éteinte. Validé par Matthieu : le cochon et Manny ; pas encore l'arche ; jouet, boule et Crag à juger.</p>
-<p class="muted">Statut : méthode quasi validée par Matthieu le 20 October 2026. Page écrite le 21 October 2026 à 16:12.</p>
+<p class="muted">Statut : méthode quasi validée par Matthieu le 20 October 2026. Page écrite le 21 October 2026 à 16:40.</p>
 </section>
 </main>
 <button class="theme" type="button" onclick="(function(){var r=document.documentElement;var d=r.getAttribute('data-theme');var dark=d?d==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.setAttribute('data-theme',dark?'light':'dark');})()">Thème</button>
