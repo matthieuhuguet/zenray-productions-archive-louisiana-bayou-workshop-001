@@ -31,23 +31,21 @@
     "exact_frac": 1.0,
     "low_frac": 0.0,
     "high_frac": 0.0,
-    "px_per_m_min": 1023.9742674068202,
-    "px_per_m_median": 1024.0,
-    "px_per_m_max": 1024.024949451331,
-    "stretch_max": 0.05599952485331561,
+    "px_per_m_min": 787.9849088393454,
+    "px_per_m_median": 1023.9999999999994,
+    "px_per_m_max": 1024.030780409294,
+    "stretch_max": 0.05599942839761307,
     "faces": 995
    },
    "straight_area": 0.5921,
    "straight_stretch_max": 0.056,
    "stretch_over_2pc_area": 0.0984,
-   "islands": 377,
-   "stacked_faces": 492,
+   "islands": 385,
+   "stacked_faces": 276,
    "twin_bake_bad_faces": 0,
-   "overlap_px": 0,
-   "covered_px": 10703194,
-   "fill": 0.638,
-   "padding_overlap_px": 0,
-   "padding_check_radius_px": 7,
+   "groups": 6,
+   "group_overlap_faces": 0,
+   "group_padding_faces": 0,
    "self_overlap_faces": 0,
    "staircases": {
     "runs": 0,
@@ -55,12 +53,12 @@
     "islands": {}
    },
    "u_range": [
-    0.0039,
-    0.9889
+    0.0078,
+    0.9922
    ],
    "v_range": [
-    0.0039,
-    0.9948
+    0.0078,
+    0.9886
    ]
   }
  },
@@ -72,8 +70,8 @@
   "chains_mixed": 0,
   "mixed_detail": [],
   "consistency": 1.0,
-  "seams_m": 229.16,
-  "seams_on_smooth_m": 0.669,
+  "seams_m": 229.829,
+  "seams_on_smooth_m": 1.339,
   "sharp_kept_m": 0,
   "sharp_m": 228.49,
   "border_m": 0,
@@ -89,23 +87,26 @@
   "narrowest_px": 16.0
  },
  "layout": {
-  "zruv_layout_uv": "{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 377, \"stacked_possible\": 235, \"stacked\": 222, \"fill\": 0.6447, \"unique_share\": 0.5334, \"mode\": \"stacked\", \"lower_bound_px2\": 10412834, \"lower_bound_unique_px2\": 23379965, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 2048, \"pass\": \"stacked\", \"why\": \"bound\"}], \"rows\": 26, \"td\": 1024.0, \"fit\": false, \"tiles_n\": 1, \"tile_rule\": \"one tile\", \"tile_splits\": 0, \"tiles\": [{\"W\": 4096, \"H\": 4096, \"pad\": 16.0, \"islands\": 377, \"stacked_possible\": 235, \"stacked\": 222, \"fill\": 0.6447, \"unique_share\": 0.5334, \"mode\": \"stacked\", \"lower_bound_px2\": 10412834, \"lower_bound_unique_px2\": 23379965, \"next_smaller\": [2048, 2048], \"minimal_proven\": true, \"rows\": 26, \"td\": 1024.0, \"fit\": false, \"tile\": 0, \"label\": \"\", \"area_m2\": 19.34037}], \"texels_total\": 16777216}",
-  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 8, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
+  "zruv_layout_uv": "{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 7, \"stacked_possible\": 3, \"stacked\": 3, \"fill\": 0.4428, \"unique_share\": 0.5167, \"mode\": \"stacked\", \"lower_bound_px2\": 1969916, \"lower_bound_unique_px2\": 3786581, \"next_smaller\": [2048, 1024], \"minimal_proven\": false, \"tried\": [{\"W\": 256, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 256, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 512, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 512, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 1024, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"bound\"}, {\"W\": 2048, \"H\": 1024, \"pass\": \"stacked\", \"why\": \"packing failed\", \"tries\": 4}], \"rows\": 2, \"td\": 788.0, \"fit\": false, \"tiles_n\": 6, \"tile_rule\": \"one tile\", \"tile_splits\": 4, \"tiles\": [{\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 7, \"stacked_possible\": 3, \"stacked\": 3, \"fill\": 0.4428, \"unique_share\": 0.5167, \"mode\": \"stacked\", \"lower_bound_px2\": 1969916, \"lower_bound_unique_px2\": 3786581, \"next_smaller\": [2048, 1024], \"minimal_proven\": false, \"rows\": 2, \"td\": 788.0, \"fit\": false, \"tile\": 0, \"label\": \"oversize sign\", \"area_m2\": 5.78917}, {\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 37, \"stacked_possible\": 16, \"stacked\": 8, \"fill\": 0.6283, \"unique_share\": 0.8727, \"mode\": \"stacked\", \"lower_bound_px2\": 2001768, \"lower_bound_unique_px2\": 3486150, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 8, \"td\": 1024.0, \"fit\": false, \"tile\": 1, \"label\": \"Sheet 01\", \"area_m2\": 2.87983}, {\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 37, \"stacked_possible\": 16, \"stacked\": 8, \"fill\": 0.6283, \"unique_share\": 0.8727, \"mode\": \"stacked\", \"lower_bound_px2\": 2001768, \"lower_bound_unique_px2\": 3486151, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 8, \"td\": 1024.0, \"fit\": false, \"tile\": 2, \"label\": \"Sheet 02\", \"area_m2\": 2.87983}, {\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 21, \"stacked_possible\": 1, \"stacked\": 1, \"fill\": 0.6566, \"unique_share\": 0.912, \"mode\": \"stacked\", \"lower_bound_px2\": 3285741, \"lower_bound_unique_px2\": 3582917, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 19, \"td\": 1024.0, \"fit\": false, \"tile\": 3, \"label\": \"Sheet 03\", \"area_m2\": 2.8798}, {\"W\": 2048, \"H\": 2048, \"pad\": 16.0, \"islands\": 91, \"stacked_possible\": 46, \"stacked\": 16, \"fill\": 0.6719, \"unique_share\": 0.9332, \"mode\": \"stacked\", \"lower_bound_px2\": 2258961, \"lower_bound_unique_px2\": 3667252, \"next_smaller\": [1024, 1024], \"minimal_proven\": true, \"rows\": 15, \"td\": 1024.0, \"fit\": false, \"tile\": 4, \"label\": \"Sheet 04\", \"area_m2\": 2.87996}, {\"W\": 2048, \"H\": 1024, \"pad\": 16.0, \"islands\": 192, \"stacked_possible\": 116, \"stacked\": 114, \"fill\": 0.5658, \"unique_share\": 0.5569, \"mode\": \"stacked\", \"lower_bound_px2\": 1409405, \"lower_bound_unique_px2\": 2850727, \"next_smaller\": [2048, 512], \"minimal_proven\": true, \"rows\": 13, \"td\": 1024.0, \"fit\": false, \"tile\": 5, \"label\": \"Sheet 05\", \"area_m2\": 2.03179}], \"oversize\": [{\"island\": 71, \"piece\": \"sign\", \"w_px\": 2620, \"h_px\": 1273}, {\"island\": 72, \"piece\": \"sign\", \"w_px\": 2532, \"h_px\": 1178}, {\"island\": 78, \"piece\": \"sign\", \"w_px\": 2532, \"h_px\": 18}, {\"island\": 206, \"piece\": \"sign\", \"w_px\": 2620, \"h_px\": 1273}, {\"island\": 207, \"piece\": \"sign\", \"w_px\": 2532, \"h_px\": 1178}, {\"island\": 213, \"piece\": \"sign\", \"w_px\": 2532, \"h_px\": 18}, {\"island\": 346, \"piece\": \"sign\", \"w_px\": 2620, \"h_px\": 77}], \"oversize_density\": [{\"island\": 71, \"piece\": \"sign\", \"density_px_m\": 788.0, \"share\": 0.77}, {\"island\": 72, \"piece\": \"sign\", \"density_px_m\": 788.0, \"share\": 0.77}, {\"island\": 78, \"piece\": \"sign\", \"density_px_m\": 788.0, \"share\": 0.77}, {\"island\": 206, \"piece\": \"sign\", \"density_px_m\": 788.0, \"share\": 0.77}, {\"island\": 207, \"piece\": \"sign\", \"density_px_m\": 788.0, \"share\": 0.77}, {\"island\": 213, \"piece\": \"sign\", \"density_px_m\": 788.0, \"share\": 0.77}, {\"island\": 346, \"piece\": \"sign\", \"density_px_m\": 788.0, \"share\": 0.77}], \"texels_total\": 23068672}",
+  "zruv_straight_uv": "{\"charts\": 525, \"grids\": 248, \"tubes\": 0, \"cut_long\": 11, \"worst_dev\": 0.056, \"kept_native\": 250, \"straight_area\": 0.5921}"
  },
  "method": "M1",
  "title": "UV unique et bake",
  "contracts": [
   {
    "set": "uv",
-   "W": 4096,
-   "H": 4096,
+   "W": 2048,
+   "H": 2048,
    "space": "sheet",
-   "unique": true,
+   "unique": "per_group",
    "region": "sheet",
    "padding_px": 16,
    "straight_tol": 0.08,
    "twin_bake": true,
    "smooth_border": true,
+   "sizes": "per_face",
+   "group_padding_px": 16,
+   "tiles": 6,
    "organic_tol": 0.1,
    "subtexel_px": 1.0,
    "organic_artist": {
@@ -119,29 +120,158 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 2.57,
- "score_s": 40.9,
+ "cook_s": 8.82,
+ "score_s": 41.97,
  "bake": {
   "files": {
-   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_4096x4096.png",
-   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_4096x4096.png",
-   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_4096x4096.png",
-   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_4096x4096.png",
-   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_4096x4096.png"
+   "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_t0_2048x2048.png",
+   "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_t0_2048x2048.png",
+   "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_t0_2048x2048.png",
+   "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_t0_2048x2048.png",
+   "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_t0_2048x2048.png"
   },
   "seconds": {
-   "custom": 37.46,
-   "occlusion": 0.23,
-   "curvature": 0.15,
-   "edge": 0.11,
-   "alpha": 0.07
+   "custom_t0": 5.44,
+   "occlusion_t0": 0.05,
+   "curvature_t0": 0.04,
+   "edge_t0": 0.02,
+   "alpha_t0": 0.02,
+   "custom_t1": 6.67,
+   "occlusion_t1": 0.08,
+   "curvature_t1": 0.04,
+   "edge_t1": 0.03,
+   "alpha_t1": 0.02,
+   "custom_t2": 6.45,
+   "occlusion_t2": 0.06,
+   "curvature_t2": 0.04,
+   "edge_t2": 0.03,
+   "alpha_t2": 0.02,
+   "custom_t3": 7.36,
+   "occlusion_t3": 0.05,
+   "curvature_t3": 0.04,
+   "edge_t3": 0.03,
+   "alpha_t3": 0.02,
+   "custom_t4": 7.53,
+   "occlusion_t4": 0.05,
+   "curvature_t4": 0.04,
+   "edge_t4": 0.03,
+   "alpha_t4": 0.02,
+   "custom_t5": 3.72,
+   "occlusion_t5": 0.05,
+   "curvature_t5": 0.04,
+   "edge_t5": 0.04,
+   "alpha_t5": 0.02
   },
   "size": [
-   4096,
-   4096
+   2048,
+   2048
   ],
   "coverage": 1.0,
-  "id_match": 1.0
+  "id_match": 1.0,
+  "tiles": [
+   {
+    "tile": 0,
+    "label": "oversize sign",
+    "size": [
+     2048,
+     2048
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_t0_2048x2048.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_t0_2048x2048.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_t0_2048x2048.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_t0_2048x2048.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_t0_2048x2048.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 1,
+    "label": "Sheet 01",
+    "size": [
+     2048,
+     2048
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_t1_2048x2048.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_t1_2048x2048.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_t1_2048x2048.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_t1_2048x2048.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_t1_2048x2048.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 2,
+    "label": "Sheet 02",
+    "size": [
+     2048,
+     2048
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_t2_2048x2048.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_t2_2048x2048.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_t2_2048x2048.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_t2_2048x2048.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_t2_2048x2048.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 3,
+    "label": "Sheet 03",
+    "size": [
+     2048,
+     2048
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_t3_2048x2048.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_t3_2048x2048.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_t3_2048x2048.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_t3_2048x2048.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_t3_2048x2048.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 4,
+    "label": "Sheet 04",
+    "size": [
+     2048,
+     2048
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_t4_2048x2048.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_t4_2048x2048.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_t4_2048x2048.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_t4_2048x2048.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_t4_2048x2048.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   },
+   {
+    "tile": 5,
+    "label": "Sheet 05",
+    "size": [
+     2048,
+     1024
+    ],
+    "files": {
+     "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_custom_t5_2048x1024.png",
+     "occlusion": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_occlusion_t5_2048x1024.png",
+     "curvature": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_curvature_t5_2048x1024.png",
+     "edge": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_edge_t5_2048x1024.png",
+     "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_Arch/M1/ZRUV_Arch_M1_alpha_t5_2048x1024.png"
+    },
+    "coverage": 1.0,
+    "id_match": 1.0
+   }
+  ]
  },
  "asset": "/obj/ZRUV_Assets/arch_src",
  "asset_scale": 1.64,
@@ -152,7 +282,7 @@
   "sign"
  ],
  "crease_effective": 29.1846923828125,
- "date": "20 October 2026 18:50",
+ "date": "21 October 2026 06:28",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/arch_src",
   "asset_scale": 1.64,
@@ -164,10 +294,14 @@
   "crease_deg": 30.0,
   "crease_margin": 1.0,
   "smooth_deg": 10.0,
+  "tailor_front": "0 0 1",
   "m1_tiles": 0,
   "m1_tile_groups": "",
   "asset_kind": 0,
   "m1_fit": 0,
+  "m1_oversize_px": 2048,
+  "m1_max_px": 2048,
+  "m1_min_fill": 0.5,
   "m1_minor_density": 1.0,
   "m1_no_texture": "*no_uv* *nouv*",
   "m1_sheet_px": 0,
