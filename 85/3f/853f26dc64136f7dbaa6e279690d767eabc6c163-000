@@ -1,0 +1,1135 @@
+{
+ "ok": true,
+ "date": "21 October 2026 21:23",
+ "criteria": {
+  "corner_px": 0.75,
+  "share": 0.99,
+  "median_px": 0.3,
+  "min_area": 50,
+  "content_mae": 0.012,
+  "red_shift_px": 2.0,
+  "field_px": 9.0,
+  "field_period": 8192.0,
+  "jitter_px": 1.0,
+  "log_scale": 0.003,
+  "bg": 0.32,
+  "aa": 4,
+  "visible_margin": 4.0,
+  "min_thick": 3,
+  "min_axis_info": 8.0,
+  "weak_px": 3.0,
+  "groove": 0.08,
+  "groove_px": 2.5
+ },
+ "sheets": [
+  {
+   "asset": "ZRUV_Arch512",
+   "sheet": "sheet",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 14.1,
+   "status": {
+    "fit": 160
+   },
+   "ok": true,
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1678,
+    "max_px": 0.565,
+    "content_mae": 0.00673,
+    "islands": 155,
+    "worst": [
+     [
+      10,
+      291,
+      0.56
+     ],
+     [
+      362,
+      553,
+      0.52
+     ],
+     [
+      247,
+      82,
+      0.39
+     ],
+     [
+      266,
+      4481,
+      0.37
+     ],
+     [
+      277,
+      2121,
+      0.36
+     ]
+    ],
+    "apart_worst": [
+     [
+      156,
+      0.67
+     ],
+     [
+      364,
+      0.19
+     ]
+    ],
+    "weak": [
+     [
+      364,
+      0.19
+     ]
+    ],
+    "weak_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0129,
+    "median_px": 5.3492,
+    "max_px": 15.832,
+    "content_mae": 0.06942,
+    "islands": 155,
+    "worst": [
+     [
+      4,
+      30751,
+      15.83
+     ],
+     [
+      312,
+      67800,
+      13.85
+     ],
+     [
+      45,
+      29484,
+      13.49
+     ],
+     [
+      295,
+      67800,
+      13.36
+     ],
+     [
+      151,
+      71680,
+      12.92
+     ]
+    ],
+    "apart_worst": [
+     [
+      156,
+      4.52
+     ],
+     [
+      364,
+      4.19
+     ]
+    ],
+    "weak": [
+     [
+      364,
+      4.19
+     ]
+    ],
+    "weak_ok": false
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0695,
+    "max_px": 2.379,
+    "content_mae": 0.04275,
+    "islands": 155,
+    "worst": [
+     [
+      362,
+      553,
+      2.38
+     ],
+     [
+      10,
+      291,
+      2.37
+     ],
+     [
+      277,
+      2121,
+      2.35
+     ],
+     [
+      56,
+      11611,
+      2.26
+     ],
+     [
+      273,
+      4476,
+      2.25
+     ]
+    ],
+    "apart_worst": [
+     [
+      156,
+      2.46
+     ],
+     [
+      364,
+      1.85
+     ]
+    ],
+    "weak": [
+     [
+      364,
+      1.85
+     ]
+    ],
+    "weak_ok": true
+   }
+  },
+  {
+   "asset": "ZRUV_PigHead",
+   "sheet": "pig_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 5.2,
+   "status": {
+    "fit": 7
+   },
+   "ok": true,
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1414,
+    "max_px": 0.173,
+    "content_mae": 0.00234,
+    "islands": 7,
+    "worst": [
+     [
+      9,
+      147,
+      0.17
+     ],
+     [
+      1,
+      147,
+      0.17
+     ],
+     [
+      13,
+      1192,
+      0.17
+     ],
+     [
+      4,
+      742829,
+      0.14
+     ],
+     [
+      5,
+      119850,
+      0.12
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 18.1985,
+    "max_px": 26.148,
+    "content_mae": 0.04453,
+    "islands": 7,
+    "worst": [
+     [
+      5,
+      119850,
+      26.15
+     ],
+     [
+      4,
+      742829,
+      21.76
+     ],
+     [
+      6,
+      1019322,
+      19.17
+     ],
+     [
+      1,
+      147,
+      18.2
+     ],
+     [
+      9,
+      147,
+      18.13
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0828,
+    "max_px": 2.156,
+    "content_mae": 0.02345,
+    "islands": 7,
+    "worst": [
+     [
+      13,
+      1192,
+      2.16
+     ],
+     [
+      5,
+      119850,
+      2.12
+     ],
+     [
+      9,
+      147,
+      2.1
+     ],
+     [
+      8,
+      274882,
+      2.08
+     ],
+     [
+      6,
+      1019322,
+      2.05
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   }
+  },
+  {
+   "asset": "ZRUV_PigHead",
+   "sheet": "pig_02",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 4.4,
+   "status": {
+    "fit": 6
+   },
+   "ok": true,
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1611,
+    "max_px": 0.222,
+    "content_mae": 0.00313,
+    "islands": 6,
+    "worst": [
+     [
+      12,
+      54515,
+      0.22
+     ],
+     [
+      7,
+      148807,
+      0.21
+     ],
+     [
+      10,
+      118903,
+      0.16
+     ],
+     [
+      2,
+      84780,
+      0.16
+     ],
+     [
+      11,
+      153161,
+      0.14
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 18.7992,
+    "max_px": 19.749,
+    "content_mae": 0.06902,
+    "islands": 6,
+    "worst": [
+     [
+      11,
+      153161,
+      19.75
+     ],
+     [
+      7,
+      148807,
+      19.5
+     ],
+     [
+      12,
+      54515,
+      19.05
+     ],
+     [
+      3,
+      657295,
+      18.55
+     ],
+     [
+      2,
+      84780,
+      15.31
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.096,
+    "max_px": 2.124,
+    "content_mae": 0.02545,
+    "islands": 6,
+    "worst": [
+     [
+      11,
+      153161,
+      2.12
+     ],
+     [
+      7,
+      148807,
+      2.12
+     ],
+     [
+      12,
+      54515,
+      2.12
+     ],
+     [
+      2,
+      84780,
+      2.07
+     ],
+     [
+      3,
+      657295,
+      2.06
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   }
+  },
+  {
+   "asset": "ZRUV_RubberToy",
+   "sheet": "toyshader_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 5.4,
+   "status": {
+    "fit": 4
+   },
+   "ok": true,
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1223,
+    "max_px": 0.143,
+    "content_mae": 0.00248,
+    "islands": 4,
+    "worst": [
+     [
+      31,
+      15451,
+      0.14
+     ],
+     [
+      15,
+      962653,
+      0.14
+     ],
+     [
+      14,
+      808030,
+      0.11
+     ],
+     [
+      13,
+      392346,
+      0.08
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 14.5845,
+    "max_px": 23.112,
+    "content_mae": 0.0585,
+    "islands": 4,
+    "worst": [
+     [
+      15,
+      962653,
+      23.11
+     ],
+     [
+      13,
+      392346,
+      15.91
+     ],
+     [
+      14,
+      808030,
+      13.26
+     ],
+     [
+      31,
+      15451,
+      6.61
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0561,
+    "max_px": 2.093,
+    "content_mae": 0.02355,
+    "islands": 4,
+    "worst": [
+     [
+      31,
+      15451,
+      2.09
+     ],
+     [
+      15,
+      962653,
+      2.08
+     ],
+     [
+      14,
+      808030,
+      2.03
+     ],
+     [
+      13,
+      392346,
+      2.0
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   }
+  },
+  {
+   "asset": "ZRUV_Manny",
+   "sheet": "mi_manny_01_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 4.4,
+   "status": {
+    "fit": 7
+   },
+   "ok": true,
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1142,
+    "max_px": 0.212,
+    "content_mae": 0.00251,
+    "islands": 7,
+    "worst": [
+     [
+      31,
+      9357,
+      0.21
+     ],
+     [
+      33,
+      282390,
+      0.15
+     ],
+     [
+      32,
+      282327,
+      0.12
+     ],
+     [
+      37,
+      614810,
+      0.11
+     ],
+     [
+      38,
+      840766,
+      0.11
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 6.1646,
+    "max_px": 8.907,
+    "content_mae": 0.03903,
+    "islands": 7,
+    "worst": [
+     [
+      38,
+      840766,
+      8.91
+     ],
+     [
+      32,
+      282327,
+      8.21
+     ],
+     [
+      33,
+      282390,
+      8.15
+     ],
+     [
+      45,
+      49743,
+      6.16
+     ],
+     [
+      37,
+      614810,
+      6.07
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0938,
+    "max_px": 2.114,
+    "content_mae": 0.02359,
+    "islands": 7,
+    "worst": [
+     [
+      33,
+      282390,
+      2.11
+     ],
+     [
+      37,
+      614810,
+      2.11
+     ],
+     [
+      38,
+      840766,
+      2.1
+     ],
+     [
+      31,
+      9357,
+      2.09
+     ],
+     [
+      44,
+      49747,
+      2.08
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   }
+  },
+  {
+   "asset": "ZRUV_Arch",
+   "sheet": "sheet_04",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 12.2,
+   "status": {
+    "fit": 75
+   },
+   "ok": true,
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1557,
+    "max_px": 0.395,
+    "content_mae": 0.00931,
+    "islands": 59,
+    "worst": [
+     [
+      330,
+      4752,
+      0.39
+     ],
+     [
+      340,
+      2230,
+      0.39
+     ],
+     [
+      379,
+      4180,
+      0.29
+     ],
+     [
+      193,
+      2080,
+      0.25
+     ],
+     [
+      260,
+      75422,
+      0.23
+     ]
+    ],
+    "apart_worst": [
+     [
+      372,
+      1.32
+     ],
+     [
+      371,
+      0.35
+     ],
+     [
+      374,
+      0.23
+     ],
+     [
+      65,
+      0.2
+     ],
+     [
+      290,
+      0.2
+     ],
+     [
+      343,
+      0.2
+     ]
+    ],
+    "weak": [
+     [
+      371,
+      0.35
+     ],
+     [
+      372,
+      1.32
+     ]
+    ],
+    "weak_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 10.7145,
+    "max_px": 21.478,
+    "content_mae": 0.07784,
+    "islands": 59,
+    "worst": [
+     [
+      199,
+      165280,
+      21.48
+     ],
+     [
+      66,
+      43851,
+      18.92
+     ],
+     [
+      324,
+      105194,
+      17.5
+     ],
+     [
+      337,
+      29204,
+      17.15
+     ],
+     [
+      373,
+      29925,
+      17.12
+     ]
+    ],
+    "apart_worst": [
+     [
+      368,
+      20.3
+     ],
+     [
+      374,
+      16.07
+     ],
+     [
+      62,
+      14.95
+     ],
+     [
+      9,
+      11.86
+     ],
+     [
+      371,
+      11.83
+     ],
+     [
+      290,
+      11.76
+     ]
+    ],
+    "weak": [
+     [
+      371,
+      11.83
+     ],
+     [
+      372,
+      11.05
+     ]
+    ],
+    "weak_ok": false
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0703,
+    "max_px": 2.291,
+    "content_mae": 0.03673,
+    "islands": 59,
+    "worst": [
+     [
+      330,
+      4752,
+      2.29
+     ],
+     [
+      328,
+      13328,
+      2.2
+     ],
+     [
+      69,
+      5785,
+      2.19
+     ],
+     [
+      201,
+      43851,
+      2.15
+     ],
+     [
+      205,
+      6080,
+      2.15
+     ]
+    ],
+    "apart_worst": [
+     [
+      372,
+      2.29
+     ],
+     [
+      343,
+      2.16
+     ],
+     [
+      371,
+      2.14
+     ],
+     [
+      368,
+      2.11
+     ],
+     [
+      65,
+      2.1
+     ],
+     [
+      158,
+      2.1
+     ]
+    ],
+    "weak": [
+     [
+      371,
+      2.14
+     ],
+     [
+      372,
+      2.29
+     ]
+    ],
+    "weak_ok": true
+   }
+  },
+  {
+   "asset": "ZRUV_Arch",
+   "sheet": "sheet_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 7.3,
+   "status": {
+    "fit": 29
+   },
+   "ok": true,
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1458,
+    "max_px": 0.293,
+    "content_mae": 0.00444,
+    "islands": 29,
+    "worst": [
+     [
+      318,
+      12185,
+      0.29
+     ],
+     [
+      320,
+      269392,
+      0.26
+     ],
+     [
+      146,
+      1071,
+      0.23
+     ],
+     [
+      50,
+      2743,
+      0.21
+     ],
+     [
+      40,
+      13270,
+      0.21
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 10.8011,
+    "max_px": 18.103,
+    "content_mae": 0.07271,
+    "islands": 29,
+    "worst": [
+     [
+      37,
+      4794,
+      18.1
+     ],
+     [
+      43,
+      9912,
+      17.51
+     ],
+     [
+      41,
+      11393,
+      16.47
+     ],
+     [
+      38,
+      6577,
+      16.25
+     ],
+     [
+      186,
+      99084,
+      15.02
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0709,
+    "max_px": 2.224,
+    "content_mae": 0.03165,
+    "islands": 29,
+    "worst": [
+     [
+      146,
+      1071,
+      2.22
+     ],
+     [
+      44,
+      87873,
+      2.16
+     ],
+     [
+      316,
+      55804,
+      2.15
+     ],
+     [
+      180,
+      62378,
+      2.15
+     ],
+     [
+      50,
+      2743,
+      2.14
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   }
+  },
+  {
+   "asset": "ZRUV_Crag",
+   "sheet": "sheet_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 3.5,
+   "status": {
+    "fit": 1
+   },
+   "ok": true,
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.0995,
+    "max_px": 0.099,
+    "content_mae": 0.00207,
+    "islands": 1,
+    "worst": [
+     [
+      132,
+      1867672,
+      0.1
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 15.2174,
+    "max_px": 15.217,
+    "content_mae": 0.0522,
+    "islands": 1,
+    "worst": [
+     [
+      132,
+      1867672,
+      15.22
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.082,
+    "max_px": 2.082,
+    "content_mae": 0.02223,
+    "islands": 1,
+    "worst": [
+     [
+      132,
+      1867672,
+      2.08
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true
+   }
+  }
+ ]
+}
