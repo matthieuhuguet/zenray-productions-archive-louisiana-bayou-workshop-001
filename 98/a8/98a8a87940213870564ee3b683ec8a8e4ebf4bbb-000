@@ -17,3 +17,7 @@
   facing = (N @ d) > 0.05
 /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:178: RuntimeWarning: invalid value encountered in matmul
   facing = (N @ d) > 0.05
+{"result": {"M1": {"score": 0.999471, "weakest": "uv:smooth_border", "errors": null}}, "seconds": 60.2, "hip": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/bench/ZRUV_Manny.hiplc", "ctrl": {"m5_strip_families": "*", "m5_panels": "", "asset_area_m2": 0.0, "asset_scale": 0.01, "families": "*:body", "m4_materials": "body:metal001_basecolor.png", "tailor_back_weight": 0.25, "asset_kind": 1, "texel_density": 2048.0, "m1_fit": 0, "m1_minor_density": 0.25, "artist_pattern": "/Users/zenray/.claude/skills/zenray-houdini/templates/zenray-uv-patterns/ZRUV_Manny.pattern.json"}}
+[Octane] 13:12:11 INFOR: [render] ------------   - Cleaning the scene. Full clean state 1
+[Octane] 13:12:11 INFOR: [render] ------------   - Scene including 0 items cleaned. 0 items deleted. 0 remaing items.
+[Octane] 13:12:11 INFOR: [api] ---------------  Closing the Octane API
