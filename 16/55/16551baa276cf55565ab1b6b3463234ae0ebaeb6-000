@@ -1,0 +1,40 @@
+// 21 October 2026 : open a local HTML page in an isolated headless Chromium (never the personal browser), let its scripts draw once, then write the DOM as
+// HTML and a screenshot of its opening. Usage : node Freeze.mjs <page.html> <out.html> <shot.png> <width> <height> <wait_ms>
+// FR : fige une page locale apres l'execution de ses scripts, et capture son ouverture.
+import { createRequire } from 'node:module'
+import { writeFileSync, existsSync } from 'node:fs'
+import { pathToFileURL } from 'node:url'
+
+const require = createRequire('/Users/zenray/Create/Build/Productions/GithubProductions/ZenRayProgress/package.json')
+const { chromium } = require('playwright')
+const [page_, out, shot, w, h, wait] = process.argv.slice(2)
+// the installed isolated headless shell, when Playwright's pinned build is absent (never the personal browser) ; FR : le shell headless isolé déjà installé
+const shell = process.env.ZR_HEADLESS_SHELL || '/Users/zenray/Library/Caches/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-mac-arm64/chrome-headless-shell'
+const browser = await chromium.launch({ headless: true, executablePath: existsSync(shell) ? shell : undefined })
+try {
+  const ctx = await browser.newContext({ viewport: { width: Number(w), height: Number(h) }, colorScheme: 'light' })
+  const page = await ctx.newPage()
+  const errors = []
+  page.on('pageerror', (e) => errors.push(String(e)))
+  await page.goto(pathToFileURL(page_).href, { waitUntil: 'load' })
+  await page.waitForTimeout(Number(wait))
+  await page.evaluate(() => document.fonts && document.fonts.ready)
+  // a canvas drawn by a script keeps no pixels in the HTML : it becomes an image of what it shows (a tainted canvas is left as it is)
+  await page.evaluate(() => {
+    for (const c of [...document.querySelectorAll('canvas')]) {
+      try {
+        const img = document.createElement('img')
+        img.src = c.toDataURL('image/png')
+        img.width = c.clientWidth || c.width
+        img.style.cssText = c.style.cssText
+        img.className = c.className
+        c.replaceWith(img)
+      } catch (e) { /* tainted */ }
+    }
+  })
+  writeFileSync(out, '<!doctype html>\n' + await page.evaluate(() => document.documentElement.outerHTML))
+  await page.screenshot({ path: shot, clip: { x: 0, y: 0, width: Number(w), height: Number(h) } })
+  process.stdout.write(JSON.stringify({ ok: true, errors }) + '\n')
+} finally {
+  await browser.close()
+}

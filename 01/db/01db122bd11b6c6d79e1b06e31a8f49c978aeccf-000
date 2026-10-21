@@ -1,0 +1,205 @@
+# 21 October 2026 : build the self-contained articles of a project and their index, from articles.json (every value lives there).
+# Each source page is frozen once in an isolated Chromium (its scripts run, canvases become images), then its stylesheets, fonts and images are embedded as
+# data URIs (the ZenRay Progress article reader accepts nothing else) and written to <workshop>/Articles/<slug>.html. Articles/index.html lists them and is
+# the project's declared article ; each card links to ?project=<id>&article=<fileId>, which the drive reads live from the Mac, else from the latest archive.
+# Usage : python BuildArticles.py [--only <slug>] [--config articles.json]
+# FR : construit les articles autonomes du projet et leur index ; chaque lien ouvre la derniere version dans le drive.
+import argparse
+import base64
+import datetime
+import hashlib
+import html
+import io
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import urllib.parse
+
+from PIL import Image
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+WORKSHOP = os.path.dirname(os.path.dirname(HERE))
+NODE = 'node'
+FONTS = {   # the index's own fonts, embedded (InterVariable 500 for the interface, AnthropicSerif 500 for titles and numbers)
+    'InterVariable': '/Users/zenray/.claude/skills/zenray-houdini/lessons/uv-texel-density/fonts/InterVariable.woff2',
+    'AnthropicSerif': '/Users/zenray/.claude/skills/zenray-houdini/lessons/uv-texel-density/fonts/AnthropicSerif-Romans.woff2',
+}
+MIME = {'.woff2': 'font/woff2', '.woff': 'font/woff', '.ttf': 'font/ttf', '.otf': 'font/otf', '.svg': 'image/svg+xml', '.gif': 'image/gif'}
+
+
+def today():
+    d = datetime.datetime.now()
+    return f"{d.day} {d.strftime('%B %Y')}, {d.strftime('%H:%M')}"
+
+
+def data_uri(path, cfg):
+    """A local file as a data URI : rasters re-encoded as WebP at most image_max_px wide, fonts and SVG as they are."""
+    ext = os.path.splitext(path)[1].lower()
+    if ext in ('.png', '.jpg', '.jpeg', '.webp', '.bmp', '.tif', '.tiff'):
+        im = Image.open(path)
+        im = im.convert('RGBA') if im.mode in ('RGBA', 'LA', 'P') else im.convert('RGB')
+        m = int(cfg['image_max_px'])
+        if max(im.size) > m:
+            k = m / max(im.size)
+            im = im.resize((max(1, round(im.size[0] * k)), max(1, round(im.size[1] * k))), Image.LANCZOS)
+        buf = io.BytesIO()
+        im.save(buf, 'WEBP', quality=int(cfg['image_quality']), method=4)
+        return 'data:image/webp;base64,' + base64.b64encode(buf.getvalue()).decode()
+    mime = MIME.get(ext, 'application/octet-stream')
+    return f'data:{mime};base64,' + base64.b64encode(open(path, 'rb').read()).decode()
+
+
+def local(ref, base):
+    """The local file a relative reference names, or None (remote, data, anchor, missing)."""
+    ref = html.unescape(ref.strip())
+    if not ref or ref.startswith(('data:', 'http:', 'https:', '#', 'mailto:', 'about:', 'javascript:')):
+        return None
+    p = os.path.normpath(os.path.join(base, urllib.parse.unquote(ref.split('#')[0].split('?')[0])))
+    return p if os.path.isfile(p) else None
+
+
+def inline_css(css, base, cfg, missing):
+    def rep(mo):
+        ref = mo.group(2)
+        p = local(ref, base)
+        if p is None:
+            if not ref.startswith(('data:', 'http', '#')):
+                missing.append(ref)
+            return mo.group(0)
+        return f'url("{data_uri(p, cfg)}")'
+    return re.sub(r"url\((['\"]?)([^)'\"]+)\1\)", rep, css)
+
+
+def drive_link(cfg, slug):
+    fid = f"{cfg['source_id']}:{cfg['out_dir']}/{slug}.html"
+    return f"{cfg['drive']}&article={urllib.parse.quote(fid, safe='')}"
+
+
+def build_article(a, cfg, by_source, tmp):
+    src = a['source']
+    base = os.path.dirname(src)
+    frozen, shot = os.path.join(tmp, a['slug'] + '.html'), os.path.join(tmp, a['slug'] + '.png')
+    vw, vh = cfg['viewport']
+    r = subprocess.run([NODE, os.path.join(HERE, 'Freeze.mjs'), src, frozen, shot, str(vw), str(vh), str(cfg['freeze_wait_ms'])],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        raise SystemExit(f"freeze failed for {a['slug']} : {r.stderr[-800:]}")
+    js_errors = json.loads(r.stdout.strip().splitlines()[-1]).get('errors', [])
+    doc = open(frozen, encoding='utf-8').read()
+    missing = []
+    doc = re.sub(r'<script\b[^>]*>.*?</script>', '', doc, flags=re.S | re.I)
+
+    def link_tag(mo):
+        tag = mo.group(0)
+        if not re.search(r'rel=["\']?stylesheet', tag, re.I):
+            return '' if re.search(r'rel=["\']?(preload|modulepreload|icon)', tag, re.I) else tag
+        href = re.search(r'href=["\']([^"\']+)', tag)
+        p = local(href.group(1), base) if href else None
+        if p is None:
+            return tag
+        return '<style>' + inline_css(open(p, encoding='utf-8').read(), os.path.dirname(p), cfg, missing) + '</style>'
+    doc = re.sub(r'<link\b[^>]*>', link_tag, doc, flags=re.I)
+    doc = re.sub(r'(<style\b[^>]*>)(.*?)(</style>)', lambda mo: mo.group(1) + inline_css(mo.group(2), base, cfg, missing) + mo.group(3), doc, flags=re.S | re.I)
+    doc = re.sub(r'(style=")([^"]*url\([^"]*)(")', lambda mo: mo.group(1) + inline_css(mo.group(2), base, cfg, missing) + mo.group(3), doc)
+
+    def src_attr(mo):
+        ref = mo.group(2)
+        p = local(ref, base)
+        if p is None:
+            if not ref.startswith(('data:', 'http')):
+                missing.append(ref)
+            return mo.group(0)
+        return f'{mo.group(1)}"{data_uri(p, cfg)}"'
+    doc = re.sub(r'(\bsrc=)"([^"]+)"', src_attr, doc)
+    doc = re.sub(r'\s(srcset|onclick|oninput|onchange)="[^"]*"', '', doc)
+
+    def href_attr(mo):
+        ref = mo.group(1)
+        p = local(ref, base)
+        if p is None:
+            return mo.group(0)
+        tgt = by_source.get(os.path.normpath(p))
+        return f'href="{drive_link(cfg, tgt)}"' if tgt else 'href="#"'
+    doc = re.sub(r'href="([^"]+\.html?(?:#[^"]*)?)"', href_attr, doc)
+    stamp = (f'<footer style="margin:48px auto 24px;max-width:72ch;font:13px/1.6 system-ui,sans-serif;color:#777">Version figée le {today()} depuis '
+             f'<code>{html.escape(src)}</code> ; les curseurs interactifs y sont dans leur état initial.</footer>')
+    doc = re.sub(r'</body>', stamp + '</body>', doc, count=1, flags=re.I) if re.search(r'</body>', doc, re.I) else doc + stamp
+    out = os.path.join(WORKSHOP, cfg['out_dir'], a['slug'] + '.html')
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    tmp_out = out + '.tmp'
+    open(tmp_out, 'w', encoding='utf-8').write(doc)
+    os.replace(tmp_out, out)
+    th = Image.open(shot).convert('RGB').resize(tuple(cfg['thumbnail_px']), Image.LANCZOS)
+    buf = io.BytesIO()
+    th.save(buf, 'WEBP', quality=78, method=4)
+    return {'slug': a['slug'], 'out': out, 'bytes': os.path.getsize(out), 'sha256': hashlib.sha256(open(out, 'rb').read()).hexdigest(),
+            'thumb': 'data:image/webp;base64,' + base64.b64encode(buf.getvalue()).decode(), 'missing': sorted(set(missing)), 'js_errors': js_errors,
+            'source_mtime': os.path.getmtime(src)}
+
+
+def font_face():
+    return ''.join(f"@font-face{{font-family:'{n}';src:url(data:font/woff2;base64,{base64.b64encode(open(p, 'rb').read()).decode()}) format('woff2');"
+                   f"font-weight:100 900;font-display:swap}}" for n, p in FONTS.items() if os.path.exists(p))
+
+
+def build_index(cfg, results):
+    cards = []
+    for a in cfg['articles']:
+        r = results[a['slug']]
+        when = datetime.datetime.fromtimestamp(r['source_mtime'])
+        cards.append(f'''<article class="card">
+<a class="thumb" href="{html.escape(drive_link(cfg, a['slug']))}"><img src="{r['thumb']}" alt="Ouverture de l'article {html.escape(a['title'])}"></a>
+<div class="body"><p class="meta"><span class="status">{html.escape(a['status'])}</span><span class="num">{html.escape(a['date'])}</span></p>
+<h2><a href="{html.escape(drive_link(cfg, a['slug']))}">{html.escape(a['title'])}</a></h2>
+<p>{html.escape(a['summary'])}</p>
+<p class="small">Source modifiée le <span class="num">{when.day} {when.strftime('%B %Y, %H:%M')}</span>, <span class="num">{r['bytes'] / 1e6:.1f}</span> Mo, fichier <code>{html.escape(cfg['out_dir'] + '/' + a['slug'] + '.html')}</code></p>
+<p><a class="open" href="{html.escape(drive_link(cfg, a['slug']))}">Ouvrir la dernière version</a></p></div></article>''')
+    page = f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{html.escape(cfg['index_title'])}</title><style>{font_face()}
+:root{{--bg:#fafaf8;--fg:#1d1d1b;--mut:#6b6a66;--card:#fff;--line:#e3e2dc;--accent:#cc7c5e}}
+@media (prefers-color-scheme:dark){{:root{{--bg:#1c1c1b;--fg:#ecebe6;--mut:#a3a29c;--card:#262625;--line:#3a3a38;--accent:#e09a7e}}}}
+*{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--fg);font:500 16px/1.6 'InterVariable','Hiragino Sans W4',sans-serif}}
+main{{max-width:1080px;margin:0 auto;padding:40px 20px 56px}}h1{{font:500 34px/1.2 'AnthropicSerif',serif;margin:0 0 10px}}
+.intro{{color:var(--mut);max-width:70ch;margin:0 0 32px}}.grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}}
+.card{{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}}
+.thumb img{{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line)}}.body{{padding:16px 18px 18px}}
+h2{{font:500 19px/1.3 'AnthropicSerif',serif;margin:6px 0 8px}}h2 a,.open{{color:var(--fg);text-decoration:none}}.open{{color:var(--accent)}}
+.meta{{display:flex;gap:10px;align-items:center;margin:0;font-size:13px;color:var(--mut)}}.status{{border:1px solid var(--line);border-radius:999px;padding:1px 9px}}
+.num{{font-family:'AnthropicSerif',serif;font-weight:500}}.small{{font-size:13px;color:var(--mut)}}code{{font-size:12px}}
+footer{{margin-top:36px;font-size:13px;color:var(--mut)}}</style></head><body><main>
+<h1>{html.escape(cfg['index_title'])}</h1><p class="intro">{html.escape(cfg['index_intro'])}</p>
+<p class="small"><span class="num">{len(cards)}</span> articles. Index régénéré le <span class="num">{today()}</span>.</p>
+<section class="grid">{''.join(cards)}</section>
+<footer>Index construit par <code>Scripts/Articles/BuildArticles.py</code> depuis <code>Scripts/Articles/articles.json</code>.</footer>
+</main></body></html>'''
+    out = os.path.join(WORKSHOP, cfg['out_dir'], 'index.html')
+    open(out + '.tmp', 'w', encoding='utf-8').write(page)
+    os.replace(out + '.tmp', out)
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--config', default=os.path.join(HERE, 'articles.json'))
+    ap.add_argument('--only', default=None, help='rebuild one article (its slug), then the index')
+    a = ap.parse_args()
+    cfg = json.load(open(a.config, encoding='utf-8'))
+    by_source = {os.path.normpath(x['source']): x['slug'] for x in cfg['articles']}
+    results_path = os.path.join(HERE, 'build-state.json')
+    state = json.load(open(results_path)) if os.path.exists(results_path) else {}
+    with tempfile.TemporaryDirectory() as tmp:
+        for art in cfg['articles']:
+            if a.only and art['slug'] != a.only and art['slug'] in state:
+                continue
+            state[art['slug']] = build_article(art, cfg, by_source, tmp)
+            r = state[art['slug']]
+            print(f"{art['slug']} : {r['bytes'] / 1e6:.2f} MB, missing {r['missing'][:5]}, js errors {len(r['js_errors'])}")
+    json.dump(state, open(results_path, 'w'), indent=1)
+    print('index :', build_index(cfg, state))
+
+
+if __name__ == '__main__':
+    main()
