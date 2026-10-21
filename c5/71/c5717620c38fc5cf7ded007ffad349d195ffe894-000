@@ -12,6 +12,6 @@
  {
   "file": "final_01_zenray-height_aligned.png",
   "date": "21 October 2026",
-  "caption": "final_01_zenray-height recalée île par île sur les UV d'origine (per-island 2D alignment) : IoU 0.737 avant, 0.955 après ; 134 îles recalées, 23 par leurs voisines"
+  "caption": "final_01_zenray-height recalée île par île sur les UV d'origine (per-island 2D alignment) : IoU 0.737 avant, 0.971 après ; 142 îles recalées sur leurs bords, 18 par leurs voisines"
  }
 ]
