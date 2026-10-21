@@ -163,7 +163,7 @@ def build_index(cfg, results):
 @media (prefers-color-scheme:dark){{:root{{--bg:#1c1c1b;--fg:#ecebe6;--mut:#a3a29c;--card:#262625;--line:#3a3a38;--accent:#e09a7e}}}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--fg);font:500 16px/1.6 'InterVariable','Hiragino Sans W4',sans-serif}}
 main{{max-width:1080px;margin:0 auto;padding:40px 20px 56px}}h1{{font:500 34px/1.2 'AnthropicSerif',serif;margin:0 0 10px}}
-.intro{{color:var(--mut);max-width:70ch;margin:0 0 32px}}.grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}}
+.intro{{color:var(--mut);max-width:70ch;margin:0 0 32px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(max(300px,calc((100% - 20px) / 2)),1fr));gap:20px}}
 .card{{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}}
 .thumb img{{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line)}}.body{{padding:16px 18px 18px}}
 h2{{font:500 19px/1.3 'AnthropicSerif',serif;margin:6px 0 8px}}h2 a,.open{{color:var(--fg);text-decoration:none}}.open{{color:var(--accent)}}
