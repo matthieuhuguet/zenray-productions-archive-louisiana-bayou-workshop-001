@@ -17,3 +17,9 @@
   facing = (N @ d) > 0.05
 /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:178: RuntimeWarning: invalid value encountered in matmul
   facing = (N @ d) > 0.05
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: divide by zero encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: overflow encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: invalid value encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
