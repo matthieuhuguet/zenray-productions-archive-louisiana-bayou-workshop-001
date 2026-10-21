@@ -27,13 +27,13 @@
     "target_px_per_m": 2048.0,
     "tol": 0.1,
     "tol_max": 0.1,
-    "exact_frac": 0.9953775615952648,
-    "low_frac": 0.0021376822543929114,
-    "high_frac": 0.002484756150342438,
+    "exact_frac": 0.9931857911885345,
+    "low_frac": 0.004347403579107329,
+    "high_frac": 0.002466805232358193,
     "px_per_m_min": 482.9394100358229,
-    "px_per_m_median": 2040.5443912213625,
+    "px_per_m_median": 2040.6517937750523,
     "px_per_m_max": 2884.0282498513016,
-    "stretch_max": 1.6678784256632695,
+    "stretch_max": 0.8984814943088011,
     "faces": 2889
    },
    "straight_area": 0.0,
@@ -47,7 +47,7 @@
     "worst_island_p95": 0.3795,
     "worst_island_density_dev": 0.0
    },
-   "stretch_over_2pc_area": 0.7512,
+   "stretch_over_2pc_area": 0.7515,
    "islands": 13,
    "upright_islands": 13,
    "upright_worst_deg": 0.0,
@@ -62,7 +62,7 @@
    },
    "u_range": [
     0.0156,
-    0.9842
+    0.9839
    ],
    "v_range": [
     0.0156,
@@ -128,8 +128,8 @@
  "targets": {
   "uv": 2048.0
  },
- "cook_s": 16.38,
- "score_s": 13.88,
+ "cook_s": 15.79,
+ "score_s": 13.11,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_custom_t0_2048x2048.png",
@@ -139,15 +139,15 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_PigHead/M1/ZRUV_PigHead_M1_alpha_t0_2048x2048.png"
   },
   "seconds": {
-   "custom_t0": 7.29,
+   "custom_t0": 6.86,
    "occlusion_t0": 0.06,
    "curvature_t0": 0.07,
-   "edge_t0": 0.02,
+   "edge_t0": 0.03,
    "alpha_t0": 0.02,
-   "custom_t1": 4.64,
-   "occlusion_t1": 0.07,
+   "custom_t1": 4.35,
+   "occlusion_t1": 0.09,
    "curvature_t1": 0.07,
-   "edge_t1": 0.02,
+   "edge_t1": 0.03,
    "alpha_t1": 0.02
   },
   "size": [
@@ -200,7 +200,7 @@
   "skin"
  ],
  "crease_effective": 89.10903930664062,
- "date": "21 October 2026 06:31",
+ "date": "21 October 2026 13:10",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/pighead_src",
   "asset_scale": 1.0,

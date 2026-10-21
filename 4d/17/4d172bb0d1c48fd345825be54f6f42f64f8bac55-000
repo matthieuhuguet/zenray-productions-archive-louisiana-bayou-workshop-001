@@ -128,8 +128,8 @@
  "targets": {
   "uv": 1024.0
  },
- "cook_s": 9.7,
- "score_s": 5.66,
+ "cook_s": 10.28,
+ "score_s": 6.32,
  "bake": {
   "files": {
    "custom": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_custom_t0_1024x512.png",
@@ -139,27 +139,27 @@
    "alpha": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/ZRUV_ShaderBall/M1/ZRUV_ShaderBall_M1_alpha_t0_1024x512.png"
   },
   "seconds": {
-   "custom_t0": 1.1,
+   "custom_t0": 1.56,
    "occlusion_t0": 0.01,
-   "curvature_t0": 0.02,
+   "curvature_t0": 0.03,
    "edge_t0": 0.01,
-   "alpha_t0": 0.01,
-   "custom_t1": 2.45,
+   "alpha_t0": 0.02,
+   "custom_t1": 2.57,
    "occlusion_t1": 0.02,
    "curvature_t1": 0.02,
    "edge_t1": 0.01,
    "alpha_t1": 0.01,
-   "custom_t2": 0.33,
+   "custom_t2": 0.36,
    "occlusion_t2": 0.01,
    "curvature_t2": 0.01,
-   "edge_t2": 0.0,
+   "edge_t2": 0.01,
    "alpha_t2": 0.0,
-   "custom_t3": 0.28,
+   "custom_t3": 0.29,
    "occlusion_t3": 0.01,
    "curvature_t3": 0.01,
-   "edge_t3": 0.0,
-   "alpha_t3": 0.0,
-   "custom_t4": 0.14,
+   "edge_t3": 0.02,
+   "alpha_t3": 0.02,
+   "custom_t4": 0.09,
    "occlusion_t4": 0.0,
    "curvature_t4": 0.0,
    "edge_t4": 0.0,
@@ -290,7 +290,7 @@
   "bars"
  ],
  "crease_effective": 35.04174041748047,
- "date": "21 October 2026 06:31",
+ "date": "21 October 2026 13:11",
  "params": {
   "asset_path": "/obj/ZRUV_Assets/shaderball_src",
   "asset_scale": 1.0,
