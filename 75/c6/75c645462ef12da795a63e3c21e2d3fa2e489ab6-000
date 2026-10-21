@@ -23,3 +23,7 @@
   ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
 /Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: invalid value encountered in matmul
   ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+{"result": {"M1": {"score": 0.986652, "weakest": "uv:smooth_border", "errors": null}}, "seconds": 484.9, "hip": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/bench/ZRUV_Crag.hiplc", "ctrl": {"asset_area_m2": 0.0, "asset_scale": 1.0, "families": "*:body", "artist_pattern": "", "organic_orient": 0, "asset_kind": 1, "texel_density": 2048.0, "m1_fit": 0, "m1_minor_density": 0.25}}
+[Octane] 13:09:26 INFOR: [render] ------------   - Cleaning the scene. Full clean state 1
+[Octane] 13:09:26 INFOR: [render] ------------   - Scene including 0 items cleaned. 0 items deleted. 0 remaing items.
+[Octane] 13:09:26 INFOR: [api] ---------------  Closing the Octane API

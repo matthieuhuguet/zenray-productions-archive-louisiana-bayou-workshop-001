@@ -1,2 +1,3 @@
-ZRUV_RubberToy 35 s "result": {"M1": {"score": 0.999998, "weakest": "bake:coverage", "errors": null}}
-all done 12:40:44
+ZRUV_PigHead 35 s "result": {"M1": {"score": 1.0, "weakest": "uv:present", "errors": null}}
+ZRUV_RubberToy 33 s "result": {"M1": {"score": 0.999998, "weakest": "bake:coverage", "errors": null}}
+ZRUV_ShaderBall 22 s "result": {"M1": {"score": 1.0, "weakest": "uv:present", "errors": null}}
