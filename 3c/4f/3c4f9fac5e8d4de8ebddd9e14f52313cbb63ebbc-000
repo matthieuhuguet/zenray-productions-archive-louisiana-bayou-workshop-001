@@ -1,0 +1,24 @@
+# 20 October 2026 : the cook time of every SOP of a ZRUV object, upstream first (each node forced alone once its inputs are cooked). Usage : hython TimeNodes.py <hip> <obj>
+# FR : le temps de chaque noeud de la chaine M1.
+import sys, time, hou
+hou.hipFile.load(sys.argv[1], suppress_save_prompt=True, ignore_load_warnings=True)
+o = hou.node('/obj/' + sys.argv[2])
+order, seen = [], set()
+def visit(n):
+    if n is None or n.path() in seen:
+        return
+    seen.add(n.path())
+    for i in n.inputs():
+        visit(i)
+    order.append(n)
+for n in o.children():
+    visit(n)
+for n in order:
+    t = time.time()
+    try:
+        n.cook(force=False)
+    except Exception as e:
+        print('ERR', n.path(), str(e)[:120], flush=True)
+    dt = time.time() - t
+    if dt > 0.5:
+        print('%7.1f s  %s' % (dt, n.path()), flush=True)

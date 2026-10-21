@@ -1,0 +1,57 @@
+# 20 October 2026 : the islands of an offline cut (OfflineM1 _mesh.json, uv in metres per chart) laid side by side at one scale, upright as they come, filled in
+# their island colour with their border in black : the sheet as Matthieu reads it (a square aliased border shows at once), without the M1 layout.
+# Usage : python -I ChartSheet.py <mesh.json> <out png>      FR : les iles d'une decoupe hors ligne, a la meme echelle.
+import sys
+import numpy as np
+from PIL import Image, ImageDraw
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z, M1Boards as B
+
+m = Z.from_json(sys.argv[1])
+lab, seams = Z.uv_islands(m, 'uv')
+cols = B.palette(int(lab.max()) + 1)
+isl = []
+for k in range(int(lab.max()) + 1):
+    fs = np.where(lab == k)[0]
+    pts = np.array([q for f in fs for q in m.uv['uv'][f]])
+    lo, hi = pts.min(0), pts.max(0)
+    isl.append((float(m.area[fs].sum()), k, fs, lo, hi))
+isl.sort(key=lambda x: -x[0])
+W_ = 2400
+sc = None
+# one scale for all : the largest island about 700 px wide
+mx = max(float(max(hi - lo)) for _, _, _, lo, hi in isl)
+sc = 700.0 / max(mx, 1e-9)
+x, y, rowh, pad = 20, 60, 0, 30
+pos = []
+for a, k, fs, lo, hi in isl:
+    w, h = (hi - lo) * sc
+    if x + w > W_ - 20:
+        x, y, rowh = 20, y + rowh + pad, 0
+    pos.append((x, y))
+    x += w + pad
+    rowh = max(rowh, h)
+H_ = int(y + rowh + 40)
+im = Image.new('RGB', (W_, H_), (246, 246, 248))
+d = ImageDraw.Draw(im)
+d.text((14, 14), sys.argv[1].split('/')[-1] + ' : %d islands at one scale' % len(isl), fill=(20, 20, 22), font=B.font(26))
+for (a, k, fs, lo, hi), (ox, oy) in zip(isl, pos):
+    c = tuple(int(255 * v) for v in cols[k])
+    for f in fs:
+        q = np.array(m.uv['uv'][f])
+        pts = [(ox + (u - lo[0]) * sc, oy + (hi[1] - v) * sc) for u, v in q]
+        d.polygon(pts, fill=c)
+    fset = set(int(f) for f in fs)
+    for e, fl in m.edges.items():
+        inn = [f for f in fl if f in fset]
+        if not inn:
+            continue
+        if len(fl) == 2 and len(inn) == 2 and e not in seams:
+            continue
+        f = inn[0]
+        pa = m.uv_of_point('uv', f, e[0])
+        pb = m.uv_of_point('uv', f, e[1])
+        d.line([(ox + (pa[0] - lo[0]) * sc, oy + (hi[1] - pa[1]) * sc), (ox + (pb[0] - lo[0]) * sc, oy + (hi[1] - pb[1]) * sc)], fill=(18, 18, 22), width=2)
+    d.text((ox, oy - 22), str(k), fill=(20, 20, 22), font=B.font(18))
+im.save(sys.argv[2])
+print(sys.argv[2])

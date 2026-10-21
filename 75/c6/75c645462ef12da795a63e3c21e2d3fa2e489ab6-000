@@ -1,0 +1,29 @@
+[Octane]      Octane Render for Houdini. Build 2026.5.0.0 (Build date: Sep 21 2026 10:21:52)
+[Octane] Octane API: 2026.5
+[Octane] HDK API: 22.0.368
+[Octane] Houdini host version: 22.0.368
+[Octane] Initializing Octane API
+[Octane] Octane API ready. Initialization time: 0.666 seconds
+[Octane] OCIO configuration ready. Initialization time: 0.007 seconds
+[Octane] Octane network rendering enabled. Initialization time: 0.000 seconds
+[Octane] WARNING: preferences file not found: /Users/zenray/Library/Preferences/houdini/22.0/octane.pref
+[Octane] 06:32:07 INFOR: [nodes] -------------  Registering Octane VOP nodes
+[Octane] 06:32:07 INFOR: [nodes] -------------  Octane VOP nodes registered
+[Octane] 06:32:07 INFOR: [nodes] -------------  Registering the plugin custom VOP nodes
+[Octane] 06:32:07 INFOR: [nodes] -------------  Plugin custom VOP nodes registered
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:178: RuntimeWarning: divide by zero encountered in matmul
+  facing = (N @ d) > 0.05
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:178: RuntimeWarning: overflow encountered in matmul
+  facing = (N @ d) > 0.05
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:178: RuntimeWarning: invalid value encountered in matmul
+  facing = (N @ d) > 0.05
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: divide by zero encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: overflow encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv/ZruvSops.py:574: RuntimeWarning: invalid value encountered in matmul
+  ru = uv @ np.array([[cs, -sn], [sn, cs]]).T
+{"result": {"M1": {"score": 0.9652, "weakest": "uv:density", "errors": null}}, "seconds": 538.9, "hip": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/bench/ZRUV_Crag.hiplc", "ctrl": {"asset_area_m2": 0.0, "asset_scale": 1.0, "families": "*:body", "artist_pattern": "", "organic_orient": 0, "asset_kind": 1, "texel_density": 2048.0, "m1_fit": 0, "m1_minor_density": 0.25}}
+[Octane] 06:41:08 INFOR: [render] ------------   - Cleaning the scene. Full clean state 1
+[Octane] 06:41:08 INFOR: [render] ------------   - Scene including 0 items cleaned. 0 items deleted. 0 remaing items.
+[Octane] 06:41:08 INFOR: [api] ---------------  Closing the Octane API

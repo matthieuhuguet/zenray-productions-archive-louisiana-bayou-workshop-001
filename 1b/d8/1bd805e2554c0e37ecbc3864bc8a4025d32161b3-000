@@ -1,0 +1,26 @@
+# 20 October 2026 : an M1 result (runs/<asset>/M1/mesh.json) written as a Houdini geometry file to look at in the open session without cooking the chain : points,
+# polygons, vertex uv, prim zruv_island (the island number of the boards, id + 1) and Cd (the island colour of the boards). Usage : hython MeshJsonToBgeo.py <mesh.json> <out.bgeo.sc>
+# FR : le resultat de M1 en fichier Houdini, a regarder sans recuire la chaine.
+import sys, json, colorsys
+import hou
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+import ZrMesh as Z
+m = Z.from_json(sys.argv[1])
+lab, _ = Z.uv_islands(m, 'uv')
+geo = hou.Geometry()
+geo.addAttrib(hou.attribType.Vertex, 'uv', (0.0, 0.0, 0.0))
+geo.addAttrib(hou.attribType.Prim, 'zruv_island', 0)
+geo.addAttrib(hou.attribType.Prim, 'Cd', (1.0, 1.0, 1.0))
+pts = geo.createPoints([tuple(map(float, p)) for p in m.P])
+for f, poly in enumerate(m.polys):
+    pr = geo.createPolygon()
+    for j, v in enumerate(poly):
+        vx = pr.addVertex(pts[v])
+        u, w = m.uv['uv'][f][j]
+        vx.setAttribValue('uv', (float(u), float(w), 0.0))
+    k = int(lab[f])
+    h = (0.137 + k * 0.61803398875) % 1.0
+    pr.setAttribValue('zruv_island', k + 1)
+    pr.setAttribValue('Cd', colorsys.hls_to_rgb(h, 0.62 if k % 2 else 0.52, 0.6))
+geo.saveToFile(sys.argv[2])
+print('written', sys.argv[2], len(geo.prims()), 'polygons', int(lab.max()) + 1, 'islands')

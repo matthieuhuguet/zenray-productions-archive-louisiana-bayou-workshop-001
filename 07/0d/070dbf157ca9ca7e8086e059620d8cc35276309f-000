@@ -1,0 +1,10 @@
+# 20 October 2026 : Crag, the test creature of Houdini, exported once as plain polygons (its 67 named pieces unpacked, uv deleted) for M1 : the bench never cuts
+# packed geometry. Usage : hython ExportCrag.py <out.bgeo.sc>   FR : Crag deplie, pour M1.
+import sys, hou
+tmp = hou.node('/obj').createNode('geo', 'ZRUV_tmp_crag')
+n = tmp.createNode('testgeometry_crag')
+u = tmp.createNode('unpack'); u.setInput(0, n)
+c = tmp.createNode('attribdelete'); c.setInput(0, u); c.parm('vtxdel').set('uv'); c.parm('ptdel').set('uv')
+c.geometry().saveToFile(sys.argv[1])
+g = c.geometry()
+print('exported', sys.argv[1], len(g.prims()), 'polygons', [round(x, 3) for x in g.boundingBox().sizevec()])

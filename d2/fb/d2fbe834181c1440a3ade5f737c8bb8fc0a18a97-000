@@ -1,0 +1,28 @@
+  commit silhouette : 28 edges 0.671 m at (-0.001 -0.095 -0.076), charts [0.45, 0.047, 0.089] of [0.586]
+move silhouette gain 0.27476 charts 13 fail 0.79450
+  commit loop panel : 28 edges 0.892 m at (-0.002 -0.211 0.070), charts [0.328, 0.121] of [0.45]
+move loop panel gain 0.18671 charts 14 fail 0.49897
+  commit panel : 16 edges 0.347 m at (-0.001 -0.266 0.154), charts [0.317, 0.011] of [0.328]
+move panel gain 0.01693 charts 15 fail 0.47939
+  commit silhouette : 32 edges 0.524 m at (-0.001 -0.135 0.136), charts [0.201, 0.079, 0.037] of [0.317]
+move silhouette gain 0.14432 charts 17 fail 0.19192
+  commit silhouette : 10 edges 0.114 m at (-0.001 -0.084 0.277), charts [0.197, 0.002, 0.002] of [0.201]
+move silhouette gain 0.00239 charts 19 fail 0.18344
+  commit silhouette : 28 edges 0.480 m at (-0.001 0.088 0.010), charts [0.161, 0.032, 0.004] of [0.197]
+move silhouette gain 0.02501 charts 21 fail 0.03960
+  commit silhouette : 8 edges 0.072 m at (-0.002 0.129 -0.031), charts [0.012, 0.019] of [0.032]
+move silhouette gain 0.03185 charts 22 fail 0.00775
+  commit loop panel : 10 edges 0.223 m at (-0.002 -0.048 0.198), charts [0.016, 0.049] of [0.065]
+move loop panel gain 0.00001 charts 23 fail 0.00680
+  commit silhouette : 19 edges 0.252 m at (0.021 -0.053 0.186), charts [0.004, 0.013, 0.032, 0.004, 0.013] of [0.016, 0.049]
+move silhouette gain 0.00001 charts 26 fail 0.00551
+  still failing : chart 1, 122 faces, share 0.020, centre (-0.001 -0.056 0.334), fail 0.00551, p50/p95 [0.12105956913680627, 0.3794918956923037], sprawl 0.0000
+economy silhouette saved 0.3401 charts 24
+economy silhouette saved 0.4028 charts 22
+economy opening saved 0.1290 charts 19
+economy loop panel saved 0.0268 charts 17
+economy silhouette saved 0.0174 charts 15
+  still failing : chart 46, 122 faces, share 0.020, centre (-0.001 -0.056 0.334), fail 0.00551, p50/p95 [0.12105956913708238, 0.37949189567077823], sprawl 0.0000
+symmetrize charts 17
+economy silhouette saved 0.0182 charts 16
+absorb island of 0.01131 m2 into its neighbour charts 15

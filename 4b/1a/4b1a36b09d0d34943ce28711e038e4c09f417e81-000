@@ -1,0 +1,35 @@
+  commit pole dart : 18 edges 0.190 m at (-0.001 0.062 -0.030), charts [0.611, 0.035] of [0.611, 0.035]
+move pole dart gain 0.30823 charts 10 fail 0.91589
+  commit silhouette : 36 edges 0.776 m at (0.003 -0.092 0.053), charts [0.418, 0.142, 0.015, 0.036, 0.035] of [0.611, 0.035]
+move silhouette gain 0.39550 charts 13 fail 0.12569
+  commit loop panel : 28 edges 0.527 m at (-0.001 -0.146 0.181), charts [0.285, 0.133] of [0.418]
+move loop panel gain 0.09703 charts 14 fail 0.02950
+  commit silhouette : 7 edges 0.109 m at (-0.131 -0.008 0.016), charts [0.142, 0.185, 0.1] of [0.142, 0.285]
+move silhouette gain 0.01468 charts 15 fail 0.01571
+  commit silhouette : 10 edges 0.114 m at (-0.001 -0.084 0.277), charts [0.181, 0.002, 0.002] of [0.185]
+move silhouette gain 0.00618 charts 17 fail 0.00953
+  commit loop panel : 10 edges 0.223 m at (-0.002 -0.048 0.198), charts [0.016, 0.049] of [0.065]
+move loop panel gain 0.00001 charts 18 fail 0.00859
+  commit silhouette : 7 edges 0.116 m at (-0.127 -0.059 0.105), charts [0.139, 0.042] of [0.181]
+move silhouette gain 0.00180 charts 19 fail 0.00680
+  commit silhouette : 19 edges 0.252 m at (0.021 -0.053 0.186), charts [0.004, 0.013, 0.032, 0.004, 0.013] of [0.016, 0.049]
+move silhouette gain 0.00001 charts 22 fail 0.00551
+  still failing : chart 1, 122 faces, share 0.020, centre (-0.001 -0.056 0.334), fail 0.00551, p50/p95 [0.12105956913680627, 0.3794918956923037], sprawl 0.0000
+economy loop panel saved 0.3856 charts 21
+economy silhouette saved 0.0209 charts 19
+economy silhouette saved 0.0224 charts 18
+economy loop panel saved 0.0268 charts 16
+economy silhouette saved 0.0174 charts 14
+economy pole dart saved 0.0092 charts 14
+absorb island of 0.01461 m2 into its neighbour charts 13
+  commit silhouette : 2 edges 0.023 m at (-0.117 -0.049 0.130), charts [0.156, 0.176] of [0.332]
+move silhouette gain 0.36585 charts 13 fail 0.00864
+  commit pole dart : 8 edges 0.129 m at (-0.002 -0.107 0.217), charts [0.065] of [0.065]
+move pole dart gain 0.00001 charts 13 fail 0.00716
+  commit silhouette : 28 edges 0.341 m at (-0.002 -0.045 0.168), charts [0.011, 0.04, 0.014] of [0.065]
+move silhouette gain 0.00002 charts 15 fail 0.00551
+  still failing : chart 44, 122 faces, share 0.020, centre (-0.001 -0.056 0.334), fail 0.00551, p50/p95 [0.12105956913708238, 0.37949189567077823], sprawl 0.0000
+symmetrize charts 15
+economy pole dart saved 0.0119 charts 15
+absorb island of 0.01079 m2 into its neighbour charts 14
+absorb island of 0.01410 m2 into its neighbour charts 13

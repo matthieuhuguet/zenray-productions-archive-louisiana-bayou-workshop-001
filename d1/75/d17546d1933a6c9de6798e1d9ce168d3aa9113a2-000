@@ -1,0 +1,3 @@
+rules {'set_edge': (66, 1.996), 'group_edge': (102, 2.169), 'blade_rim': (0, 0), 'buried_edge': (0, 0), 'flap_rim': (50, 1.007), 'flap_root': (38, 0.867), 'cap': (22, 0.378), 'cavity': (58, 0.781)} 0.6 s
+RESULT {"islands": 13, "seams_m": 6.632, "symmetric": 0.959, "asym_m": 0.259, "staircases": 0, "stair_m": 0.0, "notches": 1, "notch_share": 0.0084, "turns": 8, "largest": [0.242, 0.207, 0.176, 0.156], "tailor_s": 96.1, "moves": {"pole dart": 2, "silhouette": 7, "loop panel": 2}, "failing": 1, "symmetrized": true}
+/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/bench/off_v6_board.png

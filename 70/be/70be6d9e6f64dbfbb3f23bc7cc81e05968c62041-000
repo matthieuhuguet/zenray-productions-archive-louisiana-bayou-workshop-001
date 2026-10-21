@@ -1,0 +1,16 @@
+# 21 October 2026 : the islands of an M1 run longer than a sheet allows (w or h in px at the density), read on the input of the layout node. Usage : hython LongIslands.py <hip> <obj>
+import sys, hou
+sys.path.insert(0, '/Users/zenray/.claude/skills/zenray-houdini/scripts/zenray_uv')
+hou.hipFile.load(sys.argv[1], suppress_save_prompt=True, ignore_load_warnings=True)
+o = hou.node('/obj/' + sys.argv[2])
+lay = o.node('M1_unique/layout')
+c = o.node('CTRL_zruv')
+td = c.evalParm('texel_density')
+import ZruvLayout as L
+geo = lay.inputs()[0].geometry()
+m, isls = L.islands(geo, 'uv')
+mx = c.evalParm('m1_max_px') if c.parm('m1_max_px') else None
+print('density', td, 'm1_max_px', mx, 'islands', len(isls))
+big = sorted(isls, key=lambda d: -max(d['w'], d['h']))[:12]
+for d in big:
+    print(d['id'], d['piece'], d['family'], 'w %.0f px h %.0f px' % (d['w'] * td, d['h'] * td), 'faces', len(d['faces']))
