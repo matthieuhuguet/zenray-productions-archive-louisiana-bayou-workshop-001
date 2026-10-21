@@ -1,0 +1,10648 @@
+{
+ "report": {
+  "date": "21 October 2026 19:55",
+  "height": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/heights/final_01_zenray-height.png",
+  "sheet": "sheet",
+  "size": [
+   2048,
+   2048
+  ],
+  "out": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet",
+  "before": {
+   "iou_area": 0.8478155371281426,
+   "iou_median": 0.7170667939136265,
+   "iou_union": 0.8444629060907726,
+   "conf_area": 0.15520399328525142,
+   "islands_iou_under_0_8": 100,
+   "islands": 160
+  },
+  "after": {
+   "iou_area": 0.9289756261995894,
+   "iou_median": 0.8298960433880201,
+   "iou_union": 0.9243708790249383,
+   "conf_area": 0.14672823550416395,
+   "islands_iou_under_0_8": 71,
+   "islands": 160
+  },
+  "status": {
+   "prior": 160
+  },
+  "checks": {
+   "iou_after": true,
+   "gain": true,
+   "remap_round_trip": false
+  },
+  "ok": false,
+  "seconds": 22.0,
+  "info": {
+   "evidence": {
+    "b": 0.31689453125,
+    "sigma": 0.005972520250082015,
+    "td": 0.03583512150049209,
+    "ta": 0.01,
+    "far_px": 756952
+   },
+   "global": {
+    "A0": [
+     [
+      0.9622289565621185,
+      -0.002125456599089113,
+      15.163022167950988
+     ],
+     [
+      0.009220057147674491,
+      0.9735530023659249,
+      27.60534251647691
+     ]
+    ],
+    "levels": [
+     {
+      "factor": 4,
+      "ncc": 0.7864328026771545,
+      "params": [
+       -6.475774296308786,
+       2.562064065071565,
+       -0.03874981489149491,
+       -0.0038152596682994996,
+       0.00918686263058111,
+       -0.026172574006701626
+      ]
+     },
+     {
+      "factor": 2,
+      "ncc": 0.7320631146430969,
+      "params": [
+       -12.835522809944228,
+       4.986784464322988,
+       -0.037771043437881555,
+       -0.002125456599089113,
+       0.009220057147674491,
+       -0.026446997634075042
+      ]
+     }
+    ]
+   },
+   "seconds_solve": 20.7
+  },
+  "params": {
+   "ring_px": 4.0,
+   "ring_skip_px": 2.0,
+   "cov_min": 0.5,
+   "bg_far_px": 10.0,
+   "fg_k": 6.0,
+   "fg_floor": 0.02,
+   "act_floor": 0.01,
+   "edge_sigma": 1.0,
+   "edge_weight": 0.5,
+   "global_factor": 4,
+   "pass1_area": 1500,
+   "pass1_min_ext": 48,
+   "pass1_window": 32,
+   "pass2_window": 12,
+   "pass3_window": 6,
+   "field_sigma": 0.08,
+   "conf_min": 0.55,
+   "conf_high": 0.8,
+   "outlier_px": 10.0,
+   "amb_delta": 0.03,
+   "scale_max": 0.08,
+   "shear_max": 0.05,
+   "scale_dev_max": 0.02,
+   "shear_dev_max": 0.01,
+   "affine_area": 2000,
+   "affine_ext": 40,
+   "thin_px": 10,
+   "tiny_area": 80,
+   "max_in": 6000,
+   "max_ring": 4000,
+   "max_edge": 4000,
+   "max_pairs": 8000,
+   "icp_radii": [
+    16,
+    8,
+    4,
+    3,
+    3
+   ],
+   "icp_slack": [
+    0.04,
+    0.012,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "icp_step": 0.25,
+   "icp_min_pairs": 6,
+   "icp_min_pairs_t": 2,
+   "icp_side_share": 0.3,
+   "icp_tukey_px": 1.5,
+   "edge_in_px": 1.5,
+   "edge_out_px": 2.5,
+   "seed": 7,
+   "ok_iou": 0.9,
+   "ok_gain": 0.0,
+   "ok_graph_mae": 0.002
+  },
+  "graph": null,
+  "remap_round_trip_max": 0.009395033121109009,
+  "files": {
+   "aligned": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/aligned.png",
+   "remap": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/remap.png",
+   "ids": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/ids.png",
+   "board_overlay": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/board_overlay.png",
+   "board_zooms": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/board_zooms.png"
+  }
+ },
+ "islands": [
+  {
+   "island": 1,
+   "id": 0,
+   "area": 29436,
+   "centre": [
+    564.5,
+    990.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0146,
+   "edge": 0.0058,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1133,
+     "inliers": 0.973,
+     "rms_px": 0.18
+    },
+    "x": {
+     "pairs": 26,
+     "inliers": 1.0,
+     "rms_px": 0.19
+    },
+    "coverage": 0.426,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8596,
+   "iou_after": 0.8776,
+   "conf_before": 0.0158,
+   "conf_after": 0.0149,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 4,
+   "id": 3,
+   "area": 30751,
+   "centre": [
+    21.0,
+    676.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.4077,
+   "edge": 0.2783,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 2443,
+     "inliers": 1.0,
+     "rms_px": 1.327
+    },
+    "x": {
+     "pairs": 45,
+     "inliers": 0.911,
+     "rms_px": 0.276
+    },
+    "coverage": 0.915,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4081,
+   "iou_after": 0.8886,
+   "conf_before": -0.0295,
+   "conf_after": 0.4125,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 5,
+   "id": 4,
+   "area": 71848,
+   "centre": [
+    406.5,
+    668.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0367,
+   "edge": 0.0031,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1834,
+     "inliers": 1.0,
+     "rms_px": 0.224
+    },
+    "x": {
+     "pairs": 95,
+     "inliers": 1.0,
+     "rms_px": 0.126
+    },
+    "coverage": 0.72,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9242,
+   "iou_after": 0.9426,
+   "conf_before": 0.081,
+   "conf_after": 0.0364,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 6,
+   "id": 5,
+   "area": 27016,
+   "centre": [
+    1242.5,
+    650.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0203,
+   "edge": 0.007,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1228,
+     "inliers": 0.989,
+     "rms_px": 0.141
+    },
+    "x": {
+     "pairs": 25,
+     "inliers": 1.0,
+     "rms_px": 0.143
+    },
+    "coverage": 0.501,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8446,
+   "iou_after": 0.8511,
+   "conf_before": 0.006,
+   "conf_after": 0.0197,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 10,
+   "id": 9,
+   "area": 291,
+   "centre": [
+    1855.45,
+    1892.93
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0005,
+   "edge": 0.0014,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 155,
+     "inliers": 1.0,
+     "rms_px": 0.177
+    },
+    "x": {
+     "pairs": 136,
+     "inliers": 1.0,
+     "rms_px": 0.39
+    },
+    "coverage": 0.993,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.3213,
+   "iou_after": 0.3244,
+   "conf_before": -0.003,
+   "conf_after": 0.0005,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 12,
+   "id": 11,
+   "area": 15824,
+   "centre": [
+    1699.35,
+    1872.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0355,
+   "edge": 0.0161,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 362,
+     "inliers": 0.945,
+     "rms_px": 0.37
+    },
+    "x": {
+     "pairs": 176,
+     "inliers": 0.966,
+     "rms_px": 0.838
+    },
+    "coverage": 0.978,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9064,
+   "iou_after": 0.948,
+   "conf_before": 0.1601,
+   "conf_after": 0.0355,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 20,
+   "id": 19,
+   "area": 25872,
+   "centre": [
+    1577.5,
+    1499.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0853,
+   "edge": 0.0201,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1620,
+     "inliers": 1.0,
+     "rms_px": 0.892
+    },
+    "x": {
+     "pairs": 475,
+     "inliers": 0.981,
+     "rms_px": 0.333
+    },
+    "coverage": 0.972,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.2632,
+   "iou_after": 0.8434,
+   "conf_before": -0.122,
+   "conf_after": 0.0872,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 21,
+   "id": 20,
+   "area": 29484,
+   "centre": [
+    1378.0,
+    1843.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1486,
+   "edge": 0.0102,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 713,
+     "inliers": 1.0,
+     "rms_px": 0.103
+    },
+    "x": {
+     "pairs": 154,
+     "inliers": 1.0,
+     "rms_px": 0.097
+    },
+    "coverage": 0.974,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.6812,
+   "iou_after": 0.9412,
+   "conf_before": 0.1719,
+   "conf_after": 0.15,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 32,
+   "id": 31,
+   "area": 4033,
+   "centre": [
+    1970.02,
+    1863.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0087,
+   "edge": 0.0165,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 635,
+     "inliers": 1.0,
+     "rms_px": 0.842
+    },
+    "x": {
+     "pairs": 549,
+     "inliers": 1.0,
+     "rms_px": 0.898
+    },
+    "coverage": 0.988,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.4408,
+   "iou_after": 0.6423,
+   "conf_before": 0.0285,
+   "conf_after": -0.0087,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 34,
+   "id": 33,
+   "area": 1406,
+   "centre": [
+    1819.0,
+    1857.11
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0016,
+   "edge": 0.0009,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 305,
+     "inliers": 0.993,
+     "rms_px": 0.197
+    },
+    "x": {
+     "pairs": 263,
+     "inliers": 0.996,
+     "rms_px": 0.138
+    },
+    "coverage": 0.667,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.5007,
+   "iou_after": 0.5027,
+   "conf_before": 0.0016,
+   "conf_after": 0.0016,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 35,
+   "id": 34,
+   "area": 2009,
+   "centre": [
+    692.64,
+    100.64
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0009,
+   "edge": 0.0002,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 316,
+     "inliers": 0.984,
+     "rms_px": 0.219
+    },
+    "x": {
+     "pairs": 277,
+     "inliers": 1.0,
+     "rms_px": 0.487
+    },
+    "coverage": 0.517,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.3886,
+   "iou_after": 0.5002,
+   "conf_before": -0.0072,
+   "conf_after": 0.0009,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 36,
+   "id": 35,
+   "area": 15647,
+   "centre": [
+    576.86,
+    119.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1624,
+   "edge": 0.1342,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 361,
+     "inliers": 0.934,
+     "rms_px": 0.289
+    },
+    "x": {
+     "pairs": 176,
+     "inliers": 0.972,
+     "rms_px": 0.94
+    },
+    "coverage": 0.98,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.7877,
+   "iou_after": 0.9423,
+   "conf_before": 0.1076,
+   "conf_after": 0.1612,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 38,
+   "id": 37,
+   "area": 3063,
+   "centre": [
+    1821.0,
+    1855.67
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0002,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 239,
+     "inliers": 1.0,
+     "rms_px": 1.726
+    },
+    "x": {
+     "pairs": 126,
+     "inliers": 0.937,
+     "rms_px": 0.2
+    },
+    "coverage": 0.396,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.596,
+   "iou_after": 0.6484,
+   "conf_before": -0.0418,
+   "conf_after": -0.0002,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 40,
+   "id": 39,
+   "area": 2584,
+   "centre": [
+    702.73,
+    101.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 120,
+     "inliers": 1.0,
+     "rms_px": 1.42
+    },
+    "x": {
+     "pairs": 121,
+     "inliers": 0.95,
+     "rms_px": 0.183
+    },
+    "coverage": 0.264,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.4435,
+   "iou_after": 0.6106,
+   "conf_before": -0.0981,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 44,
+   "id": 43,
+   "area": 25570,
+   "centre": [
+    893.0,
+    1542.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2621,
+   "edge": 0.1779,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1270,
+     "inliers": 0.996,
+     "rms_px": 0.823
+    },
+    "x": {
+     "pairs": 432,
+     "inliers": 1.0,
+     "rms_px": 0.412
+    },
+    "coverage": 0.791,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.577,
+   "iou_after": 0.882,
+   "conf_before": -0.031,
+   "conf_after": 0.2631,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 45,
+   "id": 44,
+   "area": 29484,
+   "centre": [
+    80.0,
+    189.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1207,
+   "edge": 0.0131,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 370,
+     "inliers": 0.992,
+     "rms_px": 0.115
+    },
+    "x": {
+     "pairs": 113,
+     "inliers": 0.973,
+     "rms_px": 0.613
+    },
+    "coverage": 0.543,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.864,
+   "iou_after": 0.9362,
+   "conf_before": 0.0948,
+   "conf_after": 0.1204,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 56,
+   "id": 55,
+   "area": 11611,
+   "centre": [
+    953.01,
+    1125.01
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0215,
+   "edge": 0.0463,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 589,
+     "inliers": 1.0,
+     "rms_px": 0.462
+    },
+    "x": {
+     "pairs": 421,
+     "inliers": 0.841,
+     "rms_px": 0.483
+    },
+    "coverage": 0.884,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8215,
+   "iou_after": 0.828,
+   "conf_before": 0.022,
+   "conf_after": 0.0236,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 58,
+   "id": 57,
+   "area": 9839,
+   "centre": [
+    1493.74,
+    1847.49
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2428,
+   "edge": 0.0937,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 290,
+     "inliers": 0.997,
+     "rms_px": 1.136
+    },
+    "x": {
+     "pairs": 220,
+     "inliers": 1.0,
+     "rms_px": 0.182
+    },
+    "coverage": 0.647,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8494,
+   "iou_after": 0.806,
+   "conf_before": 0.1778,
+   "conf_after": 0.2457,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 61,
+   "id": 60,
+   "area": 31266,
+   "centre": [
+    775.58,
+    1568.18
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1281,
+   "edge": 0.0573,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 813,
+     "inliers": 0.867,
+     "rms_px": 0.528
+    },
+    "x": {
+     "pairs": 110,
+     "inliers": 0.973,
+     "rms_px": 0.169
+    },
+    "coverage": 0.632,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8584,
+   "iou_after": 0.9136,
+   "conf_before": 0.0578,
+   "conf_after": 0.1286,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 62,
+   "id": 61,
+   "area": 31266,
+   "centre": [
+    823.58,
+    501.17
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.094,
+   "edge": 0.0854,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1004,
+     "inliers": 0.991,
+     "rms_px": 0.637
+    },
+    "x": {
+     "pairs": 192,
+     "inliers": 0.938,
+     "rms_px": 0.312
+    },
+    "coverage": 0.819,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8678,
+   "iou_after": 0.9195,
+   "conf_before": 0.0026,
+   "conf_after": 0.0935,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 70,
+   "id": 69,
+   "area": 1,
+   "centre": [
+    2040.0,
+    1274.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0106,
+   "edge": 0.0433,
+   "coverage": 0.0,
+   "border": {
+    "coverage": 0.0,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0625,
+   "conf_before": 0.0,
+   "conf_after": 0.0106,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 77,
+   "id": 76,
+   "area": 469,
+   "centre": [
+    2027.61,
+    1690.57
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.3216,
+   "edge": 0.2089,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 46,
+     "inliers": 0.978,
+     "rms_px": 0.8
+    },
+    "x": {
+     "pairs": 45,
+     "inliers": 1.0,
+     "rms_px": 0.933
+    },
+    "coverage": 0.929,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.8027,
+   "conf_before": 0.0,
+   "conf_after": 0.3216,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 86,
+   "id": 85,
+   "area": 244,
+   "centre": [
+    1973.05,
+    1687.17
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0854,
+   "edge": 0.0909,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 11,
+     "inliers": 0.909,
+     "rms_px": 0.51
+    },
+    "x": {
+     "pairs": 8,
+     "inliers": 1.0,
+     "rms_px": 1.671
+    },
+    "coverage": 0.257,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6269,
+   "iou_after": 0.6496,
+   "conf_before": 0.1839,
+   "conf_after": 0.0854,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 96,
+   "id": 95,
+   "area": 244,
+   "centre": [
+    752.82,
+    201.07
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0001,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 27,
+     "inliers": 0.926,
+     "rms_px": 0.566
+    },
+    "x": {
+     "pairs": 24,
+     "inliers": 1.0,
+     "rms_px": 1.405
+    },
+    "coverage": 0.671,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6354,
+   "iou_after": 0.6354,
+   "conf_before": 0.0,
+   "conf_after": 0.0001,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 97,
+   "id": 96,
+   "area": 472,
+   "centre": [
+    1508.35,
+    1861.14
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0296,
+   "edge": 0.055,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 48,
+     "inliers": 1.0,
+     "rms_px": 1.217
+    },
+    "x": {
+     "pairs": 48,
+     "inliers": 1.0,
+     "rms_px": 0.967
+    },
+    "coverage": 0.941,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7162,
+   "iou_after": 0.7228,
+   "conf_before": 0.0,
+   "conf_after": 0.0296,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 106,
+   "id": 105,
+   "area": 235,
+   "centre": [
+    928.44,
+    1470.69
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1122,
+   "edge": 0.124,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 27,
+     "inliers": 1.0,
+     "rms_px": 1.652
+    },
+    "x": {
+     "pairs": 17,
+     "inliers": 0.941,
+     "rms_px": 0.837
+    },
+    "coverage": 0.611,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.63,
+   "iou_after": 0.657,
+   "conf_before": 0.0,
+   "conf_after": 0.1122,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 107,
+   "id": 106,
+   "area": 466,
+   "centre": [
+    785.46,
+    1704.25
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 32,
+     "inliers": 1.0,
+     "rms_px": 2.077
+    },
+    "x": {
+     "pairs": 32,
+     "inliers": 1.0,
+     "rms_px": 2.157
+    },
+    "coverage": 0.615,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7214,
+   "iou_after": 0.7214,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 112,
+   "id": 111,
+   "area": 80,
+   "centre": [
+    181.25,
+    1357.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 6,
+     "inliers": 0.833,
+     "rms_px": 0.346
+    },
+    "x": {
+     "pairs": 9,
+     "inliers": 1.0,
+     "rms_px": 1.036
+    },
+    "coverage": 0.395,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4444,
+   "iou_after": 0.4444,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 116,
+   "id": 115,
+   "area": 235,
+   "centre": [
+    2009.84,
+    1534.79
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2815,
+   "edge": 0.2131,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 36,
+     "inliers": 1.0,
+     "rms_px": 0.707
+    },
+    "x": {
+     "pairs": 35,
+     "inliers": 0.971,
+     "rms_px": 0.922
+    },
+    "coverage": 0.934,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.6645,
+   "conf_before": -0.0483,
+   "conf_after": 0.2815,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 123,
+   "id": 122,
+   "area": 17113,
+   "centre": [
+    1872.1,
+    1438.44
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.006,
+   "edge": 0.0096,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 246,
+     "inliers": 1.0,
+     "rms_px": 1.402
+    },
+    "x": {
+     "pairs": 275,
+     "inliers": 0.996,
+     "rms_px": 0.212
+    },
+    "coverage": 0.341,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8298,
+   "iou_after": 0.8064,
+   "conf_before": 0.0183,
+   "conf_after": 0.0066,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 147,
+   "id": 146,
+   "area": 30728,
+   "centre": [
+    535.0,
+    981.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0028,
+   "edge": 0.0014,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1607,
+     "inliers": 1.0,
+     "rms_px": 2.113
+    },
+    "x": {
+     "pairs": 35,
+     "inliers": 1.0,
+     "rms_px": 0.14
+    },
+    "coverage": 0.604,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8741,
+   "iou_after": 0.8816,
+   "conf_before": 0.017,
+   "conf_after": 0.0029,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 150,
+   "id": 149,
+   "area": 30728,
+   "centre": [
+    594.0,
+    1098.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0012,
+   "edge": 0.0003,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 2275,
+     "inliers": 1.0,
+     "rms_px": 1.231
+    },
+    "x": {
+     "pairs": 42,
+     "inliers": 1.0,
+     "rms_px": 0.124
+    },
+    "coverage": 0.852,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8756,
+   "iou_after": 0.8789,
+   "conf_before": 0.0073,
+   "conf_after": 0.0012,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 151,
+   "id": 150,
+   "area": 71680,
+   "centre": [
+    326.5,
+    650.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0971,
+   "edge": 0.0193,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 2106,
+     "inliers": 0.998,
+     "rms_px": 0.24
+    },
+    "x": {
+     "pairs": 91,
+     "inliers": 1.0,
+     "rms_px": 0.148
+    },
+    "coverage": 0.822,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      true,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9085,
+   "iou_after": 0.9297,
+   "conf_before": 0.1207,
+   "conf_after": 0.0999,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 152,
+   "id": 151,
+   "area": 26994,
+   "centre": [
+    1175.5,
+    650.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.07,
+   "edge": 0.0373,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1915,
+     "inliers": 0.998,
+     "rms_px": 0.37
+    },
+    "x": {
+     "pairs": 29,
+     "inliers": 0.966,
+     "rms_px": 0.089
+    },
+    "coverage": 0.778,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8367,
+   "iou_after": 0.8766,
+   "conf_before": 0.0122,
+   "conf_after": 0.0704,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 155,
+   "id": 154,
+   "area": 15793,
+   "centre": [
+    813.29,
+    875.41
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2006,
+   "edge": 0.0844,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 356,
+     "inliers": 0.947,
+     "rms_px": 0.28
+    },
+    "x": {
+     "pairs": 174,
+     "inliers": 0.954,
+     "rms_px": 0.753
+    },
+    "coverage": 0.967,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8758,
+   "iou_after": 0.8714,
+   "conf_before": 0.0081,
+   "conf_after": 0.2051,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 156,
+   "id": 155,
+   "area": 166,
+   "centre": [
+    1157.0,
+    1077.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0266,
+   "edge": 0.0192,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 105,
+     "inliers": 1.0,
+     "rms_px": 0.177
+    },
+    "coverage": 0.629,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.3274,
+   "iou_after": 0.3203,
+   "conf_before": 0.0,
+   "conf_after": 0.0266,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 161,
+   "id": 160,
+   "area": 25616,
+   "centre": [
+    1051.5,
+    1542.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1244,
+   "edge": 0.0694,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1405,
+     "inliers": 0.629,
+     "rms_px": 0.234
+    },
+    "x": {
+     "pairs": 506,
+     "inliers": 0.682,
+     "rms_px": 0.203
+    },
+    "coverage": 0.886,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.7523,
+   "iou_after": 0.8687,
+   "conf_before": -0.0371,
+   "conf_after": 0.1257,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 162,
+   "id": 161,
+   "area": 29484,
+   "centre": [
+    1378.0,
+    1100.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0,
+   "edge": 0.0002,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 354,
+     "inliers": 1.0,
+     "rms_px": 1.024
+    },
+    "x": {
+     "pairs": 44,
+     "inliers": 1.0,
+     "rms_px": 0.254
+    },
+    "coverage": 0.447,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9079,
+   "iou_after": 0.9558,
+   "conf_before": 0.146,
+   "conf_after": 0.0001,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 163,
+   "id": 162,
+   "area": 1,
+   "centre": [
+    2040.0,
+    1670.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0083,
+   "edge": 0.0124,
+   "coverage": 0.0,
+   "border": {
+    "coverage": 0.0,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0625,
+   "conf_before": 0.0,
+   "conf_after": 0.0083,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 172,
+   "id": 171,
+   "area": 12776,
+   "centre": [
+    163.5,
+    1008.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0378,
+   "edge": 0.0224,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 333,
+     "inliers": 0.976,
+     "rms_px": 0.263
+    },
+    "x": {
+     "pairs": 44,
+     "inliers": 0.977,
+     "rms_px": 0.615
+    },
+    "coverage": 0.751,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9219,
+   "iou_after": 0.9323,
+   "conf_before": 0.0022,
+   "conf_after": 0.0374,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 173,
+   "id": 172,
+   "area": 5054,
+   "centre": [
+    1209.0,
+    119.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 165,
+     "inliers": 0.788,
+     "rms_px": 0.121
+    },
+    "x": {
+     "pairs": 39,
+     "inliers": 0.846,
+     "rms_px": 0.471
+    },
+    "coverage": 0.518,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8525,
+   "iou_after": 0.8918,
+   "conf_before": 0.0764,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 174,
+   "id": 173,
+   "area": 15647,
+   "centre": [
+    1602.86,
+    1872.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.041,
+   "edge": 0.0176,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 362,
+     "inliers": 0.959,
+     "rms_px": 0.3
+    },
+    "x": {
+     "pairs": 175,
+     "inliers": 0.88,
+     "rms_px": 0.593
+    },
+    "coverage": 0.98,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9283,
+   "iou_after": 0.9391,
+   "conf_before": 0.1341,
+   "conf_after": 0.0411,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 175,
+   "id": 174,
+   "area": 3249,
+   "centre": [
+    1145.98,
+    1077.12
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1653,
+   "edge": 0.0253,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 142,
+     "inliers": 1.0,
+     "rms_px": 1.027
+    },
+    "x": {
+     "pairs": 28,
+     "inliers": 1.0,
+     "rms_px": 1.129
+    },
+    "coverage": 0.798,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8896,
+   "iou_after": 0.8225,
+   "conf_before": 0.0,
+   "conf_after": 0.1653,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 176,
+   "id": 175,
+   "area": 79552,
+   "centre": [
+    1381.5,
+    459.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0586,
+   "edge": 0.0387,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 845,
+     "inliers": 0.972,
+     "rms_px": 0.18
+    },
+    "x": {
+     "pairs": 78,
+     "inliers": 0.987,
+     "rms_px": 0.159
+    },
+    "coverage": 0.465,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.7559,
+   "iou_after": 0.9647,
+   "conf_before": 0.2977,
+   "conf_after": 0.0587,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 177,
+   "id": 176,
+   "area": 22234,
+   "centre": [
+    130.98,
+    1444.48
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2152,
+   "edge": 0.2293,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 346,
+     "inliers": 0.936,
+     "rms_px": 0.416
+    },
+    "x": {
+     "pairs": 261,
+     "inliers": 1.0,
+     "rms_px": 1.092
+    },
+    "coverage": 0.951,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8488,
+   "iou_after": 0.9074,
+   "conf_before": 0.2241,
+   "conf_after": 0.2127,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 179,
+   "id": 178,
+   "area": 20792,
+   "centre": [
+    1205.0,
+    661.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0067,
+   "edge": 0.0079,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1757,
+     "inliers": 1.0,
+     "rms_px": 1.631
+    },
+    "x": {
+     "pairs": 39,
+     "inliers": 1.0,
+     "rms_px": 0.211
+    },
+    "coverage": 0.969,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8808,
+   "iou_after": 0.8752,
+   "conf_before": 0.0015,
+   "conf_after": 0.0056,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 180,
+   "id": 179,
+   "area": 25824,
+   "centre": [
+    1736.0,
+    1499.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2417,
+   "edge": 0.07,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1360,
+     "inliers": 0.999,
+     "rms_px": 0.556
+    },
+    "x": {
+     "pairs": 470,
+     "inliers": 0.815,
+     "rms_px": 0.414
+    },
+    "coverage": 0.85,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.501,
+   "iou_after": 0.8148,
+   "conf_before": -0.0255,
+   "conf_after": 0.2444,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 181,
+   "id": 180,
+   "area": 29565,
+   "centre": [
+    1378.0,
+    1472.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 273,
+     "inliers": 0.985,
+     "rms_px": 0.088
+    },
+    "x": {
+     "pairs": 80,
+     "inliers": 1.0,
+     "rms_px": 0.564
+    },
+    "coverage": 0.396,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      true,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8317,
+   "iou_after": 0.9556,
+   "conf_before": 0.3507,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 182,
+   "id": 181,
+   "area": 12248,
+   "centre": [
+    1987.0,
+    1474.82
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0228,
+   "edge": 0.0379,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 122,
+     "inliers": 0.828,
+     "rms_px": 0.663
+    },
+    "x": {
+     "pairs": 343,
+     "inliers": 1.0,
+     "rms_px": 1.291
+    },
+    "coverage": 0.249,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.3308,
+   "iou_after": 0.6754,
+   "conf_before": -0.0047,
+   "conf_after": 0.023,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 183,
+   "id": 182,
+   "area": 636,
+   "centre": [
+    1021.5,
+    473.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 105,
+     "inliers": 0.971,
+     "rms_px": 0.212
+    },
+    "x": {
+     "pairs": 9,
+     "inliers": 1.0,
+     "rms_px": 0.028
+    },
+    "coverage": 0.509,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.636,
+   "iou_after": 0.636,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 185,
+   "id": 184,
+   "area": 735,
+   "centre": [
+    543.0,
+    1710.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.001,
+   "edge": 0.0023,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 121,
+     "inliers": 1.0,
+     "rms_px": 0.25
+    },
+    "x": {
+     "pairs": 3,
+     "inliers": 1.0,
+     "rms_px": 0.048
+    },
+    "coverage": 0.554,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6069,
+   "iou_after": 0.6069,
+   "conf_before": 0.0003,
+   "conf_after": 0.001,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 186,
+   "id": 185,
+   "area": 2723,
+   "centre": [
+    1009.0,
+    789.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0023,
+   "edge": 0.0009,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 643,
+     "inliers": 1.0,
+     "rms_px": 2.072
+    },
+    "x": {
+     "pairs": 3,
+     "inliers": 1.0,
+     "rms_px": 0.69
+    },
+    "coverage": 0.816,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6727,
+   "iou_after": 0.6911,
+   "conf_before": -0.0044,
+   "conf_after": 0.0023,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 187,
+   "id": 186,
+   "area": 567,
+   "centre": [
+    543.0,
+    1810.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 123,
+     "inliers": 1.0,
+     "rms_px": 1.425
+    },
+    "x": {
+     "pairs": 5,
+     "inliers": 1.0,
+     "rms_px": 0.279
+    },
+    "coverage": 0.727,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6032,
+   "iou_after": 0.6032,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 189,
+   "id": 188,
+   "area": 560,
+   "centre": [
+    543.0,
+    1897.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0065,
+   "edge": 0.0132,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 114,
+     "inliers": 1.0,
+     "rms_px": 1.762
+    },
+    "coverage": 0.655,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.5142,
+   "iou_after": 0.6006,
+   "conf_before": -0.0549,
+   "conf_after": -0.0065,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 190,
+   "id": 189,
+   "area": 2548,
+   "centre": [
+    1023.0,
+    776.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0208,
+   "edge": 0.0103,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 617,
+     "inliers": 1.0,
+     "rms_px": 2.192
+    },
+    "x": {
+     "pairs": 6,
+     "inliers": 0.833,
+     "rms_px": 0.682
+    },
+    "coverage": 0.84,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6894,
+   "iou_after": 0.6929,
+   "conf_before": 0.0,
+   "conf_after": 0.0208,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 191,
+   "id": 190,
+   "area": 7434,
+   "centre": [
+    1262.51,
+    1741.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0231,
+   "edge": 0.0127,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 360,
+     "inliers": 0.972,
+     "rms_px": 0.181
+    },
+    "x": {
+     "pairs": 73,
+     "inliers": 0.836,
+     "rms_px": 0.453
+    },
+    "coverage": 0.95,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8599,
+   "iou_after": 0.9119,
+   "conf_before": -0.0274,
+   "conf_after": 0.0231,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 192,
+   "id": 191,
+   "area": 4062,
+   "centre": [
+    627.0,
+    352.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.4478,
+   "edge": 0.2267,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 274,
+     "inliers": 1.0,
+     "rms_px": 1.646
+    },
+    "x": {
+     "pairs": 53,
+     "inliers": 0.887,
+     "rms_px": 0.351
+    },
+    "coverage": 0.956,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.5535,
+   "iou_after": 0.8849,
+   "conf_before": 0.2221,
+   "conf_after": 0.4478,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 193,
+   "id": 192,
+   "area": 41360,
+   "centre": [
+    249.5,
+    356.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0032,
+   "edge": 0.0077,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1014,
+     "inliers": 0.998,
+     "rms_px": 0.194
+    },
+    "x": {
+     "pairs": 119,
+     "inliers": 1.0,
+     "rms_px": 0.17
+    },
+    "coverage": 0.949,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9579,
+   "iou_after": 0.9574,
+   "conf_before": -0.0,
+   "conf_after": 0.0034,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 194,
+   "id": 193,
+   "area": 1494,
+   "centre": [
+    594.93,
+    361.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0415,
+   "edge": 0.0242,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 130,
+     "inliers": 0.954,
+     "rms_px": 0.305
+    },
+    "x": {
+     "pairs": 42,
+     "inliers": 1.0,
+     "rms_px": 1.274
+    },
+    "coverage": 0.835,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7878,
+   "iou_after": 0.8159,
+   "conf_before": 0.0838,
+   "conf_after": 0.0415,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 196,
+   "id": 195,
+   "area": 11076,
+   "centre": [
+    477.0,
+    1797.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.3194,
+   "edge": 0.0678,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 303,
+     "inliers": 0.987,
+     "rms_px": 0.158
+    },
+    "x": {
+     "pairs": 135,
+     "inliers": 0.933,
+     "rms_px": 0.214
+    },
+    "coverage": 0.965,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.947,
+   "iou_after": 0.9041,
+   "conf_before": 0.3144,
+   "conf_after": 0.3175,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 199,
+   "id": 198,
+   "area": 1529,
+   "centre": [
+    1867.47,
+    1380.96
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0005,
+   "edge": 0.0001,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 207,
+     "inliers": 1.0,
+     "rms_px": 0.753
+    },
+    "x": {
+     "pairs": 13,
+     "inliers": 0.692,
+     "rms_px": 0.434
+    },
+    "coverage": 0.659,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6944,
+   "iou_after": 0.6941,
+   "conf_before": 0.017,
+   "conf_after": 0.0005,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 200,
+   "id": 199,
+   "area": 1526,
+   "centre": [
+    599.54,
+    1858.72
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0075,
+   "edge": 0.0261,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 279,
+     "inliers": 0.978,
+     "rms_px": 0.523
+    },
+    "x": {
+     "pairs": 18,
+     "inliers": 0.889,
+     "rms_px": 0.31
+    },
+    "coverage": 0.889,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7351,
+   "iou_after": 0.7262,
+   "conf_before": -0.002,
+   "conf_after": 0.0075,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 201,
+   "id": 200,
+   "area": 80728,
+   "centre": [
+    1010.91,
+    662.65
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1458,
+   "edge": 0.0646,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 2284,
+     "inliers": 0.821,
+     "rms_px": 0.523
+    },
+    "x": {
+     "pairs": 830,
+     "inliers": 1.0,
+     "rms_px": 1.692
+    },
+    "coverage": 0.395,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.7008,
+   "iou_after": 0.8454,
+   "conf_before": 0.1175,
+   "conf_after": 0.1461,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 202,
+   "id": 201,
+   "area": 643877,
+   "centre": [
+    1783.45,
+    640.95
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.3181,
+   "edge": 0.1392,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1553,
+     "inliers": 0.891,
+     "rms_px": 0.884
+    },
+    "x": {
+     "pairs": 1001,
+     "inliers": 0.948,
+     "rms_px": 0.329
+    },
+    "coverage": 0.664,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8925,
+   "iou_after": 0.9879,
+   "conf_before": 0.4141,
+   "conf_after": 0.3176,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 203,
+   "id": 202,
+   "area": 4380,
+   "centre": [
+    366.5,
+    1576.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0032,
+   "edge": 0.0063,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 852,
+     "inliers": 1.0,
+     "rms_px": 0.284
+    },
+    "x": {
+     "pairs": 20,
+     "inliers": 1.0,
+     "rms_px": 0.2
+    },
+    "coverage": 0.973,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7033,
+   "iou_after": 0.7082,
+   "conf_before": 0.0122,
+   "conf_after": 0.0032,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 204,
+   "id": 203,
+   "area": 4390,
+   "centre": [
+    366.5,
+    685.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 686,
+     "inliers": 0.997,
+     "rms_px": 0.447
+    },
+    "x": {
+     "pairs": 19,
+     "inliers": 1.0,
+     "rms_px": 0.057
+    },
+    "coverage": 0.785,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7615,
+   "iou_after": 0.7615,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 205,
+   "id": 204,
+   "area": 4910,
+   "centre": [
+    1437.5,
+    1527.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0002,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 982,
+     "inliers": 1.0,
+     "rms_px": 1.719
+    },
+    "x": {
+     "pairs": 20,
+     "inliers": 1.0,
+     "rms_px": 0.026
+    },
+    "coverage": 1.0,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0634,
+   "iou_after": 0.7083,
+   "conf_before": -0.0095,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 206,
+   "id": 205,
+   "area": 4400,
+   "centre": [
+    366.5,
+    238.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.036,
+   "edge": 0.0126,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 721,
+     "inliers": 0.975,
+     "rms_px": 0.349
+    },
+    "x": {
+     "pairs": 13,
+     "inliers": 0.923,
+     "rms_px": 0.242
+    },
+    "coverage": 0.816,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7197,
+   "iou_after": 0.7593,
+   "conf_before": 0.0351,
+   "conf_after": 0.036,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 207,
+   "id": 206,
+   "area": 4390,
+   "centre": [
+    366.5,
+    1131.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0008,
+   "edge": 0.0001,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 702,
+     "inliers": 0.996,
+     "rms_px": 0.412
+    },
+    "x": {
+     "pairs": 17,
+     "inliers": 1.0,
+     "rms_px": 0.048
+    },
+    "coverage": 0.801,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7536,
+   "iou_after": 0.7536,
+   "conf_before": 0.0019,
+   "conf_after": 0.0008,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 208,
+   "id": 207,
+   "area": 12670,
+   "centre": [
+    1437.5,
+    641.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1253,
+   "edge": 0.0292,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 2518,
+     "inliers": 1.0,
+     "rms_px": 1.717
+    },
+    "x": {
+     "pairs": 20,
+     "inliers": 1.0,
+     "rms_px": 0.245
+    },
+    "coverage": 0.994,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.3439,
+   "iou_after": 0.7661,
+   "conf_before": -0.0427,
+   "conf_after": 0.1242,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 209,
+   "id": 208,
+   "area": 456,
+   "centre": [
+    785.5,
+    1663.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0047,
+   "edge": 0.014,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 30,
+     "inliers": 0.8,
+     "rms_px": 0.821
+    },
+    "x": {
+     "pairs": 29,
+     "inliers": 1.0,
+     "rms_px": 1.72
+    },
+    "coverage": 0.567,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7192,
+   "iou_after": 0.7192,
+   "conf_before": 0.0014,
+   "conf_after": -0.0047,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 218,
+   "id": 217,
+   "area": 241,
+   "centre": [
+    928.24,
+    1444.95
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0026,
+   "edge": 0.0059,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 22,
+     "inliers": 1.0,
+     "rms_px": 1.797
+    },
+    "x": {
+     "pairs": 25,
+     "inliers": 0.72,
+     "rms_px": 0.489
+    },
+    "coverage": 0.618,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6393,
+   "iou_after": 0.6393,
+   "conf_before": 0.0,
+   "conf_after": 0.0026,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 219,
+   "id": 218,
+   "area": 474,
+   "centre": [
+    1507.91,
+    1828.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0215,
+   "edge": 0.0135,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 47,
+     "inliers": 1.0,
+     "rms_px": 0.998
+    },
+    "x": {
+     "pairs": 49,
+     "inliers": 1.0,
+     "rms_px": 0.898
+    },
+    "coverage": 0.906,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.727,
+   "iou_after": 0.727,
+   "conf_before": 0.0,
+   "conf_after": 0.0215,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 225,
+   "id": 224,
+   "area": 84,
+   "centre": [
+    148.31,
+    1274.74
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "x": {
+     "pairs": 17,
+     "inliers": 1.0,
+     "rms_px": 0.551
+    },
+    "y": {
+     "pairs": 20,
+     "inliers": 0.95,
+     "rms_px": 0.657
+    },
+    "coverage": 0.925,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 226,
+   "id": 225,
+   "area": 86,
+   "centre": [
+    196.76,
+    1527.64
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0311,
+   "edge": 0.0347,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 9,
+     "inliers": 0.778,
+     "rms_px": 0.217
+    },
+    "x": {
+     "pairs": 9,
+     "inliers": 1.0,
+     "rms_px": 0.266
+    },
+    "coverage": 0.429,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4751,
+   "iou_after": 0.4751,
+   "conf_before": 0.0,
+   "conf_after": -0.0311,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 228,
+   "id": 227,
+   "area": 236,
+   "centre": [
+    1998.78,
+    1687.2
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1329,
+   "edge": 0.1511,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 34,
+     "inliers": 1.0,
+     "rms_px": 0.933
+    },
+    "x": {
+     "pairs": 34,
+     "inliers": 0.971,
+     "rms_px": 0.897
+    },
+    "coverage": 0.919,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.6744,
+   "conf_before": 0.0,
+   "conf_after": 0.1329,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 229,
+   "id": 228,
+   "area": 475,
+   "centre": [
+    833.49,
+    597.23
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 24,
+     "inliers": 1.0,
+     "rms_px": 1.609
+    },
+    "x": {
+     "pairs": 21,
+     "inliers": 1.0,
+     "rms_px": 1.355
+    },
+    "coverage": 0.433,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7145,
+   "iou_after": 0.7252,
+   "conf_before": -0.0658,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 234,
+   "id": 233,
+   "area": 85,
+   "centre": [
+    1023.36,
+    538.8
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0103,
+   "edge": 0.0031,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 13,
+     "inliers": 1.0,
+     "rms_px": 0.89
+    },
+    "x": {
+     "pairs": 16,
+     "inliers": 1.0,
+     "rms_px": 0.99
+    },
+    "coverage": 0.69,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4722,
+   "iou_after": 0.4722,
+   "conf_before": 0.0,
+   "conf_after": 0.0103,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 236,
+   "id": 235,
+   "area": 85,
+   "centre": [
+    197.36,
+    1699.8
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 10,
+     "inliers": 0.9,
+     "rms_px": 0.269
+    },
+    "coverage": 0.262,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 237,
+   "id": 236,
+   "area": 81,
+   "centre": [
+    197.31,
+    1549.44
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 10,
+     "inliers": 0.9,
+     "rms_px": 0.338
+    },
+    "x": {
+     "pairs": 9,
+     "inliers": 1.0,
+     "rms_px": 0.915
+    },
+    "coverage": 0.475,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4629,
+   "iou_after": 0.4629,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 238,
+   "id": 237,
+   "area": 236,
+   "centre": [
+    1018.78,
+    1000.2
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.1064,
+   "edge": 0.1296,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 34,
+     "inliers": 1.0,
+     "rms_px": 1.33
+    },
+    "x": {
+     "pairs": 26,
+     "inliers": 1.0,
+     "rms_px": 1.274
+    },
+    "coverage": 0.811,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6667,
+   "iou_after": 0.4121,
+   "conf_before": 0.1267,
+   "conf_after": -0.1064,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 239,
+   "id": 238,
+   "area": 456,
+   "centre": [
+    833.5,
+    637.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0015,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 26,
+     "inliers": 1.0,
+     "rms_px": 1.38
+    },
+    "x": {
+     "pairs": 20,
+     "inliers": 1.0,
+     "rms_px": 1.048
+    },
+    "coverage": 0.442,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7154,
+   "iou_after": 0.717,
+   "conf_before": -0.0204,
+   "conf_after": -0.0015,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 240,
+   "id": 239,
+   "area": 85,
+   "centre": [
+    131.36,
+    1274.68
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "x": {
+     "pairs": 19,
+     "inliers": 1.0,
+     "rms_px": 0.743
+    },
+    "y": {
+     "pairs": 21,
+     "inliers": 0.952,
+     "rms_px": 0.453
+    },
+    "coverage": 0.952,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 241,
+   "id": 240,
+   "area": 80,
+   "centre": [
+    181.25,
+    1549.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 9,
+     "inliers": 1.0,
+     "rms_px": 0.392
+    },
+    "x": {
+     "pairs": 9,
+     "inliers": 1.0,
+     "rms_px": 0.914
+    },
+    "coverage": 0.474,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4444,
+   "iou_after": 0.4444,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 242,
+   "id": 241,
+   "area": 85,
+   "centre": [
+    197.36,
+    1274.68
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0001,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 9,
+     "inliers": 0.889,
+     "rms_px": 0.099
+    },
+    "x": {
+     "pairs": 3,
+     "inliers": 1.0,
+     "rms_px": 0.457
+    },
+    "coverage": 0.286,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 243,
+   "id": 242,
+   "area": 80,
+   "centre": [
+    164.46,
+    1275.06
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 18,
+     "inliers": 0.889,
+     "rms_px": 0.132
+    },
+    "x": {
+     "pairs": 18,
+     "inliers": 1.0,
+     "rms_px": 1.226
+    },
+    "coverage": 0.857,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 245,
+   "id": 244,
+   "area": 84,
+   "centre": [
+    181.31,
+    1274.74
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 19,
+     "inliers": 1.0,
+     "rms_px": 0.245
+    },
+    "x": {
+     "pairs": 18,
+     "inliers": 0.889,
+     "rms_px": 0.707
+    },
+    "coverage": 0.925,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 246,
+   "id": 245,
+   "area": 84,
+   "centre": [
+    181.31,
+    1529.74
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 9,
+     "inliers": 0.889,
+     "rms_px": 0.055
+    },
+    "x": {
+     "pairs": 18,
+     "inliers": 1.0,
+     "rms_px": 0.889
+    },
+    "coverage": 0.675,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4516,
+   "iou_after": 0.4516,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 247,
+   "id": 246,
+   "area": 82,
+   "centre": [
+    196.82,
+    1357.6
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 6,
+     "inliers": 0.833,
+     "rms_px": 0.35
+    },
+    "x": {
+     "pairs": 6,
+     "inliers": 1.0,
+     "rms_px": 0.648
+    },
+    "coverage": 0.3,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4713,
+   "iou_after": 0.4713,
+   "conf_before": 0.0,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 248,
+   "id": 247,
+   "area": 237,
+   "centre": [
+    1947.03,
+    1688.44
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1012,
+   "edge": 0.0814,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 35,
+     "inliers": 1.0,
+     "rms_px": 0.852
+    },
+    "x": {
+     "pairs": 29,
+     "inliers": 0.966,
+     "rms_px": 0.79
+    },
+    "coverage": 0.865,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6207,
+   "iou_after": 0.6714,
+   "conf_before": 0.0536,
+   "conf_after": 0.1012,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 253,
+   "id": 252,
+   "area": 13516,
+   "centre": [
+    1186.65,
+    1575.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0181,
+   "edge": 0.0462,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 259,
+     "inliers": 0.981,
+     "rms_px": 0.248
+    },
+    "x": {
+     "pairs": 204,
+     "inliers": 0.926,
+     "rms_px": 0.348
+    },
+    "coverage": 0.961,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9367,
+   "iou_after": 0.9424,
+   "conf_before": -0.0121,
+   "conf_after": 0.0175,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 254,
+   "id": 253,
+   "area": 18901,
+   "centre": [
+    1504.88,
+    1186.22
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1468,
+   "edge": 0.0604,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 440,
+     "inliers": 0.948,
+     "rms_px": 0.345
+    },
+    "x": {
+     "pairs": 141,
+     "inliers": 1.0,
+     "rms_px": 1.054
+    },
+    "coverage": 0.739,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      true,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.7731,
+   "iou_after": 0.9171,
+   "conf_before": 0.1527,
+   "conf_after": 0.15,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 255,
+   "id": 254,
+   "area": 7994,
+   "centre": [
+    625.48,
+    587.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.3677,
+   "edge": 0.1193,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 540,
+     "inliers": 0.961,
+     "rms_px": 0.477
+    },
+    "x": {
+     "pairs": 41,
+     "inliers": 0.732,
+     "rms_px": 0.233
+    },
+    "coverage": 0.857,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6669,
+   "iou_after": 0.9337,
+   "conf_before": 0.301,
+   "conf_after": 0.3676,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 256,
+   "id": 255,
+   "area": 1742,
+   "centre": [
+    625.5,
+    1723.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0538,
+   "edge": 0.0285,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 84,
+     "inliers": 0.964,
+     "rms_px": 0.412
+    },
+    "x": {
+     "pairs": 2,
+     "inliers": 1.0,
+     "rms_px": 0.113
+    },
+    "coverage": 0.462,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7179,
+   "iou_after": 0.8543,
+   "conf_before": 0.0544,
+   "conf_after": 0.0538,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 257,
+   "id": 256,
+   "area": 2964,
+   "centre": [
+    625.5,
+    1533.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0627,
+   "edge": 0.0286,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 183,
+     "inliers": 1.0,
+     "rms_px": 0.36
+    },
+    "x": {
+     "pairs": 23,
+     "inliers": 0.739,
+     "rms_px": 0.435
+    },
+    "coverage": 0.736,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7369,
+   "iou_after": 0.8723,
+   "conf_before": -0.0016,
+   "conf_after": 0.0627,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 258,
+   "id": 257,
+   "area": 8558,
+   "centre": [
+    959.5,
+    1124.51
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0001,
+   "edge": 0.0099,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 219,
+     "inliers": 1.0,
+     "rms_px": 0.767
+    },
+    "x": {
+     "pairs": 108,
+     "inliers": 1.0,
+     "rms_px": 0.246
+    },
+    "coverage": 0.826,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9224,
+   "iou_after": 0.9224,
+   "conf_before": -0.0012,
+   "conf_after": 0.0001,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 259,
+   "id": 258,
+   "area": 2990,
+   "centre": [
+    625.5,
+    1412.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1273,
+   "edge": 0.036,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 173,
+     "inliers": 0.988,
+     "rms_px": 0.193
+    },
+    "x": {
+     "pairs": 31,
+     "inliers": 1.0,
+     "rms_px": 0.163
+    },
+    "coverage": 0.723,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6616,
+   "iou_after": 0.8814,
+   "conf_before": -0.0142,
+   "conf_after": 0.1273,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 260,
+   "id": 259,
+   "area": 8616,
+   "centre": [
+    1053.76,
+    1414.63
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0713,
+   "edge": 0.026,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 206,
+     "inliers": 0.985,
+     "rms_px": 0.794
+    },
+    "x": {
+     "pairs": 129,
+     "inliers": 0.992,
+     "rms_px": 0.875
+    },
+    "coverage": 0.842,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9067,
+   "iou_after": 0.8854,
+   "conf_before": 0.0266,
+   "conf_after": 0.071,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 261,
+   "id": 260,
+   "area": 2210,
+   "centre": [
+    625.5,
+    1640.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0625,
+   "edge": 0.0258,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 125,
+     "inliers": 1.0,
+     "rms_px": 0.697
+    },
+    "x": {
+     "pairs": 34,
+     "inliers": 1.0,
+     "rms_px": 0.186
+    },
+    "coverage": 0.716,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6958,
+   "iou_after": 0.8638,
+   "conf_before": -0.0047,
+   "conf_after": 0.0625,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 262,
+   "id": 261,
+   "area": 1040,
+   "centre": [
+    625.5,
+    1924.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1236,
+   "edge": 0.0566,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 62,
+     "inliers": 1.0,
+     "rms_px": 0.856
+    },
+    "x": {
+     "pairs": 5,
+     "inliers": 1.0,
+     "rms_px": 0.522
+    },
+    "coverage": 0.508,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.5885,
+   "iou_after": 0.8195,
+   "conf_before": 0.1111,
+   "conf_after": 0.1236,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 263,
+   "id": 262,
+   "area": 3848,
+   "centre": [
+    625.5,
+    980.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2874,
+   "edge": 0.0396,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 251,
+     "inliers": 1.0,
+     "rms_px": 0.149
+    },
+    "x": {
+     "pairs": 46,
+     "inliers": 1.0,
+     "rms_px": 0.161
+    },
+    "coverage": 0.853,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6506,
+   "iou_after": 0.911,
+   "conf_before": 0.2752,
+   "conf_after": 0.2874,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 264,
+   "id": 263,
+   "area": 4613,
+   "centre": [
+    903.7,
+    1433.1
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1136,
+   "edge": 0.0938,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 296,
+     "inliers": 0.956,
+     "rms_px": 0.76
+    },
+    "x": {
+     "pairs": 83,
+     "inliers": 1.0,
+     "rms_px": 1.179
+    },
+    "coverage": 0.803,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.5855,
+   "iou_after": 0.7467,
+   "conf_before": -0.1764,
+   "conf_after": 0.1136,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 265,
+   "id": 264,
+   "area": 3614,
+   "centre": [
+    625.5,
+    1278.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0863,
+   "edge": 0.036,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 270,
+     "inliers": 0.989,
+     "rms_px": 0.108
+    },
+    "x": {
+     "pairs": 46,
+     "inliers": 1.0,
+     "rms_px": 0.113
+    },
+    "coverage": 0.958,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6508,
+   "iou_after": 0.8776,
+   "conf_before": 0.0039,
+   "conf_after": 0.0863,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 266,
+   "id": 265,
+   "area": 4481,
+   "centre": [
+    1062.33,
+    1570.13
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0158,
+   "edge": 0.0732,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 76,
+     "inliers": 1.0,
+     "rms_px": 1.685
+    },
+    "x": {
+     "pairs": 13,
+     "inliers": 1.0,
+     "rms_px": 1.742
+    },
+    "coverage": 0.189,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8367,
+   "iou_after": 0.7759,
+   "conf_before": 0.0363,
+   "conf_after": 0.0158,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 267,
+   "id": 266,
+   "area": 286,
+   "centre": [
+    1886.0,
+    1317.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 25,
+     "inliers": 0.92,
+     "rms_px": 0.424
+    },
+    "x": {
+     "pairs": 6,
+     "inliers": 1.0,
+     "rms_px": 0.22
+    },
+    "coverage": 0.419,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.3929,
+   "iou_after": 0.6341,
+   "conf_before": -0.0492,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 268,
+   "id": 267,
+   "area": 1040,
+   "centre": [
+    625.5,
+    1783.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0924,
+   "edge": 0.0531,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 55,
+     "inliers": 0.964,
+     "rms_px": 0.244
+    },
+    "x": {
+     "pairs": 5,
+     "inliers": 1.0,
+     "rms_px": 0.253
+    },
+    "coverage": 0.455,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.5726,
+   "iou_after": 0.8106,
+   "conf_before": -0.088,
+   "conf_after": 0.0924,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 269,
+   "id": 268,
+   "area": 1040,
+   "centre": [
+    625.5,
+    1830.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0301,
+   "edge": 0.0172,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 57,
+     "inliers": 1.0,
+     "rms_px": 0.975
+    },
+    "coverage": 0.432,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6625,
+   "iou_after": 0.7963,
+   "conf_before": -0.0675,
+   "conf_after": 0.0301,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 270,
+   "id": 269,
+   "area": 3640,
+   "centre": [
+    625.5,
+    1131.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2143,
+   "edge": 0.0384,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 254,
+     "inliers": 1.0,
+     "rms_px": 0.261
+    },
+    "x": {
+     "pairs": 51,
+     "inliers": 1.0,
+     "rms_px": 0.158
+    },
+    "coverage": 0.919,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6204,
+   "iou_after": 0.8981,
+   "conf_before": 0.023,
+   "conf_after": 0.2143,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 271,
+   "id": 270,
+   "area": 4481,
+   "centre": [
+    1985.33,
+    1572.13
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1262,
+   "edge": 0.0727,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 281,
+     "inliers": 0.989,
+     "rms_px": 1.001
+    },
+    "x": {
+     "pairs": 84,
+     "inliers": 0.988,
+     "rms_px": 1.196
+    },
+    "coverage": 0.777,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.7799,
+   "iou_after": 0.841,
+   "conf_before": 0.3722,
+   "conf_after": 0.1262,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 272,
+   "id": 271,
+   "area": 3874,
+   "centre": [
+    625.5,
+    825.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.3554,
+   "edge": 0.0952,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 276,
+     "inliers": 1.0,
+     "rms_px": 0.186
+    },
+    "x": {
+     "pairs": 34,
+     "inliers": 1.0,
+     "rms_px": 0.197
+    },
+    "coverage": 0.886,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6463,
+   "iou_after": 0.9154,
+   "conf_before": 0.2398,
+   "conf_after": 0.3554,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 273,
+   "id": 272,
+   "area": 4476,
+   "centre": [
+    1985.32,
+    1378.87
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2183,
+   "edge": 0.1609,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 251,
+     "inliers": 1.0,
+     "rms_px": 1.495
+    },
+    "x": {
+     "pairs": 71,
+     "inliers": 1.0,
+     "rms_px": 1.57
+    },
+    "coverage": 0.685,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.7777,
+   "iou_after": 0.8832,
+   "conf_before": 0.1703,
+   "conf_after": 0.2183,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 274,
+   "id": 273,
+   "area": 286,
+   "centre": [
+    1886.0,
+    1350.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 32,
+     "inliers": 0.969,
+     "rms_px": 0.333
+    },
+    "x": {
+     "pairs": 2,
+     "inliers": 1.0,
+     "rms_px": 0.12
+    },
+    "coverage": 0.459,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.1862,
+   "iou_after": 0.6341,
+   "conf_before": -0.3779,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 275,
+   "id": 274,
+   "area": 1040,
+   "centre": [
+    625.5,
+    1877.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0012,
+   "edge": 0.0002,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 80,
+     "inliers": 0.963,
+     "rms_px": 0.251
+    },
+    "x": {
+     "pairs": 45,
+     "inliers": 1.0,
+     "rms_px": 0.171
+    },
+    "coverage": 0.947,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7216,
+   "iou_after": 0.7963,
+   "conf_before": 0.0516,
+   "conf_after": 0.0012,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 276,
+   "id": 275,
+   "area": 2121,
+   "centre": [
+    398.52,
+    1876.56
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.095,
+   "edge": 0.0574,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 68,
+     "inliers": 1.0,
+     "rms_px": 1.179
+    },
+    "x": {
+     "pairs": 9,
+     "inliers": 1.0,
+     "rms_px": 0.346
+    },
+    "coverage": 0.41,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8654,
+   "iou_after": 0.8692,
+   "conf_before": 0.097,
+   "conf_after": 0.095,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 277,
+   "id": 276,
+   "area": 2121,
+   "centre": [
+    398.52,
+    1815.56
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1205,
+   "edge": 0.0681,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 59,
+     "inliers": 0.949,
+     "rms_px": 0.633
+    },
+    "x": {
+     "pairs": 5,
+     "inliers": 1.0,
+     "rms_px": 0.395
+    },
+    "coverage": 0.34,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8654,
+   "iou_after": 0.8644,
+   "conf_before": 0.0679,
+   "conf_after": 0.1205,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 279,
+   "id": 278,
+   "area": 101250,
+   "centre": [
+    247.0,
+    1296.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2284,
+   "edge": 0.0713,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 2686,
+     "inliers": 0.997,
+     "rms_px": 0.523
+    },
+    "x": {
+     "pairs": 117,
+     "inliers": 0.991,
+     "rms_px": 0.097
+    },
+    "coverage": 0.984,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9511,
+   "iou_after": 0.961,
+   "conf_before": 0.1435,
+   "conf_after": 0.228,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 281,
+   "id": 280,
+   "area": 101175,
+   "centre": [
+    479.0,
+    907.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0644,
+   "edge": 0.0393,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1359,
+     "inliers": 0.985,
+     "rms_px": 0.154
+    },
+    "x": {
+     "pairs": 116,
+     "inliers": 1.0,
+     "rms_px": 0.133
+    },
+    "coverage": 0.518,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9375,
+   "iou_after": 0.9577,
+   "conf_before": 0.063,
+   "conf_after": 0.0665,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 282,
+   "id": 281,
+   "area": 91200,
+   "centre": [
+    1073.0,
+    644.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0908,
+   "edge": 0.0611,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 2142,
+     "inliers": 1.0,
+     "rms_px": 1.055
+    },
+    "x": {
+     "pairs": 111,
+     "inliers": 0.991,
+     "rms_px": 0.305
+    },
+    "coverage": 0.873,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9054,
+   "iou_after": 0.9545,
+   "conf_before": 0.0354,
+   "conf_after": 0.0913,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 283,
+   "id": 282,
+   "area": 8550,
+   "centre": [
+    1983.5,
+    1846.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0079,
+   "edge": 0.0037,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 29,
+     "inliers": 1.0,
+     "rms_px": 1.561
+    },
+    "x": {
+     "pairs": 72,
+     "inliers": 0.944,
+     "rms_px": 0.678
+    },
+    "coverage": 0.264,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.641,
+   "iou_after": 0.9267,
+   "conf_before": 0.1045,
+   "conf_after": 0.0079,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 295,
+   "id": 294,
+   "area": 67800,
+   "centre": [
+    77.0,
+    830.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0583,
+   "edge": 0.0146,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1422,
+     "inliers": 1.0,
+     "rms_px": 1.277
+    },
+    "x": {
+     "pairs": 108,
+     "inliers": 0.981,
+     "rms_px": 0.183
+    },
+    "coverage": 0.781,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9428,
+   "iou_after": 0.9459,
+   "conf_before": 0.0395,
+   "conf_after": 0.0606,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 299,
+   "id": 298,
+   "area": 30155,
+   "centre": [
+    947.0,
+    129.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0133,
+   "edge": 0.0017,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 204,
+     "inliers": 1.0,
+     "rms_px": 1.298
+    },
+    "x": {
+     "pairs": 170,
+     "inliers": 0.982,
+     "rms_px": 0.118
+    },
+    "coverage": 0.537,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9094,
+   "iou_after": 0.96,
+   "conf_before": 0.1161,
+   "conf_after": 0.0133,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 300,
+   "id": 299,
+   "area": 24382,
+   "centre": [
+    938.5,
+    504.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0164,
+   "edge": 0.0097,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 248,
+     "inliers": 0.992,
+     "rms_px": 0.165
+    },
+    "x": {
+     "pairs": 187,
+     "inliers": 0.989,
+     "rms_px": 0.217
+    },
+    "coverage": 0.695,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9548,
+   "iou_after": 0.962,
+   "conf_before": 0.0278,
+   "conf_after": 0.0163,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 302,
+   "id": 301,
+   "area": 11264,
+   "centre": [
+    163.5,
+    1183.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1788,
+   "edge": 0.1277,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 263,
+     "inliers": 0.966,
+     "rms_px": 0.323
+    },
+    "x": {
+     "pairs": 50,
+     "inliers": 1.0,
+     "rms_px": 1.283
+    },
+    "coverage": 0.68,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9042,
+   "iou_after": 0.9366,
+   "conf_before": 0.1448,
+   "conf_after": 0.1786,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 304,
+   "id": 303,
+   "area": 4403,
+   "centre": [
+    572.0,
+    1855.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.0199,
+   "edge": 0.0224,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 163,
+     "inliers": 0.988,
+     "rms_px": 0.245
+    },
+    "x": {
+     "pairs": 46,
+     "inliers": 0.848,
+     "rms_px": 0.415
+    },
+    "coverage": 0.594,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8528,
+   "iou_after": 0.8318,
+   "conf_before": 0.09,
+   "conf_after": -0.0199,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 306,
+   "id": 305,
+   "area": 57855,
+   "centre": [
+    932.0,
+    812.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0846,
+   "edge": 0.0536,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 637,
+     "inliers": 0.934,
+     "rms_px": 0.422
+    },
+    "x": {
+     "pairs": 188,
+     "inliers": 0.947,
+     "rms_px": 0.667
+    },
+    "coverage": 0.726,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9669,
+   "iou_after": 0.9719,
+   "conf_before": 0.0556,
+   "conf_after": 0.0846,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 308,
+   "id": 307,
+   "area": 14192,
+   "centre": [
+    1522.24,
+    89.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1659,
+   "edge": 0.0134,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 134,
+     "inliers": 0.963,
+     "rms_px": 0.449
+    },
+    "x": {
+     "pairs": 77,
+     "inliers": 0.818,
+     "rms_px": 0.649
+    },
+    "coverage": 0.415,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      true
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.7185,
+   "iou_after": 0.8475,
+   "conf_before": 0.0643,
+   "conf_after": 0.1692,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 310,
+   "id": 309,
+   "area": 3114,
+   "centre": [
+    1022.04,
+    1653.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2173,
+   "edge": 0.1261,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 266,
+     "inliers": 0.989,
+     "rms_px": 0.487
+    },
+    "x": {
+     "pairs": 44,
+     "inliers": 1.0,
+     "rms_px": 1.072
+    },
+    "coverage": 0.906,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.2935,
+   "iou_after": 0.8505,
+   "conf_before": -0.3536,
+   "conf_after": 0.2173,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 311,
+   "id": 310,
+   "area": 67800,
+   "centre": [
+    692.0,
+    1492.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2859,
+   "edge": 0.2447,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1688,
+     "inliers": 1.0,
+     "rms_px": 0.136
+    },
+    "x": {
+     "pairs": 143,
+     "inliers": 1.0,
+     "rms_px": 0.094
+    },
+    "coverage": 0.935,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8992,
+   "iou_after": 0.9606,
+   "conf_before": 0.169,
+   "conf_after": 0.2857,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 312,
+   "id": 311,
+   "area": 67800,
+   "centre": [
+    165.0,
+    459.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0512,
+   "edge": 0.0076,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1771,
+     "inliers": 0.998,
+     "rms_px": 0.172
+    },
+    "x": {
+     "pairs": 83,
+     "inliers": 0.952,
+     "rms_px": 0.27
+    },
+    "coverage": 0.947,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9131,
+   "iou_after": 0.9443,
+   "conf_before": 0.0375,
+   "conf_after": 0.0511,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 314,
+   "id": 313,
+   "area": 19847,
+   "centre": [
+    129.95,
+    1625.4
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1857,
+   "edge": 0.0236,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 226,
+     "inliers": 0.969,
+     "rms_px": 0.347
+    },
+    "x": {
+     "pairs": 9,
+     "inliers": 1.0,
+     "rms_px": 0.968
+    },
+    "coverage": 0.393,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      true
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.627,
+   "iou_after": 0.7522,
+   "conf_before": 0.2535,
+   "conf_after": 0.1864,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 315,
+   "id": 314,
+   "area": 30155,
+   "centre": [
+    947.0,
+    321.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0189,
+   "edge": 0.0101,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 258,
+     "inliers": 0.946,
+     "rms_px": 0.268
+    },
+    "x": {
+     "pairs": 217,
+     "inliers": 0.991,
+     "rms_px": 0.217
+    },
+    "coverage": 0.682,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9647,
+   "iou_after": 0.9653,
+   "conf_before": 0.0,
+   "conf_after": 0.0188,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 316,
+   "id": 315,
+   "area": 26373,
+   "centre": [
+    1209.0,
+    1414.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.001,
+   "edge": 0.0064,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 301,
+     "inliers": 1.0,
+     "rms_px": 0.1
+    },
+    "x": {
+     "pairs": 259,
+     "inliers": 1.0,
+     "rms_px": 0.174
+    },
+    "coverage": 0.859,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9576,
+   "iou_after": 0.9578,
+   "conf_before": -0.0006,
+   "conf_after": -0.0009,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 318,
+   "id": 317,
+   "area": 6274,
+   "centre": [
+    398.51,
+    1702.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0053,
+   "edge": 0.0047,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 307,
+     "inliers": 0.984,
+     "rms_px": 0.218
+    },
+    "x": {
+     "pairs": 80,
+     "inliers": 0.938,
+     "rms_px": 0.512
+    },
+    "coverage": 0.972,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.9284,
+   "iou_after": 0.9101,
+   "conf_before": 0.18,
+   "conf_after": 0.0053,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 320,
+   "id": 319,
+   "area": 3453,
+   "centre": [
+    1260.0,
+    1570.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0217,
+   "edge": 0.0077,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 241,
+     "inliers": 0.996,
+     "rms_px": 0.236
+    },
+    "x": {
+     "pairs": 58,
+     "inliers": 1.0,
+     "rms_px": 0.317
+    },
+    "coverage": 0.997,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8793,
+   "iou_after": 0.8809,
+   "conf_before": 0.0,
+   "conf_after": 0.0217,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 322,
+   "id": 321,
+   "area": 1241,
+   "centre": [
+    1086.12,
+    1689.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0041,
+   "edge": 0.0014,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 68,
+     "inliers": 0.926,
+     "rms_px": 1.073
+    },
+    "x": {
+     "pairs": 30,
+     "inliers": 1.0,
+     "rms_px": 1.471
+    },
+    "coverage": 0.533,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7772,
+   "iou_after": 0.779,
+   "conf_before": -0.038,
+   "conf_after": 0.0041,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 323,
+   "id": 322,
+   "area": 2000,
+   "centre": [
+    398.5,
+    1935.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1224,
+   "edge": 0.0732,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 46,
+     "inliers": 1.0,
+     "rms_px": 1.021
+    },
+    "x": {
+     "pairs": 10,
+     "inliers": 0.9,
+     "rms_px": 0.363
+    },
+    "coverage": 0.311,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      true
+     ],
+     [
+      true,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.8376,
+   "iou_after": 0.8692,
+   "conf_before": 0.2427,
+   "conf_after": 0.1224,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 325,
+   "id": 324,
+   "area": 4410,
+   "centre": [
+    473.0,
+    1917.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2471,
+   "edge": 0.0294,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 131,
+     "inliers": 1.0,
+     "rms_px": 0.063
+    },
+    "x": {
+     "pairs": 122,
+     "inliers": 1.0,
+     "rms_px": 0.101
+    },
+    "coverage": 0.951,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9151,
+   "iou_after": 0.8451,
+   "conf_before": 0.3075,
+   "conf_after": 0.2471,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 329,
+   "id": 328,
+   "area": 7450,
+   "centre": [
+    403.5,
+    1541.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 130,
+     "inliers": 0.923,
+     "rms_px": 0.106
+    },
+    "x": {
+     "pairs": 45,
+     "inliers": 0.956,
+     "rms_px": 0.364
+    },
+    "coverage": 0.44,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      true,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9244,
+   "iou_after": 0.9226,
+   "conf_before": 0.0247,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 333,
+   "id": 332,
+   "area": 615,
+   "centre": [
+    779.75,
+    59.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 91,
+     "inliers": 0.989,
+     "rms_px": 0.224
+    },
+    "x": {
+     "pairs": 11,
+     "inliers": 1.0,
+     "rms_px": 1.424
+    },
+    "coverage": 0.689,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.3406,
+   "iou_after": 0.6692,
+   "conf_before": -0.1336,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 336,
+   "id": 335,
+   "area": 19720,
+   "centre": [
+    1310.5,
+    1571.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0243,
+   "edge": 0.0146,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 852,
+     "inliers": 0.981,
+     "rms_px": 0.212
+    },
+    "x": {
+     "pairs": 66,
+     "inliers": 1.0,
+     "rms_px": 0.144
+    },
+    "coverage": 0.861,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.9109,
+   "iou_after": 0.9131,
+   "conf_before": 0.0083,
+   "conf_after": 0.0244,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 337,
+   "id": 336,
+   "area": 18560,
+   "centre": [
+    1137.5,
+    754.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0213,
+   "edge": 0.011,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 845,
+     "inliers": 0.988,
+     "rms_px": 0.294
+    },
+    "x": {
+     "pairs": 49,
+     "inliers": 0.939,
+     "rms_px": 0.193
+    },
+    "coverage": 0.887,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      true,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.9244,
+   "iou_after": 0.9108,
+   "conf_before": 0.0109,
+   "conf_after": 0.0217,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 338,
+   "id": 337,
+   "area": 19160,
+   "centre": [
+    1137.5,
+    276.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0009,
+   "edge": 0.0002,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 908,
+     "inliers": 0.989,
+     "rms_px": 0.251
+    },
+    "x": {
+     "pairs": 41,
+     "inliers": 0.976,
+     "rms_px": 0.185
+    },
+    "coverage": 0.914,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.9064,
+   "iou_after": 0.9236,
+   "conf_before": 0.0321,
+   "conf_after": 0.0009,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 339,
+   "id": 338,
+   "area": 52400,
+   "centre": [
+    1310.5,
+    662.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0215,
+   "edge": 0.0152,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 1277,
+     "inliers": 1.0,
+     "rms_px": 0.081
+    },
+    "x": {
+     "pairs": 67,
+     "inliers": 1.0,
+     "rms_px": 0.118
+    },
+    "coverage": 0.498,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.9019,
+   "iou_after": 0.9274,
+   "conf_before": 0.022,
+   "conf_after": 0.0216,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 349,
+   "id": 348,
+   "area": 81,
+   "centre": [
+    1885.0,
+    1552.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0022,
+   "edge": 0.0007,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 9,
+     "inliers": 0.889,
+     "rms_px": 0.007
+    },
+    "coverage": 0.25,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4709,
+   "iou_after": 0.4709,
+   "conf_before": 0.0,
+   "conf_after": 0.0022,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 351,
+   "id": 350,
+   "area": 612,
+   "centre": [
+    1885.0,
+    1489.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 63,
+     "inliers": 1.0,
+     "rms_px": 2.205
+    },
+    "coverage": 0.409,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.1464,
+   "iou_after": 0.6518,
+   "conf_before": -0.346,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 353,
+   "id": 352,
+   "area": 90,
+   "centre": [
+    1885.0,
+    1535.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 10,
+     "inliers": 1.0,
+     "rms_px": 0.006
+    },
+    "x": {
+     "pairs": 3,
+     "inliers": 1.0,
+     "rms_px": 0.132
+    },
+    "coverage": 0.342,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.4865,
+   "iou_after": 0.4865,
+   "conf_before": 0.0004,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 355,
+   "id": 354,
+   "area": 702,
+   "centre": [
+    1885.0,
+    1409.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 80,
+     "inliers": 0.975,
+     "rms_px": 0.025
+    },
+    "coverage": 0.46,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.5155,
+   "iou_after": 0.6567,
+   "conf_before": -0.1141,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 356,
+   "id": 355,
+   "area": 9300,
+   "centre": [
+    479.0,
+    1650.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0853,
+   "edge": 0.0671,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 143,
+     "inliers": 0.853,
+     "rms_px": 0.152
+    },
+    "x": {
+     "pairs": 99,
+     "inliers": 1.0,
+     "rms_px": 0.078
+    },
+    "coverage": 0.608,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9317,
+   "iou_after": 0.9233,
+   "conf_before": 0.1095,
+   "conf_after": 0.0857,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 357,
+   "id": 356,
+   "area": 3,
+   "centre": [
+    2017.33,
+    1441.33
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": -0.312,
+   "edge": 0.5211,
+   "coverage": 0.0,
+   "border": {
+    "coverage": 0.0,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.0,
+   "conf_before": 0.0,
+   "conf_after": -0.312,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 358,
+   "id": 357,
+   "area": 477,
+   "centre": [
+    2015.46,
+    1402.76
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0431,
+   "edge": 0.036,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 118,
+     "inliers": 0.992,
+     "rms_px": 0.572
+    },
+    "x": {
+     "pairs": 3,
+     "inliers": 1.0,
+     "rms_px": 0.61
+    },
+    "coverage": 0.697,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.0,
+   "iou_after": 0.557,
+   "conf_before": 0.0,
+   "conf_after": 0.0431,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 360,
+   "id": 359,
+   "area": 6806,
+   "centre": [
+    250.5,
+    49.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.2623,
+   "edge": 0.0224,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 139,
+     "inliers": 1.0,
+     "rms_px": 0.125
+    },
+    "x": {
+     "pairs": 81,
+     "inliers": 1.0,
+     "rms_px": 0.144
+    },
+    "coverage": 0.667,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.539,
+   "iou_after": 0.871,
+   "conf_before": 0.0545,
+   "conf_after": 0.2621,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 362,
+   "id": 361,
+   "area": 553,
+   "centre": [
+    1093.07,
+    1519.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0,
+   "edge": 0.0,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 76,
+     "inliers": 0.987,
+     "rms_px": 1.169
+    },
+    "coverage": 0.422,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      true
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.5953,
+   "iou_after": 0.5953,
+   "conf_before": -0.0011,
+   "conf_after": 0.0,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 364,
+   "id": 363,
+   "area": 254,
+   "centre": [
+    1581.36,
+    47.26
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0368,
+   "edge": 0.0126,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 106,
+     "inliers": 1.0,
+     "rms_px": 0.589
+    },
+    "x": {
+     "pairs": 2,
+     "inliers": 1.0,
+     "rms_px": 1.01
+    },
+    "coverage": 0.692,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.3014,
+   "iou_after": 0.4456,
+   "conf_before": -0.0035,
+   "conf_after": 0.0368,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 366,
+   "id": 365,
+   "area": 7579,
+   "centre": [
+    405.0,
+    1388.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0124,
+   "edge": 0.0168,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 251,
+     "inliers": 1.0,
+     "rms_px": 0.772
+    },
+    "x": {
+     "pairs": 33,
+     "inliers": 1.0,
+     "rms_px": 2.207
+    },
+    "coverage": 0.724,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.9238,
+   "iou_after": 0.9247,
+   "conf_before": 0.026,
+   "conf_after": 0.0125,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 368,
+   "id": 367,
+   "area": 318,
+   "centre": [
+    428.5,
+    1649.0
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0002,
+   "edge": 0.0472,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 75,
+     "inliers": 1.0,
+     "rms_px": 2.284
+    },
+    "x": {
+     "pairs": 2,
+     "inliers": 1.0,
+     "rms_px": 0.077
+    },
+    "coverage": 0.653,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      true
+     ],
+     [
+      false,
+      true
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.6046,
+   "iou_after": 0.5958,
+   "conf_before": 0.0185,
+   "conf_after": 0.0002,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 370,
+   "id": 369,
+   "area": 1512,
+   "centre": [
+    560.5,
+    1720.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0482,
+   "edge": 0.0133,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 175,
+     "inliers": 1.0,
+     "rms_px": 1.48
+    },
+    "x": {
+     "pairs": 15,
+     "inliers": 1.0,
+     "rms_px": 0.184
+    },
+    "coverage": 0.779,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7921,
+   "iou_after": 0.7925,
+   "conf_before": 0.0253,
+   "conf_after": 0.0482,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 372,
+   "id": 371,
+   "area": 1154,
+   "centre": [
+    1219.06,
+    1175.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0454,
+   "edge": 0.0304,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 129,
+     "inliers": 0.876,
+     "rms_px": 0.29
+    },
+    "x": {
+     "pairs": 14,
+     "inliers": 1.0,
+     "rms_px": 0.477
+    },
+    "coverage": 0.601,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 2,
+   "iou_before": 0.7011,
+   "iou_after": 0.7102,
+   "conf_before": 0.0,
+   "conf_after": 0.0454,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 373,
+   "id": 372,
+   "area": 29896,
+   "centre": [
+    1185.0,
+    1795.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0047,
+   "edge": 0.0035,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 434,
+     "inliers": 1.0,
+     "rms_px": 0.391
+    },
+    "x": {
+     "pairs": 181,
+     "inliers": 0.994,
+     "rms_px": 0.162
+    },
+    "coverage": 0.775,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.948,
+   "iou_after": 0.9547,
+   "conf_before": 0.0994,
+   "conf_after": 0.0047,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 376,
+   "id": 375,
+   "area": 8394,
+   "centre": [
+    1883.45,
+    1652.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.1866,
+   "edge": 0.1039,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 110,
+     "inliers": 0.945,
+     "rms_px": 0.18
+    },
+    "x": {
+     "pairs": 107,
+     "inliers": 1.0,
+     "rms_px": 1.357
+    },
+    "coverage": 0.562,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      true,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": false,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8552,
+   "iou_after": 0.9297,
+   "conf_before": 0.1567,
+   "conf_after": 0.1865,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  },
+  {
+   "island": 377,
+   "id": 376,
+   "area": 8294,
+   "centre": [
+    1286.97,
+    1892.5
+   ],
+   "status": "prior",
+   "shift_px": [
+    0.0,
+    0.0
+   ],
+   "M": [
+    [
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0
+    ]
+   ],
+   "conf_fit": 0.0029,
+   "edge": 0.002,
+   "coverage": 0.0,
+   "border": {
+    "y": {
+     "pairs": 173,
+     "inliers": 1.0,
+     "rms_px": 0.182
+    },
+    "x": {
+     "pairs": 150,
+     "inliers": 1.0,
+     "rms_px": 0.876
+    },
+    "coverage": 0.841,
+    "measurable": 1.0,
+    "wanted": [
+     [
+      false,
+      false
+     ],
+     [
+      false,
+      false
+     ]
+    ]
+   },
+   "ambiguous": true,
+   "field_dev_px": 0.0,
+   "pass": 1,
+   "iou_before": 0.8924,
+   "iou_after": 0.9173,
+   "conf_before": 0.1189,
+   "conf_after": 0.0029,
+   "affine": [
+    0.962229,
+    -0.002125,
+    15.163022,
+    0.00922,
+    0.973553,
+    27.605343
+   ]
+  }
+ ]
+}
