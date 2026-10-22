@@ -1,6 +1,6 @@
 {
  "report": {
-  "date": "22 October 2026 18:01",
+  "date": "22 October 2026 18:33",
   "height": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/heights/final_01_zenray-height.png",
   "sheet": "sheet",
   "size": [
@@ -20,7 +20,7 @@
    "iou_area": 0.9840278521599617,
    "iou_median": 0.9971096378520431,
    "iou_union": 0.9834283627075241,
-   "conf_area": 0.9364572763126854,
+   "conf_area": 0.9364572760620312,
    "islands_iou_under_0_8": 9,
    "islands": 160
   },
@@ -75,7 +75,7 @@
    "graph_matches": true
   },
   "ok": true,
-  "seconds": 33.3,
+  "seconds": 32.9,
   "info": {
    "evidence": {
     "b": 0.31689453125,
@@ -126,7 +126,7 @@
      }
     ]
    },
-   "seconds_solve": 28.9,
+   "seconds_solve": 28.6,
    "warp_max_px": 8.356
   },
   "params": {
@@ -184,6 +184,7 @@
     0.0
    ],
    "icp_step": 0.25,
+   "icp_end_share": 0.6,
    "icp_min_pairs": 6,
    "icp_min_pairs_t": 2,
    "icp_side_share": 0.3,
@@ -269,6 +270,7 @@
    "score_corner_px": 2.0,
    "ok_score": 0.99,
    "same_place_px": 2.0,
+   "place_conf_close": 0.1,
    "shape_agree_gain": 0.3,
    "agree_min": 0.5
   },
@@ -288,9 +290,9 @@
     "export": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/aligned_copernicus.png",
     "errors": {}
    },
-   "mae_islands": 4.6784903133811895e-06,
+   "mae_islands": 4.678475761465961e-06,
    "max_islands": 3.814697265625e-05,
-   "mae_all": 5.7429033404332586e-06
+   "mae_all": 5.742884241044521e-06
   },
   "remap_round_trip_px": 0.015625237336735154,
   "remap_bound_px": 0.01564086366063935,
@@ -1693,7 +1695,7 @@
     13.206572,
     0.006125,
     0.970771,
-    33.970832
+    33.970825
    ],
    "border_before": {
     "pairs_shown": 914,
@@ -5265,32 +5267,32 @@
    "status": "fit",
    "shift_px": [
     2.639,
-    -0.012
+    -0.014
    ],
    "M": [
     [
-     1.74916,
-     0.0028
+     1.74915,
+     0.00279
     ],
     [
      0.0,
-     0.99509
+     0.99558
     ]
    ],
    "conf_fit": 0.9934,
-   "edge": 0.7595,
+   "edge": 0.7601,
    "coverage": 0.996,
    "border": {
-    "bend": -0.0054,
+    "bend": -0.0249,
     "y": {
      "pairs": 212,
-     "inliers": 0.981,
-     "rms_px": 0.21
+     "inliers": 0.986,
+     "rms_px": 0.218
     },
     "x": {
      "pairs": 11,
      "inliers": 1.0,
-     "rms_px": 0.254
+     "rms_px": 0.102
     },
     "coverage": 0.996,
     "measurable": 1.0,
@@ -5311,24 +5313,24 @@
      ],
      [
       0,
-      6
+      5
      ]
     ]
    },
    "ambiguous": false,
-   "field_dev_px": 2.781,
+   "field_dev_px": 2.779,
    "pass": 2,
    "iou_before": 0.636,
    "iou_after": 1.0,
    "conf_before": 0.0,
    "conf_after": 1.0,
    "affine": [
-    1.679036,
-    -0.000668,
-    -717.251965,
+    1.679024,
+    -0.000674,
+    -717.23719,
     0.010714,
-    0.96602,
-    33.203173
+    0.966498,
+    32.975489
    ],
    "border_before": {
     "pairs_shown": 224,
@@ -5344,7 +5346,7 @@
     "within_0_5px": 0.9955,
     "within_1px": 1.0,
     "median_px": 0.006,
-    "p90_px": 0.027
+    "p90_px": 0.028
    },
    "score_after": {
     "within_1px": 1.0,
@@ -5860,7 +5862,7 @@
    "affine": [
     0.796305,
     -0.000524,
-    185.471933,
+    185.471936,
     0.005081,
     0.993757,
     25.520396
@@ -9723,7 +9725,7 @@
     ]
    },
    "ambiguous": false,
-   "field_dev_px": 9.686,
+   "field_dev_px": 9.685,
    "pass": 2,
    "iou_before": 0.4826,
    "iou_after": 0.9973,
