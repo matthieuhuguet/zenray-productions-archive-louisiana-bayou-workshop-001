@@ -12,6 +12,6 @@
  {
   "file": "final_01_zenray-height_aligned.png",
   "date": "22 October 2026",
-  "caption": "final_01_zenray-height recalée île par île sur les UV d'origine (per-island 2D alignment) : score de calage 0,315 avant, 0,99911 après (bords dessinés à moins d'un pixel de leur bord UV), recouvrement 0,737 avant, 0,984 après ; 156 îles recalées sur leurs bords, 4 par leurs voisines, 0 par l'île qui les porte"
+  "caption": "final_01_zenray-height recalée île par île sur les UV d'origine (per-island 2D alignment) : score de calage 0,315 avant, 0,99898 après (bords dessinés à moins d'un pixel de leur bord UV), recouvrement 0,737 avant, 0,984 après ; 156 îles recalées sur leurs bords, 4 par leurs voisines, 0 par l'île qui les porte"
  }
 ]
