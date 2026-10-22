@@ -1,6 +1,6 @@
 {
  "ok": true,
- "date": "22 October 2026 14:40",
+ "date": "22 October 2026 14:50",
  "criteria": {
   "corner_px": 0.75,
   "share": 0.99,
@@ -33,7 +33,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 46.0,
+   "seconds_solve": 44.4,
    "status": {
     "fit": 155,
     "fit_group": 5
@@ -113,8 +113,8 @@
      ]
     ],
     "weak_ok": true,
-    "pixel_median_px": 0.0738,
-    "pixel_p99_px": 0.2263,
+    "pixel_median_px": 0.0737,
+    "pixel_p99_px": 0.2261,
     "pixel_within_0_5px": 0.99994
    },
    "red_none": {
@@ -237,7 +237,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 11.9,
+   "seconds_solve": 10.1,
    "status": {
     "fit": 7
    },
@@ -377,7 +377,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 8.4,
+   "seconds_solve": 8.3,
    "status": {
     "fit": 6
    },
@@ -517,7 +517,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 10.3,
+   "seconds_solve": 9.8,
    "status": {
     "fit": 4
    },
@@ -557,8 +557,8 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.043,
-    "pixel_p99_px": 0.1332,
-    "pixel_within_0_5px": 0.99965
+    "pixel_p99_px": 0.1334,
+    "pixel_within_0_5px": 0.99964
    },
    "red_none": {
     "case": "red : no alignment",
@@ -642,7 +642,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 10.3,
+   "seconds_solve": 9.1,
    "status": {
     "fit": 7
    },
@@ -687,7 +687,7 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.0427,
-    "pixel_p99_px": 0.1379,
+    "pixel_p99_px": 0.1378,
     "pixel_within_0_5px": 0.99999
    },
    "red_none": {
@@ -782,7 +782,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 32.6,
+   "seconds_solve": 32.8,
    "status": {
     "fit": 75
    },
@@ -860,7 +860,7 @@
      ]
     ],
     "weak_ok": true,
-    "pixel_median_px": 0.0612,
+    "pixel_median_px": 0.0611,
     "pixel_p99_px": 0.2072,
     "pixel_within_0_5px": 0.99997
    },
@@ -1024,7 +1024,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 30.9,
+   "seconds_solve": 30.3,
    "status": {
     "fit": 29
    },
@@ -1069,7 +1069,7 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.0578,
-    "pixel_p99_px": 0.2065,
+    "pixel_p99_px": 0.2062,
     "pixel_within_0_5px": 0.99999
    },
    "red_none": {
@@ -1164,7 +1164,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 6.0,
+   "seconds_solve": 6.5,
    "status": {
     "fit": 1
    },

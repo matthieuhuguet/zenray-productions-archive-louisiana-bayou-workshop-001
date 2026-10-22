@@ -1,6 +1,6 @@
 {
  "ok": true,
- "date": "22 October 2026 14:40",
+ "date": "22 October 2026 14:50",
  "criteria": {
   "corner_px": 0.75,
   "share": 0.99,
@@ -33,7 +33,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 44.5,
+   "seconds_solve": 43.8,
    "status": {
     "fit": 157,
     "fit_group": 3
@@ -105,8 +105,8 @@
      ]
     ],
     "weak_ok": true,
-    "pixel_median_px": 0.056,
-    "pixel_p99_px": 0.2151,
+    "pixel_median_px": 0.0559,
+    "pixel_p99_px": 0.215,
     "pixel_within_0_5px": 0.99995
    },
    "red_none": {
@@ -229,7 +229,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 9.7,
+   "seconds_solve": 9.3,
    "status": {
     "fit": 7
    },
@@ -369,7 +369,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 8.4,
+   "seconds_solve": 8.1,
    "status": {
     "fit": 6
    },
@@ -509,7 +509,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 9.6,
+   "seconds_solve": 9.1,
    "status": {
     "fit": 4
    },
@@ -634,7 +634,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 10.6,
+   "seconds_solve": 9.9,
    "status": {
     "fit": 7
    },
@@ -774,7 +774,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 33.5,
+   "seconds_solve": 34.1,
    "status": {
     "fit": 75
    },
@@ -968,7 +968,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 29.9,
+   "seconds_solve": 30.5,
    "status": {
     "fit": 29
    },
@@ -1133,7 +1133,7 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.0314,
-    "pixel_p99_px": 0.0862,
+    "pixel_p99_px": 0.086,
     "pixel_within_0_5px": 1.0
    },
    "red_none": {

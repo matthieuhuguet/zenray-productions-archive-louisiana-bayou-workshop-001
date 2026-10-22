@@ -1,6 +1,6 @@
 {
  "ok": true,
- "date": "22 October 2026 14:40",
+ "date": "22 October 2026 14:50",
  "criteria": {
   "corner_px": 0.75,
   "share": 0.99,
@@ -33,7 +33,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 43.8,
+   "seconds_solve": 43.1,
    "status": {
     "fit": 158,
     "fit_group": 2
@@ -101,7 +101,7 @@
      ]
     ],
     "weak_ok": true,
-    "pixel_median_px": 0.0722,
+    "pixel_median_px": 0.0721,
     "pixel_p99_px": 0.2245,
     "pixel_within_0_5px": 0.99988
    },
@@ -225,7 +225,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 9.3,
+   "seconds_solve": 9.0,
    "status": {
     "fit": 7
    },
@@ -270,7 +270,7 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.0517,
-    "pixel_p99_px": 0.1612,
+    "pixel_p99_px": 0.1615,
     "pixel_within_0_5px": 0.99999
    },
    "red_none": {
@@ -365,7 +365,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 9.0,
+   "seconds_solve": 8.4,
    "status": {
     "fit": 6
    },
@@ -505,7 +505,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 10.1,
+   "seconds_solve": 9.4,
    "status": {
     "fit": 4
    },
@@ -545,7 +545,7 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.043,
-    "pixel_p99_px": 0.1266,
+    "pixel_p99_px": 0.1265,
     "pixel_within_0_5px": 0.99959
    },
    "red_none": {
@@ -630,7 +630,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 9.9,
+   "seconds_solve": 9.3,
    "status": {
     "fit": 7
    },
@@ -675,7 +675,7 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.0367,
-    "pixel_p99_px": 0.1419,
+    "pixel_p99_px": 0.1418,
     "pixel_within_0_5px": 0.99991
    },
    "red_none": {
@@ -770,7 +770,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 32.7,
+   "seconds_solve": 33.3,
    "status": {
     "fit": 75
    },
@@ -1000,7 +1000,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 28.6,
+   "seconds_solve": 28.8,
    "status": {
     "fit": 29
    },
@@ -1045,7 +1045,7 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.0613,
-    "pixel_p99_px": 0.2093,
+    "pixel_p99_px": 0.2092,
     "pixel_within_0_5px": 0.99999
    },
    "red_none": {
@@ -1140,7 +1140,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 5.8,
+   "seconds_solve": 5.7,
    "status": {
     "fit": 1
    },
@@ -1165,7 +1165,7 @@
     "weak": [],
     "weak_ok": true,
     "pixel_median_px": 0.0308,
-    "pixel_p99_px": 0.0852,
+    "pixel_p99_px": 0.0849,
     "pixel_within_0_5px": 1.0
    },
    "red_none": {
