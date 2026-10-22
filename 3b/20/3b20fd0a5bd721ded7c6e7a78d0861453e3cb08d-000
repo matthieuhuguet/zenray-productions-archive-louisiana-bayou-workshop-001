@@ -1,6 +1,6 @@
 {
  "report": {
-  "date": "22 October 2026 16:54",
+  "date": "22 October 2026 17:35",
   "height": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/heights/final_01_zenray-height.png",
   "sheet": "sheet",
   "size": [
@@ -17,10 +17,10 @@
    "islands": 160
   },
   "after": {
-   "iou_area": 0.9841786203724606,
+   "iou_area": 0.9841788720682125,
    "iou_median": 0.9971994664759782,
-   "iou_union": 0.9835809093456054,
-   "conf_area": 0.9366597733271735,
+   "iou_union": 0.9835812639992846,
+   "conf_area": 0.9366605709496207,
    "islands_iou_under_0_8": 9,
    "islands": 160
   },
@@ -34,7 +34,7 @@
   },
   "border_after": {
    "pairs_shown": 121800,
-   "pairs_found": 117804,
+   "pairs_found": 117803,
    "within_0_5px": 0.9581,
    "within_1px": 0.9619,
    "median_px": 0.007,
@@ -58,9 +58,9 @@
   },
   "status": {
    "fit": 140,
-   "fit_scale": 4,
+   "fit_scale": 3,
    "prior": 4,
-   "fit_pass3": 1,
+   "fit_pass3": 2,
    "fit_wide": 2,
    "fit_group": 7,
    "fit_claim": 1,
@@ -75,7 +75,7 @@
    "graph_matches": true
   },
   "ok": true,
-  "seconds": 31.8,
+  "seconds": 34.4,
   "info": {
    "evidence": {
     "b": 0.31689453125,
@@ -126,7 +126,7 @@
      }
     ]
    },
-   "seconds_solve": 29.1,
+   "seconds_solve": 30.8,
    "warp_max_px": 8.356
   },
   "params": {
@@ -192,6 +192,11 @@
    "group_small_px": 400,
    "group_window_px": 48,
    "piece_share": 0.3,
+   "drawn_hidden_px": 1.5,
+   "fine_gain": 0.2,
+   "iso_compact": 2.0,
+   "size_drawn_reach": 1,
+   "size_search_bound": 1,
    "scale_search": [
     0.7,
     0.75,
@@ -261,6 +266,8 @@
    "ok_border_px": 0.5,
    "score_corner_px": 2.0,
    "ok_score": 0.99,
+   "same_place_px": 2.0,
+   "shape_agree_gain": 0.3,
    "agree_min": 0.5
   },
   "graph": {
@@ -279,9 +286,9 @@
     "export": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/height-inputs/tmp-ZRUV_Arch512/align/final_01_zenray-height_sheet/aligned_copernicus.png",
     "errors": {}
    },
-   "mae_islands": 4.679799076257041e-06,
+   "mae_islands": 4.6797840695944615e-06,
    "max_islands": 3.814697265625e-05,
-   "mae_all": 5.73797933611786e-06
+   "mae_all": 5.737826541007962e-06
   },
   "remap_round_trip_px": 0.015625237336735154,
   "remap_bound_px": 0.01564086366063935,
@@ -8060,36 +8067,36 @@
     833.49,
     597.23
    ],
-   "status": "fit_scale",
+   "status": "fit_pass3",
    "shift_px": [
-    -5.75,
-    -7.711
+    -5.737,
+    -7.739
    ],
    "M": [
     [
-     0.77507,
+     0.7788,
      0.0
     ],
     [
      0.0,
-     0.8316
+     0.82333
     ]
    ],
-   "conf_fit": 0.4386,
-   "edge": 0.3591,
-   "coverage": 0.0,
+   "conf_fit": 0.4434,
+   "edge": 0.3546,
+   "coverage": 0.769,
    "border": {
     "y": {
      "pairs": 50,
      "inliers": 1.0,
-     "rms_px": 0.632
+     "rms_px": 0.637
     },
     "x": {
-     "pairs": 49,
+     "pairs": 48,
      "inliers": 1.0,
-     "rms_px": 0.721
+     "rms_px": 0.715
     },
-    "coverage": 0.952,
+    "coverage": 0.942,
     "measurable": 1.0,
     "wanted": [
      [
@@ -8113,19 +8120,19 @@
     ]
    },
    "ambiguous": false,
-   "field_dev_px": 7.713,
-   "pass": 2,
+   "field_dev_px": 9.116,
+   "pass": 3,
    "iou_before": 0.4007,
-   "iou_after": 0.8333,
+   "iou_after": 0.8348,
    "conf_before": 0.052,
-   "conf_after": 0.4635,
+   "conf_after": 0.4682,
    "affine": [
-    0.743995,
-    -0.002803,
-    190.21314,
-    0.004748,
-    0.807292,
-    126.898248
+    0.747577,
+    -0.002775,
+    187.223265,
+    0.00477,
+    0.799265,
+    131.646349
    ],
    "border_before": {
     "pairs_shown": 104,
@@ -8137,11 +8144,11 @@
    },
    "border_after": {
     "pairs_shown": 104,
-    "pairs_found": 99,
-    "within_0_5px": 0.9231,
-    "within_1px": 0.9519,
-    "median_px": 0.146,
-    "p90_px": 0.322
+    "pairs_found": 98,
+    "within_0_5px": 0.9135,
+    "within_1px": 0.9423,
+    "median_px": 0.149,
+    "p90_px": 0.321
    },
    "score_after": {
     "within_1px": 1.0,

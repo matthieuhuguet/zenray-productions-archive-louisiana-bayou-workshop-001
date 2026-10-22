@@ -1,0 +1,1638 @@
+{
+ "ok": true,
+ "date": "22 October 2026 17:34",
+ "criteria": {
+  "corner_px": 0.75,
+  "share": 0.99,
+  "median_px": 0.3,
+  "min_area": 50,
+  "content_mae": 0.012,
+  "red_shift_px": 2.0,
+  "field_px": 9.0,
+  "field_period": 8192.0,
+  "jitter_px": 1.0,
+  "log_scale": 0.003,
+  "bg": 0.32,
+  "aa": 4,
+  "visible_margin": 4.0,
+  "min_thick": 3,
+  "jump_px": 36.0,
+  "jump_small_px": 400,
+  "jump_gap_px": 24,
+  "min_axis_info": 8.0,
+  "weak_px": 3.0,
+  "groove": 0.08,
+  "groove_px": 2.5,
+  "bend_n": 3,
+  "bend_len_px": 120,
+  "bend_aspect": 4.0,
+  "bend_px": 4.0,
+  "bend_share": 0.95,
+  "guest_n": 4,
+  "guest_px": 6.0,
+  "guest_scale": 0.8,
+  "guest_max_share": 0.2,
+  "guest_max_px": 800,
+  "guest_max_aspect": 2.0,
+  "thick_n": 2,
+  "thick_min_px": 4,
+  "thick_max_px": 7,
+  "thick_scale": 1.5
+ },
+ "params": {},
+ "sheets": [
+  {
+   "asset": "ZRUV_Arch512",
+   "sheet": "sheet",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 45.2,
+   "status": {
+    "fit": 155,
+    "fit_group": 5
+   },
+   "ok": true,
+   "jumped": [
+    [
+     225,
+     0.2
+    ],
+    [
+     240,
+     0.07
+    ],
+    [
+     242,
+     0.18
+    ],
+    [
+     243,
+     0.25
+    ],
+    [
+     245,
+     0.17
+    ]
+   ],
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1704,
+    "max_px": 0.472,
+    "content_mae": 0.00716,
+    "content_mae_all": 0.00716,
+    "islands": 152,
+    "worst": [
+     [
+      266,
+      4481,
+      0.47
+     ],
+     [
+      273,
+      4476,
+      0.41
+     ],
+     [
+      10,
+      291,
+      0.36
+     ],
+     [
+      323,
+      2000,
+      0.36
+     ],
+     [
+      264,
+      4613,
+      0.34
+     ]
+    ],
+    "apart_worst": [
+     [
+      175,
+      2.6
+     ],
+     [
+      205,
+      2.54
+     ],
+     [
+      207,
+      2.52
+     ],
+     [
+      156,
+      0.72
+     ],
+     [
+      364,
+      0.11
+     ]
+    ],
+    "weak": [
+     [
+      364,
+      0.11
+     ]
+    ],
+    "weak_ok": true,
+    "pixel_median_px": 0.0718,
+    "pixel_p99_px": 0.2423,
+    "pixel_within_0_5px": 0.9991,
+    "bent": [
+     [
+      175,
+      0.9988,
+      0.126
+     ],
+     [
+      207,
+      1.0,
+      0.1
+     ],
+     [
+      205,
+      1.0,
+      0.17
+     ]
+    ],
+    "bent_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 8.6619,
+    "max_px": 45.752,
+    "content_mae": 0.08649,
+    "content_mae_all": 0.08649,
+    "islands": 152,
+    "worst": [
+     [
+      240,
+      85,
+      45.75
+     ],
+     [
+      225,
+      84,
+      45.59
+     ],
+     [
+      242,
+      85,
+      45.46
+     ],
+     [
+      243,
+      80,
+      44.24
+     ],
+     [
+      245,
+      84,
+      44.05
+     ]
+    ],
+    "apart_worst": [
+     [
+      207,
+      10.21
+     ],
+     [
+      364,
+      7.99
+     ],
+     [
+      175,
+      6.21
+     ],
+     [
+      156,
+      4.87
+     ],
+     [
+      205,
+      4.61
+     ]
+    ],
+    "weak": [
+     [
+      364,
+      7.99
+     ]
+    ],
+    "weak_ok": false,
+    "pixel_median_px": 7.7899,
+    "pixel_p99_px": 12.746,
+    "pixel_within_0_5px": 0.0,
+    "bent": [
+     [
+      175,
+      0.0,
+      6.746
+     ],
+     [
+      207,
+      0.0,
+      11.638
+     ],
+     [
+      205,
+      0.0,
+      6.65
+     ]
+    ],
+    "bent_ok": false
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0738,
+    "max_px": 2.266,
+    "content_mae": 0.04326,
+    "content_mae_all": 0.04326,
+    "islands": 152,
+    "worst": [
+     [
+      226,
+      86,
+      2.27
+     ],
+     [
+      266,
+      4481,
+      2.24
+     ],
+     [
+      263,
+      3848,
+      2.24
+     ],
+     [
+      10,
+      291,
+      2.23
+     ],
+     [
+      323,
+      2000,
+      2.22
+     ]
+    ],
+    "apart_worst": [
+     [
+      207,
+      4.52
+     ],
+     [
+      156,
+      2.5
+     ],
+     [
+      364,
+      2.09
+     ],
+     [
+      175,
+      0.69
+     ],
+     [
+      205,
+      0.56
+     ]
+    ],
+    "weak": [
+     [
+      364,
+      2.09
+     ]
+    ],
+    "weak_ok": true,
+    "pixel_median_px": 1.9911,
+    "pixel_p99_px": 2.1834,
+    "pixel_within_0_5px": 0.0,
+    "bent": [
+     [
+      175,
+      0.0,
+      1.969
+     ],
+     [
+      207,
+      0.0,
+      1.941
+     ],
+     [
+      205,
+      0.0,
+      2.048
+     ]
+    ],
+    "bent_ok": false
+   },
+   "ai": {
+    "guests": [
+     [
+      234,
+      0.1
+     ],
+     [
+      353,
+      0.15
+     ],
+     [
+      219,
+      0.14
+     ],
+     [
+      209,
+      0.14
+     ]
+    ],
+    "thick": [
+     [
+      364,
+      0.11
+     ],
+     [
+      187,
+      0.2
+     ]
+    ]
+   }
+  },
+  {
+   "asset": "ZRUV_PigHead",
+   "sheet": "pig_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 21.6,
+   "status": {
+    "fit": 7
+   },
+   "ok": true,
+   "jumped": [],
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1192,
+    "max_px": 0.212,
+    "content_mae": 0.00253,
+    "content_mae_all": 0.00253,
+    "islands": 7,
+    "worst": [
+     [
+      9,
+      147,
+      0.21
+     ],
+     [
+      4,
+      742829,
+      0.15
+     ],
+     [
+      1,
+      147,
+      0.15
+     ],
+     [
+      6,
+      1019322,
+      0.12
+     ],
+     [
+      13,
+      1192,
+      0.11
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 0.0479,
+    "pixel_p99_px": 0.1471,
+    "pixel_within_0_5px": 1.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 12.6315,
+    "max_px": 25.399,
+    "content_mae": 0.06355,
+    "content_mae_all": 0.06355,
+    "islands": 7,
+    "worst": [
+     [
+      6,
+      1019322,
+      25.4
+     ],
+     [
+      4,
+      742829,
+      16.03
+     ],
+     [
+      8,
+      274882,
+      13.87
+     ],
+     [
+      5,
+      119850,
+      12.63
+     ],
+     [
+      9,
+      147,
+      10.9
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 11.0977,
+    "pixel_p99_px": 21.6764,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0504,
+    "max_px": 2.099,
+    "content_mae": 0.02392,
+    "content_mae_all": 0.02392,
+    "islands": 7,
+    "worst": [
+     [
+      13,
+      1192,
+      2.1
+     ],
+     [
+      6,
+      1019322,
+      2.07
+     ],
+     [
+      8,
+      274882,
+      2.07
+     ],
+     [
+      5,
+      119850,
+      2.05
+     ],
+     [
+      4,
+      742829,
+      2.02
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 1.9849,
+    "pixel_p99_px": 2.0838,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "ai": {
+    "guests": [],
+    "thick": []
+   }
+  },
+  {
+   "asset": "ZRUV_PigHead",
+   "sheet": "pig_02",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 17.8,
+   "status": {
+    "fit": 6
+   },
+   "ok": true,
+   "jumped": [],
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1363,
+    "max_px": 0.236,
+    "content_mae": 0.00293,
+    "content_mae_all": 0.00293,
+    "islands": 6,
+    "worst": [
+     [
+      2,
+      84780,
+      0.24
+     ],
+     [
+      7,
+      148807,
+      0.19
+     ],
+     [
+      10,
+      118903,
+      0.14
+     ],
+     [
+      11,
+      153161,
+      0.13
+     ],
+     [
+      12,
+      54515,
+      0.12
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 0.043,
+    "pixel_p99_px": 0.1868,
+    "pixel_within_0_5px": 1.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 18.6144,
+    "max_px": 19.196,
+    "content_mae": 0.06754,
+    "content_mae_all": 0.06754,
+    "islands": 6,
+    "worst": [
+     [
+      2,
+      84780,
+      19.2
+     ],
+     [
+      12,
+      54515,
+      19.16
+     ],
+     [
+      11,
+      153161,
+      18.88
+     ],
+     [
+      7,
+      148807,
+      18.35
+     ],
+     [
+      3,
+      657295,
+      18.23
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 14.7787,
+    "pixel_p99_px": 18.8189,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.1009,
+    "max_px": 2.224,
+    "content_mae": 0.02486,
+    "content_mae_all": 0.02486,
+    "islands": 6,
+    "worst": [
+     [
+      2,
+      84780,
+      2.22
+     ],
+     [
+      7,
+      148807,
+      2.14
+     ],
+     [
+      10,
+      118903,
+      2.12
+     ],
+     [
+      11,
+      153161,
+      2.09
+     ],
+     [
+      3,
+      657295,
+      2.05
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 1.9898,
+    "pixel_p99_px": 2.1421,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "ai": {
+    "guests": [],
+    "thick": []
+   }
+  },
+  {
+   "asset": "ZRUV_RubberToy",
+   "sheet": "toyshader_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 21.3,
+   "status": {
+    "fit": 4
+   },
+   "ok": true,
+   "jumped": [],
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1058,
+    "max_px": 0.147,
+    "content_mae": 0.00247,
+    "content_mae_all": 0.00247,
+    "islands": 4,
+    "worst": [
+     [
+      31,
+      15451,
+      0.15
+     ],
+     [
+      15,
+      962653,
+      0.11
+     ],
+     [
+      13,
+      392346,
+      0.1
+     ],
+     [
+      14,
+      808030,
+      0.08
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 0.0362,
+    "pixel_p99_px": 0.134,
+    "pixel_within_0_5px": 0.99999,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 14.9781,
+    "max_px": 19.907,
+    "content_mae": 0.05424,
+    "content_mae_all": 0.05424,
+    "islands": 4,
+    "worst": [
+     [
+      14,
+      808030,
+      19.91
+     ],
+     [
+      15,
+      962653,
+      19.31
+     ],
+     [
+      13,
+      392346,
+      10.64
+     ],
+     [
+      31,
+      15451,
+      5.67
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 8.3147,
+    "pixel_p99_px": 18.0728,
+    "pixel_within_0_5px": 0.0025,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0458,
+    "max_px": 2.112,
+    "content_mae": 0.02384,
+    "content_mae_all": 0.02384,
+    "islands": 4,
+    "worst": [
+     [
+      31,
+      15451,
+      2.11
+     ],
+     [
+      15,
+      962653,
+      2.05
+     ],
+     [
+      14,
+      808030,
+      2.04
+     ],
+     [
+      13,
+      392346,
+      2.02
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 1.9923,
+    "pixel_p99_px": 2.0768,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "ai": {
+    "guests": [],
+    "thick": []
+   }
+  },
+  {
+   "asset": "ZRUV_Manny",
+   "sheet": "mi_manny_01_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 19.5,
+   "status": {
+    "fit": 7
+   },
+   "ok": true,
+   "jumped": [],
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1617,
+    "max_px": 0.236,
+    "content_mae": 0.00268,
+    "content_mae_all": 0.00268,
+    "islands": 7,
+    "worst": [
+     [
+      31,
+      9357,
+      0.24
+     ],
+     [
+      44,
+      49747,
+      0.22
+     ],
+     [
+      38,
+      840766,
+      0.17
+     ],
+     [
+      45,
+      49743,
+      0.16
+     ],
+     [
+      33,
+      282390,
+      0.14
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 0.045,
+    "pixel_p99_px": 0.1585,
+    "pixel_within_0_5px": 1.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 10.148,
+    "max_px": 14.831,
+    "content_mae": 0.05816,
+    "content_mae_all": 0.05816,
+    "islands": 7,
+    "worst": [
+     [
+      37,
+      614810,
+      14.83
+     ],
+     [
+      33,
+      282390,
+      11.37
+     ],
+     [
+      32,
+      282327,
+      10.55
+     ],
+     [
+      38,
+      840766,
+      10.15
+     ],
+     [
+      44,
+      49747,
+      8.11
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 6.9784,
+    "pixel_p99_px": 12.2623,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.1379,
+    "max_px": 2.218,
+    "content_mae": 0.02441,
+    "content_mae_all": 0.02441,
+    "islands": 7,
+    "worst": [
+     [
+      31,
+      9357,
+      2.22
+     ],
+     [
+      38,
+      840766,
+      2.16
+     ],
+     [
+      45,
+      49743,
+      2.15
+     ],
+     [
+      44,
+      49747,
+      2.14
+     ],
+     [
+      33,
+      282390,
+      2.14
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 2.0151,
+    "pixel_p99_px": 2.1351,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "ai": {
+    "guests": [],
+    "thick": []
+   }
+  },
+  {
+   "asset": "ZRUV_Arch",
+   "sheet": "sheet_04",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 35.8,
+   "status": {
+    "fit": 75
+   },
+   "ok": true,
+   "jumped": [],
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1436,
+    "max_px": 0.275,
+    "content_mae": 0.00507,
+    "content_mae_all": 0.00507,
+    "islands": 70,
+    "worst": [
+     [
+      330,
+      4752,
+      0.27
+     ],
+     [
+      338,
+      2240,
+      0.27
+     ],
+     [
+      202,
+      43851,
+      0.26
+     ],
+     [
+      70,
+      5794,
+      0.26
+     ],
+     [
+      370,
+      2046,
+      0.24
+     ]
+    ],
+    "apart_worst": [
+     [
+      9,
+      2.59
+     ],
+     [
+      205,
+      2.58
+     ],
+     [
+      378,
+      2.57
+     ],
+     [
+      372,
+      0.23
+     ],
+     [
+      371,
+      0.08
+     ]
+    ],
+    "weak": [
+     [
+      371,
+      0.08
+     ],
+     [
+      372,
+      0.23
+     ]
+    ],
+    "weak_ok": true,
+    "pixel_median_px": 0.0676,
+    "pixel_p99_px": 0.2286,
+    "pixel_within_0_5px": 0.99999,
+    "bent": [
+     [
+      9,
+      1.0,
+      0.093
+     ],
+     [
+      378,
+      1.0,
+      0.127
+     ],
+     [
+      205,
+      1.0,
+      0.091
+     ]
+    ],
+    "bent_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 11.8101,
+    "max_px": 20.559,
+    "content_mae": 0.08645,
+    "content_mae_all": 0.08645,
+    "islands": 70,
+    "worst": [
+     [
+      125,
+      75389,
+      20.56
+     ],
+     [
+      260,
+      75422,
+      20.26
+     ],
+     [
+      206,
+      6080,
+      19.25
+     ],
+     [
+      343,
+      72150,
+      19.01
+     ],
+     [
+      329,
+      4774,
+      18.73
+     ]
+    ],
+    "apart_worst": [
+     [
+      205,
+      13.86
+     ],
+     [
+      9,
+      10.32
+     ],
+     [
+      371,
+      8.55
+     ],
+     [
+      378,
+      7.94
+     ],
+     [
+      372,
+      6.44
+     ]
+    ],
+    "weak": [
+     [
+      371,
+      8.55
+     ],
+     [
+      372,
+      6.44
+     ]
+    ],
+    "weak_ok": false,
+    "pixel_median_px": 10.0659,
+    "pixel_p99_px": 19.7606,
+    "pixel_within_0_5px": 0.00315,
+    "bent": [
+     [
+      9,
+      0.0,
+      4.022
+     ],
+     [
+      378,
+      0.0,
+      8.41
+     ],
+     [
+      205,
+      0.0,
+      11.483
+     ]
+    ],
+    "bent_ok": false
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0599,
+    "max_px": 2.217,
+    "content_mae": 0.03538,
+    "content_mae_all": 0.03538,
+    "islands": 70,
+    "worst": [
+     [
+      340,
+      2230,
+      2.22
+     ],
+     [
+      330,
+      4752,
+      2.19
+     ],
+     [
+      379,
+      4180,
+      2.18
+     ],
+     [
+      370,
+      2046,
+      2.17
+     ],
+     [
+      139,
+      1092,
+      2.16
+     ]
+    ],
+    "apart_worst": [
+     [
+      378,
+      4.57
+     ],
+     [
+      372,
+      2.14
+     ],
+     [
+      371,
+      2.01
+     ],
+     [
+      9,
+      0.61
+     ],
+     [
+      205,
+      0.6
+     ]
+    ],
+    "weak": [
+     [
+      371,
+      2.01
+     ],
+     [
+      372,
+      2.14
+     ]
+    ],
+    "weak_ok": true,
+    "pixel_median_px": 2.0028,
+    "pixel_p99_px": 2.1463,
+    "pixel_within_0_5px": 0.0,
+    "bent": [
+     [
+      9,
+      0.0,
+      2.001
+     ],
+     [
+      378,
+      0.0,
+      1.994
+     ],
+     [
+      205,
+      0.0,
+      1.99
+     ]
+    ],
+    "bent_ok": false
+   },
+   "ai": {
+    "guests": [],
+    "thick": [
+     [
+      371,
+      0.08
+     ],
+     [
+      372,
+      0.23
+     ]
+    ]
+   }
+  },
+  {
+   "asset": "ZRUV_Arch",
+   "sheet": "sheet_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 36.6,
+   "status": {
+    "fit": 29
+   },
+   "ok": true,
+   "jumped": [],
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.1525,
+    "max_px": 0.323,
+    "content_mae": 0.00449,
+    "content_mae_all": 0.00987,
+    "islands": 22,
+    "worst": [
+     [
+      146,
+      1071,
+      0.32
+     ],
+     [
+      50,
+      2743,
+      0.25
+     ],
+     [
+      39,
+      62392,
+      0.24
+     ],
+     [
+      192,
+      10114,
+      0.2
+     ],
+     [
+      40,
+      13270,
+      0.18
+     ]
+    ],
+    "apart_worst": [
+     [
+      317,
+      2.59
+     ],
+     [
+      181,
+      2.58
+     ],
+     [
+      318,
+      2.55
+     ],
+     [
+      182,
+      0.24
+     ],
+     [
+      188,
+      0.15
+     ],
+     [
+      319,
+      0.12
+     ]
+    ],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 0.0536,
+    "pixel_p99_px": 0.2061,
+    "pixel_within_0_5px": 0.99996,
+    "bent": [
+     [
+      318,
+      1.0,
+      0.058
+     ],
+     [
+      181,
+      1.0,
+      0.069
+     ],
+     [
+      317,
+      1.0,
+      0.049
+     ]
+    ],
+    "bent_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 8.439,
+    "max_px": 16.602,
+    "content_mae": 0.06283,
+    "content_mae_all": 0.06106,
+    "islands": 22,
+    "worst": [
+     [
+      42,
+      314592,
+      16.6
+     ],
+     [
+      316,
+      55804,
+      16.22
+     ],
+     [
+      44,
+      87873,
+      13.58
+     ],
+     [
+      40,
+      13270,
+      13.41
+     ],
+     [
+      314,
+      230888,
+      13.2
+     ]
+    ],
+    "apart_worst": [
+     [
+      320,
+      16.69
+     ],
+     [
+      317,
+      15.11
+     ],
+     [
+      188,
+      14.35
+     ],
+     [
+      319,
+      13.5
+     ],
+     [
+      181,
+      13.36
+     ],
+     [
+      318,
+      11.66
+     ]
+    ],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 6.4726,
+    "pixel_p99_px": 15.4861,
+    "pixel_within_0_5px": 0.00382,
+    "bent": [
+     [
+      318,
+      0.0,
+      8.556
+     ],
+     [
+      181,
+      0.0,
+      10.495
+     ],
+     [
+      317,
+      0.0,
+      12.392
+     ]
+    ],
+    "bent_ok": false
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0511,
+    "max_px": 2.208,
+    "content_mae": 0.03233,
+    "content_mae_all": 0.03429,
+    "islands": 22,
+    "worst": [
+     [
+      50,
+      2743,
+      2.21
+     ],
+     [
+      39,
+      62392,
+      2.17
+     ],
+     [
+      38,
+      6577,
+      2.15
+     ],
+     [
+      37,
+      4794,
+      2.11
+     ],
+     [
+      322,
+      78772,
+      2.1
+     ]
+    ],
+    "apart_worst": [
+     [
+      319,
+      2.08
+     ],
+     [
+      320,
+      2.08
+     ],
+     [
+      182,
+      2.04
+     ],
+     [
+      188,
+      2.04
+     ],
+     [
+      181,
+      0.61
+     ],
+     [
+      317,
+      0.6
+     ]
+    ],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 2.005,
+    "pixel_p99_px": 2.1532,
+    "pixel_within_0_5px": 0.0,
+    "bent": [
+     [
+      318,
+      0.0,
+      2.01
+     ],
+     [
+      181,
+      0.0,
+      2.009
+     ],
+     [
+      317,
+      0.0,
+      2.003
+     ]
+    ],
+    "bent_ok": false
+   },
+   "ai": {
+    "guests": [],
+    "thick": []
+   }
+  },
+  {
+   "asset": "ZRUV_Crag",
+   "sheet": "sheet_01",
+   "size": [
+    2048,
+    2048
+   ],
+   "seconds_solve": 13.4,
+   "status": {
+    "fit": 1
+   },
+   "ok": true,
+   "jumped": [],
+   "green": {
+    "case": "green : solver",
+    "ok": true,
+    "share_within": 1.0,
+    "median_px": 0.0926,
+    "max_px": 0.093,
+    "content_mae": 0.00207,
+    "content_mae_all": 0.00207,
+    "islands": 1,
+    "worst": [
+     [
+      132,
+      1867672,
+      0.09
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 0.0328,
+    "pixel_p99_px": 0.0981,
+    "pixel_within_0_5px": 1.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_none": {
+    "case": "red : no alignment",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 27.3541,
+    "max_px": 27.354,
+    "content_mae": 0.06585,
+    "content_mae_all": 0.06585,
+    "islands": 1,
+    "worst": [
+     [
+      132,
+      1867672,
+      27.35
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 16.1689,
+    "pixel_p99_px": 22.6305,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "red_shift": {
+    "case": "red : solver shifted by 2.0 px",
+    "ok": false,
+    "share_within": 0.0,
+    "median_px": 2.0837,
+    "max_px": 2.084,
+    "content_mae": 0.02228,
+    "content_mae_all": 0.02228,
+    "islands": 1,
+    "worst": [
+     [
+      132,
+      1867672,
+      2.08
+     ]
+    ],
+    "apart_worst": [],
+    "weak": [],
+    "weak_ok": true,
+    "pixel_median_px": 2.0008,
+    "pixel_p99_px": 2.0748,
+    "pixel_within_0_5px": 0.0,
+    "bent": [],
+    "bent_ok": true
+   },
+   "ai": {
+    "guests": [],
+    "thick": []
+   }
+  }
+ ]
+}
