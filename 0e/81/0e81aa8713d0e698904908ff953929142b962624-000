@@ -1,6 +1,6 @@
 {
  "ok": true,
- "date": "22 October 2026 14:20",
+ "date": "22 October 2026 14:40",
  "criteria": {
   "corner_px": 0.75,
   "share": 0.99,
@@ -33,7 +33,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 44.8,
+   "seconds_solve": 46.0,
    "status": {
     "fit": 155,
     "fit_group": 5
@@ -237,7 +237,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 9.6,
+   "seconds_solve": 11.9,
    "status": {
     "fit": 7
    },
@@ -377,7 +377,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 7.9,
+   "seconds_solve": 8.4,
    "status": {
     "fit": 6
    },
@@ -517,7 +517,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 10.5,
+   "seconds_solve": 10.3,
    "status": {
     "fit": 4
    },
@@ -642,7 +642,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 9.9,
+   "seconds_solve": 10.3,
    "status": {
     "fit": 7
    },
@@ -782,7 +782,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 35.1,
+   "seconds_solve": 32.6,
    "status": {
     "fit": 75
    },
@@ -1024,7 +1024,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 30.1,
+   "seconds_solve": 30.9,
    "status": {
     "fit": 29
    },
@@ -1164,7 +1164,7 @@
     2048,
     2048
    ],
-   "seconds_solve": 6.6,
+   "seconds_solve": 6.0,
    "status": {
     "fit": 1
    },
