@@ -13,5 +13,10 @@
   "file": "final_01_zenray-height_aligned.png",
   "date": "22 October 2026",
   "caption": "final_01_zenray-height recalée île par île sur les UV d'origine (per-island 2D alignment) : score de calage 0,315 avant, 0,99944 après (bords dessinés à moins d'un pixel de leur bord UV), recouvrement 0,737 avant, 0,984 après ; 156 îles recalées sur leurs bords, 4 par leurs voisines, 0 par l'île qui les porte"
+ },
+ {
+  "file": "final_01_zenray-basecolor.png",
+  "date": "23 October 2026",
+  "caption": "base color refaite par ZenRay Height to Base Color dans /obj/ZRH_ArchAI512 depuis la height déjà recalée (ALIGN_OUT), mesurée sur ai_01_basecolor_chatgpt-image.png : écart de couleur moyen 3,59 (Delta E 76) sur les îles, 0,45 à l'échelle de 4 px, corrélation de luminance 0,949 ; couches gardées : gradient_maps, regions_k8_256, regions_k12_512, regions_k16_1024, regions_k24_2048, regions_k32_2048"
  }
 ]
