@@ -62,7 +62,7 @@
       "slug": "06-documentation-zenray-height",
       "title": "Documentation : ZenRay Height",
       "date": "23 October 2026",
-      "source": "/Users/zenray/.claude/skills/zenray-houdini/docs/zenray-height.html",
+      "source": "/Users/zenray/.claude/skills/zenray-houdini/docs/zenray-height/index.html",
       "status": "Documentation",
       "summary": "Le module ZenRay Height à date : la chaîne d'un asset de la height dessinée aux cinq cartes PBR, les modules, leurs paramètres, les résultats mesurés et les prompts, relus dans le code à chaque construction."
     },
@@ -70,7 +70,7 @@
       "slug": "07-documentation-zenray-houdini",
       "title": "Documentation : ZenRay Houdini",
       "date": "23 October 2026",
-      "source": "/Users/zenray/.claude/skills/zenray-houdini/docs/zenray-houdini.html",
+      "source": "/Users/zenray/.claude/skills/zenray-houdini/docs/zenray-houdini/index.html",
       "status": "Documentation",
       "summary": "Le skill ZenRay Houdini à date : ses entrées, ses outils MCP, ses dossiers de scripts et ses fichiers de connaissance, relus dans le code à chaque construction."
     }
