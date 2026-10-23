@@ -1,0 +1,39 @@
+{
+ "date": "23 October 2026 13:35",
+ "graph": "/obj/ZenRayHeightTo5Maps_ArchAI512",
+ "stem": "T_Arch512",
+ "params": {
+  "prefix": "T5_",
+  "height": "ALIGN_OUT",
+  "basecolor": "HBC_OUT",
+  "px_per_m": 512.0,
+  "relief_depth_m": 0.01,
+  "normal_kernel": 1,
+  "ao_radius_px": 16.0,
+  "ao_samples": 24,
+  "rough_base": 0.72,
+  "rough_ao": 0.2,
+  "rough_lum": 0.3,
+  "rough_lum_ref": 0.6,
+  "metallic": 0.0,
+  "res": 2048,
+  "box_color": [
+   0.35,
+   0.5,
+   0.35
+  ],
+  "dx": 14.0,
+  "dy": 1.3
+ },
+ "normal_scale": 0.005,
+ "ao_heightscale": 5.12,
+ "files": {
+  "BaseColor": "T_Arch512_BaseColor.png",
+  "Normal": "T_Arch512_Normal.png",
+  "Height": "T_Arch512_Height.png",
+  "Roughness": "T_Arch512_Roughness.png",
+  "AO": "T_Arch512_AO.png",
+  "Metallic": "T_Arch512_Metallic.png",
+  "ORM": "T_Arch512_ORM.png"
+ }
+}

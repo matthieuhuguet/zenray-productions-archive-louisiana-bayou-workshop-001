@@ -6,9 +6,15 @@
   "out_dir": "Articles",
   "image_max_px": 1600,
   "image_quality": 80,
-  "thumbnail_px": [960, 540],
+  "thumbnail_px": [
+    960,
+    540
+  ],
   "freeze_wait_ms": 800,
-  "viewport": [1440, 900],
+  "viewport": [
+    1440,
+    900
+  ],
   "index_title": "Louisiana Bayou : articles",
   "index_intro": "Index des articles du projet Louisiana Bayou, du plus ancien au plus récent. Chaque lien ouvre la dernière version du fichier dans le drive : lue en direct sur le Mac quand il est connecté, sinon depuis sa dernière archive.",
   "articles": [
@@ -51,6 +57,22 @@
       "source": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/03_work/uv/ZenRayUV_5Methods_19-October-2026/runs/m1.html",
       "status": "Méthode courante",
       "summary": "M1 seule, en planches : découpe, tuiles, damier, îles numérotées et densité de chaque asset, avec ses dimensions et ses règles d'artiste."
+    },
+    {
+      "slug": "06-documentation-zenray-height",
+      "title": "Documentation : ZenRay Height",
+      "date": "23 October 2026",
+      "source": "/Users/zenray/.claude/skills/zenray-houdini/docs/zenray-height.html",
+      "status": "Documentation",
+      "summary": "Le module ZenRay Height à date : la chaîne d'un asset de la height dessinée aux cinq cartes PBR, les modules, leurs paramètres, les résultats mesurés et les prompts, relus dans le code à chaque construction."
+    },
+    {
+      "slug": "07-documentation-zenray-houdini",
+      "title": "Documentation : ZenRay Houdini",
+      "date": "23 October 2026",
+      "source": "/Users/zenray/.claude/skills/zenray-houdini/docs/zenray-houdini.html",
+      "status": "Documentation",
+      "summary": "Le skill ZenRay Houdini à date : ses entrées, ses outils MCP, ses dossiers de scripts et ses fichiers de connaissance, relus dans le code à chaque construction."
     }
   ]
 }
