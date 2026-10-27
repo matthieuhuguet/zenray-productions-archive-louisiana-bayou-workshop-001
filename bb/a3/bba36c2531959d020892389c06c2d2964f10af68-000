@@ -98,3 +98,17 @@ index : /Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana
 index : /Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/index.html
 06-documentation-zenray-height : 1.93 MB, missing [], js errors 0
 index : /Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/index.html
+06-documentation-zenray-height : 1.93 MB, missing [], js errors 0
+07-documentation-zenray-houdini : 1.29 MB, missing [], js errors 0
+index : /Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/index.html
+Traceback (most recent call last):
+  File "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Scripts/Articles/BuildArticles.py", line 205, in <module>
+    main()
+    ~~~~^^
+  File "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Scripts/Articles/BuildArticles.py", line 201, in main
+    print('index :', build_index(cfg, state))
+                     ~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Scripts/Articles/BuildArticles.py", line 180, in build_index
+    os.replace(out + '.tmp', out)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/index.html.tmp' -> '/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/index.html'
