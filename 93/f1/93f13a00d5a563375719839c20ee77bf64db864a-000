@@ -1,0 +1,19 @@
+# Review one shot in Houdini VK, 29 October 2026, 18:55 Europe/Paris.
+import json
+config=json.load(open('/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Scripts/Cinematic/Shots.json'))
+controller=hou.node('/stage/CINE_REVIEW')
+index=controller.parm('shot').evalAsInt()
+shot=config['shots'][index]
+hou.playbar.stop()
+hou.playbar.setPlaybackRange(1,720)
+hou.setFrame(index*config['framesPerShot']+1)
+viewer=hou.ui.paneTabOfType(hou.paneTabType.SceneViewer)
+viewer.setPwd(hou.node('/stage'));viewer.setHydraRenderer('Houdini VK')
+viewport=viewer.curViewport()
+view=hou.ui.curDesktop().name()+'.'+viewer.name()+'.'+viewport.name()
+viewport.setCamera('/cameras/CINE_TIMELINE')
+settings=viewport.settings()
+for display_type in [hou.displaySetType.DisplayModel,hou.displaySetType.CurrentModel,hou.displaySetType.SceneObject,hou.displaySetType.SelectedObject]:
+ settings.displaySet(display_type).setShadedMode(hou.glShadingType.WireGhost if shot.get('wireGhost') else hou.glShadingType.Smooth)
+settings.setViewMaskOpacity(1)
+result={'shot':index+1,'camera':viewport.cameraPath(),'renderer':viewer.currentHydraRenderer()}

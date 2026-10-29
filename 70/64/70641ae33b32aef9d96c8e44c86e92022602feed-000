@@ -1,0 +1,12 @@
+# Dedicated Bayou bridge client, 29 October 2026, 18:45 Europe/Paris.
+import json,socket,sys
+with socket.create_connection(('127.0.0.1',18813),3) as connection:
+ connection.settimeout(45)
+ code=open(sys.argv[1]).read() if len(sys.argv)>1 else sys.stdin.read()
+ connection.sendall((json.dumps({'op':'hom','code':code})+'\n').encode())
+ data=b''
+ while not data.endswith(b'\n'):
+  chunk=connection.recv(1048576)
+  if not chunk: break
+  data+=chunk
+ print(data.decode())

@@ -1,0 +1,8 @@
+# Capture a single review keyframe, 29 October 2026, 19:00 Europe/Paris.
+exec(open('/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Scripts/Cinematic/ReviewShot.py').read())
+viewer=hou.ui.paneTabOfType(hou.paneTabType.SceneViewer)
+settings=viewer.flipbookSettings().stash()
+settings.output('/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/storyboard/29-October-2026/Shot%02d.png'%(index+1))
+settings.outputToMPlay(False);settings.useResolution(True);settings.resolution((1260,540));settings.cropOutMaskOverlay(True);settings.frameRange((hou.frame(),hou.frame()))
+viewer.flipbook(viewer.curViewport(),settings)
+result={'shot':index+1,'camera':viewer.curViewport().cameraPath(),'frame':hou.frame()}

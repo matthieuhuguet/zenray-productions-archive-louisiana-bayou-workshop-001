@@ -1,0 +1,43 @@
+# Build six editable Stage cameras without altering the asset, 29 October 2026, 18:50 Europe/Paris.
+import json,os
+from pathlib import Path
+root=Path('/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana')
+config=json.loads((root/'Scripts/Cinematic/Shots.json').read_text())
+assert 'LouisianaBayou' in hou.hipFile.path(), 'Wrong Houdini session'
+stage=hou.node('/stage')
+assert not stage.node('CINE_01_Establishing'), 'Cameras already exist'
+source=stage.node('FIX_cam')
+previous=source
+for index,shot in enumerate(config['shots']):
+ camera=stage.createNode('camera','CINE_'+shot['name'])
+ camera.setInput(0,previous)
+ camera.parm('primpath').set('/cameras/CINE_'+shot['name'])
+ camera.parm('focalLength').set(shot['focal'])
+ camera.parm('aperture').set('setratio')
+ camera.parm('horizontalAperture').set(36)
+ camera.parm('aspectratiox').set(config['aspect'][0]);camera.parm('aspectratioy').set(config['aspect'][1])
+ for endpoint,position,target in [(0,shot['start'],shot['targetStart']),(1,shot['end'],shot['targetEnd'])]:
+  frame=index*config['framesPerShot']+1+endpoint*(config['framesPerShot']-1)
+  rotation=hou.hmath.buildRotateLookAt(hou.Vector3(position),hou.Vector3(target),hou.Vector3(0,1,0)).extractRotates()
+  for axis,value in zip(['tx','ty','tz','rx','ry','rz'],list(position)+list(rotation)):
+   key=hou.Keyframe();key.setFrame(frame);key.setValue(value);key.setExpression('bezier()',hou.exprLanguage.Hscript);camera.parm(axis).setKeyframe(key)
+ camera.setComment(shot['label']+' | 29 October 2026 | Frames '+str(index*120+1)+' to '+str((index+1)*120))
+ camera.setGenericFlag(hou.nodeFlag.DisplayComment,True)
+ camera.setPosition(source.position()+hou.Vector2(4,-index*1.2))
+ previous=camera
+controller=stage.createNode('null','CINE_REVIEW')
+controller.setInput(0,previous);controller.setPosition(previous.position()+hou.Vector2(0,-1.5))
+controller.setColor(hou.Color((0.24,0.55,0.8)))
+group=controller.parmTemplateGroup()
+menu=hou.MenuParmTemplate('shot','Shot',[str(i) for i in range(6)],[s['label'] for s in config['shots']])
+group.append(menu)
+button=hou.ButtonParmTemplate('review','View selected shot')
+button.setScriptCallback("exec(open('"+str(root/'Scripts/Cinematic/ReviewShot.py')+"').read())")
+button.setScriptCallbackLanguage(hou.scriptLanguage.Python);group.append(button);controller.setParmTemplateGroup(group)
+controller.setDisplayFlag(True)
+hou.setFps(config['fps']);hou.playbar.setFrameRange(1,720);hou.playbar.setPlaybackRange(1,720);hou.setFrame(1)
+sv=hou.ui.paneTabOfType(hou.paneTabType.SceneViewer);sv.setPwd(stage);sv.setHydraRenderer('Houdini VK')
+controller.setSelected(True,clear_all_selected=True)
+output='/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/LouisianaBayou_Cinematic_29-October-2026.hiplc'
+hou.hipFile.save(output)
+result={'hip':hou.hipFile.path(),'cameras':[n.path() for n in stage.children() if n.name().startswith('CINE_')],'fps':hou.fps(),'renderer':sv.currentHydraRenderer(),'viewport':hou.ui.curDesktop().name()+'.'+sv.name()+'.'+sv.curViewport().name()}

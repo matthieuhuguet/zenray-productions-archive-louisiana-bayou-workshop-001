@@ -1,0 +1,56 @@
+# Automatic six-shot timeline, 29 October 2026, 19:05 Europe/Paris.
+import json
+stage=hou.node('/stage');controller=stage.node('CINE_REVIEW')
+config=json.load(open('/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Scripts/Cinematic/Shots.json'))
+active=stage.node('CINE_TIMELINE') or stage.createNode('camera','CINE_TIMELINE')
+active.setInput(0,stage.node('CINE_06_Hero'));controller.setInput(0,active)
+active.parm('primpath').set('/cameras/CINE_TIMELINE')
+active.parm('aperture').set('setratio');active.parm('horizontalAperture').set(36);active.parm('aspectratiox').set(21);active.parm('aspectratioy').set(9)
+for parameter in ['tx','ty','tz','rx','ry','rz','focalLength']:
+ expression='ch("../CINE_'+config['shots'][-1]['name']+'/'+parameter+'")'
+ for index in reversed(range(5)):
+  expression='if($F<='+str((index+1)*120)+',ch("../CINE_'+config['shots'][index]['name']+'/'+parameter+'"),'+expression+')'
+ active.parm(parameter).setExpression(expression,hou.exprLanguage.Hscript)
+active.setPosition(controller.position()+hou.Vector2(0,1))
+source=hou.sessionModuleSource()
+marker='# CINE_TIMELINE_CALLBACK_29_OCTOBER_2026'
+if marker in source:source=source[:source.index(marker)]
+source+='''
+# CINE_TIMELINE_CALLBACK_29_OCTOBER_2026
+# Restore automatic viewport cuts after loading, 29 October 2026, 19:05 Europe/Paris.
+def cine_timeline_event(event_type, frame):
+    if event_type != hou.playbarEvent.FrameChanged:
+        return
+    controller = hou.node('/stage/CINE_REVIEW')
+    if controller is None:
+        return
+    index = max(0, min(5, int((frame - 1) // 120)))
+    controller.parm('shot').set(index)
+    for viewer in hou.ui.paneTabs():
+        if viewer.type() != hou.paneTabType.SceneViewer or viewer.pwd().path() != '/stage':
+            continue
+        viewport = viewer.curViewport()
+        if viewport.cameraPath() != '/cameras/CINE_TIMELINE':
+            viewport.setCamera('/cameras/CINE_TIMELINE')
+        mode = hou.glShadingType.WireGhost if index == 4 else hou.glShadingType.Smooth
+        settings = viewport.settings()
+        for kind in [hou.displaySetType.DisplayModel, hou.displaySetType.CurrentModel, hou.displaySetType.SceneObject, hou.displaySetType.SelectedObject]:
+            display = settings.displaySet(kind)
+            if display.shadedMode() != mode:
+                display.setShadedMode(mode)
+
+def install_cine_timeline():
+    for callback in hou.playbar.eventCallbacks():
+        if getattr(callback, '__name__', '') == 'cine_timeline_event':
+            hou.playbar.removeEventCallback(callback)
+    hou.playbar.addEventCallback(cine_timeline_event)
+    cine_timeline_event(hou.playbarEvent.FrameChanged, hou.frame())
+
+if hou.isUIAvailable():
+    install_cine_timeline()
+'''
+hou.setSessionModuleSource(source)
+hou.playbar.stop();hou.playbar.setPlaybackRange(1,720);hou.setFrame(1)
+controller.setDisplayFlag(True)
+hou.hipFile.save()
+result={'active_camera':active.path(),'playback':list(hou.playbar.playbackRange()),'callbacks':len(hou.playbar.eventCallbacks())}
