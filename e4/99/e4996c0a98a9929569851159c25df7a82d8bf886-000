@@ -1,0 +1,32 @@
+# Movie Render Queue job for LS_LouisianaBayouCinematic. Parameters at the top, one place. FR : job MRQ, paramètres en tête.
+import unreal, json, time, os
+P = {"mode": "final",            # "benchmark" renders only [bench_start, bench_end) ; "final" renders everything
+     "bench_start": 30, "bench_end": 31,   # first second of plan 02 (whole scene, grass in view)
+     "width": 3360, "height": 1440, "fps": 24,   # 21:9 at 1440 lines (2K / QHD)
+     "temporal_samples": 4, "spatial_samples": 1, "warm_up_frames": 32,
+     "sequence": "/Game/ZenRayShards/LouisianaBayou/Cinematics/LS_LouisianaBayouCinematic",
+     "map": "/Game/ZenRayShards/LouisianaBayou/Levels/L_LouisianaBayouCinematic",
+     "out_root": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/render/ZRS-29-October-2026"}
+out = P["out_root"] + (("/Benchmark_%dp" % P["height"]) if P["mode"] == "benchmark" else "/Final")
+os.makedirs(out, exist_ok=True)
+for f in os.listdir(out):
+    if f.endswith(('.png', '.jpg')): os.remove(os.path.join(out, f))
+sub = unreal.get_editor_subsystem(unreal.MoviePipelineQueueSubsystem); q = sub.get_queue()
+for j in list(q.get_jobs()): q.delete_job(j)
+job = q.allocate_new_job(unreal.MoviePipelineExecutorJob); job.job_name = "LB_" + P["mode"]
+job.sequence = unreal.SoftObjectPath(P["sequence"] + "." + P["sequence"].split("/")[-1]); job.map = unreal.SoftObjectPath(P["map"] + "." + P["map"].split("/")[-1])
+cfg = job.get_configuration()
+o = cfg.find_or_add_setting_by_class(unreal.MoviePipelineOutputSetting)
+o.output_resolution = unreal.IntPoint(P["width"], P["height"]); o.output_directory = unreal.DirectoryPath(out); o.file_name_format = "LB_{sequence_name}.{frame_number}"
+o.use_custom_frame_rate = True; o.output_frame_rate = unreal.FrameRate(P["fps"], 1)
+if P["mode"] == "benchmark":
+    o.use_custom_playback_range = True; o.custom_start_frame = P["bench_start"]; o.custom_end_frame = P["bench_end"]
+aa = cfg.find_or_add_setting_by_class(unreal.MoviePipelineAntiAliasingSetting)
+aa.spatial_sample_count = P["spatial_samples"]; aa.temporal_sample_count = P["temporal_samples"]; aa.override_anti_aliasing = True; aa.anti_aliasing_method = unreal.AntiAliasingMethod.AAM_TSR; aa.render_warm_up_count = P["warm_up_frames"]
+cfg.find_or_add_setting_by_class(unreal.MoviePipelineDeferredPassBase)
+_w = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
+for _c in ('t.MaxFPS 0', 'r.VSync 0', 'r.Streaming.FullyLoadUsedTextures 1'): unreal.SystemLibrary.execute_console_command(_w, _c)   # FR : pas de plafond d'images par seconde, textures pleinement chargées
+cfg.find_or_add_setting_by_class(unreal.MoviePipelineImageSequenceOutput_PNG)
+open(out + "/_started.txt", "w").write(str(time.time()))
+ex = unreal.MoviePipelinePIEExecutor(); sub.render_queue_with_executor_instance(ex)
+print("render started", P["mode"], out)

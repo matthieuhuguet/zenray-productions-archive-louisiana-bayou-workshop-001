@@ -1,0 +1,184 @@
+{
+  "_comment": "29 October 2026 : cinematic camera plans v2 in Unreal centimetres (position, look-at target, focal mm), frames per shot. Plan 3 lasts 6 s, plan 6 is the exact reverse of plan 2. FR : plans de cam\u00e9ra v2, modifiables.",
+  "fps": 24,
+  "sensor_width_mm": 36.0,
+  "aspect_w": 21,
+  "aspect_h": 9,
+  "fstop": 22.0,
+  "shots": [
+    {
+      "name": "01_Establishing",
+      "frames": 72,
+      "focal_mm": 35,
+      "start": {
+        "pos": [
+          1250,
+          2250,
+          620
+        ],
+        "target": [
+          0,
+          300,
+          430
+        ]
+      },
+      "end": {
+        "pos": [
+          950,
+          1750,
+          540
+        ],
+        "target": [
+          0,
+          300,
+          430
+        ]
+      }
+    },
+    {
+      "name": "02_WindowPushIn",
+      "frames": 72,
+      "focal_mm": 35,
+      "start": {
+        "pos": [
+          300,
+          1900,
+          380
+        ],
+        "target": [
+          0,
+          700,
+          450
+        ]
+      },
+      "end": {
+        "pos": [
+          30,
+          830,
+          590
+        ],
+        "target": [
+          0,
+          620,
+          575
+        ]
+      }
+    },
+    {
+      "name": "03_RoofTexture",
+      "frames": 144,
+      "focal_mm": 40,
+      "start": {
+        "pos": [
+          1500,
+          650,
+          1050
+        ],
+        "target": [
+          200,
+          250,
+          650
+        ]
+      },
+      "end": {
+        "pos": [
+          1500,
+          -450,
+          1050
+        ],
+        "target": [
+          200,
+          -250,
+          650
+        ]
+      }
+    },
+    {
+      "name": "04_Overhead34",
+      "frames": 72,
+      "focal_mm": 32,
+      "start": {
+        "pos": [
+          800,
+          1200,
+          1650
+        ],
+        "target": [
+          0,
+          150,
+          620
+        ]
+      },
+      "end": {
+        "pos": [
+          600,
+          950,
+          1550
+        ],
+        "target": [
+          0,
+          100,
+          620
+        ]
+      }
+    },
+    {
+      "name": "05_RoofLower",
+      "frames": 72,
+      "focal_mm": 45,
+      "start": {
+        "pos": [
+          900,
+          1300,
+          720
+        ],
+        "target": [
+          -27,
+          168,
+          470
+        ]
+      },
+      "end": {
+        "pos": [
+          700,
+          1200,
+          720
+        ],
+        "target": [
+          -100,
+          150,
+          470
+        ]
+      }
+    },
+    {
+      "name": "06_WindowPullOut",
+      "frames": 72,
+      "focal_mm": 35,
+      "start": {
+        "pos": [
+          30,
+          830,
+          590
+        ],
+        "target": [
+          0,
+          620,
+          575
+        ]
+      },
+      "end": {
+        "pos": [
+          300,
+          1900,
+          380
+        ],
+        "target": [
+          0,
+          700,
+          450
+        ]
+      }
+    }
+  ]
+}

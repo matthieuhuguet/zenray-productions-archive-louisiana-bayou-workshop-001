@@ -1,0 +1,37 @@
+# 29 October 2026 : puts Ultra Dynamic Sky in L_LouisianaBayouCinematic, early day crisp, sun placed so the entrance gable is lit; removes the duplicate LB_ sky actors. FR : place Ultra Dynamic Sky, matin net, soleil sur la façade d'entrée.
+import unreal, json, math
+U = json.load(open('/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal/lb_lighting_29-October-2026.json'))['uds']
+eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem); eal = unreal.EditorAssetLibrary
+rep = {}
+for a in list(eas.get_all_level_actors()):
+    if a.get_actor_label() in U['remove_labels'] + [U['label'], 'LB_UDS_probe']: eas.destroy_actor(a)
+bp = eal.load_asset(U['blueprint']); uds = eas.spawn_actor_from_class(bp.generated_class(), unreal.Vector(0, 0, 0)); uds.set_actor_label(U['label'])
+def setp(name, val):
+    for n in (name, name.replace(' ', '_'), name.replace(' ', '_').lower()):
+        try: uds.set_editor_property(n, val); rep[name] = n; return True
+        except Exception as e: err = str(e)[:50]
+    rep[name] = 'FAIL ' + err; return False
+def getp(name):
+    for n in (name, name.replace(' ', '_').lower()):
+        try: return uds.get_editor_property(n)
+        except Exception: pass
+setp('use Cloud Shadows', U['use_cloud_shadows']); setp('cloud Coverage', U['cloud_coverage']); setp('fog', U['fog']); setp('sun Light Intensity', U['sun_light_intensity']); setp('sky Light Intensity', U['sky_light_intensity'])
+def sun_dir():
+    try: uds.call_method('UserConstructionScript')
+    except Exception as e: rep['construct'] = str(e)[:60]
+    uds.set_actor_location(uds.get_actor_location() + unreal.Vector(0, 0, 0.001), False, False); uds.set_actor_location(uds.get_actor_location() - unreal.Vector(0, 0, 0.001), False, False)
+    c = getp('sun_LightComponent') or getp('sun'); f = c.get_forward_vector(); return f
+# scan time of day for the target elevation, then rotate the sun path (sun Yaw) toward the wanted azimuth
+best = None
+for t in range(700, 1300, 25):
+    setp('time of Day', float(t)); f = sun_dir(); el = math.degrees(math.asin(-f.z))
+    d = abs(el - U['target_sun_elevation_deg'])
+    if best is None or d < best[0]: best = (d, t, el)
+setp('time of Day', float(best[1])); rep['time_chosen'] = best[1]; rep['elevation'] = round(best[2], 1)
+tgt = math.degrees(math.atan2(U['travel_xy_ue'][1], U['travel_xy_ue'][0]))
+for _ in range(3):
+    f = sun_dir(); cur = math.degrees(math.atan2(f.y, f.x)); delta = (tgt - cur + 540) % 360 - 180
+    y = getp('sun Yaw') or 0.0; setp('sun Yaw', float(y + delta))
+f = sun_dir(); rep['travel'] = (round(f.x, 3), round(f.y, 3), round(f.z, 3)); rep['azimuth_error_deg'] = round((tgt - math.degrees(math.atan2(f.y, f.x)) + 540) % 360 - 180, 2)
+unreal.EditorLevelLibrary.save_current_level()
+print(json.dumps(rep, indent=0))

@@ -1,0 +1,43 @@
+# 29 October 2026 (v2) : Chaotic Skies matte painting on a TRANSLUCENT dome (own material M_LB_MatteSky) so the Ultra Dynamic Sky volumetric clouds stay visible; dome lowered, far ground enlarged. Globals INDEX, YAW, OPACITY, BRIGHT override the JSON. FR : ciel peint translucide plus nuages volumétriques UDS.
+import unreal, json
+UD = '/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal'; S = json.load(open(UD + '/lb_matte_sky_29-October-2026.json'))
+idx = int(globals().get('INDEX', S['sky_index'])); yaw = float(globals().get('YAW', S['yaw_deg'])); op = float(globals().get('OPACITY', S['opacity'])); brs = float(globals().get('BRIGHT', S['brightness_scale']))
+eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem); eal = unreal.EditorAssetLibrary; mel = unreal.MaterialEditingLibrary; tools = unreal.AssetToolsHelpers.get_asset_tools(); V = unreal.Vector; rep = {'index': idx}
+MD = S['material'].rsplit('/', 1)[0]
+if not eal.does_asset_exist(S['material']):
+    m = tools.create_asset(S['material'].rsplit('/', 1)[1], MD, unreal.Material, unreal.MaterialFactoryNew()); LC = unreal.LinearColor
+    def mk(cls, x, y, **kw):
+        n = mel.create_material_expression(m, cls, x, y)
+        for k, v in kw.items(): n.set_editor_property(k, v)
+        return n
+    def conn(a, ao, b, bi):
+        for pin in (bi, '', 'A'):
+            try:
+                if mel.connect_material_expressions(a, ao, b, pin): return
+            except Exception: pass
+        raise AssertionError(('connect', bi))
+    uv = mk(unreal.MaterialExpressionTextureCoordinate, -900, 0); tx = mk(unreal.MaterialExpressionTextureSampleParameter2D, -650, 0, parameter_name='SkyTexture', sampler_type=unreal.MaterialSamplerType.SAMPLERTYPE_COLOR, texture=eal.load_asset('/Game/Chaotic_Skies/Textures/Skies/t_chaotic_skies_01')); conn(uv, '', tx, 'UVs')
+    tint = mk(unreal.MaterialExpressionVectorParameter, -650, 250, parameter_name='Tint', default_value=LC(1, 1, 1, 1)); br = mk(unreal.MaterialExpressionScalarParameter, -650, 400, parameter_name='Brightness', default_value=1.0)
+    m1 = mk(unreal.MaterialExpressionMultiply, -380, 60); conn(tx, 'RGB', m1, 'A'); conn(tint, '', m1, 'B'); m2 = mk(unreal.MaterialExpressionMultiply, -200, 100); conn(m1, '', m2, 'A'); conn(br, '', m2, 'B')
+    opn = mk(unreal.MaterialExpressionScalarParameter, -200, 300, parameter_name='Opacity', default_value=0.7); zero = mk(unreal.MaterialExpressionConstant3Vector, -200, -80, constant=LC(0, 0, 0, 1)); one = mk(unreal.MaterialExpressionConstant, -200, 420, r=1.0); zr = mk(unreal.MaterialExpressionConstant, -200, 480, r=0.0)
+    mma = mk(unreal.MaterialExpressionMakeMaterialAttributes, 120, 120); conn(zero, '', mma, 'BaseColor'); conn(m2, '', mma, 'EmissiveColor'); conn(opn, '', mma, 'Opacity'); conn(one, '', mma, 'Roughness'); conn(zr, '', mma, 'Specular')
+    m.set_editor_property('use_material_attributes', True); m.set_editor_property('two_sided', True); m.set_editor_property('blend_mode', unreal.BlendMode.BLEND_TRANSLUCENT)
+    assert mel.connect_material_property(mma, '', unreal.MaterialProperty.MP_MATERIAL_ATTRIBUTES); mel.recompile_material(m); eal.save_loaded_asset(m); rep['material'] = 'built'
+m = eal.load_asset(S['material']); ip = S['instance']
+mi = eal.load_asset(ip) if eal.does_asset_exist(ip) else tools.create_asset(ip.rsplit('/', 1)[1], MD, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
+mi.set_editor_property('parent', m)
+packmi = eal.load_asset('%s/Materials/Instances/MI_Flowmap_Inst_%02d' % (S['pack_root'], idx)); pb = [p.parameter_value for p in packmi.get_editor_property('scalar_parameter_values') if str(p.parameter_info.name) == 'Brightness'][0]
+mel.set_material_instance_texture_parameter_value(mi, 'SkyTexture', eal.load_asset('%s/Textures/Skies/t_chaotic_skies_%02d' % (S['pack_root'], idx)))
+mel.set_material_instance_scalar_parameter_value(mi, 'Brightness', float(pb) * 0.35 * brs); mel.set_material_instance_scalar_parameter_value(mi, 'Opacity', op)
+TINT = globals().get('TINT')
+if TINT: mel.set_material_instance_vector_parameter_value(mi, 'Tint', unreal.LinearColor(TINT[0], TINT[1], TINT[2], 1.0))
+mel.update_material_instance(mi); eal.save_loaded_asset(mi); rep['pack_brightness'] = round(pb, 2)
+for a in list(eas.get_all_level_actors()):
+    if a.get_actor_label() in S['labels'] + ['LB_SkyDome']: eas.destroy_actor(a)
+mesh = eal.load_asset(S['mesh']); d = eas.spawn_actor_from_object(mesh, V(0, 0, -S['dome_drop_cm'])); d.set_actor_label(S['labels'][0]); d.set_actor_scale3d(V(S['scale'], S['scale'], S['scale'])); d.set_actor_rotation(unreal.Rotator(roll=0, pitch=0, yaw=yaw), False)
+c = d.static_mesh_component; c.set_material(0, mi); c.set_cast_shadow(False); c.set_collision_enabled(unreal.CollisionEnabled.NO_COLLISION); c.set_editor_property('translucency_sort_priority', S['translucency_sort_priority'])
+by = {a.get_actor_label(): a for a in eas.get_all_level_actors()}
+if 'LB_GroundFar' in by: by['LB_GroundFar'].set_actor_scale3d(V(S['ground_scale'], S['ground_scale'], 1))
+u = by.get('LB_UDS')
+if u: u.get_editor_property('volumetricCloud').set_visibility(not S['hide_uds_clouds'], False)
+print(json.dumps(rep))

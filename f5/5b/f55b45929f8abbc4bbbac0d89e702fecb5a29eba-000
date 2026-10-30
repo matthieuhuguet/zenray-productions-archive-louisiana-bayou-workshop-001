@@ -1,0 +1,36 @@
+# Export the base color texture of every Wild Grass mesh to PNG so its mean colour can be measured.
+# FR : exporte la texture de couleur de chaque mesh d'herbe pour mesurer sa teinte moyenne.
+import unreal, json
+OUT="/private/tmp/claude-501/grass"
+meshes=[l.strip() for l in open(OUT+"/meshes.txt") if l.strip()]
+res={}
+done=set()
+for p in meshes:
+    m=unreal.load_asset(p)
+    r={"mats":[]}
+    for i,sm in enumerate(m.get_editor_property("static_materials")):
+        mi=sm.material_interface
+        if not mi: continue
+        e={"mat":mi.get_path_name(),"tex":[]}
+        try:
+            for tp in mi.get_editor_property("texture_parameter_values"):
+                e["tex"].append((str(tp.parameter_info.name),tp.parameter_value.get_path_name() if tp.parameter_value else None))
+        except Exception as ex: e["err"]=str(ex)
+        try:
+            e["parent"]=mi.get_editor_property("parent").get_path_name()
+        except: pass
+        r["mats"].append(e)
+    res[p]=r
+json.dump(res,open(OUT+"/mats.json","w"),indent=1)
+# export candidate textures
+for p,r in res.items():
+    for e in r["mats"]:
+        for n,t in e["tex"]:
+            if t and t not in done and ("Albedo" in n or "Base" in n or "Color" in n or "Diffuse" in n or "BaseColor" in t or "_B" in t.split("/")[-1][-4:]):
+                done.add(t)
+                tex=unreal.load_asset(t)
+                tk=unreal.AssetExportTask(); tk.object=tex; tk.automated=True; tk.prompt=False; tk.replace_identical=True
+                tk.filename=OUT+"/tex_"+t.split("/")[-1].split(".")[0]+".png"
+                try: unreal.Exporter.run_asset_export_task(tk)
+                except Exception as ex: print("exp fail",t,ex)
+print("done",len(res),len(done))

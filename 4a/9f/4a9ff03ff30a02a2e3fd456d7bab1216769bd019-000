@@ -1,0 +1,78 @@
+{
+ "_comment": "29 October 2026 : Wild Grass scattering parameters for the circular ground (PCG graph PCG_WildGrassCircle). Memory choices are listed in memory_notes. FR : param\u00e8tres du semis de Wild Grass sur le sol circulaire.",
+ "center_cm": [
+  0,
+  154,
+  0
+ ],
+ "ground_radius_cm": 1800,
+ "ground_label": "LB_GroundCircle",
+ "ground_material": "/Game/Fab/Megascans/Surfaces/Dirt_Ground_xdhhefr/Medium/xdhhefr_tier_2/Materials/MI_xdhhefr",
+ "hide_square_floor": true,
+ "graph_path": "/Game/ZenRayShards/LouisianaBayou/PCG/PCG_WildGrassCircle",
+ "actor_label": "LB_WildGrassPCG",
+ "points_per_m2": 5.0,
+ "church_footprint_half_cm": [
+  440,
+  900,
+  400
+ ],
+ "rotation_max_deg": [
+  4,
+  4,
+  360
+ ],
+ "rotation_min_deg": [
+  -4,
+  -4,
+  0
+ ],
+ "cull_start_cm": 1200,
+ "cull_end_cm": 2200,
+ "cast_shadow": false,
+ "texture_max_size": 2048,
+ "memory_notes": "instanced meshes (one component per variant), 5 variants only, no Nanite, textures 4K to 2K, cull distance, no shadow casting, church footprint excluded, circular area only",
+ "jitter_cm": 18,
+ "grid_note": "cell size = sqrt(10000 / points_per_m2) cm, random offset of jitter_cm in x and y; grid used because a PCG volume is not a surface for the Surface Sampler",
+ "version_note": "v6 29 October 2026 : variants picked by Matthieu (golden), one PCG branch per variant with its OWN scale so every tuft reaches the same visual size (height blended with half the width, width_weight), random branch split by density noise. v7 29 October 2026 : density 6 -> 2 points per m2 (about 2000 instances instead of 6400), cull 1200-2200 cm, because the cinematic scene dropped to 2 FPS. v8 29 October 2026 : fully random placement (each grid point shifted randomly over its whole cell before the circle clip, jitter_cell_fraction 0.5), random yaw 0-360, size spread 10 percent. v9 29 October 2026 : 4.5 points per m2 for full coverage, clip radius 96 percent of the ground radius (the ground is a 16-sided polygon, jitter pushed tufts past its edge). v10 29 October 2026 : 8 points per m2 (Matthieu asked for more instances, full coverage). v11 29 October 2026 : 4 variants only; placement = fine jittered grid randomly thinned (Select Points ratio thin_ratio), so no pattern is left. v12 29 October 2026 : all tufts scaled x1.27 uniformly in X, Y and Z (target height 90.0 to 114.3 cm) so they show in plans 1 and 8 without moving those cameras; random uniform scale variation +-10 percent kept (height_spread 0.10). v13 29 October 2026 : strong height contrast for reliefs : Z scale 0.55 to 1.75 times the base, X and Y only +-15 percent, density unchanged so coverage stays full. v14 29 October 2026 : relief by ZONES (tall clumps near 22 random blob centres of 260 cm, low grass elsewhere) instead of per-plant noise, which averaged out; density 8 to 6 points per m2. v15 29 October 2026 : zones removed (grass was too tall and broke the camera plans); back to one branch per variant, base height 114.3 cm kept, relief ONLY by an independent random Z scale per tuft (0.45 to 1.2 times the base, so never above 137 cm), X and Y +-10 percent, 6 points per m2. v16 29 October 2026 : 6 to 5 points per m2, Nanite enabled again on the 4 chosen meshes (Matthieu's request).",
+ "packs": [
+  {
+   "pack": "Wild_Grass_vczndjqja",
+   "id": "vczndjqja",
+   "variants": [
+    "G"
+   ]
+  },
+  {
+   "pack": "Wild_Grass_vdilbaiia",
+   "id": "vdilbaiia",
+   "variants": [
+    "C",
+    "E"
+   ]
+  },
+  {
+   "pack": "Wild_Grass_vlkhcbxia",
+   "id": "vlkhcbxia",
+   "variants": [
+    "A"
+   ]
+  }
+ ],
+ "target_height_cm": 114.3,
+ "height_spread": 0.1,
+ "desaturation": {
+  "_comment": "29 October 2026 : ABSOLUTE value of the y component of Base Color Controls (1.0 = Megascans default, the original of Wild_Grass_sjliZ). The old multiplicative factor compounded on every rebuild (0.5 to the power of the number of runs), that was the colour bug. FR : valeur absolue, plus de cumul.",
+  "controls_y_value": 1.0
+ },
+ "exclude_church_footprint": false,
+ "selection_note": "29 October 2026 : variants chosen BY MATTHIEU with the HTML picker (zenray-edit build-picker.py), golden tones on purpose: vczndjqja E G | vdilbaiia A C E G L | vlkhcbxia A. FR : choix de Matthieu, tons dor\u00e9s voulus. v11 29 October 2026 : reduced to 4 variants (vczndjqja G, vdilbaiia C E, vlkhcbxia A), Nanite switched back off.",
+ "width_weight": 0.4,
+ "jitter_cell_fraction": 0.5,
+ "clip_radius_fraction": 0.96,
+ "thin_ratio": 0.25,
+ "ground_note": "29 October 2026 : the ground actor is never destroyed or re-materialled by the build script; ground_material is used only if the ground has to be created (Matthieu's current material).",
+ "scale_xy_spread": 0.1,
+ "scale_z_min": 0.45,
+ "scale_z_max": 1.2
+}

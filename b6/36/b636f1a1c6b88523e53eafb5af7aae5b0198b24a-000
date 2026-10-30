@@ -1,0 +1,806 @@
+{
+ "_comment": "29 October 2026 : cinematic plans v3 in Unreal cm and degrees (explicit poses). Plan 2 is the validated Houdini move, plan 6 its reverse. FR : plans v3 explicites. v4 29 October 2026 : plans 2 and 4 low-angle, plans 3 and 5 zoomed out x1.15. v5 29 October 2026 : new 3/4 profile plan SideWindows inserted as plan 3, plans re-indexed 01 to 07, plan LowOrbit zoomed out x1.15. v6 29 October 2026 : Orbit360 inserted as plan 6, plans re-indexed 01 to 08.",
+ "fps": 24,
+ "sensor_width_mm": 36.0,
+ "aspect_w": 21,
+ "aspect_h": 9,
+ "fstop": 22.0,
+ "shots": [
+  {
+   "name": "01_LowAngle",
+   "frames": 72,
+   "focal_mm": 28.0,
+   "start": {
+    "pos": [
+     600.0,
+     1700.0,
+     120.0
+    ],
+    "pitch": 14.221,
+    "yaw": -116.565
+   },
+   "end": {
+    "pos": [
+     400.0,
+     1500.0,
+     180.0
+    ],
+    "pitch": 16.198,
+    "yaw": -109.983
+   },
+   "note": "was plan 2 (validated Houdini move), swapped to plan 1 on 29 October 2026"
+  },
+  {
+   "name": "02_Establishing",
+   "frames": 72,
+   "focal_mm": 35.0,
+   "start": {
+    "pos": [
+     1507.7,
+     2512.2,
+     230.0
+    ],
+    "pitch": 5.492,
+    "yaw": -122.208
+   },
+   "end": {
+    "pos": [
+     1330.0,
+     2060.0,
+     430.0
+    ],
+    "pitch": 2.479,
+    "yaw": -124.253
+   },
+   "note": "v4 29 October 2026 : gentle low angle (contre-plongee), camera starts low and cranes up while arcing in; aim point near the church top"
+  },
+  {
+   "name": "03_SideWindows",
+   "frames": 168,
+   "focal_mm": 24.3,
+   "start": {
+    "pos": [
+     800.0,
+     1250.0,
+     170.0
+    ],
+    "pitch": 14.008,
+    "yaw": -135.442
+   },
+   "end": {
+    "pos": [
+     820.0,
+     -100.0,
+     200.0
+    ],
+    "pitch": 11.213,
+    "yaw": -136.668
+   },
+   "note": "v5 29 October 2026 : 3/4 profile shot of the +X wall, low camera dollying along the windows, aim 450 cm ahead of the camera (about 45 degrees off the wall normal). Church walls at x=+-364, windows on x=+-343, long axis y from -670 to 978. ; v7 29 October 2026 : duration doubled (96 to 192 frames), smootherstep ease in and out, slight outward arc (+90 cm in x, +25 cm in z at mid course), zoom out x1.15 (focal 28 to 24.3). ; v10 29 October 2026 : one second removed (192 to 168 frames).",
+   "keys": [
+    {
+     "t": 0.0,
+     "pos": [
+      800.0,
+      1250.0,
+      170.0
+     ],
+     "pitch": 14.008,
+     "yaw": -135.442
+    },
+    {
+     "t": 0.1,
+     "pos": [
+      802.6,
+      1238.4,
+      170.9
+     ],
+     "pitch": 13.894,
+     "yaw": -135.607
+    },
+    {
+     "t": 0.2,
+     "pos": [
+      817.4,
+      1171.8,
+      176.3
+     ],
+     "pitch": 13.228,
+     "yaw": -136.513
+    },
+    {
+     "t": 0.3,
+     "pos": [
+      847.4,
+      1029.8,
+      187.1
+     ],
+     "pitch": 11.937,
+     "yaw": -138.265
+    },
+    {
+     "t": 0.4,
+     "pos": [
+      881.9,
+      821.5,
+      200.5
+     ],
+     "pitch": 10.45,
+     "yaw": -140.134
+    },
+    {
+     "t": 0.5,
+     "pos": [
+      900.0,
+      575.0,
+      210.0
+     ],
+     "pitch": 9.513,
+     "yaw": -141.065
+    },
+    {
+     "t": 0.6,
+     "pos": [
+      889.3,
+      328.5,
+      211.5
+     ],
+     "pitch": 9.505,
+     "yaw": -140.524
+    },
+    {
+     "t": 0.7,
+     "pos": [
+      860.9,
+      120.2,
+      207.4
+     ],
+     "pitch": 10.131,
+     "yaw": -139.01
+    },
+    {
+     "t": 0.8,
+     "pos": [
+      835.1,
+      -21.8,
+      202.8
+     ],
+     "pitch": 10.8,
+     "yaw": -137.558
+    },
+    {
+     "t": 0.9,
+     "pos": [
+      822.2,
+      -88.4,
+      200.4
+     ],
+     "pitch": 11.152,
+     "yaw": -136.797
+    },
+    {
+     "t": 1.0,
+     "pos": [
+      820.0,
+      -100.0,
+      200.0
+     ],
+     "pitch": 11.213,
+     "yaw": -136.668
+    }
+   ]
+  },
+  {
+   "name": "04_RoofDetail",
+   "frames": 144,
+   "focal_mm": 43.5,
+   "start": {
+    "pos": [
+     1443.8,
+     608.2,
+     1216.5
+    ],
+    "pitch": -25.357,
+    "yaw": -166.293
+   },
+   "end": {
+    "pos": [
+     1443.8,
+     8.2,
+     1216.5
+    ],
+    "pitch": -25.357,
+    "yaw": -166.293
+   },
+   "note": "Houdini plan 3 moved back 300 cm, twice as long ; v4 zoom out x1.15 (focal / 1.15)"
+  },
+  {
+   "name": "05_LowOrbit",
+   "frames": 72,
+   "focal_mm": 20.9,
+   "start": {
+    "pos": [
+     760.0,
+     980.0,
+     110.0
+    ],
+    "pitch": 20.46,
+    "yaw": -131.738
+   },
+   "end": {
+    "pos": [
+     1020.0,
+     330.0,
+     240.0
+    ],
+    "pitch": 18.894,
+    "yaw": -162.451
+   },
+   "note": "v4 29 October 2026 : was overhead; now a low-angle orbit with a slow rise, looking up at the roof (contre-plongee) ; v5 zoom out x1.15 (focal 24 to 20.9)"
+  },
+  {
+   "name": "06_Orbit360",
+   "frames": 288,
+   "focal_mm": 35.0,
+   "start": {
+    "pos": [
+     1562.1,
+     2597.3,
+     380.0
+    ],
+    "pitch": 1.383,
+    "yaw": -122.593
+   },
+   "end": {
+    "pos": [
+     1562.1,
+     2597.3,
+     520.0
+    ],
+    "pitch": -1.383,
+    "yaw": 237.407
+   },
+   "keys": [
+    {
+     "t": 0.0,
+     "pos": [
+      1562.1,
+      2597.3,
+      380.0
+     ],
+     "pitch": 1.383,
+     "yaw": -122.593
+    },
+    {
+     "t": 0.0208,
+     "pos": [
+      1542.4,
+      2609.8,
+      380.2
+     ],
+     "pitch": 1.379,
+     "yaw": -122.13
+    },
+    {
+     "t": 0.0417,
+     "pos": [
+      1483.6,
+      2645.8,
+      380.7
+     ],
+     "pitch": 1.369,
+     "yaw": -120.77
+    },
+    {
+     "t": 0.0625,
+     "pos": [
+      1386.0,
+      2701.4,
+      381.6
+     ],
+     "pitch": 1.352,
+     "yaw": -118.55
+    },
+    {
+     "t": 0.0833,
+     "pos": [
+      1248.9,
+      2771.3,
+      382.8
+     ],
+     "pitch": 1.328,
+     "yaw": -115.509
+    },
+    {
+     "t": 0.1042,
+     "pos": [
+      1071.7,
+      2848.7,
+      384.2
+     ],
+     "pitch": 1.299,
+     "yaw": -111.688
+    },
+    {
+     "t": 0.125,
+     "pos": [
+      853.9,
+      2925.4,
+      386.0
+     ],
+     "pitch": 1.264,
+     "yaw": -107.124
+    },
+    {
+     "t": 0.1458,
+     "pos": [
+      595.9,
+      2992.1,
+      388.1
+     ],
+     "pitch": 1.223,
+     "yaw": -101.857
+    },
+    {
+     "t": 0.1667,
+     "pos": [
+      299.4,
+      3038.5,
+      390.4
+     ],
+     "pitch": 1.178,
+     "yaw": -95.926
+    },
+    {
+     "t": 0.1875,
+     "pos": [
+      -31.9,
+      3053.8,
+      392.9
+     ],
+     "pitch": 1.128,
+     "yaw": -89.37
+    },
+    {
+     "t": 0.2083,
+     "pos": [
+      -392.2,
+      3027.4,
+      395.7
+     ],
+     "pitch": 1.073,
+     "yaw": -82.228
+    },
+    {
+     "t": 0.2292,
+     "pos": [
+      -773.1,
+      2949.1,
+      398.7
+     ],
+     "pitch": 1.014,
+     "yaw": -74.539
+    },
+    {
+     "t": 0.25,
+     "pos": [
+      -1163.7,
+      2810.3,
+      401.9
+     ],
+     "pitch": 0.951,
+     "yaw": -66.343
+    },
+    {
+     "t": 0.2708,
+     "pos": [
+      -1550.6,
+      2604.6,
+      405.2
+     ],
+     "pitch": 0.884,
+     "yaw": -57.677
+    },
+    {
+     "t": 0.2917,
+     "pos": [
+      -1918.5,
+      2328.7,
+      408.8
+     ],
+     "pitch": 0.814,
+     "yaw": -48.582
+    },
+    {
+     "t": 0.3125,
+     "pos": [
+      -2250.6,
+      1982.8,
+      412.5
+     ],
+     "pitch": 0.741,
+     "yaw": -39.096
+    },
+    {
+     "t": 0.3333,
+     "pos": [
+      -2530.0,
+      1571.4,
+      416.3
+     ],
+     "pitch": 0.666,
+     "yaw": -29.259
+    },
+    {
+     "t": 0.3542,
+     "pos": [
+      -2740.2,
+      1103.4,
+      420.2
+     ],
+     "pitch": 0.588,
+     "yaw": -19.109
+    },
+    {
+     "t": 0.375,
+     "pos": [
+      -2866.7,
+      592.0,
+      424.3
+     ],
+     "pitch": 0.508,
+     "yaw": -8.686
+    },
+    {
+     "t": 0.3958,
+     "pos": [
+      -2898.3,
+      54.2,
+      428.4
+     ],
+     "pitch": 0.426,
+     "yaw": 1.971
+    },
+    {
+     "t": 0.4167,
+     "pos": [
+      -2827.7,
+      -489.7,
+      432.7
+     ],
+     "pitch": 0.343,
+     "yaw": 12.824
+    },
+    {
+     "t": 0.4375,
+     "pos": [
+      -2652.7,
+      -1017.8,
+      436.9
+     ],
+     "pitch": 0.258,
+     "yaw": 23.833
+    },
+    {
+     "t": 0.4583,
+     "pos": [
+      -2376.7,
+      -1507.7,
+      441.3
+     ],
+     "pitch": 0.172,
+     "yaw": 34.96
+    },
+    {
+     "t": 0.4792,
+     "pos": [
+      -2008.5,
+      -1937.8,
+      445.6
+     ],
+     "pitch": 0.086,
+     "yaw": 46.164
+    },
+    {
+     "t": 0.5,
+     "pos": [
+      -1562.1,
+      -2289.3,
+      450.0
+     ],
+     "pitch": 0.0,
+     "yaw": 57.407
+    },
+    {
+     "t": 0.5208,
+     "pos": [
+      -1055.7,
+      -2547.0,
+      454.4
+     ],
+     "pitch": -0.086,
+     "yaw": 68.651
+    },
+    {
+     "t": 0.5417,
+     "pos": [
+      -510.8,
+      -2700.7,
+      458.7
+     ],
+     "pitch": -0.172,
+     "yaw": 79.855
+    },
+    {
+     "t": 0.5625,
+     "pos": [
+      49.7,
+      -2745.6,
+      463.1
+     ],
+     "pitch": -0.258,
+     "yaw": 90.982
+    },
+    {
+     "t": 0.5833,
+     "pos": [
+      602.5,
+      -2682.7,
+      467.3
+     ],
+     "pitch": -0.343,
+     "yaw": 101.991
+    },
+    {
+     "t": 0.6042,
+     "pos": [
+      1125.8,
+      -2518.5,
+      471.6
+     ],
+     "pitch": -0.426,
+     "yaw": 112.844
+    },
+    {
+     "t": 0.625,
+     "pos": [
+      1600.7,
+      -2264.2,
+      475.7
+     ],
+     "pitch": -0.508,
+     "yaw": 123.501
+    },
+    {
+     "t": 0.6458,
+     "pos": [
+      2011.8,
+      -1934.7,
+      479.8
+     ],
+     "pitch": -0.588,
+     "yaw": 133.924
+    },
+    {
+     "t": 0.6667,
+     "pos": [
+      2348.4,
+      -1547.5,
+      483.7
+     ],
+     "pitch": -0.666,
+     "yaw": 144.074
+    },
+    {
+     "t": 0.6875,
+     "pos": [
+      2604.5,
+      -1121.3,
+      487.5
+     ],
+     "pitch": -0.741,
+     "yaw": 153.911
+    },
+    {
+     "t": 0.7083,
+     "pos": [
+      2779.1,
+      -674.6,
+      491.2
+     ],
+     "pitch": -0.814,
+     "yaw": 163.397
+    },
+    {
+     "t": 0.7292,
+     "pos": [
+      2875.1,
+      -224.9,
+      494.8
+     ],
+     "pitch": -0.884,
+     "yaw": 172.492
+    },
+    {
+     "t": 0.75,
+     "pos": [
+      2899.4,
+      212.6,
+      498.1
+     ],
+     "pitch": -0.951,
+     "yaw": 181.157
+    },
+    {
+     "t": 0.7708,
+     "pos": [
+      2861.4,
+      625.4,
+      501.3
+     ],
+     "pitch": -1.014,
+     "yaw": 189.354
+    },
+    {
+     "t": 0.7917,
+     "pos": [
+      2772.6,
+      1004.0,
+      504.3
+     ],
+     "pitch": -1.073,
+     "yaw": 197.043
+    },
+    {
+     "t": 0.8125,
+     "pos": [
+      2645.5,
+      1342.1,
+      507.1
+     ],
+     "pitch": -1.128,
+     "yaw": 204.185
+    },
+    {
+     "t": 0.8333,
+     "pos": [
+      2492.5,
+      1636.3,
+      509.6
+     ],
+     "pitch": -1.178,
+     "yaw": 210.741
+    },
+    {
+     "t": 0.8542,
+     "pos": [
+      2326.0,
+      1886.0,
+      511.9
+     ],
+     "pitch": -1.223,
+     "yaw": 216.672
+    },
+    {
+     "t": 0.875,
+     "pos": [
+      2157.2,
+      2092.2,
+      514.0
+     ],
+     "pitch": -1.264,
+     "yaw": 221.939
+    },
+    {
+     "t": 0.8958,
+     "pos": [
+      1996.1,
+      2257.7,
+      515.8
+     ],
+     "pitch": -1.299,
+     "yaw": 226.502
+    },
+    {
+     "t": 0.9167,
+     "pos": [
+      1851.5,
+      2386.0,
+      517.2
+     ],
+     "pitch": -1.328,
+     "yaw": 230.324
+    },
+    {
+     "t": 0.9375,
+     "pos": [
+      1730.5,
+      2481.1,
+      518.4
+     ],
+     "pitch": -1.352,
+     "yaw": 233.364
+    },
+    {
+     "t": 0.9583,
+     "pos": [
+      1639.1,
+      2546.4,
+      519.3
+     ],
+     "pitch": -1.369,
+     "yaw": 235.585
+    },
+    {
+     "t": 0.9792,
+     "pos": [
+      1581.8,
+      2584.6,
+      519.8
+     ],
+     "pitch": -1.379,
+     "yaw": 236.945
+    },
+    {
+     "t": 1.0,
+     "pos": [
+      1562.1,
+      2597.3,
+      520.0
+     ],
+     "pitch": -1.383,
+     "yaw": 237.407
+    }
+   ],
+   "note": "v8 29 October 2026 : classic 360 degree turn, constant radius 2900 cm and constant focal length 35 mm (no zoom effect), 48 keys (7.5 degrees apart) so the path stays circular, centred on the church centre (0,154,450), smoothstep start and stop, slow rise from 380 to 520 cm for a cinematic touch, counterclockwise, 144 frames. ; v9 29 October 2026 : duration doubled, 144 to 288 frames (12 s), too fast before."
+  },
+  {
+   "name": "07_RoofLower",
+   "frames": 72,
+   "focal_mm": 39.1,
+   "start": {
+    "pos": [
+     900,
+     1300,
+     720
+    ],
+    "pitch": -9.696,
+    "yaw": -129.314
+   },
+   "end": {
+    "pos": [
+     700,
+     1200,
+     720
+    ],
+    "pitch": -10.724,
+    "yaw": -127.304
+   },
+   "note": "kept, Matthieu said it was acceptable ; v4 zoom out x1.15 (focal / 1.15)"
+  },
+  {
+   "name": "08_PullOut",
+   "frames": 72,
+   "focal_mm": 28.0,
+   "start": {
+    "pos": [
+     400.0,
+     1500.0,
+     180.0
+    ],
+    "pitch": 16.198,
+    "yaw": -109.983
+   },
+   "end": {
+    "pos": [
+     600.0,
+     1700.0,
+     120.0
+    ],
+    "pitch": 14.221,
+    "yaw": -116.565
+   },
+   "note": "exact reverse of plan 2"
+  }
+ ]
+}

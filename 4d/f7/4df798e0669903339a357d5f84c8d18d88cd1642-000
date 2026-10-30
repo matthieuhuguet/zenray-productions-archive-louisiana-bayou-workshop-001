@@ -1,0 +1,32 @@
+# Render a real preview of each Wild Grass static mesh with a SceneCapture2D (framed on its bounds, grey backdrop). FR : vrai rendu de chaque static mesh d'herbe.
+# Parameters / paramètres :
+import unreal, math
+OUT="/private/tmp/claude-501/grass"; SIZE=384; FOV=35.0; ELEV_DEG=12.0; MARGIN=1.15; STAGE=unreal.Vector(0,0,80000); EXPOSURE_BIAS=8.0; LIGHT_LUX=12.0; LIGHT_ROT=(-40,-35,0)
+world=unreal.EditorLevelLibrary.get_editor_world() if hasattr(unreal.EditorLevelLibrary,'get_editor_world') else unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
+eas=unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
+for x in eas.get_all_level_actors():
+    if x.get_actor_location().z>70000: eas.destroy_actor(x)
+rt=unreal.RenderingLibrary.create_render_target2d(world,SIZE,SIZE,unreal.TextureRenderTargetFormat.RTF_RGBA8)
+cube=unreal.load_asset("/Engine/BasicShapes/Cube")
+cap_actor=eas.spawn_actor_from_class(unreal.SceneCapture2D,STAGE)
+cap=cap_actor.get_editor_property("capture_component2d")
+cap.set_editor_property("texture_target",rt); cap.set_editor_property("capture_source",unreal.SceneCaptureSource.SCS_FINAL_COLOR_LDR)
+cap.set_editor_property("fov_angle",FOV); cap.set_editor_property("primitive_render_mode",unreal.SceneCapturePrimitiveRenderMode.PRM_USE_SHOW_ONLY_LIST)
+pp=cap.get_editor_property("post_process_settings"); pp.set_editor_property("override_auto_exposure_method",True); pp.set_editor_property("auto_exposure_method",unreal.AutoExposureMethod.AEM_MANUAL); pp.set_editor_property("override_auto_exposure_bias",True); pp.set_editor_property("auto_exposure_bias",EXPOSURE_BIAS); cap.set_editor_property("post_process_settings",pp); cap.set_editor_property("post_process_blend_weight",1.0)
+lt=eas.spawn_actor_from_class(unreal.DirectionalLight,STAGE,unreal.Rotator(LIGHT_ROT[0],LIGHT_ROT[1],LIGHT_ROT[2])); lc=lt.get_component_by_class(unreal.DirectionalLightComponent); lc.set_editor_property("intensity",LIGHT_LUX); lc.set_editor_property("cast_shadows",False)
+cap.set_editor_property("capture_every_frame",False); cap.set_editor_property("capture_on_movement",False)
+for p in [l.strip() for l in open(OUT+"/meshes.txt") if l.strip()]:
+    m=unreal.load_asset(p); name=p.split("/")[-1]
+    a=eas.spawn_actor_from_class(unreal.StaticMeshActor,STAGE)
+    a.static_mesh_component.set_static_mesh(m); a.set_actor_location(STAGE,False,False)
+    o,e=a.get_actor_bounds(False); r=max(e.x,e.y,e.z)*MARGIN; d=r/math.tan(math.radians(FOV/2))
+    # camera looks along +Y from -Y side, slightly above
+    el=math.radians(ELEV_DEG); pos=unreal.Vector(o.x, o.y-d*math.cos(el), o.z+d*math.sin(el))
+    rot=unreal.MathLibrary.find_look_at_rotation(pos,o)
+    cap_actor.set_actor_location_and_rotation(pos,rot,False,False)
+    bd=eas.spawn_actor_from_class(unreal.StaticMeshActor,unreal.Vector(o.x,o.y+r*1.4+10,o.z))
+    bd.static_mesh_component.set_static_mesh(cube); bd.set_actor_scale3d(unreal.Vector(max(d,r*6)/100,0.05,max(d,r*6)/100))
+    cap.clear_show_only_components(); cap.show_only_actor_components(a,True); cap.show_only_actor_components(bd,True); cap.capture_scene()
+    unreal.RenderingLibrary.export_render_target(world,rt,OUT,"prev_"+name+".png")
+    eas.destroy_actor(a); eas.destroy_actor(bd)
+eas.destroy_actor(cap_actor); eas.destroy_actor(lt); print("previews done")

@@ -1,0 +1,258 @@
+{
+  "_comment": "29 October 2026 : 16 post-process effects, each with off and on values, applied by ue_apply_postprocess_29-October-2026.py. FR : seize effets de post-traitement, valeurs \u00e9teintes et allum\u00e9es \u00e9ditables.",
+  "effects": {
+    "01_ChromaticAberration": {
+      "pp": {
+        "scene_fringe_intensity": [
+          0.0,
+          0.6
+        ]
+      }
+    },
+    "02_Vignette": {
+      "pp": {
+        "vignette_intensity": [
+          0.0,
+          0.5
+        ]
+      }
+    },
+    "03_Bloom": {
+      "pp": {
+        "bloom_intensity": [
+          0.0,
+          0.9
+        ]
+      }
+    },
+    "04_FilmGrain": {
+      "pp": {
+        "film_grain_intensity": [
+          0.0,
+          0.3
+        ]
+      }
+    },
+    "05_LensFlare": {
+      "pp": {
+        "lens_flare_intensity": [
+          0.0,
+          1.2
+        ]
+      }
+    },
+    "06_Saturation": {
+      "pp4": {
+        "color_saturation": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1.18,
+            1.18,
+            1.18,
+            1
+          ]
+        ]
+      }
+    },
+    "07_Contrast": {
+      "pp4": {
+        "color_contrast": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1.1,
+            1.1,
+            1.1,
+            1
+          ]
+        ]
+      }
+    },
+    "08_WarmWhiteBalance": {
+      "pp": {
+        "white_temp": [
+          6500.0,
+          5600.0
+        ]
+      }
+    },
+    "09_FilmicToneCurve": {
+      "pp": {
+        "film_slope": [
+          0.88,
+          0.95
+        ],
+        "film_toe": [
+          0.55,
+          0.48
+        ],
+        "film_shoulder": [
+          0.26,
+          0.32
+        ]
+      }
+    },
+    "10_AmbientOcclusion": {
+      "pp": {
+        "ambient_occlusion_intensity": [
+          0.0,
+          0.6
+        ],
+        "ambient_occlusion_radius": [
+          40.0,
+          80.0
+        ]
+      }
+    },
+    "11_Sharpen": {
+      "pp": {
+        "sharpen": [
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "12_LocalExposure": {
+      "pp": {
+        "local_exposure_highlight_contrast_scale": [
+          1.0,
+          0.75
+        ],
+        "local_exposure_shadow_contrast_scale": [
+          1.0,
+          0.8
+        ]
+      }
+    },
+    "13_LightShafts": {
+      "sun": {
+        "enable_light_shaft_bloom": [
+          false,
+          true
+        ],
+        "bloom_scale": [
+          0.2,
+          0.35
+        ],
+        "bloom_threshold": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "14_VolumetricFog": {
+      "fog": {
+        "enable_volumetric_fog": [
+          false,
+          true
+        ]
+      }
+    },
+    "15_ContactShadows": {
+      "sun": {
+        "contact_shadow_length": [
+          0.0,
+          0.03
+        ]
+      }
+    },
+    "16_VolumetricClouds": {
+      "clouds": [
+        false,
+        true
+      ]
+    }
+  },
+  "grading": {
+    "_comment": "29 October 2026 : the 8 color grading values Matthieu edits in the ZenRay Edit slider page and pastes back. kind v4 = same value on RGB, w = 1. FR : les 8 valeurs d'\u00e9talonnage.",
+    "saturation": {
+      "prop": "color_saturation",
+      "kind": "v4",
+      "default": 1.18,
+      "neutral": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "label": "Saturation"
+    },
+    "contrast": {
+      "prop": "color_contrast",
+      "kind": "v4",
+      "default": 1.1,
+      "neutral": 1.0,
+      "min": 0.6,
+      "max": 1.6,
+      "step": 0.01,
+      "label": "Contraste"
+    },
+    "exposure_ev": {
+      "prop": "auto_exposure_bias",
+      "kind": "float",
+      "default": -0.1,
+      "neutral": 0.0,
+      "min": -2.0,
+      "max": 2.0,
+      "step": 0.05,
+      "label": "Exposition (EV)"
+    },
+    "temperature": {
+      "prop": "white_temp",
+      "kind": "float",
+      "default": 5600.0,
+      "neutral": 6500.0,
+      "min": 3500.0,
+      "max": 9500.0,
+      "step": 50.0,
+      "label": "Temp\u00e9rature (K)"
+    },
+    "tint": {
+      "prop": "white_tint",
+      "kind": "float",
+      "default": 0.0,
+      "neutral": 0.0,
+      "min": -1.0,
+      "max": 1.0,
+      "step": 0.02,
+      "label": "Teinte vert/magenta"
+    },
+    "gamma": {
+      "prop": "color_gamma",
+      "kind": "v4",
+      "default": 1.0,
+      "neutral": 1.0,
+      "min": 0.7,
+      "max": 1.4,
+      "step": 0.01,
+      "label": "Gamma"
+    },
+    "shadows_saturation": {
+      "prop": "color_saturation_shadows",
+      "kind": "v4",
+      "default": 1.0,
+      "neutral": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "label": "Saturation des ombres"
+    },
+    "highlights_saturation": {
+      "prop": "color_saturation_highlights",
+      "kind": "v4",
+      "default": 1.0,
+      "neutral": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "label": "Saturation des hautes lumi\u00e8res"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# 29 October 2026 : builds the six CINE cameras of the Houdini cinematic (LB_CINE_0N_*) in L_LouisianaBayouCinematic, from cine_cameras.json. FR : crée les six caméras du plan cinématographique, à l'identique de Houdini.
+import unreal, json
+D = json.load(open('/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/render/ZRS-29-October-2026/cine_cameras.json'))
+CP = json.load(open('/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal/lb_cameras_29-October-2026.json'))
+SENSOR_W_MM, ASPECT, FSTOP = CP['sensor_width_mm'], CP['aspect_w'] / CP['aspect_h'], CP['fstop']   # FSTOP 22 keeps depth of field off (BUG-21)
+eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem); V = unreal.Vector
+def hv(v, k=1.0): return V(k * v[0], k * v[2], k * v[1])      # Houdini (x,y,z) -> Unreal (x,z,y)
+for a in eas.get_all_level_actors():
+    if a.get_actor_label().startswith('LB_CINE_'): eas.destroy_actor(a)
+for i, s in enumerate(D['shots'], 1):
+    smp = s['samples'][0]
+    cam = eas.spawn_actor_from_class(unreal.CineCameraActor, hv(smp['pos_m'], 100.0))
+    cam.set_actor_label('LB_CINE_%02d_%s' % (i, s['name'].split('_', 2)[2]))
+    cam.set_actor_rotation(unreal.MathLibrary.make_rot_from_xz(hv(smp['fwd']), hv(smp['up'])), False)
+    cc = cam.get_cine_camera_component()
+    fb = cc.filmback; fb.sensor_width = SENSOR_W_MM; fb.sensor_height = SENSOR_W_MM / ASPECT; cc.set_editor_property('filmback', fb)
+    cc.current_focal_length = smp['focal'] * 100.0; cc.current_aperture = FSTOP
+    fs = cc.focus_settings; fs.focus_method = unreal.CameraFocusMethod.MANUAL; fs.manual_focus_distance = 1500.0; cc.set_editor_property('focus_settings', fs)
+    print(cam.get_actor_label(), 'focal', cc.current_focal_length, 'pos', cam.get_actor_location())
+unreal.EditorLevelLibrary.save_current_level()

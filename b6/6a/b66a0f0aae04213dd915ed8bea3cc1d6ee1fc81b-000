@@ -1,0 +1,22 @@
+{
+  "_comment": "29 October 2026 : Chaotic Skies (Velarion) matte painting dome for L_LouisianaBayouCinematic. sky_index 1 to 6, scale 25 gives a dome of about 2 km, yaw rotates the painting, brightness_scale multiplies the pack Brightness. FR : dôme de ciel peint, paramètres modifiables.",
+  "pack_root": "/Game/Chaotic_Skies",
+  "mesh": "/Game/Chaotic_Skies/Meshes/SM_Skybox_Mesh",
+  "labels": [
+    "LB_MatteSky",
+    "LB_MatteSkyTop"
+  ],
+  "sky_index": 1,
+  "scale": 25.0,
+  "yaw_deg": 0.0,
+  "brightness_scale": 1.0,
+  "top_overlay": false,
+  "hide_uds_clouds": false,
+  "material": "/Game/ZenRayShards/LouisianaBayou/Materials/M_LB_MatteSky",
+  "instance": "/Game/ZenRayShards/LouisianaBayou/Materials/MI_LB_MatteSky",
+  "dome_drop_cm": 22000.0,
+  "ground_scale": 2600.0,
+  "opacity": 0.7,
+  "translucency_sort_priority": -100,
+  "_note_v2": "29 October 2026 : translucent own material so UDS volumetric clouds show behind the painting; dome lowered by dome_drop_cm and the far ground enlarged to hide the painting lower band. FR : matériau translucide, dôme descendu, grand sol."
+}

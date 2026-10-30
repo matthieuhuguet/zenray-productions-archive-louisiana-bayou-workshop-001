@@ -1,0 +1,10 @@
+# Export each Wild Grass mesh to OBJ (with UVs) so the atlas colour under its UVs can be sampled. FR : export OBJ pour échantillonner l'atlas sous les UV.
+import unreal
+OUT="/private/tmp/claude-501/grass"
+for p in [l.strip() for l in open(OUT+"/meshes.txt") if l.strip()]:
+    m=unreal.load_asset(p)
+    tk=unreal.AssetExportTask(); tk.object=m; tk.automated=True; tk.prompt=False; tk.replace_identical=True
+    tk.filename=OUT+"/obj_"+p.split("/")[-1]+".obj"
+    try: unreal.Exporter.run_asset_export_task(tk)
+    except Exception as ex: print("fail",p,ex)
+print("done")

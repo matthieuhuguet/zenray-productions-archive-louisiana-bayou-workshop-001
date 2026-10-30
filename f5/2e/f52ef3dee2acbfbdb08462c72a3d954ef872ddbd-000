@@ -1,0 +1,98 @@
+# 29 October 2026 (v2) : PCG_WildGrassCircle with 4 Wild Grass packs : one branch per chosen variant, scale computed from the measured mesh height (uniform size), circle by distance, church footprint excluded, random rotation, instanced, cull distances, 2K textures, desaturated materials. Parameters in lb_pcg_grass_29-October-2026.json. FR : herbe plus dense, plus petite, de taille uniforme, désaturée.
+import unreal, random, json, math
+UD = '/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal'; C = json.load(open(UD + '/lb_pcg_grass_29-October-2026.json'))
+eal = unreal.EditorAssetLibrary; eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem); tools = unreal.AssetToolsHelpers.get_asset_tools(); mel = unreal.MaterialEditingLibrary; V = unreal.Vector; rep = {}
+BASE = '/Game/Fab/Megascans/Plants/'; chosen = []; tex_done = 0; mat_done = 0
+for pk in C['packs']:
+    assets = [a.split('.')[0] for a in eal.list_assets(BASE + pk['pack'], recursive=True)]
+    for p in assets:
+        if '/Textures/' in p:
+            t = eal.load_asset(p)
+            try: t.set_editor_property('max_texture_size', int(C['texture_max_size'])); eal.save_loaded_asset(t); tex_done += 1
+            except Exception: pass
+        if '/Materials/MI_' in p and 'Billboard' not in p or ('/Materials/MI_' in p and 'Billboard' in p):
+            mi = eal.load_asset(p)
+            try:
+                for pv in mi.get_editor_property('vector_parameter_values'):
+                    if str(pv.parameter_info.name) == 'Base Color Controls':
+                        v = pv.parameter_value; mel.set_material_instance_vector_parameter_value(mi, 'Base Color Controls', unreal.LinearColor(v.r, C['desaturation']['controls_y_value'], v.b, v.a)); mel.update_material_instance(mi); eal.save_loaded_asset(mi); mat_done += 1
+            except Exception as e: rep['mat_' + p.split('/')[-1]] = str(e)[:50]
+    for var in pk['variants']:
+        hit = [p for p in assets if p.endswith('/StaticMeshes/SM_%s_Var%s' % (pk['id'], var))]
+        if not hit: rep['missing_' + pk['id'] + var] = 1; continue
+        m = eal.load_asset(hit[0]); be = m.get_bounds().box_extent; h = (1 - C.get('width_weight', 0.4)) * 2.0 * be.z + C.get('width_weight', 0.4) * max(be.x, be.y); hz = 2.0 * be.z; chosen.append({'path': hit[0], 'name': hit[0].split('/')[-1], 'height': h, 'real_height': hz, 'extent_xy': max(be.x, be.y), 'scale': C['target_height_cm'] / h})
+rep['textures_capped'] = tex_done; rep['materials_desaturated'] = mat_done; rep['chosen'] = [(c['name'], round(c['height']), round(c['scale'], 2)) for c in chosen]
+# ---- circular ground : NEVER destroyed, never re-materialled (Matthieu rule, 29 October 2026). It is created only when no actor with the ground label exists.
+# FR : le sol circulaire n'est JAMAIS supprimé ni re-matérialisé ; créé seulement s'il n'existe pas.
+R = C['ground_radius_cm']
+_existing = [a for a in eas.get_all_level_actors() if a.get_actor_label() == C['ground_label']]
+if _existing: rep['ground'] = 'kept untouched'
+else:
+    for a in eas.get_all_level_actors():
+        if a.get_actor_label() == 'LB_floor' and C['hide_square_floor']: a.set_is_temporarily_hidden_in_editor(True); a.set_actor_hidden_in_game(True)   # editor-only hiding is NOT enough: the Movie Render Queue renders a game world
+    g = eas.spawn_actor_from_object(eal.load_asset('/Engine/BasicShapes/Cylinder'), V(C['center_cm'][0], C['center_cm'][1], -1.0)); g.set_actor_label(C['ground_label']); g.set_actor_scale3d(V(R / 50.0, R / 50.0, 0.02))
+    gc = g.static_mesh_component; gc.set_material(0, eal.load_asset(C['ground_material'])); gc.set_cast_shadow(True); gc.set_collision_enabled(unreal.CollisionEnabled.NO_COLLISION); rep['ground'] = 'created'
+# ---- graph
+P = C['graph_path'].rsplit('/', 1)[0]; N = C['graph_path'].rsplit('/', 1)[1]
+gr = eal.load_asset(C['graph_path']) if eal.does_asset_exist(C['graph_path']) else tools.create_asset(N, P, unreal.PCGGraph, unreal.PCGGraphFactory())
+for _n in list(gr.nodes):
+    try: gr.remove_node(_n)
+    except Exception as e: rep['clear'] = str(e)[:60]
+def node(cls):
+    r = gr.add_node_of_type(cls); return (r[0], r[1]) if isinstance(r, tuple) else (r, r.get_settings())
+def edge(a, al, b, bl):
+    try: gr.add_edge(a, al, b, bl)
+    except Exception as e: rep['edge_%s_%s' % (al, bl)] = 'FAIL ' + str(e)[:60]
+out = gr.get_output_node()
+grid, grid_s = node(unreal.PCGCreatePointsGridSettings); cs = math.sqrt(10000.0 / C['points_per_m2'])
+grid_s.set_editor_property('grid_extents', V(R, R, 1.0)); grid_s.set_editor_property('cell_size', V(cs, cs, cs)); grid_s.set_editor_property('cull_points_outside_volume', False); rep['cell_cm'] = round(cs, 1)
+ctr, ctr_s = node(unreal.PCGCreatePointsSettings)
+_p = ctr_s.get_editor_property('points_to_create')[0]; _p.set_editor_property('transform', unreal.Transform(location=V(*C['center_cm']))); ctr_s.set_editor_property('points_to_create', [_p])
+dist, dist_s = node(unreal.PCGDistanceSettings); dist_s.set_editor_property('maximum_distance', float(R)); dist_s.set_editor_property('set_density', True)
+dfl, dfl_s = node(unreal.PCGDensityFilterSettings); dfl_s.set_editor_property('lower_bound', 0.0); dfl_s.set_editor_property('upper_bound', 0.999); dfl_s.set_editor_property('keep_zero_density_points', True)
+box, box_s = node(unreal.PCGCreatePointsSettings)
+p = box_s.get_editor_property('points_to_create')[0]
+if C.get('exclude_church_footprint', False):
+    hx, hy, hz = C['church_footprint_half_cm']; p.set_editor_property('transform', unreal.Transform(location=V(*C['center_cm']))); p.set_editor_property('bounds_min', V(-hx, -hy, -hz)); p.set_editor_property('bounds_max', V(hx, hy, hz))
+else:   # no exclusion: a tiny box parked far away keeps the proven graph structure (a direct filter-to-transform link generated nothing)
+    p.set_editor_property('transform', unreal.Transform(location=V(*C['center_cm']))); p.set_editor_property('bounds_min', V(-1, -1, -1)); p.set_editor_property('bounds_max', V(1, 1, 1))
+box_s.set_editor_property('points_to_create', [p])
+dif, dif_s = node(unreal.PCGDifferenceSettings); dif_s.set_editor_property('density_function', unreal.PCGDifferenceDensityFunction.BINARY); dif_s.set_editor_property('mode', unreal.PCGDifferenceMode.CONTINUOUS)
+sp = C['height_spread']; rmin, rmax = C['rotation_min_deg'], C['rotation_max_deg']; rep['sizes'] = [(c['name'], round(c['real_height']), round(c['height']), round(c['scale'], 2)) for c in chosen]
+# FR : une grille de points PAR VARIANTE (maille agrandie de sqrt(N), décalée), clippée au cercle, avec SA propre échelle : même densité totale, taille visuelle commune.
+N = len(chosen); thin = C['thin_ratio']; cellN = math.sqrt(10000.0 / (C['points_per_m2'] / N / thin))   # FR : grille fine puis tirage aléatoire de points : plus aucun motif
+for n_i, c in enumerate(chosen):
+    g_i, g_s = node(unreal.PCGCreatePointsGridSettings); g_s.set_editor_property('grid_extents', V(R, R, 1.0)); g_s.set_editor_property('cell_size', V(cellN, cellN, cellN)); g_s.set_editor_property('cull_points_outside_volume', False)
+    j_i, j_s = node(unreal.PCGTransformPointsSettings); jf = cellN * C['jitter_cell_fraction']   # FR : décalage aléatoire sur toute la maille, AVANT le découpage au cercle, donc plus de grille visible
+    j_s.set_editor_property('offset_min', V(-jf, -jf, 0)); j_s.set_editor_property('offset_max', V(jf, jf, 0))
+    sp_i, sp_s = node(unreal.PCGSelectPointsSettings); sp_s.set_editor_property('ratio', thin)
+    try: sp_s.set_editor_property('seed', 7000 + n_i * 131)
+    except Exception: pass
+    d_i, d_s = node(unreal.PCGDistanceSettings); d_s.set_editor_property('maximum_distance', float(R) * C['clip_radius_fraction']); d_s.set_editor_property('set_density', True)
+    f_i, f_s = node(unreal.PCGDensityFilterSettings); f_s.set_editor_property('lower_bound', 0.0); f_s.set_editor_property('upper_bound', 0.999); f_s.set_editor_property('keep_zero_density_points', True)
+    df_i, df_s = node(unreal.PCGDifferenceSettings); df_s.set_editor_property('density_function', unreal.PCGDifferenceDensityFunction.BINARY); df_s.set_editor_property('mode', unreal.PCGDifferenceMode.CONTINUOUS)
+    # FR : une seule branche par variante ; relief uniquement par l'échelle Z tirée au hasard POUR CHAQUE touffe (X et Y gardent ±xy_spread), hauteur maximale basse pour ne pas casser les plans de caméra.
+    sc = c['scale']; sxy = C['scale_xy_spread']; zmin = C['scale_z_min']; zmax = C['scale_z_max']
+    trf, trf_s = node(unreal.PCGTransformPointsSettings)
+    trf_s.set_editor_property('rotation_min', unreal.Rotator(roll=rmin[0], pitch=rmin[1], yaw=rmin[2])); trf_s.set_editor_property('rotation_max', unreal.Rotator(roll=rmax[0], pitch=rmax[1], yaw=rmax[2]))
+    trf_s.set_editor_property('scale_min', V(sc * (1 - sxy), sc * (1 - sxy), sc * zmin)); trf_s.set_editor_property('scale_max', V(sc * (1 + sxy), sc * (1 + sxy), sc * zmax)); trf_s.set_editor_property('uniform_scale', False)
+    spw, spw_s = node(unreal.PCGStaticMeshSpawnerSettings)
+    spw_s.set_editor_property('mesh_selector_type', unreal.PCGMeshSelectorWeighted); sel = spw_s.get_editor_property('mesh_selector_instance')
+    e = unreal.PCGMeshSelectorWeightedEntry(); d = e.get_editor_property('descriptor'); d.set_editor_property('static_mesh', eal.load_asset(c['path']))
+    for k, v in (('cast_shadow', C['cast_shadow']), ('instance_start_cull_distance', int(C['cull_start_cm'])), ('instance_end_cull_distance', int(C['cull_end_cm']))):
+        try: d.set_editor_property(k, v)
+        except Exception: rep['desc_' + k] = 'FAIL'
+    e.set_editor_property('descriptor', d); e.set_editor_property('weight', 1); sel.set_editor_property('mesh_entries', [e])
+    edge(g_i, 'Out', j_i, 'In'); edge(j_i, 'Out', sp_i, 'In'); edge(sp_i, 'Out', d_i, 'Source'); edge(ctr, 'Out', d_i, 'Target'); edge(d_i, 'Out', f_i, 'In'); edge(f_i, 'Out', df_i, 'Source'); edge(box, 'Out', df_i, 'Differences'); edge(df_i, 'Out', trf, 'In'); edge(trf, 'Out', spw, 'In'); edge(spw, 'Out', out, 'Out')
+eal.save_loaded_asset(gr); rep['graph_nodes'] = len(gr.nodes); rep['variants'] = len(chosen)
+for a in list(eas.get_all_level_actors()):
+    if a.get_actor_label() == C['actor_label']:
+        try: a.get_component_by_class(unreal.PCGComponent).cleanup_local(True)
+        except Exception: pass
+        eas.destroy_actor(a)
+vol = eas.spawn_actor_from_class(unreal.PCGVolume, V(*C['center_cm'])); vol.set_actor_label(C['actor_label']); vol.set_actor_scale3d(V(R / 100.0, R / 100.0, 0.5))
+comp = vol.get_component_by_class(unreal.PCGComponent); comp.set_graph(gr)
+try: comp.set_editor_property('generation_trigger', unreal.PCGComponentGenerationTrigger.GENERATE_ON_DEMAND)
+except Exception as e: rep['trigger'] = str(e)[:60]
+comp.generate(True); rep['generated'] = True
+print(json.dumps(rep))

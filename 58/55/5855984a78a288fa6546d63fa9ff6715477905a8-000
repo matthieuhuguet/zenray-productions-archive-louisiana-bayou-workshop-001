@@ -1,0 +1,45 @@
+# 29 October 2026 : builds LS_LouisianaBayouCinematic with the Houdini camera MOVES (start and end keys of each CINE shot, bezier like Houdini), shot length from lb_cameras_29-October-2026.json (72 frames = 3 s), and opens it. FR : séquence avec les mouvements de caméra de Houdini, plans de 3 s.
+import unreal, json, math
+UD = '/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal'
+CP = json.load(open(UD + '/lb_cameras_29-October-2026.json')); MV = json.load(open(CP['moves_json']))
+eal = unreal.EditorAssetLibrary; eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem); tools = unreal.AssetToolsHelpers.get_asset_tools(); V = unreal.Vector; rep = {}
+try: unreal.EditorLevelLibrary.eject_pilot_level_actor()
+except Exception: pass
+cams = sorted([a for a in eas.get_all_level_actors() if a.get_actor_label().startswith('LB_CINE_0')], key=lambda a: a.get_actor_label()); assert len(cams) == 6, len(cams)
+def hv(v, k=1.0): return V(k * v[0], k * v[2], k * v[1])
+def rot(p): r = unreal.MathLibrary.make_rot_from_xz(hv(p['fwd']), hv(p['up'])); return [r.roll, r.pitch, r.yaw]
+def unwrap(a, b): return [y + 360.0 * round((x - y) / 360.0) for x, y in zip(a, b)]
+SD, SN = '/Game/ZenRayShards/LouisianaBayou/Cinematics', 'LS_LouisianaBayouCinematic'
+if eal.does_asset_exist(SD + '/' + SN):
+    seq = eal.load_asset(SD + '/' + SN)
+    for b in list(unreal.MovieSceneSequenceExtensions.get_bindings(seq)): unreal.MovieSceneBindingExtensions.remove(b)
+    for t in list(unreal.MovieSceneSequenceExtensions.get_tracks(seq)): unreal.MovieSceneSequenceExtensions.remove_track(seq, t)
+else: seq = tools.create_asset(SN, SD, unreal.LevelSequence, unreal.LevelSequenceFactoryNew())
+n = CP['shot_frames']; seq.set_display_rate(unreal.FrameRate(CP['fps'], 1)); seq.set_playback_start(0); seq.set_playback_end(n * 6)
+cut = seq.add_track(unreal.MovieSceneCameraCutTrack)
+for i, (cam, s) in enumerate(zip(cams, MV['shots'])):
+    f0, f1 = i * n, (i + 1) * n
+    b = seq.add_possessable(cam); cs = cut.add_section(); cs.set_range(f0, f1); cs.set_camera_binding_id(unreal.MovieSceneSequenceExtensions.get_binding_id(seq, b))
+    tr = b.add_track(unreal.MovieScene3DTransformTrack); sec = tr.add_section(); sec.set_range(f0, f1)
+    def _chs(sec):
+        for f in (lambda: sec.get_all_channels(), lambda: sec.get_channels(), lambda: unreal.MovieSceneSectionExtensions.get_all_channels(sec), lambda: unreal.MovieSceneSectionExtensions.get_channels(sec)):
+            try: return f()
+            except Exception: pass
+        raise RuntimeError('no channel accessor: ' + str([m for m in dir(sec) if 'chan' in m.lower()]))
+    chs = {str(c.channel_name): c for c in _chs(sec)}
+    if i == 0: rep['channels'] = list(chs)[:9]
+    p0, p1 = s['start'], s['end']; r0 = rot(p0); r1 = unwrap(rot(p1), r0)
+    vals0 = [p0['pos_m'][0] * 100, p0['pos_m'][2] * 100, p0['pos_m'][1] * 100] + r0; vals1 = [p1['pos_m'][0] * 100, p1['pos_m'][2] * 100, p1['pos_m'][1] * 100] + r1
+    names = ['Location.X', 'Location.Y', 'Location.Z', 'Rotation.X', 'Rotation.Y', 'Rotation.Z']
+    for nm, a, c in zip(names, vals0, vals1):
+        ch = chs[nm]
+        try:
+            ch.add_key(unreal.FrameNumber(f0), a, interpolation=unreal.MovieSceneKeyInterpolation.AUTO); ch.add_key(unreal.FrameNumber(f1), c, interpolation=unreal.MovieSceneKeyInterpolation.AUTO)
+        except Exception as e:
+            rep['interp'] = str(e)[:60]; ch.add_key(unreal.FrameNumber(f0), a); ch.add_key(unreal.FrameNumber(f1), c)
+    for nm in ('Scale.X', 'Scale.Y', 'Scale.Z'):
+        if nm in chs: chs[nm].set_default(1.0)
+    cam.set_actor_location(V(*vals0[:3]), False, False)
+eal.save_loaded_asset(seq); unreal.EditorLevelLibrary.save_current_level()
+unreal.LevelSequenceEditorBlueprintLibrary.open_level_sequence(seq)
+rep['frames'] = n * 6; rep['shot_seconds'] = n / CP['fps']; print(json.dumps(rep))

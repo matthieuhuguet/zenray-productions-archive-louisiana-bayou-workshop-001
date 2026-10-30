@@ -1,0 +1,15 @@
+# 29 October 2026 : places the EasyFog cards of lb_lighting_29-October-2026.json around the chapel. FR : place les cartes EasyFog autour de la chapelle.
+import unreal, json
+E = json.load(open('/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal/lb_lighting_29-October-2026.json'))['easyfog']
+eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem); eal = unreal.EditorAssetLibrary; rep = {}
+for a in list(eas.get_all_level_actors()):
+    if a.get_actor_label().startswith(E['label_prefix']): eas.destroy_actor(a)
+bp = eal.load_asset(E['blueprint'])
+for i, c in enumerate(E['cards'], 1):
+    a = eas.spawn_actor_from_class(bp.generated_class(), unreal.Vector(*c['loc'])); a.set_actor_label('%s_%02d' % (E['label_prefix'], i))
+    a.set_actor_rotation(unreal.Rotator(roll=0, pitch=0, yaw=c['yaw']), False); a.set_actor_scale3d(unreal.Vector(c['scale'], c['scale'], c['scale']))
+    for k, v in E['properties'].items():
+        try: a.set_editor_property(k, v)
+        except Exception as e: rep[k] = 'FAIL ' + str(e)[:50]
+    fc = a.get_editor_property('fogCard'); b = fc.static_mesh.get_bounds(); rep['card_%d_bounds' % i] = (round(b.box_extent.x), round(b.box_extent.y), round(b.box_extent.z))
+unreal.EditorLevelLibrary.save_current_level(); print(json.dumps(rep))

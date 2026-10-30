@@ -1,0 +1,50 @@
+# 29 October 2026 : builds M_LB_SkyDome (procedural storm sky, emissive, noise clouds) and its instance, and places the dome sphere. FR : construit le dôme de ciel orageux procédural.
+import unreal, json
+UD = '/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal'; D = json.load(open(UD + '/lb_moods_29-October-2026.json'))['sky_dome']
+tools = unreal.AssetToolsHelpers.get_asset_tools(); eal = unreal.EditorAssetLibrary; mel = unreal.MaterialEditingLibrary; eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
+MD = D['material'].rsplit('/', 1)[0]
+def mk(m, cls, x, y, **kw):
+    n = mel.create_material_expression(m, cls, x, y)
+    for k, v in kw.items(): n.set_editor_property(k, v)
+    return n
+def conn(a, ao, b, bi):
+    for pin in (bi, 'Position', '', 'Input', 'A'):
+        try:
+            if mel.connect_material_expressions(a, ao, b, pin): return
+        except Exception: pass
+    raise AssertionError(('connect failed', b.get_class().get_name(), bi))
+name = D['material'].rsplit('/', 1)[1]
+if eal.does_asset_exist(D['material']): m = eal.load_asset(D['material']); mel.delete_all_material_expressions(m)
+else: m = tools.create_asset(name, MD, unreal.Material, unreal.MaterialFactoryNew())
+LC = unreal.LinearColor
+wp = mk(m, unreal.MaterialExpressionWorldPosition, -1400, 0); op = mk(m, unreal.MaterialExpressionObjectPositionWS if hasattr(unreal, 'MaterialExpressionObjectPositionWS') else unreal.MaterialExpressionActorPositionWS, -1400, 120)
+sub = mk(m, unreal.MaterialExpressionSubtract, -1200, 40); conn(wp, '', sub, 'A'); conn(op, '', sub, 'B')
+nz = mk(m, unreal.MaterialExpressionNormalize, -1000, 40); conn(sub, '', nz, '')
+zc = mk(m, unreal.MaterialExpressionComponentMask, -800, 0, r=False, g=False, b=True, a=False); conn(nz, '', zc, '')
+absz = mk(m, unreal.MaterialExpressionAbs, -650, 0); conn(zc, '', absz, '')
+cl = mk(m, unreal.MaterialExpressionClamp, -520, 0); conn(absz, '', cl, ''); 
+gr = mk(m, unreal.MaterialExpressionPower, -380, 0); conn(cl, '', gr, 'Base'); ge = mk(m, unreal.MaterialExpressionConstant, -520, 90, r=0.6); conn(ge, '', gr, 'Exp')
+top = mk(m, unreal.MaterialExpressionVectorParameter, -700, 260, parameter_name='Top', default_value=LC(0.05, 0.057, 0.07, 1)); hor = mk(m, unreal.MaterialExpressionVectorParameter, -700, 400, parameter_name='Horizon', default_value=LC(0.2, 0.215, 0.24, 1))
+sky = mk(m, unreal.MaterialExpressionLinearInterpolate, -200, 120); conn(hor, '', sky, 'A'); conn(top, '', sky, 'B'); conn(gr, '', sky, 'Alpha')
+sc = mk(m, unreal.MaterialExpressionScalarParameter, -1000, 300, parameter_name='Scale', default_value=2.2); dm = mk(m, unreal.MaterialExpressionMultiply, -800, 200); conn(nz, '', dm, 'A'); conn(sc, '', dm, 'B')
+noise = mk(m, unreal.MaterialExpressionNoise, -620, 220, scale=1.0, levels=6, output_min=0.0, output_max=1.0, turbulence=True, level_scale=2.0, quality=1); conn(dm, '', noise, 'Position')
+den = mk(m, unreal.MaterialExpressionScalarParameter, -620, 330, parameter_name='Density', default_value=0.5)
+sb = mk(m, unreal.MaterialExpressionSubtract, -420, 240); conn(noise, '', sb, 'A'); conn(den, '', sb, 'B')
+mu = mk(m, unreal.MaterialExpressionMultiply, -300, 240); conn(sb, '', mu, 'A'); k4 = mk(m, unreal.MaterialExpressionConstant, -420, 330, r=4.0); conn(k4, '', mu, 'B')
+cm = mk(m, unreal.MaterialExpressionClamp, -180, 240); conn(mu, '', cm, '')
+cd = mk(m, unreal.MaterialExpressionVectorParameter, -420, 480, parameter_name='CloudDark', default_value=LC(0.05, 0.055, 0.07, 1)); cli = mk(m, unreal.MaterialExpressionVectorParameter, -420, 600, parameter_name='CloudLight', default_value=LC(0.4, 0.42, 0.46, 1))
+cc = mk(m, unreal.MaterialExpressionLinearInterpolate, -100, 420); conn(cd, '', cc, 'A'); conn(cli, '', cc, 'B'); conn(noise, '', cc, 'Alpha')
+fin = mk(m, unreal.MaterialExpressionLinearInterpolate, 40, 200); conn(sky, '', fin, 'A'); conn(cc, '', fin, 'B'); conn(cm, '', fin, 'Alpha')
+br = mk(m, unreal.MaterialExpressionScalarParameter, 40, 380, parameter_name='Brightness', default_value=3.0); em = mk(m, unreal.MaterialExpressionMultiply, 200, 240); conn(fin, '', em, 'A'); conn(br, '', em, 'B')
+zero = mk(m, unreal.MaterialExpressionConstant3Vector, 200, 120, constant=LC(0, 0, 0, 1)); one = mk(m, unreal.MaterialExpressionConstant, 200, 360, r=1.0); zr = mk(m, unreal.MaterialExpressionConstant, 200, 420, r=0.0)
+mma = mk(m, unreal.MaterialExpressionMakeMaterialAttributes, 380, 200); conn(zero, '', mma, 'BaseColor'); conn(em, '', mma, 'EmissiveColor'); conn(one, '', mma, 'Roughness'); conn(zr, '', mma, 'Specular')
+m.set_editor_property('use_material_attributes', True); m.set_editor_property('two_sided', True); assert mel.connect_material_property(mma, '', unreal.MaterialProperty.MP_MATERIAL_ATTRIBUTES)
+mel.recompile_material(m); eal.save_loaded_asset(m)
+ip = D['instance']; iname = ip.rsplit('/', 1)[1]
+mi = eal.load_asset(ip) if eal.does_asset_exist(ip) else tools.create_asset(iname, MD, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
+mi.set_editor_property('parent', m); mel.update_material_instance(mi); eal.save_loaded_asset(mi)
+for a in list(eas.get_all_level_actors()):
+    if a.get_actor_label() == D['label']: eas.destroy_actor(a)
+d = eas.spawn_actor_from_object(eal.load_asset(D['mesh']), unreal.Vector(0, 0, 0)); d.set_actor_label(D['label']); d.set_actor_scale3d(unreal.Vector(D['scale'], D['scale'], D['scale']))
+c = d.static_mesh_component; c.set_material(0, mi); c.set_cast_shadow(False); c.set_collision_enabled(unreal.CollisionEnabled.NO_COLLISION)
+print('dome built, expressions', mel.get_num_material_expressions(m))

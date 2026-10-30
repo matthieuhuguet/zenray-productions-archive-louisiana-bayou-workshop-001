@@ -1,0 +1,20 @@
+# 29 October 2026 : applies one lighting setup (global SETUP, default A_GoldenHour) to L_LouisianaBayouCinematic and adds the far grey ground. FR : applique une ambiance d'éclairage.
+import unreal, json, math
+L = json.load(open('/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal/lb_lighting_29-October-2026.json'))
+name = globals().get('SETUP', 'A_GoldenHour'); S = L['setups'][name]
+eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem); eal = unreal.EditorAssetLibrary; V = unreal.Vector
+by = {a.get_actor_label(): a for a in eas.get_all_level_actors()}
+hx, hz = L['sun_azimuth_dir_houdini_xz']; el = math.radians(S['sun_elevation_deg'])
+trav = (hx * math.cos(el), -math.sin(el), hz * math.cos(el))      # Houdini travel
+sun = by['LB_Sun']; sun.set_actor_rotation(unreal.MathLibrary.make_rot_from_x(V(trav[0], trav[2], trav[1])), False)
+lc = sun.light_component; lc.set_intensity(S['sun_lux']); lc.set_editor_property('light_source_angle', S['sun_angle_deg'])
+lc.set_editor_property('use_temperature', True); lc.set_editor_property('temperature', float(S['sun_temperature_k']))
+sk = by['LB_SkyLight'].light_component; sk.set_intensity(S['skylight_intensity'])
+pp = by['LB_PostProcess']; st = pp.settings; st.set_editor_property('override_auto_exposure_bias', True); st.set_editor_property('auto_exposure_bias', S['exposure_bias']); pp.set_editor_property('settings', st)
+by['LB_HeightFog'].component.set_fog_density(S['fog_density'])
+if 'LB_GroundFar' not in by:
+    g = eas.spawn_actor_from_object(eal.load_asset('/Engine/BasicShapes/Plane'), V(0, 0, L['ground_far']['z_cm'])); g.set_actor_label('LB_GroundFar')
+    g.set_actor_scale3d(V(L['ground_far']['scale_xy'], L['ground_far']['scale_xy'], 1))
+    g.static_mesh_component.set_material(0, eal.load_asset(L['ground_far']['material']))
+unreal.EditorLevelLibrary.save_current_level() if hasattr(unreal.EditorLevelLibrary, 'save_current_level') else None
+print('applied', name, 'travel', trav)

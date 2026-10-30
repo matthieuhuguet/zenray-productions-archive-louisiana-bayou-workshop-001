@@ -1,0 +1,116 @@
+# 29 October 2026 : applies a cinematic mood (Ultra Dynamic Sky + added lights + fog + grading) from lb_moods_29-October-2026.json to L_LouisianaBayouCinematic. FR : applique une ambiance cinéma.
+import unreal, json, math
+UD = '/Users/zenray/Create/Build/Productions/ZenRayHoudini/LouisianaBayou/unreal'
+M = json.load(open(UD + '/lb_moods_29-October-2026.json')); name = globals().get('MOOD', 'A_StormOvercast'); mood = M['moods'][name]; Uc = mood['uds']
+eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem); V = unreal.Vector; rep = {'mood': name}
+by = {a.get_actor_label(): a for a in eas.get_all_level_actors()}
+def bump(a): a.set_actor_location(a.get_actor_location() + V(0, 0, 0.001), False, False); a.set_actor_location(a.get_actor_location() - V(0, 0, 0.001), False, False)
+# ---- Ultra Dynamic Sky
+uds = by['LB_UDS']
+def usetp(n, v):
+    try: uds.set_editor_property(n, v); return True
+    except Exception as e: rep['uds.' + n] = 'FAIL'; return False
+def ugetp(n):
+    try: return uds.get_editor_property(n)
+    except Exception: return None
+for k, n in (('cloud_coverage', 'cloud Coverage'), ('fog', 'fog'), ('sun_light_intensity', 'sun Light Intensity'), ('sky_light_intensity', 'sky Light Intensity'), ('cloud_shadows', 'use Cloud Shadows')): usetp(n, Uc[k])
+usetp('sky Mode', getattr(type(ugetp('sky Mode')), Uc['sky_mode']))
+def refresh_uds():
+    for fn in ('Update Static Variables', 'Update Active Variables'):
+        try: uds.call_method(fn)
+        except Exception as e: rep['refresh'] = str(e)[:50]
+def sdir(): refresh_uds(); bump(uds); return ugetp('sun_LightComponent').get_forward_vector()
+best = None
+for t in list(range(Uc['time_of_day'] - 400, Uc['time_of_day'] + 401, 25)):
+    if t < 0 or t > 2400: continue
+    usetp('time of Day', float(t)); f = sdir(); el = math.degrees(math.asin(-f.z)); d = abs(el - Uc['target_sun_elevation_deg'])
+    if best is None or d < best[0]: best = (d, t, el)
+usetp('time of Day', float(best[1])); rep['time'] = best[1]; rep['sun_elevation'] = round(best[2], 1)
+_trv = mood.get('travel_xy_ue', M['travel_xy_ue']); tgt = math.degrees(math.atan2(_trv[1], _trv[0]))
+for _ in range(3):
+    f = sdir(); cur = math.degrees(math.atan2(f.y, f.x)); dl = (tgt - cur + 540) % 360 - 180; usetp('sun Yaw', float((ugetp('sun Yaw') or 0.0) + dl))
+rep['sun_azimuth_err'] = round((tgt - math.degrees(math.atan2(sdir().y, sdir().x)) + 540) % 360 - 180, 2)
+try:
+    hf = ugetp('height Fog Component'); hf.set_editor_property('enable_volumetric_fog', bool(mood['volumetric_fog']))
+    hf.set_editor_property('volumetric_fog_scattering_distribution', 0.6); hf.set_editor_property('volumetric_fog_extinction_scale', 1.5)
+except Exception as e: rep['volfog'] = 'FAIL ' + str(e)[:50]
+try:
+    sa = ugetp('skyAtmosphere'); A = mood['atmosphere'] if 'atmosphere' in mood else None
+    assert A is not None
+    sa.set_editor_property('rayleigh_scattering_scale', A['rayleigh_scattering_scale']); sa.set_editor_property('mie_scattering_scale', A['mie_scattering_scale']); sa.set_editor_property('mie_anisotropy', A['mie_anisotropy'])
+    sa.set_editor_property('sky_luminance_factor', unreal.LinearColor(*A['sky_luminance_factor'], 1.0)); g = A['ground_albedo']; sa.set_editor_property('ground_albedo', unreal.Color(r=g[0], g=g[1], b=g[2], a=255))
+except Exception as e: rep['atmosphere'] = 'skipped'
+for _ in range(3): refresh_uds()
+# ---- storm sky dome parameters of this mood / FR : paramètres du dôme de ciel
+try:
+    mi = unreal.EditorAssetLibrary.load_asset(M['sky_dome']['instance']); mel = unreal.MaterialEditingLibrary
+    for k, v in mood['dome'].items():
+        if isinstance(v, list): mel.set_material_instance_vector_parameter_value(mi, k, unreal.LinearColor(v[0], v[1], v[2], 1.0))
+        else: mel.set_material_instance_scalar_parameter_value(mi, k, float(v))
+    mel.update_material_instance(mi); unreal.EditorAssetLibrary.save_loaded_asset(mi)
+except Exception as e: rep['dome'] = 'FAIL ' + str(e)[:80]
+# ---- wet dark ground / FR : sol sombre et humide
+try:
+    G = M['ground']; gi = unreal.EditorAssetLibrary.load_asset(G['instance']); mel2 = unreal.MaterialEditingLibrary
+    mel2.set_material_instance_vector_parameter_value(gi, 'BaseColorTint', unreal.LinearColor(*G['BaseColorTint'], 1.0)); mel2.set_material_instance_scalar_parameter_value(gi, 'Roughness', float(G['Roughness']))
+    mel2.update_material_instance(gi); unreal.EditorAssetLibrary.save_loaded_asset(gi)
+except Exception as e: rep['ground'] = 'FAIL ' + str(e)[:80]
+# ---- matte painting dome (translucent) plus UDS volumetric clouds / FR : dôme de ciel peint translucide
+if mood.get('matte') is None:
+    for _a in list(eas.get_all_level_actors()):
+        if _a.get_actor_label() in ('LB_MatteSky', 'LB_MatteSkyTop', 'LB_SkyDome'): eas.destroy_actor(_a)
+    try: ugetp('volumetricCloud').set_visibility(True, False)
+    except Exception: pass
+else:
+  try:
+    MT = mood['matte']; INDEX = MT['index']; YAW = MT['yaw']; OPACITY = MT['opacity']; BRIGHT = MT['bright']; TINT = MT['tint']
+    exec(open(UD + '/ue_apply_matte_sky_29-October-2026.py').read())
+  except Exception as e: rep['matte'] = 'FAIL ' + str(e)[:80]
+# ---- shadow ground, sun source angle, shadow quality cvars / FR : sol récepteur d'ombres et qualité des ombres
+try:
+    for _g in [a for a in eas.get_all_level_actors() if a.get_actor_label() == 'LB_ShadowGround']: eas.destroy_actor(_g)   # 29 October 2026 : removed, Matthieu keeps his own floor hidden
+    if 'sun_source_angle_deg' in Uc: ugetp('sun_LightComponent').set_editor_property('light_source_angle', float(Uc['sun_source_angle_deg']))
+    for _k in ('dynamic_shadow_distance_movable_light', 'dynamic_shadow_distance_stationary_light'): ugetp('sun_LightComponent').set_editor_property(_k, float(M['sun_shadow_distance_cm']))   # 29 October 2026 : shadow covers the whole shot at any camera distance
+    _w = unreal.EditorLevelLibrary.get_editor_world()
+    for _c in M['quality_cvars']: unreal.SystemLibrary.execute_console_command(_w, _c)
+except Exception as e: rep['shadows'] = 'FAIL ' + str(e)[:80]
+# ---- added lights
+def color_from_temp(k):
+    k = max(1000.0, min(40000.0, k)) / 100.0
+    r = 255 if k <= 66 else 329.698727446 * (k - 60) ** -0.1332047592; g = 99.4708025861 * math.log(k) - 161.1195681661 if k <= 66 else 288.1221695283 * (k - 60) ** -0.0755148492
+    b = 255 if k >= 66 else (0 if k <= 19 else 138.5177312231 * math.log(k - 10) - 305.0447927307)
+    return [max(0, min(255, c)) for c in (r, g, b)]
+for lname, L in M['lights'].items():
+    a = by.get(lname)
+    if a is None:
+        cls = {'point': unreal.PointLight, 'spot': unreal.SpotLight, 'directional': unreal.DirectionalLight}[L['type']]
+        a = eas.spawn_actor_from_class(cls, V(*L.get('loc', [0, 0, 1000]))); a.set_actor_label(lname)
+    comp = a.get_component_by_class(unreal.LightComponent); I = mood['intensity'][lname]
+    comp.set_mobility(unreal.ComponentMobility.MOVABLE)
+    if L['type'] != 'directional':
+        a.set_actor_location(V(*L['loc']), False, False); comp.set_editor_property('intensity_units', unreal.LightUnits.CANDELAS)
+        comp.set_editor_property('attenuation_radius', float(L.get('radius', 5000.0))); comp.set_editor_property('source_radius', float(L['source_radius']))
+        comp.set_editor_property('volumetric_scattering_intensity', float(L['volumetric']))
+    if L['type'] == 'spot':
+        a.set_actor_rotation(unreal.MathLibrary.find_look_at_rotation(V(*L['loc']), V(*L['aim'])), False)
+        comp.set_editor_property('inner_cone_angle', L['inner']); comp.set_editor_property('outer_cone_angle', L['outer']); comp.set_editor_property('attenuation_radius', 9000.0)
+    if L['type'] == 'directional':
+        el = math.radians(L['elevation_deg']); tv = (L['travel_xy_ue'][0] * math.cos(el), L['travel_xy_ue'][1] * math.cos(el), -math.sin(el))
+        a.set_actor_rotation(unreal.MathLibrary.make_rot_from_x(V(*tv)), False); comp.set_editor_property('atmosphere_sun_light', False)
+    comp.set_editor_property('intensity', float(I)); comp.set_editor_property('use_temperature', True); comp.set_editor_property('temperature', float(L['temp']))
+    comp.set_editor_property('cast_shadows', bool(L['shadows'])); comp.set_visibility(I > 0, False)
+# ---- EasyFog density
+for lbl, a in by.items():
+    if lbl.startswith('LB_EasyFog'):
+        try: a.set_editor_property('fog Density', 0.85 * mood['easyfog_density'])
+        except Exception: rep['easyfog'] = 'FAIL'
+# ---- post process: effects + this mood's grading, then the mood's extra properties
+ON = None; NEUTRAL = False; GVALUES = mood['grading']
+exec(open(UD + '/ue_apply_postprocess_29-October-2026.py').read())
+pp = by['LB_PostProcess']; st = pp.settings
+for k, v in mood['pp'].items():
+    try: st.set_editor_property('override_' + k, True); st.set_editor_property(k, v)
+    except Exception as e: rep['pp.' + k] = 'FAIL'
+pp.set_editor_property('settings', st)
+json.dump(mood['grading'], open(UD + '/lb_grading_values_29-October-2026.json', 'w'), indent=2)
+unreal.EditorLevelLibrary.save_current_level(); print(json.dumps(rep))

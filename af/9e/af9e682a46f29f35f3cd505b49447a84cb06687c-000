@@ -1,0 +1,20 @@
+# Scatter at most 8 EasyFog actors randomly over the circular ground and rename them LB_EasyFog_01..08. Extra EasyFog actors are hidden, never deleted. Parameters at the top.
+# FR : disperse 8 EasyFog au maximum au hasard sur le cercle et les renomme LB_EasyFog_01..08 ; les actors en trop sont masqués, jamais supprimés.
+import unreal, random, math
+P = {"max_count": 8, "seed": 29102026, "center": (0.0, 154.0), "radius_cm": 1800.0, "scatter_radius_fraction": 0.85, "min_separation_cm": 650.0, "label_prefix": "LB_EasyFog_"}
+eas = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
+fogs = sorted([a for a in eas.get_all_level_actors() if a.get_actor_label().startswith(P["label_prefix"]) and a.get_class().get_name() == "BP_EasyFog_C"], key=lambda a: a.get_actor_label())
+keep, extra = fogs[:P["max_count"]], fogs[P["max_count"]:]
+rnd = random.Random(P["seed"]); pts = []; tries = 0
+while len(pts) < len(keep) and tries < 5000:
+    tries += 1; ang = rnd.uniform(0, 2 * math.pi); rad = P["radius_cm"] * P["scatter_radius_fraction"] * math.sqrt(rnd.uniform(0, 1))
+    p = (P["center"][0] + rad * math.cos(ang), P["center"][1] + rad * math.sin(ang))
+    if all(math.hypot(p[0] - q[0], p[1] - q[1]) >= P["min_separation_cm"] for q in pts): pts.append(p)
+assert len(pts) == len(keep), "could not place all fogs with this separation"
+for i, a in enumerate(keep): a.set_actor_label("TMP_EasyFog_%02d" % (i + 1))   # two passes: avoids clashes with the old labels
+rep = []
+for i, a in enumerate(keep):
+    z = a.get_actor_location().z; a.set_actor_location(unreal.Vector(pts[i][0], pts[i][1], z), False, False)
+    a.set_actor_label("%s%02d" % (P["label_prefix"], i + 1)); rep.append((a.get_actor_label(), round(pts[i][0]), round(pts[i][1]), round(z)))
+for a in extra: a.set_is_temporarily_hidden_in_editor(True); a.set_actor_hidden_in_game(True); a.set_actor_label("OFF_" + a.get_actor_label())
+print(rep); print("hidden extras:", [a.get_actor_label() for a in extra])

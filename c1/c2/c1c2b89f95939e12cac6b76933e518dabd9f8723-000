@@ -1,0 +1,136 @@
+{
+  "_comment": "29 October 2026 : three lighting setups for L_LouisianaBayouCinematic. Houdini sun travel = (hx*cos(el), -sin(el), hz*cos(el)). FR : trois ambiances d'\u00e9clairage, valeurs \u00e9ditables ici.",
+  "sun_azimuth_dir_houdini_xz": [
+    -0.5757,
+    -0.8177
+  ],
+  "setups": {
+    "A_GoldenHour": {
+      "sun_elevation_deg": 14,
+      "sun_lux": 9.0,
+      "sun_temperature_k": 4000,
+      "sun_angle_deg": 1.2,
+      "skylight_intensity": 0.8,
+      "exposure_bias": 0.0,
+      "fog_density": 0.03
+    },
+    "B_SoftOvercast": {
+      "sun_elevation_deg": 55,
+      "sun_lux": 2.5,
+      "sun_temperature_k": 7000,
+      "sun_angle_deg": 8.0,
+      "skylight_intensity": 2.2,
+      "exposure_bias": 0.2,
+      "fog_density": 0.015
+    },
+    "C_CrispMorning": {
+      "sun_elevation_deg": 38,
+      "sun_lux": 12.0,
+      "sun_temperature_k": 5600,
+      "sun_angle_deg": 0.6,
+      "skylight_intensity": 1.2,
+      "exposure_bias": -0.2,
+      "fog_density": 0.012
+    },
+    "D_GoldenCrisp": {
+      "sun_elevation_deg": 26,
+      "sun_lux": 10.5,
+      "sun_temperature_k": 4800,
+      "sun_angle_deg": 0.9,
+      "skylight_intensity": 1.0,
+      "exposure_bias": -0.1,
+      "fog_density": 0.02
+    }
+  },
+  "ground_far": {
+    "scale_xy": 400.0,
+    "z_cm": -1.0,
+    "material": "/Game/ZenRayShards/LouisianaBayou/Materials/MI_LB_Floor"
+  },
+  "uds": {
+    "_comment": "29 October 2026 : Ultra Dynamic Sky settings (crisp early day), replaces LB_Sun, LB_SkyLight, LB_SkyAtmosphere, LB_HeightFog and LB_Clouds. travel_xz_ue = desired horizontal sun travel in Unreal (sun comes from +X,+Y so the entrance gable is lit). FR : r\u00e9glages d'Ultra Dynamic Sky.",
+    "blueprint": "/Game/UltraDynamicSky/Blueprints/Ultra_Dynamic_Sky",
+    "label": "LB_UDS",
+    "target_sun_elevation_deg": 38.0,
+    "travel_xy_ue": [
+      -0.5174,
+      -0.7349
+    ],
+    "cloud_coverage": 0.25,
+    "fog": 0.15,
+    "sun_light_intensity": 14.0,
+    "sky_light_intensity": 0.4,
+    "remove_labels": [
+      "LB_Sun",
+      "LB_SkyLight",
+      "LB_SkyAtmosphere",
+      "LB_HeightFog",
+      "LB_Clouds"
+    ],
+    "use_cloud_shadows": false
+  },
+  "easyfog": {
+    "_comment": "29 October 2026 : EasyFog (William Faucher) cards placed low around the chapel, density and positions editable. FR : cartes EasyFog.",
+    "blueprint": "/Game/EasyFog/Blueprints/BP_EasyFog",
+    "label_prefix": "LB_EasyFog",
+    "properties": {
+      "fog Density": 0.85,
+      "base Color Intensity": 0.6,
+      "use Atmosphere Color": 1.0,
+      "emissive Intensity": 0.0,
+      "geometry Fading Distance": 120.0,
+      "camera Fading Distance": 150.0,
+      "view Angle Fade": 0.2,
+      "wind : Yes/No": 1.0,
+      "wind Speed X": 0.05,
+      "wind Speed Y": 0.03
+    },
+    "cards": [
+      {
+        "loc": [
+          0,
+          1300,
+          170
+        ],
+        "yaw": 0,
+        "scale": 1.8
+      },
+      {
+        "loc": [
+          320,
+          1150,
+          150
+        ],
+        "yaw": 40,
+        "scale": 1.5
+      },
+      {
+        "loc": [
+          -320,
+          1180,
+          160
+        ],
+        "yaw": -40,
+        "scale": 1.4
+      },
+      {
+        "loc": [
+          700,
+          600,
+          140
+        ],
+        "yaw": 90,
+        "scale": 1.7
+      },
+      {
+        "loc": [
+          0,
+          1050,
+          90
+        ],
+        "yaw": 20,
+        "scale": 1.2
+      }
+    ]
+  }
+}

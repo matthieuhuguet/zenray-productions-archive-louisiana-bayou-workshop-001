@@ -1,0 +1,11 @@
+{
+  "_comment": "29 October 2026 : cinematic camera parameters. FR : paramètres des caméras cinématiques.",
+  "aspect_w": 21,
+  "aspect_h": 9,
+  "sensor_width_mm": 36.0,
+  "fstop": 22.0,
+  "shot_frames": 72,
+  "fps": 24,
+  "_note_shot_frames": "29 October 2026 : 72 frames = 3 s per shot at 24 fps (was 120 = 5 s, the Houdini length). FR : 72 images, soit 3 secondes par plan.",
+  "moves_json": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/render/ZRS-29-October-2026/cine_moves.json"
+}
