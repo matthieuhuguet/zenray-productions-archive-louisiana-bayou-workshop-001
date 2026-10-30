@@ -1,0 +1,81 @@
+{
+  "files": [
+    {
+      "id": "roof",
+      "path": "roof.png",
+      "sha256": "1fc47b2318f692a2196c44913985ed3addf08df8a6b54f806c5ac93b9585e70a",
+      "bytes": 3619962,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/render/Cinematic-29-October-2026/Check0241.png"
+    },
+    {
+      "id": "grid",
+      "path": "GridOffset-Literata.svg",
+      "sha256": "5b05d5a2b5ad77ab1c03a17d7d636a3c3178f5bb3686a79ab9ec4308d23b3fee",
+      "bytes": 1276311,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/RoofSummary-29-October-2026/GridOffset-Literata.svg"
+    },
+    {
+      "id": "overlap",
+      "path": "Overlap-Literata.svg",
+      "sha256": "81daa4c4cc8cfdc9c8b4030052c65032d766737cd7d461ce40d2d29a7ee70be9",
+      "bytes": 1275562,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/RoofSummary-29-October-2026/Overlap-Literata.svg"
+    },
+    {
+      "id": "orientations",
+      "path": "Orientations-Literata.svg",
+      "sha256": "114b4a5b4290673ffe7284690ddfe310b8f67b3c3283e8212aba13de1166643c",
+      "bytes": 1275986,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/RoofSummary-29-October-2026/Orientations-Literata.svg"
+    },
+    {
+      "id": "shutter-trim",
+      "path": "BayouShutterTrim_height_2048.png",
+      "sha256": "fe439d40afada1e9d8dc0ad5ef14816044386c6bf050dc4e2ae4e6c699c757c4",
+      "bytes": 1048406,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/02_sources/textures/BayouShutterTrim_height_2048.png"
+    },
+    {
+      "id": "white-paint",
+      "path": "BayouWhitePaint_Height_ZenRayHeight_18-October-2026.png",
+      "sha256": "2128364eb0801d6cac95be07a44f288125fca8056ffaca114ad56191b586984f",
+      "bytes": 2305739,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/02_sources/textures/BayouWhitePaint_Height_ZenRayHeight_18-October-2026.png"
+    },
+    {
+      "id": "roof-height",
+      "path": "BayouRoofTrimSheet36_Height_ZenRayHeight_18October2026.png",
+      "sha256": "89b79a1b852704e543d594c7bc777a17b7cdfca5a915f587e926fbafd76f364f",
+      "bytes": 6159205,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/02_sources/textures/BayouRoofTrimSheet36_Height_ZenRayHeight_18October2026.png"
+    },
+    {
+      "id": "roof-vk-mp4",
+      "path": "HoudiniVK_Roof_120frames_24fps.mp4",
+      "sha256": "b470f48f702943b062e8719ae93c689dfac57ac863dcb4c14e89eb55c3dcdcdb",
+      "bytes": 7770124,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/RoofSummary-29-October-2026/HoudiniVK_Roof_120frames_24fps.mp4"
+    },
+    {
+      "id": "roof-vk-mov",
+      "path": "HoudiniVK_Roof_120frames_24fps.mov",
+      "sha256": "c6dbe2349f49d9c1c8cc945f10a304f9bca1f0a35ce2c519a739b90f5c901873",
+      "bytes": 114980542,
+      "originalPath": "/Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/Articles/RoofSummary-29-October-2026/HoudiniVK_Roof_120frames_24fps.mov"
+    },
+    {
+      "id": "roof-slots",
+      "path": "RoofSlots-1.webp",
+      "sha256": "282029fb16255de0d312e8d5fce934a72213d4ca234468486ddd858f87270019",
+      "bytes": 293100,
+      "originalPath": "/Users/zenray/Downloads/1.webp"
+    },
+    {
+      "id": "roof-sheet-36",
+      "path": "RoofSheet36-2.webp",
+      "sha256": "2a81f3344626338b757e39f6fa4709aae641c1ac81bf5d20b623c517eb770238",
+      "bytes": 601528,
+      "originalPath": "/Users/zenray/Downloads/2.webp"
+    }
+  ]
+}

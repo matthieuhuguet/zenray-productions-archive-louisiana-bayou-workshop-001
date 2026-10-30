@@ -1,0 +1,13 @@
+{
+  "pid": 31946,
+  "updated": 1793293967.5468538,
+  "status": "running",
+  "config": {
+    "renderer": "/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/bin/husk",
+    "samples": 64,
+    "threads": 14,
+    "fps": 24,
+    "start": 1,
+    "count": 720
+  }
+}

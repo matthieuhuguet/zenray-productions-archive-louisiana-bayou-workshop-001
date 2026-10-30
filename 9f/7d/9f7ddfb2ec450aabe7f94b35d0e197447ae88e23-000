@@ -1,0 +1,5 @@
+La géométrie du toit est générée dans Houdini avec un HDA, un outil dont les réglages pilotent la forme. On définit la largeur et la longueur de la surface, puis la taille, l’épaisseur et le nombre de rangées de tuiles. L’outil construit les pièces et les place les unes à côté des autres, avec un léger recouvrement : on peut ainsi changer les dimensions sans replacer chaque tuile à la main.
+
+Pour varier leur apparence, on utilise une seule texture contenant 36 variantes de bois, rangées dans une grille de 6 sur 6. Chaque tuile reçoit un numéro choisi au hasard entre 0 et 35, qui désigne une case de cette grille. Une graine aléatoire permet de changer la répartition ; conserver la même graine permet de retrouver le même résultat.
+
+Le schéma d’origine montre le lien entre la géométrie et la texture : les UV, les coordonnées qui placent une face sur une image, sont déplacées dans la case choisie. Les tuiles gardent donc leur forme 3D, mais affichent différentes variantes de bois. Des retournements de la texture peuvent encore varier le résultat, sans créer de nouvelle image.

@@ -1,0 +1,92 @@
+[Octane]      Octane Render for Houdini. Build 2026.5.0.0 (Build date: Sep 21 2026 10:21:52)
+[Octane] Octane API: 2026.5
+[Octane] HDK API: 22.0.368
+[Octane] Houdini host version: 22.0.368
+[Octane] Initializing Octane API
+[Octane] Octane API ready. Initialization time: 0.843 seconds
+[Octane] OCIO configuration ready. Initialization time: 0.007 seconds
+[Octane] Octane network rendering enabled. Initialization time: 0.000 seconds
+[Octane] WARNING: preferences file not found: /Users/zenray/Library/Preferences/houdini/22.0/octane.pref
+[Octane] 18:06:00 INFOR: [nodes] -------------  Registering Octane VOP nodes
+[Octane] 18:06:00 INFOR: [nodes] -------------  Octane VOP nodes registered
+[Octane] 18:06:00 INFOR: [nodes] -------------  Registering the plugin custom VOP nodes
+[Octane] 18:06:00 INFOR: [nodes] -------------  Plugin custom VOP nodes registered
+[18:06:03] Error compiling '_sg_s_87E73B559D102D67'
+_sg_s_87E73B559D102D67:1980:19-52: Error 1093: Ambiguous call to ternary operator '?:'. Candidates are: 'vector4 = int ? vector4 : vector4', 'vector = int ? vector : vector'
+_sg_s_87E73B559D102D67:1983:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_87E73B559D102D67:1988:35-40: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1989:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1990:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1991:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1992:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1996:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_87E73B559D102D67:2001:35-40: Warning 2018: Using uninitialized variable: rgba_3
+_sg_s_87E73B559D102D67:2002:25-30: Warning 2018: Using uninitialized variable: rgba_3
+Diagnostic count exceeded 10 entries. Stopping output.
+
+[18:06:03] Error compiling '_sg_s_1BD4AB3C47BCE438'
+_sg_s_1BD4AB3C47BCE438:1967:19-52: Error 1093: Ambiguous call to ternary operator '?:'. Candidates are: 'vector4 = int ? vector4 : vector4', 'vector = int ? vector : vector'
+_sg_s_1BD4AB3C47BCE438:1970:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_1BD4AB3C47BCE438:1975:35-40: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:1976:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:1977:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:1978:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:1979:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:2019:25: Warning 2005: Implicit cast from vector to float. Use explicit cast instead.
+
+[18:06:03] Error compiling '_sg_s_E927BE76353065E5'
+_sg_s_E927BE76353065E5:1986:19-52: Error 1093: Ambiguous call to ternary operator '?:'. Candidates are: 'vector4 = int ? vector4 : vector4', 'vector = int ? vector : vector'
+_sg_s_E927BE76353065E5:1989:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_E927BE76353065E5:1994:35-40: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:1995:25-30: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:1996:25-30: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:1997:25-30: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:1998:25-30: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:2002:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_E927BE76353065E5:2007:35-40: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_E927BE76353065E5:2008:25-30: Warning 2018: Using uninitialized variable: rgba_1
+Diagnostic count exceeded 10 entries. Stopping output.
+
+-------- Error Summary --------
+PID: 24130
+Command: /Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/bin/husk --engine cpu -p 16 --threads 14 -f 1 -s /Render/CINE_KARMA_SETTINGS -o /Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/render/Cinematic-29-October-2026/Check0001.exr /Users/zenray/.claude/tmp/tmp-houdini-september-2026/tmp-bayou-louisiana/render/Cinematic-29-October-2026/Check0001.usda
+-------- 3 total errors --------
+[18:06:03] Error compiling '_sg_s_87E73B559D102D67'
+_sg_s_87E73B559D102D67:1980:19-52: Error 1093: Ambiguous call to ternary operator '?:'. Candidates are: 'vector4 = int ? vector4 : vector4', 'vector = int ? vector : vector'
+_sg_s_87E73B559D102D67:1983:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_87E73B559D102D67:1988:35-40: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1989:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1990:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1991:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1992:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_87E73B559D102D67:1996:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_87E73B559D102D67:2001:35-40: Warning 2018: Using uninitialized variable: rgba_3
+_sg_s_87E73B559D102D67:2002:25-30: Warning 2018: Using uninitialized variable: rgba_3
+Diagnostic count exceeded 10 entries. Stopping output.
+
+[18:06:03] Error compiling '_sg_s_1BD4AB3C47BCE438'
+_sg_s_1BD4AB3C47BCE438:1967:19-52: Error 1093: Ambiguous call to ternary operator '?:'. Candidates are: 'vector4 = int ? vector4 : vector4', 'vector = int ? vector : vector'
+_sg_s_1BD4AB3C47BCE438:1970:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_1BD4AB3C47BCE438:1975:35-40: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:1976:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:1977:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:1978:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:1979:25-30: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_1BD4AB3C47BCE438:2019:25: Warning 2005: Implicit cast from vector to float. Use explicit cast instead.
+
+[18:06:03] Error compiling '_sg_s_E927BE76353065E5'
+_sg_s_E927BE76353065E5:1986:19-52: Error 1093: Ambiguous call to ternary operator '?:'. Candidates are: 'vector4 = int ? vector4 : vector4', 'vector = int ? vector : vector'
+_sg_s_E927BE76353065E5:1989:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_E927BE76353065E5:1994:35-40: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:1995:25-30: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:1996:25-30: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:1997:25-30: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:1998:25-30: Warning 2018: Using uninitialized variable: rgba_4
+_sg_s_E927BE76353065E5:2002:30-40: Error 1093: Ambiguous call to function usd_texture(). Candidates are: vector4 usd_texture(string; vector2; string; string; vector4; vector4; vector4; float; float; string), vector4 usd_texture(string; vector; string; string; vector4; vector4; vector4; float; float; string)
+_sg_s_E927BE76353065E5:2007:35-40: Warning 2018: Using uninitialized variable: rgba_1
+_sg_s_E927BE76353065E5:2008:25-30: Warning 2018: Using uninitialized variable: rgba_1
+Diagnostic count exceeded 10 entries. Stopping output.
+
+[Octane] 18:06:28 INFOR: [render] ------------   - Cleaning the scene. Full clean state 1
+[Octane] 18:06:28 INFOR: [render] ------------   - Scene including 0 items cleaned. 0 items deleted. 0 remaing items.
+[Octane] 18:06:28 INFOR: [api] ---------------  Closing the Octane API

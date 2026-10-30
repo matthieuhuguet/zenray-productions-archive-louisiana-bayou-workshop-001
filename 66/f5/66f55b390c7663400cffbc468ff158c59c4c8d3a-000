@@ -2,3 +2,4 @@ UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadabl
 /obj/Church/uv_whitepaint_trim:44: RuntimeWarning: divide by zero encountered in dot
 /obj/Church/uv_whitepaint_trim:44: RuntimeWarning: overflow encountered in dot
 /obj/Church/uv_whitepaint_trim:44: RuntimeWarning: invalid value encountered in dot
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable

@@ -1,0 +1,250 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Images du toit à choisir</title><style>
+/* 9 October 2026 : leçon HTML, fonts embarquées (InterVariable, AnthropicSerif, AnthropicMono), tokens en :root, thème clair et sombre. */
+@font-face{font-family:'InterVariable';src:url('fonts/InterVariable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'AnthropicSerif';src:url('fonts/AnthropicSerif-Romans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'AnthropicSerif';src:url('fonts/AnthropicSerif-Italics.woff2') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'AnthropicMono';src:url('fonts/AnthropicMono.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{
+  --zr-police-sans:'InterVariable','Hiragino Sans W4','Hiragino Sans',sans-serif;
+  --zr-police-serif:'AnthropicSerif','Hiragino Mincho ProN W3',serif;
+  --zr-police-mono:'AnthropicMono',ui-monospace,monospace;
+  --zr-poids-sans:400;--zr-poids-serif:350;--zr-poids-nombres:400;
+  --bg:#faf9f6;--bg2:#f1efe9;--card:#ffffff;--ink:#1d1c1a;--ink2:#5b5953;--line:#dcd8cf;
+  --acc:#cc7c5e;--acc2:#e9c4b4;--ok:#5f7f66;--warn:#a8742f;
+  --t1:#d97e63;--t2:#e9a35c;--t3:#c8b25a;--t4:#7fb08a;--t5:#6fa3bd;--t6:#8a86c7;--t7:#b57fb6;
+  --measure:46rem;--wide:70rem;--gap:1.4rem;--r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171614;--bg2:#1f1d1b;--card:#242220;--ink:#efece6;--ink2:#aaa69d;--line:#3a3733;--acc:#d98d70;--acc2:#5b3d31;--ok:#8fb598;--warn:#d4a35e;}}
+:root[data-theme="dark"]{--bg:#171614;--bg2:#1f1d1b;--card:#242220;--ink:#efece6;--ink2:#aaa69d;--line:#3a3733;--acc:#d98d70;--acc2:#5b3d31;--ok:#8fb598;--warn:#d4a35e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--zr-police-serif);font-weight:var(--zr-poids-serif);font-size:1.16rem;line-height:1.7}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 16px}
+.wide{max-width:var(--wide);margin:2rem auto;padding:0 16px}
+h1,h2,h3{font-family:var(--zr-police-serif);font-weight:350;line-height:1.2;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);margin:3.4rem 0 .6rem}
+h3{font-size:1.35rem;margin:2rem 0 .4rem}
+p{margin:.9rem 0}
+b,strong{font-weight:500}
+.num,.n{font-weight:var(--zr-poids-nombres)}
+code,.mono{font-family:var(--zr-police-mono);font-size:.88em;background:var(--bg2);padding:.1em .35em;border-radius:6px}
+.ui{font-family:var(--zr-police-sans);font-weight:var(--zr-poids-sans)}
+header.hero{padding:4rem 0 2rem;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:1rem}
+.lead{font-size:1.35rem;color:var(--ink2);margin-top:1.2rem}
+nav.toc{font-family:var(--zr-police-sans);font-size:.92rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin:1.8rem 0}
+nav.toc ol{margin:.4rem 0 0;padding-left:1.2rem;columns:2;column-gap:2rem}
+nav.toc a{color:var(--ink);text-decoration:none}nav.toc a:hover{color:var(--acc)}
+.step{display:inline-flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--zr-police-sans);font-size:.95rem;margin-right:.6rem;vertical-align:.1em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.3rem;margin:1.4rem 0}
+.callout{border-left:4px solid var(--acc);background:var(--bg2);padding:.9rem 1.2rem;border-radius:0 var(--r) var(--r) 0;margin:1.4rem 0}
+.callout.warn{border-color:var(--warn)}
+.callout .t{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:.2rem}
+.callout.warn .t{color:var(--warn)}
+figure{margin:1.8rem 0}
+figure svg{overflow:hidden}
+figure img,figure svg{width:100%;height:auto;display:block;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+figcaption{font-family:var(--zr-police-sans);font-size:.88rem;color:var(--ink2);margin-top:.5rem;line-height:1.5}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+@media(max-width:760px){.pair{grid-template-columns:1fr}nav.toc ol{columns:1}}
+table{display:block;overflow-x:auto;max-width:100%;border-collapse:collapse;font-family:var(--zr-police-sans);font-size:.95rem;margin:1.2rem 0}
+th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--ink2);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+td.n,td .n{font-family:var(--zr-police-serif);font-weight:var(--zr-poids-nombres);font-size:1.05rem}
+.formula{font-family:var(--zr-police-mono);font-size:.95rem;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1.1rem;overflow-x:auto;white-space:pre;margin:1.1rem 0;line-height:1.6}
+.demo{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin:1.6rem 0}
+.demo .ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--zr-police-sans);font-size:.92rem;margin-bottom:.8rem}
+.demo label{display:flex;flex-direction:column;gap:.15rem;min-width:9rem}
+.demo label b{font-weight:400;color:var(--ink2);font-size:.8rem}
+.demo output{font-family:var(--zr-police-serif);font-size:1.15rem}
+.demo canvas{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;background:var(--bg2)}
+button,.btn{font-family:var(--zr-police-sans);font-weight:400;font-size:.9rem;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;cursor:pointer}
+button:hover{border-color:var(--acc)}button[aria-pressed="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+input[type=range]{accent-color:var(--acc);width:100%}
+.stats{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;font-family:var(--zr-police-sans);font-size:.9rem;color:var(--ink2);margin-top:.7rem}
+.stats b{font-family:var(--zr-police-serif);font-weight:var(--zr-poids-nombres);color:var(--ink);font-size:1.15rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.7rem 1.1rem;margin:.8rem 0}
+summary{cursor:pointer;font-family:var(--zr-police-sans);font-size:.98rem}
+dl{margin:1rem 0}dt{font-weight:500;margin-top:.9rem}dd{margin:.1rem 0 0;color:var(--ink2)}
+footer{overflow-wrap:anywhere;border-top:1px solid var(--line);margin:4rem 0 3rem;padding-top:1.4rem;color:var(--ink2);font-family:var(--zr-police-sans);font-size:.88rem}
+.svgtext{font-family:var(--zr-police-sans);font-size:13px;fill:var(--ink)}
+.svgtext2{font-family:var(--zr-police-sans);font-size:12px;fill:var(--ink2)}
+.svgnum{font-family:var(--zr-police-serif);font-size:15px;fill:var(--ink);font-weight:400}
+</style><style>
+/* 9 October 2026 : leçon HTML, fonts embarquées (InterVariable, AnthropicSerif, AnthropicMono), tokens en :root, thème clair et sombre. */
+@font-face{font-family:'InterVariable';src:url('fonts/InterVariable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'AnthropicSerif';src:url('fonts/AnthropicSerif-Romans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'AnthropicSerif';src:url('fonts/AnthropicSerif-Italics.woff2') format('woff2');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'AnthropicMono';src:url('fonts/AnthropicMono.woff2') format('woff2');font-weight:100 900;font-display:swap}
+:root{
+  --zr-police-sans:'InterVariable','Hiragino Sans W4','Hiragino Sans',sans-serif;
+  --zr-police-serif:'AnthropicSerif','Hiragino Mincho ProN W3',serif;
+  --zr-police-mono:'AnthropicMono',ui-monospace,monospace;
+  --zr-poids-sans:400;--zr-poids-serif:350;--zr-poids-nombres:400;
+  --bg:#faf9f6;--bg2:#f1efe9;--card:#ffffff;--ink:#1d1c1a;--ink2:#5b5953;--line:#dcd8cf;
+  --acc:#cc7c5e;--acc2:#e9c4b4;--ok:#5f7f66;--warn:#a8742f;
+  --t1:#d97e63;--t2:#e9a35c;--t3:#c8b25a;--t4:#7fb08a;--t5:#6fa3bd;--t6:#8a86c7;--t7:#b57fb6;
+  --measure:46rem;--wide:70rem;--gap:1.4rem;--r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171614;--bg2:#1f1d1b;--card:#242220;--ink:#efece6;--ink2:#aaa69d;--line:#3a3733;--acc:#d98d70;--acc2:#5b3d31;--ok:#8fb598;--warn:#d4a35e;}}
+:root[data-theme="dark"]{--bg:#171614;--bg2:#1f1d1b;--card:#242220;--ink:#efece6;--ink2:#aaa69d;--line:#3a3733;--acc:#d98d70;--acc2:#5b3d31;--ok:#8fb598;--warn:#d4a35e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--zr-police-serif);font-weight:var(--zr-poids-serif);font-size:1.16rem;line-height:1.7}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 16px}
+.wide{max-width:var(--wide);margin:2rem auto;padding:0 16px}
+h1,h2,h3{font-family:var(--zr-police-serif);font-weight:350;line-height:1.2;margin:0}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);margin:3.4rem 0 .6rem}
+h3{font-size:1.35rem;margin:2rem 0 .4rem}
+p{margin:.9rem 0}
+b,strong{font-weight:500}
+.num,.n{font-weight:var(--zr-poids-nombres)}
+code,.mono{font-family:var(--zr-police-mono);font-size:.88em;background:var(--bg2);padding:.1em .35em;border-radius:6px}
+.ui{font-family:var(--zr-police-sans);font-weight:var(--zr-poids-sans)}
+header.hero{padding:4rem 0 2rem;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:1rem}
+.lead{font-size:1.35rem;color:var(--ink2);margin-top:1.2rem}
+nav.toc{font-family:var(--zr-police-sans);font-size:.92rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin:1.8rem 0}
+nav.toc ol{margin:.4rem 0 0;padding-left:1.2rem;columns:2;column-gap:2rem}
+nav.toc a{color:var(--ink);text-decoration:none}nav.toc a:hover{color:var(--acc)}
+.step{display:inline-flex;align-items:center;justify-content:center;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--acc);color:#fff;font-family:var(--zr-police-sans);font-size:.95rem;margin-right:.6rem;vertical-align:.1em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.3rem;margin:1.4rem 0}
+.callout{border-left:4px solid var(--acc);background:var(--bg2);padding:.9rem 1.2rem;border-radius:0 var(--r) var(--r) 0;margin:1.4rem 0}
+.callout.warn{border-color:var(--warn)}
+.callout .t{font-family:var(--zr-police-sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:.2rem}
+.callout.warn .t{color:var(--warn)}
+figure{margin:1.8rem 0}
+figure svg{overflow:hidden}
+figure img,figure svg{width:100%;height:auto;display:block;border-radius:var(--r);border:1px solid var(--line);background:var(--card)}
+figcaption{font-family:var(--zr-police-sans);font-size:.88rem;color:var(--ink2);margin-top:.5rem;line-height:1.5}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+@media(max-width:760px){.pair{grid-template-columns:1fr}nav.toc ol{columns:1}}
+table{display:block;overflow-x:auto;max-width:100%;border-collapse:collapse;font-family:var(--zr-police-sans);font-size:.95rem;margin:1.2rem 0}
+th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--ink2);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+td.n,td .n{font-family:var(--zr-police-serif);font-weight:var(--zr-poids-nombres);font-size:1.05rem}
+.formula{font-family:var(--zr-police-mono);font-size:.95rem;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1.1rem;overflow-x:auto;white-space:pre;margin:1.1rem 0;line-height:1.6}
+.demo{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin:1.6rem 0}
+.demo .ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--zr-police-sans);font-size:.92rem;margin-bottom:.8rem}
+.demo label{display:flex;flex-direction:column;gap:.15rem;min-width:9rem}
+.demo label b{font-weight:400;color:var(--ink2);font-size:.8rem}
+.demo output{font-family:var(--zr-police-serif);font-size:1.15rem}
+.demo canvas{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;background:var(--bg2)}
+button,.btn{font-family:var(--zr-police-sans);font-weight:400;font-size:.9rem;background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;cursor:pointer}
+button:hover{border-color:var(--acc)}button[aria-pressed="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+input[type=range]{accent-color:var(--acc);width:100%}
+.stats{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;font-family:var(--zr-police-sans);font-size:.9rem;color:var(--ink2);margin-top:.7rem}
+.stats b{font-family:var(--zr-police-serif);font-weight:var(--zr-poids-nombres);color:var(--ink);font-size:1.15rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.7rem 1.1rem;margin:.8rem 0}
+summary{cursor:pointer;font-family:var(--zr-police-sans);font-size:.98rem}
+dl{margin:1rem 0}dt{font-weight:500;margin-top:.9rem}dd{margin:.1rem 0 0;color:var(--ink2)}
+footer{overflow-wrap:anywhere;border-top:1px solid var(--line);margin:4rem 0 3rem;padding-top:1.4rem;color:var(--ink2);font-family:var(--zr-police-sans);font-size:.88rem}
+.svgtext{font-family:var(--zr-police-sans);font-size:13px;fill:var(--ink)}
+.svgtext2{font-family:var(--zr-police-sans);font-size:12px;fill:var(--ink2)}
+.svgnum{font-family:var(--zr-police-serif);font-size:15px;fill:var(--ink);font-weight:400}
+</style><style>body{max-width:1100px;margin:auto;padding:30px;background:#f6f3ec;color:#222}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}article{background:white;padding:18px;border-radius:14px}article svg{max-width:100%;height:auto}article figure{margin:0}h1,h2{font-family:"GT Ultra",sans-serif}h2{font-size:20px}</style><h1>Images de l’article d’origine</h1><p>Choisis les deux numéros à placer dans le résumé.</p><main><article><h2>1. Grille et décalage</h2><figure>
+<svg viewBox="0 0 760 370" role="img" aria-label="Schéma d'un pan de toit avec rangées, colonnes, tuile et joint">
+  <rect x="0" y="0" width="760" height="370" fill="var(--card)"/>
+  <!-- tuiles rangée par rangée, bas = égout -->
+  <g stroke="var(--bg)" stroke-width="2">
+    <g id="r1">
+      <rect x="60" y="230" width="90" height="46" fill="var(--t1)"/><rect x="150" y="230" width="98" height="46" fill="var(--t2)"/><rect x="248" y="230" width="84" height="46" fill="var(--t3)"/><rect x="332" y="230" width="100" height="46" fill="var(--t4)"/><rect x="432" y="230" width="88" height="46" fill="var(--t5)"/><rect x="520" y="230" width="96" height="46" fill="var(--t6)"/><rect x="616" y="230" width="80" height="46" fill="var(--t7)"/></g>
+    <g>
+      <rect x="60" y="184" width="40" height="46" fill="var(--t5)"/><rect x="100" y="184" width="94" height="46" fill="var(--t7)"/><rect x="194" y="184" width="86" height="46" fill="var(--t1)"/><rect x="280" y="184" width="100" height="46" fill="var(--t3)"/><rect x="380" y="184" width="84" height="46" fill="var(--t6)"/><rect x="464" y="184" width="98" height="46" fill="var(--t2)"/><rect x="562" y="184" width="134" height="46" fill="var(--t4)"/></g>
+    <g>
+      <rect x="60" y="138" width="78" height="46" fill="var(--t4)"/><rect x="138" y="138" width="92" height="46" fill="var(--t6)"/><rect x="230" y="138" width="100" height="46" fill="var(--t2)"/><rect x="330" y="138" width="86" height="46" fill="var(--t7)"/><rect x="416" y="138" width="94" height="46" fill="var(--t1)"/><rect x="510" y="138" width="90" height="46" fill="var(--t5)"/><rect x="600" y="138" width="96" height="46" fill="var(--t3)"/></g>
+    <g>
+      <rect x="60" y="92" width="58" height="46" fill="var(--t2)"/><rect x="118" y="92" width="96" height="46" fill="var(--t5)"/><rect x="214" y="92" width="84" height="46" fill="var(--t4)"/><rect x="298" y="92" width="100" height="46" fill="var(--t1)"/><rect x="398" y="92" width="92" height="46" fill="var(--t7)"/><rect x="490" y="92" width="88" height="46" fill="var(--t3)"/><rect x="578" y="92" width="118" height="46" fill="var(--t6)"/></g>
+  </g>
+  <text class="svgtext" x="60" y="298">égout (le bas du toit)</text>
+  <text class="svgtext" x="60" y="76">faîtage (le sommet du toit)</text>
+  <g stroke="var(--ink)" stroke-width="1.5" fill="none"><path d="M60 312 H696"/><path d="M60 306 V318 M696 306 V318"/></g>
+  <text class="svgtext" x="300" y="332">une RANGÉE, de gauche à droite</text>
+  <g stroke="var(--ink)" stroke-width="1.5" fill="none"><path d="M716 92 V276"/><path d="M710 92 H722 M710 276 H722"/></g>
+  <text class="svgtext" x="740" y="184" text-anchor="middle" transform="rotate(90 740 184)">4 RANGÉES ici</text>
+  <path d="M240 98 L240 276" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 4" fill="none"/>
+  <text class="svgtext" x="240" y="88" text-anchor="middle">une COLONNE</text>
+  <circle cx="382" cy="161" r="22" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+  <text class="svgtext" x="60" y="356">Le cercle entoure une TUILE. Le trait fin entre deux tuiles voisines est le JOINT.</text>
+</svg>
+<figcaption>Un pan de toit, vu de face. Les couleurs ne servent qu'à bien voir les tuiles. Regarde que les traits verticaux entre les tuiles (les joints) ne tombent pas au même endroit d'une rangée à l'autre : c'est le « décalage ».</figcaption>
+</figure></article><article><h2>2. Recouvrement des tuiles</h2><figure>
+<svg viewBox="0 0 760 400" role="img" aria-label="Vue de profil de trois rangées de tuiles qui se recouvrent">
+  <rect width="760" height="400" fill="var(--card)"/>
+  <g transform="translate(70,300) rotate(-14)">
+    <rect x="0" y="0" width="560" height="10" fill="var(--ink2)" opacity=".5"/>
+    <rect x="0" y="-12" width="220" height="12" fill="var(--t1)" stroke="var(--bg)" stroke-width="2"/>
+    <rect x="150" y="-24" width="220" height="12" fill="var(--t4)" stroke="var(--bg)" stroke-width="2"/>
+    <rect x="300" y="-36" width="220" height="12" fill="var(--t6)" stroke="var(--bg)" stroke-width="2"/>
+  </g>
+  <text class="svgtext" x="70" y="350">le bois du toit (le « deck »), en gris</text>
+  <text class="svgtext2" x="70" y="372">les trois tuiles de couleurs viennent de trois rangées : chacune dépasse sous la suivante</text>
+  <g font-family="var(--zr-police-serif)" font-size="17" fill="var(--ink)">
+    <text x="70" y="40">pas de rangée = 3,27 m ÷ 13 = 0,2515 m (la partie visible)</text>
+    <text x="70" y="68">recouvrement = 0,095 m (la partie cachée)</text>
+    <text x="70" y="96">longueur de la tuile = 0,2515 + 0,095 = 0,3465 m</text>
+  </g>
+</svg>
+<figcaption>Vue de profil. Les trois tuiles de couleurs sont des tuiles de trois rangées différentes : chacune dépasse sous la suivante.</figcaption>
+</figure></article><article><h2>9. Placement sans espace</h2><figure>
+<svg viewBox="0 0 760 260" role="img" aria-label="Pose de tuiles avec un curseur qui avance">
+  <rect width="760" height="260" fill="var(--card)"/>
+  <text class="svgtext" x="30" y="30">Étape 1 : le départ est au hasard, avant le bord du toit</text>
+  <line x1="150" y1="45" x2="150" y2="105" stroke="var(--ink2)" stroke-dasharray="4 4"/><text class="svgtext2" x="154" y="58">bord gauche du toit</text>
+  <rect x="78" y="70" width="60" height="30" fill="var(--t1)" opacity=".35" stroke="var(--ink2)" stroke-dasharray="3 3"/>
+  <text class="svgtext2" x="80" y="118">le curseur (départ) est ici, hors du toit</text>
+  <text class="svgtext" x="30" y="150">Étape 2 : chaque tuile commence où la précédente finit</text>
+  <g stroke="var(--bg)" stroke-width="2">
+    <rect x="78" y="165" width="82" height="34" fill="var(--t1)"/><rect x="160" y="165" width="104" height="34" fill="var(--t3)"/><rect x="264" y="165" width="88" height="34" fill="var(--t5)"/><rect x="352" y="165" width="110" height="34" fill="var(--t7)"/><rect x="462" y="165" width="90" height="34" fill="var(--t2)"/><rect x="552" y="165" width="100" height="34" fill="var(--t4)"/></g>
+  <g stroke="var(--ink)" fill="none" stroke-width="1.5"><path d="M160 212 V224 M264 212 V224 M352 212 V224 M462 212 V224 M552 212 V224"/></g>
+  <text class="svgtext2" x="80" y="238">largeurs différentes (0,35 m, 0,45 m, 0,38 m…), mais jamais de vide entre elles</text>
+  <path d="M652 165 L652 199" stroke="var(--ink)" stroke-width="3"/><text class="svgtext2" x="660" y="186">curseur</text>
+</svg>
+<figcaption>Le curseur avance au fur et à mesure : il n'y a plus aucun espace entre deux tuiles, et pourtant les largeurs et les départs restent aléatoires.</figcaption>
+</figure></article><article><h2>13. Quatre orientations</h2><figure>
+<svg viewBox="0 0 760 200" role="img" aria-label="Une tuile retournée de quatre façons">
+  <rect width="760" height="200" fill="var(--card)"/>
+  <g font-family="var(--zr-police-serif)" font-size="64" text-anchor="middle">
+    <rect x="30" y="30" width="130" height="100" rx="8" fill="var(--t1)"/>
+    <rect x="200" y="30" width="130" height="100" rx="8" fill="var(--t1)"/>
+    <rect x="370" y="30" width="130" height="100" rx="8" fill="var(--t1)"/>
+    <rect x="540" y="30" width="130" height="100" rx="8" fill="var(--t1)"/>
+    <g transform="translate(95,80)"><text y="22" style="fill:#fff">F</text></g>
+    <g transform="translate(265,80) scale(-1,1)"><text y="22" style="fill:#fff">F</text></g>
+    <g transform="translate(435,80) scale(1,-1)"><text y="22" style="fill:#fff">F</text></g>
+    <g transform="translate(605,80) rotate(180)"><text y="22" style="fill:#fff">F</text></g>
+  </g>
+  <text class="svgtext2" x="95" y="152" text-anchor="middle">normale</text>
+  <text class="svgtext2" x="265" y="152" text-anchor="middle">miroir gauche-droite</text>
+  <text class="svgtext2" x="435" y="152" text-anchor="middle">miroir haut-bas</text>
+  <text class="svgtext2" x="605" y="152" text-anchor="middle">tournée de 180°</text>
+</svg>
+<figcaption>La lettre « F » aide à voir comment chaque retournement change le dessin sans en changer les pixels.</figcaption>
+</figure></article><article><h2>14. Coordonnées UV</h2><figure>
+<svg viewBox="0 0 760 280" role="img" aria-label="Une tuile 3D reçoit une adresse UV sur la feuille">
+  <rect width="760" height="280" fill="var(--card)"/>
+  <polygon points="60,200 230,175 270,95 100,120" fill="var(--t4)" opacity=".8" stroke="var(--ink)" stroke-width="2"/>
+  <text class="svgtext" x="40" y="236">une tuile du toit (en 3D)</text>
+  <path d="M290 150 H400" stroke="var(--ink)" stroke-width="2"/><path d="M390 142 L402 150 L390 158" stroke="var(--ink)" fill="none" stroke-width="2"/>
+  <text class="svgtext2" x="296" y="138">ses UV</text>
+  <rect x="440" y="30" width="240" height="230" fill="var(--bg2)" stroke="var(--ink)" stroke-width="2"/>
+  <rect x="470" y="60" width="90" height="70" fill="var(--t4)" opacity=".85"/>
+  <text class="svgnum" x="472" y="150">U de 0,13 à 0,50</text><text class="svgnum" x="472" y="172">V de 0,62 à 0,87</text>
+  <text class="svgtext2" x="440" y="278">la feuille de texture (0 à 1 dans les deux sens)</text>
+</svg>
+<figcaption>Chaque tuile se « range » dans un rectangle de la feuille. Le programme du toit, pour chaque tuile, choisit un de ces rectangles au hasard.</figcaption>
+</figure></article><article><h2>6. Quatre orientations sur la vraie tuile</h2><div class="orient">
+  <figure><div class="cell"><img src="file:///Users/zenray/.claude/skills/zenray-houdini/lessons/roof-tiles/img/height-tile-A.webp" alt="Height d'une tuile du toit"></div><figcaption>normale</figcaption></figure>
+  <figure><div class="cell"><img class="fx" src="file:///Users/zenray/.claude/skills/zenray-houdini/lessons/roof-tiles/img/height-tile-A.webp" alt=""></div><figcaption>miroir gauche-droite</figcaption></figure>
+  <figure><div class="cell"><img class="fy" src="file:///Users/zenray/.claude/skills/zenray-houdini/lessons/roof-tiles/img/height-tile-A.webp" alt=""></div><figcaption>miroir haut-bas</figcaption></figure>
+  <figure><div class="cell"><img class="fr" src="file:///Users/zenray/.claude/skills/zenray-houdini/lessons/roof-tiles/img/height-tile-A.webp" alt=""></div><figcaption>tournée de 180°</figcaption></figure>
+</div>
+<script>
+(function(){
+ var labels=['normale','miroir gauche-droite','miroir haut-bas','tournée de 180°'],cls=['','fx','fy','fr'],h='';
+ var tile='<svg viewBox="0 0 120 100" width="100%" style="max-width:150px"><path d="M8 6 H112 V64 L92 94 H8 Z" fill="var(--t3)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/><path d="M30 6 L44 52 L38 94" fill="none" stroke="var(--ink)" stroke-width="2.5"/><circle cx="84" cy="34" r="9" fill="var(--ink2)"/><path d="M8 60 L26 64" stroke="var(--ink)" stroke-width="3"/><text x="100" y="22" font-size="14" fill="var(--ink)" font-family="var(--zr-police-sans)">A</text></svg>';
+ for(var i=0;i<4;i++)h+='<figure><div class="cell"><div class="'+cls[i]+'" style="display:flex;width:100%;justify-content:center">'+tile+'</div></div></article></main></html>

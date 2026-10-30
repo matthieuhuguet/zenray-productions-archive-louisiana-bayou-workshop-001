@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+"""Build the square roof diagrams in both requested typefaces."""
+
+from base64 import b64encode
+from pathlib import Path
+
+
+# 29 October 2026, 19:37 Europe/Paris: one definition produces both font variants.
+ROOT = Path(__file__).resolve().parent.parent
+FONTS = {
+    "GTUltra": (Path("/Users/zenray/Library/Fonts/GT-Ultra-Standard-Regular.otf"), "font/otf"),
+    "Literata": (Path("/Users/zenray/Library/Fonts/Literata[opsz,wght].ttf"), "font/ttf"),
+}
+
+
+def shell(font_name, body):
+    path, mime = FONTS[font_name]
+    font_data = b64encode(path.read_bytes()).decode("ascii")
+    family = "GT Ultra" if font_name == "GTUltra" else "Literata"
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720" role="img">
+<style>@font-face{{font-family:"{family}";src:url(data:{mime};base64,{font_data}) format("{ 'opentype' if mime == 'font/otf' else 'truetype' }");font-weight:400}}text{{font-family:"{family}";fill:#1b1c1a}}.title{{font-size:38px}}.label{{font-size:23px}}.small{{font-size:18px;fill:#444}}</style>
+<rect width="720" height="720" fill="#faf9f6"/>
+{body}
+</svg>'''
+
+
+def grid():
+    tiles = []
+    left_edges = (190, 165, 140, 115)
+    right_edges = (555, 545, 535, 525)
+    row_y = (210, 320, 430, 540)
+    for row in range(3):
+        offset = -0.5 if row == 1 else 0.0
+        for column in range(-1, 4):
+            u0, u1 = column + offset, column + offset + 1
+            def point(u, edge):
+                left, right, y = left_edges[edge], right_edges[edge], row_y[edge]
+                return f'{left + (right-left)*u/3:.1f},{y}'
+            points = ' '.join((point(u0, row), point(u1, row), point(u1, row+1), point(u0, row+1)))
+            tiles.append(f'<polygon points="{points}" fill="url(#tile{row % 2})" stroke="#435249" stroke-width="2"/>')
+    return '''<defs><clipPath id="roof"><polygon points="190,210 555,210 525,540 115,540"/></clipPath><linearGradient id="tile0" x2="1" y2="1"><stop stop-color="#dceee0"/><stop offset="1" stop-color="#9bc5a8"/></linearGradient><linearGradient id="tile1" x2="1" y2="1"><stop stop-color="#f0d7d0"/><stop offset="1" stop-color="#d7a194"/></linearGradient></defs>
+<text class="title" x="70" y="90">Grille décalée</text>
+<text class="small" x="70" y="126">Tuiles régulières, légère perspective</text>
+<g clip-path="url(#roof)">''' + ''.join(tiles) + '''</g>
+<path d="M312 187v-25m43 25v-25M312 170h43" fill="none" stroke="#343b37" stroke-width="2"/>
+<text class="small" x="315" y="154">½ tuile</text>
+<text class="label" x="70" y="630">La rangée du milieu commence et finit par une demi-tuile.</text>'''
+
+
+def overlap():
+    return '''<defs><linearGradient id="grayA" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f4f4f4"/><stop offset="1" stop-color="#a6a6a6"/></linearGradient><linearGradient id="grayB" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d6d6d6"/><stop offset="1" stop-color="#777"/></linearGradient><linearGradient id="grayC" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#aaa"/><stop offset="1" stop-color="#363636"/></linearGradient><clipPath id="plan"><rect x="104" y="432" width="512" height="152"/></clipPath></defs>
+<text class="title" x="70" y="78">Recouvrement des tuiles</text>
+<text class="small" x="70" y="112">Vue en perspective</text>
+<g transform="translate(138 350) rotate(-14)"><rect x="0" y="0" width="450" height="10" fill="#777" opacity=".7"/><rect x="0" y="-12" width="205" height="12" fill="url(#grayA)" stroke="#242424" stroke-width="2"/><rect x="140" y="-24" width="205" height="12" fill="url(#grayB)" stroke="#242424" stroke-width="2"/><rect x="280" y="-36" width="160" height="12" fill="url(#grayC)" stroke="#242424" stroke-width="2"/></g>
+<text class="small" x="70" y="394">Chaque tuile recouvre la rangée située dessous.</text>
+<text class="small" x="70" y="426">Vue de dessus : les rangées sont décalées</text>
+<g clip-path="url(#plan)"><rect x="104" y="432" width="512" height="152" fill="#ededed"/><g stroke="#333" stroke-width="2"><path d="M45 438h210v57H45zM255 438h210v57H255zM465 438h210v57H465z" fill="url(#grayA)"/><path d="M150 486h210v57H150zM360 486h210v57H360z" fill="url(#grayB)"/><path d="M45 534h210v57H45zM255 534h210v57H255zM465 534h210v57H465z" fill="url(#grayC)"/></g></g>
+<text class="label" x="70" y="640">Profil superposé, rangées décalées.</text>'''
+
+
+def orientations():
+    defs = '''<defs><linearGradient id="uv" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#b72729"/><stop offset=".5" stop-color="#bea43f"/><stop offset="1" stop-color="#18a35a"/></linearGradient></defs>'''
+    cards = []
+    for x, y, label, transform in (
+        (79, 173, "Originale", ""),
+        (380, 173, "Miroir horizontal", "translate(218 0) scale(-1 1)"),
+        (79, 430, "Miroir vertical", "translate(0 218) scale(1 -1)"),
+        (380, 430, "Demi-tour", "rotate(180 109 109)"),
+    ):
+        texture_transform = transform or "translate(0 0)"
+        cards.append(f'''<g transform="translate({x} {y})"><g transform="{texture_transform}"><rect width="218" height="218" rx="13" fill="url(#uv)" stroke="#394037" stroke-width="2"/><path d="M109 0v218M0 109h218" stroke="#fff" stroke-opacity=".38"/><text x="109" y="158" text-anchor="middle" font-size="145" fill="#111" stroke="#fff" stroke-width="1.5" paint-order="stroke">F</text></g><text class="small" x="109" y="244" text-anchor="middle">{label}</text></g>''')
+    return defs + '<text class="title" x="70" y="90">Quatre orientations</text><text class="small" x="70" y="126">Une texture carrée, quatre lectures</text>' + ''.join(cards)
+
+
+SCHEMES = {"GridOffset": grid, "Overlap": overlap, "Orientations": orientations}
+cards = []
+for scheme_name, build in SCHEMES.items():
+    for font_name in FONTS:
+        output = ROOT / f"{scheme_name}-{font_name}.svg"
+        output.write_text(shell(font_name, build()), encoding="utf-8")
+        cards.append(f'<article><h2>{scheme_name} · {font_name}</h2><img src="{output.name}" alt="{scheme_name}, version {font_name}"><a href="{output.name}">Ouvrir le SVG</a></article>')
+
+page = '''<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Schémas du toit</title><style>body{background:#eeeae3;color:#20201e;margin:0;padding:30px;font-family:system-ui,sans-serif}main{max-width:1250px;margin:auto}h1{font-size:30px}section{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}article{background:#fff;border-radius:18px;padding:18px}article img{display:block;width:100%;max-width:580px;margin:auto}article a{display:block;margin-top:12px;color:#265e43}.source{margin:12px 0 22px}@media(max-width:800px){section{grid-template-columns:1fr}}</style><main><h1>Trois schémas, deux fontes</h1><p>Chaque dessin est carré. Les versions GT Ultra et Literata sont côte à côte.</p><p class="source"><a href="Images-a-choisir.html">Revoir aussi les illustrations de la leçon d’origine</a></p><section>''' + ''.join(cards) + '</section></main></html>'
+(ROOT / "Schemas-a-choisir.html").write_text(page, encoding="utf-8")
+print(ROOT / "Schemas-a-choisir.html")
